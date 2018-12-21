@@ -9,7 +9,7 @@
 
     <name>agdt-java-generic-data-WealthAndAssetsSurvey</name>
     <url>https://github.com/agdturner/agdt-java-generic-data-WealthAndAssetsSurvey</url>
-    <description>A Java Library for a project looking into the feasibility of processing survey data to estimate the winners and losers from the UK housing market from 2006 to 2016.</description>
+    <description>A Java Library for handling the Wealth and Assets Survey.</description>
     <scm>
         <url>git@github.com:agdturner/agdt-java-generic-data-WealthAndAssetsSurvey.git</url>
         <connection>scm:git:git@github.com:agdturner/agdt-java-generic-data-WealthAndAssetsSurvey.git</connection>

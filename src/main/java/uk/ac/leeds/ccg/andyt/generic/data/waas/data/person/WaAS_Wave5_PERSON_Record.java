@@ -1160,7 +1160,7 @@ YEARW4 = Short.MIN_VALUE;
 }
 }
 
-protected double ANYOTHERBAMT() {
+public double getANYOTHERBAMT() {
 return ANYOTHERBAMT;
 }
 
@@ -1200,7 +1200,7 @@ public short getCASEW5() {
 return CASEW5;
 }
 
-protected double CTAMT() {
+public double getCTAMT() {
 return CTAMT;
 }
 
@@ -1344,7 +1344,7 @@ public byte getDVAGEW5BAND() {
 return DVAGEW5BAND;
 }
 
-protected double DVBENEFITANNUAL() {
+public double getDVBENEFITANNUAL() {
 return DVBENEFITANNUAL;
 }
 
@@ -1352,7 +1352,7 @@ public boolean getDVBENEFITANNUAL_IFLAG() {
 return DVBENEFITANNUAL_IFLAG;
 }
 
-protected double DVBENEFITANNUAL_MISS() {
+public double getDVBENEFITANNUAL_MISS() {
 return DVBENEFITANNUAL_MISS;
 }
 
@@ -1556,7 +1556,7 @@ public byte getRELEASEEQUITY3() {
 return RELEASEEQUITY3;
 }
 
-protected double RENTAMOUNT() {
+public double getRENTAMOUNT() {
 return RENTAMOUNT;
 }
 
@@ -1604,19 +1604,19 @@ public boolean getSOURC2PMULTI9() {
 return SOURC2PMULTI9;
 }
 
-protected double W1W5WGT() {
+public double getW1W5WGT() {
 return W1W5WGT;
 }
 
-protected double W4_LONGWGT() {
+public double getW4_LONGWGT() {
 return W4_LONGWGT;
 }
 
-protected double W5XSHHWGT() {
+public double getW5XSHHWGT() {
 return W5XSHHWGT;
 }
 
-protected double W5XSPERSWGT() {
+public double getW5XSPERSWGT() {
 return W5XSPERSWGT;
 }
 

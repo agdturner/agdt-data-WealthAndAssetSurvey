@@ -2142,19 +2142,19 @@ public boolean getDVSAME_IFLAG() {
 return DVSAME_IFLAG;
 }
 
-protected double DVSPECANNUAL01() {
+public double getDVSPECANNUAL01() {
 return DVSPECANNUAL01;
 }
 
-protected double DVSPECANNUAL02() {
+public double getDVSPECANNUAL02() {
 return DVSPECANNUAL02;
 }
 
-protected double DVSPECANNUAL03() {
+public double getDVSPECANNUAL03() {
 return DVSPECANNUAL03;
 }
 
-protected double DVSPECANNUAL04() {
+public double getDVSPECANNUAL04() {
 return DVSPECANNUAL04;
 }
 
@@ -2182,15 +2182,15 @@ public short getDVTOGTCANNUAL() {
 return DVTOGTCANNUAL;
 }
 
-protected double DVTOTALLBENANNUAL() {
+public double getDVTOTALLBENANNUAL() {
 return DVTOTALLBENANNUAL;
 }
 
-protected double DVTOTBENANNUAL() {
+public double getDVTOTBENANNUAL() {
 return DVTOTBENANNUAL;
 }
 
-protected double DVTOTTAXANNUAL() {
+public double getDVTOTTAXANNUAL() {
 return DVTOTTAXANNUAL;
 }
 
@@ -2198,7 +2198,7 @@ public boolean getDVUETIM() {
 return DVUETIM;
 }
 
-protected double DVWTCANNUAL() {
+public double getDVWTCANNUAL() {
 return DVWTCANNUAL;
 }
 
@@ -2266,7 +2266,7 @@ public byte getLVTDAY() {
 return LVTDAY;
 }
 
-protected double NSSEC() {
+public double getNSSEC() {
 return NSSEC;
 }
 
@@ -2690,19 +2690,19 @@ public boolean getUPROP6_IFLAG() {
 return UPROP6_IFLAG;
 }
 
-protected double W1_LONGWGT() {
+public double getW1_LONGWGT() {
 return W1_LONGWGT;
 }
 
-protected double W3_LONGWGT() {
+public double getW3_LONGWGT() {
 return W3_LONGWGT;
 }
 
-protected double W4XSHHWGT() {
+public double getW4XSHHWGT() {
 return W4XSHHWGT;
 }
 
-protected double W4XSPERSWGT() {
+public double getW4XSPERSWGT() {
 return W4XSPERSWGT;
 }
 

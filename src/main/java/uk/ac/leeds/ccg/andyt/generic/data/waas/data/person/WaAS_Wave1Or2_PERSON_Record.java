@@ -8747,75 +8747,75 @@ public byte getBACCSB() {
 return BACCSB;
 }
 
-protected double BAMT() {
+public double getBAMT() {
 return BAMT;
 }
 
-protected double BAMT10() {
+public double getBAMT10() {
 return BAMT10;
 }
 
-protected double BAMT11() {
+public double getBAMT11() {
 return BAMT11;
 }
 
-protected double BAMT12() {
+public double getBAMT12() {
 return BAMT12;
 }
 
-protected double BAMT13() {
+public double getBAMT13() {
 return BAMT13;
 }
 
-protected double BAMT14() {
+public double getBAMT14() {
 return BAMT14;
 }
 
-protected double BAMT15() {
+public double getBAMT15() {
 return BAMT15;
 }
 
-protected double BAMT16() {
+public double getBAMT16() {
 return BAMT16;
 }
 
-protected double BAMT17() {
+public double getBAMT17() {
 return BAMT17;
 }
 
-protected double BAMT18() {
+public double getBAMT18() {
 return BAMT18;
 }
 
-protected double BAMT2() {
+public double getBAMT2() {
 return BAMT2;
 }
 
-protected double BAMT3() {
+public double getBAMT3() {
 return BAMT3;
 }
 
-protected double BAMT4() {
+public double getBAMT4() {
 return BAMT4;
 }
 
-protected double BAMT5() {
+public double getBAMT5() {
 return BAMT5;
 }
 
-protected double BAMT6() {
+public double getBAMT6() {
 return BAMT6;
 }
 
-protected double BAMT7() {
+public double getBAMT7() {
 return BAMT7;
 }
 
-protected double BAMT8() {
+public double getBAMT8() {
 return BAMT8;
 }
 
-protected double BAMT9() {
+public double getBAMT9() {
 return BAMT9;
 }
 
@@ -10011,7 +10011,7 @@ public short getDHPINS4() {
 return DHPINS4;
 }
 
-protected double DHPINS4_I() {
+public double getDHPINS4_I() {
 return DHPINS4_I;
 }
 
@@ -10295,7 +10295,7 @@ public short getDLINS() {
 return DLINS;
 }
 
-protected double DLINS_I() {
+public double getDLINS_I() {
 return DLINS_I;
 }
 
@@ -11055,7 +11055,7 @@ public int getDSLAMT() {
 return DSLAMT;
 }
 
-protected double DSLAMT_I() {
+public double getDSLAMT_I() {
 return DSLAMT_I;
 }
 
@@ -11387,15 +11387,15 @@ public byte getDSRSP_IFLAG() {
 return DSRSP_IFLAG;
 }
 
-protected double DVCACRVAL() {
+public double getDVCACRVAL() {
 return DVCACRVAL;
 }
 
-protected double DVCAODVAL() {
+public double getDVCAODVAL() {
 return DVCAODVAL;
 }
 
-protected double DVCAVAL() {
+public double getDVCAVAL() {
 return DVCAVAL;
 }
 
@@ -11447,7 +11447,7 @@ public int getDVFESHARES() {
 return DVFESHARES;
 }
 
-protected double DVFFASSETS() {
+public double getDVFFASSETS() {
 return DVFFASSETS;
 }
 
@@ -11471,11 +11471,11 @@ public boolean getDVMOAR() {
 return DVMOAR;
 }
 
-protected double DVSAVAL() {
+public double getDVSAVAL() {
 return DVSAVAL;
 }
 
-protected double DVSHODVAL() {
+public double getDVSHODVAL() {
 return DVSHODVAL;
 }
 
@@ -11579,11 +11579,11 @@ public byte getHASSL() {
 return HASSL;
 }
 
-protected double HFINL() {
+public double getHFINL() {
 return HFINL;
 }
 
-protected double HFINW_EXCENDW() {
+public double getHFINW_EXCENDW() {
 return HFINW_EXCENDW;
 }
 
@@ -11639,31 +11639,31 @@ public short getHPARR() {
 return HPARR;
 }
 
-protected double HPLFT() {
+public double getHPLFT() {
 return HPLFT;
 }
 
-protected double HPLFT3() {
+public double getHPLFT3() {
 return HPLFT3;
 }
 
-protected double HPLFT4() {
+public double getHPLFT4() {
 return HPLFT4;
 }
 
-protected double HPLFT5() {
+public double getHPLFT5() {
 return HPLFT5;
 }
 
-protected double HPOS3() {
+public double getHPOS3() {
 return HPOS3;
 }
 
-protected double HPOS4() {
+public double getHPOS4() {
 return HPOS4;
 }
 
-protected double HPOS5() {
+public double getHPOS5() {
 return HPOS5;
 }
 
@@ -12075,7 +12075,7 @@ public int getLNARR() {
 return LNARR;
 }
 
-protected double LNLFT() {
+public double getLNLFT() {
 return LNLFT;
 }
 
@@ -12083,31 +12083,31 @@ public short getMOARR() {
 return MOARR;
 }
 
-protected double MOLFT() {
+public double getMOLFT() {
 return MOLFT;
 }
 
-protected double MOLFT3() {
+public double getMOLFT3() {
 return MOLFT3;
 }
 
-protected double MOLFT4() {
+public double getMOLFT4() {
 return MOLFT4;
 }
 
-protected double MOLFT5() {
+public double getMOLFT5() {
 return MOLFT5;
 }
 
-protected double MOOS3() {
+public double getMOOS3() {
 return MOOS3;
 }
 
-protected double MOOS4() {
+public double getMOOS4() {
 return MOOS4;
 }
 
-protected double MOOS5() {
+public double getMOOS5() {
 return MOOS5;
 }
 
@@ -12411,11 +12411,11 @@ public byte getSIC2007D() {
 return SIC2007D;
 }
 
-protected double SLNOS1() {
+public double getSLNOS1() {
 return SLNOS1;
 }
 
-protected double SLNOS2() {
+public double getSLNOS2() {
 return SLNOS2;
 }
 
@@ -12431,7 +12431,7 @@ public byte getSOC2010_2DIGIT() {
 return SOC2010_2DIGIT;
 }
 
-protected double SPASAF() {
+public double getSPASAF() {
 return SPASAF;
 }
 
@@ -12451,15 +12451,15 @@ public int getTOTCC() {
 return TOTCC;
 }
 
-protected double TOTHP() {
+public double getTOTHP() {
 return TOTHP;
 }
 
-protected double TOTLOS() {
+public double getTOTLOS() {
 return TOTLOS;
 }
 
-protected double TOTMO() {
+public double getTOTMO() {
 return TOTMO;
 }
 
@@ -12483,15 +12483,15 @@ public byte getTXCRED2() {
 return TXCRED2;
 }
 
-protected double T_FLNS() {
+public double getT_FLNS() {
 return T_FLNS;
 }
 
-protected double T_LNS() {
+public double getT_LNS() {
 return T_LNS;
 }
 
-protected double T_SLNS() {
+public double getT_SLNS() {
 return T_SLNS;
 }
 

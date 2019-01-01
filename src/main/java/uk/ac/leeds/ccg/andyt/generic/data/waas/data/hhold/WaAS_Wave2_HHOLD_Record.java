@@ -1324,7 +1324,7 @@ public boolean getVPERS_IFLAG() {
 return VPERS_IFLAG;
 }
 
-protected double XS_CALWGT() {
+public double getXS_CALWGT() {
 return XS_CALWGT;
 }
 

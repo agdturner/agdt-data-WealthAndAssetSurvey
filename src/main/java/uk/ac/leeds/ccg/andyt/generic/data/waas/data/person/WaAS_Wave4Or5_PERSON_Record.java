@@ -3668,15 +3668,15 @@ public boolean getADWHO32() {
 return ADWHO32;
 }
 
-protected double AGEASAF() {
+public double getAGEASAF() {
 return AGEASAF;
 }
 
-protected double ANNUITY1() {
+public double getANNUITY1() {
 return ANNUITY1;
 }
 
-protected double ANNUITY2() {
+public double getANNUITY2() {
 return ANNUITY2;
 }
 
@@ -3980,7 +3980,7 @@ public boolean getDVNETBAND_IFLAG() {
 return DVNETBAND_IFLAG;
 }
 
-protected double DVSHODVAL1() {
+public double getDVSHODVAL1() {
 return DVSHODVAL1;
 }
 
@@ -4664,7 +4664,7 @@ public boolean getSAVDEP() {
 return SAVDEP;
 }
 
-protected double SIC2007() {
+public double getSIC2007() {
 return SIC2007;
 }
 

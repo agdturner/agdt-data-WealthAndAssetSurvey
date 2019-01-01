@@ -3442,7 +3442,7 @@ public boolean getMENDVB9() {
 return MENDVB9;
 }
 
-protected double MENDV_I() {
+public double getMENDV_I() {
 return MENDV_I;
 }
 
@@ -3898,7 +3898,7 @@ public int getMVALB() {
 return MVALB;
 }
 
-protected double MVAL_I() {
+public double getMVAL_I() {
 return MVAL_I;
 }
 
@@ -4042,7 +4042,7 @@ public byte getVTYPE_I() {
 return VTYPE_I;
 }
 
-protected double W3XSWGT() {
+public double getW3XSWGT() {
 return W3XSWGT;
 }
 

@@ -437,15 +437,15 @@ public byte getMINTPAID3() {
 return MINTPAID3;
 }
 
-protected double MINTRATE1() {
+public double getMINTRATE1() {
 return MINTRATE1;
 }
 
-protected double MINTRATE2() {
+public double getMINTRATE2() {
 return MINTRATE2;
 }
 
-protected double MINTRATE3() {
+public double getMINTRATE3() {
 return MINTRATE3;
 }
 
@@ -529,7 +529,7 @@ public byte getVTYPE3_I() {
 return VTYPE3_I;
 }
 
-protected double W5XSHHWGT() {
+public double getW5XSHHWGT() {
 return W5XSHHWGT;
 }
 

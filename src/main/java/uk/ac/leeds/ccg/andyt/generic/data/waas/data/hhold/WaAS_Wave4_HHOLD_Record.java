@@ -271,7 +271,7 @@ public byte getVTYPE_I() {
 return VTYPE_I;
 }
 
-protected double W4XSHHWGT() {
+public double getW4XSHHWGT() {
 return W4XSHHWGT;
 }
 

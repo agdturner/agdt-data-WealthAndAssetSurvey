@@ -776,7 +776,7 @@ public boolean getVSHPCT5() {
 return VSHPCT5;
 }
 
-protected double XS_WGT() {
+public double getXS_WGT() {
 return XS_WGT;
 }
 

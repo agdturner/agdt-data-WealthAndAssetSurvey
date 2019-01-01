@@ -1804,7 +1804,7 @@ public int getDVBLDVAL() {
 return DVBLDVAL;
 }
 
-protected double DVCACRVAL_SUM() {
+public double getDVCACRVAL_SUM() {
 return DVCACRVAL_SUM;
 }
 
@@ -1812,7 +1812,7 @@ public short getDVCACTV_SUM() {
 return DVCACTV_SUM;
 }
 
-protected double DVCAODVAL_SUM() {
+public double getDVCAODVAL_SUM() {
 return DVCAODVAL_SUM;
 }
 
@@ -1820,7 +1820,7 @@ public int getDVCASVV_SUM() {
 return DVCASVV_SUM;
 }
 
-protected double DVCAVAL_SUM() {
+public double getDVCAVAL_SUM() {
 return DVCAVAL_SUM;
 }
 
@@ -1828,7 +1828,7 @@ public int getDVCISAV_SUM() {
 return DVCISAV_SUM;
 }
 
-protected double DVDBRWEALTHVAL_SUM() {
+public double getDVDBRWEALTHVAL_SUM() {
 return DVDBRWEALTHVAL_SUM;
 }
 
@@ -1836,7 +1836,7 @@ public int getDVEQHIP() {
 return DVEQHIP;
 }
 
-protected double DVEQRUPM() {
+public double getDVEQRUPM() {
 return DVEQRUPM;
 }
 
@@ -1852,7 +1852,7 @@ public int getDVFESHARES_SUM() {
 return DVFESHARES_SUM;
 }
 
-protected double DVFFASSETS_SUM() {
+public double getDVFFASSETS_SUM() {
 return DVFFASSETS_SUM;
 }
 
@@ -1944,11 +1944,11 @@ public int getDVOPRVAL() {
 return DVOPRVAL;
 }
 
-protected double DVPAVCUV_SUM() {
+public double getDVPAVCUV_SUM() {
 return DVPAVCUV_SUM;
 }
 
-protected double DVPFCURVAL_SUM() {
+public double getDVPFCURVAL_SUM() {
 return DVPFCURVAL_SUM;
 }
 
@@ -1956,19 +1956,19 @@ public int getDVPFDDV_SUM() {
 return DVPFDDV_SUM;
 }
 
-protected double DVPINPVAL_SUM() {
+public double getDVPINPVAL_SUM() {
 return DVPINPVAL_SUM;
 }
 
-protected double DVPPVAL_SUM() {
+public double getDVPPVAL_SUM() {
 return DVPPVAL_SUM;
 }
 
-protected double DVSAVAL_SUM() {
+public double getDVSAVAL_SUM() {
 return DVSAVAL_SUM;
 }
 
-protected double DVSPEN_SUM() {
+public double getDVSPEN_SUM() {
 return DVSPEN_SUM;
 }
 
@@ -1984,11 +1984,11 @@ public int getDVTOTVANVAL() {
 return DVTOTVANVAL;
 }
 
-protected double DVVALDBT_SUM() {
+public double getDVVALDBT_SUM() {
 return DVVALDBT_SUM;
 }
 
-protected double DVVALDCOS_SUM() {
+public double getDVVALDCOS_SUM() {
 return DVVALDCOS_SUM;
 }
 
@@ -2140,11 +2140,11 @@ public boolean getGCPREAM() {
 return GCPREAM;
 }
 
-protected double HFINL_SUM() {
+public double getHFINL_SUM() {
 return HFINL_SUM;
 }
 
-protected double HFINW_EXCENDW_SUM() {
+public double getHFINW_EXCENDW_SUM() {
 return HFINW_EXCENDW_SUM;
 }
 
@@ -2264,7 +2264,7 @@ public boolean getMENDVB8() {
 return MENDVB8;
 }
 
-protected double MENDV_I() {
+public double getMENDV_I() {
 return MENDV_I;
 }
 
@@ -2404,7 +2404,7 @@ public int getMVALB() {
 return MVALB;
 }
 
-protected double MVAL_I() {
+public double getMVAL_I() {
 return MVAL_I;
 }
 
@@ -2476,19 +2476,19 @@ public int getTOTCC_SUM() {
 return TOTCC_SUM;
 }
 
-protected double TOTHP_SUM() {
+public double getTOTHP_SUM() {
 return TOTHP_SUM;
 }
 
-protected double TOTLOS_SUM() {
+public double getTOTLOS_SUM() {
 return TOTLOS_SUM;
 }
 
-protected double TOTMO_SUM() {
+public double getTOTMO_SUM() {
 return TOTMO_SUM;
 }
 
-protected double TOTPEN_SUM() {
+public double getTOTPEN_SUM() {
 return TOTPEN_SUM;
 }
 
@@ -2496,15 +2496,15 @@ public short getTOTSC_SUM() {
 return TOTSC_SUM;
 }
 
-protected double T_FLNS_SUM() {
+public double getT_FLNS_SUM() {
 return T_FLNS_SUM;
 }
 
-protected double T_LNS_SUM() {
+public double getT_LNS_SUM() {
 return T_LNS_SUM;
 }
 
-protected double T_SLNS_SUM() {
+public double getT_SLNS_SUM() {
 return T_SLNS_SUM;
 }
 

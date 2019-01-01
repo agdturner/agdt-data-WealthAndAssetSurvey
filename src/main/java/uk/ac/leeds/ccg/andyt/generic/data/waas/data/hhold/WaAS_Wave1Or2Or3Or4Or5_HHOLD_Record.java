@@ -2230,7 +2230,7 @@ public byte getACCOTH() {
 return ACCOTH;
 }
 
-protected double ALLENDW() {
+public double getALLENDW() {
 return ALLENDW;
 }
 
@@ -2242,7 +2242,7 @@ public short getCASEW1() {
 return CASEW1;
 }
 
-protected double DVEQRELVAL() {
+public double getDVEQRELVAL() {
 return DVEQRELVAL;
 }
 
@@ -2250,7 +2250,7 @@ public int getDVGCOLLV() {
 return DVGCOLLV;
 }
 
-protected double DVHORP() {
+public double getDVHORP() {
 return DVHORP;
 }
 
@@ -2258,7 +2258,7 @@ public byte getDVHSIZE() {
 return DVHSIZE;
 }
 
-protected double DVHVALUE() {
+public double getDVHVALUE() {
 return DVHVALUE;
 }
 
@@ -2266,7 +2266,7 @@ public boolean getDVPRIRNT() {
 return DVPRIRNT;
 }
 
-protected double DVPROPERTY() {
+public double getDVPROPERTY() {
 return DVPROPERTY;
 }
 
@@ -2282,11 +2282,11 @@ public int getDVTOTVEHVAL() {
 return DVTOTVEHVAL;
 }
 
-protected double EINTRAT() {
+public double getEINTRAT() {
 return EINTRAT;
 }
 
-protected double EINTRAT_I() {
+public double getEINTRAT_I() {
 return EINTRAT_I;
 }
 
@@ -2342,11 +2342,11 @@ public byte getERECTAX() {
 return ERECTAX;
 }
 
-protected double ERVPRP() {
+public double getERVPRP() {
 return ERVPRP;
 }
 
-protected double ERVPRP_I() {
+public double getERVPRP_I() {
 return ERVPRP_I;
 }
 
@@ -2446,11 +2446,11 @@ public short getHBUYYR() {
 return HBUYYR;
 }
 
-protected double HFINWNT_SUM() {
+public double getHFINWNT_SUM() {
 return HFINWNT_SUM;
 }
 
-protected double HFINW_SUM() {
+public double getHFINW_SUM() {
 return HFINW_SUM;
 }
 
@@ -2466,7 +2466,7 @@ public byte getHHOWN() {
 return HHOWN;
 }
 
-protected double HMORTG() {
+public double getHMORTG() {
 return HMORTG;
 }
 
@@ -2490,7 +2490,7 @@ public byte getHPRICEB() {
 return HPRICEB;
 }
 
-protected double HPROPW() {
+public double getHPROPW() {
 return HPROPW;
 }
 
@@ -2566,11 +2566,11 @@ public byte getHVALB() {
 return HVALB;
 }
 
-protected double HVALUE() {
+public double getHVALUE() {
 return HVALUE;
 }
 
-protected double HVALUE_I() {
+public double getHVALUE_I() {
 return HVALUE_I;
 }
 
@@ -2654,7 +2654,7 @@ public int getMENDV2() {
 return MENDV2;
 }
 
-protected double MENDV2_I() {
+public double getMENDV2_I() {
 return MENDV2_I;
 }
 
@@ -3082,15 +3082,15 @@ public int getTOTMNEG() {
 return TOTMNEG;
 }
 
-protected double TOTMORT() {
+public double getTOTMORT() {
 return TOTMORT;
 }
 
-protected double TOTMVAL() {
+public double getTOTMVAL() {
 return TOTMVAL;
 }
 
-protected double TOTWLTH() {
+public double getTOTWLTH() {
 return TOTWLTH;
 }
 

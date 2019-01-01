@@ -13487,11 +13487,11 @@ XMARSTA_IFLAG = false;
 }
 }
 
-protected double ACCFRAC1() {
+public double getACCFRAC1() {
 return ACCFRAC1;
 }
 
-protected double ACCFRAC2() {
+public double getACCFRAC2() {
 return ACCFRAC2;
 }
 
@@ -13507,11 +13507,11 @@ public byte getANXIOUS() {
 return ANXIOUS;
 }
 
-protected double ASAF1T() {
+public double getASAF1T() {
 return ASAF1T;
 }
 
-protected double ASAF2T() {
+public double getASAF2T() {
 return ASAF2T;
 }
 
@@ -13575,11 +13575,11 @@ public boolean getBONTAX_IFLAG() {
 return BONTAX_IFLAG;
 }
 
-protected double BOTDVDBOPEN1T() {
+public double getBOTDVDBOPEN1T() {
 return BOTDVDBOPEN1T;
 }
 
-protected double BOTDVDBOPEN2T() {
+public double getBOTDVDBOPEN2T() {
 return BOTDVDBOPEN2T;
 }
 
@@ -14559,19 +14559,19 @@ public int getDVBLTVAL() {
 return DVBLTVAL;
 }
 
-protected double DVBTOGANNUAL() {
+public double getDVBTOGANNUAL() {
 return DVBTOGANNUAL;
 }
 
-protected double DVCACRVAL_SUM() {
+public double getDVCACRVAL_SUM() {
 return DVCACRVAL_SUM;
 }
 
-protected double DVCAODVAL_SUM() {
+public double getDVCAODVAL_SUM() {
 return DVCAODVAL_SUM;
 }
 
-protected double DVCAVAL_SUM() {
+public double getDVCAVAL_SUM() {
 return DVCAVAL_SUM;
 }
 
@@ -14611,11 +14611,11 @@ public short getDVDBINC6() {
 return DVDBINC6;
 }
 
-protected double DVDBLUMP4() {
+public double getDVDBLUMP4() {
 return DVDBLUMP4;
 }
 
-protected double DVDBLUMP5() {
+public double getDVDBLUMP5() {
 return DVDBLUMP5;
 }
 
@@ -14623,11 +14623,11 @@ public int getDVDBLUMP6() {
 return DVDBLUMP6;
 }
 
-protected double DVDBOPEN1T() {
+public double getDVDBOPEN1T() {
 return DVDBOPEN1T;
 }
 
-protected double DVDBOPEN2T() {
+public double getDVDBOPEN2T() {
 return DVDBOPEN2T;
 }
 
@@ -14651,7 +14651,7 @@ public int getDVFESHARES_SUM() {
 return DVFESHARES_SUM;
 }
 
-protected double DVFFASSETS_SUM() {
+public double getDVFFASSETS_SUM() {
 return DVFFASSETS_SUM;
 }
 
@@ -14683,7 +14683,7 @@ public int getDVGRSBONAMT() {
 return DVGRSBONAMT;
 }
 
-protected double DVGRSBONAMT_I() {
+public double getDVGRSBONAMT_I() {
 return DVGRSBONAMT_I;
 }
 
@@ -14843,7 +14843,7 @@ public int getDVNETBONAMT() {
 return DVNETBONAMT;
 }
 
-protected double DVNETBONAMT_I() {
+public double getDVNETBONAMT_I() {
 return DVNETBONAMT_I;
 }
 
@@ -14867,11 +14867,11 @@ public int getDVNETRENTAMTANNUAL() {
 return DVNETRENTAMTANNUAL;
 }
 
-protected double DVNETSESECJOB() {
+public double getDVNETSESECJOB() {
 return DVNETSESECJOB;
 }
 
-protected double DVNIEMP() {
+public double getDVNIEMP() {
 return DVNIEMP;
 }
 
@@ -14887,7 +14887,7 @@ public int getDVNIPPEN() {
 return DVNIPPEN;
 }
 
-protected double DVNISE() {
+public double getDVNISE() {
 return DVNISE;
 }
 
@@ -15011,11 +15011,11 @@ public int getDVOTHINSANNUAL() {
 return DVOTHINSANNUAL;
 }
 
-protected double DVPENINC1() {
+public double getDVPENINC1() {
 return DVPENINC1;
 }
 
-protected double DVPENINC2() {
+public double getDVPENINC2() {
 return DVPENINC2;
 }
 
@@ -15035,7 +15035,7 @@ public byte getDVSAME() {
 return DVSAME;
 }
 
-protected double DVSAVAL_SUM() {
+public double getDVSAVAL_SUM() {
 return DVSAVAL_SUM;
 }
 
@@ -15083,15 +15083,15 @@ public byte getDVSENO() {
 return DVSENO;
 }
 
-protected double DVSEPANNUAL01() {
+public double getDVSEPANNUAL01() {
 return DVSEPANNUAL01;
 }
 
-protected double DVSEPANNUAL02() {
+public double getDVSEPANNUAL02() {
 return DVSEPANNUAL02;
 }
 
-protected double DVSEPANNUAL03() {
+public double getDVSEPANNUAL03() {
 return DVSEPANNUAL03;
 }
 
@@ -15115,11 +15115,11 @@ public short getDVSEPANNUAL08() {
 return DVSEPANNUAL08;
 }
 
-protected double DVSPS() {
+public double getDVSPS() {
 return DVSPS;
 }
 
-protected double DVWID() {
+public double getDVWID() {
 return DVWID;
 }
 
@@ -15303,11 +15303,11 @@ public byte getHASSHAC() {
 return HASSHAC;
 }
 
-protected double HFINL_SUM() {
+public double getHFINL_SUM() {
 return HFINL_SUM;
 }
 
-protected double HFINW_EXCENDW_SUM() {
+public double getHFINW_EXCENDW_SUM() {
 return HFINW_EXCENDW_SUM;
 }
 
@@ -15331,7 +15331,7 @@ public short getHPARR_SUM() {
 return HPARR_SUM;
 }
 
-protected double HPLFT1() {
+public double getHPLFT1() {
 return HPLFT1;
 }
 
@@ -15559,7 +15559,7 @@ public short getLNARR_SUM() {
 return LNARR_SUM;
 }
 
-protected double LNLFT1() {
+public double getLNLFT1() {
 return LNLFT1;
 }
 
@@ -15583,7 +15583,7 @@ public byte getMARST() {
 return MARST;
 }
 
-protected double MNTHSCAPE() {
+public double getMNTHSCAPE() {
 return MNTHSCAPE;
 }
 
@@ -15591,7 +15591,7 @@ public short getMOARR_SUM() {
 return MOARR_SUM;
 }
 
-protected double MOLFT1() {
+public double getMOLFT1() {
 return MOLFT1;
 }
 
@@ -16003,7 +16003,7 @@ public int getPARTGRSPAY() {
 return PARTGRSPAY;
 }
 
-protected double PARTNSSEC() {
+public double getPARTNSSEC() {
 return PARTNSSEC;
 }
 
@@ -16015,11 +16015,11 @@ public byte getPARTNSSEC5() {
 return PARTNSSEC5;
 }
 
-protected double PARTNSSEC8() {
+public double getPARTNSSEC8() {
 return PARTNSSEC8;
 }
 
-protected double PARTNSSECB() {
+public double getPARTNSSECB() {
 return PARTNSSECB;
 }
 
@@ -16131,11 +16131,11 @@ public int getPBINCA2() {
 return PBINCA2;
 }
 
-protected double PBINCF1() {
+public double getPBINCF1() {
 return PBINCF1;
 }
 
-protected double PBINCF2() {
+public double getPBINCF2() {
 return PBINCF2;
 }
 
@@ -16267,7 +16267,7 @@ public int getPDCVAL1() {
 return PDCVAL1;
 }
 
-protected double PDCVAL1_I() {
+public double getPDCVAL1_I() {
 return PDCVAL1_I;
 }
 
@@ -16467,7 +16467,7 @@ public int getPFCURV2() {
 return PFCURV2;
 }
 
-protected double PFCURV2_I() {
+public double getPFCURV2_I() {
 return PFCURV2_I;
 }
 
@@ -16479,7 +16479,7 @@ public int getPFCURV3() {
 return PFCURV3;
 }
 
-protected double PFCURV3_I() {
+public double getPFCURV3_I() {
 return PFCURV3_I;
 }
 
@@ -16503,7 +16503,7 @@ public int getPFCURV5() {
 return PFCURV5;
 }
 
-protected double PFCURV5_I() {
+public double getPFCURV5_I() {
 return PFCURV5_I;
 }
 
@@ -16515,7 +16515,7 @@ public int getPFCURV6() {
 return PFCURV6;
 }
 
-protected double PFCURV6_I() {
+public double getPFCURV6_I() {
 return PFCURV6_I;
 }
 
@@ -16751,7 +16751,7 @@ public int getPFINCA2() {
 return PFINCA2;
 }
 
-protected double PFINCA2_I() {
+public double getPFINCA2_I() {
 return PFINCA2_I;
 }
 
@@ -16759,11 +16759,11 @@ public boolean getPFINCA2_IFLAG() {
 return PFINCA2_IFLAG;
 }
 
-protected double PFINCA3() {
+public double getPFINCA3() {
 return PFINCA3;
 }
 
-protected double PFINCA3_I() {
+public double getPFINCA3_I() {
 return PFINCA3_I;
 }
 
@@ -16771,7 +16771,7 @@ public boolean getPFINCA3_IFLAG() {
 return PFINCA3_IFLAG;
 }
 
-protected double PFINCA4() {
+public double getPFINCA4() {
 return PFINCA4;
 }
 
@@ -17091,7 +17091,7 @@ public int getPFLUMV2() {
 return PFLUMV2;
 }
 
-protected double PFLUMV2_I() {
+public double getPFLUMV2_I() {
 return PFLUMV2_I;
 }
 
@@ -17683,11 +17683,11 @@ public byte getPOCNFG2() {
 return POCNFG2;
 }
 
-protected double POCNFR1() {
+public double getPOCNFR1() {
 return POCNFR1;
 }
 
-protected double POCNFR2() {
+public double getPOCNFR2() {
 return POCNFR2;
 }
 
@@ -17763,7 +17763,7 @@ public int getPODRVI2() {
 return PODRVI2;
 }
 
-protected double POEMAM1() {
+public double getPOEMAM1() {
 return POEMAM1;
 }
 
@@ -17779,11 +17779,11 @@ public byte getPOEMFG2() {
 return POEMFG2;
 }
 
-protected double POEMFR1() {
+public double getPOEMFR1() {
 return POEMFR1;
 }
 
-protected double POEMFR2() {
+public double getPOEMFR2() {
 return POEMFR2;
 }
 
@@ -18203,7 +18203,7 @@ public boolean getPPEIRA3() {
 return PPEIRA3;
 }
 
-protected double PPEIRF1() {
+public double getPPEIRF1() {
 return PPEIRF1;
 }
 
@@ -18239,7 +18239,7 @@ public short getPPEMAM3() {
 return PPEMAM3;
 }
 
-protected double PPEMFR1() {
+public double getPPEMFR1() {
 return PPEMFR1;
 }
 
@@ -18499,7 +18499,7 @@ public byte getPPRGFG2() {
 return PPRGFG2;
 }
 
-protected double PPRGFR1() {
+public double getPPRGFR1() {
 return PPRGFR1;
 }
 
@@ -18595,7 +18595,7 @@ public int getPPVAL2() {
 return PPVAL2;
 }
 
-protected double PPVAL2_I() {
+public double getPPVAL2_I() {
 return PPVAL2_I;
 }
 
@@ -18607,7 +18607,7 @@ public int getPPVAL3() {
 return PPVAL3;
 }
 
-protected double PPVAL3_I() {
+public double getPPVAL3_I() {
 return PPVAL3_I;
 }
 
@@ -18839,7 +18839,7 @@ public byte getRESPDNT() {
 return RESPDNT;
 }
 
-protected double RETFRAC() {
+public double getRETFRAC() {
 return RETFRAC;
 }
 
@@ -18979,7 +18979,7 @@ public byte getSMTPEN() {
 return SMTPEN;
 }
 
-protected double SOC2010() {
+public double getSOC2010() {
 return SOC2010;
 }
 
@@ -19143,11 +19143,11 @@ public boolean getTJNT4() {
 return TJNT4;
 }
 
-protected double TOPDVDBOPEN1T() {
+public double getTOPDVDBOPEN1T() {
 return TOPDVDBOPEN1T;
 }
 
-protected double TOPDVDBOPEN2T() {
+public double getTOPDVDBOPEN2T() {
 return TOPDVDBOPEN2T;
 }
 
@@ -19163,23 +19163,23 @@ public int getTOTCC_SUM() {
 return TOTCC_SUM;
 }
 
-protected double TOTFLNS_SUM() {
+public double getTOTFLNS_SUM() {
 return TOTFLNS_SUM;
 }
 
-protected double TOTHP_SUM() {
+public double getTOTHP_SUM() {
 return TOTHP_SUM;
 }
 
-protected double TOTLNS_SUM() {
+public double getTOTLNS_SUM() {
 return TOTLNS_SUM;
 }
 
-protected double TOTLOS_SUM() {
+public double getTOTLOS_SUM() {
 return TOTLOS_SUM;
 }
 
-protected double TOTMO_SUM() {
+public double getTOTMO_SUM() {
 return TOTMO_SUM;
 }
 

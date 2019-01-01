@@ -13788,19 +13788,19 @@ XICONSC = true;
 }
 }
 
-protected double ACCFRAC() {
+public double getACCFRAC() {
 return ACCFRAC;
 }
 
-protected double AGEASAF1() {
+public double getAGEASAF1() {
 return AGEASAF1;
 }
 
-protected double AGMSAF2T() {
+public double getAGMSAF2T() {
 return AGMSAF2T;
 }
 
-protected double AGMSAFT1() {
+public double getAGMSAFT1() {
 return AGMSAFT1;
 }
 
@@ -14352,7 +14352,7 @@ public short getDHPINS4() {
 return DHPINS4;
 }
 
-protected double DHPINS4_I() {
+public double getDHPINS4_I() {
 return DHPINS4_I;
 }
 
@@ -15416,23 +15416,23 @@ public boolean getDVSEPANNUAL20() {
 return DVSEPANNUAL20;
 }
 
-protected double DVSHODVAL() {
+public double getDVSHODVAL() {
 return DVSHODVAL;
 }
 
-protected double DVSPECANNUAL01() {
+public double getDVSPECANNUAL01() {
 return DVSPECANNUAL01;
 }
 
-protected double DVSPECANNUAL02() {
+public double getDVSPECANNUAL02() {
 return DVSPECANNUAL02;
 }
 
-protected double DVSPECANNUAL03() {
+public double getDVSPECANNUAL03() {
 return DVSPECANNUAL03;
 }
 
-protected double DVSPECANNUAL04() {
+public double getDVSPECANNUAL04() {
 return DVSPECANNUAL04;
 }
 
@@ -15468,15 +15468,15 @@ public short getDVTOGTCANNUAL() {
 return DVTOGTCANNUAL;
 }
 
-protected double DVTOTALLBENANNUAL() {
+public double getDVTOTALLBENANNUAL() {
 return DVTOTALLBENANNUAL;
 }
 
-protected double DVTOTBENANNUAL() {
+public double getDVTOTBENANNUAL() {
 return DVTOTBENANNUAL;
 }
 
-protected double DVTOTTAXANNUAL() {
+public double getDVTOTTAXANNUAL() {
 return DVTOTTAXANNUAL;
 }
 
@@ -15484,7 +15484,7 @@ public byte getDVWAVE() {
 return DVWAVE;
 }
 
-protected double DVWTCANNUAL() {
+public double getDVWTCANNUAL() {
 return DVWTCANNUAL;
 }
 
@@ -15588,15 +15588,15 @@ public boolean getFSTYPSH5() {
 return FSTYPSH5;
 }
 
-protected double HPLFT3() {
+public double getHPLFT3() {
 return HPLFT3;
 }
 
-protected double HPLFT4() {
+public double getHPLFT4() {
 return HPLFT4;
 }
 
-protected double HPLFT5() {
+public double getHPLFT5() {
 return HPLFT5;
 }
 
@@ -15624,15 +15624,15 @@ public boolean getHPNYR5() {
 return HPNYR5;
 }
 
-protected double HPOS3() {
+public double getHPOS3() {
 return HPOS3;
 }
 
-protected double HPOS4() {
+public double getHPOS4() {
 return HPOS4;
 }
 
-protected double HPOS5() {
+public double getHPOS5() {
 return HPOS5;
 }
 
@@ -15984,27 +15984,27 @@ public byte getLVTDAY() {
 return LVTDAY;
 }
 
-protected double MOLFT3() {
+public double getMOLFT3() {
 return MOLFT3;
 }
 
-protected double MOLFT4() {
+public double getMOLFT4() {
 return MOLFT4;
 }
 
-protected double MOLFT5() {
+public double getMOLFT5() {
 return MOLFT5;
 }
 
-protected double MOOS3() {
+public double getMOOS3() {
 return MOOS3;
 }
 
-protected double MOOS4() {
+public double getMOOS4() {
 return MOOS4;
 }
 
-protected double MOOS5() {
+public double getMOOS5() {
 return MOOS5;
 }
 
@@ -16028,7 +16028,7 @@ public byte getNMN5() {
 return NMN5;
 }
 
-protected double NSSEC() {
+public double getNSSEC() {
 return NSSEC;
 }
 
@@ -16232,7 +16232,7 @@ public boolean getPAVCFG2() {
 return PAVCFG2;
 }
 
-protected double PAVCFR1() {
+public double getPAVCFR1() {
 return PAVCFR1;
 }
 
@@ -18384,11 +18384,11 @@ public byte getSOC2000() {
 return SOC2000;
 }
 
-protected double SPASAF_IORIG() {
+public double getSPASAF_IORIG() {
 return SPASAF_IORIG;
 }
 
-protected double SPECAMT10() {
+public double getSPECAMT10() {
 return SPECAMT10;
 }
 
@@ -18908,15 +18908,15 @@ public boolean getUPRTYP() {
 return UPRTYP;
 }
 
-protected double W1W3WGT() {
+public double getW1W3WGT() {
 return W1W3WGT;
 }
 
-protected double W2W3WGT() {
+public double getW2W3WGT() {
 return W2W3WGT;
 }
 
-protected double W3XSWGT() {
+public double getW3XSWGT() {
 return W3XSWGT;
 }
 

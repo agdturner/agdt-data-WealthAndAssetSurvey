@@ -1782,7 +1782,7 @@ public int getDVBLTVAL_SUM() {
 return DVBLTVAL_SUM;
 }
 
-protected double DVCACRVAL_AGGR() {
+public double getDVCACRVAL_AGGR() {
 return DVCACRVAL_AGGR;
 }
 
@@ -1798,7 +1798,7 @@ public int getDVCASVV_AGGR() {
 return DVCASVV_AGGR;
 }
 
-protected double DVCAVAL_AGGR() {
+public double getDVCAVAL_AGGR() {
 return DVCAVAL_AGGR;
 }
 
@@ -1806,7 +1806,7 @@ public int getDVCISAV_AGGR() {
 return DVCISAV_AGGR;
 }
 
-protected double DVDBRWEALTHVAL_AGGR() {
+public double getDVDBRWEALTHVAL_AGGR() {
 return DVDBRWEALTHVAL_AGGR;
 }
 
@@ -1858,7 +1858,7 @@ public int getDVFESHAV_AGGR() {
 return DVFESHAV_AGGR;
 }
 
-protected double DVFFASSETS_AGGR() {
+public double getDVFFASSETS_AGGR() {
 return DVFFASSETS_AGGR;
 }
 
@@ -2002,7 +2002,7 @@ public int getDVNIPPEN_AGGR() {
 return DVNIPPEN_AGGR;
 }
 
-protected double DVNISE_AGGR() {
+public double getDVNISE_AGGR() {
 return DVNISE_AGGR;
 }
 
@@ -2082,7 +2082,7 @@ public int getDVPFDDV_AGGR() {
 return DVPFDDV_AGGR;
 }
 
-protected double DVPINPVAL_AGGR() {
+public double getDVPINPVAL_AGGR() {
 return DVPINPVAL_AGGR;
 }
 
@@ -2094,11 +2094,11 @@ public int getDVSAVAL_AGGR() {
 return DVSAVAL_AGGR;
 }
 
-protected double DVSPEN_AGGR() {
+public double getDVSPEN_AGGR() {
 return DVSPEN_AGGR;
 }
 
-protected double DVTOTGIR() {
+public double getDVTOTGIR() {
 return DVTOTGIR;
 }
 
@@ -2106,11 +2106,11 @@ public int getDVTOTNIR() {
 return DVTOTNIR;
 }
 
-protected double DVVALDBT_AGGR() {
+public double getDVVALDBT_AGGR() {
 return DVVALDBT_AGGR;
 }
 
-protected double DVVALDCOS_AGGR() {
+public double getDVVALDCOS_AGGR() {
 return DVVALDCOS_AGGR;
 }
 
@@ -2254,11 +2254,11 @@ public byte getHEXT4() {
 return HEXT4;
 }
 
-protected double HFINL_AGGR() {
+public double getHFINL_AGGR() {
 return HFINL_AGGR;
 }
 
-protected double HFINW_EXCENDW_AGGR() {
+public double getHFINW_EXCENDW_AGGR() {
 return HFINW_EXCENDW_AGGR;
 }
 
@@ -2426,11 +2426,11 @@ public boolean getPRREPFIX_IFLAG() {
 return PRREPFIX_IFLAG;
 }
 
-protected double PRREPPC() {
+public double getPRREPPC() {
 return PRREPPC;
 }
 
-protected double PRREPPC_I() {
+public double getPRREPPC_I() {
 return PRREPPC_I;
 }
 
@@ -2438,7 +2438,7 @@ public boolean getPRREPPC_IFLAG() {
 return PRREPPC_IFLAG;
 }
 
-protected double SHARAPP() {
+public double getSHARAPP() {
 return SHARAPP;
 }
 
@@ -2462,7 +2462,7 @@ public int getTOTDVNWILN_AGGR() {
 return TOTDVNWILN_AGGR;
 }
 
-protected double TOTFLNS_AGGR() {
+public double getTOTFLNS_AGGR() {
 return TOTFLNS_AGGR;
 }
 
@@ -2470,7 +2470,7 @@ public short getTOTHPARR_AGGR() {
 return TOTHPARR_AGGR;
 }
 
-protected double TOTHP_AGGR() {
+public double getTOTHP_AGGR() {
 return TOTHP_AGGR;
 }
 
@@ -2478,11 +2478,11 @@ public short getTOTLNARR_AGGR() {
 return TOTLNARR_AGGR;
 }
 
-protected double TOTLNS_AGGR() {
+public double getTOTLNS_AGGR() {
 return TOTLNS_AGGR;
 }
 
-protected double TOTLOS_AGGR() {
+public double getTOTLOS_AGGR() {
 return TOTLOS_AGGR;
 }
 
@@ -2490,7 +2490,7 @@ public short getTOTMOARR_AGGR() {
 return TOTMOARR_AGGR;
 }
 
-protected double TOTMO_AGGR() {
+public double getTOTMO_AGGR() {
 return TOTMO_AGGR;
 }
 
@@ -2514,7 +2514,7 @@ public int getTOTOSLC_AGGR() {
 return TOTOSLC_AGGR;
 }
 
-protected double TOTPEN_AGGR() {
+public double getTOTPEN_AGGR() {
 return TOTPEN_AGGR;
 }
 

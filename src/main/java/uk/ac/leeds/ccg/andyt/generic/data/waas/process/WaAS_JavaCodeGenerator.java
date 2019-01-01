@@ -730,7 +730,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
                     pw.println("public String get" + field + "() {");
                     break;
                 case 1:
-                    pw.println("protected double " + field + "() {");
+                    pw.println("public double get" + field + "() {");
                     break;
                 case 2:
                     pw.println("public int get" + field + "() {");

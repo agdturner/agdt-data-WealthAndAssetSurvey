@@ -107,9 +107,29 @@ public class WaAS_Main_Process extends WaAS_Object {
 
         int chunkSize;
         chunkSize = 256; //1024; 512; 256;
-        doDataProcessingStep1New(indir, outdir, hholdHandler);
-        doDataProcessingStep2(indir, outdir, hholdHandler, chunkSize);
+//        doDataProcessingStep1(indir, outdir, hholdHandler);
+//        doDataProcessingStep2(indir, outdir, hholdHandler, chunkSize);
+        doDataProcessingStep3(indir, outdir, hholdHandler);
 
+        logPW.close();
+    }
+
+    /**
+     * Read input data and create household all sets. This method is independent
+     * of the other steps.
+     *
+     * @param indir
+     * @param outdir
+     * @param hholdHandler
+     */
+    public void doDataProcessingStep3(File indir, File outdir,
+            WaAS_HHOLD_Handler hholdHandler) {
+        initlog(3);
+        hholdHandler.loadAllWave1(WaAS_Data.W1);
+        hholdHandler.loadAllWave2(WaAS_Data.W2);
+        hholdHandler.loadAllWave3(WaAS_Data.W3);
+        hholdHandler.loadAllWave4(WaAS_Data.W4);
+        hholdHandler.loadAllWave5(WaAS_Data.W5);
         logPW.close();
     }
 
@@ -978,7 +998,7 @@ public class WaAS_Main_Process extends WaAS_Object {
      * @param outdir
      * @param hholdHandler
      */
-    public void doDataProcessingStep1New(File indir, File outdir,
+    public void doDataProcessingStep1(File indir, File outdir,
             WaAS_HHOLD_Handler hholdHandler) {
         initlog(1);
         // For convenience/code brevity.
@@ -992,11 +1012,11 @@ public class WaAS_Main_Process extends WaAS_Object {
         /**
          * Step 2: Unpack hholdData. hholdData is an Object[] of length 2. r[0]
          * is a TreeMap with Integer keys which are the CASE id for the wave and
-         * the values are WaAS_Wave1Or2Or3Or4Or5_HHOLD_Record>. r[1] is an
-         * array of TreeSets where: For Wave 5; r[1][0] is a list of CASEW5
-         * values, r[1][1] is a list of CASEW4 values, r[1][2] is a list of
-         * CASEW3 values, r[1][3] is a list of CASEW2 values, r[1][4] is a list
-         * of CASEW1 values. For Wave 4; r[1][0] is a list of CASEW4 values,
+         * the values are WaAS_Wave1Or2Or3Or4Or5_HHOLD_Record>. r[1] is an array
+         * of TreeSets where: For Wave 5; r[1][0] is a list of CASEW5 values,
+         * r[1][1] is a list of CASEW4 values, r[1][2] is a list of CASEW3
+         * values, r[1][3] is a list of CASEW2 values, r[1][4] is a list of
+         * CASEW1 values. For Wave 4; r[1][0] is a list of CASEW4 values,
          * r[1][1] is a list of CASEW3 values, r[1][2] is a list of CASEW2
          * values, r[1][3] is a list of CASEW1 values. For Wave 3; r[1][0] is a
          * list of CASEW3 values, r[1][1] is a list of CASEW2 values, r[1][2] is
@@ -1031,10 +1051,10 @@ public class WaAS_Main_Process extends WaAS_Object {
          * Step 3: Print out the Number of Households in each wave.
          *
          * @return r - an Object[] of length 2. r[0] is a TreeMap with keys as
-         * CASEW5 and values as WaAS_Wave5_HHOLD_Records. r[1] is an array
-         * of TreeSets where: r[1][0] is a list of CASEW1 values, r[1][1] is a
-         * list of CASEW2 values, r[1][2] is a list of CASEW3 values, r[1][3] is
-         * a list of CASEW4 values.
+         * CASEW5 and values as WaAS_Wave5_HHOLD_Records. r[1] is an array of
+         * TreeSets where: r[1][0] is a list of CASEW1 values, r[1][1] is a list
+         * of CASEW2 values, r[1][2] is a list of CASEW3 values, r[1][3] is a
+         * list of CASEW4 values.
          */
         for (byte wave = NWAVES; wave > 0; wave--) {
             iDList = iDLists.get(wave);

@@ -31,11 +31,10 @@ public class WaAS_Files extends Generic_Files implements Serializable {
     /**
      *
      * @param s
-     * @param dataDirName
+     * @param dataDir
      */
-    public WaAS_Files(WaAS_Strings s, String dataDirName) {
-        super(dataDirName);
-        this.Strings = s;
+    public WaAS_Files(WaAS_Strings s, File dataDir) {
+        super(s, dataDir);
     }
 
     public File getInputDataDir() {
@@ -51,7 +50,7 @@ public class WaAS_Files extends Generic_Files implements Serializable {
 
     public File getWaASInputDir() {
         File r;
-        r = new File(getInputDataDir(Strings), "WaAS");
+        r = new File(getInputDataDir(), "WaAS");
         r = new File(r, "UKDA-7215-tab");
         r = new File(r, "tab");
         return r;
@@ -59,7 +58,7 @@ public class WaAS_Files extends Generic_Files implements Serializable {
 
     public File getGeneratedWaASDir() {
         File dir;
-        dir = getGeneratedDataDir(Strings);
+        dir = getGeneratedDataDir();
         File f;
         f = new File(dir, "WaAS");
         f.mkdirs();
@@ -76,6 +75,6 @@ public class WaAS_Files extends Generic_Files implements Serializable {
     }
 
     public File getEnvDataFile() {
-        return new File(getGeneratedDataDir(Strings), "Env.dat");
+        return new File(getGeneratedDataDir(), "Env.dat");
     }
 }

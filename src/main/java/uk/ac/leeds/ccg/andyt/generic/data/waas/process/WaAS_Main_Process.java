@@ -75,11 +75,11 @@ public class WaAS_Main_Process extends WaAS_Object {
     }
 
     public static void main(String[] args) {
+        File dataDir = new File(System.getProperty("user.dir"), "data");
         WaAS_Main_Process p;
         WaAS_Environment env;
-        env = new WaAS_Environment();
+        env = new WaAS_Environment(dataDir);
         p = new WaAS_Main_Process(env);
-        p.Files.setDataDirectory(new File(System.getProperty("user.dir"), "data"));
         // Main switches
         //p.doJavaCodeGeneration = true;
         p.doLoadDataIntoCaches = true; // rename/reuse just left here for convenience...
@@ -87,7 +87,7 @@ public class WaAS_Main_Process extends WaAS_Object {
     }
 
     public void run() {
-        logF0 = new File(Files.getOutputDataDir(Strings), "log0.txt");
+        logF0 = new File(Files.getOutputDataDir(), "log0.txt");
         logPW0 = Generic_IO.getPrintWriter(logF0, false); // Overwrite log file.
 
         if (doJavaCodeGeneration) {
@@ -985,7 +985,7 @@ public class WaAS_Main_Process extends WaAS_Object {
     }
 
     protected void initlog(int i) {
-        logF = new File(Files.getOutputDataDir(Strings), "log" + i + ".txt");
+        logF = new File(Files.getOutputDataDir(), "log" + i + ".txt");
         logPW = Generic_IO.getPrintWriter(logF, true); // Append to log file.
     }
 

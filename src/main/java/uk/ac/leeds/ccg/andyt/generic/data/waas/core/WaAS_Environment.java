@@ -26,10 +26,10 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
 
     public transient static final String EOL = System.getProperty("line.separator");
 
-    public WaAS_Environment() {
+    public WaAS_Environment(File dataDir) {
         //Memory_Threshold = 3000000000L;
         Strings = new WaAS_Strings();
-        Files = new WaAS_Files(Strings, Strings.s_data);
+        Files = new WaAS_Files(Strings, dataDir);
         ge = new Generic_Environment(Files, Strings);
         File f;
         f = Files.getEnvDataFile();

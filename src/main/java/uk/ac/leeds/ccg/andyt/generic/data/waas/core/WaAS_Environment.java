@@ -36,7 +36,6 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
         if (f.exists()) {
             loadData();
             data.Files = Files;
-            data.Files.Strings = Strings;
             data.Strings = Strings;
         } else {
             data = new WaAS_Data(Files, Strings);

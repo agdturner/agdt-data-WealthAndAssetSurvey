@@ -26,7 +26,13 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
  */
 public class WaAS_Files extends Generic_Files implements Serializable {
 
-    public transient WaAS_Strings Strings;
+    /**
+     *
+     * @param s
+     */
+    public WaAS_Files(WaAS_Strings s) {
+        super(s);
+    }
 
     /**
      *
@@ -37,15 +43,8 @@ public class WaAS_Files extends Generic_Files implements Serializable {
         super(s, dataDir);
     }
 
-    public File getInputDataDir() {
-        if (InputDataDir == null) {
-            InputDataDir = new File(getDataDir(), Strings.s_input);
-        }
-        return InputDataDir;
-    }
-
-    public File getInputDataDir(String s) {
-        return new File(getInputDataDir(), s);
+    public WaAS_Strings getStrings(){
+        return (WaAS_Strings) Strings;
     }
 
     public File getWaASInputDir() {

@@ -77,9 +77,9 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
     }
 
     public static void main(String[] args) {
+        File dataDir = new File(System.getProperty("user.dir"), "data");
         WaAS_JavaCodeGenerator p;
-        p = new WaAS_JavaCodeGenerator(new WaAS_Environment());
-        p.Files.setDataDirectory(new File(System.getProperty("user.dir"), "data"));
+        p = new WaAS_JavaCodeGenerator(new WaAS_Environment(dataDir));
         int nwaves;
         nwaves = 5;
         String type;

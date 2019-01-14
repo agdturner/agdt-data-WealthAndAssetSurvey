@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
@@ -30,6 +31,7 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.process.WaAS_Main_Process;
  */
 public class WaAS_Data implements Serializable {
 
+    public transient WaAS_Environment we;
     public transient WaAS_Files Files;
     public transient WaAS_Strings Strings;
 
@@ -68,9 +70,10 @@ public class WaAS_Data implements Serializable {
         data.put(cID, null);
     }
 
-    public WaAS_Data(WaAS_Files Files, WaAS_Strings Strings) {
-        this.Files = Files;
-        this.Strings = Strings;
+    public WaAS_Data(WaAS_Environment we) {
+        this.we = we;
+        this.Files = we.Files;
+        this.Strings = we.Strings;
         data = new HashMap<>();
         CASEW1ToCID = new HashMap<>();
     }
@@ -140,9 +143,9 @@ public class WaAS_Data implements Serializable {
      */
     protected Object load(File f) {
         Object r;
-        WaAS_Main_Process.log1("<load File " + f + ">");
+        WaAS_Environment.log1("<load File " + f + ">");
         r = Generic_IO.readObject(f);
-        WaAS_Main_Process.log1("</load File " + f + ">");
+        WaAS_Environment.log1("</load File " + f + ">");
         return r;
     }
 
@@ -152,9 +155,9 @@ public class WaAS_Data implements Serializable {
      * @param o the value of o
      */
     protected void cache(File f, Object o) {
-        WaAS_Main_Process.log1("<cache File " + f + ">");
+        WaAS_Environment.log1("<cache File " + f + ">");
         Generic_IO.writeObject(o, f);
-        WaAS_Main_Process.log1("</cache File " + f + ">");
+        WaAS_Environment.log1("</cache File " + f + ">");
     }
 
 }

@@ -21,26 +21,28 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.TreeMap;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.process.WaAS_Main_Process;
 import uk.ac.leeds.ccg.andyt.generic.util.Generic_Collections;
 
 /**
  *
  * @author geoagdt
  */
-public abstract class WaAS_Handler {
+public abstract class WaAS_Handler extends WaAS_Object {
 
     public transient WaAS_Files Files;
     public transient WaAS_Strings Strings;
     protected String TYPE;
     protected File INDIR;
 
-    public WaAS_Handler(WaAS_Files Files, WaAS_Strings Strings) {
-        this.Files = Files;
-        this.Strings = Strings;
+    public WaAS_Handler(WaAS_Environment e) {
+        super(e);
+        Files = e.Files;
+        Strings = e.Strings;
     }
 
     public File getInputFile(byte wave) {
@@ -59,9 +61,9 @@ public abstract class WaAS_Handler {
         Object r;
         String m;
         m = "load " + getString0(wave, f);
-        WaAS_Main_Process.log1("<" + m + ">");
+        WaAS_Environment.log1("<" + m + ">");
         r = Generic_IO.readObject(f);
-        WaAS_Main_Process.log1("</" + m + ">");
+        WaAS_Environment.log1("</" + m + ">");
         return r;
     }
 
@@ -72,9 +74,9 @@ public abstract class WaAS_Handler {
     protected void cache(byte wave, File f, Object o) {
         String m;
         m = "store " + getString0(wave, f);
-        WaAS_Main_Process.log1("<" + m + ">");
+        WaAS_Environment.log1("<" + m + ">");
         Generic_IO.writeObject(o, f);
-        WaAS_Main_Process.log1("</" + m + ">");
+        WaAS_Environment.log1("</" + m + ">");
     }
 
     public void cacheSubset(byte wave, Object o) {

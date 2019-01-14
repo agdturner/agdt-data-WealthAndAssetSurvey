@@ -27,6 +27,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.util.Generic_Collections;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
@@ -43,8 +44,8 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
  */
 public class WaAS_PERSON_Handler extends WaAS_Handler {
 
-    public WaAS_PERSON_Handler(WaAS_Files Files, WaAS_Strings Strings, File indir) {
-        super(Files, Strings);
+    public WaAS_PERSON_Handler(WaAS_Environment e, File indir) {
+        super(e);
         TYPE = "person";
         INDIR = indir;
     }

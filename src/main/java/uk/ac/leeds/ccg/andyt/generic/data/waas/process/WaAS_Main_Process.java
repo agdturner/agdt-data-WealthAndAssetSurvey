@@ -61,11 +61,6 @@ public class WaAS_Main_Process extends WaAS_Object {
     protected final WaAS_Strings Strings;
     protected final WaAS_Files Files;
 
-    // For logging.
-    File logF;
-    public static transient PrintWriter logPW;
-    File logF0;
-    public static transient PrintWriter logPW0;
 
     public WaAS_Main_Process(WaAS_Environment env) {
         super(env);
@@ -87,8 +82,8 @@ public class WaAS_Main_Process extends WaAS_Object {
     }
 
     public void run() {
-        logF0 = new File(Files.getOutputDataDir(), "log0.txt");
-        logPW0 = Generic_IO.getPrintWriter(logF0, false); // Overwrite log file.
+        Env.logF0 = new File(Files.getOutputDataDir(), "log0.txt");
+        WaAS_Environment.logPW0 = Generic_IO.getPrintWriter(Env.logF0, false); // Overwrite log file.
 
         if (doJavaCodeGeneration) {
             runJavaCodeGeneration();
@@ -103,15 +98,15 @@ public class WaAS_Main_Process extends WaAS_Object {
         generateddir = Files.getGeneratedWaASDir();
         outdir = new File(generateddir, "Subsets");
         outdir.mkdirs();
-        hholdHandler = new WaAS_HHOLD_Handler(Env.Files, Env.Strings, indir);
+        hholdHandler = new WaAS_HHOLD_Handler(Env, indir);
 
         int chunkSize;
         chunkSize = 256; //1024; 512; 256;
-//        doDataProcessingStep1(indir, outdir, hholdHandler);
-//        doDataProcessingStep2(indir, outdir, hholdHandler, chunkSize);
+        doDataProcessingStep1(indir, outdir, hholdHandler);
+        doDataProcessingStep2(indir, outdir, hholdHandler, chunkSize);
         doDataProcessingStep3(indir, outdir, hholdHandler);
 
-        logPW.close();
+        WaAS_Environment.logPW.close();
     }
 
     /**
@@ -124,13 +119,13 @@ public class WaAS_Main_Process extends WaAS_Object {
      */
     public void doDataProcessingStep3(File indir, File outdir,
             WaAS_HHOLD_Handler hholdHandler) {
-        initlog(3);
+        Env.initlog(3);
         hholdHandler.loadAllWave1(WaAS_Data.W1);
         hholdHandler.loadAllWave2(WaAS_Data.W2);
         hholdHandler.loadAllWave3(WaAS_Data.W3);
         hholdHandler.loadAllWave4(WaAS_Data.W4);
         hholdHandler.loadAllWave5(WaAS_Data.W5);
-        logPW.close();
+        WaAS_Environment.logPW.close();
     }
 
     protected void addVariable(String s, TreeMap<Integer, String> vIDToVName,
@@ -149,10 +144,10 @@ public class WaAS_Main_Process extends WaAS_Object {
      */
     public void doDataProcessingStep2(File indir, File outdir,
             WaAS_HHOLD_Handler hholdHandler, int chunkSize) {
-        initlog(2);
+        Env.initlog(2);
         WaAS_PERSON_Handler personHandler;
-        personHandler = new WaAS_PERSON_Handler(Files, Strings, indir);
-        log("Merge Person and Household Data");
+        personHandler = new WaAS_PERSON_Handler(Env, indir);
+        WaAS_Environment.log("Merge Person and Household Data");
         /**
          * Wave 1
          */
@@ -211,10 +206,10 @@ public class WaAS_Main_Process extends WaAS_Object {
                 hholdHandler, nOC, CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2,
                 CASEW2ToCASEW1, CASEW2ToCASEW3, CASEW3ToCASEW2, CASEW3ToCASEW4,
                 CASEW4ToCASEW3, CASEW4ToCASEW5, CASEW5ToCASEW4);
-        log("data.lookup.size() " + data.CASEW1ToCID.size());
-        log("data.data.size() " + data.data.size());
+        WaAS_Environment.log("data.lookup.size() " + data.CASEW1ToCID.size());
+        WaAS_Environment.log("data.data.size() " + data.data.size());
         Env.cacheData();
-        logPW.close();
+        WaAS_Environment.logPW.close();
     }
 
     /**
@@ -236,7 +231,7 @@ public class WaAS_Main_Process extends WaAS_Object {
         // Wave 1
         String m0;
         m0 = "Wave 1";
-        logStart(m0);
+        WaAS_Environment.logStart(m0);
         Object[] r;
         r = new Object[3];
         TreeMap<Short, WaAS_Wave1_HHOLD_Record> hs;
@@ -260,14 +255,14 @@ public class WaAS_Main_Process extends WaAS_Object {
                 .forEach(cID -> {
                     String m1;
                     m1 = "Collection ID " + cID;
-                    logStart(m1);
+                    WaAS_Environment.logStart(m1);
                     WaAS_Collection c;
                     c = new WaAS_Collection(cID);
                     data.data.put(cID, c);
                     // Add hhold records.
                     String m2;
                     m2 = "Add hhold records";
-                    logStart(m2);
+                    WaAS_Environment.logStart(m2);
                     HashSet<Short> s;
                     s = CIDToCASEW1.get(cID);
                     s.stream()
@@ -283,10 +278,10 @@ public class WaAS_Main_Process extends WaAS_Object {
                                 }
                                 cr.w1Record.setHhold(hs.get(CASEW1));
                             });
-                    logEnd(m2);
+                    WaAS_Environment.logEnd(m2);
                     // Add person records.
                     m2 = "Add person records";
-                    logStart(m2);
+                    WaAS_Environment.logStart(m2);
                     File f;
                     BufferedReader br;
                     f = cFs.get(cID);
@@ -304,15 +299,15 @@ public class WaAS_Main_Process extends WaAS_Object {
                                 cr = m.get(CASEW1);
                                 cr.w1Record.getPeople().add(p);
                             });
-                    logEnd(m2);
+                    WaAS_Environment.logEnd(m2);
                     // Close br
                     Generic_IO.closeBufferedReader(br);
                     // Cache and clear collection
                     data.cacheSubsetCollection(cID, c);
                     data.clearCollection(cID);
-                    logEnd(m1);
+                    WaAS_Environment.logEnd(m1);
                 });
-        logEnd(m0);
+        WaAS_Environment.logEnd(m0);
         return r;
     }
 
@@ -340,7 +335,7 @@ public class WaAS_Main_Process extends WaAS_Object {
         // Wave 2
         String m0;
         m0 = "Wave 2";
-        logStart(m0);
+        WaAS_Environment.logStart(m0);
         TreeMap<Short, WaAS_Wave2_HHOLD_Record> hs;
         hs = hholdHandler.loadCacheSubsetWave2();
         TreeMap<Short, File> cFs;
@@ -350,13 +345,13 @@ public class WaAS_Main_Process extends WaAS_Object {
                 .forEach(cID -> {
                     String m1;
                     m1 = "Collection ID " + cID;
-                    logStart(m1);
+                    WaAS_Environment.logStart(m1);
                     WaAS_Collection c;
                     c = data.getCollection(cID);
                     // Add hhold records.
                     String m2;
                     m2 = "Add hhold records";
-                    logStart(m2);
+                    WaAS_Environment.logStart(m2);
                     HashSet<Short> s;
                     s = CIDToCASEW1.get(cID);
                     s.stream()
@@ -367,7 +362,7 @@ public class WaAS_Main_Process extends WaAS_Object {
                                 WaAS_Combined_Record cr;
                                 cr = m.get(CASEW1);
                                 if (cr == null) {
-                                    log("No combined record "
+                                    WaAS_Environment.log("No combined record "
                                             + "for CASEW1 " + CASEW1 + "! "
                                             + "This may be a data error?");
                                 } else {
@@ -381,10 +376,10 @@ public class WaAS_Main_Process extends WaAS_Object {
                                     });
                                 }
                             });
-                    logEnd(m2);
+                    WaAS_Environment.logEnd(m2);
                     // Add person records.
                     m2 = "Add person records";
-                    logStart(m2);
+                    WaAS_Environment.logStart(m2);
                     File f;
                     BufferedReader br;
                     f = cFs.get(cID);
@@ -406,7 +401,7 @@ public class WaAS_Main_Process extends WaAS_Object {
                                 WaAS_Combined_Record cr;
                                 cr = m.get(CASEW1);
                                 if (cr == null) {
-                                    log("No combined record "
+                                    WaAS_Environment.log("No combined record "
                                             + "for CASEW1 " + CASEW1 + "! "
                                             + "This may be a data error, "
                                             + "or this person may have "
@@ -422,30 +417,30 @@ public class WaAS_Main_Process extends WaAS_Object {
                                     });
                                 }
                             });
-                    logEnd(m2);
+                    WaAS_Environment.logEnd(m2);
                     // Close br
                     Generic_IO.closeBufferedReader(br);
                     // Cache and clear collection
                     data.cacheSubsetCollection(cID, c);
                     data.clearCollection(cID);
-                    logEnd(m1);
+                    WaAS_Environment.logEnd(m1);
                 });
-        logEnd(m0);
+        WaAS_Environment.logEnd(m0);
     }
 
     protected static void printCheck(byte wave, short CASEWXCheck,
             short CASEWX, TreeMap<Short, HashSet<Short>> lookup) {
         if (CASEWXCheck != CASEWX) {
-            log("Person in Wave " + wave + " record given by "
+            WaAS_Environment.log("Person in Wave " + wave + " record given by "
                     + "CASEW" + wave + " " + CASEWX + " has a "
                     + "CASEW" + (wave - 1) + " as " + CASEWXCheck + ", "
                     + "but in the CASEW" + wave + "ToCASEW" + (wave - 1) + " "
                     + "lookup this is " + CASEWX);
             if (lookup.get(CASEWXCheck) == null) {
-                log("CASEW" + (wave - 1) + "ToCASEW" + wave + ".get(CASEW"
+                WaAS_Environment.log("CASEW" + (wave - 1) + "ToCASEW" + wave + ".get(CASEW"
                         + (wave - 1) + "Check) == null");
             } else {
-                log("CASEW" + (wave - 1) + "ToCASEW" + wave + ".get(CASEW"
+                WaAS_Environment.log("CASEW" + (wave - 1) + "ToCASEW" + wave + ".get(CASEW"
                         + (wave - 1) + "Check).size() "
                         + lookup.get(CASEWXCheck).size());
             }
@@ -480,7 +475,7 @@ public class WaAS_Main_Process extends WaAS_Object {
         // Wave 3;
         String m0;
         m0 = "Wave 3";
-        logStart(m0);
+        WaAS_Environment.logStart(m0);
         TreeMap<Short, WaAS_Wave3_HHOLD_Record> hs;
         hs = hholdHandler.loadCacheSubsetWave3();
         TreeMap<Short, File> cFs;
@@ -490,13 +485,13 @@ public class WaAS_Main_Process extends WaAS_Object {
                 .forEach(cID -> {
                     String m1;
                     m1 = "Collection ID " + cID;
-                    logStart(m1);
+                    WaAS_Environment.logStart(m1);
                     WaAS_Collection c;
                     c = data.getCollection(cID);
                     // Add hhold records.
                     String m2;
                     m2 = "Add hhold records";
-                    logStart(m2);
+                    WaAS_Environment.logStart(m2);
                     HashSet<Short> s;
                     s = CIDToCASEW1.get(cID);
                     s.stream()
@@ -507,7 +502,7 @@ public class WaAS_Main_Process extends WaAS_Object {
                                 WaAS_Combined_Record cr;
                                 cr = m.get(CASEW1);
                                 if (cr == null) {
-                                    log("No combined record "
+                                    WaAS_Environment.log("No combined record "
                                             + "for CASEW1 " + CASEW1 + "! "
                                             + "This may be a data error?");
                                 } else {
@@ -528,10 +523,10 @@ public class WaAS_Main_Process extends WaAS_Object {
                                     });
                                 }
                             });
-                    logEnd(m2);
+                    WaAS_Environment.logEnd(m2);
                     // Add person records.
                     m2 = "Add person records";
-                    logStart(m2);
+                    WaAS_Environment.logStart(m2);
                     File f;
                     BufferedReader br;
                     f = cFs.get(cID);
@@ -558,7 +553,7 @@ public class WaAS_Main_Process extends WaAS_Object {
                                 WaAS_Combined_Record cr;
                                 cr = m.get(CASEW1);
                                 if (cr == null) {
-                                    log("No combined record "
+                                    WaAS_Environment.log("No combined record "
                                             + "for CASEW1 " + CASEW1 + "! "
                                             + "This may be a data error, "
                                             + "or this person may have "
@@ -575,7 +570,7 @@ public class WaAS_Main_Process extends WaAS_Object {
                                             w3rec = cr.w3Records.get(k2).get(k3);
                                             if (w3rec == null) {
                                                 w3rec = new WaAS_Wave3_Record(k3);
-                                                log("Adding people, but there "
+                                                WaAS_Environment.log("Adding people, but there "
                                                         + "is no hhold record "
                                                         + "for CASEW3 "
                                                         + CASEW3 + "!");
@@ -585,15 +580,15 @@ public class WaAS_Main_Process extends WaAS_Object {
                                     });
                                 }
                             });
-                    logEnd(m2);
+                    WaAS_Environment.logEnd(m2);
                     // Close br
                     Generic_IO.closeBufferedReader(br);
                     // Cache and clear collection
                     data.cacheSubsetCollection(cID, c);
                     data.clearCollection(cID);
-                    logEnd(m1);
+                    WaAS_Environment.logEnd(m1);
                 });
-        logEnd(m0);
+        WaAS_Environment.logEnd(m0);
     }
 
     /**
@@ -628,7 +623,7 @@ public class WaAS_Main_Process extends WaAS_Object {
         // Wave 4
         String m0;
         m0 = "Wave 4";
-        logStart(m0);
+        WaAS_Environment.logStart(m0);
         TreeMap<Short, WaAS_Wave4_HHOLD_Record> hs;
         hs = hholdHandler.loadCacheSubsetWave4();
         TreeMap<Short, File> cFs;
@@ -638,13 +633,13 @@ public class WaAS_Main_Process extends WaAS_Object {
                 .forEach(cID -> {
                     String m1;
                     m1 = "Collection ID " + cID;
-                    logStart(m1);
+                    WaAS_Environment.logStart(m1);
                     WaAS_Collection c;
                     c = data.getCollection(cID);
                     // Add hhold records.
                     String m2;
                     m2 = "Add hhold records";
-                    logStart(m2);
+                    WaAS_Environment.logStart(m2);
                     HashSet<Short> s;
                     s = CIDToCASEW1.get(cID);
                     s.stream()
@@ -655,7 +650,7 @@ public class WaAS_Main_Process extends WaAS_Object {
                                 WaAS_Combined_Record cr;
                                 cr = m.get(CASEW1);
                                 if (cr == null) {
-                                    log("No combined record "
+                                    WaAS_Environment.log("No combined record "
                                             + "for CASEW1 " + CASEW1 + "! "
                                             + "This may be a data error?");
                                 } else {
@@ -683,10 +678,10 @@ public class WaAS_Main_Process extends WaAS_Object {
                                     });
                                 }
                             });
-                    logEnd(m2);
+                    WaAS_Environment.logEnd(m2);
                     // Add person records.
                     m2 = "Add person records";
-                    logStart(m2);
+                    WaAS_Environment.logStart(m2);
                     File f;
                     BufferedReader br;
                     f = cFs.get(cID);
@@ -718,7 +713,7 @@ public class WaAS_Main_Process extends WaAS_Object {
                                 WaAS_Combined_Record cr;
                                 cr = m.get(CASEW1);
                                 if (cr == null) {
-                                    log("No combined record "
+                                    WaAS_Environment.log("No combined record "
                                             + "for CASEW1 " + CASEW1 + "! "
                                             + "This may be a data error, "
                                             + "or this person may have "
@@ -750,7 +745,7 @@ public class WaAS_Main_Process extends WaAS_Object {
                                                 w4rec = w4_3.get(k4);
                                                 if (w4rec == null) {
                                                     w4rec = new WaAS_Wave4_Record(k4);
-                                                    log("Adding people, but there "
+                                                    WaAS_Environment.log("Adding people, but there "
                                                             + "is no hhold record "
                                                             + "for CASEW4 "
                                                             + CASEW4 + "!");
@@ -761,15 +756,15 @@ public class WaAS_Main_Process extends WaAS_Object {
                                     });
                                 }
                             });
-                    logEnd(m2);
+                    WaAS_Environment.logEnd(m2);
                     // Close br
                     Generic_IO.closeBufferedReader(br);
                     // Cache and clear collection
                     data.cacheSubsetCollection(cID, c);
                     data.clearCollection(cID);
-                    logEnd(m1);
+                    WaAS_Environment.logEnd(m1);
                 });
-        logEnd(m0);
+        WaAS_Environment.logEnd(m0);
     }
 
     /**
@@ -808,7 +803,7 @@ public class WaAS_Main_Process extends WaAS_Object {
         // Wave 5
         String m0;
         m0 = "Wave 5";
-        logStart(m0);
+        WaAS_Environment.logStart(m0);
         TreeMap<Short, WaAS_Wave5_HHOLD_Record> hs;
         hs = hholdHandler.loadCacheSubsetWave5();
         TreeMap<Short, File> cFs;
@@ -819,13 +814,13 @@ public class WaAS_Main_Process extends WaAS_Object {
                 .forEach(cID -> {
                     String m1;
                     m1 = "Collection ID " + cID;
-                    logStart(m1);
+                    WaAS_Environment.logStart(m1);
                     WaAS_Collection c;
                     c = data.getCollection(cID);
                     // Add hhold records.
                     String m2;
                     m2 = "Add hhold records";
-                    logStart(m2);
+                    WaAS_Environment.logStart(m2);
                     HashSet<Short> s;
                     s = CIDToCASEW1.get(cID);
                     s.stream()
@@ -836,7 +831,7 @@ public class WaAS_Main_Process extends WaAS_Object {
                                 WaAS_Combined_Record cr;
                                 cr = m.get(CASEW1);
                                 if (cr == null) {
-                                    log("No combined record "
+                                    WaAS_Environment.log("No combined record "
                                             + "for CASEW1 " + CASEW1 + "! "
                                             + "This may be a data error?");
                                 } else {
@@ -871,10 +866,10 @@ public class WaAS_Main_Process extends WaAS_Object {
                                     });
                                 }
                             });
-                    logEnd(m2);
+                    WaAS_Environment.logEnd(m2);
                     // Add person records.
                     m2 = "Add person records";
-                    logStart(m2);
+                    WaAS_Environment.logStart(m2);
                     File f;
                     BufferedReader br;
                     f = cFs.get(cID);
@@ -911,7 +906,7 @@ public class WaAS_Main_Process extends WaAS_Object {
                                 WaAS_Combined_Record cr;
                                 cr = m.get(CASEW1);
                                 if (cr == null) {
-                                    log("No combined record "
+                                    WaAS_Environment.log("No combined record "
                                             + "for CASEW1 " + CASEW1 + "! "
                                             + "This may be a data error, "
                                             + "or this person may have "
@@ -952,7 +947,7 @@ public class WaAS_Main_Process extends WaAS_Object {
                                                     w5rec = cr.w5Records.get(k2).get(k3).get(k4).get(k5);
                                                     if (w5rec == null) {
                                                         w5rec = new WaAS_Wave5_Record(k5);
-                                                        log("Adding people, but there "
+                                                        WaAS_Environment.log("Adding people, but there "
                                                                 + "is no hhold record "
                                                                 + "for CASEW5 "
                                                                 + CASEW5 + "!");
@@ -964,15 +959,15 @@ public class WaAS_Main_Process extends WaAS_Object {
                                     });
                                 }
                             });
-                    logEnd(m2);
+                    WaAS_Environment.logEnd(m2);
                     // Close br
                     Generic_IO.closeBufferedReader(br);
                     // Cache and clear collection
                     data.cacheSubsetCollection(cID, c);
                     data.clearCollection(cID);
-                    logEnd(m1);
+                    WaAS_Environment.logEnd(m1);
                 });
-        logEnd(m0);
+        WaAS_Environment.logEnd(m0);
     }
 
     /**
@@ -984,10 +979,6 @@ public class WaAS_Main_Process extends WaAS_Object {
         WaAS_JavaCodeGenerator.main(args);
     }
 
-    protected void initlog(int i) {
-        logF = new File(Files.getOutputDataDir(), "log" + i + ".txt");
-        logPW = Generic_IO.getPrintWriter(logF, true); // Append to log file.
-    }
 
     /**
      * Read input data and create subsets. Organise for person records that each
@@ -1000,7 +991,7 @@ public class WaAS_Main_Process extends WaAS_Object {
      */
     public void doDataProcessingStep1(File indir, File outdir,
             WaAS_HHOLD_Handler hholdHandler) {
-        initlog(1);
+        Env.initlog(1);
         // For convenience/code brevity.
         byte NWAVES;
         NWAVES = WaAS_Data.NWAVES;
@@ -1068,42 +1059,17 @@ public class WaAS_Main_Process extends WaAS_Object {
                         for (int j = wave - 1; j > 0; j--) {
                             m += "Wave " + j + ", ";
                         }
-                        log(m);
+                        WaAS_Environment.log(m);
                     }
                 } else {
                     m = "" + iDList[i].size()
                             + "\tNumber of HHOLD IDs in Wave " + wave
                             + " reported as being in Wave " + i;
-                    log(m);
+                    WaAS_Environment.log(m);
                 }
             }
         }
-        logPW.close();
-    }
-
-    public static void log0(String s) {
-        logPW.println(s);
-    }
-
-    public static void log1(String s) {
-        System.out.println(s);
-    }
-
-    public static void log(String s) {
-        logPW.println(s);
-        System.out.println(s);
-    }
-
-    public static void logStart(String s) {
-        s = "<" + s + ">";
-        logPW.println(s);
-        System.out.println(s);
-    }
-
-    public static void logEnd(String s) {
-        s = "</" + s + ">";
-        logPW.println(s);
-        System.out.println(s);
+        WaAS_Environment.logPW.close();
     }
 
     boolean doJavaCodeGeneration = false;

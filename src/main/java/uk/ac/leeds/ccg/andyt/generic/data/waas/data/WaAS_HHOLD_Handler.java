@@ -23,6 +23,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.util.Generic_Collections;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
@@ -31,8 +32,6 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_Wave2_HHOLD_Recor
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_Wave3_HHOLD_Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_Wave4_HHOLD_Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_Wave5_HHOLD_Record;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.process.WaAS_Main_Process;
 
 /**
  *
@@ -40,8 +39,8 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.process.WaAS_Main_Process;
  */
 public class WaAS_HHOLD_Handler extends WaAS_Handler {
 
-    public WaAS_HHOLD_Handler(WaAS_Files Files, WaAS_Strings Strings, File indir) {
-        super(Files, Strings);
+    public WaAS_HHOLD_Handler(WaAS_Environment e, File indir) {
+        super(e);
         TYPE = "hhold";
         INDIR = indir;
     }
@@ -109,19 +108,19 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          */
         TreeMap<Short, WaAS_Wave1_HHOLD_Record> w1recs0;
         w1recs0 = (TreeMap<Short, WaAS_Wave1_HHOLD_Record>) ((Object[]) r[0])[0];
-        WaAS_Main_Process.log("There are " + w1recs0.size() + " w1recs.");
+        WaAS_Environment.log("There are " + w1recs0.size() + " w1recs.");
         TreeMap<Short, WaAS_Wave2_HHOLD_Record> w2recs0;
         w2recs0 = (TreeMap<Short, WaAS_Wave2_HHOLD_Record>) ((Object[]) r[1])[0];
-        WaAS_Main_Process.log("There are " + w2recs0.size() + " w2recs.");
+        WaAS_Environment.log("There are " + w2recs0.size() + " w2recs.");
         TreeMap<Short, WaAS_Wave3_HHOLD_Record> w3recs0;
         w3recs0 = (TreeMap<Short, WaAS_Wave3_HHOLD_Record>) ((Object[]) r[2])[0];
-        WaAS_Main_Process.log("There are " + w3recs0.size() + " w3recs.");
+        WaAS_Environment.log("There are " + w3recs0.size() + " w3recs.");
         TreeMap<Short, WaAS_Wave4_HHOLD_Record> w4recs0;
         w4recs0 = (TreeMap<Short, WaAS_Wave4_HHOLD_Record>) ((Object[]) r[3])[0];
-        WaAS_Main_Process.log("There are " + w4recs0.size() + " w4recs.");
+        WaAS_Environment.log("There are " + w4recs0.size() + " w4recs.");
         TreeMap<Short, WaAS_Wave5_HHOLD_Record> w5recs0;
         w5recs0 = (TreeMap<Short, WaAS_Wave5_HHOLD_Record>) ((Object[]) r[4])[0];
-        WaAS_Main_Process.log("There are " + w5recs0.size() + " w5recs.");
+        WaAS_Environment.log("There are " + w5recs0.size() + " w5recs.");
         /**
          * Step 2.2: Filter sets.
          */
@@ -146,7 +145,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             CASEW1IDs.add(ID);
             w1recs.put(CASEW1, w1recs0.get(CASEW1));
         }
-        WaAS_Main_Process.log("There are " + CASEW1IDs.size() + " CASEW1IDs.");
+        WaAS_Environment.log("There are " + CASEW1IDs.size() + " CASEW1IDs.");
         cacheSubset(WaAS_Data.W1, w1recs);
         /**
          * Step 2.2.2: Wave 2.
@@ -169,10 +168,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             Generic_Collections.addToMap(CASEW1ToCASEW2Subset, CASEW1, CASEW2);
             CASEW2ToCASEW1Subset.put(CASEW2, CASEW1);
         }
-        WaAS_Main_Process.log("There are " + CASEW2IDs.size() + " CASEW2IDs.");
+        WaAS_Environment.log("There are " + CASEW2IDs.size() + " CASEW2IDs.");
         cacheSubset(WaAS_Data.W2, w2recs);
-        WaAS_Main_Process.log("There are " + CASEW1ToCASEW2Subset.size() + " CASEW1ToCASEW2Subset mappings.");
-        WaAS_Main_Process.log("There are " + CASEW2ToCASEW1Subset.size() + " CASEW2ToCASEW1Subset mappings.");
+        WaAS_Environment.log("There are " + CASEW1ToCASEW2Subset.size() + " CASEW1ToCASEW2Subset mappings.");
+        WaAS_Environment.log("There are " + CASEW2ToCASEW1Subset.size() + " CASEW2ToCASEW1Subset mappings.");
         cacheSubsetLookups(WaAS_Data.W1, CASEW1ToCASEW2Subset, CASEW2ToCASEW1Subset);
         /**
          * Step 2.2.3: Wave 3.
@@ -208,10 +207,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 }
             }
         }
-        WaAS_Main_Process.log("There are " + CASEW3IDs.size() + " CASEW3IDs.");
+        WaAS_Environment.log("There are " + CASEW3IDs.size() + " CASEW3IDs.");
         cacheSubset(WaAS_Data.W3, w3recs);
-        WaAS_Main_Process.log("There are " + CASEW2ToCASEW3Subset.size() + " CASEW2ToCASEW3Subset mappings.");
-        WaAS_Main_Process.log("There are " + CASEW3ToCASEW2Subset.size() + " CASEW3ToCASEW2Subset mappings.");
+        WaAS_Environment.log("There are " + CASEW2ToCASEW3Subset.size() + " CASEW2ToCASEW3Subset mappings.");
+        WaAS_Environment.log("There are " + CASEW3ToCASEW2Subset.size() + " CASEW3ToCASEW2Subset mappings.");
         cacheSubsetLookups(WaAS_Data.W2, CASEW2ToCASEW3Subset, CASEW3ToCASEW2Subset);
         /**
          * Step 2.2.4: Wave 4.
@@ -248,10 +247,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 }
             }
         }
-        WaAS_Main_Process.log("There are " + CASEW4IDs.size() + " CASEW4IDs.");
+        WaAS_Environment.log("There are " + CASEW4IDs.size() + " CASEW4IDs.");
         cacheSubset(WaAS_Data.W4, w4recs);
-        WaAS_Main_Process.log("There are " + CASEW3ToCASEW4Subset.size() + " CASEW3ToCASEW4Subset mappings.");
-        WaAS_Main_Process.log("There are " + CASEW4ToCASEW3Subset.size() + " CASEW4ToCASEW3Subset mappings.");
+        WaAS_Environment.log("There are " + CASEW3ToCASEW4Subset.size() + " CASEW3ToCASEW4Subset mappings.");
+        WaAS_Environment.log("There are " + CASEW4ToCASEW3Subset.size() + " CASEW4ToCASEW3Subset mappings.");
         cacheSubsetLookups(WaAS_Data.W3, CASEW3ToCASEW4Subset, CASEW4ToCASEW3Subset);
         /**
          * Step 2.2.5: Wave 5.
@@ -289,10 +288,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 }
             }
         }
-        WaAS_Main_Process.log("There are " + CASEW5IDs.size() + " CASEW5IDs.");
+        WaAS_Environment.log("There are " + CASEW5IDs.size() + " CASEW5IDs.");
         cacheSubset(WaAS_Data.W5, w5recs);
-        WaAS_Main_Process.log("There are " + CASEW4ToCASEW5Subset.size() + " CASEW4ToCASEW5Subset mappings.");
-        WaAS_Main_Process.log("There are " + CASEW5ToCASEW4Subset.size() + " CASEW5ToCASEW4Subset mappings.");
+        WaAS_Environment.log("There are " + CASEW4ToCASEW5Subset.size() + " CASEW4ToCASEW5Subset mappings.");
+        WaAS_Environment.log("There are " + CASEW5ToCASEW4Subset.size() + " CASEW5ToCASEW4Subset mappings.");
         cacheSubsetLookups(WaAS_Data.W4, CASEW4ToCASEW5Subset, CASEW5ToCASEW4Subset);
         return r;
     }
@@ -361,19 +360,19 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          */
         TreeMap<Short, WaAS_Wave1_HHOLD_Record> w1recs0;
         w1recs0 = (TreeMap<Short, WaAS_Wave1_HHOLD_Record>) ((Object[]) r[0])[0];
-        WaAS_Main_Process.log("There are " + w1recs0.size() + " w1recs.");
+        WaAS_Environment.log("There are " + w1recs0.size() + " w1recs.");
         TreeMap<Short, WaAS_Wave2_HHOLD_Record> w2recs0;
         w2recs0 = (TreeMap<Short, WaAS_Wave2_HHOLD_Record>) ((Object[]) r[1])[0];
-        WaAS_Main_Process.log("There are " + w2recs0.size() + " w2recs.");
+        WaAS_Environment.log("There are " + w2recs0.size() + " w2recs.");
         TreeMap<Short, WaAS_Wave3_HHOLD_Record> w3recs0;
         w3recs0 = (TreeMap<Short, WaAS_Wave3_HHOLD_Record>) ((Object[]) r[2])[0];
-        WaAS_Main_Process.log("There are " + w3recs0.size() + " w3recs.");
+        WaAS_Environment.log("There are " + w3recs0.size() + " w3recs.");
         TreeMap<Short, WaAS_Wave4_HHOLD_Record> w4recs0;
         w4recs0 = (TreeMap<Short, WaAS_Wave4_HHOLD_Record>) ((Object[]) r[3])[0];
-        WaAS_Main_Process.log("There are " + w4recs0.size() + " w4recs.");
+        WaAS_Environment.log("There are " + w4recs0.size() + " w4recs.");
         TreeMap<Short, WaAS_Wave5_HHOLD_Record> w5recs0;
         w5recs0 = (TreeMap<Short, WaAS_Wave5_HHOLD_Record>) ((Object[]) r[4])[0];
-        WaAS_Main_Process.log("There are " + w5recs0.size() + " w5recs.");
+        WaAS_Environment.log("There are " + w5recs0.size() + " w5recs.");
         /**
          * Step 2.2: Filter sets.
          */
@@ -398,7 +397,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             CASEW1IDs.add(ID);
             w1recs.put(CASEW1, w1recs0.get(CASEW1));
         }
-        WaAS_Main_Process.log("There are " + CASEW1IDs.size() + " CASEW1IDs.");
+        WaAS_Environment.log("There are " + CASEW1IDs.size() + " CASEW1IDs.");
         cacheSubset(WaAS_Data.W1, w1recs);
         /**
          * Step 2.2.2: Wave 2.
@@ -421,10 +420,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             Generic_Collections.addToMap(CASEW1ToCASEW2Subset, CASEW1, CASEW2);
             CASEW2ToCASEW1Subset.put(CASEW2, CASEW1);
         }
-        WaAS_Main_Process.log("There are " + CASEW2IDs.size() + " CASEW2IDs.");
+        WaAS_Environment.log("There are " + CASEW2IDs.size() + " CASEW2IDs.");
         cacheSubset(WaAS_Data.W2, w2recs);
-        WaAS_Main_Process.log("There are " + CASEW1ToCASEW2Subset.size() + " CASEW1ToCASEW2Subset mappings.");
-        WaAS_Main_Process.log("There are " + CASEW2ToCASEW1Subset.size() + " CASEW2ToCASEW1Subset mappings.");
+        WaAS_Environment.log("There are " + CASEW1ToCASEW2Subset.size() + " CASEW1ToCASEW2Subset mappings.");
+        WaAS_Environment.log("There are " + CASEW2ToCASEW1Subset.size() + " CASEW2ToCASEW1Subset mappings.");
         cacheSubsetLookups(WaAS_Data.W1, CASEW1ToCASEW2Subset, CASEW2ToCASEW1Subset);
         /**
          * Step 2.2.3: Wave 3.
@@ -460,10 +459,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 }
             }
         }
-        WaAS_Main_Process.log("There are " + CASEW3IDs.size() + " CASEW3IDs.");
+        WaAS_Environment.log("There are " + CASEW3IDs.size() + " CASEW3IDs.");
         cacheSubset(WaAS_Data.W3, w3recs);
-        WaAS_Main_Process.log("There are " + CASEW2ToCASEW3Subset.size() + " CASEW2ToCASEW3Subset mappings.");
-        WaAS_Main_Process.log("There are " + CASEW3ToCASEW2Subset.size() + " CASEW3ToCASEW2Subset mappings.");
+        WaAS_Environment.log("There are " + CASEW2ToCASEW3Subset.size() + " CASEW2ToCASEW3Subset mappings.");
+        WaAS_Environment.log("There are " + CASEW3ToCASEW2Subset.size() + " CASEW3ToCASEW2Subset mappings.");
         cacheSubsetLookups(WaAS_Data.W2, CASEW2ToCASEW3Subset, CASEW3ToCASEW2Subset);
         /**
          * Step 2.2.4: Wave 4.
@@ -500,10 +499,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 }
             }
         }
-        WaAS_Main_Process.log("There are " + CASEW4IDs.size() + " CASEW4IDs.");
+        WaAS_Environment.log("There are " + CASEW4IDs.size() + " CASEW4IDs.");
         cacheSubset(WaAS_Data.W4, w4recs);
-        WaAS_Main_Process.log("There are " + CASEW3ToCASEW4Subset.size() + " CASEW3ToCASEW4Subset mappings.");
-        WaAS_Main_Process.log("There are " + CASEW4ToCASEW3Subset.size() + " CASEW4ToCASEW3Subset mappings.");
+        WaAS_Environment.log("There are " + CASEW3ToCASEW4Subset.size() + " CASEW3ToCASEW4Subset mappings.");
+        WaAS_Environment.log("There are " + CASEW4ToCASEW3Subset.size() + " CASEW4ToCASEW3Subset mappings.");
         cacheSubsetLookups(WaAS_Data.W3, CASEW3ToCASEW4Subset, CASEW4ToCASEW3Subset);
         /**
          * Step 2.2.5: Wave 5.
@@ -541,10 +540,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 }
             }
         }
-        WaAS_Main_Process.log("There are " + CASEW5IDs.size() + " CASEW5IDs.");
+        WaAS_Environment.log("There are " + CASEW5IDs.size() + " CASEW5IDs.");
         cacheSubset(WaAS_Data.W5, w5recs);
-        WaAS_Main_Process.log("There are " + CASEW4ToCASEW5Subset.size() + " CASEW4ToCASEW5Subset mappings.");
-        WaAS_Main_Process.log("There are " + CASEW5ToCASEW4Subset.size() + " CASEW5ToCASEW4Subset mappings.");
+        WaAS_Environment.log("There are " + CASEW4ToCASEW5Subset.size() + " CASEW4ToCASEW5Subset mappings.");
+        WaAS_Environment.log("There are " + CASEW5ToCASEW4Subset.size() + " CASEW5ToCASEW4Subset mappings.");
         cacheSubsetLookups(WaAS_Data.W4, CASEW4ToCASEW5Subset, CASEW5ToCASEW4Subset);
         return r;
     }
@@ -595,7 +594,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             r[3] = CASEW4ToCASEW5;
             String m;
             m = getMessage(wave, f);
-            WaAS_Main_Process.log("<" + m + ">");
+            WaAS_Environment.log("<" + m + ">");
             BufferedReader br;
             br = Generic_IO.getBufferedReader(f);
             int count;
@@ -607,7 +606,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                         short CASEW4 = rec.getCASEW4();
                         if (CASEW4 > Short.MIN_VALUE) {
                             if (!r1[3].add(CASEW4)) {
-                                WaAS_Main_Process.log("In Wave 5: hhold "
+                                WaAS_Environment.log("In Wave 5: hhold "
                                         + "with CASEW4 " + CASEW4
                                         + " reportedly split into multiple "
                                         + "hholds.");
@@ -616,7 +615,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                         }
                         return 0;
                     }).sum();
-            WaAS_Main_Process.log("There are " + count + " hholds from Wave 4 "
+            WaAS_Environment.log("There are " + count + " hholds from Wave 4 "
                     + "reportedly split into multiple hholds in Wave 5.");
             // Close and reopen br
             br = Generic_IO.closeAndGetBufferedReader(br, f);
@@ -653,7 +652,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                     });
             // Close br
             Generic_IO.closeBufferedReader(br);
-            WaAS_Main_Process.log("</" + m + ">");
+            WaAS_Environment.log("</" + m + ">");
             cache(wave, cf, r);
         }
         return r;
@@ -679,7 +678,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             r = new TreeMap<>();
             String m;
             m = getMessage(wave, f);
-            WaAS_Main_Process.log("<" + m + ">");
+            WaAS_Environment.log("<" + m + ">");
             BufferedReader br;
             br = Generic_IO.getBufferedReader(f);
             br.lines().skip(1).forEach(line -> {
@@ -690,7 +689,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             });
             // Close br
             Generic_IO.closeBufferedReader(br);
-            WaAS_Main_Process.log("</" + m + ">");
+            WaAS_Environment.log("</" + m + ">");
             cache(wave, cf, r);
         }
         return r;
@@ -716,7 +715,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             r = new TreeMap<>();
             String m;
             m = getMessage(wave, f);
-            WaAS_Main_Process.log("<" + m + ">");
+            WaAS_Environment.log("<" + m + ">");
             BufferedReader br;
             br = Generic_IO.getBufferedReader(f);
             br.lines().skip(1).forEach(line -> {
@@ -727,7 +726,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             });
             // Close br
             Generic_IO.closeBufferedReader(br);
-            WaAS_Main_Process.log("</" + m + ">");
+            WaAS_Environment.log("</" + m + ">");
             cache(wave, cf, r);
         }
         return r;
@@ -753,7 +752,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             r = new TreeMap<>();
             String m;
             m = getMessage(wave, f);
-            WaAS_Main_Process.log("<" + m + ">");
+            WaAS_Environment.log("<" + m + ">");
             BufferedReader br;
             br = Generic_IO.getBufferedReader(f);
             br.lines().skip(1).forEach(line -> {
@@ -764,7 +763,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             });
             // Close br
             Generic_IO.closeBufferedReader(br);
-            WaAS_Main_Process.log("</" + m + ">");
+            WaAS_Environment.log("</" + m + ">");
             cache(wave, cf, r);
         }
         return r;
@@ -790,7 +789,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             r = new TreeMap<>();
             String m;
             m = getMessage(wave, f);
-            WaAS_Main_Process.log("<" + m + ">");
+            WaAS_Environment.log("<" + m + ">");
             BufferedReader br;
             br = Generic_IO.getBufferedReader(f);
             br.lines().skip(1).forEach(line -> {
@@ -801,7 +800,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             });
             // Close br
             Generic_IO.closeBufferedReader(br);
-            WaAS_Main_Process.log("</" + m + ">");
+            WaAS_Environment.log("</" + m + ">");
             cache(wave, cf, r);
         }
         return r;
@@ -827,7 +826,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             r = new TreeMap<>();
             String m;
             m = getMessage(wave, f);
-            WaAS_Main_Process.log("<" + m + ">");
+            WaAS_Environment.log("<" + m + ">");
             BufferedReader br;
             br = Generic_IO.getBufferedReader(f);
             br.lines().skip(1).forEach(line -> {
@@ -838,7 +837,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             });
             // Close br
             Generic_IO.closeBufferedReader(br);
-            WaAS_Main_Process.log("</" + m + ">");
+            WaAS_Environment.log("</" + m + ">");
             cache(wave, cf, r);
         }
         return r;
@@ -937,7 +936,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             r[3] = CASEW3ToCASEW4;
             String m;
             m = getMessage(wave, f);
-            WaAS_Main_Process.log("<" + m + ">");
+            WaAS_Environment.log("<" + m + ">");
             BufferedReader br;
             br = Generic_IO.getBufferedReader(f);
             int count;
@@ -949,7 +948,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                         short CASEW3 = rec.getCASEW3();
                         if (CASEW3 > Short.MIN_VALUE) {
                             if (!r1[2].add(CASEW3)) {
-                                WaAS_Main_Process.log("In Wave 4: hhold "
+                                WaAS_Environment.log("In Wave 4: hhold "
                                         + "with CASEW3 " + CASEW3
                                         + " reportedly split into multiple "
                                         + "hholds.");
@@ -958,7 +957,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                         }
                         return 0;
                     }).sum();
-            WaAS_Main_Process.log("There are " + count + " hholds from Wave 3 "
+            WaAS_Environment.log("There are " + count + " hholds from Wave 3 "
                     + "reportedly split into multiple hholds in Wave 4.");
             // Close and reopen br
             br = Generic_IO.closeAndGetBufferedReader(br, f);
@@ -992,7 +991,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                     });
             // Close br
             Generic_IO.closeBufferedReader(br);
-            WaAS_Main_Process.log("</" + m + ">");
+            WaAS_Environment.log("</" + m + ">");
             cache(wave, cf, r);
         }
         return r;
@@ -1046,7 +1045,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             r[3] = CASEW2ToCASEW3;
             String m;
             m = getMessage(wave, f);
-            WaAS_Main_Process.log("<" + m + ">");
+            WaAS_Environment.log("<" + m + ">");
             BufferedReader br;
             br = Generic_IO.getBufferedReader(f);
             int count;
@@ -1058,7 +1057,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                         short CASEW2 = rec.getCASEW2();
                         if (CASEW2 > Short.MIN_VALUE) {
                             if (!r1[1].add(CASEW2)) {
-                                WaAS_Main_Process.log("In Wave 3: hhold "
+                                WaAS_Environment.log("In Wave 3: hhold "
                                         + "with CASEW2 " + CASEW2
                                         + " reportedly split into multiple "
                                         + "hholds.");
@@ -1067,7 +1066,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                         }
                         return 0;
                     }).sum();
-            WaAS_Main_Process.log("There are " + count + " hholds from Wave 2 "
+            WaAS_Environment.log("There are " + count + " hholds from Wave 2 "
                     + "reportedly split into multiple hholds in Wave 3.");
             // Close and reopen br
             br = Generic_IO.closeAndGetBufferedReader(br, f);
@@ -1097,7 +1096,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                     });
             // Close br
             Generic_IO.closeBufferedReader(br);
-            WaAS_Main_Process.log("</" + m + ">");
+            WaAS_Environment.log("</" + m + ">");
             cache(wave, cf, r);
         }
         return r;
@@ -1150,7 +1149,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             r[3] = CASEW1ToCASEW2;
             String m;
             m = getMessage(wave, f);
-            WaAS_Main_Process.log("<" + m + ">");
+            WaAS_Environment.log("<" + m + ">");
             BufferedReader br;
             br = Generic_IO.getBufferedReader(f);
             int count;
@@ -1162,7 +1161,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                         short CASEW1 = rec.getCASEW1();
                         if (CASEW1 > Short.MIN_VALUE) {
                             if (!r1[0].add(CASEW1)) {
-                                WaAS_Main_Process.log("In Wave 2: hhold "
+                                WaAS_Environment.log("In Wave 2: hhold "
                                         + "with CASEW1 " + CASEW1
                                         + " reportedly split into multiple "
                                         + "hholds.");
@@ -1171,7 +1170,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                         }
                         return 0;
                     }).sum();
-            WaAS_Main_Process.log("There are " + count + " hholds from Wave 1 "
+            WaAS_Environment.log("There are " + count + " hholds from Wave 1 "
                     + "reportedly split into multiple hholds in Wave 2.");
             // Close and reopen br
             br = Generic_IO.closeAndGetBufferedReader(br, f);
@@ -1194,7 +1193,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                     });
             // Close br
             Generic_IO.closeBufferedReader(br);
-            WaAS_Main_Process.log("</" + m + ">");
+            WaAS_Environment.log("</" + m + ">");
             cache(wave, cf, r);
         }
         return r;
@@ -1231,7 +1230,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             r[1] = r1;
             String m;
             m = getMessage(wave, f);
-            WaAS_Main_Process.log("<" + m + ">");
+            WaAS_Environment.log("<" + m + ">");
             BufferedReader br;
             br = Generic_IO.getBufferedReader(f);
             br.lines()
@@ -1249,7 +1248,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                     });
             // Close br
             Generic_IO.closeBufferedReader(br);
-            WaAS_Main_Process.log("</" + m + ">");
+            WaAS_Environment.log("</" + m + ">");
             cache(wave, cf, r);
         }
         return r;
@@ -1328,4 +1327,6 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         }
         return r;
     }
+    
+    
 }

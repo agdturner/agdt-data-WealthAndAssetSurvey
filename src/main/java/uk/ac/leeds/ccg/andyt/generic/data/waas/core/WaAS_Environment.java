@@ -16,6 +16,7 @@
 package uk.ac.leeds.ccg.andyt.generic.data.waas.core;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
 //import uk.ac.leeds.ccg.andyt.data.postcode.Generic_UKPostcode_Handler;
@@ -30,6 +31,34 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
         implements Serializable {
 
+    public static transient PrintWriter logPW;
+    public static transient PrintWriter logPW0;
+
+    public static void log(String s) {
+        logPW.println(s);
+        System.out.println(s);
+    }
+
+    public static void logEnd(String s) {
+        s = "</" + s + ">";
+        logPW.println(s);
+        System.out.println(s);
+    }
+
+    public static void log1(String s) {
+        System.out.println(s);
+    }
+
+    public static void logStart(String s) {
+        s = "<" + s + ">";
+        logPW.println(s);
+        System.out.println(s);
+    }
+
+    public static void log0(String s) {
+        logPW.println(s);
+    }
+
     public transient Generic_Environment ge;
     public transient WaAS_Strings Strings;
     public transient WaAS_Files Files;
@@ -40,6 +69,9 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
     public WaAS_Data data;
 
     public transient static final String EOL = System.getProperty("line.separator");
+    public File logF0;
+    // For logging.
+    File logF;
 
     public WaAS_Environment(File dataDir) {
         //Memory_Threshold = 3000000000L;
@@ -53,8 +85,9 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
             data.Files = Files;
             data.Strings = Strings;
         } else {
-            data = new WaAS_Data(Files, Strings);
+            data = new WaAS_Data(this);
         }
+        initlog(1);
     }
 
     /**
@@ -138,5 +171,10 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
         System.out.println("<load data>");
         data = (WaAS_Data) Generic_IO.readObject(f);
         System.out.println("<load data>");
+    }
+
+    public final void initlog(int i) {
+        logF = new File(Files.getOutputDataDir(), "log" + i + ".txt");
+        logPW = Generic_IO.getPrintWriter(logF, true); // Append to log file.
     }
 }

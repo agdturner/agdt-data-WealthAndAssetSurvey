@@ -22,6 +22,7 @@ import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
 //import uk.ac.leeds.ccg.andyt.data.postcode.Generic_UKPostcode_Handler;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_Data;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_HHOLD_Handler;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 
 /**
@@ -31,6 +32,8 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
         implements Serializable {
 
+    public final WaAS_HHOLD_Handler hh;
+    
     public static transient PrintWriter logPW;
     public static transient PrintWriter logPW0;
 
@@ -88,6 +91,7 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
             data = new WaAS_Data(this);
         }
         initlog(1);
+        hh = new WaAS_HHOLD_Handler(this, Files.getInputDataDir());
     }
 
     /**

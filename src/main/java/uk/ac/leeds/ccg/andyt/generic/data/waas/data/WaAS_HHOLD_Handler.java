@@ -46,12 +46,13 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     }
 
     /**
-     * Loads all hhold WaAS from a cache in generated data if it exists and from
-     * the source input data otherwise. It requires more than 4GB, but less than
-     * 7GB of memory to hold all the data in memory.
+     * Loads hhold WaAS records that are in all waves.
      *
      * @return an Object[] r with size 5. Each element is an Object[] containing
-     * the data from loading each wave...
+     * the data from loading each wave. The first element of these are TreeMaps
+     * where the keys are the CASEWX for the wave and the values are the hhold
+     * records for that specific wave. The second element of these are first
+     * element of these are the ..
      */
     public Object[] load() {
         Object[] r;
@@ -553,16 +554,30 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      *
      * @param wave
      *
-     * @return r - an Object[] of length 2. r[0] is a TreeMap with keys as
-     * CASEW5 and values as WaAS_Wave5_HHOLD_Records. r[1] is an array of
-     * TreeSets where: r[1][0] is a list of CASEW1 values, r[1][1] is a list of
-     * CASEW2 values, r[1][2] is a list of CASEW3 values, r[1][3] is a list of
-     * CASEW4 values.
+     * @return r An Object[] of length 4 where:
+     * <ul>
+     * <li>r[0] is a TreeMap with keys as CASEW5 and values as
+     * WaAS_Wave5_HHOLD_Records.</li>
+     * <li>r[1] is an array of TreeSets where:
+     * <ul>
+     * <li>r[1][0] is a list of CASEW1 values in Wave 5 records.</li>
+     * <li>r[1][1] is a list of CASEW2 values in Wave 5 records.</li>
+     * <li>r[1][2] is a list of CASEW3 values in Wave 5 records.</li>
+     * <li>r[1][3] is a list of CASEW4 values in Wave 5 records.</li>
+     * <li>r[1][4] is a list of all CASEW5 values.</li>
+     * <li>r[1][5] is a list of CASEW5 values for records that have CASEW4,
+     * CASEW3, CASEW2 and CASEW1 values.</li>
+     * </ul>
+     * </li>
+     * <li>r[2] is a TreeMap with keys as CASEW5 and values as CASEW4.</li>
+     * <li>r[3] is a TreeMap with keys as CASEW4 and values as HashSets of
+     * CASEW5 (which is normally expected to contain just one CASEW5).</li>
+     * </ul>
      */
     public Object[] loadWave5(byte wave) {
         Object[] r;
         File cf;
-        cf = getGeneratedFile(wave, "");
+        cf = getGeneratedFile(wave, "InW4");
         if (cf.exists()) {
             r = (Object[]) load(wave, cf);
         } else {
@@ -598,58 +613,53 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             BufferedReader br;
             br = Generic_IO.getBufferedReader(f);
             int count;
-            count = br.lines()
-                    .skip(1) // Skip header
-                    .mapToInt(line -> {
-                        WaAS_Wave5_HHOLD_Record rec;
-                        rec = new WaAS_Wave5_HHOLD_Record(line);
-                        short CASEW4 = rec.getCASEW4();
-                        if (CASEW4 > Short.MIN_VALUE) {
-                            if (!r1[3].add(CASEW4)) {
-                                WaAS_Environment.log("In Wave 5: hhold "
-                                        + "with CASEW4 " + CASEW4
-                                        + " reportedly split into multiple "
-                                        + "hholds.");
-                                return 1;
-                            }
-                        }
-                        return 0;
-                    }).sum();
+            count = br.lines().skip(1).mapToInt(line -> {
+                WaAS_Wave5_HHOLD_Record rec;
+                rec = new WaAS_Wave5_HHOLD_Record(line);
+                short CASEW4 = rec.getCASEW4();
+                if (CASEW4 > Short.MIN_VALUE) {
+                    if (!r1[3].add(CASEW4)) {
+                        WaAS_Environment.log("In Wave 5: hhold with CASEW4 "
+                                + CASEW4 + " reportedly split into multiple "
+                                + "hholds.");
+                        return 1;
+                    }
+                }
+                return 0;
+            }).sum();
             WaAS_Environment.log("There are " + count + " hholds from Wave 4 "
                     + "reportedly split into multiple hholds in Wave 5.");
             // Close and reopen br
             br = Generic_IO.closeAndGetBufferedReader(br, f);
-            br.lines()
-                    .skip(1) // Skip header
-                    .forEach(line -> {
-                        WaAS_Wave5_HHOLD_Record rec;
-                        rec = new WaAS_Wave5_HHOLD_Record(line);
-                        short CASEW5 = rec.getCASEW5();
-                        short CASEW4 = rec.getCASEW4();
-                        short CASEW3 = rec.getCASEW3();
-                        short CASEW2 = rec.getCASEW2();
-                        short CASEW1 = rec.getCASEW1();
-                        if (CASEW4 > Short.MIN_VALUE) {
-                            CASEW5ToCASEW4.put(CASEW5, CASEW4);
-                            Generic_Collections.addToMap(CASEW4ToCASEW5, CASEW4, CASEW5);
-                            r0.put(CASEW5, rec);
-                        }
-                        r1[4].add(CASEW5);
-                        if (CASEW3 > Short.MIN_VALUE) {
-                            r1[2].add(CASEW3);
-                        }
-                        if (CASEW2 > Short.MIN_VALUE) {
-                            r1[1].add(CASEW2);
-                        }
-                        if (CASEW1 > Short.MIN_VALUE) {
-                            r1[0].add(CASEW1);
-                            if (CASEW2 > Short.MIN_VALUE
-                                    && CASEW3 > Short.MIN_VALUE
-                                    && CASEW4 > Short.MIN_VALUE) {
-                                r1[5].add(CASEW5);
-                            }
-                        }
-                    });
+            br.lines().skip(1).forEach(line -> {
+                WaAS_Wave5_HHOLD_Record rec;
+                rec = new WaAS_Wave5_HHOLD_Record(line);
+                short CASEW5 = rec.getCASEW5();
+                short CASEW4 = rec.getCASEW4();
+                short CASEW3 = rec.getCASEW3();
+                short CASEW2 = rec.getCASEW2();
+                short CASEW1 = rec.getCASEW1();
+                if (CASEW4 > Short.MIN_VALUE) {
+                    CASEW5ToCASEW4.put(CASEW5, CASEW4);
+                    Generic_Collections.addToMap(CASEW4ToCASEW5, CASEW4, CASEW5);
+                    r0.put(CASEW5, rec);
+                }
+                r1[4].add(CASEW5);
+                if (CASEW3 > Short.MIN_VALUE) {
+                    r1[2].add(CASEW3);
+                }
+                if (CASEW2 > Short.MIN_VALUE) {
+                    r1[1].add(CASEW2);
+                }
+                if (CASEW1 > Short.MIN_VALUE) {
+                    r1[0].add(CASEW1);
+                    if (CASEW2 > Short.MIN_VALUE
+                            && CASEW3 > Short.MIN_VALUE
+                            && CASEW4 > Short.MIN_VALUE) {
+                        r1[5].add(CASEW5);
+                    }
+                }
+            });
             // Close br
             Generic_IO.closeBufferedReader(br);
             WaAS_Environment.log("</" + m + ">");
@@ -885,26 +895,41 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         File dir;
         dir = Files.getGeneratedWaASDir();
         File f;
-        f = new File(dir, TYPE + wave + type + "." + Strings.S_dat);
+        f = new File(dir, TYPE + "W" + wave + type + "." + Strings.S_dat);
         return f;
     }
 
     /**
-     * Load Wave 4 records (that have Wave 5 records) that are reportedly in
+     * Load Wave 4 records, that have Wave 5 records, and that are reportedly in
      * Wave 3.
      *
      * @param wave
      * @param s A set containing CASEW4 values from Wave 5.
      *
-     * @return r - an Object[] of length 2. r[0] is a TreeMap with keys as
-     * CASEW5 and values as WaAS_Wave5_HHOLD_Records. r[1] is an array of
-     * TreeSets where: r[1][0] is a list of CASEW1 values, r[1][1] is a list of
-     * CASEW2 values, r[1][2] is a list of CASEW3 values.
+     * @return r - An Object[] of length 4:
+     * <ul>
+     * <li>r[0] is a TreeMap with keys as CASEW4 and values as
+     * WaAS_Wave4_HHOLD_Records. It contains all CASEW4 values for records with
+     * CASEW3 values and that are in {@code s}.</li>
+     * <li>r[1] is an array of TreeSets where:
+     * <ul>
+     * <li>r[1][0] is a list of CASEW1 values in Wave 4 records.</li>
+     * <li>r[1][1] is a list of CASEW2 values in Wave 4 records.</li>
+     * <li>r[1][2] is a list of CASEW3 values in Wave 4 records.</li>
+     * <li>r[1][3] is a list of all CASEW4 values.</li>
+     * <li>r[1][4] is a list of CASEW4 values for records that have CASEW3,
+     * CASEW2 and CASEW1 values.</li>
+     * </ul>
+     * </li>
+     * <li>r[2] is a TreeMap with keys as CASEW4 and values as CASEW3.</li>
+     * <li>r[3] is a TreeMap with keys as CASEW3 and values as HashSets of
+     * CASEW4 (which is normally expected to contain just one CASEW4).</li>
+     * </ul>
      */
     public Object[] loadWave4(byte wave, Set<Short> s) {
         Object[] r;
         File cf;
-        cf = getGeneratedFile(wave, "");
+        cf = getGeneratedFile(wave, "InW3W5");
         if (cf.exists()) {
             r = (Object[]) load(wave, cf);
         } else {
@@ -940,55 +965,49 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             BufferedReader br;
             br = Generic_IO.getBufferedReader(f);
             int count;
-            count = br.lines()
-                    .skip(1) // Skip header
-                    .mapToInt(line -> {
-                        WaAS_Wave4_HHOLD_Record rec;
-                        rec = new WaAS_Wave4_HHOLD_Record(line);
-                        short CASEW3 = rec.getCASEW3();
-                        if (CASEW3 > Short.MIN_VALUE) {
-                            if (!r1[2].add(CASEW3)) {
-                                WaAS_Environment.log("In Wave 4: hhold "
-                                        + "with CASEW3 " + CASEW3
-                                        + " reportedly split into multiple "
-                                        + "hholds.");
-                                return 1;
-                            }
-                        }
-                        return 0;
-                    }).sum();
+            count = br.lines().skip(1).mapToInt(line -> {
+                WaAS_Wave4_HHOLD_Record rec;
+                rec = new WaAS_Wave4_HHOLD_Record(line);
+                short CASEW3 = rec.getCASEW3();
+                if (CASEW3 > Short.MIN_VALUE) {
+                    if (!r1[2].add(CASEW3)) {
+                        WaAS_Environment.log("In Wave 4: hhold with CASEW3 "
+                                + CASEW3 + " reportedly split into multiple "
+                                + "hholds.");
+                        return 1;
+                    }
+                }
+                return 0;
+            }).sum();
             WaAS_Environment.log("There are " + count + " hholds from Wave 3 "
                     + "reportedly split into multiple hholds in Wave 4.");
             // Close and reopen br
             br = Generic_IO.closeAndGetBufferedReader(br, f);
-            br.lines()
-                    .skip(1) // Skip header
-                    .forEach(line -> {
-                        WaAS_Wave4_HHOLD_Record rec;
-                        rec = new WaAS_Wave4_HHOLD_Record(line);
-                        short CASEW4 = rec.getCASEW4();
-                        short CASEW3 = rec.getCASEW3();
-                        short CASEW2 = rec.getCASEW2();
-                        short CASEW1 = rec.getCASEW1();
-                        if (s.contains(CASEW4)) {
-                            if (CASEW3 > Short.MIN_VALUE) {
-                                CASEW4ToCASEW3.put(CASEW4, CASEW3);
-                                Generic_Collections.addToMap(CASEW3ToCASEW4, CASEW3, CASEW4);
-                                r0.put(CASEW4, rec);
-                            }
-                        }
-                        r1[3].add(CASEW4);
-                        if (CASEW2 > Short.MIN_VALUE) {
-                            r1[1].add(CASEW2);
-                        }
-                        if (CASEW1 > Short.MIN_VALUE) {
-                            r1[0].add(CASEW1);
-                            if (CASEW2 > Short.MIN_VALUE
-                                    && CASEW3 > Short.MIN_VALUE) {
-                                r1[4].add(CASEW4);
-                            }
-                        }
-                    });
+            br.lines().skip(1).forEach(line -> {
+                WaAS_Wave4_HHOLD_Record rec;
+                rec = new WaAS_Wave4_HHOLD_Record(line);
+                short CASEW4 = rec.getCASEW4();
+                short CASEW3 = rec.getCASEW3();
+                short CASEW2 = rec.getCASEW2();
+                short CASEW1 = rec.getCASEW1();
+                if (s.contains(CASEW4)) {
+                    if (CASEW3 > Short.MIN_VALUE) {
+                        CASEW4ToCASEW3.put(CASEW4, CASEW3);
+                        Generic_Collections.addToMap(CASEW3ToCASEW4, CASEW3, CASEW4);
+                        r0.put(CASEW4, rec);
+                    }
+                }
+                r1[3].add(CASEW4);
+                if (CASEW2 > Short.MIN_VALUE) {
+                    r1[1].add(CASEW2);
+                }
+                if (CASEW1 > Short.MIN_VALUE) {
+                    r1[0].add(CASEW1);
+                    if (CASEW2 > Short.MIN_VALUE && CASEW3 > Short.MIN_VALUE) {
+                        r1[4].add(CASEW4);
+                    }
+                }
+            });
             // Close br
             Generic_IO.closeBufferedReader(br);
             WaAS_Environment.log("</" + m + ">");
@@ -998,22 +1017,149 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     }
 
     /**
-     * Load Wave 3 records (that have Wave 5 and Wave 4 records) that are
+     * Load Wave 4 records, that have Wave 5 records, and that are reportedly in
+     * Wave 3.
+     *
+     * @param wave
+     *
+     * @return r An Object[] of length 4:
+     * <ul>
+     * <li>r[0] is a TreeMap with keys as CASEW4 and values as
+     * WaAS_Wave4_HHOLD_Records. It contains all records from Wave 4 that have a
+     * CASEW3 value.</li>
+     * <li>r[1] is an array of TreeSets where:
+     * <ul>
+     * <li>r[1][0] is a list of CASEW1 values in Wave 4 records.</li>
+     * <li>r[1][1] is a list of CASEW2 values in Wave 4 records.</li>
+     * <li>r[1][2] is a list of CASEW3 values in Wave 4 records.</li>
+     * <li>r[1][3] is a list of all CASEW4 values.</li>
+     * <li>r[1][4] is a list of CASEW4 values for records that have CASEW3,
+     * CASEW2 and CASEW1 values.</li>
+     * </ul>
+     * </li>
+     * <li>r[2] is a TreeMap with keys as CASEW4 and values as CASEW3.</li>
+     * <li>r[3] is a TreeMap with keys as CASEW3 and values as HashSets of
+     * CASEW4 (which is normally expected to contain just one CASEW4).</li>
+     * </ul>
+     */
+    public Object[] loadWave4(byte wave) {
+        Object[] r;
+        File cf;
+        cf = getGeneratedFile(wave, "InW3");
+        if (cf.exists()) {
+            r = (Object[]) load(wave, cf);
+        } else {
+            File f;
+            f = getInputFile(wave);
+            r = new Object[4];
+            TreeMap<Short, WaAS_Wave4_HHOLD_Record> r0;
+            r0 = new TreeMap<>();
+            r[0] = r0;
+            TreeSet<Short>[] r1;
+            r1 = getSetsNew(wave + 1);
+            r[1] = r1;
+            /**
+             * Each hhold in Wave 4 comes from at most one hhold from Wave 3. It
+             * may be that in the person files there are individuals that have
+             * come from different hholds in Wave 3 into a hhold in Wave 4. This
+             * is expected to be rare. One example explanation for this
+             * happening is a someone returning to a hhold having left it.
+             */
+            TreeMap<Short, Short> CASEW4ToCASEW3;
+            /**
+             * There may be instances where hholds from Wave 3 split into two or
+             * more hholds in Wave 4.
+             */
+            TreeMap<Short, HashSet<Short>> CASEW3ToCASEW4;
+            CASEW4ToCASEW3 = new TreeMap<>();
+            CASEW3ToCASEW4 = new TreeMap<>();
+            r[2] = CASEW4ToCASEW3;
+            r[3] = CASEW3ToCASEW4;
+            String m;
+            m = getMessage(wave, f);
+            WaAS_Environment.log("<" + m + ">");
+            BufferedReader br;
+            br = Generic_IO.getBufferedReader(f);
+            int count;
+            count = br.lines().skip(1).mapToInt(line -> {
+                WaAS_Wave4_HHOLD_Record rec;
+                rec = new WaAS_Wave4_HHOLD_Record(line);
+                short CASEW3 = rec.getCASEW3();
+                if (CASEW3 > Short.MIN_VALUE) {
+                    if (!r1[2].add(CASEW3)) {
+                        WaAS_Environment.log("In Wave 4: hhold with CASEW3 "
+                                + CASEW3 + " reportedly split into multiple "
+                                + "hholds.");
+                        return 1;
+                    }
+                }
+                return 0;
+            }).sum();
+            WaAS_Environment.log("There are " + count + " hholds from Wave 3 "
+                    + "reportedly split into multiple hholds in Wave 4.");
+            // Close and reopen br
+            br = Generic_IO.closeAndGetBufferedReader(br, f);
+            br.lines().skip(1).forEach(line -> {
+                WaAS_Wave4_HHOLD_Record rec;
+                rec = new WaAS_Wave4_HHOLD_Record(line);
+                short CASEW4 = rec.getCASEW4();
+                short CASEW3 = rec.getCASEW3();
+                short CASEW2 = rec.getCASEW2();
+                short CASEW1 = rec.getCASEW1();
+                if (CASEW3 > Short.MIN_VALUE) {
+                    CASEW4ToCASEW3.put(CASEW4, CASEW3);
+                    Generic_Collections.addToMap(CASEW3ToCASEW4, CASEW3, CASEW4);
+                    r0.put(CASEW4, rec);
+                }
+                r1[3].add(CASEW4);
+                if (CASEW2 > Short.MIN_VALUE) {
+                    r1[1].add(CASEW2);
+                }
+                if (CASEW1 > Short.MIN_VALUE) {
+                    r1[0].add(CASEW1);
+                    if (CASEW2 > Short.MIN_VALUE && CASEW3 > Short.MIN_VALUE) {
+                        r1[4].add(CASEW4);
+                    }
+                }
+            });
+            // Close br
+            Generic_IO.closeBufferedReader(br);
+            WaAS_Environment.log("</" + m + ">");
+            cache(wave, cf, r);
+        }
+        return r;
+    }
+
+    /**
+     * Load Wave 3 records, that have Wave 5 and Wave 4 records, and that are
      * reportedly in Wave 2.
      *
      * @param wave
      * @param s A set containing CASEW3 values from Wave 4 (for Wave 4 records
      * that have a Wave 5 record).
      *
-     * @return r - an Object[] of length 2. r[0] is a TreeMap with keys as
-     * CASEW5 and values as WaAS_Wave5_HHOLD_Records. r[1] is an array of
-     * TreeSets where: r[1][0] is a list of CASEW1 values, r[1][1] is a list of
-     * CASEW2 values.
+     * @return r An Object[] of length 4:
+     * <ul>
+     * <li>r[0] is a TreeMap with keys as CASEW3 and values as
+     * WaAS_Wave3_HHOLD_Records.</li>
+     * <li>r[1] is an array of TreeSets where:
+     * <ul>
+     * <li>r[1][0] is a list of CASEW1 values in Wave 3 records.</li>
+     * <li>r[1][1] is a list of CASEW2 values in Wave 3 records.</li>
+     * <li>r[1][2] is a list of all CASEW3 values.</li>
+     * <li>r[1][3] is a list of CASEW3 values for records that have CASEW2 and
+     * CASEW1 values.</li>
+     * </ul>
+     * </li>
+     * <li>r[2] is a TreeMap with keys as CASEW3 and values as CASEW2.</li>
+     * <li>r[3] is a TreeMap with keys as CASEW2 and values as HashSets of
+     * CASEW3 (which is normally expected to contain just one CASEW3).</li>
+     * </ul>
      */
     public Object[] loadWave3(byte wave, Set<Short> s) {
         Object[] r;
         File cf;
-        cf = getGeneratedFile(wave, "");
+        cf = getGeneratedFile(wave, "InW2W4W5");
         if (cf.exists()) {
             r = (Object[]) load(wave, cf);
         } else {
@@ -1049,51 +1195,46 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             BufferedReader br;
             br = Generic_IO.getBufferedReader(f);
             int count;
-            count = br.lines()
-                    .skip(1) // Skip header
-                    .mapToInt(line -> {
-                        WaAS_Wave3_HHOLD_Record rec;
-                        rec = new WaAS_Wave3_HHOLD_Record(line);
-                        short CASEW2 = rec.getCASEW2();
-                        if (CASEW2 > Short.MIN_VALUE) {
-                            if (!r1[1].add(CASEW2)) {
-                                WaAS_Environment.log("In Wave 3: hhold "
-                                        + "with CASEW2 " + CASEW2
-                                        + " reportedly split into multiple "
-                                        + "hholds.");
-                                return 1;
-                            }
-                        }
-                        return 0;
-                    }).sum();
+            count = br.lines().skip(1).mapToInt(line -> {
+                WaAS_Wave3_HHOLD_Record rec;
+                rec = new WaAS_Wave3_HHOLD_Record(line);
+                short CASEW2 = rec.getCASEW2();
+                if (CASEW2 > Short.MIN_VALUE) {
+                    if (!r1[1].add(CASEW2)) {
+                        WaAS_Environment.log("In Wave 3: hhold with CASEW2 "
+                                + CASEW2 + " reportedly split into multiple "
+                                + "hholds.");
+                        return 1;
+                    }
+                }
+                return 0;
+            }).sum();
             WaAS_Environment.log("There are " + count + " hholds from Wave 2 "
                     + "reportedly split into multiple hholds in Wave 3.");
             // Close and reopen br
             br = Generic_IO.closeAndGetBufferedReader(br, f);
-            br.lines()
-                    .skip(1) // Skip header
-                    .forEach(line -> {
-                        WaAS_Wave3_HHOLD_Record rec;
-                        rec = new WaAS_Wave3_HHOLD_Record(line);
-                        short CASEW3 = rec.getCASEW3();
-                        short CASEW2 = rec.getCASEW2();
-                        short CASEW1 = rec.getCASEW1();
-                        if (s.contains(CASEW3)) {
-                            if (CASEW2 > Short.MIN_VALUE) {
-                                CASEW3ToCASEW2.put(CASEW3, CASEW2);
-                                Generic_Collections.addToMap(CASEW2ToCASEW3, CASEW2, CASEW3);
-                                r0.put(CASEW3, rec);
+            br.lines().skip(1).forEach(line -> {
+                WaAS_Wave3_HHOLD_Record rec;
+                rec = new WaAS_Wave3_HHOLD_Record(line);
+                short CASEW3 = rec.getCASEW3();
+                short CASEW2 = rec.getCASEW2();
+                short CASEW1 = rec.getCASEW1();
+                if (s.contains(CASEW3)) {
+                    if (CASEW2 > Short.MIN_VALUE) {
+                        CASEW3ToCASEW2.put(CASEW3, CASEW2);
+                        Generic_Collections.addToMap(CASEW2ToCASEW3, CASEW2, CASEW3);
+                        r0.put(CASEW3, rec);
 
-                            }
-                        }
-                        r1[2].add(CASEW3);
-                        if (CASEW1 > Short.MIN_VALUE) {
-                            r1[0].add(CASEW1);
-                            if (CASEW2 > Short.MIN_VALUE) {
-                                r1[3].add(CASEW3);
-                            }
-                        }
-                    });
+                    }
+                }
+                r1[2].add(CASEW3);
+                if (CASEW1 > Short.MIN_VALUE) {
+                    r1[0].add(CASEW1);
+                    if (CASEW2 > Short.MIN_VALUE) {
+                        r1[3].add(CASEW3);
+                    }
+                }
+            });
             // Close br
             Generic_IO.closeBufferedReader(br);
             WaAS_Environment.log("</" + m + ">");
@@ -1103,21 +1244,34 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     }
 
     /**
-     * Load Wave 2 records (that have Wave 5, Wave 4 and Wave 3 records) that
-     * are reportedly in Wave 1.
+     * Load Wave 2 records; that have Wave 5, Wave 4 and Wave 3 records; and
+     * that are reportedly in Wave 1.
      *
      * @param wave
      * @param s A set containing CASEW2 values from Wave 3 (for Wave 3 records
      * that have a Wave 4 record that have a Wave 5 record).
      *
-     * @return r - an Object[] of length 2. r[0] is a TreeMap with keys as
-     * CASEW5 and values as WaAS_Wave5_HHOLD_Records. r[1] is an array of
-     * TreeSets where: r[1][0] is a list of CASEW1 values.
+     * @return An Object[] r of length 4:
+     * <ul>
+     * <li>r[0] is a TreeMap with keys as CASEW2 and values as
+     * WaAS_Wave2_HHOLD_Records.</li>
+     * <li>r[1] is an array of TreeSets where:
+     * <ul>
+     * <li>r[1][0] is a list of CASEW1 values in Wave 2 records.</li>
+     * <li>r[1][1] is a list of all CASEW2 values.</li>
+     * <li>r[1][2] is a list of CASEW1 values in Wave 2 records that have Wave
+     * 5, Wave 4 and Wave 3 records.</li>
+     * </ul>
+     * </li>
+     * <li>r[2] is a TreeMap with keys as CASEW2 and values as CASEW1.</li>
+     * <li>r[3] is a TreeMap with keys as CASEW1 and values as HashSets of
+     * CASEW2 (which is normally expected to contain just one CASEW2).</li>
+     * </ul>
      */
     public Object[] loadWave2(byte wave, Set<Short> s) {
         Object[] r;
         File cf;
-        cf = getGeneratedFile(wave, "");
+        cf = getGeneratedFile(wave, "InW1W3W4W5");
         if (cf.exists()) {
             r = (Object[]) load(wave, cf);
         } else {
@@ -1153,44 +1307,39 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             BufferedReader br;
             br = Generic_IO.getBufferedReader(f);
             int count;
-            count = br.lines()
-                    .skip(1) // Skip header
-                    .mapToInt(line -> {
-                        WaAS_Wave2_HHOLD_Record rec;
-                        rec = new WaAS_Wave2_HHOLD_Record(line);
-                        short CASEW1 = rec.getCASEW1();
-                        if (CASEW1 > Short.MIN_VALUE) {
-                            if (!r1[0].add(CASEW1)) {
-                                WaAS_Environment.log("In Wave 2: hhold "
-                                        + "with CASEW1 " + CASEW1
-                                        + " reportedly split into multiple "
-                                        + "hholds.");
-                                return 1;
-                            }
-                        }
-                        return 0;
-                    }).sum();
+            count = br.lines().skip(1).mapToInt(line -> {
+                WaAS_Wave2_HHOLD_Record rec;
+                rec = new WaAS_Wave2_HHOLD_Record(line);
+                short CASEW1 = rec.getCASEW1();
+                if (CASEW1 > Short.MIN_VALUE) {
+                    if (!r1[0].add(CASEW1)) {
+                        WaAS_Environment.log("In Wave 2: hhold with CASEW1 "
+                                + CASEW1 + " reportedly split into multiple "
+                                + "hholds.");
+                        return 1;
+                    }
+                }
+                return 0;
+            }).sum();
             WaAS_Environment.log("There are " + count + " hholds from Wave 1 "
                     + "reportedly split into multiple hholds in Wave 2.");
             // Close and reopen br
             br = Generic_IO.closeAndGetBufferedReader(br, f);
-            br.lines()
-                    .skip(1) // Skip header
-                    .forEach(line -> {
-                        WaAS_Wave2_HHOLD_Record rec;
-                        rec = new WaAS_Wave2_HHOLD_Record(line);
-                        short CASEW2 = rec.getCASEW2();
-                        short CASEW1 = rec.getCASEW1();
-                        if (s.contains(CASEW2)) {
-                            if (CASEW1 > Short.MIN_VALUE) {
-                                CASEW2ToCASEW1.put(CASEW2, CASEW1);
-                                Generic_Collections.addToMap(CASEW1ToCASEW2, CASEW1, CASEW2);
-                                r0.put(CASEW2, rec);
-                                r1[2].add(CASEW1);
-                            }
-                        }
-                        r1[1].add(CASEW2);
-                    });
+            br.lines().skip(1).forEach(line -> {
+                WaAS_Wave2_HHOLD_Record rec;
+                rec = new WaAS_Wave2_HHOLD_Record(line);
+                short CASEW2 = rec.getCASEW2();
+                short CASEW1 = rec.getCASEW1();
+                if (s.contains(CASEW2)) {
+                    if (CASEW1 > Short.MIN_VALUE) {
+                        CASEW2ToCASEW1.put(CASEW2, CASEW1);
+                        Generic_Collections.addToMap(CASEW1ToCASEW2, CASEW1, CASEW2);
+                        r0.put(CASEW2, rec);
+                        r1[2].add(CASEW1);
+                    }
+                }
+                r1[1].add(CASEW2);
+            });
             // Close br
             Generic_IO.closeBufferedReader(br);
             WaAS_Environment.log("</" + m + ">");
@@ -1208,14 +1357,25 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * that have a Wave 3 records that have a Wave 4 record that have a Wave 5
      * record).
      *
-     * @return r - an Object[] of length 2. r[0] is a TreeMap with keys as
-     * CASEW5 and values as WaAS_Wave5_HHOLD_Records. r[1] is a TreeSet of
-     * CASEW2 that are definitely needed.
+     * @return An {@code Object[] r} of length 2:
+     * <ul>
+     * <li>{@code r[0]} is a {@code TreeMap<Short, WaAS_Wave1_HHOLD_Record>}
+     * with keys as {@Link WaAS_Wave1_HHOLD_Record#CASEW1} and values as
+     * WaAS_Wave1_HHOLD_Records.</li>
+     * <li>r[1] is an array of TreeSets where:
+     * <ul>
+     * <li>r[1][0] is a list of all CASEW1 values.</li>
+     * </ul>
+     * </li>
+     * <li>r[2] is a TreeMap with keys as CASEW2 and values as CASEW1.</li>
+     * <li>r[3] is a TreeMap with keys as CASEW1 and values as HashSets of
+     * CASEW2 (which is normally expected to contain just one CASEW2).</li>
+     * </ul>
      */
     public Object[] loadWave1(byte wave, Set<Short> s) {
         Object[] r;
         File cf;
-        cf = getGeneratedFile(wave, "");
+        cf = getGeneratedFile(wave, "InW2W3W4W5");
         if (cf.exists()) {
             r = (Object[]) load(wave, cf);
         } else {
@@ -1233,19 +1393,17 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             WaAS_Environment.log("<" + m + ">");
             BufferedReader br;
             br = Generic_IO.getBufferedReader(f);
-            br.lines()
-                    .skip(1) // Skip header
-                    .forEach(line -> {
-                        WaAS_Wave1_HHOLD_Record rec;
-                        rec = new WaAS_Wave1_HHOLD_Record(line);
-                        short CASEW1 = rec.getCASEW1();
-                        if (s.contains(CASEW1)) {
-                            if (CASEW1 > Short.MIN_VALUE) {
-                                r0.put(CASEW1, rec);
-                            }
-                        }
-                        r1[0].add(CASEW1);
-                    });
+            br.lines().skip(1).forEach(line -> {
+                WaAS_Wave1_HHOLD_Record rec;
+                rec = new WaAS_Wave1_HHOLD_Record(line);
+                short CASEW1 = rec.getCASEW1();
+                if (s.contains(CASEW1)) {
+                    if (CASEW1 > Short.MIN_VALUE) {
+                        r0.put(CASEW1, rec);
+                    }
+                }
+                r1[0].add(CASEW1);
+            });
             // Close br
             Generic_IO.closeBufferedReader(br);
             WaAS_Environment.log("</" + m + ">");
@@ -1327,6 +1485,41 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         }
         return r;
     }
-    
-    
+
+    /**
+     * Value label information for Ten1W5
+     * <ul>
+     * <li>Value = 1.0	Label = Own it outright</li>
+     * <li>Value = 2.0	Label = Buying it with the help of a mortgage or
+     * loan</li>
+     * <li>Value = 3.0	Label = Pay part rent and part mortgage (shared
+     * ownership)</li>
+     * <li>Value = 4.0	Label = Rent it</li>
+     * <li>Value = 5.0	Label = Live here rent-free (including rent-free in
+     * relatives friend</li>
+     * <li>Value = 6.0	Label = Squatting</li>
+     * <li>Value = -9.0	Label = Does not know</li>
+     * <li>Value = -8.0	Label = No answer</li>
+     * <li>Value = -7.0	Label = Does not apply</li>
+     * <li>Value = -6.0	Label = Error/Partial</li>
+     * </ul>
+     *
+     * @return
+     */
+    public TreeMap<Byte, String> getTenureNameMap() {
+        TreeMap<Byte, String> r;
+        r = new TreeMap<>();
+        r.put((byte) 1, "Own it outright");
+        r.put((byte) 2, "Buying it with the help of a mortgage or loan");
+        r.put((byte) 3, "Pay part rent and part mortgage (shared ownership)");
+        r.put((byte) 4, "Rent it");
+        r.put((byte) 5, "Live here rent-free (including rent-free in relatives friend");
+        r.put((byte) 6, "Squatting");
+        r.put((byte) -9, "Does not know");
+        r.put((byte) -8, "No answer");
+        r.put((byte) -7, "Does not apply");
+        r.put((byte) -6, "Error/Partial");
+        return r;
+    }
+
 }

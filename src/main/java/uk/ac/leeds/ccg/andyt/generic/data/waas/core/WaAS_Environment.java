@@ -80,7 +80,7 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
         //Memory_Threshold = 3000000000L;
         Strings = new WaAS_Strings();
         Files = new WaAS_Files(Strings, dataDir);
-        ge = new Generic_Environment(Files, Strings);
+        ge = new Generic_Environment(Files);
         File f;
         f = Files.getEnvDataFile();
         if (f.exists()) {

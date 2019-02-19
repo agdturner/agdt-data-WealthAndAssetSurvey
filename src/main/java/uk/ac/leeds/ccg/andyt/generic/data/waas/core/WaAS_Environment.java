@@ -32,8 +32,11 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
         implements Serializable {
 
+    public transient Generic_Environment ge;
+    public transient WaAS_Strings strings;
+    public transient WaAS_Files files;
+
     public final WaAS_HHOLD_Handler hh;
-    
     public static transient PrintWriter logPW;
     public static transient PrintWriter logPW0;
 
@@ -62,9 +65,7 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
         logPW.println(s);
     }
 
-    public transient Generic_Environment ge;
-    public transient WaAS_Strings Strings;
-    public transient WaAS_Files Files;
+    
     
     /**
      * Data.
@@ -76,22 +77,21 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
     // For logging.
     File logF;
 
-    public WaAS_Environment(File dataDir) {
+    public WaAS_Environment(Generic_Environment ge) {
         //Memory_Threshold = 3000000000L;
-        Strings = new WaAS_Strings();
-        Files = new WaAS_Files(Strings, dataDir);
-        ge = new Generic_Environment(Files);
+        strings = new WaAS_Strings();
+        files = new WaAS_Files(strings, ge.getFiles().getDataDir());
         File f;
-        f = Files.getEnvDataFile();
+        f = files.getEnvDataFile();
         if (f.exists()) {
             loadData();
-            data.Files = Files;
-            data.Strings = Strings;
+            //data.files = files;
+            //data.strings = strings;
         } else {
             data = new WaAS_Data(this);
         }
         initlog(1);
-        hh = new WaAS_HHOLD_Handler(this, Files.getInputDataDir());
+        hh = new WaAS_HHOLD_Handler(this, files.getInputDataDir());
     }
 
     /**
@@ -163,7 +163,7 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
     
     public void cacheData() {
         File f;
-        f = Files.getEnvDataFile();
+        f = files.getEnvDataFile();
         System.out.println("<cache data>");
         Generic_IO.writeObject(data, f);
         System.out.println("</cache data>");
@@ -171,14 +171,14 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
 
     public final void loadData() {
         File f;
-        f = Files.getEnvDataFile();
+        f = files.getEnvDataFile();
         System.out.println("<load data>");
         data = (WaAS_Data) Generic_IO.readObject(f);
         System.out.println("<load data>");
     }
 
     public final void initlog(int i) {
-        logF = new File(Files.getOutputDataDir(), "log" + i + ".txt");
+        logF = new File(files.getOutputDataDir(), "log" + i + ".txt");
         logPW = Generic_IO.getPrintWriter(logF, true); // Append to log file.
     }
 }

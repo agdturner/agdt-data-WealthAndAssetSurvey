@@ -16,24 +16,22 @@
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
 
 import java.io.File;
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.process.WaAS_Main_Process;
 
 /**
  *
  * @author geoagdt
  */
-public class WaAS_Data implements Serializable {
+public class WaAS_Data extends WaAS_Object {
 
-    public transient WaAS_Environment we;
-    public transient WaAS_Files Files;
-    public transient WaAS_Strings Strings;
+    //public transient final WaAS_Files files;
+    //public transient final WaAS_Strings strings;
 
     /**
      * Stores the number of waves in the WaAS
@@ -71,9 +69,9 @@ public class WaAS_Data implements Serializable {
     }
 
     public WaAS_Data(WaAS_Environment we) {
-        this.we = we;
-        this.Files = we.Files;
-        this.Strings = we.Strings;
+        super(we);
+        //this.files = we.files;
+        //this.strings = we.strings;
         data = new HashMap<>();
         CASEW1ToCID = new HashMap<>();
     }
@@ -117,8 +115,8 @@ public class WaAS_Data implements Serializable {
      */
     public void cacheSubsetCollection(short cID, Object o) {
         File f;
-        f = new File(Files.getGeneratedWaASSubsetsDir(),
-                "WaAS_" + cID + "." + Strings.S_dat);
+        f = new File(Env.files.getGeneratedWaASSubsetsDir(),
+                "WaAS_" + cID + "." + Env.strings.S_dat);
         cache(f, o);
     }
 
@@ -130,8 +128,8 @@ public class WaAS_Data implements Serializable {
     public Object loadSubsetCollection(short cID) {
         Object r;
         File f;
-        f = new File(Files.getGeneratedWaASSubsetsDir(),
-                "WaAS_" + cID + "." + Strings.S_dat);
+        f = new File(Env.files.getGeneratedWaASSubsetsDir(),
+                "WaAS_" + cID + "." + Env.strings.S_dat);
         r = load(f);
         return r;
     }

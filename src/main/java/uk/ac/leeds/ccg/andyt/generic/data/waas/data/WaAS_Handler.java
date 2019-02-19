@@ -41,8 +41,8 @@ public abstract class WaAS_Handler extends WaAS_Object {
 
     public WaAS_Handler(WaAS_Environment e) {
         super(e);
-        Files = e.Files;
-        Strings = e.Strings;
+        Files = e.files;
+        Strings = e.strings;
     }
 
     public File getInputFile(byte wave) {

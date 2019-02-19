@@ -43,8 +43,9 @@ public class WaAS_Files extends Generic_Files implements Serializable {
         super(s, dataDir);
     }
 
+    @Override
     public WaAS_Strings getStrings(){
-        return (WaAS_Strings) Strings;
+        return (WaAS_Strings) strings;
     }
 
     public File getWaASInputDir() {

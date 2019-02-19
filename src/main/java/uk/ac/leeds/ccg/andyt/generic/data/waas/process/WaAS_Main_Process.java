@@ -24,6 +24,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
@@ -65,15 +66,14 @@ public class WaAS_Main_Process extends WaAS_Object {
     public WaAS_Main_Process(WaAS_Environment env) {
         super(env);
         data = env.data;
-        Strings = env.Strings;
-        Files = env.Files;
+        Strings = env.strings;
+        Files = env.files;
     }
 
     public static void main(String[] args) {
-        File dataDir = new File(System.getProperty("user.dir"), "data");
         WaAS_Main_Process p;
         WaAS_Environment env;
-        env = new WaAS_Environment(dataDir);
+        env = new WaAS_Environment(new Generic_Environment());
         p = new WaAS_Main_Process(env);
         // Main switches
         //p.doJavaCodeGeneration = true;

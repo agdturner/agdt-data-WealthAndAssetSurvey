@@ -25,11 +25,13 @@ import java.util.Iterator;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
+import uk.ac.leeds.ccg.andyt.generic.io.Generic_Files;
 
 /**
  * This class produces source code for loading survey data. Source code classes
@@ -66,20 +68,20 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
 
     protected WaAS_JavaCodeGenerator() {
         super();
-        Strings = Env.Strings;
-        Files = Env.Files;
+        Strings = Env.strings;
+        Files = Env.files;
     }
 
     public WaAS_JavaCodeGenerator(WaAS_Environment env) {
         super(env);
-        Strings = Env.Strings;
-        Files = Env.Files;
+        Strings = Env.strings;
+        Files = Env.files;
     }
 
     public static void main(String[] args) {
-        File dataDir = new File(System.getProperty("user.dir"), "data");
         WaAS_JavaCodeGenerator p;
-        p = new WaAS_JavaCodeGenerator(new WaAS_Environment(dataDir));
+        p = new WaAS_JavaCodeGenerator(new WaAS_Environment(
+                new Generic_Environment()));
         int nwaves;
         nwaves = 5;
         String type;

@@ -32,12 +32,16 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_Files;
+import uk.ac.leeds.ccg.andyt.math.Math_byte;
+import uk.ac.leeds.ccg.andyt.math.Math_double;
+import uk.ac.leeds.ccg.andyt.math.Math_int;
+import uk.ac.leeds.ccg.andyt.math.Math_short;
 
 /**
  * This class produces source code for loading survey data. Source code classes
  * written in order to load the Wealth and Assets Survey (WaAS) household data
- * is written to uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold. Source
- * code classes written in order to load the WaAS person data is written to
+ * is written to uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold. Source code
+ * classes written in order to load the WaAS person data is written to
  * uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.
  *
  * As these survey data contained many variables, it was thought best to write
@@ -257,9 +261,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
         br = Generic_IO.getBufferedReader(f);
         String line;
         int n;
-        line = br.lines()
-                .findFirst()
-                .get();
+        line = br.lines()                .findFirst()                .get();
         fields = parseHeader(line, wave);
         n = fields.length;
         strings = new boolean[n];
@@ -282,15 +284,13 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
             v0[i] = Byte.MIN_VALUE;
             v1[i] = Byte.MIN_VALUE;
         }
-        br.lines()
-                .skip(1)
-                .forEach(l -> {
-                    String[] split = l.split("\t");
-                    for (int i = 0; i < n; i++) {
-                        parse(split[i], fields[i], i, strings, doubles, ints,
-                                shorts, bytes, booleans, v0, v1, v0m, v1m);
-                    }
-                });
+        br.lines().skip(1).forEach(l -> {
+            String[] split = l.split("\t");
+            for (int i = 0; i < n; i++) {
+                parse(split[i], fields[i], i, strings, doubles, ints,
+                        shorts, bytes, booleans, v0, v1, v0m, v1m);
+            }
+        });
         /**
          * Order v0m and v1m so that v0m always has the smaller value and v1m
          * the larger.
@@ -375,7 +375,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
                                         shorts, bytes);
                             } else {
                                 if (booleans[index]) {
-                                    if (isByte(s)) {
+                                    if (Math_byte.isByte(s)) {
                                         byte b = Byte.valueOf(s);
                                         if (v0[index] > Byte.MIN_VALUE) {
                                             if (!(b == v0[index])) {
@@ -411,7 +411,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
     protected void doByte(String s, int index, boolean[] strings,
             boolean[] doubles, boolean[] ints, boolean[] shorts,
             boolean[] bytes) {
-        if (!isByte(s)) {
+        if (!Math_byte.isByte(s)) {
             bytes[index] = false;
             shorts[index] = true;
             doShort(s, index, strings, doubles, ints, shorts);
@@ -420,17 +420,16 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
 
     protected void doShort(String s, int index, boolean[] strings,
             boolean[] doubles, boolean[] ints, boolean[] shorts) {
-        if (!isShort(s)) {
+        if (!Math_short.isShort(s)) {
             shorts[index] = false;
             ints[index] = true;
             doInt(s, index, strings, doubles, ints);
         }
-
     }
 
     protected void doInt(String s, int index, boolean[] strings,
             boolean[] doubles, boolean[] ints) {
-        if (!isInt(s)) {
+        if (!Math_int.isInt(s)) {
             ints[index] = false;
             doubles[index] = true;
             doDouble(s, index, strings, doubles);
@@ -439,45 +438,9 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
 
     protected void doDouble(String s, int index, boolean[] strings,
             boolean[] doubles) {
-        if (!isDouble(s)) {
+        if (!Math_double.isDouble(s)) {
             doubles[index] = false;
             strings[index] = true;
-        }
-    }
-
-    public boolean isByte(String s) {
-        try {
-            byte b = Byte.parseByte(s);
-            return b > Byte.MIN_VALUE;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
-    public boolean isShort(String s) {
-        try {
-            short sh = Short.parseShort(s);
-            return sh > Short.MIN_VALUE;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
-    public boolean isInt(String s) {
-        try {
-            int i = Integer.parseInt(s);
-            return i > Integer.MIN_VALUE;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
-    public boolean isDouble(String s) {
-        try {
-            Double.parseDouble(s);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
         }
     }
 

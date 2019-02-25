@@ -33,7 +33,6 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
         implements Serializable {
 
     public transient Generic_Environment ge;
-    public transient WaAS_Strings strings;
     public transient WaAS_Files files;
 
     public final WaAS_HHOLD_Handler hh;
@@ -79,8 +78,7 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
 
     public WaAS_Environment(Generic_Environment ge) {
         //Memory_Threshold = 3000000000L;
-        strings = new WaAS_Strings();
-        files = new WaAS_Files(strings, ge.getFiles().getDataDir());
+        files = new WaAS_Files(ge.getFiles().getDataDir());
         File f;
         f = files.getEnvDataFile();
         if (f.exists()) {

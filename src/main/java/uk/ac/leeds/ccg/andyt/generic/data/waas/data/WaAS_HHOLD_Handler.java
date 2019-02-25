@@ -895,7 +895,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         File dir;
         dir = Files.getGeneratedWaASDir();
         File f;
-        f = new File(dir, TYPE + "W" + wave + type + "." + Strings.S_dat);
+        f = new File(dir, TYPE + "W" + wave + type + "." + WaAS_Strings.s_dat);
         return f;
     }
 
@@ -1434,7 +1434,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         File dir;
         dir = Files.getGeneratedWaASDir();
         dir = new File(dir, "Subsets");
-        r = new File(dir, TYPE + wave + "." + Strings.S_dat);
+        r = new File(dir, TYPE + wave + "." + WaAS_Strings.s_dat);
         return r;
     }
 

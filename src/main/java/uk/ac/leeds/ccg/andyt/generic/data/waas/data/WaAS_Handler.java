@@ -35,14 +35,12 @@ import uk.ac.leeds.ccg.andyt.generic.util.Generic_Collections;
 public abstract class WaAS_Handler extends WaAS_Object {
 
     public transient WaAS_Files Files;
-    public transient WaAS_Strings Strings;
     protected String TYPE;
     protected File INDIR;
 
     public WaAS_Handler(WaAS_Environment e) {
         super(e);
         Files = e.files;
-        Strings = e.strings;
     }
 
     public File getInputFile(byte wave) {
@@ -82,7 +80,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
     public void cacheSubset(byte wave, Object o) {
         File f;
         f = new File(Files.getGeneratedWaASSubsetsDir(),
-                TYPE + wave + "." + Strings.S_dat);
+                TYPE + wave + "." + WaAS_Strings.s_dat);
         cache(wave, f, o);
     }
 
@@ -90,17 +88,17 @@ public abstract class WaAS_Handler extends WaAS_Object {
             TreeMap<Short, Short> m1) {
         File f;
         f = new File(Files.getGeneratedWaASSubsetsDir(),
-                TYPE + wave + "To" + (wave + 1) + "." + Strings.S_dat);
+                TYPE + wave + "To" + (wave + 1) + "." + WaAS_Strings.s_dat);
         cache(wave, f, m0);
         f = new File(Files.getGeneratedWaASSubsetsDir(),
-                TYPE + (wave + 1) + "To" + wave + "." + Strings.S_dat);
+                TYPE + (wave + 1) + "To" + wave + "." + WaAS_Strings.s_dat);
         cache(wave, f, m1);
     }
 
     public void cacheSubsetCollection(short cID, byte wave, Object o) {
         File f;
         f = new File(Files.getGeneratedWaASSubsetsDir(),
-                getString1(wave, cID) + "." + Strings.S_dat);
+                getString1(wave, cID) + "." + WaAS_Strings.s_dat);
         WaAS_Handler.this.cache(wave, f, o);
     }
 
@@ -115,12 +113,12 @@ public abstract class WaAS_Handler extends WaAS_Object {
         TreeMap<Short, Short> m1;
         File f;
         f = new File(Files.getGeneratedWaASSubsetsDir(),
-                TYPE + wave + "To" + (wave + 1) + "." + Strings.S_dat);
+                TYPE + wave + "To" + (wave + 1) + "." + WaAS_Strings.s_dat);
         m0 = (TreeMap<Short, HashSet<Short>>) Generic_IO.readObject(f);
         r[0] = m0;
         cache(wave, f, m0);
         f = new File(Files.getGeneratedWaASSubsetsDir(),
-                TYPE + (wave + 1) + "To" + wave + "." + Strings.S_dat);
+                TYPE + (wave + 1) + "To" + wave + "." + WaAS_Strings.s_dat);
         m1 = (TreeMap<Short, Short>) Generic_IO.readObject(f);
         r[1] = m1;
         return r;
@@ -130,7 +128,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
         Object r;
         File f;
         f = new File(Files.getGeneratedWaASSubsetsDir(),
-                getString1(wave, cID) + "." + Strings.S_dat);
+                getString1(wave, cID) + "." + WaAS_Strings.s_dat);
         r = load(wave, f);
         return r;
     }

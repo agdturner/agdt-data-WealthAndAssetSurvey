@@ -17,17 +17,13 @@ package uk.ac.leeds.ccg.andyt.generic.data.waas.process;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_Collection;
@@ -44,7 +40,6 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_Wave2_HHOLD_Recor
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_Wave3_HHOLD_Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_Wave4_HHOLD_Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_Wave5_HHOLD_Record;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_Wave1Or2Or3Or4Or5_PERSON_Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_Wave1_PERSON_Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_Wave2_PERSON_Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_Wave3_PERSON_Record;
@@ -59,15 +54,13 @@ public class WaAS_Main_Process extends WaAS_Object {
 
     // For convenience
     protected final WaAS_Data data;
-    protected final WaAS_Strings Strings;
-    protected final WaAS_Files Files;
+    protected final WaAS_Files files;
 
 
     public WaAS_Main_Process(WaAS_Environment env) {
         super(env);
         data = env.data;
-        Strings = env.strings;
-        Files = env.files;
+        files = env.files;
     }
 
     public static void main(String[] args) {
@@ -82,8 +75,8 @@ public class WaAS_Main_Process extends WaAS_Object {
     }
 
     public void run() {
-        Env.logF0 = new File(Files.getOutputDataDir(), "log0.txt");
-        WaAS_Environment.logPW0 = Generic_IO.getPrintWriter(Env.logF0, false); // Overwrite log file.
+        env.logF0 = new File(files.getOutputDataDir(), "log0.txt");
+        WaAS_Environment.logPW0 = Generic_IO.getPrintWriter(env.logF0, false); // Overwrite log file.
 
         if (doJavaCodeGeneration) {
             runJavaCodeGeneration();
@@ -94,11 +87,11 @@ public class WaAS_Main_Process extends WaAS_Object {
         File generateddir;
         WaAS_HHOLD_Handler hholdHandler;
 
-        indir = Files.getWaASInputDir();
-        generateddir = Files.getGeneratedWaASDir();
+        indir = files.getWaASInputDir();
+        generateddir = files.getGeneratedWaASDir();
         outdir = new File(generateddir, "Subsets");
         outdir.mkdirs();
-        hholdHandler = new WaAS_HHOLD_Handler(Env, indir);
+        hholdHandler = new WaAS_HHOLD_Handler(env, indir);
 
         int chunkSize;
         chunkSize = 256; //1024; 512; 256;
@@ -119,7 +112,7 @@ public class WaAS_Main_Process extends WaAS_Object {
      */
     public void doDataProcessingStep3(File indir, File outdir,
             WaAS_HHOLD_Handler hholdHandler) {
-        Env.initlog(3);
+        env.initlog(3);
         hholdHandler.loadAllWave1(WaAS_Data.W1);
         hholdHandler.loadAllWave2(WaAS_Data.W2);
         hholdHandler.loadAllWave3(WaAS_Data.W3);
@@ -144,9 +137,9 @@ public class WaAS_Main_Process extends WaAS_Object {
      */
     public void doDataProcessingStep2(File indir, File outdir,
             WaAS_HHOLD_Handler hholdHandler, int chunkSize) {
-        Env.initlog(2);
+        env.initlog(2);
         WaAS_PERSON_Handler personHandler;
-        personHandler = new WaAS_PERSON_Handler(Env, indir);
+        personHandler = new WaAS_PERSON_Handler(env, indir);
         WaAS_Environment.log("Merge Person and Household Data");
         /**
          * Wave 1
@@ -208,7 +201,7 @@ public class WaAS_Main_Process extends WaAS_Object {
                 CASEW4ToCASEW3, CASEW4ToCASEW5, CASEW5ToCASEW4);
         WaAS_Environment.log("data.lookup.size() " + data.CASEW1ToCID.size());
         WaAS_Environment.log("data.data.size() " + data.data.size());
-        Env.cacheData();
+        env.cacheData();
         WaAS_Environment.logPW.close();
     }
 
@@ -991,7 +984,7 @@ public class WaAS_Main_Process extends WaAS_Object {
      */
     public void doDataProcessingStep1(File indir, File outdir,
             WaAS_HHOLD_Handler hholdHandler) {
-        Env.initlog(1);
+        env.initlog(1);
         // For convenience/code brevity.
         byte NWAVES;
         NWAVES = WaAS_Data.NWAVES;

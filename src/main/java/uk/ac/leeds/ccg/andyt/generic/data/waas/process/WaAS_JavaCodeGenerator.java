@@ -32,9 +32,9 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_Files;
-import uk.ac.leeds.ccg.andyt.math.Math_byte;
-import uk.ac.leeds.ccg.andyt.math.Math_double;
-import uk.ac.leeds.ccg.andyt.math.Math_int;
+import uk.ac.leeds.ccg.andyt.math.Math_Byte;
+import uk.ac.leeds.ccg.andyt.math.Math_Double;
+import uk.ac.leeds.ccg.andyt.math.Math_Integer;
 import uk.ac.leeds.ccg.andyt.math.Math_short;
 
 /**
@@ -64,22 +64,17 @@ import uk.ac.leeds.ccg.andyt.math.Math_short;
  */
 public class WaAS_JavaCodeGenerator extends WaAS_Object {
 
-    private static final long serialVersionUID = 1L;
-
-    // For convenience
-    public WaAS_Strings Strings;
-    public WaAS_Files Files;
+     // For convenience
+    public WaAS_Files files;
 
     protected WaAS_JavaCodeGenerator() {
         super();
-        Strings = Env.strings;
-        Files = Env.files;
+        files = env.files;
     }
 
     public WaAS_JavaCodeGenerator(WaAS_Environment env) {
         super(env);
-        Strings = Env.strings;
-        Files = Env.files;
+        files = env.files;
     }
 
     public static void main(String[] args) {
@@ -117,8 +112,8 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
         File indir;
         File outdir;
         File generateddir;
-        indir = Files.getWaASInputDir();
-        generateddir = Files.getGeneratedWaASDir();
+        indir = files.getWaASInputDir();
+        generateddir = files.getGeneratedWaASDir();
         outdir = new File(generateddir, "Subsets");
         outdir.mkdirs();
         HashMap<String, Integer>[] allFieldTypes;
@@ -375,7 +370,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
                                         shorts, bytes);
                             } else {
                                 if (booleans[index]) {
-                                    if (Math_byte.isByte(s)) {
+                                    if (Math_Byte.isByte(s)) {
                                         byte b = Byte.valueOf(s);
                                         if (v0[index] > Byte.MIN_VALUE) {
                                             if (!(b == v0[index])) {
@@ -411,7 +406,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
     protected void doByte(String s, int index, boolean[] strings,
             boolean[] doubles, boolean[] ints, boolean[] shorts,
             boolean[] bytes) {
-        if (!Math_byte.isByte(s)) {
+        if (!Math_Byte.isByte(s)) {
             bytes[index] = false;
             shorts[index] = true;
             doShort(s, index, strings, doubles, ints, shorts);
@@ -429,7 +424,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
 
     protected void doInt(String s, int index, boolean[] strings,
             boolean[] doubles, boolean[] ints) {
-        if (!Math_int.isInt(s)) {
+        if (!Math_Integer.isInt(s)) {
             ints[index] = false;
             doubles[index] = true;
             doDouble(s, index, strings, doubles);
@@ -438,7 +433,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
 
     protected void doDouble(String s, int index, boolean[] strings,
             boolean[] doubles) {
-        if (!Math_double.isDouble(s)) {
+        if (!Math_Double.isDouble(s)) {
             doubles[index] = false;
             strings[index] = true;
         }
@@ -461,7 +456,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
         v0m0 = setCommonBooleanMaps(v0ms, v1ms, fields, fieldTypes);
 
         File outdir;
-        outdir = new File(Files.getDataDir(), "..");
+        outdir = new File(files.getDataDir(), "..");
         outdir = new File(outdir, "src");
         outdir = new File(outdir, "main");
         outdir = new File(outdir, "java");

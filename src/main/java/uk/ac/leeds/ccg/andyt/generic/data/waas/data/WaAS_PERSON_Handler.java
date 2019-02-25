@@ -585,7 +585,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
         dir = Files.getGeneratedWaASDir();
         dir = new File(dir, "Subsets");
         File f;
-        f = new File(dir, TYPE + wave + "." + Strings.S_dat);
+        f = new File(dir, TYPE + wave + "." + WaAS_Strings.s_dat);
         if (f.exists()) {
             r = (Object[]) Generic_IO.readObject(f);
         } else {

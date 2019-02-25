@@ -25,15 +25,15 @@ public abstract class WaAS_Object implements Serializable {
     /**
      * A reference to LR_Environment
      */
-    public transient WaAS_Environment Env;
+    public transient WaAS_Environment env;
 
 //    public LR_Object(){
-//        Env = new LR_Environment();
+//        env = new LR_Environment();
 //    }
     protected WaAS_Object() {
     }
 
     public WaAS_Object(WaAS_Environment env) {
-        Env = env;
+        this.env = env;
     }
 }

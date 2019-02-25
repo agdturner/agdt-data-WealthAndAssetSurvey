@@ -30,9 +30,6 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
  */
 public class WaAS_Data extends WaAS_Object {
 
-    //public transient final WaAS_Files files;
-    //public transient final WaAS_Strings strings;
-
     /**
      * Stores the number of waves in the WaAS
      */
@@ -115,8 +112,8 @@ public class WaAS_Data extends WaAS_Object {
      */
     public void cacheSubsetCollection(short cID, Object o) {
         File f;
-        f = new File(Env.files.getGeneratedWaASSubsetsDir(),
-                "WaAS_" + cID + "." + Env.strings.S_dat);
+        f = new File(env.files.getGeneratedWaASSubsetsDir(),
+                "WaAS_" + cID + "." + WaAS_Strings.s_dat);
         cache(f, o);
     }
 
@@ -128,8 +125,8 @@ public class WaAS_Data extends WaAS_Object {
     public Object loadSubsetCollection(short cID) {
         Object r;
         File f;
-        f = new File(Env.files.getGeneratedWaASSubsetsDir(),
-                "WaAS_" + cID + "." + Env.strings.S_dat);
+        f = new File(env.files.getGeneratedWaASSubsetsDir(),
+                WaAS_Strings.s_WaAS + "_" + cID + "." + WaAS_Strings.s_dat);
         r = load(f);
         return r;
     }

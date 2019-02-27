@@ -28,14 +28,12 @@ import java.util.logging.Logger;
 import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
-import uk.ac.leeds.ccg.andyt.generic.io.Generic_Files;
 import uk.ac.leeds.ccg.andyt.math.Math_Byte;
 import uk.ac.leeds.ccg.andyt.math.Math_Double;
 import uk.ac.leeds.ccg.andyt.math.Math_Integer;
-import uk.ac.leeds.ccg.andyt.math.Math_short;
+import uk.ac.leeds.ccg.andyt.math.Math_Short;
 
 /**
  * This class produces source code for loading survey data. Source code classes
@@ -415,7 +413,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
 
     protected void doShort(String s, int index, boolean[] strings,
             boolean[] doubles, boolean[] ints, boolean[] shorts) {
-        if (!Math_short.isShort(s)) {
+        if (!Math_Short.isShort(s)) {
             shorts[index] = false;
             ints[index] = true;
             doInt(s, index, strings, doubles, ints);

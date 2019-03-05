@@ -24,8 +24,11 @@ import uk.ac.leeds.ccg.andyt.generic.core.Generic_Strings;
 public class WaAS_Strings extends Generic_Strings {
     
     public static final String s_All = "All";
+    public static final String s_hhold = "hhold";
+    public static final String s_person = "person";
     public static final String s_Subsets = "Subsets";
     public static final String s_WaAS = "WaAS";
+    public static final String s_waas = "waas";
     
     public WaAS_Strings() {
         super();

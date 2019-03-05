@@ -67,7 +67,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          * identifiers.
          *
          */
-        r[4] = loadWave5(WaAS_Data.W5);
+        r[4] = loadW5(WaAS_Data.W5);
         TreeMap<Short, HashSet<Short>> CASEW4ToCASEW5;
         CASEW4ToCASEW5 = (TreeMap<Short, HashSet<Short>>) ((Object[]) r[4])[3];
         /**
@@ -75,7 +75,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          * contains all those Wave 4 records that have Wave 3 record identifiers
          * and that are in the main set loaded in Step 1.1.
          */
-        r[3] = loadWave4(WaAS_Data.W4, CASEW4ToCASEW5.keySet());
+        r[3] = loadW4(WaAS_Data.W4, CASEW4ToCASEW5.keySet());
         TreeMap<Short, HashSet<Short>> CASEW3ToCASEW4;
         CASEW3ToCASEW4 = (TreeMap<Short, HashSet<Short>>) ((Object[]) r[3])[3];
         /**
@@ -83,7 +83,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          * contains all those Wave 3 records that have Wave 2 record identifiers
          * and that are in the main set loaded in Step 1.2.
          */
-        r[2] = loadWave3(WaAS_Data.W3, CASEW3ToCASEW4.keySet());
+        r[2] = loadW3(WaAS_Data.W3, CASEW3ToCASEW4.keySet());
         TreeMap<Short, HashSet<Short>> CASEW2ToCASEW3;
         CASEW2ToCASEW3 = (TreeMap<Short, HashSet<Short>>) ((Object[]) r[2])[3];
         /**
@@ -91,7 +91,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          * contains all those Wave 2 records that have Wave 1 record identifiers
          * and that are in the main set loaded in Step 1.3.
          */
-        r[1] = loadWave2(WaAS_Data.W2, CASEW2ToCASEW3.keySet());
+        r[1] = loadW2(WaAS_Data.W2, CASEW2ToCASEW3.keySet());
         TreeMap<Short, HashSet<Short>> CASEW1ToCASEW2;
         CASEW1ToCASEW2 = (TreeMap<Short, HashSet<Short>>) ((Object[]) r[1])[3];
         TreeMap<Short, Short> CASEW2ToCASEW1;
@@ -101,7 +101,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          * contains all those Wave 1 records that are in the main set loaded in
          * Step 1.4.
          */
-        r[0] = loadWave1(WaAS_Data.W1, CASEW1ToCASEW2.keySet());
+        r[0] = loadW1(WaAS_Data.W1, CASEW1ToCASEW2.keySet());
         /**
          * Step 2: Check what is loaded and go through creating ID sets.
          */
@@ -136,10 +136,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         /**
          * Step 2.2.1: Wave 1.
          */
-        TreeMap<Short, WaAS_Wave1_HHOLD_Record> w1recs;
-        w1recs = new TreeMap<>();
-        TreeSet<WaAS_ID> CASEW1IDs;
-        CASEW1IDs = new TreeSet<>();
+        TreeMap<Short, WaAS_Wave1_HHOLD_Record> w1recs = new TreeMap<>();
+        TreeSet<WaAS_ID> CASEW1IDs = new TreeSet<>();
         ite = w1recs0.keySet().iterator();
         while (ite.hasNext()) {
             CASEW1 = ite.next();
@@ -152,14 +150,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         /**
          * Step 2.2.2: Wave 2.
          */
-        TreeMap<Short, HashSet<Short>> CASEW1ToCASEW2Subset;
-        CASEW1ToCASEW2Subset = new TreeMap<>();
-        TreeMap<Short, Short> CASEW2ToCASEW1Subset;
-        CASEW2ToCASEW1Subset = new TreeMap<>();
-        TreeMap<Short, WaAS_Wave2_HHOLD_Record> w2recs;
-        w2recs = new TreeMap<>();
-        TreeSet<WaAS_ID> CASEW2IDs;
-        CASEW2IDs = new TreeSet<>();
+        TreeMap<Short, HashSet<Short>> CASEW1ToCASEW2Subset = new TreeMap<>();
+        TreeMap<Short, Short> CASEW2ToCASEW1Subset = new TreeMap<>();
+        TreeMap<Short, WaAS_Wave2_HHOLD_Record> w2recs = new TreeMap<>();
+        TreeSet<WaAS_ID> CASEW2IDs = new TreeSet<>();
         ite = w2recs0.keySet().iterator();
         while (ite.hasNext()) {
             CASEW2 = ite.next();
@@ -178,16 +172,11 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         /**
          * Step 2.2.3: Wave 3.
          */
-        TreeMap<Short, HashSet<Short>> CASEW2ToCASEW3Subset;
-        CASEW2ToCASEW3Subset = new TreeMap<>();
-        TreeMap<Short, Short> CASEW3ToCASEW2Subset;
-        CASEW3ToCASEW2Subset = new TreeMap<>();
-        TreeMap<Short, WaAS_Wave3_HHOLD_Record> w3recs;
-        w3recs = new TreeMap<>();
-        TreeSet<WaAS_ID> CASEW3IDs;
-        HashMap<Short, Short> CASEW3ToCASEW2;
-        CASEW3ToCASEW2 = new HashMap<>();
-        CASEW3IDs = new TreeSet<>();
+        TreeMap<Short, HashSet<Short>> CASEW2ToCASEW3Subset = new TreeMap<>();
+        TreeMap<Short, Short> CASEW3ToCASEW2Subset = new TreeMap<>();
+        TreeMap<Short, WaAS_Wave3_HHOLD_Record> w3recs = new TreeMap<>();
+        TreeSet<WaAS_ID> CASEW3IDs= new TreeSet<>();
+        HashMap<Short, Short> CASEW3ToCASEW2 = new HashMap<>();
         ite = w3recs0.keySet().iterator();
         while (ite.hasNext()) {
             CASEW3 = ite.next();
@@ -195,38 +184,35 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             if (CASEW2ToCASEW1Subset.containsKey(CASEW2)) {
                 CASEW3ToCASEW2.put(CASEW3, CASEW2);
                 CASEW1 = CASEW2ToCASEW1Subset.get(CASEW2);
-                HashSet<Short> CASEW3s;
-                CASEW3s = CASEW2ToCASEW3.get(CASEW2);
-                Iterator<Short> ite2;
-                ite2 = CASEW3s.iterator();
+                HashSet<Short> CASEW3s = CASEW2ToCASEW3.get(CASEW2);
+                Iterator<Short> ite2 = CASEW3s.iterator();
                 while (ite2.hasNext()) {
                     CASEW3 = ite2.next();
                     ID = new WaAS_ID(CASEW1, CASEW3);
                     CASEW3IDs.add(ID);
                     w3recs.put(CASEW3, w3recs0.get(CASEW3));
-                    Generic_Collections.addToMap(CASEW2ToCASEW3Subset, CASEW2, CASEW3);
+                    Generic_Collections.addToMap(CASEW2ToCASEW3Subset, CASEW2, 
+                            CASEW3);
                     CASEW3ToCASEW2Subset.put(CASEW3, CASEW2);
                 }
             }
         }
         env.log("There are " + CASEW3IDs.size() + " CASEW3IDs.");
         cacheSubset(WaAS_Data.W3, w3recs);
-        env.log("There are " + CASEW2ToCASEW3Subset.size() + " CASEW2ToCASEW3Subset mappings.");
-        env.log("There are " + CASEW3ToCASEW2Subset.size() + " CASEW3ToCASEW2Subset mappings.");
-        cacheSubsetLookups(WaAS_Data.W2, CASEW2ToCASEW3Subset, CASEW3ToCASEW2Subset);
+        env.log("There are " + CASEW2ToCASEW3Subset.size() 
+                + " CASEW2ToCASEW3Subset mappings.");
+        env.log("There are " + CASEW3ToCASEW2Subset.size() 
+                + " CASEW3ToCASEW2Subset mappings.");
+        cacheSubsetLookups(WaAS_Data.W2, CASEW2ToCASEW3Subset, 
+                CASEW3ToCASEW2Subset);
         /**
          * Step 2.2.4: Wave 4.
          */
-        TreeMap<Short, HashSet<Short>> CASEW3ToCASEW4Subset;
-        CASEW3ToCASEW4Subset = new TreeMap<>();
-        TreeMap<Short, Short> CASEW4ToCASEW3Subset;
-        CASEW4ToCASEW3Subset = new TreeMap<>();
-        TreeMap<Short, WaAS_Wave4_HHOLD_Record> w4recs;
-        w4recs = new TreeMap<>();
-        HashMap<Short, Short> CASEW4ToCASEW3;
-        CASEW4ToCASEW3 = new HashMap<>();
-        TreeSet<WaAS_ID> CASEW4IDs;
-        CASEW4IDs = new TreeSet<>();
+        TreeMap<Short, HashSet<Short>> CASEW3ToCASEW4Subset = new TreeMap<>();
+        TreeMap<Short, Short> CASEW4ToCASEW3Subset = new TreeMap<>();
+        TreeMap<Short, WaAS_Wave4_HHOLD_Record> w4recs= new TreeMap<>();
+        HashMap<Short, Short> CASEW4ToCASEW3 = new HashMap<>();
+        TreeSet<WaAS_ID> CASEW4IDs= new TreeSet<>();
         ite = w4recs0.keySet().iterator();
         while (ite.hasNext()) {
             CASEW4 = ite.next();
@@ -235,38 +221,35 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 CASEW4ToCASEW3.put(CASEW4, CASEW3);
                 CASEW2 = CASEW3ToCASEW2Subset.get(CASEW3);
                 CASEW1 = CASEW2ToCASEW1Subset.get(CASEW2);
-                HashSet<Short> CASEW4s;
-                CASEW4s = CASEW3ToCASEW4.get(CASEW3);
-                Iterator<Short> ite2;
-                ite2 = CASEW4s.iterator();
+                HashSet<Short> CASEW4s = CASEW3ToCASEW4.get(CASEW3);
+                Iterator<Short> ite2 = CASEW4s.iterator();
                 while (ite2.hasNext()) {
                     CASEW4 = ite2.next();
                     ID = new WaAS_ID(CASEW1, CASEW4);
                     CASEW4IDs.add(ID);
                     w4recs.put(CASEW4, w4recs0.get(CASEW4));
-                    Generic_Collections.addToMap(CASEW3ToCASEW4Subset, CASEW3, CASEW4);
+                    Generic_Collections.addToMap(CASEW3ToCASEW4Subset, CASEW3, 
+                            CASEW4);
                     CASEW4ToCASEW3Subset.put(CASEW4, CASEW3);
                 }
             }
         }
         env.log("There are " + CASEW4IDs.size() + " CASEW4IDs.");
         cacheSubset(WaAS_Data.W4, w4recs);
-        env.log("There are " + CASEW3ToCASEW4Subset.size() + " CASEW3ToCASEW4Subset mappings.");
-        env.log("There are " + CASEW4ToCASEW3Subset.size() + " CASEW4ToCASEW3Subset mappings.");
-        cacheSubsetLookups(WaAS_Data.W3, CASEW3ToCASEW4Subset, CASEW4ToCASEW3Subset);
+        env.log("There are " + CASEW3ToCASEW4Subset.size() 
+                + " CASEW3ToCASEW4Subset mappings.");
+        env.log("There are " + CASEW4ToCASEW3Subset.size() 
+                + " CASEW4ToCASEW3Subset mappings.");
+        cacheSubsetLookups(WaAS_Data.W3, CASEW3ToCASEW4Subset, 
+                CASEW4ToCASEW3Subset);
         /**
          * Step 2.2.5: Wave 5.
          */
-        TreeMap<Short, HashSet<Short>> CASEW4ToCASEW5Subset;
-        CASEW4ToCASEW5Subset = new TreeMap<>();
-        TreeMap<Short, Short> CASEW5ToCASEW4Subset;
-        CASEW5ToCASEW4Subset = new TreeMap<>();
-        TreeMap<Short, WaAS_Wave5_HHOLD_Record> w5recs;
-        w5recs = new TreeMap<>();
-        HashMap<Short, Short> CASEW5ToCASEW4;
-        CASEW5ToCASEW4 = new HashMap<>();
-        TreeSet<WaAS_ID> CASEW5IDs;
-        CASEW5IDs = new TreeSet<>();
+        TreeMap<Short, HashSet<Short>> CASEW4ToCASEW5Subset = new TreeMap<>();
+        TreeMap<Short, Short> CASEW5ToCASEW4Subset = new TreeMap<>();
+        TreeMap<Short, WaAS_Wave5_HHOLD_Record> w5recs= new TreeMap<>();
+        HashMap<Short, Short> CASEW5ToCASEW4 = new HashMap<>();
+        TreeSet<WaAS_ID> CASEW5IDs= new TreeSet<>();
         ite = w5recs0.keySet().iterator();
         while (ite.hasNext()) {
             CASEW5 = ite.next();
@@ -276,10 +259,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 CASEW3 = CASEW4ToCASEW3Subset.get(CASEW4);
                 CASEW2 = CASEW3ToCASEW2Subset.get(CASEW3);
                 CASEW1 = CASEW2ToCASEW1Subset.get(CASEW2);
-                HashSet<Short> CASEW5s;
-                CASEW5s = CASEW4ToCASEW5.get(CASEW4);
-                Iterator<Short> ite2;
-                ite2 = CASEW5s.iterator();
+                HashSet<Short> CASEW5s= CASEW4ToCASEW5.get(CASEW4);
+                Iterator<Short> ite2 = CASEW5s.iterator();
                 while (ite2.hasNext()) {
                     CASEW5 = ite2.next();
                     ID = new WaAS_ID(CASEW1, CASEW5);
@@ -292,9 +273,12 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         }
         env.log("There are " + CASEW5IDs.size() + " CASEW5IDs.");
         cacheSubset(WaAS_Data.W5, w5recs);
-        env.log("There are " + CASEW4ToCASEW5Subset.size() + " CASEW4ToCASEW5Subset mappings.");
-        env.log("There are " + CASEW5ToCASEW4Subset.size() + " CASEW5ToCASEW4Subset mappings.");
-        cacheSubsetLookups(WaAS_Data.W4, CASEW4ToCASEW5Subset, CASEW5ToCASEW4Subset);
+        env.log("There are " + CASEW4ToCASEW5Subset.size() 
+                + " CASEW4ToCASEW5Subset mappings.");
+        env.log("There are " + CASEW5ToCASEW4Subset.size() 
+                + " CASEW5ToCASEW4Subset mappings.");
+        cacheSubsetLookups(WaAS_Data.W4, CASEW4ToCASEW5Subset, 
+                CASEW5ToCASEW4Subset);
         env.logEndTag(m);
         return r;
     }
@@ -311,8 +295,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     public Object[] loadAll(byte wave) {
         String m = "loadAll(" + wave + ")";
         env.logStartTag(m);
-        Object[] r;
-        r = new Object[5];
+        Object[] r = new Object[5];
         /**
          * Step 1: Initial loading
          */
@@ -322,7 +305,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          * identifiers.
          *
          */
-        r[4] = loadWave5(WaAS_Data.W5);
+        r[4] = loadW5(WaAS_Data.W5);
         TreeMap<Short, HashSet<Short>> CASEW4ToCASEW5;
         CASEW4ToCASEW5 = (TreeMap<Short, HashSet<Short>>) ((Object[]) r[4])[3];
         /**
@@ -330,7 +313,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          * contains all those Wave 4 records that have Wave 3 record identifiers
          * and that are in the main set loaded in Step 1.1.
          */
-        r[3] = loadWave4(WaAS_Data.W4, CASEW4ToCASEW5.keySet());
+        r[3] = loadW4(WaAS_Data.W4, CASEW4ToCASEW5.keySet());
         TreeMap<Short, HashSet<Short>> CASEW3ToCASEW4;
         CASEW3ToCASEW4 = (TreeMap<Short, HashSet<Short>>) ((Object[]) r[3])[3];
         /**
@@ -338,7 +321,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          * contains all those Wave 3 records that have Wave 2 record identifiers
          * and that are in the main set loaded in Step 1.2.
          */
-        r[2] = loadWave3(WaAS_Data.W3, CASEW3ToCASEW4.keySet());
+        r[2] = loadW3(WaAS_Data.W3, CASEW3ToCASEW4.keySet());
         TreeMap<Short, HashSet<Short>> CASEW2ToCASEW3;
         CASEW2ToCASEW3 = (TreeMap<Short, HashSet<Short>>) ((Object[]) r[2])[3];
         /**
@@ -346,7 +329,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          * contains all those Wave 2 records that have Wave 1 record identifiers
          * and that are in the main set loaded in Step 1.3.
          */
-        r[1] = loadWave2(WaAS_Data.W2, CASEW2ToCASEW3.keySet());
+        r[1] = loadW2(WaAS_Data.W2, CASEW2ToCASEW3.keySet());
         TreeMap<Short, HashSet<Short>> CASEW1ToCASEW2;
         CASEW1ToCASEW2 = (TreeMap<Short, HashSet<Short>>) ((Object[]) r[1])[3];
         TreeMap<Short, Short> CASEW2ToCASEW1;
@@ -356,7 +339,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          * contains all those Wave 1 records that are in the main set loaded in
          * Step 1.4.
          */
-        r[0] = loadWave1(WaAS_Data.W1, CASEW1ToCASEW2.keySet());
+        r[0] = loadW1(WaAS_Data.W1, CASEW1ToCASEW2.keySet());
         /**
          * Step 2: Check what is loaded and go through creating ID sets.
          */
@@ -391,10 +374,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         /**
          * Step 2.2.1: Wave 1.
          */
-        TreeMap<Short, WaAS_Wave1_HHOLD_Record> w1recs;
-        w1recs = new TreeMap<>();
-        TreeSet<WaAS_ID> CASEW1IDs;
-        CASEW1IDs = new TreeSet<>();
+        TreeMap<Short, WaAS_Wave1_HHOLD_Record> w1recs = new TreeMap<>();
+        TreeSet<WaAS_ID> CASEW1IDs = new TreeSet<>();
         ite = w1recs0.keySet().iterator();
         while (ite.hasNext()) {
             CASEW1 = ite.next();
@@ -407,14 +388,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         /**
          * Step 2.2.2: Wave 2.
          */
-        TreeMap<Short, HashSet<Short>> CASEW1ToCASEW2Subset;
-        CASEW1ToCASEW2Subset = new TreeMap<>();
-        TreeMap<Short, Short> CASEW2ToCASEW1Subset;
-        CASEW2ToCASEW1Subset = new TreeMap<>();
-        TreeMap<Short, WaAS_Wave2_HHOLD_Record> w2recs;
-        w2recs = new TreeMap<>();
-        TreeSet<WaAS_ID> CASEW2IDs;
-        CASEW2IDs = new TreeSet<>();
+        TreeMap<Short, HashSet<Short>> CASEW1ToCASEW2Subset = new TreeMap<>();
+        TreeMap<Short, Short> CASEW2ToCASEW1Subset = new TreeMap<>();
+        TreeMap<Short, WaAS_Wave2_HHOLD_Record> w2recs= new TreeMap<>();
+        TreeSet<WaAS_ID> CASEW2IDs = new TreeSet<>();
         ite = w2recs0.keySet().iterator();
         while (ite.hasNext()) {
             CASEW2 = ite.next();
@@ -427,22 +404,20 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         }
         env.log("There are " + CASEW2IDs.size() + " CASEW2IDs.");
         cacheSubset(WaAS_Data.W2, w2recs);
-        env.log("There are " + CASEW1ToCASEW2Subset.size() + " CASEW1ToCASEW2Subset mappings.");
-        env.log("There are " + CASEW2ToCASEW1Subset.size() + " CASEW2ToCASEW1Subset mappings.");
-        cacheSubsetLookups(WaAS_Data.W1, CASEW1ToCASEW2Subset, CASEW2ToCASEW1Subset);
+        env.log("There are " + CASEW1ToCASEW2Subset.size() 
+                + " CASEW1ToCASEW2Subset mappings.");
+        env.log("There are " + CASEW2ToCASEW1Subset.size() 
+                + " CASEW2ToCASEW1Subset mappings.");
+        cacheSubsetLookups(WaAS_Data.W1, CASEW1ToCASEW2Subset, 
+                CASEW2ToCASEW1Subset);
         /**
          * Step 2.2.3: Wave 3.
          */
-        TreeMap<Short, HashSet<Short>> CASEW2ToCASEW3Subset;
-        CASEW2ToCASEW3Subset = new TreeMap<>();
-        TreeMap<Short, Short> CASEW3ToCASEW2Subset;
-        CASEW3ToCASEW2Subset = new TreeMap<>();
-        TreeMap<Short, WaAS_Wave3_HHOLD_Record> w3recs;
-        w3recs = new TreeMap<>();
-        TreeSet<WaAS_ID> CASEW3IDs;
-        HashMap<Short, Short> CASEW3ToCASEW2;
-        CASEW3ToCASEW2 = new HashMap<>();
-        CASEW3IDs = new TreeSet<>();
+        TreeMap<Short, HashSet<Short>> CASEW2ToCASEW3Subset= new TreeMap<>();
+        TreeMap<Short, Short> CASEW3ToCASEW2Subset = new TreeMap<>();
+        TreeMap<Short, WaAS_Wave3_HHOLD_Record> w3recs = new TreeMap<>();
+        TreeSet<WaAS_ID> CASEW3IDs= new TreeSet<>();
+        HashMap<Short, Short> CASEW3ToCASEW2 = new HashMap<>();
         ite = w3recs0.keySet().iterator();
         while (ite.hasNext()) {
             CASEW3 = ite.next();
@@ -450,38 +425,35 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             if (CASEW2ToCASEW1Subset.containsKey(CASEW2)) {
                 CASEW3ToCASEW2.put(CASEW3, CASEW2);
                 CASEW1 = CASEW2ToCASEW1Subset.get(CASEW2);
-                HashSet<Short> CASEW3s;
-                CASEW3s = CASEW2ToCASEW3.get(CASEW2);
-                Iterator<Short> ite2;
-                ite2 = CASEW3s.iterator();
+                HashSet<Short> CASEW3s = CASEW2ToCASEW3.get(CASEW2);
+                Iterator<Short> ite2= CASEW3s.iterator();
                 while (ite2.hasNext()) {
                     CASEW3 = ite2.next();
                     ID = new WaAS_ID(CASEW1, CASEW3);
                     CASEW3IDs.add(ID);
                     w3recs.put(CASEW3, w3recs0.get(CASEW3));
-                    Generic_Collections.addToMap(CASEW2ToCASEW3Subset, CASEW2, CASEW3);
+                    Generic_Collections.addToMap(CASEW2ToCASEW3Subset, CASEW2, 
+                            CASEW3);
                     CASEW3ToCASEW2Subset.put(CASEW3, CASEW2);
                 }
             }
         }
         env.log("There are " + CASEW3IDs.size() + " CASEW3IDs.");
         cacheSubset(WaAS_Data.W3, w3recs);
-        env.log("There are " + CASEW2ToCASEW3Subset.size() + " CASEW2ToCASEW3Subset mappings.");
-        env.log("There are " + CASEW3ToCASEW2Subset.size() + " CASEW3ToCASEW2Subset mappings.");
-        cacheSubsetLookups(WaAS_Data.W2, CASEW2ToCASEW3Subset, CASEW3ToCASEW2Subset);
+        env.log("There are " + CASEW2ToCASEW3Subset.size() 
+                + " CASEW2ToCASEW3Subset mappings.");
+        env.log("There are " + CASEW3ToCASEW2Subset.size()
+                + " CASEW3ToCASEW2Subset mappings.");
+        cacheSubsetLookups(WaAS_Data.W2, CASEW2ToCASEW3Subset,
+                CASEW3ToCASEW2Subset);
         /**
          * Step 2.2.4: Wave 4.
          */
-        TreeMap<Short, HashSet<Short>> CASEW3ToCASEW4Subset;
-        CASEW3ToCASEW4Subset = new TreeMap<>();
-        TreeMap<Short, Short> CASEW4ToCASEW3Subset;
-        CASEW4ToCASEW3Subset = new TreeMap<>();
-        TreeMap<Short, WaAS_Wave4_HHOLD_Record> w4recs;
-        w4recs = new TreeMap<>();
-        HashMap<Short, Short> CASEW4ToCASEW3;
-        CASEW4ToCASEW3 = new HashMap<>();
-        TreeSet<WaAS_ID> CASEW4IDs;
-        CASEW4IDs = new TreeSet<>();
+        TreeMap<Short, HashSet<Short>> CASEW3ToCASEW4Subset= new TreeMap<>();
+        TreeMap<Short, Short> CASEW4ToCASEW3Subset= new TreeMap<>();
+        TreeMap<Short, WaAS_Wave4_HHOLD_Record> w4recs= new TreeMap<>();
+        HashMap<Short, Short> CASEW4ToCASEW3 = new HashMap<>();
+        TreeSet<WaAS_ID> CASEW4IDs= new TreeSet<>();
         ite = w4recs0.keySet().iterator();
         while (ite.hasNext()) {
             CASEW4 = ite.next();
@@ -490,38 +462,35 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 CASEW4ToCASEW3.put(CASEW4, CASEW3);
                 CASEW2 = CASEW3ToCASEW2Subset.get(CASEW3);
                 CASEW1 = CASEW2ToCASEW1Subset.get(CASEW2);
-                HashSet<Short> CASEW4s;
-                CASEW4s = CASEW3ToCASEW4.get(CASEW3);
-                Iterator<Short> ite2;
-                ite2 = CASEW4s.iterator();
+                HashSet<Short> CASEW4s = CASEW3ToCASEW4.get(CASEW3);
+                Iterator<Short> ite2 = CASEW4s.iterator();
                 while (ite2.hasNext()) {
                     CASEW4 = ite2.next();
                     ID = new WaAS_ID(CASEW1, CASEW4);
                     CASEW4IDs.add(ID);
                     w4recs.put(CASEW4, w4recs0.get(CASEW4));
-                    Generic_Collections.addToMap(CASEW3ToCASEW4Subset, CASEW3, CASEW4);
+                    Generic_Collections.addToMap(CASEW3ToCASEW4Subset, CASEW3, 
+                            CASEW4);
                     CASEW4ToCASEW3Subset.put(CASEW4, CASEW3);
                 }
             }
         }
         env.log("There are " + CASEW4IDs.size() + " CASEW4IDs.");
         cacheSubset(WaAS_Data.W4, w4recs);
-        env.log("There are " + CASEW3ToCASEW4Subset.size() + " CASEW3ToCASEW4Subset mappings.");
-        env.log("There are " + CASEW4ToCASEW3Subset.size() + " CASEW4ToCASEW3Subset mappings.");
-        cacheSubsetLookups(WaAS_Data.W3, CASEW3ToCASEW4Subset, CASEW4ToCASEW3Subset);
+        env.log("There are " + CASEW3ToCASEW4Subset.size() 
+                + " CASEW3ToCASEW4Subset mappings.");
+        env.log("There are " + CASEW4ToCASEW3Subset.size() 
+                + " CASEW4ToCASEW3Subset mappings.");
+        cacheSubsetLookups(WaAS_Data.W3, CASEW3ToCASEW4Subset, 
+                CASEW4ToCASEW3Subset);
         /**
          * Step 2.2.5: Wave 5.
          */
-        TreeMap<Short, HashSet<Short>> CASEW4ToCASEW5Subset;
-        CASEW4ToCASEW5Subset = new TreeMap<>();
-        TreeMap<Short, Short> CASEW5ToCASEW4Subset;
-        CASEW5ToCASEW4Subset = new TreeMap<>();
-        TreeMap<Short, WaAS_Wave5_HHOLD_Record> w5recs;
-        w5recs = new TreeMap<>();
-        HashMap<Short, Short> CASEW5ToCASEW4;
-        CASEW5ToCASEW4 = new HashMap<>();
-        TreeSet<WaAS_ID> CASEW5IDs;
-        CASEW5IDs = new TreeSet<>();
+        TreeMap<Short, HashSet<Short>> CASEW4ToCASEW5Subset = new TreeMap<>();
+        TreeMap<Short, Short> CASEW5ToCASEW4Subset = new TreeMap<>();
+        TreeMap<Short, WaAS_Wave5_HHOLD_Record> w5recs= new TreeMap<>();
+        HashMap<Short, Short> CASEW5ToCASEW4 = new HashMap<>();
+        TreeSet<WaAS_ID> CASEW5IDs= new TreeSet<>();
         ite = w5recs0.keySet().iterator();
         while (ite.hasNext()) {
             CASEW5 = ite.next();
@@ -531,25 +500,27 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 CASEW3 = CASEW4ToCASEW3Subset.get(CASEW4);
                 CASEW2 = CASEW3ToCASEW2Subset.get(CASEW3);
                 CASEW1 = CASEW2ToCASEW1Subset.get(CASEW2);
-                HashSet<Short> CASEW5s;
-                CASEW5s = CASEW4ToCASEW5.get(CASEW4);
-                Iterator<Short> ite2;
-                ite2 = CASEW5s.iterator();
+                HashSet<Short> CASEW5s = CASEW4ToCASEW5.get(CASEW4);
+                Iterator<Short> ite2 = CASEW5s.iterator();
                 while (ite2.hasNext()) {
                     CASEW5 = ite2.next();
                     ID = new WaAS_ID(CASEW1, CASEW5);
                     CASEW5IDs.add(ID);
                     w5recs.put(CASEW5, w5recs0.get(CASEW5));
-                    Generic_Collections.addToMap(CASEW4ToCASEW5Subset, CASEW4, CASEW5);
+                    Generic_Collections.addToMap(CASEW4ToCASEW5Subset, CASEW4, 
+                            CASEW5);
                     CASEW5ToCASEW4Subset.put(CASEW5, CASEW4);
                 }
             }
         }
         env.log("There are " + CASEW5IDs.size() + " CASEW5IDs.");
         cacheSubset(WaAS_Data.W5, w5recs);
-        env.log("There are " + CASEW4ToCASEW5Subset.size() + " CASEW4ToCASEW5Subset mappings.");
-        env.log("There are " + CASEW5ToCASEW4Subset.size() + " CASEW5ToCASEW4Subset mappings.");
-        cacheSubsetLookups(WaAS_Data.W4, CASEW4ToCASEW5Subset, CASEW5ToCASEW4Subset);
+        env.log("There are " + CASEW4ToCASEW5Subset.size() 
+                + " CASEW4ToCASEW5Subset mappings.");
+        env.log("There are " + CASEW5ToCASEW4Subset.size() 
+                + " CASEW5ToCASEW4Subset mappings.");
+        cacheSubsetLookups(WaAS_Data.W4, CASEW4ToCASEW5Subset, 
+                CASEW5ToCASEW4Subset);
         env.logEndTag(m);
         return r;
     }
@@ -579,7 +550,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * CASEW5 (which is normally expected to contain just one CASEW5).</li>
      * </ul>
      */
-    public Object[] loadWave5(byte wave) {
+    public Object[] loadW5(byte wave) {
         Object[] r;
         File cf = getGeneratedFile(wave, "InW4");
         if (cf.exists()) {
@@ -915,7 +886,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * CASEW4 (which is normally expected to contain just one CASEW4).</li>
      * </ul>
      */
-    public Object[] loadWave4(byte wave, Set<Short> s) {
+    public Object[] loadW4(byte wave, Set<Short> s) {
         String m = "loadWave4(byte, Set<Short>)";
         env.logStartTag(m);
         Object[] r;
@@ -1128,7 +1099,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * CASEW3 (which is normally expected to contain just one CASEW3).</li>
      * </ul>
      */
-    public Object[] loadWave3(byte wave, Set<Short> s) {
+    public Object[] loadW3(byte wave, Set<Short> s) {
         String m = "loadWave3(byte, Set<Short>)";
         env.logStartTag(m);
         Object[] r;
@@ -1232,7 +1203,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * CASEW2 (which is normally expected to contain just one CASEW2).</li>
      * </ul>
      */
-    public Object[] loadWave2(byte wave, Set<Short> s) {
+    public Object[] loadW2(byte wave, Set<Short> s) {
         String m = "loadWave2(byte, Set<Short>)";
         env.logStartTag(m);
         Object[] r;
@@ -1328,7 +1299,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * CASEW2 (which is normally expected to contain just one CASEW2).</li>
      * </ul>
      */
-    public Object[] loadWave1(byte wave, Set<Short> s) {
+    public Object[] loadW1(byte wave, Set<Short> s) {
         String m = "loadWave1(byte, Set<Short>)";
         env.logStartTag(m);
         Object[] r;
@@ -1469,5 +1440,4 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         r.put((byte) -6, "Error/Partial");
         return r;
     }
-
 }

@@ -30,6 +30,8 @@ import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_Data;
 import uk.ac.leeds.ccg.andyt.math.Math_Byte;
 import uk.ac.leeds.ccg.andyt.math.Math_Double;
 import uk.ac.leeds.ccg.andyt.math.Math_Integer;
@@ -62,7 +64,7 @@ import uk.ac.leeds.ccg.andyt.math.Math_Short;
  */
 public class WaAS_JavaCodeGenerator extends WaAS_Object {
 
-     // For convenience
+    // For convenience
     public WaAS_Files files;
 
     protected WaAS_JavaCodeGenerator() {
@@ -76,19 +78,17 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
     }
 
     public static void main(String[] args) {
-        WaAS_JavaCodeGenerator p;
-        p = new WaAS_JavaCodeGenerator(new WaAS_Environment(
-                new Generic_Environment()));
-        int nwaves;
-        nwaves = 5;
+        WaAS_JavaCodeGenerator p = new WaAS_JavaCodeGenerator(
+                new WaAS_Environment(new Generic_Environment()));
+        int nwaves = WaAS_Data.NWAVES;
         String type;
-        type = "hhold";
-        Object[] hholdTypes;
-        hholdTypes = p.getFieldTypes(type, nwaves);
+        // hhold
+        type = WaAS_Strings.s_hhold;
+        Object[] hholdTypes = p.getFieldTypes(type, nwaves);
         p.run(type, hholdTypes, nwaves);
-        type = "person";
-        Object[] personTypes;
-        personTypes = p.getFieldTypes(type, nwaves);
+        // person
+        type = WaAS_Strings.s_person;
+        Object[] personTypes = p.getFieldTypes(type, nwaves);
         p.run(type, personTypes, nwaves);
     }
 
@@ -105,53 +105,33 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
      * be represented by a boolean.
      */
     protected Object[] getFieldTypes(String type, int nwaves) {
-        Object[] r;
-        r = new Object[4];
-        File indir;
-        File outdir;
-        File generateddir;
-        indir = files.getWaASInputDir();
-        generateddir = files.getGeneratedWaASDir();
-        outdir = new File(generateddir, "Subsets");
+        Object[] r = new Object[4];
+        File indir = files.getWaASInputDir();
+        File generateddir = files.getGeneratedWaASDir();
+        File outdir = new File(generateddir, WaAS_Strings.s_Subsets);
         outdir.mkdirs();
-        HashMap<String, Integer>[] allFieldTypes;
-        allFieldTypes = new HashMap[nwaves];
-        String[][] headers;
-        headers = new String[nwaves][];
-        HashMap<String, Byte>[] v0ms;
-        v0ms = new HashMap[nwaves];
-        HashMap<String, Byte>[] v1ms;
-        v1ms = new HashMap[nwaves];
+        HashMap<String, Integer>[] allFieldTypes = new HashMap[nwaves];
+        String[][] headers = new String[nwaves][];
+        HashMap<String, Byte>[] v0ms = new HashMap[nwaves];
+        HashMap<String, Byte>[] v1ms = new HashMap[nwaves];
         for (int w = 0; w < nwaves; w++) {
-            Object[] t;
-            t = loadTest(w + 1, type, indir);
-            HashMap<String, Integer> fieldTypes;
-            fieldTypes = new HashMap<>();
+            Object[] t = loadTest(w + 1, type, indir);
+            HashMap<String, Integer> fieldTypes = new HashMap<>();
             allFieldTypes[w] = fieldTypes;
-            String[] fields;
-            boolean[] strings;
-            boolean[] doubles;
-            boolean[] ints;
-            boolean[] shorts;
-            boolean[] bytes;
-            boolean[] booleans;
-            HashMap<String, Byte> v0m;
-            HashMap<String, Byte> v1m;
-            fields = (String[]) t[0];
+            String[] fields = (String[]) t[0];
             headers[w] = fields;
-            strings = (boolean[]) t[1];
-            doubles = (boolean[]) t[2];
-            ints = (boolean[]) t[3];
-            shorts = (boolean[]) t[4];
-            bytes = (boolean[]) t[5];
-            booleans = (boolean[]) t[6];
-            v0m = (HashMap<String, Byte>) t[7];
-            v1m = (HashMap<String, Byte>) t[8];
+            boolean[] strings = (boolean[]) t[1];
+            boolean[] doubles = (boolean[]) t[2];
+            boolean[] ints = (boolean[]) t[3];
+            boolean[] shorts = (boolean[]) t[4];
+            boolean[] bytes = (boolean[]) t[5];
+            boolean[] booleans = (boolean[]) t[6];
+            HashMap<String, Byte> v0m = (HashMap<String, Byte>) t[7];
+            HashMap<String, Byte> v1m = (HashMap<String, Byte>) t[8];
             v0ms[w] = v0m;
             v1ms[w] = v1m;
-            String field;
             for (int i = 0; i < strings.length; i++) {
-                field = fields[i];
+                String field = fields[i];
                 if (strings[i]) {
                     System.out.println("" + i + " " + "String");
                     fieldTypes.put(field, 0);
@@ -190,22 +170,16 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
                 }
             }
         }
-        Iterator<String> ite;
-        String field;
-        int fieldType;
-        int consolidatedFieldType;
-        HashMap<String, Integer> consolidatedFieldTypes;
-        consolidatedFieldTypes = new HashMap<>();
+        HashMap<String, Integer> consolidatedFieldTypes = new HashMap<>();
         consolidatedFieldTypes.putAll(allFieldTypes[0]);
         for (int w = 1; w < nwaves; w++) {
-            HashMap<String, Integer> fieldTypes;
-            fieldTypes = allFieldTypes[w];
-            ite = fieldTypes.keySet().iterator();
+            HashMap<String, Integer> fieldTypes = allFieldTypes[w];
+            Iterator<String> ite = fieldTypes.keySet().iterator();
             while (ite.hasNext()) {
-                field = ite.next();
-                fieldType = fieldTypes.get(field);
+                String field = ite.next();
+                int fieldType = fieldTypes.get(field);
                 if (consolidatedFieldTypes.containsKey(field)) {
-                    consolidatedFieldType = consolidatedFieldTypes.get(field);
+                    int consolidatedFieldType = consolidatedFieldTypes.get(field);
                     if (fieldType != consolidatedFieldType) {
                         consolidatedFieldTypes.put(field,
                                 Math.min(fieldType, consolidatedFieldType));
@@ -230,42 +204,25 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
      * @return
      */
     public Object[] loadTest(int wave, String TYPE, File indir) {
-        Object[] r;
-        r = new Object[9];
-        String[] fields;
-        boolean[] strings;
-        boolean[] doubles;
-        boolean[] ints;
-        boolean[] shorts;
-        boolean[] bytes;
-        boolean[] booleans;
-        HashMap<String, Byte> v0m;
-        HashMap<String, Byte> v1m;
-        v0m = new HashMap<>();
-        v1m = new HashMap<>();
-        byte[] v0;
-        byte[] v1;
-
-        File f;
-        f = getInputFile(wave, TYPE, indir);
-        System.out.println("<Test load wave " + wave + " " + TYPE + " WaAS "
-                + "data from " + f + ">");
-        BufferedReader br;
-        br = Generic_IO.getBufferedReader(f);
-        String line;
-        int n;
-        line = br.lines()                .findFirst()                .get();
-        fields = parseHeader(line, wave);
-        n = fields.length;
-        strings = new boolean[n];
-        doubles = new boolean[n];
-        ints = new boolean[n];
-        shorts = new boolean[n];
-        bytes = new boolean[n];
-        booleans = new boolean[n];
-        v0 = new byte[n];
-        v1 = new byte[n];
-
+        String m = "loadTest(wave " + wave + ", Type " + TYPE + ", indir "
+                + indir.toString() + ")";
+        env.logStartTag(m);
+        Object[] r = new Object[9];
+        HashMap<String, Byte> v0m = new HashMap<>();
+        HashMap<String, Byte> v1m = new HashMap<>();
+        File f = getInputFile(wave, TYPE, indir);
+        BufferedReader br = Generic_IO.getBufferedReader(f);
+        String line = br.lines().findFirst().get();
+        String[] fields = parseHeader(line, wave);
+        int n = fields.length;
+        boolean[] strings = new boolean[n];
+        boolean[] doubles = new boolean[n];
+        boolean[] ints = new boolean[n];
+        boolean[] shorts = new boolean[n];
+        boolean[] bytes = new boolean[n];
+        boolean[] booleans = new boolean[n];
+        byte[] v0 = new byte[n];
+        byte[] v1 = new byte[n];
         for (int i = 0; i < n; i++) {
             strings[i] = false;
             doubles[i] = false;
@@ -280,32 +237,26 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
         br.lines().skip(1).forEach(l -> {
             String[] split = l.split("\t");
             for (int i = 0; i < n; i++) {
-                parse(split[i], fields[i], i, strings, doubles, ints,
-                        shorts, bytes, booleans, v0, v1, v0m, v1m);
+                parse(split[i], fields[i], i, strings, doubles, ints, shorts,
+                        bytes, booleans, v0, v1, v0m, v1m);
             }
         });
         /**
          * Order v0m and v1m so that v0m always has the smaller value and v1m
          * the larger.
          */
-        Iterator<String> ite;
-        ite = v0m.keySet().iterator();
-        String s;
-        byte v00;
-        byte v11;
+        Iterator<String> ite = v0m.keySet().iterator();
         while (ite.hasNext()) {
-            s = ite.next();
-            v00 = v0m.get(s);
+            String s = ite.next();
+            byte v00 = v0m.get(s);
             if (v1m.containsKey(s)) {
-                v11 = v1m.get(s);
+                byte v11 = v1m.get(s);
                 if (v00 > v11) {
                     v0m.put(s, v11);
                     v1m.put(s, v00);
                 }
             }
         }
-        System.out.println("</Loading wave " + wave + " " + TYPE + " WaAS "
-                + "data from " + f + ">");
         r[0] = fields;
         r[1] = strings;
         r[2] = doubles;
@@ -315,13 +266,13 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
         r[6] = booleans;
         r[7] = v0m;
         r[8] = v1m;
+        env.logEndTag(m);
         return r;
     }
 
     public File getInputFile(int wave, String type, File indir) {
         File f;
-        String filename;
-        filename = "was_wave_" + wave + "_" + type + "_eul_final";
+        String filename = "was_wave_" + wave + "_" + type + "_eul_final";
         if (wave < 4) {
             filename += "_v2";
         }
@@ -455,18 +406,18 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
 
         File outdir;
         outdir = new File(files.getDataDir(), "..");
-        outdir = new File(outdir, "src");
-        outdir = new File(outdir, "main");
-        outdir = new File(outdir, "java");
-        outdir = new File(outdir, "uk");
-        outdir = new File(outdir, "ac");
-        outdir = new File(outdir, "leeds");
-        outdir = new File(outdir, "ccg");
-        outdir = new File(outdir, "andyt");
-        outdir = new File(outdir, "generic");
-        outdir = new File(outdir, "data");
-        outdir = new File(outdir, "waas");
-        outdir = new File(outdir, "data");
+        outdir = new File(outdir, WaAS_Strings.s_src);
+        outdir = new File(outdir, WaAS_Strings.s_main);
+        outdir = new File(outdir, WaAS_Strings.s_java);
+        outdir = new File(outdir, WaAS_Strings.s_uk);
+        outdir = new File(outdir, WaAS_Strings.s_ac);
+        outdir = new File(outdir, WaAS_Strings.s_leeds);
+        outdir = new File(outdir, WaAS_Strings.s_ccg);
+        outdir = new File(outdir, WaAS_Strings.s_andyt);
+        outdir = new File(outdir, WaAS_Strings.s_generic);
+        outdir = new File(outdir, WaAS_Strings.s_data);
+        outdir = new File(outdir, WaAS_Strings.s_waas);
+        outdir = new File(outdir, WaAS_Strings.s_data);
         outdir = new File(outdir, type);
         outdir.mkdirs();
         String packageName;
@@ -478,8 +429,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
         int wave;
         String className;
         String extendedClassName;
-        String prepend;
-        prepend = "WaAS_";
+        String prepend = WaAS_Strings.s_WaAS + WaAS_Strings.symbol_underscore;
         type = type.toUpperCase();
 
         for (int w = 0; w < fields.length; w++) {
@@ -676,13 +626,10 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
      */
     public void printFieldGetters(PrintWriter pw, TreeSet<String> fields,
             HashMap<String, Integer> fieldTypes) {
-        String field;
-        int fieldType;
-        Iterator<String> ite;
-        ite = fields.iterator();
+        Iterator<String> ite = fields.iterator();
         while (ite.hasNext()) {
-            field = ite.next();
-            fieldType = fieldTypes.get(field);
+            String field = ite.next();
+            int fieldType = fieldTypes.get(field);
             switch (fieldType) {
                 case 0:
                     pw.println("public String get" + field + "() {");
@@ -718,13 +665,10 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
      */
     public void printFieldInits(PrintWriter pw, TreeSet<String> fields,
             HashMap<String, Integer> fieldTypes, HashMap<String, Byte> v0) {
-        String field;
-        int fieldType;
-        Iterator<String> ite;
-        ite = fields.iterator();
+        Iterator<String> ite = fields.iterator();
         while (ite.hasNext()) {
-            field = ite.next();
-            fieldType = fieldTypes.get(field);
+            String field = ite.next();
+            int fieldType = fieldTypes.get(field);
             switch (fieldType) {
                 case 0:
                     pw.println("protected final void init" + field + "(String s) {");
@@ -789,18 +733,12 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
      */
     public String[] parseHeader(String header, int wave) {
         String[] r;
-        String ws;
-        ws = "W" + wave;
-        String keyIdentifier1;
-        keyIdentifier1 = "CASE" + ws;
-        String keyIdentifier2;
-        keyIdentifier2 = "PERSON" + ws;
-        String uniqueString1;
-        uniqueString1 = "uniqueString1";
-        String uniqueString2;
-        uniqueString2 = "uniqueString2";
-        String h1;
-        h1 = header.toUpperCase();
+        String ws = "W" + wave;
+        String keyIdentifier1 = "CASE" + ws;
+        String keyIdentifier2 = "PERSON" + ws;
+        String uniqueString1 = "uniqueString1";
+        String uniqueString2 = "uniqueString2";
+        String h1 = header.toUpperCase();
         try {
             if (h1.contains(uniqueString1)) {
                 throw new Exception(uniqueString1 + " is not unique!");
@@ -829,38 +767,24 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
     }
 
     protected HashMap<String, Byte> setCommonBooleanMaps(
-            HashMap<String, Byte>[] v0ms,
-            HashMap<String, Byte>[] v1ms,
-            TreeSet<String>[] allFields,
-            HashMap<String, Integer> fieldTypes) {
-        HashMap<String, Byte> v0m;
-        HashMap<String, Byte> v1m;
-        Iterator<String> ites0;
-        Iterator<String> ites1;
-        String field0;
-        String field1;
-        TreeSet<String> fields;
-        fields = allFields[5];
-        HashMap<String, Byte> v0m1;
-        HashMap<String, Byte> v1m1;
-        v0m1 = new HashMap<>();
-        v1m1 = new HashMap<>();
-        ites0 = fields.iterator();
-        byte v0;
-        Byte v1;
-        Byte v01;
-        Byte v11;
+            HashMap<String, Byte>[] v0ms, HashMap<String, Byte>[] v1ms,
+            TreeSet<String>[] allFields, HashMap<String, Integer> fieldTypes) {
+        TreeSet<String> fields = allFields[5];
+        HashMap<String, Byte> v0m1 = new HashMap<>();
+        HashMap<String, Byte> v1m1 = new HashMap<>();
+        Iterator<String> ites0 = fields.iterator();
         while (ites0.hasNext()) {
-            field0 = ites0.next();
+            String field0 = ites0.next();
             if (fieldTypes.get(field0) == 5) {
                 for (int w = 0; w < v0ms.length; w++) {
-                    v0m = v0ms[w];
-                    v1m = v1ms[w];
-                    ites1 = v0m.keySet().iterator();
+                    HashMap<String, Byte> v0m = v0ms[w];
+                    HashMap<String, Byte> v1m = v1ms[w];
+                    Iterator<String> ites1 = v0m.keySet().iterator();
                     while (ites1.hasNext()) {
-                        field1 = ites1.next();
+                        String field1 = ites1.next();
                         if (field0.equalsIgnoreCase(field1)) {
-                            v0 = v0m.get(field1);
+                            byte v0 = v0m.get(field1);
+                            Byte v1;
                             if (v1m == null) {
                                 v1 = Byte.MIN_VALUE;
                             } else {
@@ -871,8 +795,8 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
                                     v1 = Byte.MIN_VALUE;
                                 }
                             }
-                            v01 = v0m1.get(field1);
-                            v11 = v1m1.get(field1);
+                            Byte v01 = v0m1.get(field1);
+                            Byte v11 = v1m1.get(field1);
                             if (v01 == null) {
                                 v0m1.put(field1, v0);
                             } else {
@@ -920,20 +844,24 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
         }
         // Get fields common to waves 1, 2, 3, 4 and 5 (12345)
         r[5] = getFieldsInCommon(r[0], r[1], r[2], r[3], r[4]);
-        System.out.println("Number of fields common to waves 1, 2, 3, 4 and 5 (12345) " + r[5].size());
+        System.out.println("Number of fields common to waves 1, 2, 3, 4 and 5"
+                + " (12345) " + r[5].size());
         // Get fields other than 12345 that are common to waves 1 and 2 (12)
         r[6] = getFieldsInCommon(r[0], r[1], null, null, null);
         r[6].removeAll(r[5]);
-        System.out.println("Number of fields other than 12345 that are common to waves 1 and 2 (12) " + r[6].size());
+        System.out.println("Number of fields other than 12345 that are common"
+                + " to waves 1 and 2 (12) " + r[6].size());
         // Get fields other than 12345 that are in common to waves 3, 4 and 5 (345)
         r[7] = getFieldsInCommon(r[2], r[3], r[4], null, null);
         r[7].removeAll(r[5]);
-        System.out.println("Number of fields other than 12345 that are in common to waves 3, 4 and 5 (345) " + r[7].size());
+        System.out.println("Number of fields other than 12345 that are in "
+                + "common to waves 3, 4 and 5 (345) " + r[7].size());
         // Get fields other than 345 that are in common to waves 4 and 5 (45)
         r[8] = getFieldsInCommon(r[3], r[4], null, null, null);
         r[8].removeAll(r[5]);
         r[8].removeAll(r[7]);
-        System.out.println("Number of fields other than 345 that are in common to waves 4 and 5 (45) " + r[8].size());
+        System.out.println("Number of fields other than 345 that are in common "
+                + "to waves 4 and 5 (45) " + r[8].size());
         r[0].removeAll(r[5]);
         r[0].removeAll(r[6]);
         r[1].removeAll(r[5]);
@@ -958,13 +886,10 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
      */
     public ArrayList<String>[] getFieldsList(ArrayList<String> headers) {
         ArrayList<String>[] r;
-        int size;
-        size = headers.size();
+        int size = headers.size();
         r = new ArrayList[size];
-        Iterator<String> ite;
-        ite = headers.iterator();
-        int i;
-        i = 0;
+        Iterator<String> ite = headers.iterator();
+        int i = 0;
         while (ite.hasNext()) {
             r[i] = getFieldsList(ite.next());
             i++;
@@ -978,8 +903,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
      * @return
      */
     public TreeSet<String> getFields(String[] fields) {
-        TreeSet<String> r;
-        r = new TreeSet<>();
+        TreeSet<String> r = new TreeSet<>();
         r.addAll(Arrays.asList(fields));
         return r;
     }
@@ -990,10 +914,8 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
      * @return
      */
     public ArrayList<String> getFieldsList(String s) {
-        ArrayList<String> r;
-        r = new ArrayList<>();
-        String[] split;
-        split = s.split("\t");
+        ArrayList<String> r = new ArrayList<>();
+        String[] split = s.split("\t");
         r.addAll(Arrays.asList(split));
         return r;
     }
@@ -1013,19 +935,18 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
     public TreeSet<String> getFieldsInCommon(TreeSet<String> s1,
             TreeSet<String> s2, TreeSet<String> s3, TreeSet<String> s4,
             TreeSet<String> s5) {
-        TreeSet<String> result;
-        result = new TreeSet<>();
-        result.addAll(s1);
-        result.retainAll(s2);
+        TreeSet<String> r = new TreeSet<>();
+        r.addAll(s1);
+        r.retainAll(s2);
         if (s3 != null) {
-            result.retainAll(s3);
+            r.retainAll(s3);
         }
         if (s4 != null) {
-            result.retainAll(s4);
+            r.retainAll(s4);
         }
         if (s5 != null) {
-            result.retainAll(s5);
+            r.retainAll(s5);
         }
-        return result;
+        return r;
     }
 }

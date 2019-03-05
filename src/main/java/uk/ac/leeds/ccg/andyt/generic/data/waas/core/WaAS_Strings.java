@@ -22,10 +22,11 @@ import uk.ac.leeds.ccg.andyt.generic.core.Generic_Strings;
  * @author geoagdt
  */
 public class WaAS_Strings extends Generic_Strings {
-
-    public static final String s_WaAS = "WaAS";
+    
+    public static final String s_All = "All";
     public static final String s_Subsets = "Subsets";
-
+    public static final String s_WaAS = "WaAS";
+    
     public WaAS_Strings() {
         super();
     }

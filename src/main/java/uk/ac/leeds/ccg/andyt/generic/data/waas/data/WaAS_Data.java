@@ -56,12 +56,16 @@ public class WaAS_Data extends WaAS_Object {
         CASEW1ToCID = new HashMap<>();
     }
 
-    public WaAS_Collection getCollection(short collectionID) {
-        WaAS_Collection r;
-        r = data.get(collectionID);
+    /**
+     * 
+     * @param cID collectionID
+     * @return 
+     */
+    public WaAS_Collection getCollection(short cID) {
+        WaAS_Collection r = data.get(cID);
         if (r == null) {
-            r = (WaAS_Collection) loadSubsetCollection(collectionID);
-            data.put(collectionID, r);
+            r = (WaAS_Collection) loadSubsetCollection(cID);
+            data.put(cID, r);
         }
         return r;
     }

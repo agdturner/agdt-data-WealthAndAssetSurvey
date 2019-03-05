@@ -68,7 +68,7 @@ public class WaAS_Main_Process extends WaAS_Object {
         WaAS_Main_Process p = new WaAS_Main_Process(env);
         // Main switches
         //p.doJavaCodeGeneration = true;
-        p.doLoadDataIntoCaches = true; // rename/reuse just left here for convenience...
+        p.doLoadDataIntoCaches = true;
         p.run();
     }
 
@@ -76,18 +76,19 @@ public class WaAS_Main_Process extends WaAS_Object {
         if (doJavaCodeGeneration) {
             runJavaCodeGeneration();
         }
+        if (doLoadDataIntoCaches) {
+            File indir = files.getWaASInputDir();
+            File generateddir = files.getGeneratedWaASDir();
+            File outdir = new File(generateddir, WaAS_Strings.s_Subsets);
+            outdir.mkdirs();
+            WaAS_HHOLD_Handler hH = new WaAS_HHOLD_Handler(env, indir);
 
-        File indir = files.getWaASInputDir();
-        File generateddir = files.getGeneratedWaASDir();
-        File outdir = new File(generateddir, WaAS_Strings.s_Subsets);
-        outdir.mkdirs();
-        WaAS_HHOLD_Handler hholdHandler = new WaAS_HHOLD_Handler(env, indir);
-
-        int chunkSize;
-        chunkSize = 256; //1024; 512; 256;
-        doDataProcessingStep1(indir, outdir, hholdHandler);
-        doDataProcessingStep2(indir, outdir, hholdHandler, chunkSize);
-        doDataProcessingStep3(indir, outdir, hholdHandler);
+            int chunkSize;
+            chunkSize = 256; //1024; 512; 256;
+            doDataProcessingStep1(indir, outdir, hH);
+            doDataProcessingStep2(indir, outdir, hH, chunkSize);
+            doDataProcessingStep3(indir, outdir, hH);
+        }
     }
 
     /**
@@ -105,12 +106,6 @@ public class WaAS_Main_Process extends WaAS_Object {
         hholdHandler.loadAllWave3(WaAS_Data.W3);
         hholdHandler.loadAllWave4(WaAS_Data.W4);
         hholdHandler.loadAllWave5(WaAS_Data.W5);
-    }
-
-    protected void addVariable(String s, TreeMap<Integer, String> vIDToVName,
-            TreeMap<String, Integer> vNameToVID) {
-        vIDToVName.put(0, s);
-        vNameToVID.put(s, 0);
     }
 
     /**
@@ -811,10 +806,10 @@ public class WaAS_Main_Process extends WaAS_Object {
      *
      * @param indir
      * @param outdir
-     * @param hholdHandler
+     * @param hH hholdHandler
      */
     public void doDataProcessingStep1(File indir, File outdir,
-            WaAS_HHOLD_Handler hholdHandler) {
+            WaAS_HHOLD_Handler hH) {
         String m0 = "doDataProcessingStep1";
         env.logStartTag(m0);
         // For convenience/code brevity.
@@ -823,7 +818,7 @@ public class WaAS_Main_Process extends WaAS_Object {
         /**
          * Step 1: Load hhold data into cache and memory.
          */
-        Object[] hholdData = hholdHandler.load();
+        Object[] hholdData = hH.load();
         /**
          * Step 2: Unpack hholdData. hholdData is an Object[] of length 2. r[0]
          * is a TreeMap with Integer keys which are the CASE id for the wave and
@@ -841,24 +836,19 @@ public class WaAS_Main_Process extends WaAS_Object {
          */
         HashMap<Byte, TreeSet<Short>[]> iDLists = new HashMap<>();
         // W1
-        Object[] hholdDataW1;
-        hholdDataW1 = (Object[]) hholdData[0];
+        Object[] hholdDataW1 = (Object[]) hholdData[0];
         iDLists.put(WaAS_Data.W1, (TreeSet<Short>[]) hholdDataW1[1]);
         // W2
-        Object[] hholdDataW2;
-        hholdDataW2 = (Object[]) hholdData[1];
+        Object[] hholdDataW2 = (Object[]) hholdData[1];
         iDLists.put(WaAS_Data.W2, (TreeSet<Short>[]) hholdDataW2[1]);
         // W3
-        Object[] hholdDataW3;
-        hholdDataW3 = (Object[]) hholdData[2];
+        Object[] hholdDataW3 = (Object[]) hholdData[2];
         iDLists.put(WaAS_Data.W3, (TreeSet<Short>[]) hholdDataW3[1]);
         // W4
-        Object[] hholdDataW4;
-        hholdDataW4 = (Object[]) hholdData[3];
+        Object[] hholdDataW4 = (Object[]) hholdData[3];
         iDLists.put(WaAS_Data.W4, (TreeSet<Short>[]) hholdDataW4[1]);
         // W5
-        Object[] hholdDataW5;
-        hholdDataW5 = (Object[]) hholdData[4];
+        Object[] hholdDataW5 = (Object[]) hholdData[4];
         iDLists.put(WaAS_Data.W5, (TreeSet<Short>[]) hholdDataW5[1]);
         /**
          * Step 3: Print out the Number of Households in each wave.

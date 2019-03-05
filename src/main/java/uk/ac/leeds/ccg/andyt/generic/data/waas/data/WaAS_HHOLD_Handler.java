@@ -581,19 +581,15 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      */
     public Object[] loadWave5(byte wave) {
         Object[] r;
-        File cf;
-        cf = getGeneratedFile(wave, "InW4");
+        File cf = getGeneratedFile(wave, "InW4");
         if (cf.exists()) {
             r = (Object[]) load(wave, cf);
         } else {
-            File f;
-            f = getInputFile(wave);
             r = new Object[4];
-            TreeMap<Short, WaAS_Wave5_HHOLD_Record> r0;
-            r0 = new TreeMap<>();
+            File f = getInputFile(wave);
+            TreeMap<Short, WaAS_Wave5_HHOLD_Record> r0 = new TreeMap<>();
             r[0] = r0;
-            TreeSet<Short>[] r1;
-            r1 = getSetsNew(wave + 1);
+            TreeSet<Short>[] r1 = getSetsNew(wave + 1);
             r[1] = r1;
             /**
              * Each hhold in Wave 5 comes from at most one hhold from Wave 4. It
@@ -602,31 +598,24 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
              * is expected to be rare. One example explanation for this
              * happening is a someone returning to a hhold having left it.
              */
-            TreeMap<Short, Short> CASEW5ToCASEW4;
+            TreeMap<Short, Short> CASEW5ToCASEW4 = new TreeMap<>();
+            r[2] = CASEW5ToCASEW4;
             /**
              * There may be instances where hholds from Wave 4 split into two or
              * more hholds in Wave 5.
              */
-            TreeMap<Short, HashSet<Short>> CASEW4ToCASEW5;
-            CASEW5ToCASEW4 = new TreeMap<>();
-            CASEW4ToCASEW5 = new TreeMap<>();
-            r[2] = CASEW5ToCASEW4;
+            TreeMap<Short, HashSet<Short>> CASEW4ToCASEW5 = new TreeMap<>();
             r[3] = CASEW4ToCASEW5;
-            String m;
-            m = getMessage(wave, f);
-            env.log("<" + m + ">");
-            BufferedReader br;
-            br = Generic_IO.getBufferedReader(f);
-            int count;
-            count = br.lines().skip(1).mapToInt(line -> {
-                WaAS_Wave5_HHOLD_Record rec;
-                rec = new WaAS_Wave5_HHOLD_Record(line);
+            String m1 = getMessage(wave, f);
+            env.logStartTag(m1);
+            BufferedReader br = Generic_IO.getBufferedReader(f);
+            int count = br.lines().skip(1).mapToInt(line -> {
+                WaAS_Wave5_HHOLD_Record rec = new WaAS_Wave5_HHOLD_Record(line);
                 short CASEW4 = rec.getCASEW4();
                 if (CASEW4 > Short.MIN_VALUE) {
                     if (!r1[3].add(CASEW4)) {
-                        env.log("In Wave 5: hhold with CASEW4 "
-                                + CASEW4 + " reportedly split into multiple "
-                                + "hholds.");
+                        env.log("In Wave 5: hhold with CASEW4 " + CASEW4
+                                + " reportedly split into multiple hholds.");
                         return 1;
                     }
                 }
@@ -637,8 +626,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             // Close and reopen br
             br = Generic_IO.closeAndGetBufferedReader(br, f);
             br.lines().skip(1).forEach(line -> {
-                WaAS_Wave5_HHOLD_Record rec;
-                rec = new WaAS_Wave5_HHOLD_Record(line);
+                WaAS_Wave5_HHOLD_Record rec = new WaAS_Wave5_HHOLD_Record(line);
                 short CASEW5 = rec.getCASEW5();
                 short CASEW4 = rec.getCASEW4();
                 short CASEW3 = rec.getCASEW3();
@@ -658,8 +646,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 }
                 if (CASEW1 > Short.MIN_VALUE) {
                     r1[0].add(CASEW1);
-                    if (CASEW2 > Short.MIN_VALUE
-                            && CASEW3 > Short.MIN_VALUE
+                    if (CASEW2 > Short.MIN_VALUE && CASEW3 > Short.MIN_VALUE
                             && CASEW4 > Short.MIN_VALUE) {
                         r1[5].add(CASEW5);
                     }
@@ -667,7 +654,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             });
             // Close br
             Generic_IO.closeBufferedReader(br);
-            env.log("</" + m + ">");
+            env.logEndTag(m1);
             cache(wave, cf, r);
         }
         return r;
@@ -683,28 +670,23 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      */
     public TreeMap<Short, WaAS_Wave5_HHOLD_Record> loadAllWave5(byte wave) {
         TreeMap<Short, WaAS_Wave5_HHOLD_Record> r;
-        File cf;
-        cf = getGeneratedFile(wave, "All");
+        File cf = getGeneratedAllFile(wave);
         if (cf.exists()) {
             r = (TreeMap<Short, WaAS_Wave5_HHOLD_Record>) load(wave, cf);
         } else {
-            File f;
-            f = getInputFile(wave);
             r = new TreeMap<>();
-            String m;
-            m = getMessage(wave, f);
-            env.log("<" + m + ">");
-            BufferedReader br;
-            br = Generic_IO.getBufferedReader(f);
+            File f = getInputFile(wave);
+            String m1 = getMessage(wave, f);
+            env.logStartTag(m1);
+            BufferedReader br = Generic_IO.getBufferedReader(f);
             br.lines().skip(1).forEach(line -> {
-                WaAS_Wave5_HHOLD_Record rec;
-                rec = new WaAS_Wave5_HHOLD_Record(line);
+                WaAS_Wave5_HHOLD_Record rec = new WaAS_Wave5_HHOLD_Record(line);
                 short CASEW5 = rec.getCASEW5();
                 r.put(CASEW5, rec);
             });
             // Close br
             Generic_IO.closeBufferedReader(br);
-            env.log("</" + m + ">");
+            env.logEndTag(m1);
             cache(wave, cf, r);
         }
         return r;
@@ -720,28 +702,23 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      */
     public TreeMap<Short, WaAS_Wave4_HHOLD_Record> loadAllWave4(byte wave) {
         TreeMap<Short, WaAS_Wave4_HHOLD_Record> r;
-        File cf;
-        cf = getGeneratedFile(wave, "All");
+        File cf = getGeneratedAllFile(wave);
         if (cf.exists()) {
             r = (TreeMap<Short, WaAS_Wave4_HHOLD_Record>) load(wave, cf);
         } else {
-            File f;
-            f = getInputFile(wave);
             r = new TreeMap<>();
-            String m;
-            m = getMessage(wave, f);
-            env.log("<" + m + ">");
-            BufferedReader br;
-            br = Generic_IO.getBufferedReader(f);
+            File f = getInputFile(wave);
+            String m1 = getMessage(wave, f);
+            env.logStartTag(m1);
+            BufferedReader br = Generic_IO.getBufferedReader(f);
             br.lines().skip(1).forEach(line -> {
-                WaAS_Wave4_HHOLD_Record rec;
-                rec = new WaAS_Wave4_HHOLD_Record(line);
+                WaAS_Wave4_HHOLD_Record rec = new WaAS_Wave4_HHOLD_Record(line);
                 short CASEW4 = rec.getCASEW4();
                 r.put(CASEW4, rec);
             });
             // Close br
             Generic_IO.closeBufferedReader(br);
-            env.log("</" + m + ">");
+            env.logEndTag(m1);
             cache(wave, cf, r);
         }
         return r;
@@ -757,28 +734,23 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      */
     public TreeMap<Short, WaAS_Wave3_HHOLD_Record> loadAllWave3(byte wave) {
         TreeMap<Short, WaAS_Wave3_HHOLD_Record> r;
-        File cf;
-        cf = getGeneratedFile(wave, "All");
+        File cf = getGeneratedAllFile(wave);
         if (cf.exists()) {
             r = (TreeMap<Short, WaAS_Wave3_HHOLD_Record>) load(wave, cf);
         } else {
-            File f;
-            f = getInputFile(wave);
             r = new TreeMap<>();
-            String m;
-            m = getMessage(wave, f);
-            env.log("<" + m + ">");
-            BufferedReader br;
-            br = Generic_IO.getBufferedReader(f);
+            File f = getInputFile(wave);
+            String m1 = getMessage(wave, f);
+            env.logStartTag(m1);
+            BufferedReader br = Generic_IO.getBufferedReader(f);
             br.lines().skip(1).forEach(line -> {
-                WaAS_Wave3_HHOLD_Record rec;
-                rec = new WaAS_Wave3_HHOLD_Record(line);
+                WaAS_Wave3_HHOLD_Record rec = new WaAS_Wave3_HHOLD_Record(line);
                 short CASEW3 = rec.getCASEW3();
                 r.put(CASEW3, rec);
             });
             // Close br
             Generic_IO.closeBufferedReader(br);
-            env.log("</" + m + ">");
+            env.logEndTag(m1);
             cache(wave, cf, r);
         }
         return r;
@@ -795,16 +767,15 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     public TreeMap<Short, WaAS_Wave2_HHOLD_Record> loadAllWave2(byte wave) {
         TreeMap<Short, WaAS_Wave2_HHOLD_Record> r;
         File cf;
-        cf = getGeneratedFile(wave, "All");
+        cf = getGeneratedAllFile(wave);
         if (cf.exists()) {
             r = (TreeMap<Short, WaAS_Wave2_HHOLD_Record>) load(wave, cf);
         } else {
             File f;
             f = getInputFile(wave);
             r = new TreeMap<>();
-            String m;
-            m = getMessage(wave, f);
-            env.log("<" + m + ">");
+            String m1 = getMessage(wave, f);
+            env.logStartTag(m1);
             BufferedReader br;
             br = Generic_IO.getBufferedReader(f);
             br.lines().skip(1).forEach(line -> {
@@ -815,7 +786,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             });
             // Close br
             Generic_IO.closeBufferedReader(br);
-            env.log("</" + m + ">");
+            env.logEndTag(m1);
             cache(wave, cf, r);
         }
         return r;
@@ -833,7 +804,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadAllWave1";
         env.logStartTag(m);
         TreeMap<Short, WaAS_Wave1_HHOLD_Record> r;
-        File cf = getGeneratedFile(wave, "All");
+        File cf = getGeneratedAllFile(wave);
         if (cf.exists()) {
             r = (TreeMap<Short, WaAS_Wave1_HHOLD_Record>) load(wave, cf);
         } else {
@@ -894,10 +865,23 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     }
 
     /**
+     * For getting a specific generated File with type defaulted to
+     * {@link WaAS_Strings#s_All}.
+     * {@link #getGeneratedFile(short, java.lang.String)}
      *
-     * @param wave
-     * @param type Expected "" or "All"
-     * @return
+     * @param wave the wave part of the filename.
+     * @return a specific generated File.
+     */
+    protected File getGeneratedAllFile(short wave) {
+        return getGeneratedFile(wave, WaAS_Strings.s_All);
+    }
+
+    /**
+     * For getting a specific generated File.
+     *
+     * @param wave the wave part of the filename.
+     * @param type the type part of the filename.
+     * @return a specific generated File.
      */
     protected File getGeneratedFile(short wave, String type) {
         return new File(Files.getGeneratedWaASDir(), TYPE + WaAS_Strings.s_W
@@ -962,18 +946,14 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             r[3] = CASEW3ToCASEW4;
             String m1 = getMessage(wave, f);
             env.logStartTag(m1);
-            BufferedReader br;
-            br = Generic_IO.getBufferedReader(f);
-            int count;
-            count = br.lines().skip(1).mapToInt(line -> {
-                WaAS_Wave4_HHOLD_Record rec;
-                rec = new WaAS_Wave4_HHOLD_Record(line);
+            BufferedReader br = Generic_IO.getBufferedReader(f);
+            int count = br.lines().skip(1).mapToInt(line -> {
+                WaAS_Wave4_HHOLD_Record rec = new WaAS_Wave4_HHOLD_Record(line);
                 short CASEW3 = rec.getCASEW3();
                 if (CASEW3 > Short.MIN_VALUE) {
                     if (!r1[2].add(CASEW3)) {
-                        env.log("In Wave 4: hhold with CASEW3 "
-                                + CASEW3 + " reportedly split into multiple "
-                                + "hholds.");
+                        env.log("In Wave 4: hhold with CASEW3 " + CASEW3 + 
+                                " reportedly split into multiple hholds.");
                         return 1;
                     }
                 }
@@ -984,8 +964,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             // Close and reopen br
             br = Generic_IO.closeAndGetBufferedReader(br, f);
             br.lines().skip(1).forEach(line -> {
-                WaAS_Wave4_HHOLD_Record rec;
-                rec = new WaAS_Wave4_HHOLD_Record(line);
+                WaAS_Wave4_HHOLD_Record rec = new WaAS_Wave4_HHOLD_Record(line);
                 short CASEW4 = rec.getCASEW4();
                 short CASEW3 = rec.getCASEW3();
                 short CASEW2 = rec.getCASEW2();
@@ -993,7 +972,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 if (s.contains(CASEW4)) {
                     if (CASEW3 > Short.MIN_VALUE) {
                         CASEW4ToCASEW3.put(CASEW4, CASEW3);
-                        Generic_Collections.addToMap(CASEW3ToCASEW4, CASEW3, CASEW4);
+                        Generic_Collections.addToMap(CASEW3ToCASEW4, CASEW3,
+                                CASEW4);
                         r0.put(CASEW4, rec);
                     }
                 }
@@ -1018,8 +998,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     }
 
     /**
-     * Load Wave 4 records, that have Wave 5 records, and that are reportedly in
-     * Wave 3.
+     * Load Wave 4 records.
      *
      * @param wave
      *
@@ -1076,8 +1055,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             env.logStartTag(m0);
             BufferedReader br = Generic_IO.getBufferedReader(f);
             int count = br.lines().skip(1).mapToInt(line -> {
-                WaAS_Wave4_HHOLD_Record rec;
-                rec = new WaAS_Wave4_HHOLD_Record(line);
+                WaAS_Wave4_HHOLD_Record rec = new WaAS_Wave4_HHOLD_Record(line);
                 short CASEW3 = rec.getCASEW3();
                 if (CASEW3 > Short.MIN_VALUE) {
                     if (!r1[2].add(CASEW3)) {
@@ -1093,15 +1071,15 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             // Close and reopen br
             br = Generic_IO.closeAndGetBufferedReader(br, f);
             br.lines().skip(1).forEach(line -> {
-                WaAS_Wave4_HHOLD_Record rec;
-                rec = new WaAS_Wave4_HHOLD_Record(line);
+                WaAS_Wave4_HHOLD_Record rec = new WaAS_Wave4_HHOLD_Record(line);
                 short CASEW4 = rec.getCASEW4();
                 short CASEW3 = rec.getCASEW3();
                 short CASEW2 = rec.getCASEW2();
                 short CASEW1 = rec.getCASEW1();
                 if (CASEW3 > Short.MIN_VALUE) {
                     CASEW4ToCASEW3.put(CASEW4, CASEW3);
-                    Generic_Collections.addToMap(CASEW3ToCASEW4, CASEW3, CASEW4);
+                    Generic_Collections.addToMap(CASEW3ToCASEW4, CASEW3, 
+                            CASEW4);
                     r0.put(CASEW4, rec);
                 }
                 r1[3].add(CASEW4);
@@ -1183,8 +1161,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             env.logStartTag(m1);
             BufferedReader br = Generic_IO.getBufferedReader(f);
             int count = br.lines().skip(1).mapToInt(line -> {
-                WaAS_Wave3_HHOLD_Record rec;
-                rec = new WaAS_Wave3_HHOLD_Record(line);
+                WaAS_Wave3_HHOLD_Record rec = new WaAS_Wave3_HHOLD_Record(line);
                 short CASEW2 = rec.getCASEW2();
                 if (CASEW2 > Short.MIN_VALUE) {
                     if (!r1[1].add(CASEW2)) {
@@ -1207,7 +1184,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 if (s.contains(CASEW3)) {
                     if (CASEW2 > Short.MIN_VALUE) {
                         CASEW3ToCASEW2.put(CASEW3, CASEW2);
-                        Generic_Collections.addToMap(CASEW2ToCASEW3, CASEW2, CASEW3);
+                        Generic_Collections.addToMap(CASEW2ToCASEW3, CASEW2, 
+                                CASEW3);
                         r0.put(CASEW3, rec);
 
                     }
@@ -1258,15 +1236,15 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadWave2(byte, Set<Short>)";
         env.logStartTag(m);
         Object[] r;
-        File cf  = getGeneratedFile(wave, "InW1W3W4W5");
+        File cf = getGeneratedFile(wave, "InW1W3W4W5");
         if (cf.exists()) {
             r = (Object[]) load(wave, cf);
         } else {
             r = new Object[4];
-            File f  = getInputFile(wave);
-            TreeMap<Short, WaAS_Wave2_HHOLD_Record> r0  = new TreeMap<>();
+            File f = getInputFile(wave);
+            TreeMap<Short, WaAS_Wave2_HHOLD_Record> r0 = new TreeMap<>();
             r[0] = r0;
-            TreeSet<Short>[] r1  = getSetsNew(wave + 1);
+            TreeSet<Short>[] r1 = getSetsNew(wave + 1);
             r[1] = r1;
             /**
              * Each hhold in Wave 2 comes from at most one hhold from Wave 1. It
@@ -1285,15 +1263,14 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             r[3] = CASEW1ToCASEW2;
             String m1 = getMessage(wave, f);
             env.logStartTag(m1);
-            BufferedReader br  = Generic_IO.getBufferedReader(f);
-            int  count = br.lines().skip(1).mapToInt(line -> {
-                WaAS_Wave2_HHOLD_Record rec;
-                rec = new WaAS_Wave2_HHOLD_Record(line);
+            BufferedReader br = Generic_IO.getBufferedReader(f);
+            int count = br.lines().skip(1).mapToInt(line -> {
+                WaAS_Wave2_HHOLD_Record rec = new WaAS_Wave2_HHOLD_Record(line);
                 short CASEW1 = rec.getCASEW1();
                 if (CASEW1 > Short.MIN_VALUE) {
                     if (!r1[0].add(CASEW1)) {
-                        env.log("In Wave 2: hhold with CASEW1 " + CASEW1 + 
-                                " reportedly split into multiple hholds.");
+                        env.log("In Wave 2: hhold with CASEW1 " + CASEW1
+                                + " reportedly split into multiple hholds.");
                         return 1;
                     }
                 }
@@ -1310,7 +1287,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 if (s.contains(CASEW2)) {
                     if (CASEW1 > Short.MIN_VALUE) {
                         CASEW2ToCASEW1.put(CASEW2, CASEW1);
-                        Generic_Collections.addToMap(CASEW1ToCASEW2, CASEW1, CASEW2);
+                        Generic_Collections.addToMap(CASEW1ToCASEW2, CASEW1,
+                                CASEW2);
                         r0.put(CASEW2, rec);
                         r1[2].add(CASEW1);
                     }
@@ -1354,22 +1332,21 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadWave1(byte, Set<Short>)";
         env.logStartTag(m);
         Object[] r;
-        File cf  = getGeneratedFile(wave, "InW2W3W4W5");
+        File cf = getGeneratedFile(wave, "InW2W3W4W5");
         if (cf.exists()) {
             r = (Object[]) load(wave, cf);
         } else {
             r = new Object[2];
             File f = getInputFile(wave);
-            TreeMap<Short, WaAS_Wave1_HHOLD_Record> r0  = new TreeMap<>();
+            TreeMap<Short, WaAS_Wave1_HHOLD_Record> r0 = new TreeMap<>();
             r[0] = r0;
-            TreeSet<Short>[]  r1 = getSetsNew(wave);
+            TreeSet<Short>[] r1 = getSetsNew(wave);
             r[1] = r1;
-            String  m1 = getMessage(wave, f);
-            env.logStartTag( m1);
-            BufferedReader br  = Generic_IO.getBufferedReader(f);
+            String m1 = getMessage(wave, f);
+            env.logStartTag(m1);
+            BufferedReader br = Generic_IO.getBufferedReader(f);
             br.lines().skip(1).forEach(line -> {
-                WaAS_Wave1_HHOLD_Record rec;
-                rec = new WaAS_Wave1_HHOLD_Record(line);
+                WaAS_Wave1_HHOLD_Record rec = new WaAS_Wave1_HHOLD_Record(line);
                 short CASEW1 = rec.getCASEW1();
                 if (s.contains(CASEW1)) {
                     if (CASEW1 > Short.MIN_VALUE) {
@@ -1380,7 +1357,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             });
             // Close br
             Generic_IO.closeBufferedReader(br);
-        env.logEndTag(m1);
+            env.logEndTag(m1);
             cache(wave, cf, r);
         }
         env.logEndTag(m);
@@ -1391,7 +1368,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         TreeMap<Short, WaAS_Wave1_HHOLD_Record> r;
         File cf = getFile(WaAS_Data.W1);
         if (cf.exists()) {
-            r = (TreeMap<Short, WaAS_Wave1_HHOLD_Record>) Generic_IO.readObject(cf);
+            r = (TreeMap<Short, WaAS_Wave1_HHOLD_Record>) Generic_IO.readObject(
+                    cf);
         } else {
             r = null;
         }
@@ -1410,9 +1388,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
 
     public TreeMap<Short, WaAS_Wave2_HHOLD_Record> loadCacheSubsetWave2() {
         TreeMap<Short, WaAS_Wave2_HHOLD_Record> r;
-        File cf  = getFile(WaAS_Data.W2);
+        File cf = getFile(WaAS_Data.W2);
         if (cf.exists()) {
-            r = (TreeMap<Short, WaAS_Wave2_HHOLD_Record>) Generic_IO.readObject(cf);
+            r = (TreeMap<Short, WaAS_Wave2_HHOLD_Record>) Generic_IO.readObject(
+                    cf);
         } else {
             r = null;
         }
@@ -1423,7 +1402,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         TreeMap<Short, WaAS_Wave3_HHOLD_Record> r;
         File cf = getFile(WaAS_Data.W3);
         if (cf.exists()) {
-            r = (TreeMap<Short, WaAS_Wave3_HHOLD_Record>) Generic_IO.readObject(cf);
+            r = (TreeMap<Short, WaAS_Wave3_HHOLD_Record>) Generic_IO.readObject(
+                    cf);
         } else {
             r = null;
         }
@@ -1434,7 +1414,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         TreeMap<Short, WaAS_Wave4_HHOLD_Record> r;
         File cf = getFile(WaAS_Data.W4);
         if (cf.exists()) {
-            r = (TreeMap<Short, WaAS_Wave4_HHOLD_Record>) Generic_IO.readObject(cf);
+            r = (TreeMap<Short, WaAS_Wave4_HHOLD_Record>) Generic_IO.readObject(
+                    cf);
         } else {
             r = null;
         }
@@ -1445,7 +1426,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         TreeMap<Short, WaAS_Wave5_HHOLD_Record> r;
         File cf = getFile(WaAS_Data.W5);
         if (cf.exists()) {
-            r = (TreeMap<Short, WaAS_Wave5_HHOLD_Record>) Generic_IO.readObject(cf);
+            r = (TreeMap<Short, WaAS_Wave5_HHOLD_Record>) Generic_IO.readObject(
+                    cf);
         } else {
             r = null;
         }

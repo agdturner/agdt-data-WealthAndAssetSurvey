@@ -56,12 +56,10 @@ public abstract class WaAS_Handler extends WaAS_Object {
     }
 
     protected Object load(byte wave, File f) {
-        Object r;
-        String m;
-        m = "load " + getString0(wave, f);
-        WaAS_Environment.log1("<" + m + ">");
-        r = Generic_IO.readObject(f);
-        WaAS_Environment.log1("</" + m + ">");
+        String m = "load " + getString0(wave, f);
+        env.logStartTag(m);
+        Object r = Generic_IO.readObject(f);
+        env.logEndTag(m);
         return r;
     }
 
@@ -70,24 +68,21 @@ public abstract class WaAS_Handler extends WaAS_Object {
     }
 
     protected void cache(byte wave, File f, Object o) {
-        String m;
-        m = "store " + getString0(wave, f);
-        WaAS_Environment.log1("<" + m + ">");
+        String m = "store " + getString0(wave, f);
+        env.logStartTag(m);
         Generic_IO.writeObject(o, f);
-        WaAS_Environment.log1("</" + m + ">");
+        env.logEndTag(m);
     }
 
     public void cacheSubset(byte wave, Object o) {
-        File f;
-        f = new File(Files.getGeneratedWaASSubsetsDir(),
+        File f = new File(Files.getGeneratedWaASSubsetsDir(),
                 TYPE + wave + "." + WaAS_Strings.s_dat);
         cache(wave, f, o);
     }
 
     public void cacheSubsetLookups(byte wave, TreeMap<Short, HashSet<Short>> m0,
             TreeMap<Short, Short> m1) {
-        File f;
-        f = new File(Files.getGeneratedWaASSubsetsDir(),
+        File f = new File(Files.getGeneratedWaASSubsetsDir(),
                 TYPE + wave + "To" + (wave + 1) + "." + WaAS_Strings.s_dat);
         cache(wave, f, m0);
         f = new File(Files.getGeneratedWaASSubsetsDir(),
@@ -96,8 +91,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
     }
 
     public void cacheSubsetCollection(short cID, byte wave, Object o) {
-        File f;
-        f = new File(Files.getGeneratedWaASSubsetsDir(),
+        File f = new File(Files.getGeneratedWaASSubsetsDir(),
                 getString1(wave, cID) + "." + WaAS_Strings.s_dat);
         WaAS_Handler.this.cache(wave, f, o);
     }
@@ -109,28 +103,24 @@ public abstract class WaAS_Handler extends WaAS_Object {
     public Object[] loadSubsetLookups(byte wave) {
         Object[] r;
         r = new Object[2];
-        TreeMap<Short, HashSet<Short>> m0;
-        TreeMap<Short, Short> m1;
-        File f;
-        f = new File(Files.getGeneratedWaASSubsetsDir(),
+        File f = new File(Files.getGeneratedWaASSubsetsDir(),
                 TYPE + wave + "To" + (wave + 1) + "." + WaAS_Strings.s_dat);
+        TreeMap<Short, HashSet<Short>> m0;
         m0 = (TreeMap<Short, HashSet<Short>>) Generic_IO.readObject(f);
         r[0] = m0;
         cache(wave, f, m0);
         f = new File(Files.getGeneratedWaASSubsetsDir(),
                 TYPE + (wave + 1) + "To" + wave + "." + WaAS_Strings.s_dat);
+        TreeMap<Short, Short> m1;
         m1 = (TreeMap<Short, Short>) Generic_IO.readObject(f);
         r[1] = m1;
         return r;
     }
 
     public Object loadSubsetCollection(short cID, byte wave) {
-        Object r;
-        File f;
-        f = new File(Files.getGeneratedWaASSubsetsDir(),
+        File f  = new File(Files.getGeneratedWaASSubsetsDir(),
                 getString1(wave, cID) + "." + WaAS_Strings.s_dat);
-        r = load(wave, f);
-        return r;
+        return load(wave, f);
     }
 
     /**
@@ -161,16 +151,13 @@ public abstract class WaAS_Handler extends WaAS_Object {
             ArrayList<Byte> gors, HashSet<Short> subset) {
         Object[] r;
         r = new Object[2];
-        HashMap<Byte, HashSet<Short>>[] r0;
-        r0 = new HashMap[WaAS_Data.NWAVES];
+        HashMap<Byte, HashSet<Short>>[] r0 = new HashMap[WaAS_Data.NWAVES];
         r[0] = r0;
-        HashMap<Short, Byte>[] r1;
-        r1 = new HashMap[WaAS_Data.NWAVES];
+        HashMap<Short, Byte>[] r1 = new HashMap[WaAS_Data.NWAVES];
         r[1] = r1;
-        Iterator<Byte> ite;
         for (byte w = 0; w < WaAS_Data.NWAVES; w++) {
             r0[w] = new HashMap<>();
-            ite = gors.iterator();
+            Iterator<Byte> ite = gors.iterator();
             while (ite.hasNext()) {
                 byte gor = ite.next();
                 r0[w].put(gor, new HashSet<>());
@@ -179,12 +166,10 @@ public abstract class WaAS_Handler extends WaAS_Object {
         }
         // Wave 1
         data.data.keySet().stream().forEach(cID -> {
-            WaAS_Collection c;
-            c = data.getCollection(cID);
+            WaAS_Collection c = data.getCollection(cID);
             c.getData().keySet().stream().forEach(CASEW1 -> {
                 if (subset.contains(CASEW1)) {
-                    WaAS_Combined_Record cr;
-                    cr = c.getData().get(CASEW1);
+                    WaAS_Combined_Record cr = c.getData().get(CASEW1);
                     byte GOR = cr.w1Record.getHhold().getGOR();
                     Generic_Collections.addToMap(r0[0], GOR, CASEW1);
                     r1[0].put(CASEW1, GOR);
@@ -194,20 +179,16 @@ public abstract class WaAS_Handler extends WaAS_Object {
         });
         // Wave 2
         data.data.keySet().stream().forEach(cID -> {
-            WaAS_Collection c;
-            c = data.getCollection(cID);
+            WaAS_Collection c = data.getCollection(cID);
             c.getData().keySet().stream().forEach(CASEW1 -> {
                 if (subset.contains(CASEW1)) {
-                    WaAS_Combined_Record cr;
-                    cr = c.getData().get(CASEW1);
+                    WaAS_Combined_Record cr = c.getData().get(CASEW1);
                     HashMap<Short, WaAS_Wave2_Record> w2Records;
                     w2Records = cr.w2Records;
-                    Iterator<Short> ite2;
-                    ite2 = w2Records.keySet().iterator();
+                    Iterator<Short> ite2 = w2Records.keySet().iterator();
                     while (ite2.hasNext()) {
                         Short CASEW2 = ite2.next();
-                        WaAS_Wave2_Record w2;
-                        w2 = w2Records.get(CASEW2);
+                        WaAS_Wave2_Record w2 = w2Records.get(CASEW2);
                         byte GOR = w2.getHhold().getGOR();
                         Generic_Collections.addToMap(r0[1], GOR, CASEW2);
                         r1[1].put(CASEW2, GOR);
@@ -218,22 +199,18 @@ public abstract class WaAS_Handler extends WaAS_Object {
         });
         // Wave 3
         data.data.keySet().stream().forEach(cID -> {
-            WaAS_Collection c;
-            c = data.getCollection(cID);
+            WaAS_Collection c = data.getCollection(cID);
             c.getData().keySet().stream().forEach(CASEW1 -> {
                 if (subset.contains(CASEW1)) {
-                    WaAS_Combined_Record cr;
-                    cr = c.getData().get(CASEW1);
+                    WaAS_Combined_Record cr = c.getData().get(CASEW1);
                     HashMap<Short, HashMap<Short, WaAS_Wave3_Record>> w3Records;
                     w3Records = cr.w3Records;
-                    Iterator<Short> ite2;
-                    ite2 = w3Records.keySet().iterator();
+                    Iterator<Short> ite2 = w3Records.keySet().iterator();
                     while (ite2.hasNext()) {
                         Short CASEW2 = ite2.next();
                         HashMap<Short, WaAS_Wave3_Record> w3_2;
                         w3_2 = w3Records.get(CASEW2);
-                        Iterator<Short> ite3;
-                        ite3 = w3_2.keySet().iterator();
+                        Iterator<Short> ite3 = w3_2.keySet().iterator();
                         while (ite3.hasNext()) {
                             Short CASEW3 = ite3.next();
                             WaAS_Wave3_Record w3 = w3_2.get(CASEW3);
@@ -248,28 +225,23 @@ public abstract class WaAS_Handler extends WaAS_Object {
         });
         // Wave 4
         data.data.keySet().stream().forEach(cID -> {
-            WaAS_Collection c;
-            c = data.getCollection(cID);
+            WaAS_Collection c = data.getCollection(cID);
             c.getData().keySet().stream().forEach(CASEW1 -> {
                 if (subset.contains(CASEW1)) {
-                    WaAS_Combined_Record cr;
-                    cr = c.getData().get(CASEW1);
+                    WaAS_Combined_Record cr = c.getData().get(CASEW1);
                     HashMap<Short, HashMap<Short, HashMap<Short, WaAS_Wave4_Record>>> w4Records;
                     w4Records = cr.w4Records;
-                    Iterator<Short> ite2;
-                    ite2 = w4Records.keySet().iterator();
+                    Iterator<Short> ite2 = w4Records.keySet().iterator();
                     while (ite2.hasNext()) {
                         Short CASEW2 = ite2.next();
                         HashMap<Short, HashMap<Short, WaAS_Wave4_Record>> w4_2;
                         w4_2 = w4Records.get(CASEW2);
-                        Iterator<Short> ite3;
-                        ite3 = w4_2.keySet().iterator();
+                        Iterator<Short> ite3 = w4_2.keySet().iterator();
                         while (ite3.hasNext()) {
                             Short CASEW3 = ite3.next();
                             HashMap<Short, WaAS_Wave4_Record> w4_3;
                             w4_3 = w4_2.get(CASEW3);
-                            Iterator<Short> ite4;
-                            ite4 = w4_3.keySet().iterator();
+                            Iterator<Short> ite4 = w4_3.keySet().iterator();
                             while (ite4.hasNext()) {
                                 Short CASEW4 = ite4.next();
                                 WaAS_Wave4_Record w4 = w4_3.get(CASEW4);
@@ -289,30 +261,25 @@ public abstract class WaAS_Handler extends WaAS_Object {
             c = data.getCollection(cID);
             c.getData().keySet().stream().forEach(CASEW1 -> {
                 if (subset.contains(CASEW1)) {
-                    WaAS_Combined_Record cr;
-                    cr = c.getData().get(CASEW1);
+                    WaAS_Combined_Record cr = c.getData().get(CASEW1);
                     HashMap<Short, HashMap<Short, HashMap<Short, HashMap<Short, WaAS_Wave5_Record>>>> w5Records;
                     w5Records = cr.w5Records;
-                    Iterator<Short> ite2;
-                    ite2 = w5Records.keySet().iterator();
+                    Iterator<Short> ite2 = w5Records.keySet().iterator();
                     while (ite2.hasNext()) {
                         Short CASEW2 = ite2.next();
                         HashMap<Short, HashMap<Short, HashMap<Short, WaAS_Wave5_Record>>> w5_2;
                         w5_2 = w5Records.get(CASEW2);
-                        Iterator<Short> ite3;
-                        ite3 = w5_2.keySet().iterator();
+                        Iterator<Short> ite3 = w5_2.keySet().iterator();
                         while (ite3.hasNext()) {
                             Short CASEW3 = ite3.next();
                             HashMap<Short, HashMap<Short, WaAS_Wave5_Record>> w5_3;
                             w5_3 = w5_2.get(CASEW3);
-                            Iterator<Short> ite4;
-                            ite4 = w5_3.keySet().iterator();
+                            Iterator<Short> ite4 = w5_3.keySet().iterator();
                             while (ite4.hasNext()) {
                                 Short CASEW4 = ite4.next();
                                 HashMap<Short, WaAS_Wave5_Record> w5_4;
                                 w5_4 = w5_3.get(CASEW4);
-                                Iterator<Short> ite5;
-                                ite5 = w5_4.keySet().iterator();
+                                Iterator<Short> ite5 = w5_4.keySet().iterator();
                                 while (ite5.hasNext()) {
                                     Short CASEW5 = ite5.next();
                                     WaAS_Wave5_Record w5 = w5_4.get(CASEW5);

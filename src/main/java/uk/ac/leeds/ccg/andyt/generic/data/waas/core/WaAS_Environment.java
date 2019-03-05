@@ -34,49 +34,40 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
 
     public transient Generic_Environment ge;
     public transient WaAS_Files files;
-
     public final WaAS_HHOLD_Handler hh;
-    public static transient PrintWriter logPW;
-    public static transient PrintWriter logPW0;
-
-    public static void log(String s) {
-        logPW.println(s);
-        System.out.println(s);
-    }
-
-    public static void logEnd(String s) {
-        s = "</" + s + ">";
-        logPW.println(s);
-        System.out.println(s);
-    }
-
-    public static void log1(String s) {
-        System.out.println(s);
-    }
-
-    public static void logStart(String s) {
-        s = "<" + s + ">";
-        logPW.println(s);
-        System.out.println(s);
-    }
-
-    public static void log0(String s) {
-        logPW.println(s);
-    }
-
-    
+    public WaAS_Data data;
+    public transient static final String EOL = System.getProperty("line.separator");
     
     /**
-     * Data.
+     * Stores the {@link ge} log ID for the log set up for WaAS.
      */
-    public WaAS_Data data;
+    protected final int logID;
 
-    public transient static final String EOL = System.getProperty("line.separator");
-    public File logF0;
-    // For logging.
-    File logF;
+    /**
+     * A convenience method for logging.
+     * @param s The message to be logged.
+     */
+    public void log(String s) {
+        ge.log(s, logID);
+    }
 
-    public WaAS_Environment(Generic_Environment ge) {
+    /**
+     * A convenience method for logging.
+     * @param s The message to be logged in a start tag.
+     */
+    public void logStartTag(String s) {
+        ge.logStartTag(s, logID);
+    }
+
+    /**
+     * A convenience method for logging.
+     * @param s The message to be logged in an end tag.
+     */
+    public void logEndTag(String s) {
+        ge.logEndTag(s, logID);
+    }
+
+     public WaAS_Environment(Generic_Environment ge) {
         //Memory_Threshold = 3000000000L;
         files = new WaAS_Files(ge.getFiles().getDataDir());
         File f;
@@ -88,7 +79,7 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
         } else {
             data = new WaAS_Data(this);
         }
-        initlog(1);
+        logID = ge.initLog("WaAS");
         hh = new WaAS_HHOLD_Handler(this, files.getInputDataDir());
     }
 
@@ -112,18 +103,23 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
         return true;
     }
 
+    /**
+     * Attempts to swap some WaAS data.
+     * @param hoome handleOutOfMemoryError
+     * @return {@code true} iff some data was successfully swapped.
+     */
     @Override
-    public boolean swapDataAny(boolean handleOutOfMemoryError) {
+    public boolean swapDataAny(boolean hoome) {
         try {
-            boolean result = swapDataAny();
+            boolean r = swapDataAny();
             checkAndMaybeFreeMemory();
-            return result;
+            return r;
         } catch (OutOfMemoryError e) {
-            if (handleOutOfMemoryError) {
+            if (hoome) {
                 clearMemoryReserve();
-                boolean result = swapDataAny(HOOMEF);
+                boolean r = swapDataAny(HOOMEF);
                 initMemoryReserve();
-                return result;
+                return r;
             } else {
                 throw e;
             }
@@ -131,9 +127,9 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
     }
 
     /**
-     * Currently this just tries to swap WaAS data.
+     * Attempts to swap some WaAS data.
      *
-     * @return
+     * @return {@code true} iff some data was successfully swapped.
      */
     @Override
     public boolean swapDataAny() {
@@ -149,34 +145,43 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
         }
     }
 
+    /**
+     * Attempts to clear some data from {@link #data}.
+     * @return {@code true} iff some data was successfully cleared.
+     */
     public boolean clearSomeData() {
         return data.clearSomeData();
     }
 
+    /**
+     * Attempts to clear all data from {@link #data}.
+     * @return The amount of data successfully cleared.
+     */
     public int clearAllData() {
         int r;
         r = data.clearAllData();
         return r;
     }
     
+    /**
+     * Serialises and writes {@link data} to {@link #files.getEnvDataFile}.
+     */
     public void cacheData() {
-        File f;
-        f = files.getEnvDataFile();
-        System.out.println("<cache data>");
+        String m = "cacheData";
+        logStartTag(m);
+        File f = files.getEnvDataFile();
         Generic_IO.writeObject(data, f);
-        System.out.println("</cache data>");
+        logEndTag(m);
     }
 
+    /**
+     * Loads {@link data} from {@link #files.getEnvDataFile}.
+     */
     public final void loadData() {
-        File f;
-        f = files.getEnvDataFile();
-        System.out.println("<load data>");
+        String m = "loadData";
+        logStartTag(m);
+        File f = files.getEnvDataFile();
         data = (WaAS_Data) Generic_IO.readObject(f);
-        System.out.println("<load data>");
-    }
-
-    public final void initlog(int i) {
-        logF = new File(files.getOutputDataDir(), "log" + i + ".txt");
-        logPW = Generic_IO.getPrintWriter(logF, true); // Append to log file.
+        logEndTag(m);
     }
 }

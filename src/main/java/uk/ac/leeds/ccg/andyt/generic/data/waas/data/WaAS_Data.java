@@ -50,6 +50,12 @@ public class WaAS_Data extends WaAS_Object {
      */
     public HashMap<Short, Short> CASEW1ToCID;
 
+    public WaAS_Data(WaAS_Environment we) {
+        super(we);
+        data = new HashMap<>();
+        CASEW1ToCID = new HashMap<>();
+    }
+
     public WaAS_Collection getCollection(short collectionID) {
         WaAS_Collection r;
         r = data.get(collectionID);
@@ -60,27 +66,23 @@ public class WaAS_Data extends WaAS_Object {
         return r;
     }
 
+    /**
+     * Sets the value for cID in {@link #data} to {@code null}.
+     * @param cID the ID of the subset collection to be set to {@code null}. 
+     */
     public void clearCollection(short cID) {
-        WaAS_Collection c;
         data.put(cID, null);
     }
 
-    public WaAS_Data(WaAS_Environment we) {
-        super(we);
-        //this.files = we.files;
-        //this.strings = we.strings;
-        data = new HashMap<>();
-        CASEW1ToCID = new HashMap<>();
-    }
-
+    /**
+     * Caches and clears the first subset collection retrieved from an iterator.
+     * @return {@code true} iff a subset collection was cached and cleared.
+     */
     public boolean clearSomeData() {
-        Iterator<Short> ite;
-        ite = data.keySet().iterator();
-        short cID;
+        Iterator<Short> ite = data.keySet().iterator();
         while (ite.hasNext()) {
-            cID = ite.next();
-            WaAS_Collection c;
-            c = data.get(cID);
+            short cID = ite.next();
+            WaAS_Collection c = data.get(cID);
             cacheSubsetCollection(cID, c);
             data.put(cID, null);
             return true;
@@ -88,16 +90,16 @@ public class WaAS_Data extends WaAS_Object {
         return false;
     }
 
+    /**
+     * Caches and cleared all subset collections.
+     * @return The number of subset collections cached and cleared.
+     */
     public int clearAllData() {
-        int r;
-        r = 0;
-        Iterator<Short> ite;
-        ite = data.keySet().iterator();
-        short cID;
+        int r = 0;
+        Iterator<Short> ite = data.keySet().iterator();
         while (ite.hasNext()) {
-            cID = ite.next();
-            WaAS_Collection c;
-            c = data.get(cID);
+            short cID = ite.next();
+            WaAS_Collection c = data.get(cID);
             cacheSubsetCollection(cID, c);
             data.put(cID, null);
             r++;
@@ -106,53 +108,56 @@ public class WaAS_Data extends WaAS_Object {
     }
 
     /**
-     *
-     * @param cID the value of collectionID
-     * @param o the value of o
+     * For caching a subset collection.
+     * @param cID the ID of subset collection to be cached.
+     * @param o the subset collection to be cached.
      */
     public void cacheSubsetCollection(short cID, Object o) {
-        File f;
-        f = new File(env.files.getGeneratedWaASSubsetsDir(),
-                "WaAS_" + cID + "." + WaAS_Strings.s_dat);
-        cache(f, o);
+        cache(getWaASSubsetCollectionFile(cID), o);
     }
 
     /**
-     *
-     * @param cID the value of collectionID
-     * @return
+     * For loading a subset collection.
+     * @param cID the ID of subset collection to be loaded.
+     * @return the subset collection loaded.
      */
     public Object loadSubsetCollection(short cID) {
-        Object r;
-        File f;
-        f = new File(env.files.getGeneratedWaASSubsetsDir(),
+        return load(getWaASSubsetCollectionFile(cID));
+    }
+    
+    /**
+     * For getting a subset collection file.
+     * @param cID the ID of subset collection.
+     * @return the subset collection file for cID.
+     */
+    public File getWaASSubsetCollectionFile(short cID) {
+        return new File(env.files.getGeneratedWaASSubsetsDir(),
                 WaAS_Strings.s_WaAS + "_" + cID + "." + WaAS_Strings.s_dat);
-        r = load(f);
-        return r;
     }
 
     /**
-     *
-     * @param f the File to load Object result from.
-     * @return
+     * Loads an Object from a File and reports this to the log.
+     * @param f the File to load an object from.
+     * @return the object loaded.
      */
     protected Object load(File f) {
-        Object r;
-        WaAS_Environment.log1("<load File " + f + ">");
-        r = Generic_IO.readObject(f);
-        WaAS_Environment.log1("</load File " + f + ">");
+        String m = "load object from " + f.toString();
+        env.logStartTag(m);
+        Object r = Generic_IO.readObject(f);
+        env.logEndTag(m);
         return r;
     }
 
     /**
-     *
-     * @param f the value of cf
-     * @param o the value of o
+     * Caches an Object to a File and reports this to the log.
+     * @param f the File to cache to.
+     * @param o the Object to cache.
      */
     protected void cache(File f, Object o) {
-        WaAS_Environment.log1("<cache File " + f + ">");
+        String m = "cache object to " + f.toString();
+        env.logStartTag(m);
         Generic_IO.writeObject(o, f);
-        WaAS_Environment.log1("</cache File " + f + ">");
+        env.logEndTag(m);
     }
 
 }

@@ -22,14 +22,8 @@ import java.io.Serializable;
  */
 public abstract class WaAS_Object implements Serializable {
 
-    /**
-     * A reference to LR_Environment
-     */
     public transient WaAS_Environment env;
 
-//    public LR_Object(){
-//        env = new LR_Environment();
-//    }
     protected WaAS_Object() {
     }
 

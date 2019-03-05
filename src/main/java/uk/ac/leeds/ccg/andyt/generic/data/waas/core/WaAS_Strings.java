@@ -15,16 +15,16 @@
  */
 package uk.ac.leeds.ccg.andyt.generic.data.waas.core;
 
-import java.io.Serializable;
 import uk.ac.leeds.ccg.andyt.generic.core.Generic_Strings;
 
 /**
  *
  * @author geoagdt
  */
-public class WaAS_Strings extends Generic_Strings implements Serializable {
+public class WaAS_Strings extends Generic_Strings {
 
     public static final String s_WaAS = "WaAS";
+    public static final String s_Subsets = "Subsets";
 
     public WaAS_Strings() {
         super();

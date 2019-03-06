@@ -32,10 +32,10 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
         implements Serializable {
 
-    public transient Generic_Environment ge;
-    public transient WaAS_Files files;
+    public final transient Generic_Environment ge;
+    public final transient WaAS_Files files;
     public final WaAS_HHOLD_Handler hh;
-    public WaAS_Data data;
+    public final WaAS_Data data;
     public transient static final String EOL = System.getProperty("line.separator");
     
     /**
@@ -69,17 +69,15 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
 
      public WaAS_Environment(Generic_Environment ge) {
         //Memory_Threshold = 3000000000L;
+        this.ge = ge;
         files = new WaAS_Files(ge.getFiles().getDataDir());
-        File f;
-        f = files.getEnvDataFile();
+        File f = files.getEnvDataFile();
         if (f.exists()) {
-            loadData();
-            //data.files = files;
-            //data.strings = strings;
+            data = (WaAS_Data) Generic_IO.readObject(f);
         } else {
             data = new WaAS_Data(this);
         }
-        logID = ge.initLog("WaAS");
+        logID = ge.initLog(WaAS_Strings.s_WaAS);
         hh = new WaAS_HHOLD_Handler(this, files.getInputDataDir());
     }
 
@@ -171,17 +169,6 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
         logStartTag(m);
         File f = files.getEnvDataFile();
         Generic_IO.writeObject(data, f);
-        logEndTag(m);
-    }
-
-    /**
-     * Loads {@link data} from {@link #files.getEnvDataFile}.
-     */
-    public final void loadData() {
-        String m = "loadData";
-        logStartTag(m);
-        File f = files.getEnvDataFile();
-        data = (WaAS_Data) Generic_IO.readObject(f);
         logEndTag(m);
     }
 }

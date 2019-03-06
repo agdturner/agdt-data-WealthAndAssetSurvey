@@ -55,11 +55,23 @@ public class WaAS_Main_Process extends WaAS_Object {
 
     // For convenience
     protected final WaAS_Data data;
+    protected transient final byte NWAVES;
+    protected transient final byte W1;
+    protected transient final byte W2;
+    protected transient final byte W3;
+    protected transient final byte W4;
+    protected transient final byte W5;
     protected final WaAS_Files files;
 
     public WaAS_Main_Process(WaAS_Environment env) {
         super(env);
         data = env.data;
+        NWAVES = WaAS_Data.NWAVES;
+        W1 = WaAS_Data.W1;
+        W2 = WaAS_Data.W2;
+        W3 = WaAS_Data.W3;
+        W4 = WaAS_Data.W4;
+        W5 = WaAS_Data.W5;
         files = env.files;
     }
 
@@ -68,7 +80,8 @@ public class WaAS_Main_Process extends WaAS_Object {
         WaAS_Main_Process p = new WaAS_Main_Process(env);
         // Main switches
         //p.doJavaCodeGeneration = true;
-        p.doLoadDataIntoCaches = true;
+        //p.doLoadHouseholdsInAllWaves = true;
+        p.doLoadHouseholdsInPairedWaves = true;
         p.run();
     }
 
@@ -76,18 +89,24 @@ public class WaAS_Main_Process extends WaAS_Object {
         if (doJavaCodeGeneration) {
             runJavaCodeGeneration();
         }
-        if (doLoadDataIntoCaches) {
             File indir = files.getWaASInputDir();
             File generateddir = files.getGeneratedWaASDir();
             File outdir = new File(generateddir, WaAS_Strings.s_Subsets);
             outdir.mkdirs();
             WaAS_HHOLD_Handler hH = new WaAS_HHOLD_Handler(env, indir);
-
             int chunkSize;
             chunkSize = 256; //1024; 512; 256;
+        if (doLoadHouseholdsInAllWaves) {
             doDataProcessingStep1(indir, outdir, hH);
             doDataProcessingStep2(indir, outdir, hH, chunkSize);
             doDataProcessingStep3(indir, outdir, hH);
+        }
+        if (doLoadHouseholdsInPairedWaves) {
+            Object[] w2inw1 = hH.loadHouseholdsInPreviousWave(W2);
+            Object[] w3inw2 = hH.loadHouseholdsInPreviousWave(W3);
+            Object[] w4inw3 = hH.loadHouseholdsInPreviousWave(W4);
+            Object[] w5inw4 = hH.loadHouseholdsInPreviousWave(W5);
+            int debug = 1;
         }
     }
 
@@ -97,15 +116,15 @@ public class WaAS_Main_Process extends WaAS_Object {
      *
      * @param indir
      * @param outdir
-     * @param hholdHandler
+     * @param hH
      */
     public void doDataProcessingStep3(File indir, File outdir,
-            WaAS_HHOLD_Handler hholdHandler) {
-        hholdHandler.loadAllWave1(WaAS_Data.W1);
-        hholdHandler.loadAllWave2(WaAS_Data.W2);
-        hholdHandler.loadAllWave3(WaAS_Data.W3);
-        hholdHandler.loadAllWave4(WaAS_Data.W4);
-        hholdHandler.loadAllWave5(WaAS_Data.W5);
+            WaAS_HHOLD_Handler hH) {
+        hH.loadAllW1();
+        hH.loadAllW2();
+        hH.loadAllW3();
+        hH.loadAllW4();
+        hH.loadAllW5();
     }
 
     /**
@@ -113,73 +132,69 @@ public class WaAS_Main_Process extends WaAS_Object {
      *
      * @param indir
      * @param outdir
-     * @param hholdHandler
+     * @param hH
      * @param chunkSize
      */
     public void doDataProcessingStep2(File indir, File outdir,
-            WaAS_HHOLD_Handler hholdHandler, int chunkSize) {
+            WaAS_HHOLD_Handler hH, int chunkSize) {
         String m = "doDataProcessingStep2";
         env.logStartTag(m);
-        WaAS_PERSON_Handler personHandler;
-        personHandler = new WaAS_PERSON_Handler(env, indir);
+        WaAS_PERSON_Handler pH = new WaAS_PERSON_Handler(env, indir);
         env.log("Merge Person and Household Data");
         /**
          * Wave 1
          */
-        Object[] o = doDataProcessingStep2Wave1(data, personHandler, indir,
-                outdir, hholdHandler, chunkSize);
+        Object[] o;
+        o = doDataProcessingStep2Wave1(data, pH, indir, outdir, hH, chunkSize);
         int nOC = (Integer) o[0];
         TreeMap<Short, HashSet<Short>> CIDToCASEW1;
         CIDToCASEW1 = (TreeMap<Short, HashSet<Short>>) o[1];
-        HashMap<Short, Short> CASEW1ToCID;
-        CASEW1ToCID = (HashMap<Short, Short>) o[2];
+        HashMap<Short, Short> CASEW1ToCID = (HashMap<Short, Short>) o[2];
         Object[] lookups;
         /**
          * Wave 2
          */
-        lookups = hholdHandler.loadSubsetLookups(WaAS_Data.W1);
+        lookups = hH.loadSubsetLookups(W1);
         TreeMap<Short, HashSet<Short>> CASEW1ToCASEW2;
         CASEW1ToCASEW2 = (TreeMap<Short, HashSet<Short>>) lookups[0];
         TreeMap<Short, Short> CASEW2ToCASEW1;
         CASEW2ToCASEW1 = (TreeMap<Short, Short>) lookups[1];
-        doDataProcessingStep2Wave2(data, personHandler, indir, outdir,
-                hholdHandler, nOC, CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2,
-                CASEW2ToCASEW1);
+        doDataProcessingStep2Wave2(data, pH, indir, outdir, hH, nOC,
+                CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2, CASEW2ToCASEW1);
         /**
          * Wave 3
          */
-        lookups = hholdHandler.loadSubsetLookups(WaAS_Data.W2);
+        lookups = hH.loadSubsetLookups(W2);
         TreeMap<Short, HashSet<Short>> CASEW2ToCASEW3;
         CASEW2ToCASEW3 = (TreeMap<Short, HashSet<Short>>) lookups[0];
         TreeMap<Short, Short> CASEW3ToCASEW2;
         CASEW3ToCASEW2 = (TreeMap<Short, Short>) lookups[1];
-        doDataProcessingStep2Wave3(data, personHandler, indir, outdir,
-                hholdHandler, nOC, CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2,
-                CASEW2ToCASEW1, CASEW2ToCASEW3, CASEW3ToCASEW2);
+        doDataProcessingStep2Wave3(data, pH, indir, outdir, hH, nOC,
+                CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2, CASEW2ToCASEW1,
+                CASEW2ToCASEW3, CASEW3ToCASEW2);
         /**
          * Wave 4
          */
-        lookups = hholdHandler.loadSubsetLookups(WaAS_Data.W3);
+        lookups = hH.loadSubsetLookups(W3);
         TreeMap<Short, HashSet<Short>> CASEW3ToCASEW4;
         CASEW3ToCASEW4 = (TreeMap<Short, HashSet<Short>>) lookups[0];
         TreeMap<Short, Short> CASEW4ToCASEW3;
         CASEW4ToCASEW3 = (TreeMap<Short, Short>) lookups[1];
-        doDataProcessingStep2Wave4(data, personHandler, indir, outdir,
-                hholdHandler, nOC, CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2,
-                CASEW2ToCASEW1, CASEW2ToCASEW3, CASEW3ToCASEW2, CASEW3ToCASEW4,
-                CASEW4ToCASEW3);
+        doDataProcessingStep2Wave4(data, pH, indir, outdir, hH, nOC,
+                CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2, CASEW2ToCASEW1,
+                CASEW2ToCASEW3, CASEW3ToCASEW2, CASEW3ToCASEW4, CASEW4ToCASEW3);
         /**
          * Wave 5
          */
-        lookups = hholdHandler.loadSubsetLookups(WaAS_Data.W4);
+        lookups = hH.loadSubsetLookups(W4);
         TreeMap<Short, HashSet<Short>> CASEW4ToCASEW5;
         CASEW4ToCASEW5 = (TreeMap<Short, HashSet<Short>>) lookups[0];
         TreeMap<Short, Short> CASEW5ToCASEW4;
         CASEW5ToCASEW4 = (TreeMap<Short, Short>) lookups[1];
-        doDataProcessingStep2Wave5(data, personHandler, indir, outdir,
-                hholdHandler, nOC, CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2,
-                CASEW2ToCASEW1, CASEW2ToCASEW3, CASEW3ToCASEW2, CASEW3ToCASEW4,
-                CASEW4ToCASEW3, CASEW4ToCASEW5, CASEW5ToCASEW4);
+        doDataProcessingStep2Wave5(data, pH, indir, outdir, hH, nOC,
+                CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2, CASEW2ToCASEW1,
+                CASEW2ToCASEW3, CASEW3ToCASEW2, CASEW3ToCASEW4, CASEW4ToCASEW3,
+                CASEW4ToCASEW5, CASEW5ToCASEW4);
         env.log("data.lookup.size() " + data.CASEW1ToCID.size());
         env.log("data.data.size() " + data.data.size());
         env.cacheData();
@@ -197,7 +212,7 @@ public class WaAS_Main_Process extends WaAS_Object {
      * @param chunkSize
      * @return
      */
-    public Object[] doDataProcessingStep2Wave1(WaAS_Data data,
+    public Object[] doDataProcessingStep2Wave1(WaAS_Data data, 
             WaAS_PERSON_Handler pH, File indir, File outdir,
             WaAS_HHOLD_Handler hH, int chunkSize) {
         // Wave 1
@@ -205,14 +220,14 @@ public class WaAS_Main_Process extends WaAS_Object {
         env.logStartTag(m0);
         Object[] r = new Object[3];
         TreeMap<Short, WaAS_Wave1_HHOLD_Record> hs;
-        hs = hH.loadCacheSubsetWave1();
+        hs = hH.loadCachedSubsetW1();
         TreeSet<Short> CASEW1IDs = new TreeSet<>();
         CASEW1IDs.addAll(hs.keySet());
         int nOC;
         nOC = (int) Math.ceil((double) CASEW1IDs.size() / (double) chunkSize);
         r[0] = nOC;
         Object[] ps;
-        ps = pH.loadSubsetWave1(CASEW1IDs, nOC, WaAS_Data.W1, outdir);
+        ps = pH.loadSubsetWave1(CASEW1IDs, nOC, W1, outdir);
         TreeMap<Short, HashSet<Short>> CIDToCASEW1;
         CIDToCASEW1 = (TreeMap<Short, HashSet<Short>>) ps[0];
         TreeMap<Short, File> cFs;
@@ -289,9 +304,9 @@ public class WaAS_Main_Process extends WaAS_Object {
         String m0 = "doDataProcessingStep2Wave2";
         env.logStartTag(m0);
         TreeMap<Short, WaAS_Wave2_HHOLD_Record> hs;
-        hs = hholdHandler.loadCacheSubsetWave2();
+        hs = hholdHandler.loadCachedSubsetW2();
         TreeMap<Short, File> cFs = personHandler.loadSubsetWave2(nOC,
-                CASEW1ToCID, WaAS_Data.W2, outdir, CASEW2ToCASEW1);
+                CASEW1ToCID, W2, outdir, CASEW2ToCASEW1);
         cFs.keySet().stream().forEach(cID -> {
             String m1 = "Collection ID " + cID;
             env.logStartTag(m1);
@@ -330,7 +345,7 @@ public class WaAS_Main_Process extends WaAS_Object {
                 short CASEW1Check = p.getCASEW1();
                 short CASEW2 = p.getCASEW2();
                 short CASEW1 = CASEW2ToCASEW1.get(CASEW2);
-                printCheck(WaAS_Data.W2, CASEW1Check, CASEW1, CASEW1ToCASEW2);
+                printCheck(W2, CASEW1Check, CASEW1, CASEW1ToCASEW2);
                 HashMap<Short, WaAS_Combined_Record> m = c.getData();
                 WaAS_Combined_Record cr = m.get(CASEW1);
                 if (cr == null) {
@@ -404,9 +419,9 @@ public class WaAS_Main_Process extends WaAS_Object {
         String m0 = "doDataProcessingStep2Wave3";
         env.logStartTag(m0);
         TreeMap<Short, WaAS_Wave3_HHOLD_Record> hs;
-        hs = hH.loadCacheSubsetWave3();
+        hs = hH.loadCachedSubsetW3();
         TreeMap<Short, File> cFs = pH.loadSubsetWave3(nOC, CASEW1ToCID,
-                WaAS_Data.W3, outdir, CASEW2ToCASEW1, CASEW3ToCASEW2);
+                W3, outdir, CASEW2ToCASEW1, CASEW3ToCASEW2);
         cFs.keySet().stream().forEach(cID -> {
             String m1 = "Collection ID " + cID;
             env.logStartTag(m1);
@@ -449,8 +464,8 @@ public class WaAS_Main_Process extends WaAS_Object {
                 short CASEW3 = p.getCASEW3();
                 short CASEW2 = CASEW3ToCASEW2.get(CASEW3);
                 short CASEW1 = CASEW2ToCASEW1.get(CASEW2);
-                //printCheck(WaAS_Data.W2, CASEW1Check, CASEW1, CASEW1ToCASEW2);
-                printCheck(WaAS_Data.W3, CASEW2Check, CASEW2, CASEW2ToCASEW3);
+                //printCheck(W2, CASEW1Check, CASEW1, CASEW1ToCASEW2);
+                printCheck(W3, CASEW2Check, CASEW2, CASEW2ToCASEW3);
                 HashMap<Short, WaAS_Combined_Record> m = c.getData();
                 WaAS_Combined_Record cr = m.get(CASEW1);
                 if (cr == null) {
@@ -517,9 +532,9 @@ public class WaAS_Main_Process extends WaAS_Object {
         // Wave 4
         String m0 = "doDataProcessingStep2Wave4";
         env.logStartTag(m0);
-        TreeMap<Short, WaAS_Wave4_HHOLD_Record> hs = hH.loadCacheSubsetWave4();
+        TreeMap<Short, WaAS_Wave4_HHOLD_Record> hs = hH.loadCachedSubsetW4();
         TreeMap<Short, File> cFs;
-        cFs = pH.loadSubsetWave4(nOC, CASEW1ToCID, WaAS_Data.W4,
+        cFs = pH.loadSubsetWave4(nOC, CASEW1ToCID, W4,
                 outdir, CASEW2ToCASEW1, CASEW3ToCASEW2, CASEW4ToCASEW3);
         cFs.keySet().stream().forEach(cID -> {
             String m1 = "Collection ID " + cID;
@@ -573,9 +588,9 @@ public class WaAS_Main_Process extends WaAS_Object {
                 short CASEW3 = CASEW4ToCASEW3.get(CASEW4);
                 short CASEW2 = CASEW3ToCASEW2.get(CASEW3);
                 short CASEW1 = CASEW2ToCASEW1.get(CASEW2);
-                //printCheck(WaAS_Data.W2, CASEW1Check, CASEW1, CASEW1ToCASEW2);
-                //printCheck(WaAS_Data.W3, CASEW2Check, CASEW2, CASEW2ToCASEW3);
-                printCheck(WaAS_Data.W4, CASEW3Check, CASEW3, CASEW3ToCASEW4);
+                //printCheck(W2, CASEW1Check, CASEW1, CASEW1ToCASEW2);
+                //printCheck(W3, CASEW2Check, CASEW2, CASEW2ToCASEW3);
+                printCheck(W4, CASEW3Check, CASEW3, CASEW3ToCASEW4);
                 HashMap<Short, WaAS_Combined_Record> m = c.getData();
                 WaAS_Combined_Record cr = m.get(CASEW1);
                 if (cr == null) {
@@ -663,9 +678,9 @@ public class WaAS_Main_Process extends WaAS_Object {
         String m0 = "doDataProcessingStep2Wave5";
         env.logStartTag(m0);
         TreeMap<Short, WaAS_Wave5_HHOLD_Record> hs;
-        hs = hholdHandler.loadCacheSubsetWave5();
+        hs = hholdHandler.loadCachedSubsetW5();
         TreeMap<Short, File> cFs;
-        cFs = personHandler.loadSubsetWave5(nOC, CASEW1ToCID, WaAS_Data.W5,
+        cFs = personHandler.loadSubsetWave5(nOC, CASEW1ToCID, W5,
                 outdir, CASEW2ToCASEW1, CASEW3ToCASEW2, CASEW4ToCASEW3,
                 CASEW5ToCASEW4);
         cFs.keySet().stream().forEach(cID -> {
@@ -729,10 +744,10 @@ public class WaAS_Main_Process extends WaAS_Object {
                 short CASEW3 = CASEW4ToCASEW3.get(CASEW4);
                 short CASEW2 = CASEW3ToCASEW2.get(CASEW3);
                 short CASEW1 = CASEW2ToCASEW1.get(CASEW2);
-                //printCheck(WaAS_Data.W2, CASEW1Check, CASEW1, CASEW1ToCASEW2);
-                //printCheck(WaAS_Data.W3, CASEW2Check, CASEW2, CASEW2ToCASEW3);
-                //printCheck(WaAS_Data.W4, CASEW3Check, CASEW3, CASEW3ToCASEW4);
-                printCheck(WaAS_Data.W5, CASEW4Check, CASEW4, CASEW4ToCASEW5);
+                //printCheck(W2, CASEW1Check, CASEW1, CASEW1ToCASEW2);
+                //printCheck(W3, CASEW2Check, CASEW2, CASEW2ToCASEW3);
+                //printCheck(W4, CASEW3Check, CASEW3, CASEW3ToCASEW4);
+                printCheck(W5, CASEW4Check, CASEW4, CASEW4ToCASEW5);
                 HashMap<Short, WaAS_Combined_Record> m = c.getData();
                 WaAS_Combined_Record cr = m.get(CASEW1);
                 if (cr == null) {
@@ -812,13 +827,10 @@ public class WaAS_Main_Process extends WaAS_Object {
             WaAS_HHOLD_Handler hH) {
         String m0 = "doDataProcessingStep1";
         env.logStartTag(m0);
-        // For convenience/code brevity.
-        byte NWAVES;
-        NWAVES = WaAS_Data.NWAVES;
         /**
          * Step 1: Load hhold data into cache and memory.
          */
-        Object[] hholdData = hH.load();
+        Object[] hholdData = hH.loadHouseholdsInAllWaves();
         /**
          * Step 2: Unpack hholdData. hholdData is an Object[] of length 2. r[0]
          * is a TreeMap with Integer keys which are the CASE id for the wave and
@@ -837,19 +849,19 @@ public class WaAS_Main_Process extends WaAS_Object {
         HashMap<Byte, TreeSet<Short>[]> iDLists = new HashMap<>();
         // W1
         Object[] hholdDataW1 = (Object[]) hholdData[0];
-        iDLists.put(WaAS_Data.W1, (TreeSet<Short>[]) hholdDataW1[1]);
+        iDLists.put(W1, (TreeSet<Short>[]) hholdDataW1[1]);
         // W2
         Object[] hholdDataW2 = (Object[]) hholdData[1];
-        iDLists.put(WaAS_Data.W2, (TreeSet<Short>[]) hholdDataW2[1]);
+        iDLists.put(W2, (TreeSet<Short>[]) hholdDataW2[1]);
         // W3
         Object[] hholdDataW3 = (Object[]) hholdData[2];
-        iDLists.put(WaAS_Data.W3, (TreeSet<Short>[]) hholdDataW3[1]);
+        iDLists.put(W3, (TreeSet<Short>[]) hholdDataW3[1]);
         // W4
         Object[] hholdDataW4 = (Object[]) hholdData[3];
-        iDLists.put(WaAS_Data.W4, (TreeSet<Short>[]) hholdDataW4[1]);
+        iDLists.put(W4, (TreeSet<Short>[]) hholdDataW4[1]);
         // W5
         Object[] hholdDataW5 = (Object[]) hholdData[4];
-        iDLists.put(WaAS_Data.W5, (TreeSet<Short>[]) hholdDataW5[1]);
+        iDLists.put(W5, (TreeSet<Short>[]) hholdDataW5[1]);
         /**
          * Step 3: Print out the Number of Households in each wave.
          *
@@ -859,23 +871,22 @@ public class WaAS_Main_Process extends WaAS_Object {
          * of CASEW2 values, r[1][2] is a list of CASEW3 values, r[1][3] is a
          * list of CASEW4 values.
          */
-        for (byte wave = NWAVES; wave > 0; wave--) {
-            TreeSet<Short>[] iDList = iDLists.get(wave);
-            for (int i = wave; i > 0; i--) {
+        for (byte w = NWAVES; w > 0; w--) {
+            TreeSet<Short>[] iDList = iDLists.get(w);
+            for (int i = w; i > 0; i--) {
                 String m;
-                if (i == wave) {
-                    if (wave > 2) {
-                        m = "" + iDList[i].size()
-                                + "\tNumber of HHOLD IDs in Wave " + wave
-                                + " reported as being in ";
-                        for (int j = wave - 1; j > 0; j--) {
+                if (i == w) {
+                    if (w > 2) {
+                        m = "" + iDList[i].size() + "\tNumber of HHOLD IDs in "
+                                + "Wave " + w + " reported as being in ";
+                        for (int j = w - 1; j > 0; j--) {
                             m += "Wave " + j + ", ";
                         }
                         env.log(m);
                     }
                 } else {
                     m = "" + iDList[i].size()
-                            + "\tNumber of HHOLD IDs in Wave " + wave
+                            + "\tNumber of HHOLD IDs in Wave " + w
                             + " reported as being in Wave " + i;
                     env.log(m);
                 }
@@ -885,6 +896,7 @@ public class WaAS_Main_Process extends WaAS_Object {
     }
 
     boolean doJavaCodeGeneration = false;
-    boolean doLoadDataIntoCaches = false;
+    boolean doLoadHouseholdsInAllWaves = false;
+    boolean doLoadHouseholdsInPairedWaves = false;
 
 }

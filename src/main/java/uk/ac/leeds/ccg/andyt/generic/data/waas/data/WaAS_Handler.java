@@ -35,24 +35,39 @@ import uk.ac.leeds.ccg.andyt.generic.util.Generic_Collections;
 public abstract class WaAS_Handler extends WaAS_Object {
 
     public transient WaAS_Files Files;
-    protected String TYPE;
-    protected File INDIR;
+    protected transient final byte W1;
+    protected transient final byte W2;
+    protected transient final byte W3;
+    protected transient final byte W4;
+    protected transient final byte W5;
+    
+    protected final String TYPE;
+    protected final File INDIR;
 
-    public WaAS_Handler(WaAS_Environment e) {
+    public WaAS_Handler(WaAS_Environment e, String type, File indir) {
         super(e);
         Files = e.files;
+        W1 = WaAS_Data.W1;
+        W2 = WaAS_Data.W2;
+        W3 = WaAS_Data.W3;
+        W4 = WaAS_Data.W4;
+        W5 = WaAS_Data.W5;
+         TYPE = type;
+                INDIR = indir;
     }
 
+    /**
+     * @param wave the wave for which the source input File is returned.
+     * @return the source input File for a particular WaAS Wave. 
+     */
     public File getInputFile(byte wave) {
-        File f;
         String filename;
         filename = "was_wave_" + wave + "_" + TYPE + "_eul_final";
         if (wave < 4) {
             filename += "_v2";
         }
         filename += ".tab";
-        f = new File(INDIR, filename);
-        return f;
+        return new File(INDIR, filename);
     }
 
     protected Object load(byte wave, File f) {

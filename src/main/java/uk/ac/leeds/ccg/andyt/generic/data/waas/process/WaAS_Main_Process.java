@@ -89,23 +89,68 @@ public class WaAS_Main_Process extends WaAS_Object {
         if (doJavaCodeGeneration) {
             runJavaCodeGeneration();
         }
-            File indir = files.getWaASInputDir();
-            File generateddir = files.getGeneratedWaASDir();
-            File outdir = new File(generateddir, WaAS_Strings.s_Subsets);
-            outdir.mkdirs();
-            WaAS_HHOLD_Handler hH = new WaAS_HHOLD_Handler(env, indir);
-            int chunkSize;
-            chunkSize = 256; //1024; 512; 256;
+        File indir = files.getWaASInputDir();
+        File generateddir = files.getGeneratedWaASDir();
+        File outdir = new File(generateddir, WaAS_Strings.s_Subsets);
+        outdir.mkdirs();
+        WaAS_HHOLD_Handler hH = new WaAS_HHOLD_Handler(env, indir);
+        int chunkSize = 256; //1024; 512; 256;
         if (doLoadHouseholdsInAllWaves) {
             doDataProcessingStep1(indir, outdir, hH);
             doDataProcessingStep2(indir, outdir, hH, chunkSize);
             doDataProcessingStep3(indir, outdir, hH);
         }
         if (doLoadHouseholdsInPairedWaves) {
-            Object[] w2inw1 = hH.loadHouseholdsInPreviousWave(W2);
-            Object[] w3inw2 = hH.loadHouseholdsInPreviousWave(W3);
-            Object[] w4inw3 = hH.loadHouseholdsInPreviousWave(W4);
-            Object[] w5inw4 = hH.loadHouseholdsInPreviousWave(W5);
+            if (true) {
+                Object[] W2InW1 = hH.loadHouseholdsInPreviousWave(W2);
+                TreeMap<Short, WaAS_Wave2_HHOLD_Record> W2InW1Recs;
+                W2InW1Recs = (TreeMap<Short, WaAS_Wave2_HHOLD_Record>) W2InW1[0];
+                TreeSet<Short>[] W2InW1Sets = (TreeSet<Short>[]) W2InW1[1];
+                TreeSet<Short> W2InW1CASEW1 = W2InW1Sets[0];
+                Object[] W1InW2 = hH.loadW1(W2InW1CASEW1, "InW2");
+                TreeMap<Short, WaAS_Wave1_HHOLD_Record> W1InW2Recs;
+                W1InW2Recs = (TreeMap<Short, WaAS_Wave1_HHOLD_Record>) W1InW2[0];
+                env.log(W2InW1Recs.size() + "\t W2InW1Recs.size()");
+                env.log(W1InW2Recs.size() + "\t W1InW2Recs.size()");
+                
+            }
+            if (true) {
+                Object[] W3InW2 = hH.loadHouseholdsInPreviousWave(W3);
+                TreeMap<Short, WaAS_Wave3_HHOLD_Record> W3InW2Recs;
+                W3InW2Recs = (TreeMap<Short, WaAS_Wave3_HHOLD_Record>) W3InW2[0];
+                TreeSet<Short>[] W3InW2Sets = (TreeSet<Short>[]) W3InW2[1];
+                TreeSet<Short> W3InW2CASEW2 = W3InW2Sets[1];
+                Object[] W2InW3 = hH.loadW2(W3InW2CASEW2, "InW3");
+                TreeMap<Short, WaAS_Wave1_HHOLD_Record> W2InW3Recs;
+                W2InW3Recs = (TreeMap<Short, WaAS_Wave1_HHOLD_Record>) W2InW3[0];
+                env.log(W3InW2Recs.size() + "\t W3InW2Recs.size()");
+                env.log(W2InW3Recs.size() + "\t W2InW3Recs.size()");
+            }
+            if (true) {
+                Object[] W4InW3 = hH.loadHouseholdsInPreviousWave(W4);
+                TreeMap<Short, WaAS_Wave4_HHOLD_Record> W4InW3Recs;
+                W4InW3Recs = (TreeMap<Short, WaAS_Wave4_HHOLD_Record>) W4InW3[0];
+                TreeSet<Short>[] W4InW3Sets = (TreeSet<Short>[]) W4InW3[1];
+                TreeSet<Short> W4InW3CASEW3 = W4InW3Sets[2];
+                Object[] W3InW4 = hH.loadW3(W4InW3CASEW3, "InW4");
+                TreeMap<Short, WaAS_Wave1_HHOLD_Record> W3InW4Recs;
+                W3InW4Recs = (TreeMap<Short, WaAS_Wave1_HHOLD_Record>) W3InW4[0];
+                env.log(W4InW3Recs.size() + "\t W4InW3Recs.size()");
+                env.log(W3InW4Recs.size() + "\t W3InW4Recs.size()");
+            }
+            if (true) {
+                Object[] W5InW4 = hH.loadHouseholdsInPreviousWave(W5);
+                TreeMap<Short, WaAS_Wave5_HHOLD_Record> W5InW4Recs;
+                W5InW4Recs = (TreeMap<Short, WaAS_Wave5_HHOLD_Record>) W5InW4[0];
+                TreeSet<Short>[] W5InW4Sets = (TreeSet<Short>[]) W5InW4[1];
+                TreeSet<Short> W5InW4CASEW4 = W5InW4Sets[3];
+                Object[] W4InW5 = hH.loadW4(W5InW4CASEW4, "InW5");
+                TreeMap<Short, WaAS_Wave1_HHOLD_Record> W4InW5Recs;
+                W4InW5Recs = (TreeMap<Short, WaAS_Wave1_HHOLD_Record>) W4InW5[0];
+                env.log(W5InW4Recs.size() + "\t W5InW4Recs.size()");
+                env.log(W4InW5Recs.size() + "\t W4InW5Recs.size()");
+            }
+
             int debug = 1;
         }
     }
@@ -212,7 +257,7 @@ public class WaAS_Main_Process extends WaAS_Object {
      * @param chunkSize
      * @return
      */
-    public Object[] doDataProcessingStep2Wave1(WaAS_Data data, 
+    public Object[] doDataProcessingStep2Wave1(WaAS_Data data,
             WaAS_PERSON_Handler pH, File indir, File outdir,
             WaAS_HHOLD_Handler hH, int chunkSize) {
         // Wave 1
@@ -815,9 +860,11 @@ public class WaAS_Main_Process extends WaAS_Object {
     }
 
     /**
-     * Read input data and create subsets. Organise for person records that each
-     * subset is split into separate files one for each collection. The
-     * collections will be merged one by one in doDataProcessingStep2.
+     * Read input data and create subsets. The subsets are for records in all
+     * waves. Organise for person records that each subset is split into
+     * separate files such that these files neatly aggregate into those
+     * corresponding to household collections. The collections will be merged
+     * one by one in doDataProcessingStep2.
      *
      * @param indir
      * @param outdir
@@ -832,19 +879,46 @@ public class WaAS_Main_Process extends WaAS_Object {
          */
         Object[] hholdData = hH.loadHouseholdsInAllWaves();
         /**
-         * Step 2: Unpack hholdData. hholdData is an Object[] of length 2. r[0]
-         * is a TreeMap with Integer keys which are the CASE id for the wave and
-         * the values are WaAS_Wave1Or2Or3Or4Or5_HHOLD_Record>. r[1] is an array
-         * of TreeSets where: For Wave 5; r[1][0] is a list of CASEW5 values,
-         * r[1][1] is a list of CASEW4 values, r[1][2] is a list of CASEW3
-         * values, r[1][3] is a list of CASEW2 values, r[1][4] is a list of
-         * CASEW1 values. For Wave 4; r[1][0] is a list of CASEW4 values,
-         * r[1][1] is a list of CASEW3 values, r[1][2] is a list of CASEW2
-         * values, r[1][3] is a list of CASEW1 values. For Wave 3; r[1][0] is a
-         * list of CASEW3 values, r[1][1] is a list of CASEW2 values, r[1][2] is
-         * a list of CASEW1 values. For Wave 2; r[1][0] is a list of CASEW2
-         * values, r[1][1] is a list of CASEW1 values. For Wave 1: r[1][0] is a
-         * list of CASEW1 values.
+         * Step 2: Unpack hholdData. hholdData is an Object[] r length size 5.
+         * Each element is an Object[] r containing the data from loading each
+         * wave.
+         * <ul>
+         * <li>r[0] is a TreeMap with Integer keys which are the CASE id for the
+         * wave and the values are WaAS_Wave1Or2Or3Or4Or5_HHOLD_Record>.</li>
+         * <li>r[1] is an array of TreeSets where:
+         * <ul>
+         * <li>For Wave 5;
+         * <ul>
+         * <li>r[1][0] is a list of CASEW5 values,</li>
+         * <li>r[1][1] is a list of CASEW4 values,</li>
+         * <li>r[1][2] is a list of CASEW3 values,</li>
+         * <li>r[1][3] is a list of CASEW2 values,</li>
+         * <li>r[1][4] is a list of CASEW1 values.</li>
+         * </ul></li>
+         * <li>For Wave 4;
+         * <ul>
+         * <li>r[1][0] is a list of CASEW4 values,</li>
+         * <li>r[1][1] is a list of CASEW3 values,</li>
+         * <li>r[1][2] is a list of CASEW2 values,</li>
+         * <li>r[1][3] is a list of CASEW1 values.</li>
+         * </ul></li>
+         * <li>For Wave 3;
+         * <ul>
+         * <li>r[1][0] is a list of CASEW3 values,</li>
+         * <li>r[1][1] is a list of CASEW2 values,</li>
+         * <li>r[1][2] is a list of CASEW1 values.</li>
+         * </ul></li>
+         * <li>For Wave 2;
+         * <ul>
+         * <li>r[1][0] is a list of CASEW2 values,</li>
+         * <li>r[1][1] is a list of CASEW1 values.</li>
+         * </ul></li>
+         * <li>For Wave1:
+         * <ul>
+         * <li>r[1][0] is a list of CASEW1 values.</li>
+         * </ul></li>
+         * </ul></li>
+         * </ul>
          */
         HashMap<Byte, TreeSet<Short>[]> iDLists = new HashMap<>();
         // W1

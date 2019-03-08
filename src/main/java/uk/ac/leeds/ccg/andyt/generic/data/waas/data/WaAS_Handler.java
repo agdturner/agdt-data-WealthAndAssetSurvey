@@ -83,7 +83,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
     }
 
     protected void cache(byte wave, File f, Object o) {
-        String m = "store " + getString0(wave, f);
+        String m = "cache " + getString0(wave, f);
         env.logStartTag(m);
         Generic_IO.writeObject(o, f);
         env.logEndTag(m);
@@ -116,8 +116,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
     }
 
     public Object[] loadSubsetLookups(byte wave) {
-        Object[] r;
-        r = new Object[2];
+        Object[] r  = new Object[2];
         File f = new File(Files.getGeneratedWaASSubsetsDir(),
                 TYPE + wave + "To" + (wave + 1) + "." + WaAS_Strings.s_dat);
         TreeMap<Short, HashSet<Short>> m0;
@@ -164,8 +163,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      */
     public static Object[] getGORSubsetsAndLookup(WaAS_Data data,
             ArrayList<Byte> gors, HashSet<Short> subset) {
-        Object[] r;
-        r = new Object[2];
+        Object[] r  = new Object[2];
         HashMap<Byte, HashSet<Short>>[] r0 = new HashMap[WaAS_Data.NWAVES];
         r[0] = r0;
         HashMap<Short, Byte>[] r1 = new HashMap[WaAS_Data.NWAVES];

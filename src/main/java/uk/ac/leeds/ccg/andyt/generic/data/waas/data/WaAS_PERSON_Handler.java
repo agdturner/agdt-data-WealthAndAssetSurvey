@@ -482,20 +482,19 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * @return an Object[] r with size 5. r[] is a HashMap with keys that are
      * Integer CASEW1Each element is an Object[] ...
      */
-    public Object[] loadSubsets(byte nwaves) {
+    public Object[] loadSubsets(byte nwaves, String type) {
         Object[] r;
         r = new Object[nwaves];
         for (byte wave = 1; wave <= nwaves; wave++) {
             // Load Waves 1 to 5 inclusive.
-            r[wave] = loadSubset(wave);
+            r[wave] = loadSubset(wave, type);
         }
         return r;
     }
 
-    public Object[] loadSubset(byte wave) {
+    public Object[] loadSubset(byte wave, String type) {
         Object[] r;
-        File dir = new File(Files.getGeneratedWaASDir(), WaAS_Strings.s_Subsets);
-        File f = new File(dir, TYPE + wave + WaAS_Strings.symbol_dot + WaAS_Strings.s_dat);
+        File f = getCachSubsetFile(wave, type);
         if (f.exists()) {
             r = (Object[]) Generic_IO.readObject(f);
         } else {

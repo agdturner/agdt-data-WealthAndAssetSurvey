@@ -52,7 +52,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * records for that specific wave. The second element of these are first
      * element of these are the ..
      */
-    public Object[] loadHouseholdsInAllWaves() {
+    public Object[] loadHouseholdsInAllWaves(String type) {
         String m = "loadHouseholdsInAllWaves";
         env.logStartTag(m);
         Object[] r = new Object[5];
@@ -137,7 +137,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             w1recs.put(CASEW1, w1recs0.get(CASEW1));
         }
         env.log("There are " + CASEW1IDs.size() + " CASEW1IDs.");
-        cacheSubset(W1, w1recs);
+        cacheSubset(W1, w1recs, type);
         /**
          * Step 2.2.2: Wave 2.
          */
@@ -156,7 +156,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             CASEW2ToCASEW1Subset.put(CASEW2, CASEW1);
         }
         env.log("There are " + CASEW2IDs.size() + " CASEW2IDs.");
-        cacheSubset(W2, w2recs);
+        cacheSubset(W2, w2recs, type);
         env.log("There are " + CASEW1ToCASEW2Subset.size() + " CASEW1ToCASEW2Subset mappings.");
         env.log("There are " + CASEW2ToCASEW1Subset.size() + " CASEW2ToCASEW1Subset mappings.");
         cacheSubsetLookups(W1, CASEW1ToCASEW2Subset, CASEW2ToCASEW1Subset);
@@ -189,7 +189,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             }
         }
         env.log("There are " + CASEW3IDs.size() + " CASEW3IDs.");
-        cacheSubset(W3, w3recs);
+        cacheSubset(W3, w3recs, type);
         env.log("There are " + CASEW2ToCASEW3Subset.size()
                 + " CASEW2ToCASEW3Subset mappings.");
         env.log("There are " + CASEW3ToCASEW2Subset.size()
@@ -226,7 +226,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             }
         }
         env.log("There are " + CASEW4IDs.size() + " CASEW4IDs.");
-        cacheSubset(W4, w4recs);
+        cacheSubset(W4, w4recs, type);
         env.log("There are " + CASEW3ToCASEW4Subset.size()
                 + " CASEW3ToCASEW4Subset mappings.");
         env.log("There are " + CASEW4ToCASEW3Subset.size()
@@ -264,7 +264,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             }
         }
         env.log("There are " + CASEW5IDs.size() + " CASEW5IDs.");
-        cacheSubset(W5, w5recs);
+        cacheSubset(W5, w5recs, type);
         env.log("There are " + CASEW4ToCASEW5Subset.size()
                 + " CASEW4ToCASEW5Subset mappings.");
         env.log("There are " + CASEW5ToCASEW4Subset.size()
@@ -437,8 +437,9 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 short CASEW4 = rec.getCASEW4();
                 if (CASEW4 > Short.MIN_VALUE) {
                     if (!r1[3].add(CASEW4)) {
-                        env.log("In Wave 5: hhold with CASEW4 " + CASEW4
-                                + " reportedly split into multiple hholds.");
+                        env.log("Between Wave 4 and 5: hhold with CASEW4 "
+                                + CASEW4 + " reportedly split into multiple "
+                                + "hholds.");
                         return 1;
                     }
                 }
@@ -491,6 +492,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * WaAS_Wave5_HHOLD_Records.
      */
     public TreeMap<Short, WaAS_Wave5_HHOLD_Record> loadAllW5() {
+        String m = "loadAllW5";
+        env.logStartTag(m);
         TreeMap<Short, WaAS_Wave5_HHOLD_Record> r;
         File cf = getGeneratedAllFile(W5);
         if (cf.exists()) {
@@ -511,6 +514,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             env.logEndTag(m1);
             cache(W5, cf, r);
         }
+        env.logEndTag(m);
         return r;
     }
 
@@ -521,6 +525,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * WaAS_Wave4_HHOLD_Records.
      */
     public TreeMap<Short, WaAS_Wave4_HHOLD_Record> loadAllW4() {
+        String m = "loadAllW4";
+        env.logStartTag(m);
         TreeMap<Short, WaAS_Wave4_HHOLD_Record> r;
         File cf = getGeneratedAllFile(W4);
         if (cf.exists()) {
@@ -541,6 +547,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             env.logEndTag(m1);
             cache(W4, cf, r);
         }
+        env.logEndTag(m);
         return r;
     }
 
@@ -551,6 +558,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * WaAS_Wave3_HHOLD_Records.
      */
     public TreeMap<Short, WaAS_Wave3_HHOLD_Record> loadAllW3() {
+        String m = "loadAllW3";
+        env.logStartTag(m);
         TreeMap<Short, WaAS_Wave3_HHOLD_Record> r;
         File cf = getGeneratedAllFile(W3);
         if (cf.exists()) {
@@ -570,6 +579,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             Generic_IO.closeBufferedReader(br);
             env.logEndTag(m1);
             cache(W3, cf, r);
+            env.logEndTag(m);
         }
         return r;
     }
@@ -581,6 +591,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * WaAS_Wave2_HHOLD_Records.
      */
     public TreeMap<Short, WaAS_Wave2_HHOLD_Record> loadAllW2() {
+        String m = "loadAllW2";
+        env.logStartTag(m);
         TreeMap<Short, WaAS_Wave2_HHOLD_Record> r;
         File cf;
         cf = getGeneratedAllFile(W2);
@@ -605,6 +617,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             env.logEndTag(m1);
             cache(W2, cf, r);
         }
+        env.logEndTag(m);
         return r;
     }
 
@@ -615,7 +628,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * WaAS_Wave1_HHOLD_Records.
      */
     public TreeMap<Short, WaAS_Wave1_HHOLD_Record> loadAllW1() {
-        String m = "loadAllWave1";
+        String m = "loadAllW1";
         env.logStartTag(m);
         TreeMap<Short, WaAS_Wave1_HHOLD_Record> r;
         File cf = getGeneratedAllFile(W1);
@@ -755,8 +768,9 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 short CASEW3 = rec.getCASEW3();
                 if (CASEW3 > Short.MIN_VALUE) {
                     if (!r1[2].add(CASEW3)) {
-                        env.log("In Wave 4: hhold with CASEW3 " + CASEW3
-                                + " reportedly split into multiple hholds.");
+                        env.log("Between Wave 3 and 4: hhold with CASEW3 "
+                                + CASEW3 + " reportedly split into multiple "
+                                + "hholds.");
                         return 1;
                     }
                 }
@@ -1100,8 +1114,9 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 short CASEW2 = rec.getCASEW2();
                 if (CASEW2 > Short.MIN_VALUE) {
                     if (!r1[1].add(CASEW2)) {
-                        env.log("In Wave 3: hhold with CASEW2 " + CASEW2
-                                + " reportedly split into multiple hholds.");
+                        env.log("Between Wave 2 and 3: hhold with CASEW2 "
+                                + CASEW2 + " reportedly split into multiple "
+                                + "hholds.");
                         return 1;
                     }
                 }
@@ -1330,8 +1345,9 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 short CASEW1 = rec.getCASEW1();
                 if (CASEW1 > Short.MIN_VALUE) {
                     if (!r1[0].add(CASEW1)) {
-                        env.log("In Wave 2: hhold with CASEW1 " + CASEW1
-                                + " reportedly split into multiple hholds.");
+                        env.log("Between Wave 1 and 2: hhold with CASEW1 "
+                                + CASEW1 + " reportedly split into multiple "
+                                        + "hholds.");
                         return 1;
                     }
                 }
@@ -1447,9 +1463,14 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         return r;
     }
 
-    public TreeMap<Short, WaAS_Wave1_HHOLD_Record> loadCachedSubsetW1() {
+    /**
+     * 
+     * @param type
+     * @return 
+     */
+    public TreeMap<Short, WaAS_Wave1_HHOLD_Record> loadCachedSubsetW1(String type) {
         TreeMap<Short, WaAS_Wave1_HHOLD_Record> r;
-        File cf = getFile(W1);
+        File cf = getCachSubsetFile(W1, type);
         if (cf.exists()) {
             r = (TreeMap<Short, WaAS_Wave1_HHOLD_Record>) Generic_IO.readObject(
                     cf);
@@ -1459,19 +1480,9 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         return r;
     }
 
-    /**
-     *
-     * @param wave
-     * @return
-     */
-    protected File getFile(byte wave) {
-        File dir = new File(Files.getGeneratedWaASDir(), WaAS_Strings.s_Subsets);
-        return new File(dir, TYPE + wave + "." + WaAS_Strings.s_dat);
-    }
-
-    public TreeMap<Short, WaAS_Wave2_HHOLD_Record> loadCachedSubsetW2() {
+    public TreeMap<Short, WaAS_Wave2_HHOLD_Record> loadCachedSubsetW2(String type) {
         TreeMap<Short, WaAS_Wave2_HHOLD_Record> r;
-        File cf = getFile(W2);
+        File cf = getCachSubsetFile(W2, type);
         if (cf.exists()) {
             r = (TreeMap<Short, WaAS_Wave2_HHOLD_Record>) Generic_IO.readObject(
                     cf);
@@ -1481,9 +1492,9 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         return r;
     }
 
-    public TreeMap<Short, WaAS_Wave3_HHOLD_Record> loadCachedSubsetW3() {
+    public TreeMap<Short, WaAS_Wave3_HHOLD_Record> loadCachedSubsetW3(String type) {
         TreeMap<Short, WaAS_Wave3_HHOLD_Record> r;
-        File cf = getFile(W3);
+        File cf = getCachSubsetFile(W3, type);
         if (cf.exists()) {
             r = (TreeMap<Short, WaAS_Wave3_HHOLD_Record>) Generic_IO.readObject(
                     cf);
@@ -1493,9 +1504,9 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         return r;
     }
 
-    public TreeMap<Short, WaAS_Wave4_HHOLD_Record> loadCachedSubsetW4() {
+    public TreeMap<Short, WaAS_Wave4_HHOLD_Record> loadCachedSubsetW4(String type) {
         TreeMap<Short, WaAS_Wave4_HHOLD_Record> r;
-        File cf = getFile(W4);
+        File cf = getCachSubsetFile(W4, type);
         if (cf.exists()) {
             r = (TreeMap<Short, WaAS_Wave4_HHOLD_Record>) Generic_IO.readObject(
                     cf);
@@ -1505,9 +1516,9 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         return r;
     }
 
-    public TreeMap<Short, WaAS_Wave5_HHOLD_Record> loadCachedSubsetW5() {
+    public TreeMap<Short, WaAS_Wave5_HHOLD_Record> loadCachedSubsetW5(String type) {
         TreeMap<Short, WaAS_Wave5_HHOLD_Record> r;
-        File cf = getFile(W5);
+        File cf = getCachSubsetFile(W5, type);
         if (cf.exists()) {
             r = (TreeMap<Short, WaAS_Wave5_HHOLD_Record>) Generic_IO.readObject(
                     cf);

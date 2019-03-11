@@ -40,7 +40,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
     protected transient final byte W3;
     protected transient final byte W4;
     protected transient final byte W5;
-    
+
     protected final String TYPE;
     protected final File INDIR;
 
@@ -52,13 +52,13 @@ public abstract class WaAS_Handler extends WaAS_Object {
         W3 = WaAS_Data.W3;
         W4 = WaAS_Data.W4;
         W5 = WaAS_Data.W5;
-         TYPE = type;
-                INDIR = indir;
+        TYPE = type;
+        INDIR = indir;
     }
 
     /**
      * @param wave the wave for which the source input File is returned.
-     * @return the source input File for a particular WaAS Wave. 
+     * @return the source input File for a particular WaAS Wave.
      */
     public File getInputFile(byte wave) {
         String filename;
@@ -89,9 +89,14 @@ public abstract class WaAS_Handler extends WaAS_Object {
         env.logEndTag(m);
     }
 
-    public void cacheSubset(byte wave, Object o) {
-        File f = new File(Files.getGeneratedWaASSubsetsDir(),
-                TYPE + wave + "." + WaAS_Strings.s_dat);
+    public File getCachSubsetFile(byte wave, String type) {
+        return new File(Files.getGeneratedWaASSubsetsDir(),
+                TYPE + wave + WaAS_Strings.symbol_underscore + type + 
+                        WaAS_Strings.symbol_dot + WaAS_Strings.s_dat);
+    }
+    
+    public void cacheSubset(byte wave, Object o, String type) {
+        File f =  getCachSubsetFile(wave, type);
         cache(wave, f, o);
     }
 
@@ -116,7 +121,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
     }
 
     public Object[] loadSubsetLookups(byte wave) {
-        Object[] r  = new Object[2];
+        Object[] r = new Object[2];
         File f = new File(Files.getGeneratedWaASSubsetsDir(),
                 TYPE + wave + "To" + (wave + 1) + "." + WaAS_Strings.s_dat);
         TreeMap<Short, HashSet<Short>> m0;
@@ -132,7 +137,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
     }
 
     public Object loadSubsetCollection(short cID, byte wave) {
-        File f  = new File(Files.getGeneratedWaASSubsetsDir(),
+        File f = new File(Files.getGeneratedWaASSubsetsDir(),
                 getString1(wave, cID) + "." + WaAS_Strings.s_dat);
         return load(wave, f);
     }
@@ -163,7 +168,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      */
     public static Object[] getGORSubsetsAndLookup(WaAS_Data data,
             ArrayList<Byte> gors, HashSet<Short> subset) {
-        Object[] r  = new Object[2];
+        Object[] r = new Object[2];
         HashMap<Byte, HashSet<Short>>[] r0 = new HashMap[WaAS_Data.NWAVES];
         r[0] = r0;
         HashMap<Short, Byte>[] r1 = new HashMap[WaAS_Data.NWAVES];

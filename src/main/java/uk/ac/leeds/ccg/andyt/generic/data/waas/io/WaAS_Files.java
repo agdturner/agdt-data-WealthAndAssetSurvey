@@ -16,7 +16,6 @@
 package uk.ac.leeds.ccg.andyt.generic.data.waas.io;
 
 import java.io.File;
-import java.io.Serializable;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_Files;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 
@@ -24,17 +23,10 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
  *
  * @author geoagdt
  */
-public class WaAS_Files extends Generic_Files implements Serializable {
-
-    /**
-     */
-    public WaAS_Files() {
-        super();
-    }
+public class WaAS_Files extends Generic_Files {
 
     /**
      *
-     * @param s
      * @param dataDir
      */
     public WaAS_Files(File dataDir) {
@@ -42,27 +34,20 @@ public class WaAS_Files extends Generic_Files implements Serializable {
     }
 
     public File getWaASInputDir() {
-        File r;
-        r = new File(getInputDataDir(), "WaAS");
+        File r = new File(getInputDataDir(), WaAS_Strings.s_WaAS);
         r = new File(r, "UKDA-7215-tab");
         r = new File(r, "tab");
         return r;
     }
 
     public File getGeneratedWaASDir() {
-        File dir;
-        dir = getGeneratedDataDir();
-        File f;
-        f = new File(dir, "WaAS");
+        File f  = new File(getGeneratedDataDir(), WaAS_Strings.s_WaAS);
         f.mkdirs();
         return f;
     }
     
     public File getGeneratedWaASSubsetsDir() {
-        File dir;
-        dir = getGeneratedWaASDir();
-        File f;
-        f = new File(dir, "Subsets");
+        File f = new File(getGeneratedWaASDir(), WaAS_Strings.s_Subsets);
         f.mkdirs();
         return f;
     }

@@ -91,8 +91,8 @@ public class WaAS_Main_Process extends WaAS_Object {
             runJavaCodeGeneration();
         }
         File indir = files.getWaASInputDir();
-        File generateddir = files.getGeneratedWaASDir();
-        File outdir = new File(generateddir, WaAS_Strings.s_Subsets);
+        File gendir = files.getGeneratedWaASDir();
+        File outdir = new File(gendir, WaAS_Strings.s_Subsets);
         outdir.mkdirs();
         WaAS_HHOLD_Handler hH = new WaAS_HHOLD_Handler(env, indir);
         int chunkSize = 256; //1024; 512; 256;
@@ -157,6 +157,7 @@ public class WaAS_Main_Process extends WaAS_Object {
             mergePersonAndHouseholdDataIntoCollections(indir, outdir,
                     WaAS_Strings.s_Paired, hH, chunkSize);
         }
+        env.cacheData();
     }
 
     /**
@@ -229,9 +230,9 @@ public class WaAS_Main_Process extends WaAS_Object {
         CASEW2ToCASEW3 = (TreeMap<Short, HashSet<Short>>) lookups[0];
         TreeMap<Short, Short> CASEW3ToCASEW2;
         CASEW3ToCASEW2 = (TreeMap<Short, Short>) lookups[1];
-        mergePersonAndHouseholdDataIntoCollectionsW3(data, type, pH, indir, outdir, hH, nOC,
-                CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2, CASEW2ToCASEW1,
-                CASEW2ToCASEW3, CASEW3ToCASEW2);
+        mergePersonAndHouseholdDataIntoCollectionsW3(data, type, pH, indir,
+                outdir, hH, nOC, CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2,
+                CASEW2ToCASEW1, CASEW2ToCASEW3, CASEW3ToCASEW2);
         /**
          * Wave 4
          */
@@ -240,9 +241,10 @@ public class WaAS_Main_Process extends WaAS_Object {
         CASEW3ToCASEW4 = (TreeMap<Short, HashSet<Short>>) lookups[0];
         TreeMap<Short, Short> CASEW4ToCASEW3;
         CASEW4ToCASEW3 = (TreeMap<Short, Short>) lookups[1];
-        mergePersonAndHouseholdDataIntoCollectionsW4(data, type, pH, indir, outdir, hH, nOC,
-                CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2, CASEW2ToCASEW1,
-                CASEW2ToCASEW3, CASEW3ToCASEW2, CASEW3ToCASEW4, CASEW4ToCASEW3);
+        mergePersonAndHouseholdDataIntoCollectionsW4(data, type, pH, indir,
+                outdir, hH, nOC, CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2,
+                CASEW2ToCASEW1, CASEW2ToCASEW3, CASEW3ToCASEW2, CASEW3ToCASEW4,
+                CASEW4ToCASEW3);
         /**
          * Wave 5
          */
@@ -251,10 +253,10 @@ public class WaAS_Main_Process extends WaAS_Object {
         CASEW4ToCASEW5 = (TreeMap<Short, HashSet<Short>>) lookups[0];
         TreeMap<Short, Short> CASEW5ToCASEW4;
         CASEW5ToCASEW4 = (TreeMap<Short, Short>) lookups[1];
-        mergePersonAndHouseholdDataIntoCollectionsW5(data, type, pH, indir, outdir, hH, nOC,
-                CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2, CASEW2ToCASEW1,
-                CASEW2ToCASEW3, CASEW3ToCASEW2, CASEW3ToCASEW4, CASEW4ToCASEW3,
-                CASEW4ToCASEW5, CASEW5ToCASEW4);
+        mergePersonAndHouseholdDataIntoCollectionsW5(data, type, pH, indir,
+                outdir, hH, nOC, CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2, 
+                CASEW2ToCASEW1, CASEW2ToCASEW3, CASEW3ToCASEW2, CASEW3ToCASEW4, 
+                CASEW4ToCASEW3, CASEW4ToCASEW5, CASEW5ToCASEW4);
         env.log("data.lookup.size() " + data.CASEW1ToCID.size());
         env.log("data.data.size() " + data.data.size());
         env.cacheData();
@@ -378,8 +380,8 @@ public class WaAS_Main_Process extends WaAS_Object {
             env.log("Unrecognised type " + type);
             hs = null;
         }
-        TreeMap<Short, File> cFs = pH.loadSubsetWave2(nOC,
-                CASEW1ToCID, W2, outdir, CASEW2ToCASEW1);
+        TreeMap<Short, File> cFs = pH.loadSubsetWave2(nOC, CASEW1ToCID, W2,
+                outdir, CASEW2ToCASEW1);
         cFs.keySet().stream().forEach(cID -> {
             String m1 = "Collection ID " + cID;
             env.logStartTag(m1);
@@ -488,7 +490,6 @@ public class WaAS_Main_Process extends WaAS_Object {
             TreeMap<Short, Short> CASEW2ToCASEW1,
             TreeMap<Short, HashSet<Short>> CASEW2ToCASEW3,
             TreeMap<Short, Short> CASEW3ToCASEW2) {
-        // Wave 3;
         String m0 = "mergePersonAndHouseholdDataIntoCollectionsW3";
         env.logStartTag(m0);
         TreeMap<Short, WaAS_Wave3_HHOLD_Record> hs;
@@ -610,12 +611,18 @@ public class WaAS_Main_Process extends WaAS_Object {
             TreeMap<Short, Short> CASEW3ToCASEW2,
             TreeMap<Short, HashSet<Short>> CASEW3ToCASEW4,
             TreeMap<Short, Short> CASEW4ToCASEW3) {
-        // Wave 4
         String m0 = "mergePersonAndHouseholdDataIntoCollectionsW4";
         env.logStartTag(m0);
-        TreeMap<Short, WaAS_Wave4_HHOLD_Record> hs = hH.loadCachedSubsetW4(type);
-        TreeMap<Short, File> cFs;
-        cFs = pH.loadSubsetWave4(nOC, CASEW1ToCID, W4,
+        TreeMap<Short, WaAS_Wave4_HHOLD_Record> hs;
+        if (type.equalsIgnoreCase(WaAS_Strings.s_InW1W2W3W4W5)) {
+            hs = hH.loadCachedSubsetW4(type);
+        } else if (type.equalsIgnoreCase(WaAS_Strings.s_Paired)) {
+            hs = hH.loadCachedSubsetW4(WaAS_Strings.s_InW5);
+        } else {
+            env.log("Unrecognised type " + type);
+            hs = null;
+        }
+        TreeMap<Short, File> cFs = pH.loadSubsetWave4(nOC, CASEW1ToCID, W4,
                 outdir, CASEW2ToCASEW1, CASEW3ToCASEW2, CASEW4ToCASEW3);
         cFs.keySet().stream().forEach(cID -> {
             String m1 = "Collection ID " + cID;
@@ -729,8 +736,8 @@ public class WaAS_Main_Process extends WaAS_Object {
      * @param type
      * @param pH
      * @param indir
-     * @param outdir
-     * @param hholdHandler
+     * @param hH
+     * @param hH
      * @param nOC
      * @param CASEW1ToCID
      * @param CIDToCASEW1
@@ -745,7 +752,7 @@ public class WaAS_Main_Process extends WaAS_Object {
      */
     public void mergePersonAndHouseholdDataIntoCollectionsW5(WaAS_Data data,
             String type, WaAS_PERSON_Handler pH, File indir, File outdir,
-            WaAS_HHOLD_Handler hholdHandler, int nOC,
+            WaAS_HHOLD_Handler hH, int nOC,
             HashMap<Short, Short> CASEW1ToCID,
             TreeMap<Short, HashSet<Short>> CIDToCASEW1,
             TreeMap<Short, HashSet<Short>> CASEW1ToCASEW2,
@@ -759,8 +766,7 @@ public class WaAS_Main_Process extends WaAS_Object {
         // Wave 5
         String m0 = "mergePersonAndHouseholdDataIntoCollectionsW5";
         env.logStartTag(m0);
-        TreeMap<Short, WaAS_Wave5_HHOLD_Record> hs;
-        hs = hholdHandler.loadCachedSubsetW5(type);
+        TreeMap<Short, WaAS_Wave5_HHOLD_Record> hs = hH.loadCachedSubsetW5(type);
         TreeMap<Short, File> cFs;
         cFs = pH.loadSubsetWave5(nOC, CASEW1ToCID, W5, outdir, CASEW2ToCASEW1,
                 CASEW3ToCASEW2, CASEW4ToCASEW3, CASEW5ToCASEW4);

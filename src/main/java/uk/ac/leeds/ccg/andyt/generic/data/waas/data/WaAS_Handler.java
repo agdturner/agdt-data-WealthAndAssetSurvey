@@ -65,7 +65,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
             filename += "_v2";
         }
         filename += ".tab";
-        return new File(files.getWaASInputDir(), filename);
+        return new File(files.getInputWaASDir(), filename);
     }
 
     protected Object load(byte wave, File f) {

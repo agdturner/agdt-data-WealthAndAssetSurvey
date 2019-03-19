@@ -1462,18 +1462,13 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         TreeMap<Short, WaAS_Wave1_HHOLD_Record> r;
         File f = getSubsetCacheFile(W1, type);
         if (f.exists()) {
-            r = (TreeMap<Short, WaAS_Wave1_HHOLD_Record>) loadTreeMap(f);
+            r = (TreeMap<Short, WaAS_Wave1_HHOLD_Record>) Generic_IO.readObject(f);
         } else {
             env.log("File " + f + " does not exist!");
             r = null;
         }
         env.logEndTag(m);
         return r;
-    }
-
-    @SuppressWarnings("unchecked")
-    public TreeMap<?, ?> loadTreeMap(File f) {
-        return (TreeMap<?, ?>) Generic_IO.readObject(f);
     }
 
     public TreeMap<Short, WaAS_Wave2_HHOLD_Record> loadCachedSubsetW2(
@@ -1483,7 +1478,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         TreeMap<Short, WaAS_Wave2_HHOLD_Record> r;
         File f = getSubsetCacheFile(W2, type);
         if (f.exists()) {
-            r = (TreeMap<Short, WaAS_Wave2_HHOLD_Record>) loadTreeMap(f);
+            r = (TreeMap<Short, WaAS_Wave2_HHOLD_Record>) Generic_IO.readObject(f);
         } else {
             env.log("File " + f + " does not exist!");
             r = null;
@@ -1499,7 +1494,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         TreeMap<Short, WaAS_Wave3_HHOLD_Record> r;
         File f = getSubsetCacheFile(W3, type);
         if (f.exists()) {
-            r = (TreeMap<Short, WaAS_Wave3_HHOLD_Record>) loadTreeMap(f);
+            r = (TreeMap<Short, WaAS_Wave3_HHOLD_Record>) Generic_IO.readObject(f);
         } else {
             env.log("File " + f + " does not exist!");
             r = null;
@@ -1515,7 +1510,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         TreeMap<Short, WaAS_Wave4_HHOLD_Record> r;
         File f = getSubsetCacheFile(W4, type);
         if (f.exists()) {
-            r = (TreeMap<Short, WaAS_Wave4_HHOLD_Record>) loadTreeMap(f);
+            r = (TreeMap<Short, WaAS_Wave4_HHOLD_Record>) Generic_IO.readObject(f);
         } else {
             env.log("File " + f + " does not exist!");
             r = null;
@@ -1531,7 +1526,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         TreeMap<Short, WaAS_Wave5_HHOLD_Record> r;
         File f = getSubsetCacheFile(W5, type);
         if (f.exists()) {
-            r = (TreeMap<Short, WaAS_Wave5_HHOLD_Record>) loadTreeMap(f);
+            r = (TreeMap<Short, WaAS_Wave5_HHOLD_Record>) Generic_IO.readObject(f);
         } else {
             env.log("File " + f + " does not exist!");
             r = null;

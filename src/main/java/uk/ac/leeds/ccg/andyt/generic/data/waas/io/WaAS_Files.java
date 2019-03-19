@@ -34,7 +34,7 @@ public class WaAS_Files extends Generic_Files {
         super(dataDir);
     }
 
-    public File getWaASInputDir() {
+    public File getInputWaASDir() {
         File r = new File(getInputDataDir(), WaAS_Strings.s_WaAS);
         r = new File(r, "UKDA-7215-tab");
         r = new File(r, "tab");

@@ -106,7 +106,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
      */
     protected Object[] getFieldTypes(String type, int nwaves) {
         Object[] r = new Object[4];
-        File indir = files.getWaASInputDir();
+        File indir = files.getInputWaASDir();
         File generateddir = files.getGeneratedWaASDir();
         File outdir = new File(generateddir, WaAS_Strings.s_Subsets);
         outdir.mkdirs();

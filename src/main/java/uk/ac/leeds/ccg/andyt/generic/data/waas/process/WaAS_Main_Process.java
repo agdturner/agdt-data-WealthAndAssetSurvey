@@ -238,8 +238,8 @@ public class WaAS_Main_Process extends WaAS_Object {
         TreeMap<Short, HashSet<Short>> CASEW4ToCASEW5 = hH.loadSubsetLookupTo(W4);
         TreeMap<Short, Short> CASEW5ToCASEW4 = hH.loadSubsetLookupFrom(W3);
         mergePersonAndHouseholdDataIntoCollectionsW5(data, type, pH, indir,
-                outdir, hH, nOC, CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2, 
-                CASEW2ToCASEW1, CASEW2ToCASEW3, CASEW3ToCASEW2, CASEW3ToCASEW4, 
+                outdir, hH, nOC, CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2,
+                CASEW2ToCASEW1, CASEW2ToCASEW3, CASEW3ToCASEW2, CASEW3ToCASEW4,
                 CASEW4ToCASEW3, CASEW4ToCASEW5, CASEW5ToCASEW4);
         env.log("data.lookup.size() " + data.CASEW1ToCID.size());
         env.log("data.data.size() " + data.data.size());
@@ -894,13 +894,13 @@ public class WaAS_Main_Process extends WaAS_Object {
      *
      * @param hH hholdHandler
      */
-    public void loadHouseholdsInAllWaves(            WaAS_HHOLD_Handler hH) {
+    public void loadHouseholdsInAllWaves(WaAS_HHOLD_Handler hH) {
         String m0 = "loadHouseholdsInAllWaves";
         env.logStartTag(m0);
         /**
          * Step 1: Load hhold data into cache and memory.
          */
-        Object[] hholdData = hH.loadHouseholdsInAllWaves("W1W2W3W4W5");
+        Object[] hholdData = hH.loadHouseholdsInAllWaves(WaAS_Strings.s_InW1W2W3W4W5);
         /**
          * Step 2: Unpack hholdData. hholdData is an Object[] r length size 5.
          * Each element is an Object[] r containing the data from loading each

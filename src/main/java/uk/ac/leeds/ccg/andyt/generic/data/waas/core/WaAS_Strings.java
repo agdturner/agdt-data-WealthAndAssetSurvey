@@ -27,10 +27,11 @@ public class WaAS_Strings extends Generic_Strings {
     public static final String s_file = "file";
     public static final String s_hhold = "hhold";
     public static final String s_InW1W2W3W4W5 = "InW1W2W3W4W5";
+    public static final String s_InW1W3W4W5 = "InW1W3W4W5";
     public static final String s_InW2 = "InW2";
-    public static final String s_InW2W3W4W5 = "InW2W3W4W5";
+    public static final String s_InW2W4W5 = "InW2W4W5";
     public static final String s_InW3 = "InW3";
-    public static final String s_InW3W4W5 = "InW3W4W5";
+    public static final String s_InW3W5 = "InW3W5";
     public static final String s_InW4 = "InW4";
     public static final String s_InW5 = "InW5";
     public static final String s_Paired = "Paired";

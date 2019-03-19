@@ -80,7 +80,7 @@ public class WaAS_Main_Process extends WaAS_Object {
         WaAS_Main_Process p = new WaAS_Main_Process(env);
         // Main switches
         //p.doJavaCodeGeneration = true;
-        //p.doLoadHouseholdsAndIndividualsInAllWaves = true;
+        p.doLoadHouseholdsAndIndividualsInAllWaves = true;
         p.doLoadHouseholdsInPairedWaves = true;
         p.doLoadAllHouseholdsRecords = true;
         p.run();

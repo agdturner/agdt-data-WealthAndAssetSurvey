@@ -494,7 +494,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
 
     public Object[] loadSubset(byte wave, String type) {
         Object[] r;
-        File f = getCachSubsetFile(wave, type);
+        File f = getGeneratedSubsetCacheFile(wave, type);
         if (f.exists()) {
             r = (Object[]) Generic_IO.readObject(f);
         } else {

@@ -89,14 +89,14 @@ public abstract class WaAS_Handler extends WaAS_Object {
         env.logEndTag(m);
     }
 
-    public File getCachSubsetFile(byte wave, String type) {
+    public File getGeneratedSubsetCacheFile(byte wave, String type) {
         return new File(Files.getGeneratedWaASSubsetsDir(),
                 TYPE + wave + WaAS_Strings.symbol_underscore + type + 
                         WaAS_Strings.symbol_dot + WaAS_Strings.s_dat);
     }
     
     public void cacheSubset(byte wave, Object o, String type) {
-        File f =  getCachSubsetFile(wave, type);
+        File f =  getGeneratedSubsetCacheFile(wave, type);
         cache(wave, f, o);
     }
 

@@ -24,6 +24,7 @@ import uk.ac.leeds.ccg.andyt.generic.core.Generic_Strings;
 public class WaAS_Strings extends Generic_Strings {
     
     public static final String s_All = "All";
+    public static final String s_file = "file";
     public static final String s_hhold = "hhold";
     public static final String s_InW1W2W3W4W5 = "InW1W2W3W4W5";
     public static final String s_InW2 = "InW2";
@@ -33,6 +34,7 @@ public class WaAS_Strings extends Generic_Strings {
     public static final String s_Paired = "Paired";
     public static final String s_person = "person";
     public static final String s_Subsets = "Subsets";
+    public static final String s_To = "To";
     public static final String s_WaAS = "WaAS";
     public static final String s_waas = "waas";
     

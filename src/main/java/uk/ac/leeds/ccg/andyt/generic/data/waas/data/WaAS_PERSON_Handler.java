@@ -36,6 +36,7 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_Wave2_PERSON_Rec
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_Wave3_PERSON_Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_Wave4_PERSON_Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_Wave5_PERSON_Record;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 
 /**
  *
@@ -43,19 +44,18 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_Wave5_PERSON_Rec
  */
 public class WaAS_PERSON_Handler extends WaAS_Handler {
 
-    public WaAS_PERSON_Handler(WaAS_Environment e, File indir) {
-        super(e, WaAS_Strings.s_person, indir);
+    public WaAS_PERSON_Handler(WaAS_Environment e) {
+        super(e, WaAS_Strings.s_person);
     }
 
     /**
-     * 
+     *
      * @param dir
      * @param wave
-     * @return 
+     * @return
      */
     protected File getFile(File dir, byte wave) {
-        return new File(dir, 
-                TYPE + wave + WaAS_Strings.symbol_dot + WaAS_Strings.s_dat);
+        return new File(dir, TYPE + wave + WaAS_Files.DOT_DAT);
     }
 
     /**
@@ -494,7 +494,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
 
     public Object[] loadSubset(byte wave, String type) {
         Object[] r;
-        File f = getGeneratedSubsetCacheFile(wave, type);
+        File f = getSubsetCacheFile(wave, type);
         if (f.exists()) {
             r = (Object[]) Generic_IO.readObject(f);
         } else {

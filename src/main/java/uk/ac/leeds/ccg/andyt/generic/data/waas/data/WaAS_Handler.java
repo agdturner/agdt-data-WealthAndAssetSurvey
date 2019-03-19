@@ -34,7 +34,7 @@ import uk.ac.leeds.ccg.andyt.generic.util.Generic_Collections;
  */
 public abstract class WaAS_Handler extends WaAS_Object {
 
-    public transient WaAS_Files Files;
+    public transient WaAS_Files files;
     protected transient final byte W1;
     protected transient final byte W2;
     protected transient final byte W3;
@@ -42,18 +42,16 @@ public abstract class WaAS_Handler extends WaAS_Object {
     protected transient final byte W5;
 
     protected final String TYPE;
-    protected final File INDIR;
 
-    public WaAS_Handler(WaAS_Environment e, String type, File indir) {
+    public WaAS_Handler(WaAS_Environment e, String type) {
         super(e);
-        Files = e.files;
+        files = e.files;
         W1 = WaAS_Data.W1;
         W2 = WaAS_Data.W2;
         W3 = WaAS_Data.W3;
         W4 = WaAS_Data.W4;
         W5 = WaAS_Data.W5;
         TYPE = type;
-        INDIR = indir;
     }
 
     /**
@@ -67,7 +65,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
             filename += "_v2";
         }
         filename += ".tab";
-        return new File(INDIR, filename);
+        return new File(files.getWaASInputDir(), filename);
     }
 
     protected Object load(byte wave, File f) {
@@ -79,7 +77,9 @@ public abstract class WaAS_Handler extends WaAS_Object {
     }
 
     protected String getString0(byte wave, File f) {
-        return "wave " + wave + " " + TYPE + " WaAS file " + f;
+        return getString0(wave) + WaAS_Strings.symbol_space 
+                +  WaAS_Strings.s_WaAS + WaAS_Strings.symbol_space 
+                + WaAS_Strings.s_file  + WaAS_Strings.symbol_space + f.toString();
     }
 
     protected void cache(byte wave, File f, Object o) {
@@ -89,57 +89,85 @@ public abstract class WaAS_Handler extends WaAS_Object {
         env.logEndTag(m);
     }
 
-    public File getGeneratedSubsetCacheFile(byte wave, String type) {
-        return new File(Files.getGeneratedWaASSubsetsDir(),
+    /**
+     * 
+     * @param wave
+     * @param type
+     * @return 
+     */
+    public File getSubsetCacheFile(byte wave, String type) {
+        return new File(files.getGeneratedWaASSubsetsDir(),
                 TYPE + wave + WaAS_Strings.symbol_underscore + type + 
-                        WaAS_Strings.symbol_dot + WaAS_Strings.s_dat);
+                        WaAS_Files.DOT_DAT);
     }
     
     public void cacheSubset(byte wave, Object o, String type) {
-        File f =  getGeneratedSubsetCacheFile(wave, type);
-        cache(wave, f, o);
+        cache(wave, getSubsetCacheFile(wave, type), o);
     }
 
+    /**
+     * Writes to file the subset look ups.
+     * @param wave The wave of lookups from and to to be cached.
+     * @param m0 The lookups from wave to (wave + 1).
+     * @param m1 The lookups from (wave + 1) to wave.
+     */
     public void cacheSubsetLookups(byte wave, TreeMap<Short, HashSet<Short>> m0,
             TreeMap<Short, Short> m1) {
-        File f = new File(Files.getGeneratedWaASSubsetsDir(),
-                TYPE + wave + "To" + (wave + 1) + "." + WaAS_Strings.s_dat);
-        cache(wave, f, m0);
-        f = new File(Files.getGeneratedWaASSubsetsDir(),
-                TYPE + (wave + 1) + "To" + wave + "." + WaAS_Strings.s_dat);
-        cache(wave, f, m1);
+        cache(wave, getSubsetLookupToFile(wave), m0);
+        cache(wave, getSubsetLookupFromFile(wave), m1);
+    }
+    
+    /**
+     * @param wave
+     * @return the File for a subset lookup to wave. 
+     */
+    public File getSubsetLookupToFile(byte wave) {
+        return new File(files.getGeneratedWaASSubsetsDir(),
+                getString0(wave) + getStringToWaveDotDat(wave + 1));
+    }
+    
+    /**
+     * @param wave
+     * @return the File for a subset lookup from wave. 
+     */
+    public File getSubsetLookupFromFile(byte wave) {
+        return new File(files.getGeneratedWaASSubsetsDir(),
+                getString0(wave + 1) + getStringToWaveDotDat(wave));
+    }
+    
+    public TreeMap<Short, HashSet<Short>> loadSubsetLookupTo(byte wave) {
+        return (TreeMap<Short, HashSet<Short>>) Generic_IO.readObject(
+                getSubsetLookupToFile(wave));
+    }
+
+    public TreeMap<Short, Short> loadSubsetLookupFrom(byte wave) {    
+        return (TreeMap<Short, Short>) Generic_IO.readObject(
+                getSubsetLookupFromFile(wave));
+    }
+
+    protected String getString0(int wave) {
+        return TYPE + WaAS_Strings.s_W + wave;
+    }
+    
+    protected String getString1(byte wave, short cID) {
+        return getString0(wave) + WaAS_Strings.symbol_underscore + cID;
+    }
+    
+    protected String getStringToWaveDotDat(int wave) {
+        return WaAS_Strings.s_To + wave + WaAS_Files.DOT_DAT;
     }
 
     public void cacheSubsetCollection(short cID, byte wave, Object o) {
-        File f = new File(Files.getGeneratedWaASSubsetsDir(),
-                getString1(wave, cID) + "." + WaAS_Strings.s_dat);
-        WaAS_Handler.this.cache(wave, f, o);
-    }
-
-    protected String getString1(byte wave, short cID) {
-        return TYPE + wave + "_" + cID;
-    }
-
-    public Object[] loadSubsetLookups(byte wave) {
-        Object[] r = new Object[2];
-        File f = new File(Files.getGeneratedWaASSubsetsDir(),
-                TYPE + wave + "To" + (wave + 1) + "." + WaAS_Strings.s_dat);
-        TreeMap<Short, HashSet<Short>> m0;
-        m0 = (TreeMap<Short, HashSet<Short>>) Generic_IO.readObject(f);
-        r[0] = m0;
-        cache(wave, f, m0);
-        f = new File(Files.getGeneratedWaASSubsetsDir(),
-                TYPE + (wave + 1) + "To" + wave + "." + WaAS_Strings.s_dat);
-        TreeMap<Short, Short> m1;
-        m1 = (TreeMap<Short, Short>) Generic_IO.readObject(f);
-        r[1] = m1;
-        return r;
+        WaAS_Handler.this.cache(wave, getSubsetCollectionFile(cID, wave), o);
     }
 
     public Object loadSubsetCollection(short cID, byte wave) {
-        File f = new File(Files.getGeneratedWaASSubsetsDir(),
-                getString1(wave, cID) + "." + WaAS_Strings.s_dat);
-        return load(wave, f);
+        return load(wave, getSubsetCollectionFile(cID, wave));
+    }
+    
+    public File getSubsetCollectionFile(short cID, byte wave){
+        return new File(files.getGeneratedWaASSubsetsDir(),
+                getString1(wave, cID) + WaAS_Files.DOT_DAT);
     }
 
     /**

@@ -54,7 +54,7 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
             data = new WaAS_Data(this);
         }
         logID = ge.initLog(WaAS_Strings.s_WaAS);
-        hh = new WaAS_HHOLD_Handler(this, files.getInputDataDir());
+        hh = new WaAS_HHOLD_Handler(this);
     }
 
     /**

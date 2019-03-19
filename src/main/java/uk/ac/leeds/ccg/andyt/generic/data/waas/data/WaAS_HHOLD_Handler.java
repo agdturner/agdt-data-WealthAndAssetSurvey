@@ -32,6 +32,7 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_Wave2_HHOLD_Recor
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_Wave3_HHOLD_Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_Wave4_HHOLD_Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_Wave5_HHOLD_Record;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 
 /**
  *
@@ -39,8 +40,8 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_Wave5_HHOLD_Recor
  */
 public class WaAS_HHOLD_Handler extends WaAS_Handler {
 
-    public WaAS_HHOLD_Handler(WaAS_Environment e, File indir) {
-        super(e, WaAS_Strings.s_hhold, indir);
+    public WaAS_HHOLD_Handler(WaAS_Environment e) {
+        super(e, WaAS_Strings.s_hhold);
     }
 
     /**
@@ -404,7 +405,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadW4";
         env.logStartTag(m);
         Object[] r;
-        File cf = getGeneratedSubsetCacheFile(W5, "InW4");
+        File cf = getSubsetCacheFile(W5, "InW4");
         if (cf.exists()) {
             r = (Object[]) load(W5, cf);
         } else {
@@ -683,9 +684,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * @return a specific generated File.
      */
     protected File getGeneratedAllFile(short wave) {
-        return new File(Files.getGeneratedWaASDir(), TYPE + WaAS_Strings.s_W
-                + wave + WaAS_Strings.s_All + WaAS_Strings.symbol_dot 
-                + WaAS_Strings.s_dat);
+        return new File(files.getGeneratedWaASDir(), TYPE + WaAS_Strings.s_W
+                + wave + WaAS_Strings.s_All + WaAS_Files.DOT_DAT);
     }
 
     /**
@@ -721,7 +721,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadW4(Set<Short>, " + type + ")";
         env.logStartTag(m);
         Object[] r;
-        File cf = getGeneratedSubsetCacheFile(W4, type);
+        File cf = getSubsetCacheFile(W4, type);
         if (cf.exists()) {
             r = (Object[]) load(W4, cf);
         } else {
@@ -860,7 +860,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadW4";
         env.logStartTag(m);
         Object[] r;
-        File cf = getGeneratedSubsetCacheFile(W4, "InW3");
+        File cf = getSubsetCacheFile(W4, "InW3");
         if (cf.exists()) {
             r = (Object[]) load(W4, cf);
         } else {
@@ -963,7 +963,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadW3";
         env.logStartTag(m);
         Object[] r;
-        File cf = getGeneratedSubsetCacheFile(W3, "InW2");
+        File cf = getSubsetCacheFile(W3, "InW2");
         if (cf.exists()) {
             r = (Object[]) load(W3, cf);
         } else {
@@ -1067,7 +1067,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadW3(Set<Short>, " + type + ")";
         env.logStartTag(m);
         Object[] r;
-        File cf = getGeneratedSubsetCacheFile(W3, type);
+        File cf = getSubsetCacheFile(W3, type);
         if (cf.exists()) {
             r = (Object[]) load(W3, cf);
         } else {
@@ -1194,7 +1194,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadW2";
         env.logStartTag(m);
         Object[] r;
-        File cf = getGeneratedSubsetCacheFile(W2, "InW1");
+        File cf = getSubsetCacheFile(W2, "InW1");
         if (cf.exists()) {
             r = (Object[]) load(W2, cf);
         } else {
@@ -1298,7 +1298,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadW2(Set<Short>, " + type + ")";
         env.logStartTag(m);
         Object[] r;
-        File cf = getGeneratedSubsetCacheFile(W2, type);
+        File cf = getSubsetCacheFile(W2, type);
         if (cf.exists()) {
             r = (Object[]) load(W2, cf);
         } else {
@@ -1417,7 +1417,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadW1(Set<Short>, " + type + ")";
         env.logStartTag(m);
         Object[] r;
-        File cf = getGeneratedSubsetCacheFile(W1, type);
+        File cf = getSubsetCacheFile(W1, type);
         if (cf.exists()) {
             r = (Object[]) load(W1, cf);
         } else {
@@ -1457,7 +1457,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     public TreeMap<Short, WaAS_Wave1_HHOLD_Record> loadCachedSubsetW1(
             String type) {
         TreeMap<Short, WaAS_Wave1_HHOLD_Record> r;
-        File f = getGeneratedSubsetCacheFile(W1, type);
+        File f = getSubsetCacheFile(W1, type);
         if (f.exists()) {
             r = (TreeMap<Short, WaAS_Wave1_HHOLD_Record>) loadTreeMap(f);
         } else {
@@ -1474,7 +1474,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     public TreeMap<Short, WaAS_Wave2_HHOLD_Record> loadCachedSubsetW2(
             String type) {
         TreeMap<Short, WaAS_Wave2_HHOLD_Record> r;
-        File f = getGeneratedSubsetCacheFile(W2, type);
+        File f = getSubsetCacheFile(W2, type);
         if (f.exists()) {
             r = (TreeMap<Short, WaAS_Wave2_HHOLD_Record>) loadTreeMap(f);
         } else {
@@ -1486,7 +1486,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     public TreeMap<Short, WaAS_Wave3_HHOLD_Record> loadCachedSubsetW3(
             String type) {
         TreeMap<Short, WaAS_Wave3_HHOLD_Record> r;
-        File f = getGeneratedSubsetCacheFile(W3, type);
+        File f = getSubsetCacheFile(W3, type);
         if (f.exists()) {
             r = (TreeMap<Short, WaAS_Wave3_HHOLD_Record>) loadTreeMap(f);
         } else {
@@ -1498,7 +1498,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     public TreeMap<Short, WaAS_Wave4_HHOLD_Record> loadCachedSubsetW4(
             String type) {
         TreeMap<Short, WaAS_Wave4_HHOLD_Record> r;
-        File f = getGeneratedSubsetCacheFile(W4, type);
+        File f = getSubsetCacheFile(W4, type);
         if (f.exists()) {
             r = (TreeMap<Short, WaAS_Wave4_HHOLD_Record>) loadTreeMap(f);
         } else {
@@ -1510,7 +1510,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     public TreeMap<Short, WaAS_Wave5_HHOLD_Record> loadCachedSubsetW5(
             String type) {
         TreeMap<Short, WaAS_Wave5_HHOLD_Record> r;
-        File f = getGeneratedSubsetCacheFile(W5, type);
+        File f = getSubsetCacheFile(W5, type);
         if (f.exists()) {
             r = (TreeMap<Short, WaAS_Wave5_HHOLD_Record>) loadTreeMap(f);
         } else {

@@ -55,7 +55,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * @return
      */
     protected File getFile(File dir, byte wave) {
-        return new File(dir, TYPE + wave + WaAS_Files.DOT_DAT);
+        return new File(dir, TYPE + WaAS_Strings.s_W + wave + WaAS_Files.DOT_DAT);
     }
 
     /**

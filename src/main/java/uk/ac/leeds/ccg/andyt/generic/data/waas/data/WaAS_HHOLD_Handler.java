@@ -73,7 +73,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          * contains all those Wave 4 records that have Wave 3 record identifiers
          * and that are in the main set loaded in Step 1.1.
          */
-        r[3] = loadW4(CASEW4ToCASEW5.keySet(), "InW3W5");
+        r[3] = loadW4(CASEW4ToCASEW5.keySet(), WaAS_Strings.s_InW3W4W5);
         TreeMap<Short, HashSet<Short>> CASEW3ToCASEW4;
         CASEW3ToCASEW4 = (TreeMap<Short, HashSet<Short>>) ((Object[]) r[3])[3];
         /**
@@ -81,7 +81,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          * contains all those Wave 3 records that have Wave 2 record identifiers
          * and that are in the main set loaded in Step 1.2.
          */
-        r[2] = loadW3(CASEW3ToCASEW4.keySet(), "InW2W4W5");
+        r[2] = loadW3(CASEW3ToCASEW4.keySet(), WaAS_Strings.s_InW2W3W4W5);
         TreeMap<Short, HashSet<Short>> CASEW2ToCASEW3;
         CASEW2ToCASEW3 = (TreeMap<Short, HashSet<Short>>) ((Object[]) r[2])[3];
         /**
@@ -89,7 +89,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          * contains all those Wave 2 records that have Wave 1 record identifiers
          * and that are in the main set loaded in Step 1.3.
          */
-        r[1] = loadW2(CASEW2ToCASEW3.keySet(), "InW1W3W4W5");
+        r[1] = loadW2(CASEW2ToCASEW3.keySet(), WaAS_Strings.s_InW1W2W3W4W5);
         TreeMap<Short, HashSet<Short>> CASEW1ToCASEW2;
         CASEW1ToCASEW2 = (TreeMap<Short, HashSet<Short>>) ((Object[]) r[1])[3];
         TreeMap<Short, Short> CASEW2ToCASEW1;
@@ -99,7 +99,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          * contains all those Wave 1 records that are in the main set loaded in
          * Step 1.4.
          */
-        r[0] = loadW1(CASEW1ToCASEW2.keySet(), "InW2W3W4W5");
+        r[0] = loadW1(CASEW1ToCASEW2.keySet(), WaAS_Strings.s_InW1W2W3W4W5);
         /**
          * Step 2: Check what is loaded and go through creating ID sets.
          */
@@ -1456,13 +1456,17 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      */
     public TreeMap<Short, WaAS_Wave1_HHOLD_Record> loadCachedSubsetW1(
             String type) {
+        String m = "loadCachedSubsetW1("+ type + ")";
+        env.logStartTag(m);
         TreeMap<Short, WaAS_Wave1_HHOLD_Record> r;
         File f = getSubsetCacheFile(W1, type);
         if (f.exists()) {
             r = (TreeMap<Short, WaAS_Wave1_HHOLD_Record>) loadTreeMap(f);
         } else {
+            env.log("File " + f + " does not exist!");
             r = null;
         }
+        env.logEndTag(m);
         return r;
     }
 
@@ -1473,49 +1477,65 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
 
     public TreeMap<Short, WaAS_Wave2_HHOLD_Record> loadCachedSubsetW2(
             String type) {
+        String m = "loadCachedSubsetW2("+ type + ")";
+        env.logStartTag(m);
         TreeMap<Short, WaAS_Wave2_HHOLD_Record> r;
         File f = getSubsetCacheFile(W2, type);
         if (f.exists()) {
             r = (TreeMap<Short, WaAS_Wave2_HHOLD_Record>) loadTreeMap(f);
         } else {
+            env.log("File " + f + " does not exist!");
             r = null;
         }
+        env.logEndTag(m);
         return r;
     }
 
     public TreeMap<Short, WaAS_Wave3_HHOLD_Record> loadCachedSubsetW3(
             String type) {
+        String m = "loadCachedSubsetW3("+ type + ")";
+        env.logStartTag(m);
         TreeMap<Short, WaAS_Wave3_HHOLD_Record> r;
         File f = getSubsetCacheFile(W3, type);
         if (f.exists()) {
             r = (TreeMap<Short, WaAS_Wave3_HHOLD_Record>) loadTreeMap(f);
         } else {
+            env.log("File " + f + " does not exist!");
             r = null;
         }
+        env.logEndTag(m);
         return r;
     }
 
     public TreeMap<Short, WaAS_Wave4_HHOLD_Record> loadCachedSubsetW4(
             String type) {
+        String m = "loadCachedSubsetW4("+ type + ")";
+        env.logStartTag(m);
         TreeMap<Short, WaAS_Wave4_HHOLD_Record> r;
         File f = getSubsetCacheFile(W4, type);
         if (f.exists()) {
             r = (TreeMap<Short, WaAS_Wave4_HHOLD_Record>) loadTreeMap(f);
         } else {
+            env.log("File " + f + " does not exist!");
             r = null;
         }
+        env.logEndTag(m);
         return r;
     }
 
     public TreeMap<Short, WaAS_Wave5_HHOLD_Record> loadCachedSubsetW5(
             String type) {
+        String m = "loadCachedSubsetW5("+ type + ")";
+        env.logStartTag(m);
         TreeMap<Short, WaAS_Wave5_HHOLD_Record> r;
         File f = getSubsetCacheFile(W5, type);
         if (f.exists()) {
             r = (TreeMap<Short, WaAS_Wave5_HHOLD_Record>) loadTreeMap(f);
         } else {
+            env.log("File " + f + " does not exist!");
             r = null;
         }
+        env.logEndTag(m);
         return r;
     }
 

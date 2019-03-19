@@ -77,9 +77,9 @@ public abstract class WaAS_Handler extends WaAS_Object {
     }
 
     protected String getString0(byte wave, File f) {
-        return getString0(wave) + WaAS_Strings.symbol_space 
-                +  WaAS_Strings.s_WaAS + WaAS_Strings.symbol_space 
-                + WaAS_Strings.s_file  + WaAS_Strings.symbol_space + f.toString();
+        return getString0(wave) + WaAS_Strings.symbol_space
+                + WaAS_Strings.s_WaAS + WaAS_Strings.symbol_space
+                + WaAS_Strings.s_file + WaAS_Strings.symbol_space + f.toString();
     }
 
     protected void cache(byte wave, File f, Object o) {
@@ -90,23 +90,24 @@ public abstract class WaAS_Handler extends WaAS_Object {
     }
 
     /**
-     * 
+     *
      * @param wave
      * @param type
-     * @return 
+     * @return
      */
     public File getSubsetCacheFile(byte wave, String type) {
         return new File(files.getGeneratedWaASSubsetsDir(),
-                TYPE + wave + WaAS_Strings.symbol_underscore + type + 
-                        WaAS_Files.DOT_DAT);
+                TYPE + WaAS_Strings.s_W + wave + WaAS_Strings.symbol_underscore
+                + type + WaAS_Files.DOT_DAT);
     }
-    
+
     public void cacheSubset(byte wave, Object o, String type) {
         cache(wave, getSubsetCacheFile(wave, type), o);
     }
 
     /**
      * Writes to file the subset look ups.
+     *
      * @param wave The wave of lookups from and to to be cached.
      * @param m0 The lookups from wave to (wave + 1).
      * @param m1 The lookups from (wave + 1) to wave.
@@ -116,31 +117,31 @@ public abstract class WaAS_Handler extends WaAS_Object {
         cache(wave, getSubsetLookupToFile(wave), m0);
         cache(wave, getSubsetLookupFromFile(wave), m1);
     }
-    
+
     /**
      * @param wave
-     * @return the File for a subset lookup to wave. 
+     * @return the File for a subset lookup to wave.
      */
     public File getSubsetLookupToFile(byte wave) {
         return new File(files.getGeneratedWaASSubsetsDir(),
                 getString0(wave) + getStringToWaveDotDat(wave + 1));
     }
-    
+
     /**
      * @param wave
-     * @return the File for a subset lookup from wave. 
+     * @return the File for a subset lookup from wave.
      */
     public File getSubsetLookupFromFile(byte wave) {
         return new File(files.getGeneratedWaASSubsetsDir(),
                 getString0(wave + 1) + getStringToWaveDotDat(wave));
     }
-    
+
     public TreeMap<Short, HashSet<Short>> loadSubsetLookupTo(byte wave) {
         return (TreeMap<Short, HashSet<Short>>) Generic_IO.readObject(
                 getSubsetLookupToFile(wave));
     }
 
-    public TreeMap<Short, Short> loadSubsetLookupFrom(byte wave) {    
+    public TreeMap<Short, Short> loadSubsetLookupFrom(byte wave) {
         return (TreeMap<Short, Short>) Generic_IO.readObject(
                 getSubsetLookupFromFile(wave));
     }
@@ -148,13 +149,13 @@ public abstract class WaAS_Handler extends WaAS_Object {
     protected String getString0(int wave) {
         return TYPE + WaAS_Strings.s_W + wave;
     }
-    
+
     protected String getString1(byte wave, short cID) {
         return getString0(wave) + WaAS_Strings.symbol_underscore + cID;
     }
-    
+
     protected String getStringToWaveDotDat(int wave) {
-        return WaAS_Strings.s_To + wave + WaAS_Files.DOT_DAT;
+        return WaAS_Strings.s_To + WaAS_Strings.s_W + wave + WaAS_Files.DOT_DAT;
     }
 
     public void cacheSubsetCollection(short cID, byte wave, Object o) {
@@ -164,8 +165,8 @@ public abstract class WaAS_Handler extends WaAS_Object {
     public Object loadSubsetCollection(short cID, byte wave) {
         return load(wave, getSubsetCollectionFile(cID, wave));
     }
-    
-    public File getSubsetCollectionFile(short cID, byte wave){
+
+    public File getSubsetCollectionFile(short cID, byte wave) {
         return new File(files.getGeneratedWaASSubsetsDir(),
                 getString1(wave, cID) + WaAS_Files.DOT_DAT);
     }

@@ -1451,9 +1451,9 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     }
 
     /**
-     *
+     * TreeMap<Short, WaAS_Wave1_HHOLD_Record>
      * @param type
-     * @return
+     * @return Object[]
      */
     public TreeMap<Short, WaAS_Wave1_HHOLD_Record> loadCachedSubsetW1(
             String type) {

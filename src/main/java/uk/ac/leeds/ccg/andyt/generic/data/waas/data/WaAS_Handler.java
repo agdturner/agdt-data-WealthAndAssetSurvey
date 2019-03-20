@@ -82,6 +82,12 @@ public abstract class WaAS_Handler extends WaAS_Object {
                 + WaAS_Strings.s_file + WaAS_Strings.symbol_space + f.toString();
     }
 
+    /**
+     * A simple wrapper for  {@linkc_IO#
+     * @param wave
+     * @param f
+     * @param o 
+     */
     protected void cache(byte wave, File f, Object o) {
         String m = "cache " + getString0(wave, f);
         env.logStartTag(m);
@@ -101,6 +107,10 @@ public abstract class WaAS_Handler extends WaAS_Object {
                 + type + WaAS_Files.DOT_DAT);
     }
 
+    
+    /**
+     * 
+     */
     public void cacheSubset(byte wave, Object o, String type) {
         cache(wave, getSubsetCacheFile(wave, type), o);
     }

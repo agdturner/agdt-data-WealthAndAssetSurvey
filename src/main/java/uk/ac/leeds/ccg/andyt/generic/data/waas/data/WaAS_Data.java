@@ -22,6 +22,7 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 
 /**
  *
@@ -135,7 +136,8 @@ public class WaAS_Data extends WaAS_Object {
      */
     public File getWaASSubsetCollectionFile(short cID) {
         return new File(env.files.getGeneratedWaASSubsetsDir(),
-                WaAS_Strings.s_WaAS + "_" + cID + "." + WaAS_Strings.s_dat);
+                WaAS_Strings.s_WaAS +  WaAS_Strings.symbol_underscore + cID 
+                        + WaAS_Files.DOT_DAT);
     }
 
     /**

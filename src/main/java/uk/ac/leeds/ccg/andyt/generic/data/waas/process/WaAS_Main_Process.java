@@ -102,7 +102,6 @@ public class WaAS_Main_Process extends WaAS_Object {
         if (doLoadHouseholdsAndIndividualsInAllWaves) {
             loadHouseholdsInAllWaves(hH);
             mergePersonAndHouseholdDataIntoCollections(
-                    //indir, outdir,
                     WaAS_Strings.s_InW1W2W3W4W5, hH, chunkSize);
         }
         if (doLoadHouseholdsInPairedWaves) {
@@ -212,23 +211,23 @@ public class WaAS_Main_Process extends WaAS_Object {
          */
         TreeMap<Short, HashSet<Short>> CASEW1ToCASEW2 = hH.loadSubsetLookupTo(W1);
         TreeMap<Short, Short> CASEW2ToCASEW1 = hH.loadSubsetLookupFrom(W1);
-        mergePersonAndHouseholdDataIntoCollectionsW2(data, type, pH, hH, nOC, 
+        mergePersonAndHouseholdDataIntoCollectionsW2(data, type, pH, hH, nOC,
                 CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2, CASEW2ToCASEW1);
         /**
          * Wave 3
          */
         TreeMap<Short, HashSet<Short>> CASEW2ToCASEW3 = hH.loadSubsetLookupTo(W2);
         TreeMap<Short, Short> CASEW3ToCASEW2 = hH.loadSubsetLookupFrom(W2);
-        mergePersonAndHouseholdDataIntoCollectionsW3(data, type, pH,  hH, nOC, 
-                CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2, CASEW2ToCASEW1, 
+        mergePersonAndHouseholdDataIntoCollectionsW3(data, type, pH, hH, nOC,
+                CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2, CASEW2ToCASEW1,
                 CASEW2ToCASEW3, CASEW3ToCASEW2);
         /**
          * Wave 4
          */
         TreeMap<Short, HashSet<Short>> CASEW3ToCASEW4 = hH.loadSubsetLookupTo(W3);
         TreeMap<Short, Short> CASEW4ToCASEW3 = hH.loadSubsetLookupFrom(W3);
-        mergePersonAndHouseholdDataIntoCollectionsW4(data, type, pH,  hH, nOC, 
-                CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2, CASEW2ToCASEW1, 
+        mergePersonAndHouseholdDataIntoCollectionsW4(data, type, pH, hH, nOC,
+                CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2, CASEW2ToCASEW1,
                 CASEW2ToCASEW3, CASEW3ToCASEW2, CASEW3ToCASEW4, CASEW4ToCASEW3);
         /**
          * Wave 5
@@ -266,7 +265,7 @@ public class WaAS_Main_Process extends WaAS_Object {
         if (type.equalsIgnoreCase(WaAS_Strings.s_InW1W2W3W4W5)) {
             hs = hH.loadCachedSubsetW1(type);
         } else if (type.equalsIgnoreCase(WaAS_Strings.s_Paired)) {
-            hs = hH.loadCachedSubsetW1(WaAS_Strings.s_InW2);
+            hs = hH.loadCachedSubset2W1(WaAS_Strings.s_InW2);
         } else {
             env.log("Unrecognised type " + type);
             hs = null;
@@ -336,7 +335,7 @@ public class WaAS_Main_Process extends WaAS_Object {
      * @param hH
      * @param nOC
      * @param CASEW1ToCID
-     * @param CIDToCASEW1 
+     * @param CIDToCASEW1
      * @param CASEW1ToCASEW2
      * @param CASEW2ToCASEW1
      */
@@ -353,7 +352,7 @@ public class WaAS_Main_Process extends WaAS_Object {
         if (type.equalsIgnoreCase(WaAS_Strings.s_InW1W2W3W4W5)) {
             hs = hH.loadCachedSubsetW2(type);
         } else if (type.equalsIgnoreCase(WaAS_Strings.s_Paired)) {
-            hs = hH.loadCachedSubsetW2(WaAS_Strings.s_InW3);
+            hs = hH.loadCachedSubset2W2(WaAS_Strings.s_InW3);
         } else {
             env.log("Unrecognised type " + type);
             hs = null;
@@ -427,11 +426,11 @@ public class WaAS_Main_Process extends WaAS_Object {
     protected void printCheck(byte wave, short CASEWXCheck, short CASEWX,
             TreeMap<Short, HashSet<Short>> lookup) {
         if (CASEWXCheck != CASEWX) {
-            env.log("Person in Wave " + wave + " record given by "
-                    + "CASEW" + wave + " " + CASEWX + " has a "
-                    + "CASEW" + (wave - 1) + " as " + CASEWXCheck + ", "
-                    + "but in the CASEW" + wave + "ToCASEW" + (wave - 1) + " "
-                    + "lookup this is " + CASEWX);
+            env.log("Person in Wave " + wave + " record given by CASEW" + wave
+                    + " " + CASEWX + " has a CASEW" + (wave - 1) + " as "
+                    + CASEWXCheck + ", but in the CASEW" + wave + "ToCASEW"
+                    + (wave - 1) + " lookup this is " + CASEWX + " - this may "
+                    + "mean the person is new to the household/data.");
             if (lookup.get(CASEWXCheck) == null) {
                 env.log("CASEW" + (wave - 1) + "ToCASEW" + wave + ".get(CASEW"
                         + (wave - 1) + "Check) == null");
@@ -472,7 +471,7 @@ public class WaAS_Main_Process extends WaAS_Object {
         if (type.equalsIgnoreCase(WaAS_Strings.s_InW1W2W3W4W5)) {
             hs = hH.loadCachedSubsetW3(type);
         } else if (type.equalsIgnoreCase(WaAS_Strings.s_Paired)) {
-            hs = hH.loadCachedSubsetW3(WaAS_Strings.s_InW4);
+            hs = hH.loadCachedSubset2W3(WaAS_Strings.s_InW4);
         } else {
             env.log("Unrecognised type " + type);
             hs = null;
@@ -590,7 +589,7 @@ public class WaAS_Main_Process extends WaAS_Object {
         if (type.equalsIgnoreCase(WaAS_Strings.s_InW1W2W3W4W5)) {
             hs = hH.loadCachedSubsetW4(type);
         } else if (type.equalsIgnoreCase(WaAS_Strings.s_Paired)) {
-            hs = hH.loadCachedSubsetW4(WaAS_Strings.s_InW5);
+            hs = hH.loadCachedSubset2W4(WaAS_Strings.s_InW5);
         } else {
             env.log("Unrecognised type " + type);
             hs = null;

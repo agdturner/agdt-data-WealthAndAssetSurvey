@@ -406,7 +406,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadW4";
         env.logStartTag(m);
         Object[] r;
-        File cf = getSubsetCacheFile(W5, "InW4");
+        File cf = getSubsetCacheFile2(W5, "InW4");
         if (cf.exists()) {
             r = (Object[]) load(W5, cf);
         } else {
@@ -722,7 +722,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadW4(Set<Short>, " + type + ")";
         env.logStartTag(m);
         Object[] r;
-        File cf = getSubsetCacheFile(W4, type);
+        File cf = getSubsetCacheFile2(W4, type);
         if (cf.exists()) {
             r = (Object[]) load(W4, cf);
         } else {
@@ -861,7 +861,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadW4";
         env.logStartTag(m);
         Object[] r;
-        File cf = getSubsetCacheFile(W4, "InW3");
+        File cf = getSubsetCacheFile2(W4, "InW3");
         if (cf.exists()) {
             r = (Object[]) load(W4, cf);
         } else {
@@ -964,7 +964,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadW3";
         env.logStartTag(m);
         Object[] r;
-        File cf = getSubsetCacheFile(W3, "InW2");
+        File cf = getSubsetCacheFile2(W3, "InW2");
         if (cf.exists()) {
             r = (Object[]) load(W3, cf);
         } else {
@@ -1068,7 +1068,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadW3(Set<Short>, " + type + ")";
         env.logStartTag(m);
         Object[] r;
-        File cf = getSubsetCacheFile(W3, type);
+        File cf = getSubsetCacheFile2(W3, type);
         if (cf.exists()) {
             r = (Object[]) load(W3, cf);
         } else {
@@ -1195,7 +1195,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadW2";
         env.logStartTag(m);
         Object[] r;
-        File cf = getSubsetCacheFile(W2, "InW1");
+        File cf = getSubsetCacheFile2(W2, "InW1");
         if (cf.exists()) {
             r = (Object[]) load(W2, cf);
         } else {
@@ -1299,7 +1299,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadW2(Set<Short>, " + type + ")";
         env.logStartTag(m);
         Object[] r;
-        File cf = getSubsetCacheFile(W2, type);
+        File cf = getSubsetCacheFile2(W2, type);
         if (cf.exists()) {
             r = (Object[]) load(W2, cf);
         } else {
@@ -1418,7 +1418,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadW1(Set<Short>, " + type + ")";
         env.logStartTag(m);
         Object[] r;
-        File cf = getSubsetCacheFile(W1, type);
+        File cf = getSubsetCacheFile2(W1, type);
         if (cf.exists()) {
             r = (Object[]) load(W1, cf);
         } else {
@@ -1471,6 +1471,28 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         return r;
     }
 
+    /**
+     * TreeMap<Short, WaAS_Wave1_HHOLD_Record>
+     * @param type
+     * @return Object[]
+     */
+    public TreeMap<Short, WaAS_Wave1_HHOLD_Record> loadCachedSubset2W1(
+            String type) {
+        String m = "loadCachedSubset2W1("+ type + ")";
+        env.logStartTag(m);
+        TreeMap<Short, WaAS_Wave1_HHOLD_Record> r;
+        File f = getSubsetCacheFile(W1, type);
+        if (f.exists()) {
+            Object[] o = (Object[]) Generic_IO.readObject(f);
+            r = (TreeMap<Short, WaAS_Wave1_HHOLD_Record>) o[0];
+        } else {
+            env.log("File " + f + " does not exist!");
+            r = null;
+        }
+        env.logEndTag(m);
+        return r;
+    }
+    
     public TreeMap<Short, WaAS_Wave2_HHOLD_Record> loadCachedSubsetW2(
             String type) {
         String m = "loadCachedSubsetW2("+ type + ")";
@@ -1479,6 +1501,23 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         File f = getSubsetCacheFile(W2, type);
         if (f.exists()) {
             r = (TreeMap<Short, WaAS_Wave2_HHOLD_Record>) Generic_IO.readObject(f);
+        } else {
+            env.log("File " + f + " does not exist!");
+            r = null;
+        }
+        env.logEndTag(m);
+        return r;
+    }
+    
+    public TreeMap<Short, WaAS_Wave2_HHOLD_Record> loadCachedSubset2W2(
+            String type) {
+        String m = "loadCachedSubset2W2("+ type + ")";
+        env.logStartTag(m);
+        TreeMap<Short, WaAS_Wave2_HHOLD_Record> r;
+        File f = getSubsetCacheFile(W2, type);
+        if (f.exists()) {
+            Object[] o = (Object[]) Generic_IO.readObject(f);
+            r = (TreeMap<Short, WaAS_Wave2_HHOLD_Record>) o[0];
         } else {
             env.log("File " + f + " does not exist!");
             r = null;
@@ -1495,6 +1534,23 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         File f = getSubsetCacheFile(W3, type);
         if (f.exists()) {
             r = (TreeMap<Short, WaAS_Wave3_HHOLD_Record>) Generic_IO.readObject(f);
+        } else {
+            env.log("File " + f + " does not exist!");
+            r = null;
+        }
+        env.logEndTag(m);
+        return r;
+    }
+    
+    public TreeMap<Short, WaAS_Wave3_HHOLD_Record> loadCachedSubset2W3(
+            String type) {
+        String m = "loadCachedSubset2W3("+ type + ")";
+        env.logStartTag(m);
+        TreeMap<Short, WaAS_Wave3_HHOLD_Record> r;
+        File f = getSubsetCacheFile(W3, type);
+        if (f.exists()) {
+            Object[] o = (Object[]) Generic_IO.readObject(f);
+            r = (TreeMap<Short, WaAS_Wave3_HHOLD_Record>) o[0];
         } else {
             env.log("File " + f + " does not exist!");
             r = null;
@@ -1519,6 +1575,23 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         return r;
     }
 
+    public TreeMap<Short, WaAS_Wave4_HHOLD_Record> loadCachedSubset2W4(
+            String type) {
+        String m = "loadCachedSubset2W4("+ type + ")";
+        env.logStartTag(m);
+        TreeMap<Short, WaAS_Wave4_HHOLD_Record> r;
+        File f = getSubsetCacheFile(W4, type);
+        if (f.exists()) {
+            Object[] o = (Object[]) Generic_IO.readObject(f);
+            r = (TreeMap<Short, WaAS_Wave4_HHOLD_Record>) o[0];
+        } else {
+            env.log("File " + f + " does not exist!");
+            r = null;
+        }
+        env.logEndTag(m);
+        return r;
+    }
+
     public TreeMap<Short, WaAS_Wave5_HHOLD_Record> loadCachedSubsetW5(
             String type) {
         String m = "loadCachedSubsetW5("+ type + ")";
@@ -1534,6 +1607,23 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         env.logEndTag(m);
         return r;
     }
+
+//    public TreeMap<Short, WaAS_Wave5_HHOLD_Record> loadCachedSubset2W5(
+//            String type) {
+//        String m = "loadCachedSubset2W5("+ type + ")";
+//        env.logStartTag(m);
+//        TreeMap<Short, WaAS_Wave5_HHOLD_Record> r;
+//        File f = getSubsetCacheFile(W5, type);
+//        if (f.exists()) {
+//            Object[] o = (Object[]) Generic_IO.readObject(f);
+//            r = (TreeMap<Short, WaAS_Wave5_HHOLD_Record>) o[0];
+//        } else {
+//            env.log("File " + f + " does not exist!");
+//            r = null;
+//        }
+//        env.logEndTag(m);
+//        return r;
+//    }
 
     /**
      * Value label information for Ten1W5

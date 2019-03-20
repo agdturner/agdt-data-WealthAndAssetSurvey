@@ -16,7 +16,6 @@
 package uk.ac.leeds.ccg.andyt.generic.data.waas.core;
 
 import java.io.File;
-import java.io.PrintWriter;
 import java.io.Serializable;
 import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
 //import uk.ac.leeds.ccg.andyt.data.postcode.Generic_UKPostcode_Handler;
@@ -50,6 +49,8 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
         File f = files.getEnvDataFile();
         if (f.exists()) {
             data = (WaAS_Data) Generic_IO.readObject(f);
+            initData();
+            //data.env = this;
         } else {
             data = new WaAS_Data(this);
         }
@@ -57,6 +58,10 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
         hh = new WaAS_HHOLD_Handler(this);
     }
 
+     private void initData(){
+         data.env = this;
+     }
+     
     /**
      * A method to try to ensure there is enough memory to continue.
      *

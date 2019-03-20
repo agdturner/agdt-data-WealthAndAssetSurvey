@@ -107,7 +107,17 @@ public abstract class WaAS_Handler extends WaAS_Object {
                 + type + WaAS_Files.DOT_DAT);
     }
 
-    
+    /**
+     *
+     * @param wave
+     * @param type
+     * @return
+     */
+    public File getSubsetCacheFile2(byte wave, String type) {
+        return new File(files.getGeneratedWaASSubsetsDir(),
+                TYPE + WaAS_Strings.s_W + wave + WaAS_Strings.symbol_underscore
+                + type + "2" + WaAS_Files.DOT_DAT);
+    }
     /**
      * 
      */

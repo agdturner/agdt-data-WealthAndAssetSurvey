@@ -1481,7 +1481,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadCachedSubset2W1("+ type + ")";
         env.logStartTag(m);
         TreeMap<Short, WaAS_Wave1_HHOLD_Record> r;
-        File f = getSubsetCacheFile(W1, type);
+        File f = getSubsetCacheFile2(W1, type);
         if (f.exists()) {
             Object[] o = (Object[]) Generic_IO.readObject(f);
             r = (TreeMap<Short, WaAS_Wave1_HHOLD_Record>) o[0];
@@ -1514,7 +1514,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadCachedSubset2W2("+ type + ")";
         env.logStartTag(m);
         TreeMap<Short, WaAS_Wave2_HHOLD_Record> r;
-        File f = getSubsetCacheFile(W2, type);
+        File f = getSubsetCacheFile2(W2, type);
         if (f.exists()) {
             Object[] o = (Object[]) Generic_IO.readObject(f);
             r = (TreeMap<Short, WaAS_Wave2_HHOLD_Record>) o[0];
@@ -1547,7 +1547,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadCachedSubset2W3("+ type + ")";
         env.logStartTag(m);
         TreeMap<Short, WaAS_Wave3_HHOLD_Record> r;
-        File f = getSubsetCacheFile(W3, type);
+        File f = getSubsetCacheFile2(W3, type);
         if (f.exists()) {
             Object[] o = (Object[]) Generic_IO.readObject(f);
             r = (TreeMap<Short, WaAS_Wave3_HHOLD_Record>) o[0];
@@ -1580,7 +1580,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         String m = "loadCachedSubset2W4("+ type + ")";
         env.logStartTag(m);
         TreeMap<Short, WaAS_Wave4_HHOLD_Record> r;
-        File f = getSubsetCacheFile(W4, type);
+        File f = getSubsetCacheFile2(W4, type);
         if (f.exists()) {
             Object[] o = (Object[]) Generic_IO.readObject(f);
             r = (TreeMap<Short, WaAS_Wave4_HHOLD_Record>) o[0];
@@ -1608,22 +1608,22 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         return r;
     }
 
-//    public TreeMap<Short, WaAS_Wave5_HHOLD_Record> loadCachedSubset2W5(
-//            String type) {
-//        String m = "loadCachedSubset2W5("+ type + ")";
-//        env.logStartTag(m);
-//        TreeMap<Short, WaAS_Wave5_HHOLD_Record> r;
-//        File f = getSubsetCacheFile(W5, type);
-//        if (f.exists()) {
-//            Object[] o = (Object[]) Generic_IO.readObject(f);
-//            r = (TreeMap<Short, WaAS_Wave5_HHOLD_Record>) o[0];
-//        } else {
-//            env.log("File " + f + " does not exist!");
-//            r = null;
-//        }
-//        env.logEndTag(m);
-//        return r;
-//    }
+    public TreeMap<Short, WaAS_Wave5_HHOLD_Record> loadCachedSubset2W5(
+            String type) {
+        String m = "loadCachedSubset2W5("+ type + ")";
+        env.logStartTag(m);
+        TreeMap<Short, WaAS_Wave5_HHOLD_Record> r;
+        File f = getSubsetCacheFile2(W5, type);
+        if (f.exists()) {
+            Object[] o = (Object[]) Generic_IO.readObject(f);
+            r = (TreeMap<Short, WaAS_Wave5_HHOLD_Record>) o[0];
+        } else {
+            env.log("File " + f + " does not exist!");
+            r = null;
+        }
+        env.logEndTag(m);
+        return r;
+    }
 
     /**
      * Value label information for Ten1W5

@@ -80,9 +80,9 @@ public class WaAS_Main_Process extends WaAS_Object {
         WaAS_Main_Process p = new WaAS_Main_Process(env);
         // Main switches
         //p.doJavaCodeGeneration = true;
-        p.doLoadHouseholdsAndIndividualsInAllWaves = true;
+        //p.doLoadAllHouseholdsRecords = true;
+        //p.doLoadHouseholdsAndIndividualsInAllWaves = true;
         p.doLoadHouseholdsInPairedWaves = true;
-        p.doLoadAllHouseholdsRecords = true;
         p.run();
     }
 
@@ -90,10 +90,6 @@ public class WaAS_Main_Process extends WaAS_Object {
         if (doJavaCodeGeneration) {
             runJavaCodeGeneration();
         }
-        File indir = files.getInputWaASDir();
-        File gendir = files.getGeneratedWaASDir();
-        File outdir = new File(gendir, WaAS_Strings.s_Subsets);
-        outdir.mkdirs();
         WaAS_HHOLD_Handler hH = new WaAS_HHOLD_Handler(env);
         int chunkSize = 256; //1024; 512; 256;
         if (doLoadAllHouseholdsRecords) {
@@ -233,7 +229,7 @@ public class WaAS_Main_Process extends WaAS_Object {
          * Wave 5
          */
         TreeMap<Short, HashSet<Short>> CASEW4ToCASEW5 = hH.loadSubsetLookupTo(W4);
-        TreeMap<Short, Short> CASEW5ToCASEW4 = hH.loadSubsetLookupFrom(W3);
+        TreeMap<Short, Short> CASEW5ToCASEW4 = hH.loadSubsetLookupFrom(W4);
         mergePersonAndHouseholdDataIntoCollectionsW5(data, type, pH, hH, nOC,
                 CASEW1ToCID, CIDToCASEW1, CASEW1ToCASEW2, CASEW2ToCASEW1,
                 CASEW2ToCASEW3, CASEW3ToCASEW2, CASEW3ToCASEW4, CASEW4ToCASEW3,
@@ -735,7 +731,21 @@ public class WaAS_Main_Process extends WaAS_Object {
         // Wave 5
         String m0 = "mergePersonAndHouseholdDataIntoCollectionsW5";
         env.logStartTag(m0);
-        TreeMap<Short, WaAS_Wave5_HHOLD_Record> hs = hH.loadCachedSubsetW5(type);
+        TreeMap<Short, WaAS_Wave5_HHOLD_Record> hs;
+        if (type.equalsIgnoreCase(WaAS_Strings.s_InW1W2W3W4W5)) {
+            hs = hH.loadCachedSubsetW5(type);
+        } else if (type.equalsIgnoreCase(WaAS_Strings.s_Paired)) {
+            hs = hH.loadCachedSubset2W5(WaAS_Strings.s_InW4); // It may seem eems wierd to be W4 not W5, but probably right!?
+            if (hs == null) {
+                env.log("WTF1");
+            }
+        } else {
+            env.log("Unrecognised type " + type);
+            hs = null;
+        }
+            if (hs == null) {
+                env.log("WTF2");
+            }
         TreeMap<Short, File> cFs;
         cFs = pH.loadSubsetWave5(nOC, CASEW1ToCID, W5, CASEW2ToCASEW1,
                 CASEW3ToCASEW2, CASEW4ToCASEW3, CASEW5ToCASEW4);
@@ -773,10 +783,12 @@ public class WaAS_Main_Process extends WaAS_Object {
                                 HashSet<Short> CASEW5s;
                                 CASEW5s = CASEW4ToCASEW5.get(CASEW4);
                                 CASEW5s.stream().forEach(CASEW5 -> {
-                                    WaAS_Wave5_Record w5rec;
-                                    w5rec = new WaAS_Wave5_Record(CASEW5);
-                                    w5rec.setHhold(hs.get(CASEW5));
-                                    w5_4.put(CASEW5, w5rec);
+                                    if (CASEW5 != null) {
+                                        WaAS_Wave5_Record w5rec;
+                                        w5rec = new WaAS_Wave5_Record(CASEW5);
+                                            w5rec.setHhold(hs.get(CASEW5));
+                                            w5_4.put(CASEW5, w5rec);
+                                    }
                                 });
                             });
                         });
@@ -796,60 +808,65 @@ public class WaAS_Main_Process extends WaAS_Object {
                 short CASEW3Check = p.getCASEW3();
                 short CASEW4Check = p.getCASEW4();
                 short CASEW5 = p.getCASEW5();
-                short CASEW4 = CASEW5ToCASEW4.get(CASEW5);
-                short CASEW3 = CASEW4ToCASEW3.get(CASEW4);
-                short CASEW2 = CASEW3ToCASEW2.get(CASEW3);
-                short CASEW1 = CASEW2ToCASEW1.get(CASEW2);
-                //printCheck(W2, CASEW1Check, CASEW1, CASEW1ToCASEW2);
-                //printCheck(W3, CASEW2Check, CASEW2, CASEW2ToCASEW3);
-                //printCheck(W4, CASEW3Check, CASEW3, CASEW3ToCASEW4);
-                printCheck(W5, CASEW4Check, CASEW4, CASEW4ToCASEW5);
-                HashMap<Short, WaAS_Combined_Record> m = c.getData();
-                WaAS_Combined_Record cr = m.get(CASEW1);
-                if (cr == null) {
-                    env.log("No combined record for CASEW1 " + CASEW1 + "! "
-                            + "This may be a data error, or this person may "
-                            + "have moved from one hhold to another?");
+                Short o = CASEW5ToCASEW4.get(CASEW5);
+                if (o == null) {
+                    env.log("CASEW5 " + CASEW5 + " is not in CASEW5ToCASEW4 lookup");
                 } else {
-                    HashSet<Short> CASEW2s = CASEW1ToCASEW2.get(CASEW1);
-                    CASEW2s.stream().forEach(k2 -> {
-                        HashSet<Short> CASEW3s = CASEW2ToCASEW3.get(CASEW2);
-                        CASEW3s.stream().forEach(k3 -> {
-                            HashSet<Short> CASEW4s = CASEW3ToCASEW4.get(CASEW3);
-                            CASEW4s.stream().forEach(k4 -> {
-                                HashSet<Short> CASEW5s = CASEW4ToCASEW5.get(CASEW4);
-                                CASEW5s.stream().forEach(k5 -> {
-                                    HashMap<Short, HashMap<Short, HashMap<Short, WaAS_Wave5_Record>>> w5_2;
-                                    w5_2 = cr.w5Records.get(k2);
-                                    if (w5_2 == null) {
-                                        w5_2 = new HashMap<>();
-                                        cr.w5Records.put(k2, w5_2);
-                                    }
-                                    HashMap<Short, HashMap<Short, WaAS_Wave5_Record>> w5_3;
-                                    w5_3 = w5_2.get(k3);
-                                    if (w5_3 == null) {
-                                        w5_3 = new HashMap<>();
-                                        w5_2.put(k3, w5_3);
-                                    }
-                                    HashMap<Short, WaAS_Wave5_Record> w5_4;
-                                    w5_4 = w5_3.get(k4);
-                                    if (w5_4 == null) {
-                                        w5_4 = new HashMap<>();
-                                        w5_3.put(k4, w5_4);
-                                    }
-                                    WaAS_Wave5_Record w5rec;
-                                    w5rec = cr.w5Records.get(k2).get(k3).get(k4).get(k5);
-                                    if (w5rec == null) {
-                                        w5rec = new WaAS_Wave5_Record(k5);
-                                        env.log("Adding people, but there is "
-                                                + "no hhold record for CASEW5 "
-                                                + CASEW5 + "!");
-                                    }
-                                    w5rec.getPeople().add(p);
+                    short CASEW4 = o;
+                    short CASEW3 = CASEW4ToCASEW3.get(CASEW4);
+                    short CASEW2 = CASEW3ToCASEW2.get(CASEW3);
+                    short CASEW1 = CASEW2ToCASEW1.get(CASEW2);
+                    //printCheck(W2, CASEW1Check, CASEW1, CASEW1ToCASEW2);
+                    //printCheck(W3, CASEW2Check, CASEW2, CASEW2ToCASEW3);
+                    //printCheck(W4, CASEW3Check, CASEW3, CASEW3ToCASEW4);
+                    printCheck(W5, CASEW4Check, CASEW4, CASEW4ToCASEW5);
+                    HashMap<Short, WaAS_Combined_Record> m = c.getData();
+                    WaAS_Combined_Record cr = m.get(CASEW1);
+                    if (cr == null) {
+                        env.log("No combined record for CASEW1 " + CASEW1 + "! "
+                                + "This may be a data error, or this person may "
+                                + "have moved from one hhold to another?");
+                    } else {
+                        HashSet<Short> CASEW2s = CASEW1ToCASEW2.get(CASEW1);
+                        CASEW2s.stream().forEach(k2 -> {
+                            HashSet<Short> CASEW3s = CASEW2ToCASEW3.get(CASEW2);
+                            CASEW3s.stream().forEach(k3 -> {
+                                HashSet<Short> CASEW4s = CASEW3ToCASEW4.get(CASEW3);
+                                CASEW4s.stream().forEach(k4 -> {
+                                    HashSet<Short> CASEW5s = CASEW4ToCASEW5.get(CASEW4);
+                                    CASEW5s.stream().forEach(k5 -> {
+                                        HashMap<Short, HashMap<Short, HashMap<Short, WaAS_Wave5_Record>>> w5_2;
+                                        w5_2 = cr.w5Records.get(k2);
+                                        if (w5_2 == null) {
+                                            w5_2 = new HashMap<>();
+                                            cr.w5Records.put(k2, w5_2);
+                                        }
+                                        HashMap<Short, HashMap<Short, WaAS_Wave5_Record>> w5_3;
+                                        w5_3 = w5_2.get(k3);
+                                        if (w5_3 == null) {
+                                            w5_3 = new HashMap<>();
+                                            w5_2.put(k3, w5_3);
+                                        }
+                                        HashMap<Short, WaAS_Wave5_Record> w5_4;
+                                        w5_4 = w5_3.get(k4);
+                                        if (w5_4 == null) {
+                                            w5_4 = new HashMap<>();
+                                            w5_3.put(k4, w5_4);
+                                        }
+                                        WaAS_Wave5_Record w5rec;
+                                        w5rec = cr.w5Records.get(k2).get(k3).get(k4).get(k5);
+                                        if (w5rec == null) {
+                                            w5rec = new WaAS_Wave5_Record(k5);
+                                            env.log("Adding people, but there is "
+                                                    + "no hhold record for CASEW5 "
+                                                    + CASEW5 + "!");
+                                        }
+                                        w5rec.getPeople().add(p);
+                                    });
                                 });
                             });
                         });
-                    });
+                    }
                 }
             });
             env.logEndTag(m2);
@@ -859,7 +876,8 @@ public class WaAS_Main_Process extends WaAS_Object {
             data.cacheSubsetCollection(cID, c);
             data.clearCollection(cID);
             env.logEndTag(m1);
-        });
+        }
+        );
         env.logEndTag(m0);
     }
 

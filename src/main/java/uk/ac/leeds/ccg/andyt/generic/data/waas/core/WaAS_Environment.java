@@ -36,11 +36,19 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
     public final WaAS_HHOLD_Handler hh;
     public final WaAS_Data data;
     public transient static final String EOL = System.getProperty("line.separator");
-    
+
     /**
      * Stores the {@link ge} log ID for the log set up for WaAS.
      */
     protected final int logID;
+
+    public WaAS_Environment(File dataDir) {
+        this(new Generic_Environment(dataDir), dataDir);
+    }
+
+    public WaAS_Environment(Generic_Environment ge) {
+        this(ge, ge.getFiles().getDataDir());
+    }
 
     public WaAS_Environment(Generic_Environment ge, File dataDir) {
         //Memory_Threshold = 3000000000L;
@@ -57,15 +65,11 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
         logID = ge.initLog(WaAS_Strings.s_WaAS);
         hh = new WaAS_HHOLD_Handler(this);
     }
-    
-     public WaAS_Environment(Generic_Environment ge) {
-         this(ge, ge.getFiles().getDataDir());
+
+    private void initData() {
+        data.env = this;
     }
 
-     private void initData(){
-         data.env = this;
-     }
-     
     /**
      * A method to try to ensure there is enough memory to continue.
      *
@@ -88,6 +92,7 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
 
     /**
      * Attempts to swap some of {@link #data}.
+     *
      * @param hoome handleOutOfMemoryError
      * @return {@code true} iff some data was successfully swapped.
      */
@@ -128,7 +133,9 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
     }
 
     /**
-     * Attempts to clear some of {@link #data} using {@link WaAS_Data#clearSomeData()}.
+     * Attempts to clear some of {@link #data} using
+     * {@link WaAS_Data#clearSomeData()}.
+     *
      * @return {@code true} iff some data was successfully cleared.
      */
     public boolean clearSomeData() {
@@ -136,14 +143,16 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
     }
 
     /**
-     * Attempts to clear all of {@link #data} using {@link WaAS_Data#clearAllData()}.
+     * Attempts to clear all of {@link #data} using
+     * {@link WaAS_Data#clearAllData()}.
+     *
      * @return The amount of data successfully cleared.
      */
     public int clearAllData() {
         int r = data.clearAllData();
         return r;
     }
-    
+
     /**
      * For caching {@link #data} to {@link WaAS_Files#getEnvDataFile()}.
      */
@@ -153,7 +162,7 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
         Generic_IO.writeObject(data, files.getEnvDataFile());
         logEndTag(m);
     }
-    
+
     /**
      * For convenience.
      * {@link Generic_Environment#logStartTag(java.lang.String, int)}
@@ -163,16 +172,16 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
     public final void logStartTag(String s) {
         ge.logStartTag(s, logID);
     }
-    
+
     /**
-     * For convenience.
-     * {@link Generic_Environment#log(java.lang.String, int)}
+     * For convenience. {@link Generic_Environment#log(java.lang.String, int)}
+     *
      * @param s The message to be logged.
      */
     public void log(String s) {
         ge.log(s, logID);
     }
-    
+
     /**
      * For convenience.
      * {@link Generic_Environment#logEndTag(java.lang.String, int)}

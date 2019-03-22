@@ -26,6 +26,7 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 public class WaAS_Files extends Generic_Files {
 
     public static String DOT_DAT = WaAS_Strings.symbol_dot + WaAS_Strings.s_dat;
+    
     /**
      *
      * @param dataDir

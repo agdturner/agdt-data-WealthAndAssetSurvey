@@ -42,10 +42,10 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
      */
     protected final int logID;
 
-     public WaAS_Environment(Generic_Environment ge) {
+    public WaAS_Environment(Generic_Environment ge, File dataDir) {
         //Memory_Threshold = 3000000000L;
         this.ge = ge;
-        files = new WaAS_Files(ge.getFiles().getDataDir());
+        files = new WaAS_Files(dataDir);
         File f = files.getEnvDataFile();
         if (f.exists()) {
             data = (WaAS_Data) Generic_IO.readObject(f);
@@ -56,6 +56,10 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
         }
         logID = ge.initLog(WaAS_Strings.s_WaAS);
         hh = new WaAS_HHOLD_Handler(this);
+    }
+    
+     public WaAS_Environment(Generic_Environment ge) {
+         this(ge, ge.getFiles().getDataDir());
     }
 
      private void initData(){

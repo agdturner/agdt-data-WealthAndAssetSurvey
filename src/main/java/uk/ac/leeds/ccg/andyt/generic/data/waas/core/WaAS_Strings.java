@@ -23,6 +23,8 @@ import uk.ac.leeds.ccg.andyt.generic.core.Generic_Strings;
  */
 public class WaAS_Strings extends Generic_Strings {
     
+    public static final String PROJECT_NAME = "agdt-java-generic-data-WealthAndAssetsSurvey";
+    
     public static final String s_All = "All";
     public static final String s_file = "file";
     public static final String s_hhold = "hhold";

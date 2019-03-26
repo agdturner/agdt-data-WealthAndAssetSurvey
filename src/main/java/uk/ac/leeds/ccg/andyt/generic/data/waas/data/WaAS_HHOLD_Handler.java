@@ -17,6 +17,7 @@ package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -27,12 +28,14 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.util.Generic_Collections;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_Wave1Or2Or3Or4Or5_HHOLD_Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_Wave1_HHOLD_Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_Wave2_HHOLD_Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_Wave3_HHOLD_Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_Wave4_HHOLD_Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_Wave5_HHOLD_Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
+import uk.ac.leeds.ccg.andyt.stats.Generic_Statistics;
 
 /**
  *
@@ -1452,12 +1455,13 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
 
     /**
      * TreeMap<Short, WaAS_Wave1_HHOLD_Record>
+     *
      * @param type
      * @return Object[]
      */
     public TreeMap<Short, WaAS_Wave1_HHOLD_Record> loadCachedSubsetW1(
             String type) {
-        String m = "loadCachedSubsetW1("+ type + ")";
+        String m = "loadCachedSubsetW1(" + type + ")";
         env.logStartTag(m);
         TreeMap<Short, WaAS_Wave1_HHOLD_Record> r;
         File f = getSubsetCacheFile(W1, type);
@@ -1473,12 +1477,13 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
 
     /**
      * TreeMap<Short, WaAS_Wave1_HHOLD_Record>
+     *
      * @param type
      * @return Object[]
      */
     public TreeMap<Short, WaAS_Wave1_HHOLD_Record> loadCachedSubset2W1(
             String type) {
-        String m = "loadCachedSubset2W1("+ type + ")";
+        String m = "loadCachedSubset2W1(" + type + ")";
         env.logStartTag(m);
         TreeMap<Short, WaAS_Wave1_HHOLD_Record> r;
         File f = getSubsetCacheFile2(W1, type);
@@ -1492,10 +1497,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         env.logEndTag(m);
         return r;
     }
-    
+
     public TreeMap<Short, WaAS_Wave2_HHOLD_Record> loadCachedSubsetW2(
             String type) {
-        String m = "loadCachedSubsetW2("+ type + ")";
+        String m = "loadCachedSubsetW2(" + type + ")";
         env.logStartTag(m);
         TreeMap<Short, WaAS_Wave2_HHOLD_Record> r;
         File f = getSubsetCacheFile(W2, type);
@@ -1508,10 +1513,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         env.logEndTag(m);
         return r;
     }
-    
+
     public TreeMap<Short, WaAS_Wave2_HHOLD_Record> loadCachedSubset2W2(
             String type) {
-        String m = "loadCachedSubset2W2("+ type + ")";
+        String m = "loadCachedSubset2W2(" + type + ")";
         env.logStartTag(m);
         TreeMap<Short, WaAS_Wave2_HHOLD_Record> r;
         File f = getSubsetCacheFile2(W2, type);
@@ -1528,7 +1533,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
 
     public TreeMap<Short, WaAS_Wave3_HHOLD_Record> loadCachedSubsetW3(
             String type) {
-        String m = "loadCachedSubsetW3("+ type + ")";
+        String m = "loadCachedSubsetW3(" + type + ")";
         env.logStartTag(m);
         TreeMap<Short, WaAS_Wave3_HHOLD_Record> r;
         File f = getSubsetCacheFile(W3, type);
@@ -1541,10 +1546,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         env.logEndTag(m);
         return r;
     }
-    
+
     public TreeMap<Short, WaAS_Wave3_HHOLD_Record> loadCachedSubset2W3(
             String type) {
-        String m = "loadCachedSubset2W3("+ type + ")";
+        String m = "loadCachedSubset2W3(" + type + ")";
         env.logStartTag(m);
         TreeMap<Short, WaAS_Wave3_HHOLD_Record> r;
         File f = getSubsetCacheFile2(W3, type);
@@ -1561,7 +1566,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
 
     public TreeMap<Short, WaAS_Wave4_HHOLD_Record> loadCachedSubsetW4(
             String type) {
-        String m = "loadCachedSubsetW4("+ type + ")";
+        String m = "loadCachedSubsetW4(" + type + ")";
         env.logStartTag(m);
         TreeMap<Short, WaAS_Wave4_HHOLD_Record> r;
         File f = getSubsetCacheFile(W4, type);
@@ -1577,7 +1582,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
 
     public TreeMap<Short, WaAS_Wave4_HHOLD_Record> loadCachedSubset2W4(
             String type) {
-        String m = "loadCachedSubset2W4("+ type + ")";
+        String m = "loadCachedSubset2W4(" + type + ")";
         env.logStartTag(m);
         TreeMap<Short, WaAS_Wave4_HHOLD_Record> r;
         File f = getSubsetCacheFile2(W4, type);
@@ -1594,7 +1599,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
 
     public TreeMap<Short, WaAS_Wave5_HHOLD_Record> loadCachedSubsetW5(
             String type) {
-        String m = "loadCachedSubsetW5("+ type + ")";
+        String m = "loadCachedSubsetW5(" + type + ")";
         env.logStartTag(m);
         TreeMap<Short, WaAS_Wave5_HHOLD_Record> r;
         File f = getSubsetCacheFile(W5, type);
@@ -1610,7 +1615,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
 
     public TreeMap<Short, WaAS_Wave5_HHOLD_Record> loadCachedSubset2W5(
             String type) {
-        String m = "loadCachedSubset2W5("+ type + ")";
+        String m = "loadCachedSubset2W5(" + type + ")";
         env.logStartTag(m);
         TreeMap<Short, WaAS_Wave5_HHOLD_Record> r;
         File f = getSubsetCacheFile2(W5, type);
@@ -1658,6 +1663,344 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         r.put((byte) -8, "No answer");
         r.put((byte) -7, "Does not apply");
         r.put((byte) -6, "Error/Partial");
+        return r;
+    }
+
+    /**
+     *
+     * @param variableName
+     * @param wave
+     * @param GORSubsets
+     * @param GORLookups
+     * @param data
+     * @param subset Subset of CASEW1 for all records to be included.
+     * @return Map with keys as GOR and Values as map with keys as CASEWX and
+     * values as HVALUE.
+     */
+    public HashMap<Byte, HashMap<Short, Double>> getVariableForGORSubsets(
+            String variableName, byte wave, 
+            HashMap<Byte, HashSet<Short>>[] GORSubsets,
+            HashMap<Short, Byte>[] GORLookups, WaAS_Data data,
+            HashSet<Short> subset) {
+        HashMap<Byte, HashMap<Short, Double>> r = new HashMap<>();
+        Iterator<Byte> ite = GORSubsets[wave - 1].keySet().iterator();
+        while (ite.hasNext()) {
+            r.put(ite.next(), new HashMap<>());
+        }
+        if (wave == WaAS_Data.W1) {
+            data.data.keySet().stream().forEach(cID -> {
+                WaAS_Collection c = data.getCollection(cID);
+                c.getData().keySet().stream().forEach(CASEW1 -> {
+                    if (subset.contains(CASEW1)) {
+                        WaAS_Combined_Record cr = c.getData().get(CASEW1);
+                        WaAS_Wave1_HHOLD_Record w1 = cr.w1Record.getHhold();
+                        Byte GOR = GORLookups[wave - 1].get(CASEW1);
+                        Generic_Collections.addToMap(r, GOR, CASEW1,
+                                w1.getHVALUE());
+                    }
+                });
+                data.clearCollection(cID);
+            });
+        } else if (wave == WaAS_Data.W2) {
+            data.data.keySet().stream().forEach(cID -> {
+                WaAS_Collection c = data.getCollection(cID);
+                c.getData().keySet().stream().forEach(CASEW1 -> {
+                    if (subset.contains(CASEW1)) {
+                        WaAS_Combined_Record cr = c.getData().get(CASEW1);
+                        HashMap<Short, WaAS_Wave2_Record> w2Records;
+                        w2Records = cr.w2Records;
+                        Iterator<Short> ite2 = w2Records.keySet().iterator();
+                        while (ite2.hasNext()) {
+                            Short CASEW2 = ite2.next();
+                            Byte GOR = GORLookups[wave - 1].get(CASEW2);
+                            WaAS_Wave2_HHOLD_Record w2;
+                            w2 = w2Records.get(CASEW2).getHhold();
+                            Generic_Collections.addToMap(r, GOR, CASEW2,
+                                    w2.getHVALUE());
+                        }
+                    }
+                });
+                data.clearCollection(cID);
+            });
+        } else if (wave == WaAS_Data.W3) {
+            data.data.keySet().stream().forEach(cID -> {
+                WaAS_Collection c = data.getCollection(cID);
+                c.getData().keySet().stream().forEach(CASEW1 -> {
+                    if (subset.contains(CASEW1)) {
+                        WaAS_Combined_Record cr = c.getData().get(CASEW1);
+                        HashMap<Short, HashMap<Short, WaAS_Wave3_Record>> w3Records;
+                        w3Records = cr.w3Records;
+                        Iterator<Short> ite1 = w3Records.keySet().iterator();
+                        while (ite1.hasNext()) {
+                            Short CASEW2 = ite1.next();
+                            HashMap<Short, WaAS_Wave3_Record> w3_2;
+                            w3_2 = w3Records.get(CASEW2);
+                            Iterator<Short> ite2;
+                            ite2 = w3_2.keySet().iterator();
+                            while (ite2.hasNext()) {
+                                Short CASEW3 = ite2.next();
+                                Byte GOR = GORLookups[wave - 1].get(CASEW3);
+                                WaAS_Wave3_HHOLD_Record w3;
+                                w3 = w3_2.get(CASEW3).getHhold();
+                                Generic_Collections.addToMap(r, GOR, CASEW3,
+                                        w3.getHVALUE());
+                            }
+                        }
+                    }
+                });
+                data.clearCollection(cID);
+            });
+        } else if (wave == WaAS_Data.W4) {
+            data.data.keySet().stream().forEach(cID -> {
+                WaAS_Collection c = data.getCollection(cID);
+                c.getData().keySet().stream().forEach(CASEW1 -> {
+                    if (subset.contains(CASEW1)) {
+                        WaAS_Combined_Record cr = c.getData().get(CASEW1);
+                        HashMap<Short, HashMap<Short, HashMap<Short, WaAS_Wave4_Record>>> w4Records;
+                        w4Records = cr.w4Records;
+                        Iterator<Short> ite1 = w4Records.keySet().iterator();
+                        while (ite1.hasNext()) {
+                            Short CASEW2 = ite1.next();
+                            HashMap<Short, HashMap<Short, WaAS_Wave4_Record>> w4_2;
+                            w4_2 = w4Records.get(CASEW2);
+                            Iterator<Short> ite2 = w4_2.keySet().iterator();
+                            while (ite2.hasNext()) {
+                                Short CASEW3 = ite2.next();
+                                HashMap<Short, WaAS_Wave4_Record> w4_3;
+                                w4_3 = w4_2.get(CASEW3);
+                                Iterator<Short> ite3 = w4_3.keySet().iterator();
+                                while (ite3.hasNext()) {
+                                    Short CASEW4 = ite3.next();
+                                    Byte GOR = GORLookups[wave - 1].get(CASEW4);
+                                    WaAS_Wave4_HHOLD_Record w4;
+                                    w4 = w4_3.get(CASEW4).getHhold();
+                                    Generic_Collections.addToMap(r, GOR, CASEW4, w4.getHVALUE());
+                                }
+                            }
+                        }
+                    }
+                });
+                data.clearCollection(cID);
+            });
+        } else if (wave == WaAS_Data.W5) {
+            data.data.keySet().stream().forEach(cID -> {
+                WaAS_Collection c = data.getCollection(cID);
+                c.getData().keySet().stream().forEach(CASEW1 -> {
+                    if (subset.contains(CASEW1)) {
+                        WaAS_Combined_Record cr = c.getData().get(CASEW1);
+                        HashMap<Short, HashMap<Short, HashMap<Short, HashMap<Short, WaAS_Wave5_Record>>>> w5Records;
+                        w5Records = cr.w5Records;
+                        Iterator<Short> ite1 = w5Records.keySet().iterator();
+                        while (ite1.hasNext()) {
+                            Short CASEW2 = ite1.next();
+                            HashMap<Short, HashMap<Short, HashMap<Short, WaAS_Wave5_Record>>> w5_2;
+                            w5_2 = w5Records.get(CASEW2);
+                            Iterator<Short> ite2 = w5_2.keySet().iterator();
+                            while (ite2.hasNext()) {
+                                Short CASEW3 = ite2.next();
+                                HashMap<Short, HashMap<Short, WaAS_Wave5_Record>> w5_3;
+                                w5_3 = w5_2.get(CASEW3);
+                                Iterator<Short> ite3 = w5_3.keySet().iterator();
+                                while (ite3.hasNext()) {
+                                    Short CASEW4 = ite3.next();
+                                    HashMap<Short, WaAS_Wave5_Record> w5_4;
+                                    w5_4 = w5_3.get(CASEW4);
+                                    Iterator<Short> ite4;
+                                    ite4 = w5_4.keySet().iterator();
+                                    while (ite4.hasNext()) {
+                                        Short CASEW5 = ite4.next();
+                                        Byte GOR = GORLookups[wave - 1].get(CASEW5);
+                                        WaAS_Wave5_HHOLD_Record w5;
+                                        w5 = w5_4.get(CASEW5).getHhold();
+                                        Generic_Collections.addToMap(r, GOR, CASEW5, w5.getHVALUE());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+                data.clearCollection(cID);
+            });
+        }
+        return r;
+    }
+
+    /**
+     * Get the HVALUE.
+     *
+     * @param variableName
+     * @param gors
+     * @param m Expecting ? to be WaAS_Wave1_HHOLD_Record or
+     * WaAS_Wave2_HHOLD_Record or WaAS_Wave3_HHOLD_Record or
+     * WaAS_Wave4_HHOLD_Record or WaAS_Wave5_HHOLD_Record.
+     * @param wave
+     * @return Map with keys as GOR and Values as map with keys as CASEWX and
+     * values as HVALUE.
+     */
+    public HashMap<Byte, HashMap<Short, Double>> getVariableForGOR(
+            String variableName,
+            ArrayList<Byte> gors,
+            TreeMap<Short, ?> m,
+            //TreeMap<Short, WaAS_Wave1Or2Or3Or4Or5_HHOLD_Record> m, 
+            byte wave) {
+        HashMap<Byte, HashMap<Short, Double>> r = new HashMap<>();
+        gors.stream().forEach(gor -> {
+            r.put(gor, new HashMap<>());
+        });
+        int countNegative = 0;
+        int countZero = 0;
+        Iterator<Short> ite = m.keySet().iterator();
+        if (variableName.equalsIgnoreCase("HVALUE")) {
+            while (ite.hasNext()) {
+                Short CASEWX = ite.next();
+                WaAS_Wave1Or2Or3Or4Or5_HHOLD_Record rec;
+                rec = (WaAS_Wave1Or2Or3Or4Or5_HHOLD_Record) m.get(CASEWX);
+                Byte GOR = rec.getGOR();
+                double HVALUE = rec.getHVALUE();
+                if (HVALUE == 0.0d) {
+                    countZero++;
+                } else if (HVALUE < 0.0d) {
+                    countNegative++;
+                }
+                Generic_Collections.addToMap(r, GOR, CASEWX, HVALUE);
+            }
+        } else {
+
+        }
+        env.log(variableName + " for GOR W" + wave);
+        env.log("count " + m.size());
+        env.log("countZero " + countZero);
+        env.log("countNegative " + countNegative);
+        return r;
+    }
+
+    /**
+     * Get HVALUE Total Household Property Wealth for each wave in the subsets.
+     *
+     * @param variableName
+     * @param gors
+     * @param GORSubsets
+     * @param GORLookups
+     * @param GORNameLookup
+     * @param data
+     * @param subset
+     * @return
+     */
+    public TreeMap<Byte, Double> getChangeVariableSubset(String variableName,
+            ArrayList<Byte> gors, HashMap<Byte, HashSet<Short>>[] GORSubsets,
+            HashMap<Short, Byte>[] GORLookups,
+            TreeMap<Byte, String> GORNameLookup, WaAS_Data data,
+            HashSet<Short> subset) {
+        TreeMap<Byte, Double> r = new TreeMap<>();
+        HashMap<Byte, HashMap<Short, Double>>[] variableSubsets;
+        variableSubsets = new HashMap[WaAS_Data.NWAVES];
+        for (byte w = 0; w < WaAS_Data.NWAVES; w++) {
+            variableSubsets[w] = getVariableForGORSubsets(variableName, 
+                    (byte) (w + 1),                    GORSubsets, GORLookups, data, subset);
+        }
+        double countW1 = 0;
+        double countZeroW1 = 0;
+        double countNegativeW1 = 0;
+        double countW5 = 0;
+        double countZeroW5 = 0;
+        double countNegativeW5 = 0;
+        env.log(variableName + " for each wave in the subsets.");
+        String h = "GORNumber,GORName," + variableName + "5_Average-"
+                + variableName + "1_Average";
+        for (byte w = 1; w < WaAS_Data.NWAVES + 1; w++) {
+            h += "," + variableName + "W" + w + "_Count," + variableName + "W"
+                    + w + "_ZeroCount," + variableName + "W" + w 
+                    + "_NegativeCount," + variableName + "W" + w + "_Average";
+        }
+        env.log(h);
+        Iterator<Byte> ite;
+        ite = gors.iterator();
+        while (ite.hasNext()) {
+            byte gor = ite.next();
+            double[][] var = new double[WaAS_Data.NWAVES][];
+            for (byte w = 0; w < WaAS_Data.NWAVES; w++) {
+                var[w] = Generic_Statistics.getSummaryStatistics(
+                        variableSubsets[w].get(gor).values());
+            }
+            countW1 += var[0][5];
+            countZeroW1 += var[0][6];
+            countNegativeW1 += var[0][7];
+            countW5 += var[4][5];
+            countZeroW5 += var[4][6];
+            countNegativeW5 += var[4][7];
+            double diff = var[4][4] - var[0][4];
+            String s = "" + gor + "," + GORNameLookup.get(gor) + "," + diff;
+            for (byte w = 0; w < WaAS_Data.NWAVES; w++) {
+                s += "," + var[w][4] + "," + var[w][5] + ","
+                        + var[w][6] + "," + var[w][7];
+            }
+            env.log(s);
+            r.put(gor, diff);
+        }
+        env.log(variableName + " For Wave 1 Subset");
+        env.log("" + countW1 + "\t Count");
+        env.log("" + countZeroW1 + "\t Zero");
+        env.log("" + countNegativeW1 + "\t Negative");
+        env.log(variableName + " For Wave 5 Subset");
+        env.log("" + countW5 + "\t Count");
+        env.log("" + countZeroW5 + "\t Zero");
+        env.log("" + countNegativeW5 + "\t Negative");
+        return r;
+    }
+
+    /**
+     * Get the variableName for each wave for all records.
+     *
+     * @param variableName
+     * @param gors
+     * @param GORNameLookup
+     * @return
+     */
+    public TreeMap<Byte, Double> getChangeVariableAll(String variableName,
+            ArrayList<Byte> gors, TreeMap<Byte, String> GORNameLookup) {
+        TreeMap<Byte, Double> r = new TreeMap<>();
+        HashMap<Byte, HashMap<Short, Double>>[] HVALUEAll;
+        HVALUEAll = new HashMap[WaAS_Data.NWAVES];
+        TreeMap<Short, WaAS_Wave1_HHOLD_Record> allW1 = loadAllW1();
+        HVALUEAll[0] = getVariableForGOR(variableName, gors, allW1, (byte) 1);
+        allW1 = null; // Set to null to free memory.
+        TreeMap<Short, WaAS_Wave5_HHOLD_Record> allW5 = loadAllW5();
+        HVALUEAll[4] = getVariableForGOR(variableName, gors, allW5, (byte) 5);
+        allW5 = null; // Set to null to free memory.
+        env.log(variableName + " Total Household Property Wealth for each wave "
+                + "for all records.");
+        String h = "GORNumber,GORName," + variableName + "_Average-"
+                + variableName + "1_Average";
+        for (byte w = 1; w < WaAS_Data.NWAVES + 1; w++) {
+            if (w == 1 || w == 5) {
+                h += "," + variableName + "W" + w + "_Count," + variableName
+                        + "W" + w + "_ZeroCount," + variableName + "W" + w
+                        + "_NegativeCount," + variableName + "W" + w
+                        + "_Average";
+            }
+        }
+        env.log(h);
+        Iterator<Byte> ite = gors.iterator();
+        while (ite.hasNext()) {
+            byte gor = ite.next();
+            double[][] aHVALUE = new double[WaAS_Data.NWAVES][];
+            for (byte w = 0; w < WaAS_Data.NWAVES; w++) {
+                if (w == 0 || w == 4) {
+                    aHVALUE[w] = Generic_Statistics.getSummaryStatistics(
+                            HVALUEAll[w].get(gor).values());
+                }
+            }
+            double diff = aHVALUE[4][4] - aHVALUE[0][4];
+            String s = "" + gor + "," + GORNameLookup.get(gor) + "," + diff;
+            for (byte w = 0; w < WaAS_Data.NWAVES; w++) {
+                if (w == 0 || w == 4) {
+                    s += "," + aHVALUE[w][4] + "," + aHVALUE[w][5] + ","
+                            + aHVALUE[w][6] + "," + aHVALUE[w][7];
+                }
+            }
+            env.log(s);
+            r.put(gor, diff);
+        }
         return r;
     }
 }

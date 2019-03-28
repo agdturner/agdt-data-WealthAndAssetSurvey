@@ -19,6 +19,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
@@ -28,7 +29,9 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_Collection;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_CollectionSimple;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_Combined_Record;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_Combined_Record_Simple;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_Data;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_HHOLD_Handler;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_PERSON_Handler;
@@ -82,7 +85,7 @@ public class WaAS_Main_Process extends WaAS_Object {
         //p.doJavaCodeGeneration = true;
         //p.doLoadAllHouseholdsRecords = true;
         //p.doLoadHouseholdsAndIndividualsInAllWaves = true;
-        p.doLoadHouseholdsInPairedWaves = true;
+        //p.doLoadHouseholdsInPairedWaves = true;
         p.run();
     }
 
@@ -154,6 +157,8 @@ public class WaAS_Main_Process extends WaAS_Object {
                     //indir, outdir,
                     WaAS_Strings.s_Paired, hH, chunkSize);
         }
+        HashSet<Short> subset = hH.getStableHouseholdCompositionSubset(data);
+        initDataSimple(subset);
         env.cacheData();
     }
 
@@ -288,8 +293,7 @@ public class WaAS_Main_Process extends WaAS_Object {
             HashSet<Short> s = CIDToCASEW1.get(cID);
             s.stream().forEach(CASEW1 -> {
                 data.CASEW1ToCID.put(CASEW1, cID);
-                HashMap<Short, WaAS_Combined_Record> m;
-                m = c.getData();
+                HashMap<Short, WaAS_Combined_Record> m = c.getData();
                 WaAS_Combined_Record cr = m.get(CASEW1);
                 if (cr == null) {
                     cr = new WaAS_Combined_Record(CASEW1);
@@ -384,10 +388,8 @@ public class WaAS_Main_Process extends WaAS_Object {
             // Add person records.
             m2 = "Add person records";
             env.logStartTag(m2);
-            File f;
-            BufferedReader br;
-            f = cFs.get(cID);
-            br = Generic_IO.getBufferedReader(f);
+            File f = cFs.get(cID);
+            BufferedReader br = Generic_IO.getBufferedReader(f);
             br.lines().skip(1).forEach(line -> {
                 WaAS_Wave2_PERSON_Record p = new WaAS_Wave2_PERSON_Record(line);
                 short CASEW1Check = p.getCASEW1();
@@ -743,9 +745,9 @@ public class WaAS_Main_Process extends WaAS_Object {
             env.log("Unrecognised type " + type);
             hs = null;
         }
-            if (hs == null) {
-                env.log("WTF2");
-            }
+        if (hs == null) {
+            env.log("WTF2");
+        }
         TreeMap<Short, File> cFs;
         cFs = pH.loadSubsetWave5(nOC, CASEW1ToCID, W5, CASEW2ToCASEW1,
                 CASEW3ToCASEW2, CASEW4ToCASEW3, CASEW5ToCASEW4);
@@ -786,8 +788,8 @@ public class WaAS_Main_Process extends WaAS_Object {
                                     if (CASEW5 != null) {
                                         WaAS_Wave5_Record w5rec;
                                         w5rec = new WaAS_Wave5_Record(CASEW5);
-                                            w5rec.setHhold(hs.get(CASEW5));
-                                            w5_4.put(CASEW5, w5rec);
+                                        w5rec.setHhold(hs.get(CASEW5));
+                                        w5_4.put(CASEW5, w5rec);
                                     }
                                 });
                             });
@@ -993,6 +995,48 @@ public class WaAS_Main_Process extends WaAS_Object {
             }
         }
         env.logEndTag(m0);
+    }
+
+    /**
+     *
+     * @param subset Contains a subset of CASEW1 IDs.
+     */
+    public void initDataSimple(HashSet<Short> subset) {
+        String m = "getCombineRecordsSimple";
+        env.logStartTag(m);
+        Iterator<Short> ite = data.data.keySet().iterator();
+        while (ite.hasNext()) {
+            short cID = ite.next();
+            WaAS_Collection c = data.getCollection(cID);
+            WaAS_CollectionSimple cs = new WaAS_CollectionSimple(cID);
+            data.dataSimple.put(cID, cs);
+            HashMap<Short, WaAS_Combined_Record_Simple> csData = cs.getData();
+            HashMap<Short, WaAS_Combined_Record> cData = c.getData();
+            Iterator<Short> ite2 = cData.keySet().iterator();
+            while (ite2.hasNext()) {
+                short CASEW1 = ite2.next();
+                if (subset.contains(CASEW1)) {
+                    WaAS_Combined_Record cr = cData.get(CASEW1);
+                    WaAS_Combined_Record_Simple wcrs;
+                    wcrs = new WaAS_Combined_Record_Simple(CASEW1);
+                    wcrs.w2Record = cr.w2Records.values().stream().findFirst().get();
+                    wcrs.w3Record = cr.w3Records.values().stream().findFirst().get()
+                            .values().stream().findFirst().get();
+                    wcrs.w4Record = cr.w4Records.values().stream().findFirst().get()
+                            .values().stream().findFirst().get()
+                            .values().stream().findFirst().get();
+                    wcrs.w5Record = cr.w5Records.values().stream().findFirst().get()
+                            .values().stream().findFirst().get()
+                            .values().stream().findFirst().get()
+                            .values().stream().findFirst().get();
+                    csData.put(CASEW1, wcrs);
+                }
+            }
+            data.clearCollection(cID);
+            data.cacheSubsetCollectionSimple(cID, cs);
+            data.clearCollectionSimple(cID);
+        }
+        env.logEndTag(m);
     }
 
     boolean doJavaCodeGeneration = false;

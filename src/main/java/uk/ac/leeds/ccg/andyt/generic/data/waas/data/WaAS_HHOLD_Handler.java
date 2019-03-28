@@ -406,7 +406,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * </ul>
      */
     public Object[] loadW5() {
-        String m = "loadW4";
+        String m = "loadW5";
         env.logStartTag(m);
         Object[] r;
         File cf = getSubsetCacheFile2(W5, "InW4");
@@ -1275,7 +1275,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      *
      * @param s a set containing CASEW2 values.
      * @param type for loading an already computed result. Expected values
-     * include: "InW1W3W4W5" and "InW3".
+     * include: {@link WaAS_Strings#s_InW1W2W3W4W5}, {@link WaAS_Strings#s_InW3}
+     * and {@link WaAS_Strings#s_InW1}
      *
      * @return An {@code Object[] r} of length 4:
      * <ul>
@@ -1396,7 +1397,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      *
      * @param s a set containing CASEW1 values.
      * @param type for loading an already computed result. Expected values
-     * include: "InW2W3W4W5" and "InW2".
+     * include: {@link WaAS_Strings#s_InW1W2W3W4W5} and
+     * {@link WaAS_Strings#s_InW2}.
      *
      * @return An {@code Object[] r} of length 2:
      * <ul>
@@ -1678,7 +1680,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * values as HVALUE.
      */
     public HashMap<Byte, HashMap<Short, Double>> getVariableForGORSubsets(
-            String variableName, byte wave, 
+            String variableName, byte wave,
             HashMap<Byte, HashSet<Short>>[] GORSubsets,
             HashMap<Short, Byte>[] GORLookups, WaAS_Data data,
             HashSet<Short> subset) {
@@ -1828,7 +1830,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     /**
      * Get the HVALUE.
      *
-     * @param variableName
+     * @param vName Variable name.
      * @param gors
      * @param m Expecting ? to be WaAS_Wave1_HHOLD_Record or
      * WaAS_Wave2_HHOLD_Record or WaAS_Wave3_HHOLD_Record or
@@ -1838,9 +1840,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * values as HVALUE.
      */
     public HashMap<Byte, HashMap<Short, Double>> getVariableForGOR(
-            String variableName,
-            ArrayList<Byte> gors,
-            TreeMap<Short, ?> m,
+            String vName, ArrayList<Byte> gors, TreeMap<Short, ?> m,
             //TreeMap<Short, WaAS_Wave1Or2Or3Or4Or5_HHOLD_Record> m, 
             byte wave) {
         HashMap<Byte, HashMap<Short, Double>> r = new HashMap<>();
@@ -1850,24 +1850,38 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         int countNegative = 0;
         int countZero = 0;
         Iterator<Short> ite = m.keySet().iterator();
-        if (variableName.equalsIgnoreCase("HVALUE")) {
+        if (vName.equalsIgnoreCase(WaAS_Strings.s_HVALUE)) {
             while (ite.hasNext()) {
                 Short CASEWX = ite.next();
                 WaAS_Wave1Or2Or3Or4Or5_HHOLD_Record rec;
                 rec = (WaAS_Wave1Or2Or3Or4Or5_HHOLD_Record) m.get(CASEWX);
                 Byte GOR = rec.getGOR();
-                double HVALUE = rec.getHVALUE();
-                if (HVALUE == 0.0d) {
+                double v = rec.getHVALUE();
+                if (v == 0.0d) {
                     countZero++;
-                } else if (HVALUE < 0.0d) {
+                } else if (v < 0.0d) {
                     countNegative++;
                 }
-                Generic_Collections.addToMap(r, GOR, CASEWX, HVALUE);
+                Generic_Collections.addToMap(r, GOR, CASEWX, v);
+            }
+        } else if (vName.equalsIgnoreCase(WaAS_Strings.s_HPROPW)) {
+            while (ite.hasNext()) {
+                Short CASEWX = ite.next();
+                WaAS_Wave1Or2Or3Or4Or5_HHOLD_Record rec;
+                rec = (WaAS_Wave1Or2Or3Or4Or5_HHOLD_Record) m.get(CASEWX);
+                Byte GOR = rec.getGOR();
+                double v = rec.getHPROPW();
+                if (v == 0.0d) {
+                    countZero++;
+                } else if (v < 0.0d) {
+                    countNegative++;
+                }
+                Generic_Collections.addToMap(r, GOR, CASEWX, v);
             }
         } else {
 
         }
-        env.log(variableName + " for GOR W" + wave);
+        env.log(vName + " for GOR W" + wave);
         env.log("count " + m.size());
         env.log("countZero " + countZero);
         env.log("countNegative " + countNegative);
@@ -1895,8 +1909,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         HashMap<Byte, HashMap<Short, Double>>[] variableSubsets;
         variableSubsets = new HashMap[WaAS_Data.NWAVES];
         for (byte w = 0; w < WaAS_Data.NWAVES; w++) {
-            variableSubsets[w] = getVariableForGORSubsets(variableName, 
-                    (byte) (w + 1),                    GORSubsets, GORLookups, data, subset);
+            variableSubsets[w] = getVariableForGORSubsets(variableName,
+                    (byte) (w + 1), GORSubsets, GORLookups, data, subset);
         }
         double countW1 = 0;
         double countZeroW1 = 0;
@@ -1909,7 +1923,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 + variableName + "1_Average";
         for (byte w = 1; w < WaAS_Data.NWAVES + 1; w++) {
             h += "," + variableName + "W" + w + "_Count," + variableName + "W"
-                    + w + "_ZeroCount," + variableName + "W" + w 
+                    + w + "_ZeroCount," + variableName + "W" + w
                     + "_NegativeCount," + variableName + "W" + w + "_Average";
         }
         env.log(h);
@@ -1951,31 +1965,31 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     /**
      * Get the variableName for each wave for all records.
      *
-     * @param variableName
+     * @param vName Variable name
      * @param gors
      * @param GORNameLookup
      * @return
      */
-    public TreeMap<Byte, Double> getChangeVariableAll(String variableName,
+    public TreeMap<Byte, Double> getChangeVariableAll(String vName,
             ArrayList<Byte> gors, TreeMap<Byte, String> GORNameLookup) {
         TreeMap<Byte, Double> r = new TreeMap<>();
-        HashMap<Byte, HashMap<Short, Double>>[] HVALUEAll;
-        HVALUEAll = new HashMap[WaAS_Data.NWAVES];
+        HashMap<Byte, HashMap<Short, Double>>[] vAll;
+        vAll = new HashMap[WaAS_Data.NWAVES];
         TreeMap<Short, WaAS_Wave1_HHOLD_Record> allW1 = loadAllW1();
-        HVALUEAll[0] = getVariableForGOR(variableName, gors, allW1, (byte) 1);
+        vAll[0] = getVariableForGOR(vName, gors, allW1, (byte) 1);
         allW1 = null; // Set to null to free memory.
         TreeMap<Short, WaAS_Wave5_HHOLD_Record> allW5 = loadAllW5();
-        HVALUEAll[4] = getVariableForGOR(variableName, gors, allW5, (byte) 5);
+        vAll[4] = getVariableForGOR(vName, gors, allW5, (byte) 5);
         allW5 = null; // Set to null to free memory.
-        env.log(variableName + " Total Household Property Wealth for each wave "
+        env.log(vName + " Total Household Property Wealth for each wave "
                 + "for all records.");
-        String h = "GORNumber,GORName," + variableName + "_Average-"
-                + variableName + "1_Average";
+        String h = "GORNumber,GORName," + vName + "_Average-"
+                + vName + "1_Average";
         for (byte w = 1; w < WaAS_Data.NWAVES + 1; w++) {
             if (w == 1 || w == 5) {
-                h += "," + variableName + "W" + w + "_Count," + variableName
-                        + "W" + w + "_ZeroCount," + variableName + "W" + w
-                        + "_NegativeCount," + variableName + "W" + w
+                h += "," + vName + "W" + w + "_Count," + vName
+                        + "W" + w + "_ZeroCount," + vName + "W" + w
+                        + "_NegativeCount," + vName + "W" + w
                         + "_Average";
             }
         }
@@ -1983,19 +1997,19 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         Iterator<Byte> ite = gors.iterator();
         while (ite.hasNext()) {
             byte gor = ite.next();
-            double[][] aHVALUE = new double[WaAS_Data.NWAVES][];
+            double[][] v = new double[WaAS_Data.NWAVES][];
             for (byte w = 0; w < WaAS_Data.NWAVES; w++) {
                 if (w == 0 || w == 4) {
-                    aHVALUE[w] = Generic_Statistics.getSummaryStatistics(
-                            HVALUEAll[w].get(gor).values());
+                    v[w] = Generic_Statistics.getSummaryStatistics(
+                            vAll[w].get(gor).values());
                 }
             }
-            double diff = aHVALUE[4][4] - aHVALUE[0][4];
+            double diff = v[4][4] - v[0][4];
             String s = "" + gor + "," + GORNameLookup.get(gor) + "," + diff;
             for (byte w = 0; w < WaAS_Data.NWAVES; w++) {
                 if (w == 0 || w == 4) {
-                    s += "," + aHVALUE[w][4] + "," + aHVALUE[w][5] + ","
-                            + aHVALUE[w][6] + "," + aHVALUE[w][7];
+                    s += "," + v[w][4] + "," + v[w][5] + "," + v[w][6] + ","
+                            + v[w][7];
                 }
             }
             env.log(s);

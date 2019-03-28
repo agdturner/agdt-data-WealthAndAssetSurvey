@@ -1843,6 +1843,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             String vName, ArrayList<Byte> gors, TreeMap<Short, ?> m,
             //TreeMap<Short, WaAS_Wave1Or2Or3Or4Or5_HHOLD_Record> m, 
             byte wave) {
+        String m0 = "getVariableForGOR(...)";
+        env.logStartTag(m0);
         HashMap<Byte, HashMap<Short, Double>> r = new HashMap<>();
         gors.stream().forEach(gor -> {
             r.put(gor, new HashMap<>());
@@ -1878,13 +1880,29 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 }
                 Generic_Collections.addToMap(r, GOR, CASEWX, v);
             }
-        } else {
+        } else if (vName.equalsIgnoreCase(WaAS_Strings.s_TOTWLTH)) {
+            while (ite.hasNext()) {
+                Short CASEWX = ite.next();
+                WaAS_Wave1Or2Or3Or4Or5_HHOLD_Record rec;
+                rec = (WaAS_Wave1Or2Or3Or4Or5_HHOLD_Record) m.get(CASEWX);
+                Byte GOR = rec.getGOR();
+                double v = rec.getTOTWLTH();
+                if (v == 0.0d) {
+                    countZero++;
+                } else if (v < 0.0d) {
+                    countNegative++;
+                }
+                Generic_Collections.addToMap(r, GOR, CASEWX, v);
+            }
 
+        } else {
+            env.log("Unrecognised variable " + vName);
         }
         env.log(vName + " for GOR W" + wave);
         env.log("count " + m.size());
         env.log("countZero " + countZero);
         env.log("countNegative " + countNegative);
+        env.logEndTag(m0);
         return r;
     }
 
@@ -2017,6 +2035,5 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         }
         return r;
     }
-    
-    
+
 }

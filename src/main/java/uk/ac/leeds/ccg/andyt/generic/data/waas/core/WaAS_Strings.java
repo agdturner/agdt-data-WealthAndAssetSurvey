@@ -44,6 +44,7 @@ public class WaAS_Strings extends Generic_Strings {
     public static final String s_StableHouseholdCompositionSubset = "StableHouseholdCompositionSubset";
     public static final String s_Subsets = "Subsets";
     public static final String s_To = "To";
+    public static final String s_TOTWLTH = "TOTWLTH";
     public static final String s_WaAS = "WaAS";
     public static final String s_waas = "waas";
 

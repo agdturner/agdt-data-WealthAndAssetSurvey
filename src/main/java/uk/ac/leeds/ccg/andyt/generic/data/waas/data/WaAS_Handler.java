@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.TreeMap;
+import uk.ac.leeds.ccg.andyt.data.interval.Data_IntervalLong1;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
@@ -411,6 +412,40 @@ public abstract class WaAS_Handler extends WaAS_Object {
         r.put((byte) 12, "Scotland");
         return r;
     }
+    
+    public TreeMap<Byte, Data_IntervalLong1> getSEESMLookup(byte w) {
+        String m = "getSEESMLookup";
+        env.logStartTag(m);
+         TreeMap<Byte, Data_IntervalLong1> r = new TreeMap<>();
+        if (w == WaAS_Data.W1 || w == WaAS_Data.W2 || w == WaAS_Data.W3 || 
+                w == WaAS_Data.W4 || w == WaAS_Data.W5) {
+//	Value = 1.0	Label = Less than £250
+//	Value = 2.0	Label = £250 to £499
+//      Value = 3.0	Label = £400 to £749
+//	Value = 4.0	Label = £750 to £999
+//	Value = 5.0	Label = £1,000 to £1,249
+//	Value = 6.0	Label = £1,250 to £1,499
+//	Value = 7.0	Label = £1,500 to £1,749
+//	Value = 8.0	Label = £1,750 to £1,999
+//	Value = 9.0	Label = £2,000 to £2,499
+//	Value = 10.0	Label = £2,500 to £2,999
+//	Value = 11.0	Label = £3,000 to £3,999
+//	Value = 12.0	Label = £4,000 to £4,999
+//	Value = 13.0	Label = £5,000 to £7,499
+//	Value = 14.0	Label = £7,500 to £9,999
+//	Value = 15.0	Label = £10,000 or more
+//	Value = -9.0	Label = Do not know
+//	Value = -8.0	Label = Refusal
+//	Value = -7.0	Label = Not applicable
+//	Value = -6.0	Label = Error partial
+        } else {
+            env.log("Unexpected wave " + w);
+        }
+        env.logEndTag(m);
+        return r;
+    }
+
+
 
     /**
      * Go through hholds for all waves and figure which ones have not

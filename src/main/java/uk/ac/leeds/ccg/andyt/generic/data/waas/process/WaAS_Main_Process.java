@@ -83,9 +83,9 @@ public class WaAS_Main_Process extends WaAS_Object {
         WaAS_Main_Process p = new WaAS_Main_Process(env);
         // Main switches
         //p.doJavaCodeGeneration = true;
-        //p.doLoadAllHouseholdsRecords = true;
-        //p.doLoadHouseholdsAndIndividualsInAllWaves = true;
-        //p.doLoadHouseholdsInPairedWaves = true;
+        p.doLoadAllHouseholdsRecords = true;
+        p.doLoadHouseholdsAndIndividualsInAllWaves = true;
+        p.doLoadHouseholdsInPairedWaves = true;
         p.run();
     }
 
@@ -1019,6 +1019,7 @@ public class WaAS_Main_Process extends WaAS_Object {
                     WaAS_Combined_Record cr = cData.get(CASEW1);
                     WaAS_Combined_Record_Simple wcrs;
                     wcrs = new WaAS_Combined_Record_Simple(CASEW1);
+                    wcrs.w1Record = cr.w1Record;
                     wcrs.w2Record = cr.w2Records.values().stream().findFirst().get();
                     wcrs.w3Record = cr.w3Records.values().stream().findFirst().get()
                             .values().stream().findFirst().get();

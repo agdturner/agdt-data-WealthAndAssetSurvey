@@ -412,40 +412,142 @@ public abstract class WaAS_Handler extends WaAS_Object {
         r.put((byte) 12, "Scotland");
         return r;
     }
-    
-    public TreeMap<Byte, Data_IntervalLong1> getSEESMLookup(byte w) {
+
+    /**
+     * The lookup is the same for the first 5 waves of WaAS. From the
+     * documentation we have:
+     * <ul>
+     * <li>Value = 1.0	Label = Less than £250</li>
+     * <li>Value = 2.0	Label = £250 to £499</li>
+     * <li>Value = 3.0	Label = £400[sic] to £749</li>
+     * <li>Value = 4.0	Label = £750 to £999</li>
+     * <li>Value = 5.0	Label = £1,000 to £1,249</li>
+     * <li>Value = 6.0	Label = £1,250 to £1,499</li>
+     * <li>Value = 7.0	Label = £1,500 to £1,749</li>
+     * <li>Value = 8.0	Label = £1,750 to £1,999</li>
+     * <li>Value = 9.0	Label = £2,000 to £2,499</li>
+     * <li>Value = 10.0	Label = £2,500 to £2,999</li>
+     * <li>Value = 11.0	Label = £3,000 to £3,999</li>
+     * <li>Value = 12.0	Label = £4,000 to £4,999</li>
+     * <li>Value = 13.0	Label = £5,000 to £7,499</li>
+     * <li>Value = 14.0	Label = £7,500 to £9,999</li>
+     * <li>Value = 15.0	Label = £10,000 or more</li>
+     * <li>Value = -9.0	Label = Do not know</li>
+     * <li>Value = -8.0	Label = Refusal</li>
+     * <li>Value = -7.0	Label = Not applicable</li>
+     * <li>Value = -6.0	Label = Error partial</li>
+     * </ul>
+     *
+     * @return
+     */
+    public TreeMap<Byte, Data_IntervalLong1> getSEESMLookup() {
         String m = "getSEESMLookup";
         env.logStartTag(m);
-         TreeMap<Byte, Data_IntervalLong1> r = new TreeMap<>();
-        if (w == WaAS_Data.W1 || w == WaAS_Data.W2 || w == WaAS_Data.W3 || 
-                w == WaAS_Data.W4 || w == WaAS_Data.W5) {
-//	Value = 1.0	Label = Less than £250
-//	Value = 2.0	Label = £250 to £499
-//      Value = 3.0	Label = £400 to £749
-//	Value = 4.0	Label = £750 to £999
-//	Value = 5.0	Label = £1,000 to £1,249
-//	Value = 6.0	Label = £1,250 to £1,499
-//	Value = 7.0	Label = £1,500 to £1,749
-//	Value = 8.0	Label = £1,750 to £1,999
-//	Value = 9.0	Label = £2,000 to £2,499
-//	Value = 10.0	Label = £2,500 to £2,999
-//	Value = 11.0	Label = £3,000 to £3,999
-//	Value = 12.0	Label = £4,000 to £4,999
-//	Value = 13.0	Label = £5,000 to £7,499
-//	Value = 14.0	Label = £7,500 to £9,999
-//	Value = 15.0	Label = £10,000 or more
-//	Value = -9.0	Label = Do not know
-//	Value = -8.0	Label = Refusal
-//	Value = -7.0	Label = Not applicable
-//	Value = -6.0	Label = Error partial
-        } else {
-            env.log("Unexpected wave " + w);
+        TreeMap<Byte, Data_IntervalLong1> r = new TreeMap<>();
+        long d = 250L;
+        long l = 0L;
+        long u = d;
+        for (long x = 1; x <= 9; x++) {
+            r.put((byte) x, new Data_IntervalLong1(l, u));
+            l = u;
+            u += d;
         }
+        l = 2500L;
+        u = 3000L;
+        r.put((byte) 10, new Data_IntervalLong1(l, u));
+        d = 1000L;
+        l = u;
+        u += d;
+        for (long x = 11; x <= 13; x++) {
+            r.put((byte) x, new Data_IntervalLong1(l, u));
+            l = u;
+            u += d;
+        }
+        l = 7500L;
+        u = 10000L;
+        r.put((byte) 14, new Data_IntervalLong1(l, u));
+        l = u;
+        u = Long.MAX_VALUE;
+        r.put((byte) 15, new Data_IntervalLong1(l, u));
         env.logEndTag(m);
         return r;
     }
 
-
+    /**
+     * For Waves 1 and 2 there is the following:
+     *
+     * <ul>
+     * <li>Value = 1.0	Label = Less than £20,000</li>
+     * <li>Value = 2.0	Label = £20,000 to £39,999</li>
+     * <li>Value = 3.0	Label = £40,000 to £59,999</li>
+     * <li>Value = 4.0	Label = £60,000 to £99,999</li>
+     * <li>Value = 5.0	Label = £100,000 to £149,999</li>
+     * <li>Value = 6.0	Label = £150,000 to £199,999</li>
+     * <li>Value = 7.0	Label = £200,000 to £249,999</li>
+     * <li>Value = 8.0	Label = £250,000 to £299,999</li>
+     * <li>Value = 9.0	Label = £300,000 to £499,999</li>
+     * <li>Value = 10.0	Label = £500,000 or more</li>
+     * </ul>
+     *
+     * For Waves 3, 4 and 5 there is the following:
+     * <ul>
+     * <li>Value = 1.0	Label = Less than £60,000</li>
+     * <li>Value = 2.0	Label = £60,000 to £99,999</li>
+     * <li>Value = 3.0	Label = £100,000 to £149,999</li>
+     * <li>Value = 4.0	Label = £150,000 to £199,999</li>
+     * <li>Value = 5.0	Label = £200,000 to £249,999</li>
+     * <li>Value = 6.0	Label = £250,000 to £299,999</li>
+     * <li>Value = 7.0	Label = £300,000 to £349,999</li>
+     * <li>Value = 8.0	Label = £350,000 to £399,999</li>
+     * <li>Value = 9.0	Label = £400,000 to £499,999</li>
+     * <li>Value = 10.0	Label = £500,000 to £749,999</li>
+     * <li>Value = 11.0	Label = £750,000 to £999,999</li>
+     * <li>Value = 12.0	Label = £1 million or more</li>
+     * </ul>
+     *
+     * @param w
+     * @return
+     */
+    public TreeMap<Byte, Data_IntervalLong1> getHPRICEBLookup(byte w) {
+        String m = "getHPRICEBLookup";
+        env.logStartTag(m);
+        TreeMap<Byte, Data_IntervalLong1> r = new TreeMap<>();
+        if (w == WaAS_Data.W1 || w == WaAS_Data.W2) {
+            r.put((byte) 1, new Data_IntervalLong1(0L, 20000L));
+            r.put((byte) 2, new Data_IntervalLong1(20000L, 40000L));
+            r.put((byte) 3, new Data_IntervalLong1(40000L, 60000L));
+            r.put((byte) 4, new Data_IntervalLong1(60000L, 100000L));
+            r.put((byte) 5, new Data_IntervalLong1(100000L, 150000L));
+            r.put((byte) 6, new Data_IntervalLong1(150000L, 200000L));
+            r.put((byte) 7, new Data_IntervalLong1(200000L, 250000L));
+            r.put((byte) 8, new Data_IntervalLong1(250000L, 300000L));
+            r.put((byte) 9, new Data_IntervalLong1(300000L, 500000L));
+            r.put((byte) 9, new Data_IntervalLong1(500000L, Long.MAX_VALUE));
+        } else if (w == WaAS_Data.W3 || w == WaAS_Data.W4 || w == WaAS_Data.W5) {
+            long l = 0L;
+            long u = 60000L;
+            r.put((byte) 1, new Data_IntervalLong1(l, u));
+            l = u;
+            u = 100000L;
+            r.put((byte) 2, new Data_IntervalLong1(l, u));
+            long d = 100000L;
+            for (long x = 3; x <= 9; x++) {
+                l = u;
+                u += d;
+                r.put((byte) x, new Data_IntervalLong1(l, u));
+            }
+            l = u;
+            r.put((byte) 10, new Data_IntervalLong1(l, 750000L));
+            l = u;
+            r.put((byte) 11, new Data_IntervalLong1(l, 1000000L));
+            l = u;
+            r.put((byte) 12, new Data_IntervalLong1(l, Long.MAX_VALUE));
+        } else {
+            env.log("Exception: Unrecognised wave " + w);
+        }
+        env.logEndTag(m);
+        return r;
+    }
 
     /**
      * Go through hholds for all waves and figure which ones have not
@@ -1108,6 +1210,5 @@ public abstract class WaAS_Handler extends WaAS_Object {
         }
         return r;
     }
-    
-    
+
 }

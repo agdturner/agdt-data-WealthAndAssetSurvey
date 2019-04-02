@@ -15,18 +15,16 @@
  */
 package uk.ac.leeds.ccg.andyt.generic.data.waas.core;
 
-import uk.ac.leeds.ccg.andyt.generic.core.Generic_Strings;
+import uk.ac.leeds.ccg.andyt.data.core.Data_Strings;
 
 /**
  *
  * @author geoagdt
  */
-public class WaAS_Strings extends Generic_Strings {
+public class WaAS_Strings extends Data_Strings {
 
     public static final String PROJECT_NAME = "agdt-java-generic-data-WealthAndAssetsSurvey";
 
-    public static final String s_All = "All";
-    public static final String s_file = "file";
     public static final String s_hhold = "hhold";
     public static final String s_HPROPW = "HPROPW";
     public static final String s_HVALUE = "HVALUE";
@@ -42,7 +40,6 @@ public class WaAS_Strings extends Generic_Strings {
     public static final String s_person = "person";
     public static final String s_Simple = "Simple";
     public static final String s_StableHouseholdCompositionSubset = "StableHouseholdCompositionSubset";
-    public static final String s_Subsets = "Subsets";
     public static final String s_To = "To";
     public static final String s_TOTWLTH = "TOTWLTH";
     public static final String s_WaAS = "WaAS";

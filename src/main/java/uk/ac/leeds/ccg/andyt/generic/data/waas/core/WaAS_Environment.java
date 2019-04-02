@@ -40,7 +40,7 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
     /**
      * Stores the {@link ge} log ID for the log set up for WaAS.
      */
-    protected final int logID;
+    public final int logID;
 
     public WaAS_Environment(File dataDir) {
         this(new Generic_Environment(dataDir), dataDir);

@@ -90,6 +90,8 @@ public class WaAS_Main_Process extends WaAS_Object {
     }
 
     public void run() {
+        String m = "run";
+        env.logStartTag(m);
         if (doJavaCodeGeneration) {
             runJavaCodeGeneration();
         }
@@ -160,6 +162,8 @@ public class WaAS_Main_Process extends WaAS_Object {
         HashSet<Short> subset = hH.getStableHouseholdCompositionSubset(data);
         initDataSimple(subset);
         env.cacheData();
+        env.logEndTag(m);
+        env.ge.closeLog(env.logID);
     }
 
     /**

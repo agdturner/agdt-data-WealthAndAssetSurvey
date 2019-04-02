@@ -16,17 +16,15 @@
 package uk.ac.leeds.ccg.andyt.generic.data.waas.io;
 
 import java.io.File;
-import uk.ac.leeds.ccg.andyt.generic.io.Generic_Files;
+import uk.ac.leeds.ccg.andyt.data.io.Data_Files;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 
 /**
  *
  * @author geoagdt
  */
-public class WaAS_Files extends Generic_Files {
+public class WaAS_Files extends Data_Files {
 
-    public static String DOT_DAT = WaAS_Strings.symbol_dot + WaAS_Strings.s_dat;
-    
     /**
      *
      * @param dataDir
@@ -43,18 +41,14 @@ public class WaAS_Files extends Generic_Files {
     }
 
     public File getGeneratedWaASDir() {
-        File f  = new File(getGeneratedDataDir(), WaAS_Strings.s_WaAS);
-        f.mkdirs();
-        return f;
+        File r  = new File(getGeneratedDataDir(), WaAS_Strings.s_WaAS);
+        r.mkdirs();
+        return r;
     }
     
     public File getGeneratedWaASSubsetsDir() {
         File f = new File(getGeneratedWaASDir(), WaAS_Strings.s_Subsets);
         f.mkdirs();
         return f;
-    }
-
-    public File getEnvDataFile() {
-        return new File(getGeneratedDataDir(), "Env.dat");
     }
 }

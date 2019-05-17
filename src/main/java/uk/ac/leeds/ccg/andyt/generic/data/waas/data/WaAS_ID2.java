@@ -21,49 +21,67 @@ import java.io.Serializable;
  *
  * @author geoagdt
  */
-public abstract class WaAS_ID implements Comparable, Serializable {
+public class WaAS_ID2 implements Comparable, Serializable {
 
-    protected short ID;
+    private final WaAS_W1ID CASEW1;
+    private final WaAS_ID CASEWX;
 
-    protected WaAS_ID(short id) {
-        this.ID = id;
+    public WaAS_ID2(WaAS_W1ID CASEW1, WaAS_ID CASEWX) {
+        this.CASEW1 = CASEW1;
+        this.CASEWX = CASEWX;
     }
 
     @Override
     public int compareTo(Object o) {
-        if (o instanceof WaAS_ID) {
-            WaAS_ID o2 = (WaAS_ID) o;
-            if (ID > o2.ID) {
-                return 1;
+        if (o instanceof WaAS_ID2) {
+            WaAS_ID2 o2 = (WaAS_ID2) o;
+            if (CASEW1.ID > o2.CASEW1.ID) {
+                return 2;
             } else {
-                if (ID < o2.ID) {
+                if (CASEW1.ID < o2.CASEW1.ID) {
+                    return -2;
+                }
+                if (CASEWX.ID > o2.CASEWX.ID) {
+                    return 1;
+                } else {
+                    if (CASEWX.ID < o2.CASEWX.ID) {
                         return -1;
                     }
+                }
                 return 0;
             }
         }
-        return -1;
+        return -3;
     }
 
     /**
-     * @return the ID
+     * @return the CASEW1
      */
-    public short getID() {
-        return ID;
+    public WaAS_W1ID getCASEW1() {
+        return CASEW1;
+    }
+
+    /**
+     * @return the CASEWX
+     */
+    public WaAS_ID getCASEWX() {
+        return CASEWX;
     }
 
     @Override
     public String toString() {
-        return "ID " + ID;
+        return "CASEW1 " + CASEW1.ID + " CASEWX " + CASEWX.ID;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof WaAS_ID) {
-            WaAS_ID o2;
-            o2 = (WaAS_ID) o;
-            if (ID == o2.ID) {
+        if (o instanceof WaAS_ID2) {
+            WaAS_ID2 o2;
+            o2 = (WaAS_ID2) o;
+            if (CASEW1.ID == o2.CASEW1.ID) {
+                if (CASEWX.ID == o2.CASEWX.ID) {
                     return true;
+                }
             }
         }
         return false;
@@ -72,9 +90,9 @@ public abstract class WaAS_ID implements Comparable, Serializable {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 41 * hash + this.ID;
+        hash = 59 * hash + this.CASEW1.ID;
+        hash = 59 * hash + this.CASEWX.ID;
         return hash;
     }
-
 
 }

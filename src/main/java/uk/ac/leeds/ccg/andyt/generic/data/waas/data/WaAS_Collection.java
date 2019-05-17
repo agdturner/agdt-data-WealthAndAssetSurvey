@@ -24,14 +24,14 @@ import java.util.HashMap;
  */
 public class WaAS_Collection implements Serializable {
 
-    private final short ID;
+    private final WaAS_CollectionID ID;
 
     /**
      * The keys are CASEW1, the values are the respective combined record.
      */
-    private final HashMap<Short, WaAS_Combined_Record> data;
+    private final HashMap<WaAS_W1ID, WaAS_CombinedRecord> data;
 
-    public WaAS_Collection(short ID) {
+    public WaAS_Collection(WaAS_CollectionID ID) {
         this.ID = ID;
         data = new HashMap<>();
     }
@@ -39,14 +39,14 @@ public class WaAS_Collection implements Serializable {
     /**
      * @return the ID
      */
-    public short getID() {
+    public WaAS_CollectionID getID() {
         return ID;
     }
 
     /**
      * @return the data
      */
-    public HashMap<Short, WaAS_Combined_Record> getData() {
+    public HashMap<WaAS_W1ID, WaAS_CombinedRecord> getData() {
         return data;
     }
 

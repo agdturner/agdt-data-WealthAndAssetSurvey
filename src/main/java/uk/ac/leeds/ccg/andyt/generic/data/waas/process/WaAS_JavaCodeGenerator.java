@@ -430,7 +430,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
         String className;
         String extendedClassName;
         String prepend = WaAS_Strings.s_WaAS + WaAS_Strings.symbol_underscore;
-        type = type.toUpperCase();
+        type = type.toUpperCase().substring(0, 1);
 
         for (int w = 0; w < fields.length; w++) {
             if (w < nwaves) {
@@ -438,25 +438,25 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
                 wave = w + 1;
                 HashMap<String, Byte> v0m;
                 v0m = v0ms[w];
-                className = prepend + "Wave" + wave + "_" + type + "_Record";
+                className = prepend + "W" + wave + type + "Record";
                 fout = new File(outdir, className + ".java");
                 pw = Generic_IO.getPrintWriter(fout, false);
                 writeHeaderPackageAndImports(pw, packageName, "");
                 switch (w) {
                     case 0:
-                        extendedClassName = prepend + "Wave1Or2_" + type + "_Record";
+                        extendedClassName = prepend + "W1W2" + type + "Record";
                         break;
                     case 1:
-                        extendedClassName = prepend + "Wave1Or2_" + type + "_Record";
+                        extendedClassName = prepend + "W1W2" + type + "Record";
                         break;
                     case 2:
-                        extendedClassName = prepend + "Wave3Or4Or5_" + type + "_Record";
+                        extendedClassName = prepend + "W3W4W5" + type + "Record";
                         break;
                     case 3:
-                        extendedClassName = prepend + "Wave4Or5_" + type + "_Record";
+                        extendedClassName = prepend + "W4W5" + type + "Record";
                         break;
                     case 4:
-                        extendedClassName = prepend + "Wave4Or5_" + type + "_Record";
+                        extendedClassName = prepend + "W4W5" + type + "Record";
                         break;
                     default:
                         extendedClassName = "";
@@ -480,7 +480,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
                 // Abstract classes
                 pw = null;
                 if (w == nwaves) {
-                    className = prepend + "Wave1Or2Or3Or4Or5_" + type + "_Record";
+                    className = prepend + "W1W2W3W4W5" + type + "Record";
                     fout = new File(outdir, className + ".java");
                     pw = Generic_IO.getPrintWriter(fout, false);
                     writeHeaderPackageAndImports(pw, packageName,
@@ -489,27 +489,27 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
                             className, "Serializable", "");
                     pw.println("protected String[] s;");
                 } else if (w == (nwaves + 1)) {
-                    className = prepend + "Wave1Or2_" + type + "_Record";
+                    className = prepend + "W1W2" + type + "Record";
                     fout = new File(outdir, className + ".java");
                     pw = Generic_IO.getPrintWriter(fout, false);
                     writeHeaderPackageAndImports(pw, packageName, "");
-                    extendedClassName = prepend + "Wave1Or2Or3Or4Or5_" + type + "_Record";
+                    extendedClassName = prepend + "W1W2W3W4W5" + type + "Record";
                     printClassDeclarationSerialVersionUID(pw, packageName,
                             className, "", extendedClassName);
                 } else if (w == (nwaves + 2)) {
-                    className = prepend + "Wave3Or4Or5_" + type + "_Record";
+                    className = prepend + "W3W4W5" + type + "Record";
                     fout = new File(outdir, className + ".java");
                     pw = Generic_IO.getPrintWriter(fout, false);
                     writeHeaderPackageAndImports(pw, packageName, "");
-                    extendedClassName = prepend + "Wave1Or2Or3Or4Or5_" + type + "_Record";
+                    extendedClassName = prepend + "W1W2W3W4W5" + type + "Record";
                     printClassDeclarationSerialVersionUID(pw, packageName,
                             className, "", extendedClassName);
                 } else if (w == (nwaves + 3)) {
-                    className = prepend + "Wave4Or5_" + type + "_Record";
+                    className = prepend + "W4W5" + type + "Record";
                     fout = new File(outdir, className + ".java");
                     pw = Generic_IO.getPrintWriter(fout, false);
                     writeHeaderPackageAndImports(pw, packageName, "");
-                    extendedClassName = prepend + "Wave3Or4Or5_" + type + "_Record";
+                    extendedClassName = prepend + "W3W4W5" + type + "Record";
                     printClassDeclarationSerialVersionUID(pw, packageName,
                             className, "", extendedClassName);
                 }

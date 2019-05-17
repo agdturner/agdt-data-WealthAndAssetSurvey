@@ -16,28 +16,28 @@
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
 
 import java.util.ArrayList;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_Wave2_HHOLD_Record;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_Wave2_PERSON_Record;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W3HRecord;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W3PRecord;
 
 /**
  *
  * @author geoagdt
  */
-public class WaAS_Wave2_Record extends WaAS_Record {
+public class WaAS_W3Record extends WaAS_ID {
     
-    private WaAS_Wave2_HHOLD_Record hhold;
+    private WaAS_W3HRecord hhold;
     
-    private final ArrayList<WaAS_Wave2_PERSON_Record> people;
+    private final ArrayList<WaAS_W3PRecord> people;
     
-    public WaAS_Wave2_Record(short CASEW2){
-        super(CASEW2);
+    public WaAS_W3Record(short CASEW3){
+        super(CASEW3);
         hhold = null;
         people = new ArrayList<>();
     }
     
-    public WaAS_Wave2_Record(WaAS_Wave2_HHOLD_Record hhold,
-            ArrayList<WaAS_Wave2_PERSON_Record> people){
-        super(hhold.getCASEW2());
+    public WaAS_W3Record(WaAS_W3HRecord hhold,
+            ArrayList<WaAS_W3PRecord> people){
+        super(hhold.getCASEW3());
         this.hhold = hhold;
         this.people = people;
     }
@@ -45,21 +45,21 @@ public class WaAS_Wave2_Record extends WaAS_Record {
     /**
      * @return the hhold
      */
-    public WaAS_Wave2_HHOLD_Record getHhold() {
+    public WaAS_W3HRecord getHhold() {
         return hhold;
     }
 
     /**
      * @return the people
      */
-    public ArrayList<WaAS_Wave2_PERSON_Record> getPeople() {
+    public ArrayList<WaAS_W3PRecord> getPeople() {
         return people;
     }
 
     /**
      * @param hhold the hhold to set
      */
-    public void setHhold(WaAS_Wave2_HHOLD_Record hhold) {
+    public void setHhold(WaAS_W3HRecord hhold) {
         this.hhold = hhold;
     }
 }

@@ -15,39 +15,24 @@
  */
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
 
-import java.io.Serializable;
-import java.util.HashMap;
-
 /**
  *
  * @author geoagdt
  */
-public class WaAS_CollectionSimple implements Serializable {
+public class WaAS_CombinedRecordSimple extends WaAS_ID {
 
-    private final WaAS_CollectionID ID;
+    public WaAS_W1Record w1Record;
 
-    /**
-     * The keys are CASEW1, the values are the respective combined record.
-     */
-    private final HashMap<Short, WaAS_CombinedRecordSimple> data;
+    public WaAS_W2Record w2Record;
 
-    public WaAS_CollectionSimple(WaAS_CollectionID ID) {
-        this.ID = ID;
-        data = new HashMap<>();
+    public WaAS_W3Record w3Record;
+
+    public WaAS_W4Record w4Record;
+
+    public WaAS_W5Record w5Record;
+
+    public WaAS_CombinedRecordSimple(WaAS_W1ID CASEW1) {
+        super(CASEW1.getID());
+        w1Record = new WaAS_W1Record(CASEW1.getID());
     }
-
-    /**
-     * @return the ID
-     */
-    public WaAS_CollectionID getID() {
-        return ID;
-    }
-
-    /**
-     * @return the data
-     */
-    public HashMap<Short, WaAS_CombinedRecordSimple> getData() {
-        return data;
-    }
-
 }

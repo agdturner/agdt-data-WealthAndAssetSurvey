@@ -19,20 +19,14 @@ package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
  *
  * @author geoagdt
  */
-public class WaAS_Combined_Record_Simple extends WaAS_Record {
+public class WaAS_W1ID extends WaAS_ID {
 
-    public WaAS_Wave1_Record w1Record;
-
-    public WaAS_Wave2_Record w2Record;
-
-    public WaAS_Wave3_Record w3Record;
-
-    public WaAS_Wave4_Record w4Record;
-
-    public WaAS_Wave5_Record w5Record;
-
-    public WaAS_Combined_Record_Simple(short CASEW1) {
+    public WaAS_W1ID(short CASEW1) {
         super(CASEW1);
-        w1Record = new WaAS_Wave1_Record(CASEW1);
+    }
+
+    @Override
+    public String toString() {
+        return "CASEW1 " + getID();
     }
 }

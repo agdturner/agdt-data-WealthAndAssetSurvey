@@ -43,17 +43,17 @@ public class WaAS_Data extends WaAS_Object {
     /**
      * The main WaAS data store. Keys are Collection IDs.
      */
-    public HashMap<Short, WaAS_Collection> data;
+    public HashMap<WaAS_CollectionID, WaAS_Collection> data;
 
     /**
      * The main WaAS data store. Keys are Collection IDs.
      */
-    public HashMap<Short, WaAS_CollectionSimple> dataSimple;
+    public HashMap<WaAS_CollectionID, WaAS_CollectionSimple> dataSimple;
 
     /**
      * Looks up from a CASEW1 to the Collection ID.
      */
-    public HashMap<Short, Short> CASEW1ToCID;
+    public HashMap<WaAS_W1ID, WaAS_CollectionID> CASEW1ToCID;
 
     public WaAS_Data(WaAS_Environment we) {
         super(we);
@@ -67,7 +67,7 @@ public class WaAS_Data extends WaAS_Object {
      * @param cID collectionID
      * @return
      */
-    public WaAS_Collection getCollection(short cID) {
+    public WaAS_Collection getCollection(WaAS_CollectionID cID) {
         WaAS_Collection r = data.get(cID);
         if (r == null) {
             r = (WaAS_Collection) loadSubsetCollection(cID);
@@ -81,7 +81,7 @@ public class WaAS_Data extends WaAS_Object {
      * @param cID collectionID
      * @return
      */
-    public WaAS_CollectionSimple getCollectionSimple(short cID) {
+    public WaAS_CollectionSimple getCollectionSimple(WaAS_CollectionID cID) {
         WaAS_CollectionSimple r = dataSimple.get(cID);
         if (r == null) {
             r = (WaAS_CollectionSimple) loadSubsetCollectionSimple(cID);
@@ -95,7 +95,7 @@ public class WaAS_Data extends WaAS_Object {
      *
      * @param cID the ID of the subset collection to be set to {@code null}.
      */
-    public void clearCollection(short cID) {
+    public void clearCollection(WaAS_CollectionID cID) {
         data.put(cID, null);
     }
 
@@ -104,7 +104,7 @@ public class WaAS_Data extends WaAS_Object {
      *
      * @param cID the ID of the subset collection to be set to {@code null}.
      */
-    public void clearCollectionSimple(short cID) {
+    public void clearCollectionSimple(WaAS_CollectionID cID) {
         dataSimple.put(cID, null);
     }
 
@@ -114,9 +114,9 @@ public class WaAS_Data extends WaAS_Object {
      * @return {@code true} iff a subset collection was cached and cleared.
      */
     public boolean clearSomeData() {
-        Iterator<Short> ite = data.keySet().iterator();
+        Iterator<WaAS_CollectionID> ite = data.keySet().iterator();
         while (ite.hasNext()) {
-            short cID = ite.next();
+            WaAS_CollectionID cID = ite.next();
             WaAS_Collection c = data.get(cID);
             cacheSubsetCollection(cID, c);
             data.put(cID, null);
@@ -124,7 +124,7 @@ public class WaAS_Data extends WaAS_Object {
         }
         ite = dataSimple.keySet().iterator();
         while (ite.hasNext()) {
-            short cID = ite.next();
+            WaAS_CollectionID cID = ite.next();
             WaAS_CollectionSimple c = dataSimple.get(cID);
             cacheSubsetCollectionSimple(cID, c);
             dataSimple.put(cID, null);
@@ -140,9 +140,9 @@ public class WaAS_Data extends WaAS_Object {
      */
     public int clearAllData() {
         int r = 0;
-        Iterator<Short> ite = data.keySet().iterator();
+        Iterator<WaAS_CollectionID> ite = data.keySet().iterator();
         while (ite.hasNext()) {
-            short cID = ite.next();
+            WaAS_CollectionID cID = ite.next();
             WaAS_Collection c = data.get(cID);
             cacheSubsetCollection(cID, c);
             data.put(cID, null);
@@ -150,7 +150,7 @@ public class WaAS_Data extends WaAS_Object {
         }
         ite = dataSimple.keySet().iterator();
         while (ite.hasNext()) {
-            short cID = ite.next();
+            WaAS_CollectionID cID = ite.next();
             WaAS_CollectionSimple c = dataSimple.get(cID);
             cacheSubsetCollectionSimple(cID, c);
             dataSimple.put(cID, null);
@@ -165,7 +165,7 @@ public class WaAS_Data extends WaAS_Object {
      * @param cID the ID of subset collection to be cached.
      * @param o the subset collection to be cached.
      */
-    public void cacheSubsetCollection(short cID, Object o) {
+    public void cacheSubsetCollection(WaAS_CollectionID cID, Object o) {
         cache(getWaASSubsetCollectionFile(cID), o);
     }
 
@@ -175,7 +175,7 @@ public class WaAS_Data extends WaAS_Object {
      * @param cID the ID of subset collection to be cached.
      * @param o the subset collection to be cached.
      */
-    public void cacheSubsetCollectionSimple(short cID, Object o) {
+    public void cacheSubsetCollectionSimple(WaAS_CollectionID cID, Object o) {
         cache(getWaASSubsetCollectionSimpleFile(cID), o);
     }
 
@@ -185,7 +185,7 @@ public class WaAS_Data extends WaAS_Object {
      * @param cID the ID of subset collection to be loaded.
      * @return the subset collection loaded.
      */
-    public Object loadSubsetCollection(short cID) {
+    public Object loadSubsetCollection(WaAS_CollectionID cID) {
         return load(getWaASSubsetCollectionFile(cID));
     }
 
@@ -195,7 +195,7 @@ public class WaAS_Data extends WaAS_Object {
      * @param cID the ID of subset collection to be loaded.
      * @return the subset collection loaded.
      */
-    public Object loadSubsetCollectionSimple(short cID) {
+    public Object loadSubsetCollectionSimple(WaAS_CollectionID cID) {
         return load(getWaASSubsetCollectionSimpleFile(cID));
     }
 
@@ -205,7 +205,7 @@ public class WaAS_Data extends WaAS_Object {
      * @param cID the ID of subset collection.
      * @return the subset collection file for cID.
      */
-    public File getWaASSubsetCollectionFile(short cID) {
+    public File getWaASSubsetCollectionFile(WaAS_CollectionID cID) {
         return new File(env.files.getGeneratedWaASSubsetsDir(),
                 WaAS_Strings.s_WaAS + WaAS_Strings.symbol_underscore + cID
                 + WaAS_Files.DOT_DAT);
@@ -217,7 +217,7 @@ public class WaAS_Data extends WaAS_Object {
      * @param cID the ID of subset collection.
      * @return the subset collection file for cID.
      */
-    public File getWaASSubsetCollectionSimpleFile(short cID) {
+    public File getWaASSubsetCollectionSimpleFile(WaAS_CollectionID cID) {
         return new File(env.files.getGeneratedWaASSubsetsDir(),
                 WaAS_Strings.s_WaAS + WaAS_Strings.symbol_underscore
                 + WaAS_Strings.s_Simple + cID + WaAS_Files.DOT_DAT);

@@ -31,11 +31,11 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.util.Generic_Collections;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_Wave1_PERSON_Record;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_Wave2_PERSON_Record;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_Wave3_PERSON_Record;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_Wave4_PERSON_Record;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_Wave5_PERSON_Record;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W1PRecord;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W2PRecord;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W3PRecord;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W4PRecord;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W5PRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 
 /**
@@ -68,7 +68,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * @param wave
      * @return
      */
-    public Object[] loadSubsetWave1(TreeSet<Short> CASEW1IDs, int nOC,
+    public Object[] loadSubsetWave1(TreeSet<WaAS_W1ID> CASEW1IDs, int nOC,
             byte wave) {
         Object[] r;
         File cf = getFile(wave);
@@ -82,22 +82,22 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
              * Initialise lookup to be used to identify which CASEW1 records are
              * in each collection.
              */
-            TreeMap<Short, HashSet<Short>> CIDToCASEW1 = new TreeMap<>();
+            TreeMap<WaAS_CollectionID, HashSet<WaAS_W1ID>> CIDToCASEW1 = new TreeMap<>();
             r[0] = CIDToCASEW1;
             /**
              * Initialise lookup to be used to identify which collection a
              * person record is in. The key is CASEW1, the value is the
              * CollectionID.
              */
-            HashMap<Short, Short> CASEW1ToCID = new HashMap<>();
+            HashMap<WaAS_W1ID, WaAS_CollectionID> CASEW1ToCID = new HashMap<>();
             initialiseCASEW1ToCID(CASEW1ToCID, CASEW1IDs, cSize);
             r[1] = CASEW1ToCID;
             /**
              * Initialise collectionIDSets, collectionIDPrintWriters and
              * collectionIDFiles.
              */
-            HashMap<Short, PrintWriter> cPWs = new HashMap<>();
-            TreeMap<Short, File> cFs = new TreeMap<>();
+            HashMap<WaAS_CollectionID, PrintWriter> cPWs = new HashMap<>();
+            TreeMap<WaAS_CollectionID, File> cFs = new TreeMap<>();
             initialiseFilesAndPrintWriters(cFs, cPWs, nOC, wave);
             r[2] = cFs;
             /**
@@ -114,14 +114,15 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
              * Read through the lines and write them to the appropriate files.
              */
             br.lines().skip(1).forEach(l -> {
-                WaAS_Wave1_PERSON_Record rec = new WaAS_Wave1_PERSON_Record(l);
+                WaAS_W1PRecord rec = new WaAS_W1PRecord(l);
                 short CASEW1 = rec.getCASEW1();
                 if (CASEW1 > Short.MIN_VALUE) {
-                    if (CASEW1ToCID.containsKey(CASEW1)) {
-                        short cID = CASEW1ToCID.get(CASEW1);
+                    WaAS_W1ID w1ID = new WaAS_W1ID(CASEW1);
+                    if (CASEW1ToCID.containsKey(w1ID)) {
+                        WaAS_CollectionID cID = CASEW1ToCID.get(w1ID);
                         PrintWriter pw = cPWs.get(cID);
                         pw.println(l);
-                        Generic_Collections.addToMap(CIDToCASEW1, cID, CASEW1);
+                        Generic_Collections.addToMap(CIDToCASEW1, cID, w1ID);
                     }
                 }
             });
@@ -141,18 +142,20 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * @param CASEW1IDs
      * @param cSize
      */
-    protected void initialiseCASEW1ToCID(HashMap<Short, Short> CASEW1ToCID,
-            TreeSet<Short> CASEW1IDs, int cSize) {
-        Iterator<Short> ite = CASEW1IDs.iterator();
-        short cID = 0;
+    protected void initialiseCASEW1ToCID(HashMap<WaAS_W1ID, WaAS_CollectionID> CASEW1ToCID,
+            TreeSet<WaAS_W1ID> CASEW1IDs, int cSize) {
+        Iterator<WaAS_W1ID> ite = CASEW1IDs.iterator();
+        short s = 0;
+        WaAS_CollectionID cID = new WaAS_CollectionID(s);
         int i = 0;
         while (ite.hasNext()) {
-            Short CASEW1 = ite.next();
+            WaAS_W1ID CASEW1 = ite.next();
             CASEW1ToCID.put(CASEW1, cID);
             i++;
             if (i == cSize) {
                 i = 0;
-                cID++;
+                s ++;
+                cID = new WaAS_CollectionID(s);
             }
         }
     }
@@ -165,14 +168,15 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * @param nOC Number of collections.
      * @param wave
      */
-    protected void initialiseFilesAndPrintWriters(TreeMap<Short, File> cFs,
-            HashMap<Short, PrintWriter> cPWs, int nOC, byte wave) {
+    protected void initialiseFilesAndPrintWriters(TreeMap<WaAS_CollectionID, File> cFs,
+            HashMap<WaAS_CollectionID, PrintWriter> cPWs, int nOC, byte wave) {
         for (short cID = 0; cID < nOC; cID++) {
             File f = new File(files.getGeneratedWaASSubsetsDir(),
                     WaAS_Strings.s_person + wave
                     + WaAS_Strings.symbol_underscore + cID + ".tab");
-            cPWs.put(cID, Generic_IO.getPrintWriter(f, false));
-            cFs.put(cID, f);
+            WaAS_CollectionID collID = new WaAS_CollectionID(cID);
+            cPWs.put(collID, Generic_IO.getPrintWriter(f, false));
+            cFs.put(collID, f);
         }
     }
 
@@ -183,7 +187,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * @param br
      * @param CPWs
      */
-    protected void addHeader(BufferedReader br, HashMap<Short, PrintWriter> CPWs) {
+    protected void addHeader(BufferedReader br, HashMap<WaAS_CollectionID, PrintWriter> CPWs) {
         try {
             String header = br.readLine();
             CPWs.keySet().stream().forEach(cID -> {
@@ -201,9 +205,9 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      *
      * @param cPWs
      */
-    protected void closePrintWriters(HashMap<Short, PrintWriter> cPWs) {
-        cPWs.keySet().stream().forEach(collectionID -> {
-            PrintWriter pw = cPWs.get(collectionID);
+    protected void closePrintWriters(HashMap<WaAS_CollectionID, PrintWriter> cPWs) {
+        cPWs.keySet().stream().forEach(cID -> {
+            PrintWriter pw = cPWs.get(cID);
             pw.close();
         });
     }
@@ -216,21 +220,21 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * @param nOC Number of collections.
      * @param CASEW1ToCID
      * @param wave
-     * @param CASEW2ToCASEW1
+     * @param W2ToW1
      * @return
      */
-    public TreeMap<Short, File> loadSubsetWave2(int nOC,
-            HashMap<Short, Short> CASEW1ToCID, byte wave,
-            TreeMap<Short, Short> CASEW2ToCASEW1) {
+    public TreeMap<WaAS_CollectionID, File> loadSubsetWave2(int nOC,
+            HashMap<WaAS_W1ID, WaAS_CollectionID> CASEW1ToCID, byte wave,
+            TreeMap<WaAS_W2ID, WaAS_W1ID> W2ToW1) {
         File cf = getFile(wave);
         if (cf.exists()) {
-            return (TreeMap<Short, File>) Generic_IO.readObject(cf);
+            return (TreeMap<WaAS_CollectionID, File>) Generic_IO.readObject(cf);
         } else {
-            TreeMap<Short, File> r = new TreeMap<>();
+            TreeMap<WaAS_CollectionID, File> r = new TreeMap<>();
             /**
              * Initialise collectionIDSets and collectionIDPrintWriters.
              */
-            HashMap<Short, PrintWriter> cPWs = new HashMap<>();
+            HashMap<WaAS_CollectionID, PrintWriter> cPWs = new HashMap<>();
             initialiseFilesAndPrintWriters(r, cPWs, nOC, wave);
             /**
              * Read through the lines and figure out which lines should be put
@@ -246,10 +250,10 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
              * Read through the lines and write them to the appropriate files.
              */
             br.lines().skip(1).forEach(l -> {
-                WaAS_Wave2_PERSON_Record rec = new WaAS_Wave2_PERSON_Record(l);
-                short CASEW2 = rec.getCASEW2();
-                if (CASEW2ToCASEW1.containsKey(CASEW2)) {
-                    short CASEW1 = CASEW2ToCASEW1.get(CASEW2);
+                WaAS_W2PRecord rec = new WaAS_W2PRecord(l);
+                WaAS_W2ID w2ID = new WaAS_W2ID(rec.getCASEW2());
+                if (W2ToW1.containsKey(w2ID)) {
+                    WaAS_W1ID CASEW1 = W2ToW1.get(w2ID);
                     write(CASEW1ToCID, CASEW1, cPWs, l);
                 }
             });
@@ -270,8 +274,8 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * looked up from CASEW1.
      * @param s the string to write
      */
-    private void write(HashMap<Short, Short> CASEW1ToCID, short CASEW1,
-            HashMap<Short, PrintWriter> cPWs, String s) {
+    private void write(HashMap<WaAS_W1ID, WaAS_CollectionID> CASEW1ToCID, WaAS_W1ID CASEW1,
+            HashMap<WaAS_CollectionID, PrintWriter> cPWs, String s) {
         if (CASEW1ToCID.containsKey(CASEW1)) {
             PrintWriter pw = cPWs.get(CASEW1ToCID.get(CASEW1));
             pw.println(s);
@@ -295,25 +299,25 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * the data are selected and the cache is written for next time.
      *
      * @param nOC Number of collections.
-     * @param CASEW1ToCID
+     * @param W1ToCID
      * @param wave
-     * @param CASEW2ToCASEW1
-     * @param CASEW3ToCASEW2
+     * @param W2ToW1
+     * @param W3ToW2
      * @return
      */
-    public TreeMap<Short, File> loadSubsetWave3(int nOC,
-            HashMap<Short, Short> CASEW1ToCID, byte wave,
-            TreeMap<Short, Short> CASEW2ToCASEW1,
-            TreeMap<Short, Short> CASEW3ToCASEW2) {
+    public TreeMap<WaAS_CollectionID, File> loadSubsetWave3(int nOC,
+            HashMap<WaAS_W1ID, WaAS_CollectionID> W1ToCID, byte wave,
+            TreeMap<WaAS_W2ID, WaAS_W1ID> W2ToW1,
+            TreeMap<WaAS_W3ID, WaAS_W2ID> W3ToW2) {
         File cf = getFile(wave);
         if (cf.exists()) {
-            return (TreeMap<Short, File>) Generic_IO.readObject(cf);
+            return (TreeMap<WaAS_CollectionID, File>) Generic_IO.readObject(cf);
         } else {
-            TreeMap<Short, File> r = new TreeMap<>();
+            TreeMap<WaAS_CollectionID, File> r = new TreeMap<>();
             /**
              * Initialise collectionIDSets and collectionIDPrintWriters.
              */
-            HashMap<Short, PrintWriter> cPWs = new HashMap<>();
+            HashMap<WaAS_CollectionID, PrintWriter> cPWs = new HashMap<>();
             initialiseFilesAndPrintWriters(r, cPWs, nOC, wave);
             /**
              * Read through the lines and figure out which lines should be put
@@ -329,12 +333,12 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
              * Read through the lines and write them to the appropriate files.
              */
             br.lines().skip(1).forEach(l -> {
-                WaAS_Wave3_PERSON_Record rec = new WaAS_Wave3_PERSON_Record(l);
-                short CASEW3 = rec.getCASEW3();
-                if (CASEW3ToCASEW2.containsKey(CASEW3)) {
-                    short CASEW2 = CASEW3ToCASEW2.get(CASEW3);
-                    short CASEW1 = CASEW2ToCASEW1.get(CASEW2);
-                    write(CASEW1ToCID, CASEW1, cPWs, l);
+                WaAS_W3PRecord rec = new WaAS_W3PRecord(l);
+                WaAS_W3ID CASEW3 = new WaAS_W3ID(rec.getCASEW3());
+                if (W3ToW2.containsKey(CASEW3)) {
+                    WaAS_W2ID CASEW2 = W3ToW2.get(CASEW3);
+                    WaAS_W1ID CASEW1 = W2ToW1.get(CASEW2);
+                    write(W1ToCID, CASEW1, cPWs, l);
                 }
             });
             // Close br
@@ -352,27 +356,27 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * the data are selected and the cache is written for next time.
      *
      * @param nOC Number of collections.
-     * @param CASEW1ToCID
+     * @param W1ToCID
      * @param wave
-     * @param CASEW2ToCASEW1
-     * @param CASEW3ToCASEW2
-     * @param CASEW4ToCASEW3
+     * @param W2ToW1
+     * @param W3ToW2
+     * @param W4ToW3
      * @return
      */
-    public TreeMap<Short, File> loadSubsetWave4(int nOC,
-            HashMap<Short, Short> CASEW1ToCID, byte wave,
-            TreeMap<Short, Short> CASEW2ToCASEW1,
-            TreeMap<Short, Short> CASEW3ToCASEW2,
-            TreeMap<Short, Short> CASEW4ToCASEW3) {
+    public TreeMap<WaAS_CollectionID, File> loadSubsetWave4(int nOC,
+            HashMap<WaAS_W1ID, WaAS_CollectionID> W1ToCID, byte wave,
+            TreeMap<WaAS_W2ID, WaAS_W1ID> W2ToW1,
+            TreeMap<WaAS_W3ID, WaAS_W2ID> W3ToW2,
+            TreeMap<WaAS_W4ID, WaAS_W3ID> W4ToW3) {
         File cf = getFile(wave);
         if (cf.exists()) {
-            return (TreeMap<Short, File>) Generic_IO.readObject(cf);
+            return (TreeMap<WaAS_CollectionID, File>) Generic_IO.readObject(cf);
         } else {
-            TreeMap<Short, File> r = new TreeMap<>();
+            TreeMap<WaAS_CollectionID, File> r = new TreeMap<>();
             /**
              * Initialise collectionIDSets and collectionIDPrintWriters.
              */
-            HashMap<Short, PrintWriter> cPWs = new HashMap<>();
+            HashMap<WaAS_CollectionID, PrintWriter> cPWs = new HashMap<>();
             initialiseFilesAndPrintWriters(r, cPWs, nOC, wave);
             /**
              * Read through the lines and figure out which lines should be put
@@ -388,13 +392,13 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
              * Read through the lines and write them to the appropriate files.
              */
             br.lines().skip(1).forEach(l -> {
-                WaAS_Wave4_PERSON_Record rec = new WaAS_Wave4_PERSON_Record(l);
-                short CASEW4 = rec.getCASEW4();
-                if (CASEW4ToCASEW3.containsKey(CASEW4)) {
-                    short CASEW3 = CASEW4ToCASEW3.get(CASEW4);
-                    short CASEW2 = CASEW3ToCASEW2.get(CASEW3);
-                    short CASEW1 = CASEW2ToCASEW1.get(CASEW2);
-                    write(CASEW1ToCID, CASEW1, cPWs, l);
+                WaAS_W4PRecord rec = new WaAS_W4PRecord(l);
+                WaAS_W4ID CASEW4 = new WaAS_W4ID(rec.getCASEW4());
+                if (W4ToW3.containsKey(CASEW4)) {
+                    WaAS_W3ID w3ID = W4ToW3.get(CASEW4);
+                    WaAS_W2ID w2ID = W3ToW2.get(w3ID);
+                    WaAS_W1ID w1ID = W2ToW1.get(w2ID);
+                    write(W1ToCID, w1ID, cPWs, l);
                 }
             });
             // Close br
@@ -412,30 +416,30 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * the data are selected and the cache is written for next time.
      *
      * @param nOC Number of collections.
-     * @param CASEW1ToCID
+     * @param W1ToCID
      * @param wave
-     * @param CASEW2ToCASEW1
-     * @param CASEW3ToCASEW2
-     * @param CASEW5ToCASEW4
-     * @param CASEW4ToCASEW3
+     * @param W2ToW1
+     * @param W3ToW2
+     * @param W5ToW4
+     * @param W4ToW3
      * @return
      */
-    public TreeMap<Short, File> loadSubsetWave5(int nOC,
-            HashMap<Short, Short> CASEW1ToCID, byte wave,
-            TreeMap<Short, Short> CASEW2ToCASEW1,
-            TreeMap<Short, Short> CASEW3ToCASEW2,
-            TreeMap<Short, Short> CASEW4ToCASEW3,
-            TreeMap<Short, Short> CASEW5ToCASEW4) {
+    public TreeMap<WaAS_CollectionID, File> loadSubsetWave5(int nOC,
+            HashMap<WaAS_W1ID, WaAS_CollectionID> W1ToCID, byte wave,
+            TreeMap<WaAS_W2ID, WaAS_W1ID> W2ToW1,
+            TreeMap<WaAS_W3ID, WaAS_W2ID> W3ToW2,
+            TreeMap<WaAS_W4ID, WaAS_W3ID> W4ToW3,
+            TreeMap<WaAS_W5ID, WaAS_W4ID> W5ToW4) {
         File cf = getFile(wave);
         if (cf.exists()) {
-            return (TreeMap<Short, File>) Generic_IO.readObject(cf);
+            return (TreeMap<WaAS_CollectionID, File>) Generic_IO.readObject(cf);
         } else {
-            TreeMap<Short, File> r = new TreeMap<>();
+            TreeMap<WaAS_CollectionID, File> r = new TreeMap<>();
             /**
              * Initialise collectionIDSets, collectionIDPrintWriters and
              * collectionIDFiles.
              */
-            HashMap<Short, PrintWriter> cPWs = new HashMap<>();
+            HashMap<WaAS_CollectionID, PrintWriter> cPWs = new HashMap<>();
             initialiseFilesAndPrintWriters(r, cPWs, nOC, wave);
             /**
              * Read through the lines and figure out which lines should be put
@@ -451,16 +455,15 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
              * Read through the lines and write them to the appropriate files.
              */
             br.lines().skip(1).forEach(l -> {
-                WaAS_Wave5_PERSON_Record rec = new WaAS_Wave5_PERSON_Record(l);
-                short CASEW5 = rec.getCASEW5();
-                if (CASEW5ToCASEW4.containsKey(CASEW5)) {
-                    short CASEW4 = CASEW5ToCASEW4.get(CASEW5);
-                    Short o = CASEW4ToCASEW3.get(CASEW4); // There is a strange case!
-                    if (o != null) {
-                        short CASEW3 = o;
-                        short CASEW2 = CASEW3ToCASEW2.get(CASEW3);
-                        short CASEW1 = CASEW2ToCASEW1.get(CASEW2);
-                        write(CASEW1ToCID, CASEW1, cPWs, l);
+                WaAS_W5PRecord rec = new WaAS_W5PRecord(l);
+                WaAS_W5ID CASEW5 = new WaAS_W5ID(rec.getCASEW5());
+                if (W5ToW4.containsKey(CASEW5)) {
+                    WaAS_W4ID w4ID = W5ToW4.get(CASEW5);
+                    WaAS_W3ID w3ID = W4ToW3.get(w4ID); // There is a strange case!
+                    if (w3ID != null) {
+                        WaAS_W2ID w2ID = W3ToW2.get(w3ID);
+                        WaAS_W1ID w1ID = W2ToW1.get(w2ID);
+                        write(W1ToCID, w1ID, cPWs, l);
                     }
                 }
             });

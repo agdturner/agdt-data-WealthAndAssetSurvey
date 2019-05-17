@@ -21,34 +21,34 @@ import java.util.HashMap;
  *
  * @author geoagdt
  */
-public class WaAS_Combined_Record extends WaAS_Record {
+public class WaAS_CombinedRecord extends WaAS_ID {
 
-    public WaAS_Wave1_Record w1Record;
+    public WaAS_W1Record w1Record;
 
     /**
      * Keys are CASEW2
      */
-    public HashMap<Short, WaAS_Wave2_Record> w2Records;
+    public HashMap<WaAS_W2ID, WaAS_W2Record> w2Records;
 
     /**
      * Keys are CASEW2, values keys are CASEW3.
      */
-    public HashMap<Short, HashMap<Short, WaAS_Wave3_Record>> w3Records;
+    public HashMap<WaAS_W2ID, HashMap<WaAS_W3ID, WaAS_W3Record>> w3Records;
 
     /**
      * Keys are CASEW2, values keys are CASEW3, next value keys are CASEW4.
      */
-    public HashMap<Short, HashMap<Short, HashMap<Short, WaAS_Wave4_Record>>> w4Records;
+    public HashMap<WaAS_W2ID, HashMap<WaAS_W3ID, HashMap<WaAS_W4ID, WaAS_W4Record>>> w4Records;
 
     /**
      * Keys are CASEW2, values keys are CASEW3, next value keys are CASEW4, next
      * value keys are CASEW5.
      */
-    public HashMap<Short, HashMap<Short, HashMap<Short, HashMap<Short, WaAS_Wave5_Record>>>> w5Records;
+    public HashMap<WaAS_W2ID, HashMap<WaAS_W3ID, HashMap<WaAS_W4ID, HashMap<WaAS_W5ID, WaAS_W5Record>>>> w5Records;
 
-    public WaAS_Combined_Record(short CASEW1) {
-        super(CASEW1);
-        w1Record = new WaAS_Wave1_Record(CASEW1);
+    public WaAS_CombinedRecord(WaAS_W1ID CASEW1) {
+        super(CASEW1.getID());
+        w1Record = new WaAS_W1Record(CASEW1.getID());
         w2Records = new HashMap<>();
         w3Records = new HashMap<>();
         w4Records = new HashMap<>();

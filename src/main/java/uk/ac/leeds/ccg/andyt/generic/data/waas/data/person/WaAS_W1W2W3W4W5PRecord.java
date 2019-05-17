@@ -3,7 +3,7 @@
  */
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data.person;
 import java.io.Serializable;
-public class WaAS_Wave1Or2Or3Or4Or5_PERSON_Record implements Serializable {
+public class WaAS_W1W2W3W4W5PRecord implements Serializable {
 protected String[] s;
 protected byte ATTEND;
 protected String BACCBEG2;

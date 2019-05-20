@@ -17,6 +17,7 @@ package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -68,36 +69,36 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          * Step 1.1: Wave 5 initial load. After this load the lookup contains
          * Wave 5 records that have Wave 4 IDs.
          */
-        W5Data w5Data = loadW5();
+        WaAS_W5Data w5Data = loadW5();
         r[4] = w5Data;
         /**
          * Step 1.2: Wave 4 initial load. After this load the main set of data
          * contains all those Wave 4 records that have Wave 3 record identifiers
          * and that are in the main set loaded in Step 1.1.
          */
-        W4Data w4Data = loadW4InS(w5Data.W4ToW5.keySet(), WaAS_Strings.s_InW3W5);
+        WaAS_W4Data w4Data = loadW4InS(w5Data.W4ToW5.keySet(), WaAS_Strings.s_InW3W5);
         r[3] = w4Data;
         /**
          * Step 1.3: Wave 3 initial load. After this load the main set of data
          * contains all those Wave 3 records that have Wave 2 record identifiers
          * and that are in the main set loaded in Step 1.2.
          */
-        W3Data w3Data = loadW3InSAndW2(w4Data.W3ToW4.keySet(), WaAS_Strings.s_InW2W4W5);
+        WaAS_W3Data w3Data = loadW3InSAndW2(w4Data.W3ToW4.keySet(), WaAS_Strings.s_InW2W4W5);
         r[2] = w3Data;
         /**
          * Step 1.4: Wave 2 initial load. After this load the main set of data
          * contains all those Wave 2 records that have Wave 1 record identifiers
          * and that are in the main set loaded in Step 1.3.
          */
-        W2Data w2Data = loadW2InSAndW1(w3Data.W2ToW3.keySet(), WaAS_Strings.s_InW1W3W4W5);
+        WaAS_W2Data w2Data = loadW2InSAndW1(w3Data.W2ToW3.keySet(), WaAS_Strings.s_InW1W3W4W5);
         r[1] = w2Data;
-        
+
         /**
          * Step 1.5: Wave 1 initial load. After this load the main set of data
          * contains all those Wave 1 records that are in the main set loaded in
          * Step 1.4.
          */
-        W1Data w1Data = loadW1(w2Data.W1ToW2.keySet(), WaAS_Strings.s_InW2W4W5);
+        WaAS_W1Data w1Data = loadW1(w2Data.W1ToW2.keySet(), WaAS_Strings.s_InW2W4W5);
         /**
          * Step 2: Check what is loaded and go through creating ID sets.
          */
@@ -135,8 +136,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         TreeMap<WaAS_W2ID, WaAS_W2HRecord> w2recs = new TreeMap<>();
         TreeSet<WaAS_ID2> w2IDs = new TreeSet<>();
         Iterator<WaAS_W2ID> iteW2;
-        iteW2  = w2Data.lookup.keySet().iterator();
-        while(iteW2.hasNext()) {
+        iteW2 = w2Data.lookup.keySet().iterator();
+        while (iteW2.hasNext()) {
             WaAS_W2ID w2ID = iteW2.next();
             WaAS_W1ID w1ID = w2Data.W2ToW1.get(w2ID);
             WaAS_ID2 ID = new WaAS_ID2(w1ID, w2ID);
@@ -291,39 +292,39 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
 //     * </ul></li>
 //     * <li>If wave == {@link #W3} then:
 //     * <ul>
-//     * <li>r[0] is a TreeMap with keys as CASEW3 and values as
+//     * <li>r[0] is a TreeMap with keys as w3ID and values as
 //     * WaAS_Wave3_HHOLD_Records. It contains all records from Wave 3 that have a
 //     * CASEW2 value.</li>
 //     * <li>r[1] is an array of TreeSets where:
 //     * <ul>
 //     * <li>r[1][0] is a list of CASEW1 values in Wave 3 records.</li>
 //     * <li>r[1][1] is a list of CASEW2 values in Wave 3 records.</li>
-//     * <li>r[1][2] is a list of all CASEW3 values.</li>
-//     * <li>r[1][3] is a list of CASEW3 values for records that have CASEW2 and
+//     * <li>r[1][2] is a list of all w3ID values.</li>
+//     * <li>r[1][3] is a list of w3ID values for records that have CASEW2 and
 //     * CASEW1 values.</li>
 //     * </ul>
 //     * </li>
-//     * <li>r[2] is a TreeMap with keys as CASEW3 and values as CASEW2.</li>
+//     * <li>r[2] is a TreeMap with keys as w3ID and values as CASEW2.</li>
 //     * <li>r[3] is a TreeMap with keys as CASEW2 and values as HashSets of
-//     * CASEW3 (which is normally expected to contain just one CASEW3).</li>
+//     * w3ID (which is normally expected to contain just one w3ID).</li>
 //     * </ul></li>
 //     * <li>If wave == {@link #W4} then:
 //     * <ul>
 //     * <li>r[0] is a TreeMap with keys as CASEW4 and values as
 //     * WaAS_Wave4_HHOLD_Records. It contains all records from Wave 4 that have a
-//     * CASEW3 value.</li>
+//     * w3ID value.</li>
 //     * <li>r[1] is an array of TreeSets where:
 //     * <ul>
 //     * <li>r[1][0] is a list of CASEW1 values in Wave 4 records.</li>
 //     * <li>r[1][1] is a list of CASEW2 values in Wave 4 records.</li>
-//     * <li>r[1][2] is a list of CASEW3 values in Wave 4 records.</li>
+//     * <li>r[1][2] is a list of w3ID values in Wave 4 records.</li>
 //     * <li>r[1][3] is a list of all CASEW4 values.</li>
-//     * <li>r[1][4] is a list of CASEW4 values for records that have CASEW3,
+//     * <li>r[1][4] is a list of CASEW4 values for records that have w3ID,
 //     * CASEW2 and CASEW1 values.</li>
 //     * </ul>
 //     * </li>
-//     * <li>r[2] is a TreeMap with keys as CASEW4 and values as CASEW3.</li>
-//     * <li>r[3] is a TreeMap with keys as CASEW3 and values as HashSets of
+//     * <li>r[2] is a TreeMap with keys as CASEW4 and values as w3ID.</li>
+//     * <li>r[3] is a TreeMap with keys as w3ID and values as HashSets of
 //     * CASEW4 (which is normally expected to contain just one CASEW4).</li>
 //     * </ul></li>
 //     * <li>If wave == {@link #W5} then:
@@ -334,11 +335,11 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
 //     * <ul>
 //     * <li>r[1][0] is a list of CASEW1 values in Wave 5 records.</li>
 //     * <li>r[1][1] is a list of CASEW2 values in Wave 5 records.</li>
-//     * <li>r[1][2] is a list of CASEW3 values in Wave 5 records.</li>
+//     * <li>r[1][2] is a list of w3ID values in Wave 5 records.</li>
 //     * <li>r[1][3] is a list of CASEW4 values in Wave 5 records.</li>
 //     * <li>r[1][4] is a list of all CASEW5 values.</li>
 //     * <li>r[1][5] is a list of CASEW5 values for records that have CASEW4,
-//     * CASEW3, CASEW2 and CASEW1 values.</li>
+//     * w3ID, CASEW2 and CASEW1 values.</li>
 //     * </ul>
 //     * </li>
 //     * <li>r[2] is a TreeMap with keys as CASEW5 and values as CASEW4.</li>
@@ -365,8 +366,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
 //        env.logEndTag(m);
 //        return r;
 //    }
-
-    public class W5Data {
+    public class WaAS_W5Data implements Serializable {
 
         /**
          * Keys are CASEW5 and values are WaAS_Wave5_HHOLD_Records
@@ -381,7 +381,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          */
         public final TreeSet<WaAS_W2ID> W2InW5;
         /**
-         * CASEW3 values in Wave 5 records.
+         * w3ID values in Wave 5 records.
          */
         public final TreeSet<WaAS_W3ID> W3InW5;
         /**
@@ -393,7 +393,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          */
         public final TreeSet<WaAS_W5ID> AllW5;
         /**
-         * CASEW5 values for records that have CASEW4, CASEW3, CASEW2 and CASEW1
+         * CASEW5 values for records that have CASEW4, w3ID, CASEW2 and CASEW1
          * values.
          */
         public final TreeSet<WaAS_W5ID> W5InW1W2W3W4;
@@ -407,7 +407,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          */
         public final TreeMap<WaAS_W4ID, HashSet<WaAS_W5ID>> W4ToW5;
 
-        public W5Data() {
+        public WaAS_W5Data() {
             lookup = new TreeMap<>();
             W1InW5 = new TreeSet<>();
             W2InW5 = new TreeSet<>();
@@ -426,15 +426,15 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      *
      * @return the loaded data
      */
-    public W5Data loadW5() {
+    public WaAS_W5Data loadW5() {
         String m = "loadW5";
         env.logStartTag(m);
-        W5Data r;
+        WaAS_W5Data r;
         File cf = getSubsetCacheFile2(W5, "InW4");
         if (cf.exists()) {
-            r = (W5Data) load(W5, cf);
+            r = (WaAS_W5Data) load(W5, cf);
         } else {
-            r = new W5Data();
+            r = new WaAS_W5Data();
             File f = getInputFile(W5);
             /**
              * Each hhold in Wave 5 comes from at most one hhold from Wave 4. It
@@ -567,7 +567,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     /**
      * Load All Wave 3 records.
      *
-     * @return a TreeMap with keys as CASEW3 and values as
+     * @return a TreeMap with keys as w3ID and values as
      * WaAS_Wave3_HHOLD_Records.
      */
     public TreeMap<WaAS_W3ID, WaAS_W3HRecord> loadAllW3() {
@@ -745,21 +745,21 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     /**
      * Load Wave 4 records that have CASEW4 values in {@code s}.
      *
-     * @param s a set containing CASEW3.
+     * @param s a set containing w3ID.
      * @param type for loading an already computed result. Expected values
      * include: "InW3W5" and "InW5".
      *
      * @return the loaded data
      */
-    public W4Data loadW4InS(Set<WaAS_W4ID> s, String type) {
+    public WaAS_W4Data loadW4InS(Set<WaAS_W4ID> s, String type) {
         String m = "loadW4InS(Set<WaAS_W4ID>, " + type + ")";
         env.logStartTag(m);
-        W4Data r;
+        WaAS_W4Data r;
         File cf = getSubsetCacheFile2(W4, type);
         if (cf.exists()) {
-            r = (W4Data) load(W4, cf);
+            r = (WaAS_W4Data) load(W4, cf);
         } else {
-            r = new W4Data();
+            r = new WaAS_W4Data();
             File f = getInputFile(W4);
             /**
              * Each hhold in Wave 4 comes from at most one hhold from Wave 3. It
@@ -807,23 +807,23 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     }
 
     /**
-     * Load Wave 4 records that have CASEW3 values in {@code s}.
+     * Load Wave 4 records that have w3ID values in {@code s}.
      *
-     * @param s a set containing CASEW3.
+     * @param s a set containing w3ID.
      * @param type for loading an already computed result. Expected values
      * include: "InW3W5" and "InW5".
      *
      * @return the loaded data
      */
-    public W4Data loadW4InSAndW3(Set<WaAS_W3ID> s, String type) {
+    public WaAS_W4Data loadW4InSAndW3(Set<WaAS_W3ID> s, String type) {
         String m = "loadW4(Set<WaAS_W3ID>, " + type + ")";
         env.logStartTag(m);
-        W4Data r;
+        WaAS_W4Data r;
         File cf = getSubsetCacheFile2(W4, type);
         if (cf.exists()) {
-            r = (W4Data) load(W4, cf);
+            r = (WaAS_W4Data) load(W4, cf);
         } else {
-            r = new W4Data();
+            r = new WaAS_W4Data();
             File f = getInputFile(W4);
             /**
              * Each hhold in Wave 4 comes from at most one hhold from Wave 3. It
@@ -870,7 +870,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         return r;
     }
 
-    public class W4Data {
+    public class WaAS_W4Data implements Serializable {
 
         /**
          * Keys are CASEW4 and values are WaAS_Wave4_HHOLD_Records
@@ -885,7 +885,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          */
         public final TreeSet<WaAS_W2ID> W2InW4;
         /**
-         * CASEW3 values in Wave 4 records.
+         * w3ID values in Wave 4 records.
          */
         public final TreeSet<WaAS_W3ID> W3InW4;
         /**
@@ -893,20 +893,20 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          */
         public final TreeSet<WaAS_W4ID> AllW4;
         /**
-         * CASEW4 values for records that have CASEW3, CASEW2 and CASEW1 values.
+         * CASEW4 values for records that have w3ID, CASEW2 and CASEW1 values.
          */
         public final TreeSet<WaAS_W4ID> W4InW1W2W3;
         /**
-         * Keys are CASEW4 and values are CASEW3.
+         * Keys are CASEW4 and values are w3ID.
          */
         public final TreeMap<WaAS_W4ID, WaAS_W3ID> W4ToW3;
         /**
-         * Keys are CASEW3 and values are sets of CASEW4 (which is normally
+         * Keys are w3ID and values are sets of CASEW4 (which is normally
          * expected to contain just one CASEW4).
          */
         public final TreeMap<WaAS_W3ID, HashSet<WaAS_W4ID>> W3ToW4;
 
-        public W4Data() {
+        public WaAS_W4Data() {
             lookup = new TreeMap<>();
             W1InW4 = new TreeSet<>();
             W2InW4 = new TreeSet<>();
@@ -918,7 +918,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         }
     }
 
-    protected BufferedReader loadW4Count(W4Data r, File f) {
+    protected BufferedReader loadW4Count(WaAS_W4Data r, File f) {
         BufferedReader br = Generic_IO.getBufferedReader(f);
         int count = br.lines().skip(1).mapToInt(l -> {
             WaAS_W4HRecord rec = new WaAS_W4HRecord(l);
@@ -940,20 +940,20 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     }
 
     /**
-     * Load Wave 4 records that are reportedly in Wave 3 (those with CASEW3
+     * Load Wave 4 records that are reportedly in Wave 3 (those with w3ID
      * values).
      *
      * @return the loaded data
      */
-    public W4Data loadW4() {
+    public WaAS_W4Data loadW4() {
         String m = "loadW4";
         env.logStartTag(m);
-        W4Data r;
+        WaAS_W4Data r;
         File cf = getSubsetCacheFile2(W4, "InW3");
         if (cf.exists()) {
-            r = (W4Data) load(W4, cf);
+            r = (WaAS_W4Data) load(W4, cf);
         } else {
-            r = new W4Data();
+            r = new WaAS_W4Data();
             File f = getInputFile(W4);
             /**
              * Each hhold in Wave 4 comes from at most one hhold from Wave 3. It
@@ -997,7 +997,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         return r;
     }
 
-    protected BufferedReader loadW3Count(W3Data r, File f) {
+    protected BufferedReader loadW3Count(WaAS_W3Data r, File f) {
         BufferedReader br = Generic_IO.getBufferedReader(f);
         int count = br.lines().skip(1).mapToInt(l -> {
             WaAS_W3HRecord rec = new WaAS_W3HRecord(l);
@@ -1024,15 +1024,15 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      *
      * @return the loaded data
      */
-    public W3Data loadW3() {
+    public WaAS_W3Data loadW3() {
         String m = "loadW3";
         env.logStartTag(m);
-        W3Data r;
+        WaAS_W3Data r;
         File cf = getSubsetCacheFile2(W3, "InW2");
         if (cf.exists()) {
-            r = (W3Data) load(W3, cf);
+            r = (WaAS_W3Data) load(W3, cf);
         } else {
-            r = new W3Data();
+            r = new WaAS_W3Data();
             File f = getInputFile(W3);
             /**
              * Each hhold in Wave 3 comes from at most one hhold from Wave 2. It
@@ -1073,10 +1073,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
 
     }
 
-    public class W3Data {
+    public class WaAS_W3Data  implements Serializable {
 
         /**
-         * Keys are CASEW3 and values are WaAS_Wave3_HHOLD_Records
+         * Keys are w3ID and values are WaAS_Wave3_HHOLD_Records
          */
         public TreeMap<WaAS_W3ID, WaAS_W3HRecord> lookup;
         /**
@@ -1088,29 +1088,28 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          */
         public final TreeSet<WaAS_W2ID> W2InW3;
         /**
-         * All CASEW3 values.
+         * All w3ID values.
          */
         public final TreeSet<WaAS_W3ID> AllW3;
         /**
-         * CASEW3 values for records that have CASEW1 and CASEW2 values.
+         * w3ID values for records that have CASEW1 and CASEW2 values.
          */
         public final TreeSet<WaAS_W3ID> W3InW1W2;
         /**
-         * CASEW3 values for records in waves 4 and 5 and that have CASEW2
-         * values.
+         * w3ID values for records in waves 4 and 5 and that have CASEW2 values.
          */
         public final TreeSet<WaAS_W3ID> W3InW2W4W5;
         /**
-         * Keys are CASEW3 and values are CASEW2.
+         * Keys are w3ID and values are CASEW2.
          */
         public final TreeMap<WaAS_W3ID, WaAS_W2ID> W3ToW2;
         /**
-         * Keys are CASEW2 and values are sets of CASEW3 (which is normally
-         * expected to contain just one CASEW3).
+         * Keys are CASEW2 and values are sets of w3ID (which is normally
+         * expected to contain just one w3ID).
          */
         public final TreeMap<WaAS_W2ID, HashSet<WaAS_W3ID>> W2ToW3;
 
-        public W3Data() {
+        public WaAS_W3Data() {
             lookup = new TreeMap<>();
             W1InW3 = new TreeSet<>();
             W2InW3 = new TreeSet<>();
@@ -1123,23 +1122,23 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     }
 
     /**
-     * Load Wave 3 records that have CASEW3 values in {@code s}.
+     * Load Wave 3 records that have w3ID values in {@code s}.
      *
-     * @param s a set containing CASEW3 values.
+     * @param s a set containing w3ID values.
      * @param type for loading an already computed result. Expected values
      * include: "InW4".
      *
      * @return the loaded data
      */
-    public W3Data loadW3InS(Set<WaAS_W3ID> s, String type) {
+    public WaAS_W3Data loadW3InS(Set<WaAS_W3ID> s, String type) {
         String m = "loadW3InS(Set<WaAS_W3ID>, " + type + ")";
         env.logStartTag(m);
-        W3Data r;
+        WaAS_W3Data r;
         File cf = getSubsetCacheFile2(W3, type);
         if (cf.exists()) {
-            r = (W3Data) load(W3, cf);
+            r = (WaAS_W3Data) load(W3, cf);
         } else {
-            r = new W3Data();
+            r = new WaAS_W3Data();
             File f = getInputFile(W3);
             String m1 = getMessage(W3, f);
             env.logStartTag(m1);
@@ -1175,23 +1174,23 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     }
 
     /**
-     * Load Wave 3 records that have CASEW3 values in {@code s}.
+     * Load Wave 3 records that have w3ID values in {@code s}.
      *
-     * @param s a set containing CASEW3 values.
+     * @param s a set containing w3ID values.
      * @param type for loading an already computed result. Expected values
      * include: "InW2W4W5".
      *
      * @return the loaded data
      */
-    public W3Data loadW3InSAndW2(Set<WaAS_W3ID> s, String type) {
+    public WaAS_W3Data loadW3InSAndW2(Set<WaAS_W3ID> s, String type) {
         String m = "loadW3InSAndW2(Set<Short>, " + type + ")";
         env.logStartTag(m);
-        W3Data r;
+        WaAS_W3Data r;
         File cf = getSubsetCacheFile2(W3, type);
         if (cf.exists()) {
-            r = (W3Data) load(W3, cf);
+            r = (WaAS_W3Data) load(W3, cf);
         } else {
-            r = new W3Data();
+            r = new WaAS_W3Data();
             File f = getInputFile(W3);
             String m1 = getMessage(W3, f);
             env.logStartTag(m1);
@@ -1227,15 +1226,15 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     }
 
 //    /**
-//     * Load Wave 3 records that have CASEW3 values in {@code s}.
+//     * Load Wave 3 records that have w3ID values in {@code s}.
 //     *
-//     * @param s a set containing CASEW3 values.
+//     * @param s a set containing w3ID values.
 //     * @param type for loading an already computed result. Expected values
 //     * include: "InW2W4W5" and "InW4".
 //     *
 //     * @return r An Object[] of length 4:
 //     * <ul>
-//     * <li>r[0] is a TreeMap with keys as CASEW3 and values as
+//     * <li>r[0] is a TreeMap with keys as w3ID and values as
 //     * WaAS_Wave3_HHOLD_Records. For {@code type.equalsIgnoreCase("InW2W4W5")}
 //     * this only contains records for households also in Wave 2, Wave 4 and Wave
 //     * 5. For {@code type.equalsIgnoreCase("InW4")} this only contains records
@@ -1244,14 +1243,14 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
 //     * <ul>
 //     * <li>r[1][0] is a list of CASEW1 values in Wave 3 records.</li>
 //     * <li>r[1][1] is a list of CASEW2 values in Wave 3 records.</li>
-//     * <li>r[1][2] is a list of all CASEW3 values.</li>
-//     * <li>r[1][3] is a list of CASEW3 values for records that have CASEW2 and
+//     * <li>r[1][2] is a list of all w3ID values.</li>
+//     * <li>r[1][3] is a list of w3ID values for records that have CASEW2 and
 //     * CASEW1 values.</li>
 //     * </ul>
 //     * </li>
-//     * <li>r[2] is a TreeMap with keys as CASEW3 and values as CASEW2.</li>
+//     * <li>r[2] is a TreeMap with keys as w3ID and values as CASEW2.</li>
 //     * <li>r[3] is a TreeMap with keys as CASEW2 and values as HashSets of
-//     * CASEW3 (which is normally expected to contain just one CASEW3).</li>
+//     * w3ID (which is normally expected to contain just one w3ID).</li>
 //     * </ul>
 //     */
 //    public Object[] loadW3(Set<Short> s, String type) {
@@ -1306,44 +1305,44 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
 //            if (type.equalsIgnoreCase("InW2W4W5")) {
 //                br.lines().skip(1).forEach(l -> {
 //                    WaAS_W3HRecord rec = new WaAS_W3HRecord(l);
-//                    short CASEW3 = rec.getCASEW3();
+//                    short w3ID = rec.getCASEW3();
 //                    short CASEW2 = rec.getCASEW2();
 //                    short CASEW1 = rec.getCASEW1();
-//                    if (s.contains(CASEW3)) {
+//                    if (s.contains(w3ID)) {
 //                        if (CASEW2 > Short.MIN_VALUE) {
-//                            CASEW3ToCASEW2.put(CASEW3, CASEW2);
+//                            CASEW3ToCASEW2.put(w3ID, CASEW2);
 //                            Generic_Collections.addToMap(CASEW2ToCASEW3, CASEW2,
-//                                    CASEW3);
-//                            r0.put(CASEW3, rec);
+//                                    w3ID);
+//                            r0.put(w3ID, rec);
 //                        }
 //                    }
-//                    r1[2].add(CASEW3);
+//                    r1[2].add(w3ID);
 //                    if (CASEW1 > Short.MIN_VALUE) {
 //                        r1[0].add(CASEW1);
 //                        if (CASEW2 > Short.MIN_VALUE) {
-//                            r1[3].add(CASEW3);
+//                            r1[3].add(w3ID);
 //                        }
 //                    }
 //                });
 //            } else if (type.equalsIgnoreCase("InW4")) {
 //                br.lines().skip(1).forEach(l -> {
 //                    WaAS_W3HRecord rec = new WaAS_W3HRecord(l);
-//                    short CASEW3 = rec.getCASEW3();
+//                    short w3ID = rec.getCASEW3();
 //                    short CASEW2 = rec.getCASEW2();
 //                    short CASEW1 = rec.getCASEW1();
-//                    if (s.contains(CASEW3)) {
-//                        r0.put(CASEW3, rec);
+//                    if (s.contains(w3ID)) {
+//                        r0.put(w3ID, rec);
 //                        if (CASEW2 > Short.MIN_VALUE) {
-//                            CASEW3ToCASEW2.put(CASEW3, CASEW2);
+//                            CASEW3ToCASEW2.put(w3ID, CASEW2);
 //                            Generic_Collections.addToMap(CASEW2ToCASEW3, CASEW2,
-//                                    CASEW3);
+//                                    w3ID);
 //                        }
 //                    }
-//                    r1[2].add(CASEW3);
+//                    r1[2].add(w3ID);
 //                    if (CASEW1 > Short.MIN_VALUE) {
 //                        r1[0].add(CASEW1);
 //                        if (CASEW2 > Short.MIN_VALUE) {
-//                            r1[3].add(CASEW3);
+//                            r1[3].add(w3ID);
 //                        }
 //                    }
 //                });
@@ -1358,8 +1357,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
 //        env.logEndTag(m);
 //        return r;
 //    }
-    
-    public class W1Data {
+    public class WaAS_W1Data implements Serializable {
 
         /**
          * Keys are CASEW1 and values are WaAS_Wave1_HHOLD_Records
@@ -1386,7 +1384,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          */
         public final TreeMap<WaAS_W1ID, HashSet<WaAS_W2ID>> W1ToW2;
 
-        public W1Data() {
+        public WaAS_W1Data() {
             lookup = new TreeMap<>();
             AllW1 = new TreeSet<>();
             W1InW2W3W4W5 = new TreeSet<>();
@@ -1394,8 +1392,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             W1ToW2 = new TreeMap<>();
         }
     }
-    
-    public class W2Data {
+
+    public class WaAS_W2Data implements Serializable {
 
         /**
          * Keys are CASEW2 and values are WaAS_Wave2_HHOLD_Records
@@ -1430,7 +1428,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          */
         public final TreeMap<WaAS_W1ID, HashSet<WaAS_W2ID>> W1ToW2;
 
-        public W2Data() {
+        public WaAS_W2Data() {
             lookup = new TreeMap<>();
             W1InW2 = new TreeSet<>();
             AllW2 = new TreeSet<>();
@@ -1447,15 +1445,15 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      *
      * @return the loaded data
      */
-    public W2Data loadW2InW1() {
+    public WaAS_W2Data loadW2InW1() {
         String m = "loadW2InW1";
         env.logStartTag(m);
-        W2Data r;
+        WaAS_W2Data r;
         File cf = getSubsetCacheFile2(W2, "InW1");
         if (cf.exists()) {
-            r = (W2Data) load(W2, cf);
+            r = (WaAS_W2Data) load(W2, cf);
         } else {
-            r = new W2Data();
+            r = new WaAS_W2Data();
             File f = getInputFile(W2);
             String m0 = getMessage(W2, f);
             env.logStartTag(m0);
@@ -1491,32 +1489,32 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      *
      * @return the loaded data
      */
-    public W2Data loadW2InSAndW1(Set<WaAS_W2ID> s, String type) {
+    public WaAS_W2Data loadW2InSAndW1(Set<WaAS_W2ID> s, String type) {
         String m = "loadW2InSAndW1(Set<WaAS_W2ID>, " + type + ")";
         env.logStartTag(m);
-        W2Data r;
+        WaAS_W2Data r;
         File cf = getSubsetCacheFile2(W2, type);
         if (cf.exists()) {
-            r = (W2Data) load(W2, cf);
+            r = (WaAS_W2Data) load(W2, cf);
         } else {
-            r = new W2Data();
+            r = new WaAS_W2Data();
             File f = getInputFile(W2);
             BufferedReader br = loadW2Count(r, f);
-                br.lines().skip(1).forEach(l -> {
-                    WaAS_W2HRecord rec = new WaAS_W2HRecord(l);
-                    WaAS_W2ID w2ID = new WaAS_W2ID(rec.getCASEW2());
-                    short CASEW1 = rec.getCASEW1();
-                    if (s.contains(w2ID)) {
-                        if (CASEW1 > Short.MIN_VALUE) {
-                            WaAS_W1ID w1ID = new WaAS_W1ID(CASEW1);
-                            r.W2ToW1.put(w2ID, w1ID);
-                            Generic_Collections.addToMap(r.W1ToW2, w1ID, w2ID);
-                            r.lookup.put(w2ID, rec);
-                            r.W1InW2.add(w1ID);
-                        }
+            br.lines().skip(1).forEach(l -> {
+                WaAS_W2HRecord rec = new WaAS_W2HRecord(l);
+                WaAS_W2ID w2ID = new WaAS_W2ID(rec.getCASEW2());
+                short CASEW1 = rec.getCASEW1();
+                if (s.contains(w2ID)) {
+                    if (CASEW1 > Short.MIN_VALUE) {
+                        WaAS_W1ID w1ID = new WaAS_W1ID(CASEW1);
+                        r.W2ToW1.put(w2ID, w1ID);
+                        Generic_Collections.addToMap(r.W1ToW2, w1ID, w2ID);
+                        r.lookup.put(w2ID, rec);
+                        r.W1InW2.add(w1ID);
                     }
-                    r.AllW2.add(w2ID);
-                });
+                }
+                r.AllW2.add(w2ID);
+            });
         }
         return r;
     }
@@ -1530,15 +1528,15 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      *
      * @return the loaded data
      */
-    public W2Data loadW2InS(Set<WaAS_W2ID> s, String type) {
+    public WaAS_W2Data loadW2InS(Set<WaAS_W2ID> s, String type) {
         String m = "loadW2InS(Set<WaAS_W2ID>, " + type + ")";
         env.logStartTag(m);
-        W2Data r;
+        WaAS_W2Data r;
         File cf = getSubsetCacheFile2(W2, type);
         if (cf.exists()) {
-            r = (W2Data) load(W2, cf);
+            r = (WaAS_W2Data) load(W2, cf);
         } else {
-            r = new W2Data();
+            r = new WaAS_W2Data();
             File f = getInputFile(W2);
             BufferedReader br = loadW2Count(r, f);
             br.lines().skip(1).forEach(l -> {
@@ -1560,7 +1558,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         return r;
     }
 
-    protected BufferedReader loadW2Count(W2Data r, File f) {
+    protected BufferedReader loadW2Count(WaAS_W2Data r, File f) {
         BufferedReader br = Generic_IO.getBufferedReader(f);
         int count = br.lines().skip(1).mapToInt(l -> {
             WaAS_W2HRecord rec = new WaAS_W2HRecord(l);
@@ -1591,15 +1589,15 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      *
      * @return the loaded data
      */
-    public W1Data loadW1(Set<WaAS_W1ID> s, String type) {
+    public WaAS_W1Data loadW1(Set<WaAS_W1ID> s, String type) {
         String m = "loadW1(Set<Short>, " + type + ")";
         env.logStartTag(m);
-        W1Data r;
+        WaAS_W1Data r;
         File cf = getSubsetCacheFile2(W1, type);
         if (cf.exists()) {
-            r = (W1Data) load(W1, cf);
+            r = (WaAS_W1Data) load(W1, cf);
         } else {
-            r = new W1Data();
+            r = new WaAS_W1Data();
             File f = getInputFile(W1);
             String m1 = getMessage(W1, f);
             env.logStartTag(m1);
@@ -1841,33 +1839,31 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      *
      * @param variableName
      * @param wave
-     * @param GORSubsets
-     * @param GORLookups
+     * @param GORSubsetsAndLookups
      * @param data
      * @param subset Subset of CASEW1 for all records to be included.
      * @return Map with keys as GOR and Values as map with keys as CASEWX and
      * values as HVALUE.
      */
-    public HashMap<Byte, HashMap<Short, Double>> getVariableForGORSubsets(
+    public HashMap<Byte, HashMap<WaAS_ID, Double>> getVariableForGORSubsets(
             String variableName, byte wave,
-            HashMap<Byte, HashSet<Short>>[] GORSubsets,
-            HashMap<Short, Byte>[] GORLookups, WaAS_Data data,
+            WaAS_GORSubsetsAndLookups GORSubsetsAndLookups, WaAS_Data data,
             HashSet<WaAS_W1ID> subset) {
-        HashMap<Byte, HashMap<Short, Double>> r = new HashMap<>();
-        Iterator<Byte> ite = GORSubsets[wave - 1].keySet().iterator();
+        HashMap<Byte, HashMap<WaAS_ID, Double>> r = new HashMap<>();
+        Iterator<Byte> ite = GORSubsetsAndLookups.GOR2W1IDSet.keySet().iterator();
         while (ite.hasNext()) {
             r.put(ite.next(), new HashMap<>());
         }
         if (wave == WaAS_Data.W1) {
+            
             data.data.keySet().stream().forEach(cID -> {
                 WaAS_Collection c = data.getCollection(cID);
-                c.getData().keySet().stream().forEach(CASEW1 -> {
-                    if (subset.contains(CASEW1)) {
-                        WaAS_CombinedRecord cr = c.getData().get(CASEW1);
+                c.getData().keySet().stream().forEach(w1ID -> {
+                    if (subset.contains(w1ID)) {
+                        WaAS_CombinedRecord cr = c.getData().get(w1ID);
                         WaAS_W1HRecord w1 = cr.w1Record.getHhold();
-                        Byte GOR = GORLookups[wave - 1].get(CASEW1);
-                        Generic_Collections.addToMap(r, GOR, CASEW1,
-                                w1.getHVALUE());
+                        Byte GOR = GORSubsetsAndLookups.W1ID2GOR.get(w1ID);
+                        Generic_Collections.addToMap(r, GOR, w1ID, w1.getHVALUE());
                     }
                 });
                 data.clearCollection(cID);
@@ -1875,19 +1871,16 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         } else if (wave == WaAS_Data.W2) {
             data.data.keySet().stream().forEach(cID -> {
                 WaAS_Collection c = data.getCollection(cID);
-                c.getData().keySet().stream().forEach(CASEW1 -> {
-                    if (subset.contains(CASEW1)) {
-                        WaAS_CombinedRecord cr = c.getData().get(CASEW1);
-                        HashMap<WaAS_W2ID, WaAS_W2Record> w2Records;
-                        w2Records = cr.w2Records;
-                        Iterator<WaAS_W2ID> ite2 = w2Records.keySet().iterator();
+                c.getData().keySet().stream().forEach(w1ID -> {
+                    if (subset.contains(w1ID)) {
+                        WaAS_CombinedRecord cr = c.getData().get(w1ID);
+                        HashMap<WaAS_W2ID, WaAS_W2Record> recs = cr.w2Records;
+                        Iterator<WaAS_W2ID> ite2 = recs.keySet().iterator();
                         while (ite2.hasNext()) {
-                            WaAS_W2ID CASEW2 = ite2.next();
-                            Byte GOR = GORLookups[wave - 1].get(CASEW2);
-                            WaAS_W2HRecord w2;
-                            w2 = w2Records.get(CASEW2).getHhold();
-                            Generic_Collections.addToMap(r, GOR, CASEW2,
-                                    w2.getHVALUE());
+                            WaAS_W2ID w2ID = ite2.next();
+                            Byte GOR = GORSubsetsAndLookups.W2ID2GOR.get(w2ID);
+                            WaAS_W2HRecord w2 = recs.get(w2ID).getHhold();
+                            Generic_Collections.addToMap(r, GOR, w2ID, w2.getHVALUE());
                         }
                     }
                 });
@@ -1899,22 +1892,17 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 c.getData().keySet().stream().forEach(CASEW1 -> {
                     if (subset.contains(CASEW1)) {
                         WaAS_CombinedRecord cr = c.getData().get(CASEW1);
-                        HashMap<Short, HashMap<Short, WaAS_W3Record>> w3Records;
-                        w3Records = cr.w3Records;
-                        Iterator<Short> ite1 = w3Records.keySet().iterator();
+                        HashMap<WaAS_W2ID, HashMap<WaAS_W3ID, WaAS_W3Record>> recs = cr.w3Records;
+                        Iterator<WaAS_W2ID> ite1 = recs.keySet().iterator();
                         while (ite1.hasNext()) {
-                            Short CASEW2 = ite1.next();
-                            HashMap<Short, WaAS_W3Record> w3_2;
-                            w3_2 = w3Records.get(CASEW2);
-                            Iterator<Short> ite2;
-                            ite2 = w3_2.keySet().iterator();
+                            WaAS_W2ID w2ID = ite1.next();
+                            HashMap<WaAS_W3ID, WaAS_W3Record> w3_2 = recs.get(w2ID);
+                            Iterator<WaAS_W3ID> ite2 = w3_2.keySet().iterator();
                             while (ite2.hasNext()) {
-                                Short CASEW3 = ite2.next();
-                                Byte GOR = GORLookups[wave - 1].get(CASEW3);
-                                WaAS_W3HRecord w3;
-                                w3 = w3_2.get(CASEW3).getHhold();
-                                Generic_Collections.addToMap(r, GOR, CASEW3,
-                                        w3.getHVALUE());
+                                WaAS_W3ID w3ID = ite2.next();
+                                Byte GOR = GORSubsetsAndLookups.W3ID2GOR.get(w3ID);
+                                WaAS_W3HRecord w3 = w3_2.get(w3ID).getHhold();
+                                Generic_Collections.addToMap(r, GOR, w3ID, w3.getHVALUE());
                             }
                         }
                     }
@@ -1924,28 +1912,24 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         } else if (wave == WaAS_Data.W4) {
             data.data.keySet().stream().forEach(cID -> {
                 WaAS_Collection c = data.getCollection(cID);
-                c.getData().keySet().stream().forEach(CASEW1 -> {
-                    if (subset.contains(CASEW1)) {
-                        WaAS_CombinedRecord cr = c.getData().get(CASEW1);
-                        HashMap<Short, HashMap<Short, HashMap<Short, WaAS_W4Record>>> w4Records;
-                        w4Records = cr.w4Records;
-                        Iterator<Short> ite1 = w4Records.keySet().iterator();
+                c.getData().keySet().stream().forEach(w1ID -> {
+                    if (subset.contains(w1ID)) {
+                        WaAS_CombinedRecord cr = c.getData().get(w1ID);
+                        HashMap<WaAS_W2ID, HashMap<WaAS_W3ID, HashMap<WaAS_W4ID, WaAS_W4Record>>> recs = cr.w4Records;
+                        Iterator<WaAS_W2ID> ite1 = recs.keySet().iterator();
                         while (ite1.hasNext()) {
-                            Short CASEW2 = ite1.next();
-                            HashMap<Short, HashMap<Short, WaAS_W4Record>> w4_2;
-                            w4_2 = w4Records.get(CASEW2);
-                            Iterator<Short> ite2 = w4_2.keySet().iterator();
+                            WaAS_W2ID w2ID = ite1.next();
+                            HashMap<WaAS_W3ID, HashMap<WaAS_W4ID, WaAS_W4Record>> w4_2 = recs.get(w2ID);
+                            Iterator<WaAS_W3ID> ite2 = w4_2.keySet().iterator();
                             while (ite2.hasNext()) {
-                                Short CASEW3 = ite2.next();
-                                HashMap<Short, WaAS_W4Record> w4_3;
-                                w4_3 = w4_2.get(CASEW3);
-                                Iterator<Short> ite3 = w4_3.keySet().iterator();
+                                WaAS_W3ID w3ID = ite2.next();
+                                HashMap<WaAS_W4ID, WaAS_W4Record> w4_3 = w4_2.get(w3ID);
+                                Iterator<WaAS_W4ID> ite3 = w4_3.keySet().iterator();
                                 while (ite3.hasNext()) {
-                                    Short CASEW4 = ite3.next();
-                                    Byte GOR = GORLookups[wave - 1].get(CASEW4);
-                                    WaAS_W4HRecord w4;
-                                    w4 = w4_3.get(CASEW4).getHhold();
-                                    Generic_Collections.addToMap(r, GOR, CASEW4, w4.getHVALUE());
+                                    WaAS_W4ID w4ID = ite3.next();
+                                    Byte GOR = GORSubsetsAndLookups.W4ID2GOR.get(w4ID);
+                                    WaAS_W4HRecord w4 = w4_3.get(w4ID).getHhold();
+                                    Generic_Collections.addToMap(r, GOR, w4ID, w4.getHVALUE());
                                 }
                             }
                         }
@@ -1959,31 +1943,25 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 c.getData().keySet().stream().forEach(CASEW1 -> {
                     if (subset.contains(CASEW1)) {
                         WaAS_CombinedRecord cr = c.getData().get(CASEW1);
-                        HashMap<Short, HashMap<Short, HashMap<Short, HashMap<Short, WaAS_W5Record>>>> w5Records;
-                        w5Records = cr.w5Records;
-                        Iterator<Short> ite1 = w5Records.keySet().iterator();
+                        HashMap<WaAS_W2ID, HashMap<WaAS_W3ID, HashMap<WaAS_W4ID, HashMap<WaAS_W5ID, WaAS_W5Record>>>> recs = cr.w5Records;
+                        Iterator<WaAS_W2ID> ite1 = recs.keySet().iterator();
                         while (ite1.hasNext()) {
-                            Short CASEW2 = ite1.next();
-                            HashMap<Short, HashMap<Short, HashMap<Short, WaAS_W5Record>>> w5_2;
-                            w5_2 = w5Records.get(CASEW2);
-                            Iterator<Short> ite2 = w5_2.keySet().iterator();
+                            WaAS_W2ID w2ID = ite1.next();
+                            HashMap<WaAS_W3ID, HashMap<WaAS_W4ID, HashMap<WaAS_W5ID, WaAS_W5Record>>> w5_2 = recs.get(w2ID);
+                            Iterator<WaAS_W3ID> ite2 = w5_2.keySet().iterator();
                             while (ite2.hasNext()) {
-                                Short CASEW3 = ite2.next();
-                                HashMap<Short, HashMap<Short, WaAS_W5Record>> w5_3;
-                                w5_3 = w5_2.get(CASEW3);
-                                Iterator<Short> ite3 = w5_3.keySet().iterator();
+                                WaAS_W3ID w3ID = ite2.next();
+                                HashMap<WaAS_W4ID, HashMap<WaAS_W5ID, WaAS_W5Record>> w5_3 = w5_2.get(w3ID);
+                                Iterator<WaAS_W4ID> ite3 = w5_3.keySet().iterator();
                                 while (ite3.hasNext()) {
-                                    Short CASEW4 = ite3.next();
-                                    HashMap<Short, WaAS_W5Record> w5_4;
-                                    w5_4 = w5_3.get(CASEW4);
-                                    Iterator<Short> ite4;
-                                    ite4 = w5_4.keySet().iterator();
+                                    WaAS_W4ID w4ID = ite3.next();
+                                    HashMap<WaAS_W5ID, WaAS_W5Record> w5_4 = w5_3.get(w4ID);
+                                    Iterator<WaAS_W5ID> ite4 = w5_4.keySet().iterator();
                                     while (ite4.hasNext()) {
-                                        Short CASEW5 = ite4.next();
-                                        Byte GOR = GORLookups[wave - 1].get(CASEW5);
-                                        WaAS_W5HRecord w5;
-                                        w5 = w5_4.get(CASEW5).getHhold();
-                                        Generic_Collections.addToMap(r, GOR, CASEW5, w5.getHVALUE());
+                                        WaAS_W5ID w5ID = ite4.next();
+                                        Byte GOR = GORSubsetsAndLookups.W5ID2GOR.get(w5ID);
+                                        WaAS_W5HRecord w5 = w5_4.get(w5ID).getHhold();
+                                        Generic_Collections.addToMap(r, GOR, w5ID, w5.getHVALUE());
                                     }
                                 }
                             }
@@ -1997,7 +1975,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     }
 
     /**
-     * Get the HVALUE.
+     * Get variable for GOR for Wave 1.
      *
      * @param vName Variable name.
      * @param gors
@@ -2007,60 +1985,128 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * @return Map with keys as GOR and Values as map with keys as CASEWX and
      * values as HVALUE.
      */
-    public HashMap<Byte, HashMap<WaAS_ID, Double>> getVariableForGOR(
-            String vName, ArrayList<Byte> gors, TreeMap<WaAS_ID, ?> m,
-            //TreeMap<Short, WaAS_W1W2W3W4W5HRecord> m, 
-            byte wave) {
-        String m0 = "getVariableForGOR(...)";
+    public HashMap<Byte, HashMap<WaAS_W1ID, Double>> getVariableForGORW1(
+            String vName, ArrayList<Byte> gors,
+            TreeMap<WaAS_W1ID, WaAS_W1HRecord> m, byte wave) {
+        String m0 = "getVariableForGORW1(...)";
         env.logStartTag(m0);
-        HashMap<Byte, HashMap<WaAS_ID, Double>> r = new HashMap<>();
+        HashMap<Byte, HashMap<WaAS_W1ID, Double>> r = new HashMap<>();
         gors.stream().forEach(gor -> {
             r.put(gor, new HashMap<>());
         });
         int countNegative = 0;
         int countZero = 0;
-        Iterator<WaAS_ID> ite = m.keySet().iterator();
+        Iterator<WaAS_W1ID> ite = m.keySet().iterator();
         if (vName.equalsIgnoreCase(WaAS_Strings.s_HVALUE)) {
             while (ite.hasNext()) {
-                WaAS_ID CASEWX = ite.next();
-                WaAS_W1W2W3W4W5HRecord rec;
-                rec = (WaAS_W1W2W3W4W5HRecord) m.get(CASEWX);
-                Byte GOR = rec.getGOR();
-                double v = rec.getHVALUE();
+                WaAS_W1ID w1ID = ite.next();
+                WaAS_W1HRecord recH = (WaAS_W1HRecord) m.get(w1ID);
+                Byte GOR = recH.getGOR();
+                double v = recH.getHVALUE();
                 if (v == 0.0d) {
                     countZero++;
                 } else if (v < 0.0d) {
                     countNegative++;
                 }
-                Generic_Collections.addToMap(r, GOR, CASEWX, v);
+                Generic_Collections.addToMap(r, GOR, w1ID, v);
             }
         } else if (vName.equalsIgnoreCase(WaAS_Strings.s_HPROPW)) {
             while (ite.hasNext()) {
-                WaAS_ID CASEWX = ite.next();
-                WaAS_W1W2W3W4W5HRecord rec;
-                rec = (WaAS_W1W2W3W4W5HRecord) m.get(CASEWX);
-                Byte GOR = rec.getGOR();
-                double v = rec.getHPROPW();
+                WaAS_W1ID w1ID = ite.next();
+                WaAS_W1HRecord recH = (WaAS_W1HRecord) m.get(w1ID);
+                Byte GOR = recH.getGOR();
+                double v = recH.getHPROPW();
                 if (v == 0.0d) {
                     countZero++;
                 } else if (v < 0.0d) {
                     countNegative++;
                 }
-                Generic_Collections.addToMap(r, GOR, CASEWX, v);
+                Generic_Collections.addToMap(r, GOR, w1ID, v);
             }
         } else if (vName.equalsIgnoreCase(WaAS_Strings.s_TOTWLTH)) {
             while (ite.hasNext()) {
-                WaAS_ID CASEWX = ite.next();
-                WaAS_W1W2W3W4W5HRecord rec;
-                rec = (WaAS_W1W2W3W4W5HRecord) m.get(CASEWX);
-                Byte GOR = rec.getGOR();
-                double v = rec.getTOTWLTH();
+                WaAS_W1ID w1ID = ite.next();
+                WaAS_W1HRecord recH = (WaAS_W1HRecord) m.get(w1ID);
+                Byte GOR = recH.getGOR();
+                double v = recH.getTOTWLTH();
                 if (v == 0.0d) {
                     countZero++;
                 } else if (v < 0.0d) {
                     countNegative++;
                 }
-                Generic_Collections.addToMap(r, GOR, CASEWX, v);
+                Generic_Collections.addToMap(r, GOR, w1ID, v);
+            }
+        } else {
+            env.log("Unrecognised variable " + vName);
+        }
+        env.log(vName + " for GOR W" + wave);
+        env.log("count " + m.size());
+        env.log("countZero " + countZero);
+        env.log("countNegative " + countNegative);
+        env.logEndTag(m0);
+        return r;
+    }
+
+    /**
+     * Get variable for GOR for Wave 1.
+     *
+     * @param vName Variable name.
+     * @param gors
+     * @param m Expecting ? to be WaAS_W1HRecord or WaAS_W2HRecord or
+     * WaAS_W3HRecord or WaAS_W5HRecord or WaAS_W5HRecord.
+     * @param wave
+     * @return Map with keys as GOR and Values as map with keys as CASEWX and
+     * values as HVALUE.
+     */
+    public HashMap<Byte, HashMap<WaAS_W5ID, Double>> getVariableForGORW5(
+            String vName, ArrayList<Byte> gors, TreeMap<WaAS_W5ID, WaAS_W5HRecord> m, byte wave) {
+        String m0 = "getVariableForGORW5(...)";
+        env.logStartTag(m0);
+        HashMap<Byte, HashMap<WaAS_W5ID, Double>> r = new HashMap<>();
+        gors.stream().forEach(gor -> {
+            r.put(gor, new HashMap<>());
+        });
+        int countNegative = 0;
+        int countZero = 0;
+        Iterator<WaAS_W5ID> ite = m.keySet().iterator();
+        if (vName.equalsIgnoreCase(WaAS_Strings.s_HVALUE)) {
+            while (ite.hasNext()) {
+                WaAS_W5ID w5ID = ite.next();
+                WaAS_W5HRecord recH = (WaAS_W5HRecord) m.get(w5ID);
+                Byte GOR = recH.getGOR();
+                double v = recH.getHVALUE();
+                if (v == 0.0d) {
+                    countZero++;
+                } else if (v < 0.0d) {
+                    countNegative++;
+                }
+                Generic_Collections.addToMap(r, GOR, w5ID, v);
+            }
+        } else if (vName.equalsIgnoreCase(WaAS_Strings.s_HPROPW)) {
+            while (ite.hasNext()) {
+                WaAS_W5ID w5ID = ite.next();
+                WaAS_W5HRecord recH = (WaAS_W5HRecord) m.get(w5ID);
+                Byte GOR = recH.getGOR();
+                double v = recH.getHPROPW();
+                if (v == 0.0d) {
+                    countZero++;
+                } else if (v < 0.0d) {
+                    countNegative++;
+                }
+                Generic_Collections.addToMap(r, GOR, w5ID, v);
+            }
+        } else if (vName.equalsIgnoreCase(WaAS_Strings.s_TOTWLTH)) {
+            while (ite.hasNext()) {
+                WaAS_W5ID w5ID = ite.next();
+                WaAS_W5HRecord recH = (WaAS_W5HRecord) m.get(w5ID);
+                Byte GOR = recH.getGOR();
+                double v = recH.getTOTWLTH();
+                if (v == 0.0d) {
+                    countZero++;
+                } else if (v < 0.0d) {
+                    countNegative++;
+                }
+                Generic_Collections.addToMap(r, GOR, w5ID, v);
             }
 
         } else {
@@ -2079,24 +2125,22 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      *
      * @param variableName
      * @param gors
-     * @param GORSubsets
-     * @param GORLookups
+     * @param GORSubsetsAndLookups
      * @param GORNameLookup
      * @param data
      * @param subset
      * @return
      */
     public TreeMap<Byte, Double> getChangeVariableSubset(String variableName,
-            ArrayList<Byte> gors, HashMap<Byte, HashSet<Short>>[] GORSubsets,
-            HashMap<Short, Byte>[] GORLookups,
-            TreeMap<Byte, String> GORNameLookup, WaAS_Data data,
+            ArrayList<Byte> gors, WaAS_GORSubsetsAndLookups GORSubsetsAndLookups, 
+            HashMap<Byte, String> GORNameLookup, WaAS_Data data,
             HashSet<WaAS_W1ID> subset) {
         TreeMap<Byte, Double> r = new TreeMap<>();
-        HashMap<Byte, HashMap<Short, Double>>[] variableSubsets;
+        HashMap<Byte, HashMap<WaAS_ID, Double>>[] variableSubsets;
         variableSubsets = new HashMap[WaAS_Data.NWAVES];
         for (byte w = 0; w < WaAS_Data.NWAVES; w++) {
             variableSubsets[w] = getVariableForGORSubsets(variableName,
-                    (byte) (w + 1), GORSubsets, GORLookups, data, subset);
+                    (byte) (w + 1), GORSubsetsAndLookups, data, subset);
         }
         double countW1 = 0;
         double countZeroW1 = 0;
@@ -2156,16 +2200,14 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * @param GORNameLookup
      * @return
      */
-    public TreeMap<Byte, Double> getChangeVariableAll(String vName,
+    public <K> TreeMap<Byte, Double> getChangeVariableAll(String vName,
             ArrayList<Byte> gors, TreeMap<Byte, String> GORNameLookup) {
         TreeMap<Byte, Double> r = new TreeMap<>();
-        HashMap<Byte, HashMap<Short, Double>>[] vAll;
-        vAll = new HashMap[WaAS_Data.NWAVES];
         TreeMap<WaAS_W1ID, WaAS_W1HRecord> allW1 = loadAllW1();
-        vAll[0] = getVariableForGOR(vName, gors, allW1, (byte) 1);
+        HashMap<Byte, HashMap<WaAS_W1ID, Double>> vAllW1 = getVariableForGORW1(vName, gors, allW1, (byte) 1);
         allW1 = null; // Set to null to free memory.
         TreeMap<WaAS_W5ID, WaAS_W5HRecord> allW5 = loadAllW5();
-        vAll[4] = getVariableForGOR(vName, gors, allW5, (byte) 5);
+        HashMap<Byte, HashMap<WaAS_W5ID, Double>> vAllW5 = getVariableForGORW5(vName, gors, allW5, (byte) 5);
         allW5 = null; // Set to null to free memory.
         env.log(vName + " Total Household Property Wealth for each wave "
                 + "for all records.");
@@ -2185,9 +2227,12 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             byte gor = ite.next();
             double[][] v = new double[WaAS_Data.NWAVES][];
             for (byte w = 0; w < WaAS_Data.NWAVES; w++) {
-                if (w == 0 || w == 4) {
+                if (w == 0) {
                     v[w] = Generic_Statistics.getSummaryStatistics(
-                            vAll[w].get(gor).values());
+                            vAllW1.get(gor).values());
+                } else if (w == 4) {
+                    v[w] = Generic_Statistics.getSummaryStatistics(
+                            vAllW5.get(gor).values());
                 }
             }
             double diff = v[4][4] - v[0][4];

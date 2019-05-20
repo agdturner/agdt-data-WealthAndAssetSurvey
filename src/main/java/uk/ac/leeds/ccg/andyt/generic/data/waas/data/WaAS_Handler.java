@@ -176,15 +176,46 @@ public abstract class WaAS_Handler extends WaAS_Object {
                 getString0(wave + 1) + getStringToWaveDotDat(wave));
     }
 
-    public TreeMap<Short, HashSet<Short>> loadSubsetLookupTo(byte wave) {
-        return (TreeMap<Short, HashSet<Short>>) Generic_IO.readObject(
-                getSubsetLookupToFile(wave));
+    public TreeMap<WaAS_W1ID, HashSet<WaAS_W2ID>> loadSubsetLookupToW1() {
+        return (TreeMap<WaAS_W1ID, HashSet<WaAS_W2ID>>) Generic_IO.readObject(
+                getSubsetLookupToFile(W1));
     }
 
-    public TreeMap<Short, Short> loadSubsetLookupFrom(byte wave) {
-        return (TreeMap<Short, Short>) Generic_IO.readObject(
-                getSubsetLookupFromFile(wave));
+    public TreeMap<WaAS_W2ID, HashSet<WaAS_W3ID>> loadSubsetLookupToW2() {
+        return (TreeMap<WaAS_W2ID, HashSet<WaAS_W3ID>>) Generic_IO.readObject(
+                getSubsetLookupToFile(W2));
     }
+
+    public TreeMap<WaAS_W3ID, HashSet<WaAS_W4ID>> loadSubsetLookupToW3() {
+        return (TreeMap<WaAS_W3ID, HashSet<WaAS_W4ID>>) Generic_IO.readObject(
+                getSubsetLookupToFile(W3));
+    }
+
+    public TreeMap<WaAS_W4ID, HashSet<WaAS_W5ID>> loadSubsetLookupToW4() {
+        return (TreeMap<WaAS_W4ID, HashSet<WaAS_W5ID>>) Generic_IO.readObject(
+                getSubsetLookupToFile(W4));
+    }
+
+    public TreeMap<WaAS_W2ID, WaAS_W1ID> loadSubsetLookupFromW1() {
+        return (TreeMap<WaAS_W2ID, WaAS_W1ID>) Generic_IO.readObject(
+                getSubsetLookupFromFile(W1));
+    }
+
+    public TreeMap<WaAS_W3ID, WaAS_W2ID> loadSubsetLookupFromW2() {
+        return (TreeMap<WaAS_W3ID, WaAS_W2ID>) Generic_IO.readObject(
+                getSubsetLookupFromFile(W2));
+    }
+
+    public TreeMap<WaAS_W4ID, WaAS_W3ID> loadSubsetLookupFromW3() {
+        return (TreeMap<WaAS_W4ID, WaAS_W3ID>) Generic_IO.readObject(
+                getSubsetLookupFromFile(W3));
+    }
+
+    public TreeMap<WaAS_W5ID, WaAS_W4ID> loadSubsetLookupFromW4() {
+        return (TreeMap<WaAS_W5ID, WaAS_W4ID>) Generic_IO.readObject(
+                getSubsetLookupFromFile(W1));
+    }
+
 
     protected String getString0(int wave) {
         return TYPE + WaAS_Strings.s_W + wave;
@@ -227,42 +258,6 @@ public abstract class WaAS_Handler extends WaAS_Object {
         return gors;
     }
 
-    public class GORSubsetsAndLookup {
-
-        public HashMap<Byte, HashSet<WaAS_W1ID>> GOR2W1IDSet;
-        public HashMap<Byte, HashSet<WaAS_W2ID>> GOR2W2IDSet;
-        public HashMap<Byte, HashSet<WaAS_W3ID>> GOR2W3IDSet;
-        public HashMap<Byte, HashSet<WaAS_W4ID>> GOR2W4IDSet;
-        public HashMap<Byte, HashSet<WaAS_W5ID>> GOR2W5IDSet;
-        public HashMap<WaAS_W1ID, Byte> W1ID2GOR;
-        public HashMap<WaAS_W2ID, Byte> W2ID2GOR;
-        public HashMap<WaAS_W3ID, Byte> W3ID2GOR;
-        public HashMap<WaAS_W4ID, Byte> W4ID2GOR;
-        public HashMap<WaAS_W5ID, Byte> W5ID2GOR;
-
-        public GORSubsetsAndLookup(ArrayList<Byte> gors) {
-            GOR2W1IDSet = new HashMap<>();
-            GOR2W2IDSet = new HashMap<>();
-            GOR2W3IDSet = new HashMap<>();
-            GOR2W4IDSet = new HashMap<>();
-            GOR2W5IDSet = new HashMap<>();
-            Iterator<Byte> ite = gors.iterator();
-            while (ite.hasNext()) {
-                byte gor = ite.next();
-                GOR2W1IDSet.put(gor, new HashSet<>());
-                GOR2W2IDSet.put(gor, new HashSet<>());
-                GOR2W3IDSet.put(gor, new HashSet<>());
-                GOR2W4IDSet.put(gor, new HashSet<>());
-                GOR2W5IDSet.put(gor, new HashSet<>());
-            }
-            W1ID2GOR = new HashMap<>();
-            W2ID2GOR = new HashMap<>();
-            W3ID2GOR = new HashMap<>();
-            W4ID2GOR = new HashMap<>();
-            W5ID2GOR = new HashMap<>();
-        }
-    }
-
     /**
      * Init GORSubsets and GORLookups
      *
@@ -272,14 +267,14 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @param subset
      * @return
      */
-    public GORSubsetsAndLookup getGORSubsetsAndLookup(String name, WaAS_Data data,
+    public WaAS_GORSubsetsAndLookups getGORSubsetsAndLookup(String name, WaAS_Data data,
             ArrayList<Byte> gors, HashSet<WaAS_W1ID> subset) {
-        GORSubsetsAndLookup r;
+        WaAS_GORSubsetsAndLookups r;
         File f = new File(files.getOutputDataDir(), name + "GORSubsetsAndLookups.dat");
         if (f.exists()) {
-            r = (GORSubsetsAndLookup) Generic_IO.readObject(f);
+            r = (WaAS_GORSubsetsAndLookups) Generic_IO.readObject(f);
         } else {
-            r = new GORSubsetsAndLookup(gors);
+            r = new WaAS_GORSubsetsAndLookups(gors);
             // Wave 1
             data.data.keySet().stream().forEach(cID -> {
                 WaAS_Collection c = data.getCollection(cID);

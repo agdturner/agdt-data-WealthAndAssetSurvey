@@ -29,7 +29,7 @@ public class WaAS_CollectionSimple implements Serializable {
     /**
      * The keys are CASEW1, the values are the respective combined record.
      */
-    private final HashMap<Short, WaAS_CombinedRecordSimple> data;
+    private final HashMap<WaAS_W1ID, WaAS_CombinedRecordSimple> data;
 
     public WaAS_CollectionSimple(WaAS_CollectionID ID) {
         this.ID = ID;
@@ -46,7 +46,7 @@ public class WaAS_CollectionSimple implements Serializable {
     /**
      * @return the data
      */
-    public HashMap<Short, WaAS_CombinedRecordSimple> getData() {
+    public HashMap<WaAS_W1ID, WaAS_CombinedRecordSimple> getData() {
         return data;
     }
 

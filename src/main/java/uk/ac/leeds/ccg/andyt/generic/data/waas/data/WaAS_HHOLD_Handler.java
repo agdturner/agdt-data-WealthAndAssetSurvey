@@ -92,13 +92,13 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
          */
         WaAS_W2Data w2Data = loadW2InSAndW1(w3Data.W2ToW3.keySet(), WaAS_Strings.s_InW1W3W4W5);
         r[1] = w2Data;
-
         /**
          * Step 1.5: Wave 1 initial load. After this load the main set of data
          * contains all those Wave 1 records that are in the main set loaded in
          * Step 1.4.
          */
         WaAS_W1Data w1Data = loadW1(w2Data.W1ToW2.keySet(), WaAS_Strings.s_InW2W4W5);
+        r[0] = w1Data;
         /**
          * Step 2: Check what is loaded and go through creating ID sets.
          */

@@ -165,6 +165,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             w2ToW3Subset = new TreeMap<>();
             w3ToW2Subset = new TreeMap<>();
             w3recs = new TreeMap<>();
+            w3IDs = new TreeSet<>();
             //TreeSet<WaAS_ID2> w3IDs2 = new TreeSet<>();
             HashMap<WaAS_W3ID, WaAS_W2ID> w3ToW2 = new HashMap<>();
             Iterator<WaAS_W3ID> iteW3 = w3Data.lookup.keySet().iterator();
@@ -233,7 +234,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             w5ToW4Subset = new TreeMap<>();
             w5recs = new TreeMap<>();
             w5ToW4 = new HashMap<>();
-            //TreeSet<WaAS_ID2> w5IDs2 = new TreeSet<>();
+            w5IDs = new TreeSet<>();
+//TreeSet<WaAS_ID2> w5IDs2 = new TreeSet<>();
             Iterator<WaAS_W5ID> iteW5 = w5Data.lookup.keySet().iterator();
             while (iteW5.hasNext()) {
                 WaAS_W5ID w5ID = iteW5.next();

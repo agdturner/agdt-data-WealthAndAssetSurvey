@@ -456,9 +456,9 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
              */
             br.lines().skip(1).forEach(l -> {
                 WaAS_W5PRecord rec = new WaAS_W5PRecord(l);
-                WaAS_W5ID CASEW5 = new WaAS_W5ID(rec.getCASEW5());
-                if (W5ToW4.containsKey(CASEW5)) {
-                    WaAS_W4ID w4ID = W5ToW4.get(CASEW5);
+                WaAS_W5ID w5ID = new WaAS_W5ID(rec.getCASEW5());
+                if (W5ToW4.containsKey(w5ID)) {
+                    WaAS_W4ID w4ID = W5ToW4.get(w5ID);
                     WaAS_W3ID w3ID = W4ToW3.get(w4ID); // There is a strange case!
                     if (w3ID != null) {
                         WaAS_W2ID w2ID = W3ToW2.get(w3ID);

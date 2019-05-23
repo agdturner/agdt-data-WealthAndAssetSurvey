@@ -21,18 +21,18 @@ package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
  */
 public class WaAS_CombinedRecordSimple extends WaAS_ID {
 
-    public WaAS_W1Record w1Record;
+    public WaAS_W1Record w1Rec;
 
-    public WaAS_W2Record w2Record;
+    public WaAS_W2Record w2Rec;
 
-    public WaAS_W3Record w3Record;
+    public WaAS_W3Record w3Rec;
 
-    public WaAS_W4Record w4Record;
+    public WaAS_W4Record w4Rec;
 
-    public WaAS_W5Record w5Record;
+    public WaAS_W5Record w5Rec;
 
     public WaAS_CombinedRecordSimple(WaAS_W1ID CASEW1) {
         super(CASEW1.getID());
-        w1Record = new WaAS_W1Record(CASEW1.getID());
+        w1Rec = new WaAS_W1Record(CASEW1.getID());
     }
 }

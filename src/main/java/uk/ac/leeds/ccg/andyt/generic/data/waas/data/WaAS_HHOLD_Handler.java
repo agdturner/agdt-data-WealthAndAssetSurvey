@@ -17,7 +17,6 @@ package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -29,7 +28,6 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.util.Generic_Collections;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W1W2W3W4W5HRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W1HRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W2HRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W3HRecord;
@@ -48,6 +46,225 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         super(e, WaAS_Strings.s_hhold);
     }
 
+    public class WaAS_HouseholdsInAllWaves {
+
+        public WaAS_W1Data w1Data;
+        public TreeMap<WaAS_W1ID, WaAS_W1HRecord> w1recs;
+        public TreeSet<WaAS_ID2> w1IDs;
+        public WaAS_W2Data w2Data;
+        public TreeMap<WaAS_W2ID, WaAS_W2HRecord> w2recs;
+        public TreeSet<WaAS_ID2> w2IDs;
+        public WaAS_W3Data w3Data;
+        public TreeMap<WaAS_W3ID, WaAS_W3HRecord> w3recs;
+        public TreeSet<WaAS_ID2> w3IDs;
+        public WaAS_W4Data w4Data;
+        public TreeMap<WaAS_W4ID, WaAS_W4HRecord> w4recs;
+        public TreeSet<WaAS_ID2> w4IDs;
+        public WaAS_W5Data w5Data;
+        public TreeMap<WaAS_W5ID, WaAS_W5HRecord> w5recs;
+        public TreeSet<WaAS_ID2> w5IDs;
+        
+       public TreeMap<WaAS_W1ID, HashSet<WaAS_W2ID>> w1ToW2Subset;
+           public TreeMap<WaAS_W2ID, WaAS_W1ID> w2ToW1Subset;
+          public TreeMap<WaAS_W2ID, HashSet<WaAS_W3ID>> w2ToW3Subset;
+          public TreeMap<WaAS_W3ID, WaAS_W2ID> w3ToW2Subset;
+         public TreeMap<WaAS_W3ID, HashSet<WaAS_W4ID>> w3ToW4Subset;
+         public TreeMap<WaAS_W4ID, WaAS_W3ID> w4ToW3Subset;
+         public HashMap<WaAS_W4ID, WaAS_W3ID> W4ToW3;
+        public TreeMap<WaAS_W4ID, HashSet<WaAS_W5ID>> w4ToW5Subset;
+        public TreeMap<WaAS_W5ID, WaAS_W4ID> w5ToW4Subset;
+                    HashMap<WaAS_W5ID, WaAS_W4ID> w5ToW4;
+
+        
+        public WaAS_HouseholdsInAllWaves(String type) {
+            /**
+             * Step 1: Initial loading
+             */
+            /**
+             * Step 1.1: Wave 5 initial load. After this load the lookup
+             * contains Wave 5 records that have Wave 4 IDs.
+             */
+            w5Data = loadW5();
+            /**
+             * Step 1.2: Wave 4 initial load. After this load the main set of
+             * data contains all those Wave 4 records that have Wave 3 record
+             * identifiers and that are in the main set loaded in Step 1.1.
+             */
+            w4Data = loadW4InS(w5Data.W4ToW5.keySet(), WaAS_Strings.s_InW3W5);
+            /**
+             * Step 1.3: Wave 3 initial load. After this load the main set of
+             * data contains all those Wave 3 records that have Wave 2 record
+             * identifiers and that are in the main set loaded in Step 1.2.
+             */
+            w3Data = loadW3InSAndW2(w4Data.W3ToW4.keySet(), WaAS_Strings.s_InW2W4W5);
+            /**
+             * Step 1.4: Wave 2 initial load. After this load the main set of
+             * data contains all those Wave 2 records that have Wave 1 record
+             * identifiers and that are in the main set loaded in Step 1.3.
+             */
+            w2Data = loadW2InSAndW1(w3Data.W2ToW3.keySet(), WaAS_Strings.s_InW1W3W4W5);
+            /**
+             * Step 1.5: Wave 1 initial load. After this load the main set of
+             * data contains all those Wave 1 records that are in the main set
+             * loaded in Step 1.4.
+             */
+            w1Data = loadW1(w2Data.W1ToW2.keySet(), WaAS_Strings.s_InW2W4W5);
+            /**
+             * Step 2: Check what is loaded and go through creating ID sets.
+             */
+            /**
+             * Step 2.1: Log status of the main sets loaded in Step 1.
+             */
+            env.log("There are " + w1Data.lookup.size() + " w1recs.");
+            env.log("There are " + w2Data.lookup.size() + " w2recs.");
+            env.log("There are " + w3Data.lookup.size() + " w3recs.");
+            env.log("There are " + w4Data.lookup.size() + " w4recs.");
+            env.log("There are " + w5Data.lookup.size() + " w5recs.");
+            /**
+             * Step 2.2: Filter sets.
+             */
+            /**
+             * Step 2.2.1: Wave 1.
+             */
+            w1recs = new TreeMap<>();
+            w1IDs = new TreeSet<>();
+            Iterator<WaAS_W1ID> iteW1 = w1Data.lookup.keySet().iterator();
+            while (iteW1.hasNext()) {
+                WaAS_W1ID w1ID = iteW1.next();
+                WaAS_ID2 ID = new WaAS_ID2(w1ID, w1ID);
+                w1IDs.add(ID);
+                w1recs.put(w1ID, w1Data.lookup.get(w1ID));
+            }
+            env.log("w1IDs.size() " + w1IDs.size());
+            cacheSubset(W1, w1recs, type);
+            /**
+             * Step 2.2.2: Wave 2.
+             */
+            w1ToW2Subset = new TreeMap<>();
+            w2ToW1Subset = new TreeMap<>();
+            w2recs = new TreeMap<>();
+            w2IDs = new TreeSet<>();
+            Iterator<WaAS_W2ID> iteW2 = w2Data.lookup.keySet().iterator();
+            while (iteW2.hasNext()) {
+                WaAS_W2ID w2ID = iteW2.next();
+                WaAS_W1ID w1ID = w2Data.W2ToW1.get(w2ID);
+                WaAS_ID2 ID = new WaAS_ID2(w1ID, w2ID);
+                w2IDs.add(ID);
+                w2recs.put(w2ID, w2Data.lookup.get(w2ID));
+                Generic_Collections.addToMap(w1ToW2Subset, w1ID, w2ID);
+                w2ToW1Subset.put(w2ID, w1ID);
+            }
+            env.log("w2IDs.size() " + w2IDs.size());
+            cacheSubset(W2, w2recs, type);
+            env.log("w1ToW2Subset.size() " + w1ToW2Subset.size());
+            env.log("w2ToW1Subset.size() " + w2ToW1Subset.size());
+            cacheSubsetLookups(W1, w1ToW2Subset, w2ToW1Subset);
+            /**
+             * Step 2.2.3: Wave 3.
+             */
+            w2ToW3Subset = new TreeMap<>();
+            w3ToW2Subset = new TreeMap<>();
+            w3recs = new TreeMap<>();
+            //TreeSet<WaAS_ID2> w3IDs2 = new TreeSet<>();
+            HashMap<WaAS_W3ID, WaAS_W2ID> w3ToW2 = new HashMap<>();
+            Iterator<WaAS_W3ID> iteW3 = w3Data.lookup.keySet().iterator();
+            while (iteW3.hasNext()) {
+                WaAS_W3ID w3ID = iteW3.next();
+                WaAS_W2ID w2ID = new WaAS_W2ID(w3Data.lookup.get(w3ID).getCASEW2());
+                if (w2ToW1Subset.containsKey(w2ID)) {
+                    w3ToW2.put(w3ID, w2ID);
+                    WaAS_W1ID w1ID = w2ToW1Subset.get(w2ID);
+                    HashSet<WaAS_W3ID> w3IDs2 = w3Data.W2ToW3.get(w2ID);
+                    Iterator<WaAS_W3ID> ite2 = w3IDs2.iterator();
+                    while (ite2.hasNext()) {
+                        w3ID = ite2.next();
+                        WaAS_ID2 ID = new WaAS_ID2(w1ID, w3ID);
+                        //w3IDs2.add(ID);
+                        w3IDs.add(ID);
+                        w3recs.put(w3ID, w3Data.lookup.get(w3ID));
+                        Generic_Collections.addToMap(w2ToW3Subset, w2ID, w3ID);
+                        w3ToW2Subset.put(w3ID, w2ID);
+                    }
+                }
+            }
+            //env.log("w3IDs2.size() " + w3IDs2.size());
+            env.log("w3IDs.size() " + w3IDs.size());
+            cacheSubset(W3, w3recs, type);
+            env.log("w2ToW3Subset.size() " + w2ToW3Subset.size());
+            env.log("w3ToW2Subset.size() " + w3ToW2Subset.size());
+            cacheSubsetLookups(W2, w2ToW3Subset, w3ToW2Subset);
+            /**
+             * Step 2.2.4: Wave 4.
+             */
+            w3ToW4Subset = new TreeMap<>();
+            w4ToW3Subset = new TreeMap<>();
+            w4recs = new TreeMap<>();
+            W4ToW3 = new HashMap<>();
+            w4IDs = new TreeSet<>();
+            Iterator<WaAS_W4ID> iteW4 = w4Data.lookup.keySet().iterator();
+            while (iteW4.hasNext()) {
+                WaAS_W4ID w4ID = iteW4.next();
+                WaAS_W3ID w3ID = new WaAS_W3ID(w4Data.lookup.get(w4ID).getCASEW3());
+                if (w3ToW2Subset.containsKey(w3ID)) {
+                    W4ToW3.put(w4ID, w3ID);
+                    WaAS_W2ID w2ID = w3ToW2Subset.get(w3ID);
+                    WaAS_W1ID w1ID = w2ToW1Subset.get(w2ID);
+                    HashSet<WaAS_W4ID> w4IDs2 = w4Data.W3ToW4.get(w3ID);
+                    Iterator<WaAS_W4ID> ite2 = w4IDs2.iterator();
+                    while (ite2.hasNext()) {
+                        w4ID = ite2.next();
+                        WaAS_ID2 ID = new WaAS_ID2(w1ID, w4ID);
+                        w4IDs.add(ID);
+                        w4recs.put(w4ID, w4Data.lookup.get(w4ID));
+                        Generic_Collections.addToMap(w3ToW4Subset, w3ID, w4ID);
+                        w4ToW3Subset.put(w4ID, w3ID);
+                    }
+                }
+            }
+            env.log("w4IDs.size() " + w4IDs.size());
+            cacheSubset(W4, w4recs, type);
+            env.log("w3ToW4Subset.size() " + w3ToW4Subset.size());
+            env.log("w4ToW3Subset.size() " + w4ToW3Subset.size());
+            cacheSubsetLookups(W3, w3ToW4Subset, w4ToW3Subset);
+            /**
+             * Step 2.2.5: Wave 5.
+             */
+            w4ToW5Subset = new TreeMap<>();
+            w5ToW4Subset = new TreeMap<>();
+            w5recs = new TreeMap<>();
+            w5ToW4 = new HashMap<>();
+            //TreeSet<WaAS_ID2> w5IDs2 = new TreeSet<>();
+            Iterator<WaAS_W5ID> iteW5 = w5Data.lookup.keySet().iterator();
+            while (iteW5.hasNext()) {
+                WaAS_W5ID w5ID = iteW5.next();
+                WaAS_W4ID w4ID = new WaAS_W4ID(w5Data.lookup.get(w5ID).getCASEW4());
+                if (w4ToW3Subset.containsKey(w4ID)) {
+                    w5ToW4.put(w5ID, w4ID);
+                    WaAS_W3ID w3ID = w4ToW3Subset.get(w4ID);
+                    WaAS_W2ID w2ID = w3ToW2Subset.get(w3ID);
+                    WaAS_W1ID w1ID = w2ToW1Subset.get(w2ID);
+                    HashSet<WaAS_W5ID> w5IDs2 = w5Data.W4ToW5.get(w4ID);
+                    Iterator<WaAS_W5ID> ite2 = w5IDs2.iterator();
+                    while (ite2.hasNext()) {
+                        w5ID = ite2.next();
+                        WaAS_ID2 ID = new WaAS_ID2(w1ID, w5ID);
+                        w5IDs.add(ID);
+                        w5recs.put(w5ID, w5Data.lookup.get(w5ID));
+                        Generic_Collections.addToMap(w4ToW5Subset, w4ID, w5ID);
+                        w5ToW4Subset.put(w5ID, w4ID);
+                    }
+                }
+            }
+            env.log("w5IDs.size() " + w5IDs.size());
+            //env.log("w5ID2s.size() " + w5ID2s.size());
+            cacheSubset(W5, w5recs, type);
+            env.log("w4ToW5Subset.size() " + w4ToW5Subset.size());
+            env.log("w5ToW4Subset.size() " + w5ToW4Subset.size());
+            cacheSubsetLookups(W4, w4ToW5Subset, w5ToW4Subset);
+        }
+
+    }
+
     /**
      * Loads hhold WaAS records that are in all waves.
      *
@@ -58,209 +275,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * records for that specific wave. The second element of these are first
      * element of these are the ..
      */
-    public Object[] loadHouseholdsInAllWaves(String type) {
-        String m = "loadHouseholdsInAllWaves";
+    public WaAS_HouseholdsInAllWaves loadHouseholdsInAllWaves(String type) {
+        String m = "loadHouseholdsInAllWaves(" + type + ")";
         env.logStartTag(m);
-        Object[] r = new Object[5];
-        /**
-         * Step 1: Initial loading
-         */
-        /**
-         * Step 1.1: Wave 5 initial load. After this load the lookup contains
-         * Wave 5 records that have Wave 4 IDs.
-         */
-        WaAS_W5Data w5Data = loadW5();
-        r[4] = w5Data;
-        /**
-         * Step 1.2: Wave 4 initial load. After this load the main set of data
-         * contains all those Wave 4 records that have Wave 3 record identifiers
-         * and that are in the main set loaded in Step 1.1.
-         */
-        WaAS_W4Data w4Data = loadW4InS(w5Data.W4ToW5.keySet(), WaAS_Strings.s_InW3W5);
-        r[3] = w4Data;
-        /**
-         * Step 1.3: Wave 3 initial load. After this load the main set of data
-         * contains all those Wave 3 records that have Wave 2 record identifiers
-         * and that are in the main set loaded in Step 1.2.
-         */
-        WaAS_W3Data w3Data = loadW3InSAndW2(w4Data.W3ToW4.keySet(), WaAS_Strings.s_InW2W4W5);
-        r[2] = w3Data;
-        /**
-         * Step 1.4: Wave 2 initial load. After this load the main set of data
-         * contains all those Wave 2 records that have Wave 1 record identifiers
-         * and that are in the main set loaded in Step 1.3.
-         */
-        WaAS_W2Data w2Data = loadW2InSAndW1(w3Data.W2ToW3.keySet(), WaAS_Strings.s_InW1W3W4W5);
-        r[1] = w2Data;
-        /**
-         * Step 1.5: Wave 1 initial load. After this load the main set of data
-         * contains all those Wave 1 records that are in the main set loaded in
-         * Step 1.4.
-         */
-        WaAS_W1Data w1Data = loadW1(w2Data.W1ToW2.keySet(), WaAS_Strings.s_InW2W4W5);
-        r[0] = w1Data;
-        /**
-         * Step 2: Check what is loaded and go through creating ID sets.
-         */
-        /**
-         * Step 2.1: Log status of the main sets loaded in Step 1.
-         */
-        env.log("There are " + w1Data.lookup.size() + " w1recs.");
-        env.log("There are " + w2Data.lookup.size() + " w2recs.");
-        env.log("There are " + w3Data.lookup.size() + " w3recs.");
-        env.log("There are " + w4Data.lookup.size() + " w4recs.");
-        env.log("There are " + w5Data.lookup.size() + " w5recs.");
-        /**
-         * Step 2.2: Filter sets.
-         */
-        /**
-         * Step 2.2.1: Wave 1.
-         */
-        TreeMap<WaAS_W1ID, WaAS_W1HRecord> w1recs = new TreeMap<>();
-        TreeSet<WaAS_ID2> w1IDs = new TreeSet<>();
-        Iterator<WaAS_W1ID> iteW1;
-        iteW1 = w1Data.lookup.keySet().iterator();
-        while (iteW1.hasNext()) {
-            WaAS_W1ID w1ID = iteW1.next();
-            WaAS_ID2 ID = new WaAS_ID2(w1ID, w1ID);
-            w1IDs.add(ID);
-            w1recs.put(w1ID, w1Data.lookup.get(w1ID));
-        }
-        env.log("There are " + w1IDs.size() + " CASEW1IDs.");
-        cacheSubset(W1, w1recs, type);
-        /**
-         * Step 2.2.2: Wave 2.
-         */
-        TreeMap<WaAS_W1ID, HashSet<WaAS_W2ID>> W1ToW2Subset = new TreeMap<>();
-        TreeMap<WaAS_W2ID, WaAS_W1ID> W2ToW1Subset = new TreeMap<>();
-        TreeMap<WaAS_W2ID, WaAS_W2HRecord> w2recs = new TreeMap<>();
-        TreeSet<WaAS_ID2> w2IDs = new TreeSet<>();
-        Iterator<WaAS_W2ID> iteW2;
-        iteW2 = w2Data.lookup.keySet().iterator();
-        while (iteW2.hasNext()) {
-            WaAS_W2ID w2ID = iteW2.next();
-            WaAS_W1ID w1ID = w2Data.W2ToW1.get(w2ID);
-            WaAS_ID2 ID = new WaAS_ID2(w1ID, w2ID);
-            w2IDs.add(ID);
-            w2recs.put(w2ID, w2Data.lookup.get(w2ID));
-            Generic_Collections.addToMap(W1ToW2Subset, w1ID, w2ID);
-            W2ToW1Subset.put(w2ID, w1ID);
-        }
-        env.log("There are " + w2IDs.size() + " CASEW2IDs.");
-        cacheSubset(W2, w2recs, type);
-        env.log("There are " + W1ToW2Subset.size() + " CASEW1ToCASEW2Subset mappings.");
-        env.log("There are " + W2ToW1Subset.size() + " CASEW2ToCASEW1Subset mappings.");
-        cacheSubsetLookups(W1, W1ToW2Subset, W2ToW1Subset);
-        /**
-         * Step 2.2.3: Wave 3.
-         */
-        TreeMap<WaAS_W2ID, HashSet<WaAS_W3ID>> w2ToW3Subset = new TreeMap<>();
-        TreeMap<WaAS_W3ID, WaAS_W2ID> w3ToW2Subset = new TreeMap<>();
-        TreeMap<WaAS_W3ID, WaAS_W3HRecord> w3recs = new TreeMap<>();
-        TreeSet<WaAS_ID2> CASEW3IDs = new TreeSet<>();
-        HashMap<WaAS_W3ID, WaAS_W2ID> w3ToW2 = new HashMap<>();
-        Iterator<WaAS_W3ID> iteW3;
-        iteW3 = w3Data.lookup.keySet().iterator();
-        while (iteW3.hasNext()) {
-            WaAS_W3ID w3ID = iteW3.next();
-            WaAS_W2ID w2ID = new WaAS_W2ID(w3Data.lookup.get(w3ID).getCASEW2());
-            if (W2ToW1Subset.containsKey(w2ID)) {
-                w3ToW2.put(w3ID, w2ID);
-                WaAS_W1ID w1ID = W2ToW1Subset.get(w2ID);
-                HashSet<WaAS_W3ID> w3IDs = w3Data.W2ToW3.get(w2ID);
-                Iterator<WaAS_W3ID> ite2 = w3IDs.iterator();
-                while (ite2.hasNext()) {
-                    w3ID = ite2.next();
-                    WaAS_ID2 ID = new WaAS_ID2(w1ID, w3ID);
-                    CASEW3IDs.add(ID);
-                    w3recs.put(w3ID, w3Data.lookup.get(w3ID));
-                    Generic_Collections.addToMap(w2ToW3Subset, w2ID, w3ID);
-                    w3ToW2Subset.put(w3ID, w2ID);
-                }
-            }
-        }
-        env.log("There are " + CASEW3IDs.size() + " CASEW3IDs.");
-        cacheSubset(W3, w3recs, type);
-        env.log("There are " + w2ToW3Subset.size()
-                + " CASEW2ToCASEW3Subset mappings.");
-        env.log("There are " + w3ToW2Subset.size()
-                + " CASEW3ToCASEW2Subset mappings.");
-        cacheSubsetLookups(W2, w2ToW3Subset,
-                w3ToW2Subset);
-        /**
-         * Step 2.2.4: Wave 4.
-         */
-        TreeMap<WaAS_W3ID, HashSet<WaAS_W4ID>> W3ToW4Subset = new TreeMap<>();
-        TreeMap<WaAS_W4ID, WaAS_W3ID> W4ToW3Subset = new TreeMap<>();
-        TreeMap<WaAS_W4ID, WaAS_W4HRecord> w4recs = new TreeMap<>();
-        HashMap<WaAS_W4ID, WaAS_W3ID> W4ToW3 = new HashMap<>();
-        TreeSet<WaAS_ID2> w4IDs = new TreeSet<>();
-        Iterator<WaAS_W4ID> iteW4;
-        iteW4 = w4Data.lookup.keySet().iterator();
-        while (iteW4.hasNext()) {
-            WaAS_W4ID w4ID = iteW4.next();
-            WaAS_W3ID w3ID = new WaAS_W3ID(w4Data.lookup.get(w4ID).getCASEW3());
-            if (w3ToW2Subset.containsKey(w3ID)) {
-                W4ToW3.put(w4ID, w3ID);
-                WaAS_W2ID w2ID = w3ToW2Subset.get(w3ID);
-                WaAS_W1ID w1ID = W2ToW1Subset.get(w2ID);
-                HashSet<WaAS_W4ID> CASEW4s = w4Data.W3ToW4.get(w3ID);
-                Iterator<WaAS_W4ID> ite2 = CASEW4s.iterator();
-                while (ite2.hasNext()) {
-                    w4ID = ite2.next();
-                    WaAS_ID2 ID = new WaAS_ID2(w1ID, w4ID);
-                    w4IDs.add(ID);
-                    w4recs.put(w4ID, w4Data.lookup.get(w4ID));
-                    Generic_Collections.addToMap(W3ToW4Subset, w3ID, w4ID);
-                    W4ToW3Subset.put(w4ID, w3ID);
-                }
-            }
-        }
-        env.log("There are " + w4IDs.size() + " CASEW4IDs.");
-        cacheSubset(W4, w4recs, type);
-        env.log("There are " + W3ToW4Subset.size()
-                + " CASEW3ToCASEW4Subset mappings.");
-        env.log("There are " + W4ToW3Subset.size()
-                + " CASEW4ToCASEW3Subset mappings.");
-        cacheSubsetLookups(W3, W3ToW4Subset,
-                W4ToW3Subset);
-        /**
-         * Step 2.2.5: Wave 5.
-         */
-        TreeMap<WaAS_W4ID, HashSet<WaAS_W5ID>> W4ToW5Subset = new TreeMap<>();
-        TreeMap<WaAS_W5ID, WaAS_W4ID> W5ToW4Subset = new TreeMap<>();
-        TreeMap<WaAS_W5ID, WaAS_W5HRecord> w5recs = new TreeMap<>();
-        HashMap<WaAS_W5ID, WaAS_W4ID> W5ToW4 = new HashMap<>();
-        TreeSet<WaAS_ID2> CASEW5IDs = new TreeSet<>();
-        Iterator<WaAS_W5ID> iteW5;
-        iteW5 = w5Data.lookup.keySet().iterator();
-        while (iteW5.hasNext()) {
-            WaAS_W5ID w5ID = iteW5.next();
-            WaAS_W4ID w4ID = new WaAS_W4ID(w5Data.lookup.get(w5ID).getCASEW4());
-            if (W4ToW3Subset.containsKey(w4ID)) {
-                W5ToW4.put(w5ID, w4ID);
-                WaAS_W3ID w3ID = W4ToW3Subset.get(w4ID);
-                WaAS_W2ID w2ID = w3ToW2Subset.get(w3ID);
-                WaAS_W1ID w1ID = W2ToW1Subset.get(w2ID);
-                HashSet<WaAS_W5ID> w5IDs = w5Data.W4ToW5.get(w4ID);
-                Iterator<WaAS_W5ID> ite2 = w5IDs.iterator();
-                while (ite2.hasNext()) {
-                    w5ID = ite2.next();
-                    WaAS_ID2 ID = new WaAS_ID2(w1ID, w5ID);
-                    CASEW5IDs.add(ID);
-                    w5recs.put(w5ID, w5Data.lookup.get(w5ID));
-                    Generic_Collections.addToMap(W4ToW5Subset, w4ID, w5ID);
-                    W5ToW4Subset.put(w5ID, w4ID);
-                }
-            }
-        }
-        env.log("There are " + CASEW5IDs.size() + " CASEW5IDs.");
-        cacheSubset(W5, w5recs, type);
-        env.log("There are " + W4ToW5Subset.size()
-                + " CASEW4ToCASEW5Subset mappings.");
-        env.log("There are " + W5ToW4Subset.size()
-                + " CASEW5ToCASEW4Subset mappings.");
-        cacheSubsetLookups(W4, W4ToW5Subset, W5ToW4Subset);
+        WaAS_HouseholdsInAllWaves r = new WaAS_HouseholdsInAllWaves(type);
         env.logEndTag(m);
         return r;
     }
@@ -366,60 +384,6 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
 //        env.logEndTag(m);
 //        return r;
 //    }
-    public class WaAS_W5Data implements Serializable {
-
-        /**
-         * Keys are CASEW5 and values are WaAS_Wave5_HHOLD_Records
-         */
-        public TreeMap<WaAS_W5ID, WaAS_W5HRecord> lookup;
-        /**
-         * CASEW1 values in Wave 5 records.
-         */
-        public final TreeSet<WaAS_W1ID> W1InW5;
-        /**
-         * CASEW2 values in Wave 5 records.
-         */
-        public final TreeSet<WaAS_W2ID> W2InW5;
-        /**
-         * w3ID values in Wave 5 records.
-         */
-        public final TreeSet<WaAS_W3ID> W3InW5;
-        /**
-         * CASEW4 values in Wave 5 records.
-         */
-        public final TreeSet<WaAS_W4ID> W4InW5;
-        /**
-         * All CASEW5 values.
-         */
-        public final TreeSet<WaAS_W5ID> AllW5;
-        /**
-         * CASEW5 values for records that have CASEW4, w3ID, CASEW2 and CASEW1
-         * values.
-         */
-        public final TreeSet<WaAS_W5ID> W5InW1W2W3W4;
-        /**
-         * Keys are CASEW5 and values are CASEW4.
-         */
-        public final TreeMap<WaAS_W5ID, WaAS_W4ID> W5ToW4;
-        /**
-         * Keys are CASEW4 and values are sets of CASEW5 (which is normally
-         * expected to contain just one CASEW5).
-         */
-        public final TreeMap<WaAS_W4ID, HashSet<WaAS_W5ID>> W4ToW5;
-
-        public WaAS_W5Data() {
-            lookup = new TreeMap<>();
-            W1InW5 = new TreeSet<>();
-            W2InW5 = new TreeSet<>();
-            W3InW5 = new TreeSet<>();
-            W4InW5 = new TreeSet<>();
-            AllW5 = new TreeSet<>();
-            W5InW1W2W3W4 = new TreeSet<>();
-            W5ToW4 = new TreeMap<>();
-            W4ToW5 = new TreeMap<>();
-        }
-    }
-
     /**
      * Load Wave 5 records that are reportedly in Wave 4 (those with CASEW4
      * values).
@@ -481,10 +445,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                     r.W3InW5.add(new WaAS_W3ID(CASEW3));
                 }
                 if (CASEW2 > Short.MIN_VALUE) {
-                    r.W2InW5.add(new WaAS_W2ID(CASEW2));
+                    r.w2IDsInW5.add(new WaAS_W2ID(CASEW2));
                 }
                 if (CASEW1 > Short.MIN_VALUE) {
-                    r.W1InW5.add(new WaAS_W1ID(CASEW3));
+                    r.w1IDsInW5.add(new WaAS_W1ID(CASEW3));
                     if (CASEW2 > Short.MIN_VALUE && CASEW3 > Short.MIN_VALUE
                             && CASEW4 > Short.MIN_VALUE) {
                         r.W5InW1W2W3W4.add(w5ID);
@@ -717,19 +681,6 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     }
 
     /**
-     *
-     * @param n
-     * @return
-     */
-    protected TreeSet<Short>[] getSets(int n) {
-        TreeSet<Short>[] r = new TreeSet[n];
-        for (int i = 0; i < n; i++) {
-            r[i] = new TreeSet<>();
-        }
-        return r;
-    }
-
-    /**
      * For getting a specific generated File with type defaulted to
      * {@link WaAS_Strings#s_All}.
      * {@link #getGeneratedFile(short, java.lang.String)}
@@ -737,7 +688,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * @param wave the wave part of the filename.
      * @return a specific generated File.
      */
-    protected File getGeneratedAllFile(short wave) {
+    protected File getGeneratedAllFile(byte wave) {
         return new File(files.getGeneratedWaASDir(), TYPE + WaAS_Strings.s_W
                 + wave + WaAS_Strings.s_All + WaAS_Files.DOT_DAT);
     }
@@ -868,54 +819,6 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         }
         env.logEndTag(m);
         return r;
-    }
-
-    public class WaAS_W4Data implements Serializable {
-
-        /**
-         * Keys are CASEW4 and values are WaAS_Wave4_HHOLD_Records
-         */
-        public TreeMap<WaAS_W4ID, WaAS_W4HRecord> lookup;
-        /**
-         * CASEW1 values in Wave 4 records.
-         */
-        public final TreeSet<WaAS_W1ID> W1InW4;
-        /**
-         * CASEW2 values in Wave 4 records.
-         */
-        public final TreeSet<WaAS_W2ID> W2InW4;
-        /**
-         * w3ID values in Wave 4 records.
-         */
-        public final TreeSet<WaAS_W3ID> W3InW4;
-        /**
-         * All CASEW4 values.
-         */
-        public final TreeSet<WaAS_W4ID> AllW4;
-        /**
-         * CASEW4 values for records that have w3ID, CASEW2 and CASEW1 values.
-         */
-        public final TreeSet<WaAS_W4ID> W4InW1W2W3;
-        /**
-         * Keys are CASEW4 and values are w3ID.
-         */
-        public final TreeMap<WaAS_W4ID, WaAS_W3ID> W4ToW3;
-        /**
-         * Keys are w3ID and values are sets of CASEW4 (which is normally
-         * expected to contain just one CASEW4).
-         */
-        public final TreeMap<WaAS_W3ID, HashSet<WaAS_W4ID>> W3ToW4;
-
-        public WaAS_W4Data() {
-            lookup = new TreeMap<>();
-            W1InW4 = new TreeSet<>();
-            W2InW4 = new TreeSet<>();
-            W3InW4 = new TreeSet<>();
-            AllW4 = new TreeSet<>();
-            W4InW1W2W3 = new TreeSet<>();
-            W4ToW3 = new TreeMap<>();
-            W3ToW4 = new TreeMap<>();
-        }
     }
 
     protected BufferedReader loadW4Count(WaAS_W4Data r, File f) {
@@ -1073,54 +976,6 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
 
     }
 
-    public class WaAS_W3Data  implements Serializable {
-
-        /**
-         * Keys are w3ID and values are WaAS_Wave3_HHOLD_Records
-         */
-        public TreeMap<WaAS_W3ID, WaAS_W3HRecord> lookup;
-        /**
-         * CASEW1 values in Wave 3 records.
-         */
-        public final TreeSet<WaAS_W1ID> W1InW3;
-        /**
-         * CASEW2 values in Wave 3 records.
-         */
-        public final TreeSet<WaAS_W2ID> W2InW3;
-        /**
-         * All w3ID values.
-         */
-        public final TreeSet<WaAS_W3ID> AllW3;
-        /**
-         * w3ID values for records that have CASEW1 and CASEW2 values.
-         */
-        public final TreeSet<WaAS_W3ID> W3InW1W2;
-        /**
-         * w3ID values for records in waves 4 and 5 and that have CASEW2 values.
-         */
-        public final TreeSet<WaAS_W3ID> W3InW2W4W5;
-        /**
-         * Keys are w3ID and values are CASEW2.
-         */
-        public final TreeMap<WaAS_W3ID, WaAS_W2ID> W3ToW2;
-        /**
-         * Keys are CASEW2 and values are sets of w3ID (which is normally
-         * expected to contain just one w3ID).
-         */
-        public final TreeMap<WaAS_W2ID, HashSet<WaAS_W3ID>> W2ToW3;
-
-        public WaAS_W3Data() {
-            lookup = new TreeMap<>();
-            W1InW3 = new TreeSet<>();
-            W2InW3 = new TreeSet<>();
-            AllW3 = new TreeSet<>();
-            W3InW1W2 = new TreeSet<>();
-            W3InW2W4W5 = new TreeSet<>();
-            W3ToW2 = new TreeMap<>();
-            W2ToW3 = new TreeMap<>();
-        }
-    }
-
     /**
      * Load Wave 3 records that have w3ID values in {@code s}.
      *
@@ -1183,7 +1038,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * @return the loaded data
      */
     public WaAS_W3Data loadW3InSAndW2(Set<WaAS_W3ID> s, String type) {
-        String m = "loadW3InSAndW2(Set<Short>, " + type + ")";
+        String m = "loadW3InSAndW2(Set<WaAS_W3ID>, " + type + ")";
         env.logStartTag(m);
         WaAS_W3Data r;
         File cf = getSubsetCacheFile2(W3, type);
@@ -1357,88 +1212,6 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
 //        env.logEndTag(m);
 //        return r;
 //    }
-    public class WaAS_W1Data implements Serializable {
-
-        /**
-         * Keys are CASEW1 and values are WaAS_Wave1_HHOLD_Records
-         */
-        public TreeMap<WaAS_W1ID, WaAS_W1HRecord> lookup;
-        /**
-         * All CASEW2 values.
-         */
-        public final TreeSet<WaAS_W1ID> AllW1;
-        /**
-         * CASEW1 values for records in waves 2, 3, 4 and 5 and that have CASEW1
-         * values.
-         */
-        public final TreeSet<WaAS_W1ID> W1InW2W3W4W5;
-
-        /**
-         * Keys are CASEW2 and values are CASEW1.
-         */
-        public final TreeMap<WaAS_W2ID, WaAS_W1ID> W2ToW1;
-
-        /**
-         * Keys are CASEW1 and values are sets of CASEW2 (which is normally
-         * expected to contain just one CASEW2).
-         */
-        public final TreeMap<WaAS_W1ID, HashSet<WaAS_W2ID>> W1ToW2;
-
-        public WaAS_W1Data() {
-            lookup = new TreeMap<>();
-            AllW1 = new TreeSet<>();
-            W1InW2W3W4W5 = new TreeSet<>();
-            W2ToW1 = new TreeMap<>();
-            W1ToW2 = new TreeMap<>();
-        }
-    }
-
-    public class WaAS_W2Data implements Serializable {
-
-        /**
-         * Keys are CASEW2 and values are WaAS_Wave2_HHOLD_Records
-         */
-        public TreeMap<WaAS_W2ID, WaAS_W2HRecord> lookup;
-        /**
-         * CASEW1 values in Wave 2 records.
-         */
-        public final TreeSet<WaAS_W1ID> W1InW2;
-        /**
-         * All CASEW2 values.
-         */
-        public final TreeSet<WaAS_W2ID> AllW2;
-        /**
-         * CASEW2 values for records that have CASEW1 values.
-         */
-        public final TreeSet<WaAS_W2ID> W2InW1;
-        /**
-         * CASEW2 values for records in waves 3, 4 and 5 and that have CASEW1
-         * values.
-         */
-        public final TreeSet<WaAS_W2ID> W2InW1W3W4W5;
-
-        /**
-         * Keys are CASEW2 and values are CASEW1.
-         */
-        public final TreeMap<WaAS_W2ID, WaAS_W1ID> W2ToW1;
-
-        /**
-         * Keys are CASEW1 and values are sets of CASEW2 (which is normally
-         * expected to contain just one CASEW2).
-         */
-        public final TreeMap<WaAS_W1ID, HashSet<WaAS_W2ID>> W1ToW2;
-
-        public WaAS_W2Data() {
-            lookup = new TreeMap<>();
-            W1InW2 = new TreeSet<>();
-            AllW2 = new TreeSet<>();
-            W2InW1 = new TreeSet<>();
-            W2InW1W3W4W5 = new TreeSet<>();
-            W2ToW1 = new TreeMap<>();
-            W1ToW2 = new TreeMap<>();
-        }
-    }
-
     /**
      * Load Wave 2 records that are reportedly in Wave 1 (those with CASEW1
      * values).
@@ -1499,6 +1272,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         } else {
             r = new WaAS_W2Data();
             File f = getInputFile(W2);
+            String m0 = getMessage(W2, f);
+            env.logStartTag(m0);
             BufferedReader br = loadW2Count(r, f);
             br.lines().skip(1).forEach(l -> {
                 WaAS_W2HRecord rec = new WaAS_W2HRecord(l);
@@ -1515,6 +1290,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 }
                 r.AllW2.add(w2ID);
             });
+            // Close br
+            Generic_IO.closeBufferedReader(br);
+            env.logEndTag(m0);
+            cache(W2, cf, r);
         }
         return r;
     }
@@ -1538,6 +1317,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         } else {
             r = new WaAS_W2Data();
             File f = getInputFile(W2);
+            String m0 = getMessage(W2, f);
+            env.logStartTag(m0);
             BufferedReader br = loadW2Count(r, f);
             br.lines().skip(1).forEach(l -> {
                 WaAS_W2HRecord rec = new WaAS_W2HRecord(l);
@@ -1554,6 +1335,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 }
                 r.AllW2.add(w2ID);
             });
+            // Close br
+            Generic_IO.closeBufferedReader(br);
+            env.logEndTag(m0);
+            cache(W2, cf, r);
         }
         return r;
     }
@@ -1650,15 +1435,14 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * @param type
      * @return Object[]
      */
-    public TreeMap<WaAS_W1ID, WaAS_W1HRecord> loadCachedSubset2W1(
-            String type) {
+    public TreeMap<WaAS_W1ID, WaAS_W1HRecord> loadCachedSubset2W1( String type) {
         String m = "loadCachedSubset2W1(" + type + ")";
         env.logStartTag(m);
         TreeMap<WaAS_W1ID, WaAS_W1HRecord> r;
         File f = getSubsetCacheFile2(W1, type);
         if (f.exists()) {
-            Object[] o = (Object[]) Generic_IO.readObject(f);
-            r = (TreeMap<WaAS_W1ID, WaAS_W1HRecord>) o[0];
+            WaAS_W1Data o = (WaAS_W1Data) Generic_IO.readObject(f);
+            r = (TreeMap<WaAS_W1ID, WaAS_W1HRecord>) o.lookup;
         } else {
             env.log("File " + f + " does not exist!");
             r = null;
@@ -1667,8 +1451,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         return r;
     }
 
-    public TreeMap<WaAS_W2ID, WaAS_W2HRecord> loadCachedSubsetW2(
-            String type) {
+    public TreeMap<WaAS_W2ID, WaAS_W2HRecord> loadCachedSubsetW2( String type) {
         String m = "loadCachedSubsetW2(" + type + ")";
         env.logStartTag(m);
         TreeMap<WaAS_W2ID, WaAS_W2HRecord> r;
@@ -1683,15 +1466,14 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         return r;
     }
 
-    public TreeMap<WaAS_W2ID, WaAS_W2HRecord> loadCachedSubset2W2(
-            String type) {
+    public TreeMap<WaAS_W2ID, WaAS_W2HRecord> loadCachedSubset2W2( String type) {
         String m = "loadCachedSubset2W2(" + type + ")";
         env.logStartTag(m);
         TreeMap<WaAS_W2ID, WaAS_W2HRecord> r;
         File f = getSubsetCacheFile2(W2, type);
         if (f.exists()) {
-            Object[] o = (Object[]) Generic_IO.readObject(f);
-            r = (TreeMap<WaAS_W2ID, WaAS_W2HRecord>) o[0];
+            WaAS_W2Data o = (WaAS_W2Data) Generic_IO.readObject(f);
+            r = (TreeMap<WaAS_W2ID, WaAS_W2HRecord>) o.lookup;
         } else {
             env.log("File " + f + " does not exist!");
             r = null;
@@ -1700,8 +1482,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         return r;
     }
 
-    public TreeMap<WaAS_W3ID, WaAS_W3HRecord> loadCachedSubsetW3(
-            String type) {
+    public TreeMap<WaAS_W3ID, WaAS_W3HRecord> loadCachedSubsetW3( String type) {
         String m = "loadCachedSubsetW3(" + type + ")";
         env.logStartTag(m);
         TreeMap<WaAS_W3ID, WaAS_W3HRecord> r;
@@ -1716,15 +1497,14 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         return r;
     }
 
-    public TreeMap<WaAS_W3ID, WaAS_W3HRecord> loadCachedSubset2W3(
-            String type) {
+    public TreeMap<WaAS_W3ID, WaAS_W3HRecord> loadCachedSubset2W3( String type) {
         String m = "loadCachedSubset2W3(" + type + ")";
         env.logStartTag(m);
         TreeMap<WaAS_W3ID, WaAS_W3HRecord> r;
         File f = getSubsetCacheFile2(W3, type);
         if (f.exists()) {
-            Object[] o = (Object[]) Generic_IO.readObject(f);
-            r = (TreeMap<WaAS_W3ID, WaAS_W3HRecord>) o[0];
+            WaAS_W3Data o = (WaAS_W3Data) Generic_IO.readObject(f);
+            r = (TreeMap<WaAS_W3ID, WaAS_W3HRecord>) o.lookup;
         } else {
             env.log("File " + f + " does not exist!");
             r = null;
@@ -1733,8 +1513,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         return r;
     }
 
-    public TreeMap<WaAS_W4ID, WaAS_W4HRecord> loadCachedSubsetW4(
-            String type) {
+    public TreeMap<WaAS_W4ID, WaAS_W4HRecord> loadCachedSubsetW4( String type) {
         String m = "loadCachedSubsetW4(" + type + ")";
         env.logStartTag(m);
         TreeMap<WaAS_W4ID, WaAS_W4HRecord> r;
@@ -1749,15 +1528,14 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         return r;
     }
 
-    public TreeMap<WaAS_W4ID, WaAS_W4HRecord> loadCachedSubset2W4(
-            String type) {
+    public TreeMap<WaAS_W4ID, WaAS_W4HRecord> loadCachedSubset2W4(  String type) {
         String m = "loadCachedSubset2W4(" + type + ")";
         env.logStartTag(m);
         TreeMap<WaAS_W4ID, WaAS_W4HRecord> r;
         File f = getSubsetCacheFile2(W4, type);
         if (f.exists()) {
-            Object[] o = (Object[]) Generic_IO.readObject(f);
-            r = (TreeMap<WaAS_W4ID, WaAS_W4HRecord>) o[0];
+            WaAS_W4Data o = (WaAS_W4Data) Generic_IO.readObject(f);
+            r = (TreeMap<WaAS_W4ID, WaAS_W4HRecord>) o.lookup;
         } else {
             env.log("File " + f + " does not exist!");
             r = null;
@@ -1766,8 +1544,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         return r;
     }
 
-    public TreeMap<WaAS_W5ID, WaAS_W5HRecord> loadCachedSubsetW5(
-            String type) {
+    public TreeMap<WaAS_W5ID, WaAS_W5HRecord> loadCachedSubsetW5( String type) {
         String m = "loadCachedSubsetW5(" + type + ")";
         env.logStartTag(m);
         TreeMap<WaAS_W5ID, WaAS_W5HRecord> r;
@@ -1782,15 +1559,14 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         return r;
     }
 
-    public TreeMap<WaAS_W5ID, WaAS_W5HRecord> loadCachedSubset2W5(
-            String type) {
+    public TreeMap<WaAS_W5ID, WaAS_W5HRecord> loadCachedSubset2W5( String type) {
         String m = "loadCachedSubset2W5(" + type + ")";
         env.logStartTag(m);
         TreeMap<WaAS_W5ID, WaAS_W5HRecord> r;
         File f = getSubsetCacheFile2(W5, type);
         if (f.exists()) {
-            Object[] o = (Object[]) Generic_IO.readObject(f);
-            r = (TreeMap<WaAS_W5ID, WaAS_W5HRecord>) o[0];
+            WaAS_W5Data o = (WaAS_W5Data) Generic_IO.readObject(f);
+            r = (TreeMap<WaAS_W5ID, WaAS_W5HRecord>) o.lookup;
         } else {
             env.log("File " + f + " does not exist!");
             r = null;
@@ -1855,13 +1631,13 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             r.put(ite.next(), new HashMap<>());
         }
         if (wave == WaAS_Data.W1) {
-            
+
             data.data.keySet().stream().forEach(cID -> {
                 WaAS_Collection c = data.getCollection(cID);
                 c.getData().keySet().stream().forEach(w1ID -> {
                     if (subset.contains(w1ID)) {
                         WaAS_CombinedRecord cr = c.getData().get(w1ID);
-                        WaAS_W1HRecord w1 = cr.w1Record.getHhold();
+                        WaAS_W1HRecord w1 = cr.w1Rec.getHhold();
                         Byte GOR = GORSubsetsAndLookups.W1ID2GOR.get(w1ID);
                         Generic_Collections.addToMap(r, GOR, w1ID, w1.getHVALUE());
                     }
@@ -1874,7 +1650,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 c.getData().keySet().stream().forEach(w1ID -> {
                     if (subset.contains(w1ID)) {
                         WaAS_CombinedRecord cr = c.getData().get(w1ID);
-                        HashMap<WaAS_W2ID, WaAS_W2Record> recs = cr.w2Records;
+                        HashMap<WaAS_W2ID, WaAS_W2Record> recs = cr.w2Recs;
                         Iterator<WaAS_W2ID> ite2 = recs.keySet().iterator();
                         while (ite2.hasNext()) {
                             WaAS_W2ID w2ID = ite2.next();
@@ -1892,7 +1668,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 c.getData().keySet().stream().forEach(CASEW1 -> {
                     if (subset.contains(CASEW1)) {
                         WaAS_CombinedRecord cr = c.getData().get(CASEW1);
-                        HashMap<WaAS_W2ID, HashMap<WaAS_W3ID, WaAS_W3Record>> recs = cr.w3Records;
+                        HashMap<WaAS_W2ID, HashMap<WaAS_W3ID, WaAS_W3Record>> recs = cr.w3Recs;
                         Iterator<WaAS_W2ID> ite1 = recs.keySet().iterator();
                         while (ite1.hasNext()) {
                             WaAS_W2ID w2ID = ite1.next();
@@ -1915,7 +1691,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 c.getData().keySet().stream().forEach(w1ID -> {
                     if (subset.contains(w1ID)) {
                         WaAS_CombinedRecord cr = c.getData().get(w1ID);
-                        HashMap<WaAS_W2ID, HashMap<WaAS_W3ID, HashMap<WaAS_W4ID, WaAS_W4Record>>> recs = cr.w4Records;
+                        HashMap<WaAS_W2ID, HashMap<WaAS_W3ID, HashMap<WaAS_W4ID, WaAS_W4Record>>> recs = cr.w4Recs;
                         Iterator<WaAS_W2ID> ite1 = recs.keySet().iterator();
                         while (ite1.hasNext()) {
                             WaAS_W2ID w2ID = ite1.next();
@@ -1943,7 +1719,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 c.getData().keySet().stream().forEach(CASEW1 -> {
                     if (subset.contains(CASEW1)) {
                         WaAS_CombinedRecord cr = c.getData().get(CASEW1);
-                        HashMap<WaAS_W2ID, HashMap<WaAS_W3ID, HashMap<WaAS_W4ID, HashMap<WaAS_W5ID, WaAS_W5Record>>>> recs = cr.w5Records;
+                        HashMap<WaAS_W2ID, HashMap<WaAS_W3ID, HashMap<WaAS_W4ID, HashMap<WaAS_W5ID, WaAS_W5Record>>>> recs = cr.w5Recs;
                         Iterator<WaAS_W2ID> ite1 = recs.keySet().iterator();
                         while (ite1.hasNext()) {
                             WaAS_W2ID w2ID = ite1.next();
@@ -2132,8 +1908,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * @return
      */
     public TreeMap<Byte, Double> getChangeVariableSubset(String variableName,
-            ArrayList<Byte> gors, WaAS_GORSubsetsAndLookups GORSubsetsAndLookups, 
-            HashMap<Byte, String> GORNameLookup, WaAS_Data data,
+            ArrayList<Byte> gors, WaAS_GORSubsetsAndLookups GORSubsetsAndLookups,
+            TreeMap<Byte, String> GORNameLookup, WaAS_Data data,
             HashSet<WaAS_W1ID> subset) {
         TreeMap<Byte, Double> r = new TreeMap<>();
         HashMap<Byte, HashMap<WaAS_ID, Double>>[] variableSubsets;

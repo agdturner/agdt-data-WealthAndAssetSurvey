@@ -146,6 +146,8 @@ public abstract class WaAS_Handler extends WaAS_Object {
     /**
      * Writes to file the subset look ups.
      *
+     * @param <K>
+     * @param <V>
      * @param wave The wave of lookups from and to to be cached.
      * @param m0 The lookups from wave to (wave + 1).
      * @param m1 The lookups from (wave + 1) to wave.
@@ -266,7 +268,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @param subset
      * @return
      */
-    public WaAS_GORSubsetsAndLookups getGORSubsetsAndLookup(String name, WaAS_Data data,
+    public WaAS_GORSubsetsAndLookups getGORSubsetsAndLookups(String name, WaAS_Data data,
             ArrayList<Byte> gors, HashSet<WaAS_W1ID> subset) {
         WaAS_GORSubsetsAndLookups r;
         File f = new File(files.getOutputDataDir(), name + "GORSubsetsAndLookups.dat");
@@ -293,11 +295,10 @@ public abstract class WaAS_Handler extends WaAS_Object {
                 c.getData().keySet().stream().forEach(w1ID -> {
                     if (subset.contains(w1ID)) {
                         WaAS_CombinedRecord cr = c.getData().get(w1ID);
-                        HashMap<WaAS_W2ID, WaAS_W2Record> w2Records  = cr.w2Recs;
-                        Iterator<WaAS_W2ID> ite2 = w2Records.keySet().iterator();
+                        Iterator<WaAS_W2ID> ite2 = cr.w2Recs.keySet().iterator();
                         while (ite2.hasNext()) {
                             WaAS_W2ID w2ID = ite2.next();
-                            WaAS_W2Record w2 = w2Records.get(w2ID);
+                            WaAS_W2Record w2 = cr.w2Recs.get(w2ID);
                             byte GOR = w2.getHhold().getGOR();
                             Generic_Collections.addToMap(r.GOR2W2IDSet, GOR, w2ID);
                             r.W2ID2GOR.put(w2ID, GOR);
@@ -312,13 +313,10 @@ public abstract class WaAS_Handler extends WaAS_Object {
                 c.getData().keySet().stream().forEach(w1ID -> {
                     if (subset.contains(w1ID)) {
                         WaAS_CombinedRecord cr = c.getData().get(w1ID);
-                        HashMap<WaAS_W2ID, HashMap<WaAS_W3ID, WaAS_W3Record>> w3Records;
-                        w3Records = cr.w3Recs;
-                        Iterator<WaAS_W2ID> ite2 = w3Records.keySet().iterator();
+                        Iterator<WaAS_W2ID> ite2 = cr.w3Recs.keySet().iterator();
                         while (ite2.hasNext()) {
                             WaAS_W2ID w2ID = ite2.next();
-                            HashMap<WaAS_W3ID, WaAS_W3Record> w3_2;
-                            w3_2 = w3Records.get(w2ID);
+                            HashMap<WaAS_W3ID, WaAS_W3Record> w3_2  = cr.w3Recs.get(w2ID);
                             Iterator<WaAS_W3ID> ite3 = w3_2.keySet().iterator();
                             while (ite3.hasNext()) {
                                 WaAS_W3ID w3ID = ite3.next();
@@ -338,18 +336,15 @@ public abstract class WaAS_Handler extends WaAS_Object {
                 c.getData().keySet().stream().forEach(w1ID -> {
                     if (subset.contains(w1ID)) {
                         WaAS_CombinedRecord cr = c.getData().get(w1ID);
-                        HashMap<WaAS_W2ID, HashMap<WaAS_W3ID, HashMap<WaAS_W4ID, WaAS_W4Record>>> w4Records;
-                        w4Records = cr.w4Recs;
-                        Iterator<WaAS_W2ID> ite2 = w4Records.keySet().iterator();
+                        Iterator<WaAS_W2ID> ite2 = cr.w4Recs.keySet().iterator();
                         while (ite2.hasNext()) {
                             WaAS_W2ID w2ID = ite2.next();
                             HashMap<WaAS_W3ID, HashMap<WaAS_W4ID, WaAS_W4Record>> w4_2;
-                            w4_2 = w4Records.get(w2ID);
+                            w4_2 = cr.w4Recs.get(w2ID);
                             Iterator<WaAS_W3ID> ite3 = w4_2.keySet().iterator();
                             while (ite3.hasNext()) {
                                 WaAS_W3ID w3ID = ite3.next();
-                                HashMap<WaAS_W4ID, WaAS_W4Record> w4_3;
-                                w4_3 = w4_2.get(w3ID);
+                                HashMap<WaAS_W4ID, WaAS_W4Record> w4_3  = w4_2.get(w3ID);
                                 Iterator<WaAS_W4ID> ite4 = w4_3.keySet().iterator();
                                 while (ite4.hasNext()) {
                                     WaAS_W4ID w4ID = ite4.next();
@@ -371,23 +366,19 @@ public abstract class WaAS_Handler extends WaAS_Object {
                 c.getData().keySet().stream().forEach(w1ID -> {
                     if (subset.contains(w1ID)) {
                         WaAS_CombinedRecord cr = c.getData().get(w1ID);
-                        HashMap<WaAS_W2ID, HashMap<WaAS_W3ID, HashMap<WaAS_W4ID, HashMap<WaAS_W5ID, WaAS_W5Record>>>> w5Records;
-                        w5Records = cr.w5Recs;
-                        Iterator<WaAS_W2ID> ite2 = w5Records.keySet().iterator();
+                        Iterator<WaAS_W2ID> ite2 = cr.w5Recs.keySet().iterator();
                         while (ite2.hasNext()) {
                             WaAS_W2ID w2ID = ite2.next();
                             HashMap<WaAS_W3ID, HashMap<WaAS_W4ID, HashMap<WaAS_W5ID, WaAS_W5Record>>> w5_2;
-                            w5_2 = w5Records.get(w2ID);
+                            w5_2 = cr.w5Recs.get(w2ID);
                             Iterator<WaAS_W3ID> ite3 = w5_2.keySet().iterator();
                             while (ite3.hasNext()) {
                                 WaAS_W3ID w3ID = ite3.next();
-                                HashMap<WaAS_W4ID, HashMap<WaAS_W5ID, WaAS_W5Record>> w5_3;
-                                w5_3 = w5_2.get(w3ID);
+                                HashMap<WaAS_W4ID, HashMap<WaAS_W5ID, WaAS_W5Record>> w5_3  = w5_2.get(w3ID);
                                 Iterator<WaAS_W4ID> ite4 = w5_3.keySet().iterator();
                                 while (ite4.hasNext()) {
                                     WaAS_W4ID w4ID = ite4.next();
-                                    HashMap<WaAS_W5ID, WaAS_W5Record> w5_4;
-                                    w5_4 = w5_3.get(w4ID);
+                                    HashMap<WaAS_W5ID, WaAS_W5Record> w5_4  = w5_3.get(w4ID);
                                     Iterator<WaAS_W5ID> ite5 = w5_4.keySet().iterator();
                                     while (ite5.hasNext()) {
                                         WaAS_W5ID w5ID = ite5.next();

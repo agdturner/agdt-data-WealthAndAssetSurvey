@@ -166,7 +166,6 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             w3ToW2Subset = new TreeMap<>();
             w3recs = new TreeMap<>();
             w3IDs = new TreeSet<>();
-            //TreeSet<WaAS_ID2> w3IDs2 = new TreeSet<>();
             HashMap<WaAS_W3ID, WaAS_W2ID> w3ToW2 = new HashMap<>();
             Iterator<WaAS_W3ID> iteW3 = w3Data.lookup.keySet().iterator();
             while (iteW3.hasNext()) {
@@ -178,13 +177,13 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                     HashSet<WaAS_W3ID> w3IDs2 = w3Data.W2ToW3.get(w2ID);
                     Iterator<WaAS_W3ID> ite2 = w3IDs2.iterator();
                     while (ite2.hasNext()) {
-                        w3ID = ite2.next();
-                        WaAS_ID2 ID = new WaAS_ID2(w1ID, w3ID);
+                        WaAS_W3ID w3ID2 = ite2.next();
+                        WaAS_ID2 ID = new WaAS_ID2(w1ID, w3ID2);
                         //w3IDs2.add(ID);
                         w3IDs.add(ID);
-                        w3recs.put(w3ID, w3Data.lookup.get(w3ID));
-                        Generic_Collections.addToMap(w2ToW3Subset, w2ID, w3ID);
-                        w3ToW2Subset.put(w3ID, w2ID);
+                        w3recs.put(w3ID2, w3Data.lookup.get(w3ID2));
+                        Generic_Collections.addToMap(w2ToW3Subset, w2ID, w3ID2);
+                        w3ToW2Subset.put(w3ID2, w2ID);
                     }
                 }
             }
@@ -213,12 +212,12 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                     HashSet<WaAS_W4ID> w4IDs2 = w4Data.W3ToW4.get(w3ID);
                     Iterator<WaAS_W4ID> ite2 = w4IDs2.iterator();
                     while (ite2.hasNext()) {
-                        w4ID = ite2.next();
-                        WaAS_ID2 ID = new WaAS_ID2(w1ID, w4ID);
+                        WaAS_W4ID w4ID2 = ite2.next();
+                        WaAS_ID2 ID = new WaAS_ID2(w1ID, w4ID2);
                         w4IDs.add(ID);
-                        w4recs.put(w4ID, w4Data.lookup.get(w4ID));
-                        Generic_Collections.addToMap(w3ToW4Subset, w3ID, w4ID);
-                        w4ToW3Subset.put(w4ID, w3ID);
+                        w4recs.put(w4ID2, w4Data.lookup.get(w4ID2));
+                        Generic_Collections.addToMap(w3ToW4Subset, w3ID, w4ID2);
+                        w4ToW3Subset.put(w4ID2, w3ID);
                     }
                 }
             }
@@ -235,7 +234,6 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             w5recs = new TreeMap<>();
             w5ToW4 = new HashMap<>();
             w5IDs = new TreeSet<>();
-//TreeSet<WaAS_ID2> w5IDs2 = new TreeSet<>();
             Iterator<WaAS_W5ID> iteW5 = w5Data.lookup.keySet().iterator();
             while (iteW5.hasNext()) {
                 WaAS_W5ID w5ID = iteW5.next();
@@ -248,12 +246,12 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                     HashSet<WaAS_W5ID> w5IDs2 = w5Data.W4ToW5.get(w4ID);
                     Iterator<WaAS_W5ID> ite2 = w5IDs2.iterator();
                     while (ite2.hasNext()) {
-                        w5ID = ite2.next();
-                        WaAS_ID2 ID = new WaAS_ID2(w1ID, w5ID);
+                        WaAS_W5ID w5ID2 = ite2.next();
+                        WaAS_ID2 ID = new WaAS_ID2(w1ID, w5ID2);
                         w5IDs.add(ID);
-                        w5recs.put(w5ID, w5Data.lookup.get(w5ID));
-                        Generic_Collections.addToMap(w4ToW5Subset, w4ID, w5ID);
-                        w5ToW4Subset.put(w5ID, w4ID);
+                        w5recs.put(w5ID2, w5Data.lookup.get(w5ID2));
+                        Generic_Collections.addToMap(w4ToW5Subset, w4ID, w5ID2);
+                        w5ToW4Subset.put(w5ID2, w4ID);
                     }
                 }
             }

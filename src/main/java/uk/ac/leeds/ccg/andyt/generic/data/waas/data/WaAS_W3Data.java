@@ -19,7 +19,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W3HRecord;
 
 /**
  *
@@ -30,46 +29,40 @@ public class WaAS_W3Data  implements Serializable {
         /**
          * Keys are w3ID and values are WaAS_Wave3_HHOLD_Records
          */
-        public TreeMap<WaAS_W3ID, WaAS_W3HRecord> lookup;
+        public final TreeMap<WaAS_W3ID, WaAS_W3Record> lookup;
         /**
-         * CASEW1 values in Wave 3 records.
+         * CASEW1 in Wave 3 records.
          */
-        public final TreeSet<WaAS_W1ID> W1InW3;
+        public final TreeSet<WaAS_W1ID> w1_In_w3;
         /**
-         * CASEW2 values in Wave 3 records.
+         * CASEW2 in Wave 3 records.
          */
-        public final TreeSet<WaAS_W2ID> W2InW3;
+        public final TreeSet<WaAS_W2ID> w2_In_w3;
         /**
-         * All w3ID values.
+         * All CASEW3 IDs.
          */
-        public final TreeSet<WaAS_W3ID> AllW3;
+        public final TreeSet<WaAS_W3ID> all;
         /**
-         * w3ID values for records that have CASEW1 and CASEW2 values.
+         * CASEW3 IDs for records that have CASEW1 and CASEW2.
          */
-        public final TreeSet<WaAS_W3ID> W3InW1W2;
+        public final TreeSet<WaAS_W3ID> w3_In_w1w2;
         /**
-         * w3ID values for records in waves 4 and 5 and that have CASEW2 values.
+         * Keys are W3 and values are W2.
          */
-        public final TreeSet<WaAS_W3ID> W3InW2W4W5;
+        public final TreeMap<WaAS_W3ID, WaAS_W2ID> w3_To_w2;
         /**
-         * Keys are w3ID and values are CASEW2.
+         * Keys are W2 and values are sets of W3 (normally size one).
          */
-        public final TreeMap<WaAS_W3ID, WaAS_W2ID> W3ToW2;
-        /**
-         * Keys are CASEW2 and values are sets of w3ID (which is normally
-         * expected to contain just one w3ID).
-         */
-        public final TreeMap<WaAS_W2ID, HashSet<WaAS_W3ID>> W2ToW3;
+        public final TreeMap<WaAS_W2ID, HashSet<WaAS_W3ID>> w2_To_w3;
 
         public WaAS_W3Data() {
             lookup = new TreeMap<>();
-            W1InW3 = new TreeSet<>();
-            W2InW3 = new TreeSet<>();
-            AllW3 = new TreeSet<>();
-            W3InW1W2 = new TreeSet<>();
-            W3InW2W4W5 = new TreeSet<>();
-            W3ToW2 = new TreeMap<>();
-            W2ToW3 = new TreeMap<>();
+            w1_In_w3 = new TreeSet<>();
+            w2_In_w3 = new TreeSet<>();
+            all = new TreeSet<>();
+            w3_In_w1w2 = new TreeSet<>();
+            w3_To_w2 = new TreeMap<>();
+            w2_To_w3 = new TreeMap<>();
         }
     }
 

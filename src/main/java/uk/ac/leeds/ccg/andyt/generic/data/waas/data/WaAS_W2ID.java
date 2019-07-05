@@ -29,4 +29,26 @@ public class WaAS_W2ID extends WaAS_ID {
     public String toString() {
         return "CASEW2 " + getID();
     }
+    
+    @Override
+    public int compareTo(Object o) {
+        if (o instanceof WaAS_W2ID) {
+            return super.compareTo(o);
+        }
+        return -1;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof WaAS_W2ID) {
+            return super.equals(o);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
 }

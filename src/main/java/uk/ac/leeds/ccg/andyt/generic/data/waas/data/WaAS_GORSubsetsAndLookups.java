@@ -16,36 +16,36 @@ import java.util.Iterator;
  */
 public class WaAS_GORSubsetsAndLookups {
 
-    public HashMap<Byte, HashSet<WaAS_W1ID>> GOR2W1IDSet;
-    public HashMap<Byte, HashSet<WaAS_W2ID>> GOR2W2IDSet;
-    public HashMap<Byte, HashSet<WaAS_W3ID>> GOR2W3IDSet;
-    public HashMap<Byte, HashSet<WaAS_W4ID>> GOR2W4IDSet;
-    public HashMap<Byte, HashSet<WaAS_W5ID>> GOR2W5IDSet;
-    public HashMap<WaAS_W1ID, Byte> W1ID2GOR;
-    public HashMap<WaAS_W2ID, Byte> W2ID2GOR;
-    public HashMap<WaAS_W3ID, Byte> W3ID2GOR;
-    public HashMap<WaAS_W4ID, Byte> W4ID2GOR;
-    public HashMap<WaAS_W5ID, Byte> W5ID2GOR;
+    public HashMap<Byte, HashSet<WaAS_W1ID>> gor_To_w1;
+    public HashMap<Byte, HashSet<WaAS_W2ID>> gor_To_w2;
+    public HashMap<Byte, HashSet<WaAS_W3ID>> gor_To_w3;
+    public HashMap<Byte, HashSet<WaAS_W4ID>> gor_To_w4;
+    public HashMap<Byte, HashSet<WaAS_W5ID>> gor_to_w5;
+    public HashMap<WaAS_W1ID, Byte> w1_To_gor;
+    public HashMap<WaAS_W2ID, Byte> w2_To_gor;
+    public HashMap<WaAS_W3ID, Byte> w3_To_gor;
+    public HashMap<WaAS_W4ID, Byte> w4_To_gor;
+    public HashMap<WaAS_W5ID, Byte> w5_To_gor;
 
     public WaAS_GORSubsetsAndLookups(ArrayList<Byte> gors) {
-        GOR2W1IDSet = new HashMap<>();
-        GOR2W2IDSet = new HashMap<>();
-        GOR2W3IDSet = new HashMap<>();
-        GOR2W4IDSet = new HashMap<>();
-        GOR2W5IDSet = new HashMap<>();
+        gor_To_w1 = new HashMap<>();
+        gor_To_w2 = new HashMap<>();
+        gor_To_w3 = new HashMap<>();
+        gor_To_w4 = new HashMap<>();
+        gor_to_w5 = new HashMap<>();
         Iterator<Byte> ite = gors.iterator();
         while (ite.hasNext()) {
             byte gor = ite.next();
-            GOR2W1IDSet.put(gor, new HashSet<>());
-            GOR2W2IDSet.put(gor, new HashSet<>());
-            GOR2W3IDSet.put(gor, new HashSet<>());
-            GOR2W4IDSet.put(gor, new HashSet<>());
-            GOR2W5IDSet.put(gor, new HashSet<>());
+            gor_To_w1.put(gor, new HashSet<>());
+            gor_To_w2.put(gor, new HashSet<>());
+            gor_To_w3.put(gor, new HashSet<>());
+            gor_To_w4.put(gor, new HashSet<>());
+            gor_to_w5.put(gor, new HashSet<>());
         }
-        W1ID2GOR = new HashMap<>();
-        W2ID2GOR = new HashMap<>();
-        W3ID2GOR = new HashMap<>();
-        W4ID2GOR = new HashMap<>();
-        W5ID2GOR = new HashMap<>();
+        w1_To_gor = new HashMap<>();
+        w2_To_gor = new HashMap<>();
+        w3_To_gor = new HashMap<>();
+        w4_To_gor = new HashMap<>();
+        w5_To_gor = new HashMap<>();
     }
 }

@@ -27,7 +27,7 @@ public abstract class WaAS_Object implements Serializable {
     protected WaAS_Object() {
     }
 
-    public WaAS_Object(WaAS_Environment env) {
-        this.env = env;
+    public WaAS_Object(WaAS_Environment e) {
+        this.env = e;
     }
 }

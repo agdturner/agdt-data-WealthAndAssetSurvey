@@ -28,22 +28,23 @@ public class WaAS_Strings extends Data_Strings {
     public static final String s_hhold = "hhold";
     public static final String s_HPROPW = "HPROPW";
     public static final String s_HVALUE = "HVALUE";
-    public static final String s_InW1W2W3W4W5 = "InW1W2W3W4W5";
-    public static final String s_InW1W3W4W5 = "InW1W3W4W5";
-    public static final String s_InW2 = "InW2";
-    public static final String s_InW2W4W5 = "InW2W4W5";
-    public static final String s_InW3 = "InW3";
-    public static final String s_InW3W5 = "InW3W5";
-    public static final String s_InW4 = "InW4";
-    public static final String s_InW5 = "InW5";
+    public static final String s_In = "In";
+    
+    public static final String s__In_ = "_In_";
+    public static final String s__In_w1w2w3w4w5 = "_In_w1w2w3w4w5";
     public static final String s_Paired = "Paired";
     public static final String s_person = "person";
     public static final String s_Simple = "Simple";
     public static final String s_StableHouseholdCompositionSubset = "StableHouseholdCompositionSubset";
-    public static final String s_To = "To";
+    public static final String s__To_ = "_To_";
     public static final String s_TOTWLTH = "TOTWLTH";
     public static final String s_WaAS = "WaAS";
     public static final String s_waas = "waas";
+    public static final String s_w1 = "w1";
+    public static final String s_w2 = "w2";
+    public static final String s_w3 = "w3";
+    public static final String s_w4 = "w4";
+    public static final String s_w5 = "w5";
 
     public WaAS_Strings() {
         super();

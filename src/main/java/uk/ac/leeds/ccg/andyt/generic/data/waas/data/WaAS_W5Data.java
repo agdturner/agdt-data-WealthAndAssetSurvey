@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W5HRecord;
 
 /**
  *
@@ -18,53 +17,52 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W5HRecord;
 public class WaAS_W5Data implements Serializable {
 
         /**
-         * Keys are CASEW5 and values are WaAS_Wave5_HHOLD_Records
+         * Keys are CASEW5 IDs and values are WaAS_W5Records
          */
-        public TreeMap<WaAS_W5ID, WaAS_W5HRecord> lookup;
+        public final TreeMap<WaAS_W5ID, WaAS_W5Record> lookup;
         /**
-         * CASEW1 values in Wave 5 records.
+         * CASEW1 in Wave 5 records.
          */
-        public final TreeSet<WaAS_W1ID> w1IDsInW5;
+        public final TreeSet<WaAS_W1ID> w1_In_w5;
         /**
-         * CASEW2 values in Wave 5 records.
+         * CASEW2 in Wave 5 records.
          */
-        public final TreeSet<WaAS_W2ID> w2IDsInW5;
+        public final TreeSet<WaAS_W2ID> w2_In_w5;
         /**
-         * w3ID values in Wave 5 records.
+         * CASEW3 in Wave 5 records.
          */
-        public final TreeSet<WaAS_W3ID> W3InW5;
+        public final TreeSet<WaAS_W3ID> w3_In_w5;
         /**
-         * CASEW4 values in Wave 5 records.
+         * CASEW4 in Wave 5 records.
          */
-        public final TreeSet<WaAS_W4ID> W4InW5;
+        public final TreeSet<WaAS_W4ID> w4_In_w5;
         /**
-         * All CASEW5 values.
+         * All CASEW5 IDs.
          */
-        public final TreeSet<WaAS_W5ID> AllW5;
+        public final TreeSet<WaAS_W5ID> all;
         /**
          * CASEW5 values for records that have CASEW4, w3ID, CASEW2 and CASEW1
          * values.
          */
-        public final TreeSet<WaAS_W5ID> W5InW1W2W3W4;
+        public final TreeSet<WaAS_W5ID> w5_In_w1w2w3w4;
         /**
-         * Keys are CASEW5 and values are CASEW4.
+         * Keys are CASEW5 IDs and values are CASEW4 IDs.
          */
-        public final TreeMap<WaAS_W5ID, WaAS_W4ID> W5ToW4;
+        public final TreeMap<WaAS_W5ID, WaAS_W4ID> w5_To_w4;
         /**
-         * Keys are CASEW4 and values are sets of CASEW5 (which is normally
-         * expected to contain just one CASEW5).
+         * Keys are CASEW4 IDs and values are sets of CASEW5 IDs (normally size one).
          */
-        public final TreeMap<WaAS_W4ID, HashSet<WaAS_W5ID>> W4ToW5;
+        public final TreeMap<WaAS_W4ID, HashSet<WaAS_W5ID>> w4_To_w5;
 
         public WaAS_W5Data() {
             lookup = new TreeMap<>();
-            w1IDsInW5 = new TreeSet<>();
-            w2IDsInW5 = new TreeSet<>();
-            W3InW5 = new TreeSet<>();
-            W4InW5 = new TreeSet<>();
-            AllW5 = new TreeSet<>();
-            W5InW1W2W3W4 = new TreeSet<>();
-            W5ToW4 = new TreeMap<>();
-            W4ToW5 = new TreeMap<>();
+            w1_In_w5 = new TreeSet<>();
+            w2_In_w5 = new TreeSet<>();
+            w3_In_w5 = new TreeSet<>();
+            w4_In_w5 = new TreeSet<>();
+            all = new TreeSet<>();
+            w5_In_w1w2w3w4 = new TreeSet<>();
+            w5_To_w4 = new TreeMap<>();
+            w4_To_w5 = new TreeMap<>();
         }
     }

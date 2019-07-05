@@ -19,7 +19,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W4HRecord;
 
 /**
  *
@@ -30,45 +29,44 @@ public class WaAS_W4Data implements Serializable {
     /**
      * Keys are CASEW4 and values are WaAS_Wave4_HHOLD_Records
      */
-    public TreeMap<WaAS_W4ID, WaAS_W4HRecord> lookup;
+    public final TreeMap<WaAS_W4ID, WaAS_W4Record> lookup;
     /**
-     * CASEW1 values in Wave 4 records.
+     * CASEW1 in Wave 4 records.
      */
-    public final TreeSet<WaAS_W1ID> W1InW4;
+    public final TreeSet<WaAS_W1ID> w1_In_w4;
     /**
-     * CASEW2 values in Wave 4 records.
+     * CASEW2 in Wave 4 records.
      */
-    public final TreeSet<WaAS_W2ID> W2InW4;
+    public final TreeSet<WaAS_W2ID> w2_In_w4;
     /**
-     * w3ID values in Wave 4 records.
+     * CASEW3 in Wave 4 records.
      */
-    public final TreeSet<WaAS_W3ID> W3InW4;
+    public final TreeSet<WaAS_W3ID> w3_In_w4;
     /**
      * All CASEW4 values.
      */
-    public final TreeSet<WaAS_W4ID> AllW4;
+    public final TreeSet<WaAS_W4ID> all;
     /**
-     * CASEW4 values for records that have w3ID, CASEW2 and CASEW1 values.
+     * CASEW4 values for records that have CASEW1, CASEW2 and CASEW3 values.
      */
-    public final TreeSet<WaAS_W4ID> W4InW1W2W3;
+    public final TreeSet<WaAS_W4ID> w4_In_w1w2w3;
     /**
      * Keys are CASEW4 and values are w3ID.
      */
-    public final TreeMap<WaAS_W4ID, WaAS_W3ID> W4ToW3;
+    public final TreeMap<WaAS_W4ID, WaAS_W3ID> w4_To_w3;
     /**
-     * Keys are w3ID and values are sets of CASEW4 (which is normally expected
-     * to contain just one CASEW4).
+     * Keys are w3ID and values are sets of CASEW4 (normally size one).
      */
-    public final TreeMap<WaAS_W3ID, HashSet<WaAS_W4ID>> W3ToW4;
+    public final TreeMap<WaAS_W3ID, HashSet<WaAS_W4ID>> w3_To_w4;
 
     public WaAS_W4Data() {
         lookup = new TreeMap<>();
-        W1InW4 = new TreeSet<>();
-        W2InW4 = new TreeSet<>();
-        W3InW4 = new TreeSet<>();
-        AllW4 = new TreeSet<>();
-        W4InW1W2W3 = new TreeSet<>();
-        W4ToW3 = new TreeMap<>();
-        W3ToW4 = new TreeMap<>();
+        w1_In_w4 = new TreeSet<>();
+        w2_In_w4 = new TreeSet<>();
+        w3_In_w4 = new TreeSet<>();
+        all = new TreeSet<>();
+        w4_In_w1w2w3 = new TreeSet<>();
+        w4_To_w3 = new TreeMap<>();
+        w3_To_w4 = new TreeMap<>();
     }
 }

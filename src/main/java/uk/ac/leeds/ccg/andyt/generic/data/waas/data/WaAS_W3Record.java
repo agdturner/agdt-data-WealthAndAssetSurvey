@@ -29,10 +29,14 @@ public class WaAS_W3Record extends WaAS_ID {
     
     private final ArrayList<WaAS_W3PRecord> people;
     
-    public WaAS_W3Record(short CASEW3){
-        super(CASEW3);
+    public WaAS_W3Record(WaAS_W3ID w3ID){
+        super(w3ID.getID());
         hhold = null;
         people = new ArrayList<>();
+    }
+    
+    public WaAS_W3Record(WaAS_W3HRecord hhold){
+        this(hhold, new ArrayList<>());
     }
     
     public WaAS_W3Record(WaAS_W3HRecord hhold,

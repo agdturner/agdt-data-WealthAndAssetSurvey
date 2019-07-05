@@ -93,8 +93,8 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
     }
 
     /**
-     * Pass through the data and works out what numeric type is best to store
-     * each field in the data.
+     * Pass through the collections and works out what numeric type is best to store
+ each field in the collections.
      *
      * @param type
      * @param nwaves

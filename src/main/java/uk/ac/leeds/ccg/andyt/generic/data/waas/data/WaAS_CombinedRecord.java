@@ -46,9 +46,9 @@ public class WaAS_CombinedRecord extends WaAS_ID {
      */
     public HashMap<WaAS_W2ID, HashMap<WaAS_W3ID, HashMap<WaAS_W4ID, HashMap<WaAS_W5ID, WaAS_W5Record>>>> w5Recs;
 
-    public WaAS_CombinedRecord(WaAS_W1ID CASEW1) {
-        super(CASEW1.getID());
-        w1Rec = new WaAS_W1Record(CASEW1.getID());
+    public WaAS_CombinedRecord(WaAS_W1Record w1Rec) {
+        super(w1Rec.getID());
+        this.w1Rec = w1Rec;
         w2Recs = new HashMap<>();
         w3Recs = new HashMap<>();
         w4Recs = new HashMap<>();

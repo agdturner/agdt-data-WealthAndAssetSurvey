@@ -31,8 +31,8 @@ public class WaAS_CombinedRecordSimple extends WaAS_ID {
 
     public WaAS_W5Record w5Rec;
 
-    public WaAS_CombinedRecordSimple(WaAS_W1ID CASEW1) {
-        super(CASEW1.getID());
-        w1Rec = new WaAS_W1Record(CASEW1.getID());
+    public WaAS_CombinedRecordSimple(WaAS_W1Record w1Rec) {
+        super(w1Rec.getID());
+        this.w1Rec = w1Rec;
     }
 }

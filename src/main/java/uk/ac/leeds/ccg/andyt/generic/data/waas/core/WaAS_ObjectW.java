@@ -13,29 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
+package uk.ac.leeds.ccg.andyt.generic.data.waas.core;
 
-import java.io.Serializable;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 
 /**
  *
  * @author geoagdt
  */
-public class WaAS_W1Data implements Serializable {
+public class WaAS_ObjectW extends WaAS_Object {
 
-    /**
-     * Keys are CASEW1 IDs and values are WaAS_W1Record
-     */
-    public final TreeMap<WaAS_W1ID, WaAS_W1Record> lookup;
-    /**
-     * All CASEW1 IDs.
-     */
-    public final TreeSet<WaAS_W1ID> all;
+    public transient WaAS_Files files;
+    public static final byte W1 = 1;
+    public static final byte W2 = 2;
+    public static final byte W3 = 3;
+    public static final byte W4 = 4;
+    public static final byte W5 = 5;
 
-    public WaAS_W1Data() {
-        lookup = new TreeMap<>();
-        all = new TreeSet<>();
+    public WaAS_ObjectW(WaAS_Environment e) {
+        super(e);
+        files = e.files;
     }
 }

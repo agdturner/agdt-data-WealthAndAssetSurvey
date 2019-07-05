@@ -29,10 +29,14 @@ public class WaAS_W2Record extends WaAS_ID {
     
     private final ArrayList<WaAS_W2PRecord> people;
     
-    public WaAS_W2Record(short CASEW2){
-        super(CASEW2);
+    public WaAS_W2Record(WaAS_W2ID w2ID){
+        super(w2ID.getID());
         hhold = null;
         people = new ArrayList<>();
+    }
+    
+    public WaAS_W2Record(WaAS_W2HRecord hhold){
+        this(hhold, new ArrayList<>());
     }
     
     public WaAS_W2Record(WaAS_W2HRecord hhold,

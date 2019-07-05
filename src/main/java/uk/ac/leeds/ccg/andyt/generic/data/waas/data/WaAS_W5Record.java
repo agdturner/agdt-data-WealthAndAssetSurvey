@@ -29,10 +29,14 @@ public class WaAS_W5Record extends WaAS_ID {
     
     private final ArrayList<WaAS_W5PRecord> people;
     
-    public WaAS_W5Record(short CASEW5){
-        super(CASEW5);
+    public WaAS_W5Record(WaAS_W5ID w5ID){
+        super(w5ID.getID());
         hhold = null;
         people = new ArrayList<>();
+    }
+    
+    public WaAS_W5Record(WaAS_W5HRecord hhold){
+        this(hhold, new ArrayList<>());
     }
     
     public WaAS_W5Record(WaAS_W5HRecord hhold,

@@ -27,12 +27,16 @@ public class WaAS_W1Record extends WaAS_ID {
     
     private WaAS_W1HRecord hhold;
     
-    private final  ArrayList<WaAS_W1PRecord> people;
+    private final ArrayList<WaAS_W1PRecord> people;
     
     public WaAS_W1Record(short CASEW1){
         super(CASEW1);
         hhold = null;
         people = new ArrayList<>();
+    }
+    
+    public WaAS_W1Record(WaAS_W1HRecord hhold){
+        this(hhold, new ArrayList<>());
     }
     
     public WaAS_W1Record(WaAS_W1HRecord hhold,

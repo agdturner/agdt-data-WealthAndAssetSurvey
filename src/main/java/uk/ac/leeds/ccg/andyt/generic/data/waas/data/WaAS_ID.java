@@ -31,18 +31,21 @@ public abstract class WaAS_ID implements Comparable, Serializable {
 
     @Override
     public int compareTo(Object o) {
+        if (o == null) {
+            return -2;
+        }
         if (o instanceof WaAS_ID) {
-            WaAS_ID o2 = (WaAS_ID) o;
-            if (ID > o2.ID) {
+            short oID = ((WaAS_ID) o).ID;
+            if (ID > oID) {
                 return 1;
             } else {
-                if (ID < o2.ID) {
-                        return -1;
-                    }
+                if (ID < oID) {
+                    return -1;
+                }
                 return 0;
             }
         }
-        return -1;
+        return -2;
     }
 
     /**
@@ -59,11 +62,15 @@ public abstract class WaAS_ID implements Comparable, Serializable {
 
     @Override
     public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+        if (o == this) {
+            return true;
+        }
         if (o instanceof WaAS_ID) {
-            WaAS_ID o2;
-            o2 = (WaAS_ID) o;
-            if (ID == o2.ID) {
-                    return true;
+            if (ID == ((WaAS_ID) o).ID) {
+                return true;
             }
         }
         return false;
@@ -75,6 +82,5 @@ public abstract class WaAS_ID implements Comparable, Serializable {
         hash = 41 * hash + this.ID;
         return hash;
     }
-
 
 }

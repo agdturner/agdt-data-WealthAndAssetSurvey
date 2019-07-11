@@ -75,9 +75,9 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
         if (cf.exists()) {
             return (WaAS_DataSubsetW1) Generic_IO.readObject(cf);
         } else {
-            // Calculate how many subsets
+            // Calculate the number of things in a normal collection
             int cSize = getCSize(w1IDs, env.data.nOC);
-            WaAS_DataSubsetW1 r = new WaAS_DataSubsetW1(env, w1IDs, cSize);
+            WaAS_DataSubsetW1 r = new WaAS_DataSubsetW1(env, cSize, w1IDs);
             HashMap<WaAS_CollectionID, PrintWriter> cPWs = initPWs(r.cFs);
             /**
              * Read through the lines and figure out which lines should be put
@@ -101,6 +101,11 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
                     if (r.w1_To_c.containsKey(w1ID)) {
                         WaAS_CollectionID cID = r.w1_To_c.get(w1ID);
                         PrintWriter pw = cPWs.get(cID);
+                        
+                        if (pw == null) {
+                            env.log("cID " + cID + " wID " + w1ID);
+                        }
+                        
                         pw.println(l);
                         Generic_Collections.addToMap(r.c_To_w1, cID, w1ID);
                     }
@@ -127,6 +132,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
         Iterator<WaAS_CollectionID> ite = cFs.keySet().iterator();
         while (ite.hasNext()) {
             WaAS_CollectionID cID = ite.next();
+            //env.log("Init PW with cID " + cID);
             File f = cFs.get(cID);
             r.put(cID, Generic_IO.getPrintWriter(f, false));
         }
@@ -182,7 +188,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
         } else {
             TreeSet<WaAS_W2ID> w2IDs = new TreeSet<>();
             w2IDs.addAll(w2_To_w1.keySet());
-            WaAS_DataSubsetW2 r = new WaAS_DataSubsetW2(env, w2IDs);
+            WaAS_DataSubsetW2 r = new WaAS_DataSubsetW2(env, sW1.cSize, w2IDs);
             HashMap<WaAS_CollectionID, PrintWriter> cPWs = initPWs(r.cFs);
             /**
              * Read through the lines and figure out which lines should be put
@@ -253,7 +259,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
         } else {
             TreeSet<WaAS_W3ID> w3IDs = new TreeSet<>();
             w3IDs.addAll(w3_To_w2.keySet());
-            WaAS_DataSubsetW3 r = new WaAS_DataSubsetW3(env, w3IDs);
+            WaAS_DataSubsetW3 r = new WaAS_DataSubsetW3(env, sW2.cSize, w3IDs);
             HashMap<WaAS_CollectionID, PrintWriter> cPWs = initPWs(r.cFs);
 
             /**
@@ -313,7 +319,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
         } else {
             TreeSet<WaAS_W4ID> w4IDs = new TreeSet<>();
             w4IDs.addAll(w4_To_w3.keySet());
-            WaAS_DataSubsetW4 r = new WaAS_DataSubsetW4(env, w4IDs);
+            WaAS_DataSubsetW4 r = new WaAS_DataSubsetW4(env, sW3.cSize, w4IDs);
             HashMap<WaAS_CollectionID, PrintWriter> cPWs = initPWs(r.cFs);
             /**
              * Read through the lines and figure out which lines should be put
@@ -374,7 +380,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
         } else {
             TreeSet<WaAS_W5ID> w5IDs = new TreeSet<>();
             w5IDs.addAll(w5_To_w4.keySet());
-            WaAS_DataSubsetW5 r = new WaAS_DataSubsetW5(env, w5IDs);
+            WaAS_DataSubsetW5 r = new WaAS_DataSubsetW5(env, sW4.cSize, w5IDs);
             HashMap<WaAS_CollectionID, PrintWriter> cPWs = initPWs(r.cFs);
             /**
              * Read through the lines and figure out which lines should be put

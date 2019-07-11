@@ -42,8 +42,8 @@ public class WaAS_DataSubsetW5 extends WaAS_DataSubset {
      * @param w5IDs
      * @param cSize
      */
-    public WaAS_DataSubsetW5(WaAS_Environment e, TreeSet<WaAS_W5ID> w5IDs) {
-        super(e);
+    public WaAS_DataSubsetW5(WaAS_Environment e, int cSize, TreeSet<WaAS_W5ID> w5IDs) {
+        super(e, cSize);
         c_To_w5 = new TreeMap<>();
         w5_To_c = new HashMap<>();
         Iterator<WaAS_W5ID> ite = w5IDs.iterator();
@@ -54,7 +54,7 @@ public class WaAS_DataSubsetW5 extends WaAS_DataSubset {
             WaAS_W5ID w5ID = ite.next();
             w5_To_c.put(w5ID, cID);
             i++;
-            if (i == e.data.collections.size()) {
+            if (i == cSize) {
                 i = 0;
                 s++;
                 cID = e.data.cIDs.get(s);

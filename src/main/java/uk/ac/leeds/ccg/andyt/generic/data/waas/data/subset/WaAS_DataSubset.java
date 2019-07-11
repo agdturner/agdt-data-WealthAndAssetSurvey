@@ -26,6 +26,11 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 public class WaAS_DataSubset extends WaAS_Object implements Serializable {
 
     /**
+     * For storing the normal number of things in a collection
+     */
+    public final int cSize;
+    
+    /**
      * Collection Files
      */
     public TreeMap<WaAS_CollectionID, File> cFs;
@@ -34,9 +39,11 @@ public class WaAS_DataSubset extends WaAS_Object implements Serializable {
      * Create a new DataSubset
      *
      * @param e
+     * @param cSize
      */
-    public WaAS_DataSubset(WaAS_Environment e) {
+    public WaAS_DataSubset(WaAS_Environment e, int cSize) {
         super(e);
+        this.cSize = cSize;
     }
     
     /**
@@ -45,12 +52,25 @@ public class WaAS_DataSubset extends WaAS_Object implements Serializable {
      */
     public final void initCFs(byte wave) {
         cFs = new TreeMap<>();
-        for (short s = 0; s < env.data.collections.size(); s++) {
+        for (short s = 0; s < env.data.nOC; s++) {
             File f = new File(env.files.getGeneratedWaASSubsetsDir(),
                     WaAS_Strings.s_Data + WaAS_Strings.s_Subset + wave
                     + WaAS_Strings.symbol_underscore + s + ".tab");
-            WaAS_CollectionID cID = new WaAS_CollectionID(s);
+            WaAS_CollectionID cID = getCollectionID(s);
+//            env.log("s " + s);
+//            env.log("File " + f);
+//            env.log("WaAS_CollectionID " + cID);
             cFs.put(cID, f);
         }
+    }
+    
+    WaAS_CollectionID getCollectionID(short s) {
+        WaAS_CollectionID r = env.data.cIDs.get(s);
+        if (r == null) {
+            env.log("Strange: no existing collection for short " + s);
+            r = new WaAS_CollectionID(s);
+            env.data.cIDs.put(s, r);
+        }
+        return r;
     }
 }

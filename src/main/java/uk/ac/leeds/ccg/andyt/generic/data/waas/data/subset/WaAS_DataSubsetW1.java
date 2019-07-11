@@ -42,9 +42,8 @@ public class WaAS_DataSubsetW1 extends WaAS_DataSubset {
      * @param w1IDs
      * @param cSize
      */
-    public WaAS_DataSubsetW1(WaAS_Environment e, TreeSet<WaAS_W1ID> w1IDs,
-            int cSize) {
-        super(e);
+    public WaAS_DataSubsetW1(WaAS_Environment e, int cSize, TreeSet<WaAS_W1ID> w1IDs) {
+        super(e, cSize);
         c_To_w1 = new TreeMap<>();
         w1_To_c = new HashMap<>();
         Iterator<WaAS_W1ID> ite = w1IDs.iterator();

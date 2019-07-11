@@ -13,8 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
+package uk.ac.leeds.ccg.andyt.generic.data.waas.data.handlers;
 
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W1ID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W4ID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W5ID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W2ID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_ID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W3ID;
 import java.io.BufferedReader;
 import java.io.File;
 import java.util.ArrayList;
@@ -27,6 +33,13 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.util.Generic_Collections;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_Collection;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_CombinedRecord;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_GORSubsetsAndLookups;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_W2Record;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_W3Record;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_W4Record;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_W5Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W1HRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W2HRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W3HRecord;
@@ -279,7 +292,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * @return a specific generated File.
      */
     protected File getGeneratedAllFile(byte wave) {
-        return new File(files.getGeneratedWaASDir(), getType() + WaAS_Strings.s_W
+        return new File(env.files.getGeneratedWaASDir(), getType() + WaAS_Strings.s_W
                 + wave + WaAS_Strings.s_All + WaAS_Files.DOT_DAT);
     }
 
@@ -325,14 +338,13 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * @param variableName
      * @param wave
      * @param GORSubsetsAndLookups
-     * @param data
      * @param subset Subset of CASEW1 for all records to be included.
      * @return Map with keys as GOR and Values as map with keys as CASEWX and
      * values as HVALUE.
      */
     public HashMap<Byte, HashMap<WaAS_ID, Double>> getVariableForGORSubsets(
             String variableName, byte wave,
-            WaAS_GORSubsetsAndLookups GORSubsetsAndLookups, WaAS_Data data,
+            WaAS_GORSubsetsAndLookups GORSubsetsAndLookups, 
             HashSet<WaAS_W1ID> subset) {
         HashMap<Byte, HashMap<WaAS_ID, Double>> r = new HashMap<>();
         Iterator<Byte> ite = GORSubsetsAndLookups.gor_To_w1.keySet().iterator();
@@ -340,9 +352,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             r.put(ite.next(), new HashMap<>());
         }
         if (wave == W1) {
-
-            data.collections.keySet().stream().forEach(cID -> {
-                WaAS_Collection c = data.getCollection(cID);
+env.data.collections.keySet().stream().forEach(cID -> {
+                WaAS_Collection c = env.data.getCollection(cID);
                 c.getData().keySet().stream().forEach(w1ID -> {
                     if (subset.contains(w1ID)) {
                         WaAS_CombinedRecord cr = c.getData().get(w1ID);
@@ -351,11 +362,11 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                         Generic_Collections.addToMap(r, GOR, w1ID, w1.getHVALUE());
                     }
                 });
-                data.clearCollection(cID);
+                env.data.clearCollection(cID);
             });
         } else if (wave == W2) {
-            data.collections.keySet().stream().forEach(cID -> {
-                WaAS_Collection c = data.getCollection(cID);
+            env.data.collections.keySet().stream().forEach(cID -> {
+                WaAS_Collection c = env.data.getCollection(cID);
                 c.getData().keySet().stream().forEach(w1ID -> {
                     if (subset.contains(w1ID)) {
                         WaAS_CombinedRecord cr = c.getData().get(w1ID);
@@ -369,11 +380,11 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                         }
                     }
                 });
-                data.clearCollection(cID);
+                env.data.clearCollection(cID);
             });
         } else if (wave == W3) {
-            data.collections.keySet().stream().forEach(cID -> {
-                WaAS_Collection c = data.getCollection(cID);
+            env.data.collections.keySet().stream().forEach(cID -> {
+                WaAS_Collection c = env.data.getCollection(cID);
                 c.getData().keySet().stream().forEach(CASEW1 -> {
                     if (subset.contains(CASEW1)) {
                         WaAS_CombinedRecord cr = c.getData().get(CASEW1);
@@ -392,11 +403,11 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                         }
                     }
                 });
-                data.clearCollection(cID);
+                env.data.clearCollection(cID);
             });
         } else if (wave == W4) {
-            data.collections.keySet().stream().forEach(cID -> {
-                WaAS_Collection c = data.getCollection(cID);
+            env.data.collections.keySet().stream().forEach(cID -> {
+                WaAS_Collection c = env.data.getCollection(cID);
                 c.getData().keySet().stream().forEach(w1ID -> {
                     if (subset.contains(w1ID)) {
                         WaAS_CombinedRecord cr = c.getData().get(w1ID);
@@ -420,11 +431,11 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                         }
                     }
                 });
-                data.clearCollection(cID);
+                env.data.clearCollection(cID);
             });
         } else if (wave == W5) {
-            data.collections.keySet().stream().forEach(cID -> {
-                WaAS_Collection c = data.getCollection(cID);
+            env.data.collections.keySet().stream().forEach(cID -> {
+                WaAS_Collection c = env.data.getCollection(cID);
                 c.getData().keySet().stream().forEach(CASEW1 -> {
                     if (subset.contains(CASEW1)) {
                         WaAS_CombinedRecord cr = c.getData().get(CASEW1);
@@ -453,7 +464,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                         }
                     }
                 });
-                data.clearCollection(cID);
+                env.data.clearCollection(cID);
             });
         }
         return r;
@@ -612,20 +623,18 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * @param gors
      * @param GORSubsetsAndLookups
      * @param GORNameLookup
-     * @param data
      * @param subset
      * @return
      */
     public TreeMap<Byte, Double> getChangeVariableSubset(String variableName,
             ArrayList<Byte> gors, WaAS_GORSubsetsAndLookups GORSubsetsAndLookups,
-            TreeMap<Byte, String> GORNameLookup, WaAS_Data data,
-            HashSet<WaAS_W1ID> subset) {
+            TreeMap<Byte, String> GORNameLookup, HashSet<WaAS_W1ID> subset) {
         TreeMap<Byte, Double> r = new TreeMap<>();
         HashMap<Byte, HashMap<WaAS_ID, Double>>[] variableSubsets;
-        variableSubsets = new HashMap[WaAS_Data.NWAVES];
-        for (byte w = 0; w < WaAS_Data.NWAVES; w++) {
+        variableSubsets = new HashMap[NWAVES];
+        for (byte w = 0; w < NWAVES; w++) {
             variableSubsets[w] = getVariableForGORSubsets(variableName,
-                    (byte) (w + 1), GORSubsetsAndLookups, data, subset);
+                    (byte) (w + 1), GORSubsetsAndLookups, subset);
         }
         double countW1 = 0;
         double countZeroW1 = 0;
@@ -636,7 +645,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         env.log(variableName + " for each wave in the subsets.");
         String h = "GORNumber,GORName," + variableName + "5_Average-"
                 + variableName + "1_Average";
-        for (byte w = 1; w < WaAS_Data.NWAVES + 1; w++) {
+        for (byte w = 1; w < NWAVES + 1; w++) {
             h += "," + variableName + "W" + w + "_Count," + variableName + "W"
                     + w + "_ZeroCount," + variableName + "W" + w
                     + "_NegativeCount," + variableName + "W" + w + "_Average";
@@ -645,8 +654,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         Iterator<Byte> ite = gors.iterator();
         while (ite.hasNext()) {
             byte gor = ite.next();
-            double[][] var = new double[WaAS_Data.NWAVES][];
-            for (byte w = 0; w < WaAS_Data.NWAVES; w++) {
+            double[][] var = new double[NWAVES][];
+            for (byte w = 0; w < NWAVES; w++) {
                 var[w] = Generic_Statistics.getSummaryStatistics(
                         variableSubsets[w].get(gor).values());
             }
@@ -658,7 +667,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             countNegativeW5 += var[4][7];
             double diff = var[4][4] - var[0][4];
             String s = "" + gor + "," + GORNameLookup.get(gor) + "," + diff;
-            for (byte w = 0; w < WaAS_Data.NWAVES; w++) {
+            for (byte w = 0; w < NWAVES; w++) {
                 s += "," + var[w][4] + "," + var[w][5] + ","
                         + var[w][6] + "," + var[w][7];
             }
@@ -679,6 +688,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     /**
      * Get the variableName for each wave for all records.
      *
+     * @param <K>
      * @param vName Variable name
      * @param gors
      * @param GORNameLookup
@@ -697,7 +707,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 + "for all records.");
         String h = "GORNumber,GORName," + vName + "_Average-"
                 + vName + "1_Average";
-        for (byte w = 1; w < WaAS_Data.NWAVES + 1; w++) {
+        for (byte w = 1; w < NWAVES + 1; w++) {
             if (w == 1 || w == 5) {
                 h += "," + vName + "W" + w + "_Count," + vName
                         + "W" + w + "_ZeroCount," + vName + "W" + w
@@ -709,8 +719,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         Iterator<Byte> ite = gors.iterator();
         while (ite.hasNext()) {
             byte gor = ite.next();
-            double[][] v = new double[WaAS_Data.NWAVES][];
-            for (byte w = 0; w < WaAS_Data.NWAVES; w++) {
+            double[][] v = new double[NWAVES][];
+            for (byte w = 0; w < NWAVES; w++) {
                 if (w == 0) {
                     v[w] = Generic_Statistics.getSummaryStatistics(
                             vAllW1.get(gor).values());
@@ -721,7 +731,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             }
             double diff = v[4][4] - v[0][4];
             String s = "" + gor + "," + GORNameLookup.get(gor) + "," + diff;
-            for (byte w = 0; w < WaAS_Data.NWAVES; w++) {
+            for (byte w = 0; w < NWAVES; w++) {
                 if (w == 0 || w == 4) {
                     s += "," + v[w][4] + "," + v[w][5] + "," + v[w][6] + ","
                             + v[w][7];

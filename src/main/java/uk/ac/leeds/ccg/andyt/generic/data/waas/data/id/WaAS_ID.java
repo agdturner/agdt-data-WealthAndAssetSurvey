@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
+package uk.ac.leeds.ccg.andyt.generic.data.waas.data.id;
 
 import java.io.Serializable;
 
@@ -32,20 +32,21 @@ public abstract class WaAS_ID implements Comparable, Serializable {
     @Override
     public int compareTo(Object o) {
         if (o == null) {
-            return -2;
-        }
-        if (o instanceof WaAS_ID) {
-            short oID = ((WaAS_ID) o).ID;
-            if (ID > oID) {
-                return 1;
-            } else {
-                if (ID < oID) {
-                    return -1;
+            return -4;
+        } else {
+            if (o instanceof WaAS_ID) {
+                short oID = ((WaAS_ID) o).ID;
+                if (ID > oID) {
+                    return 1;
+                } else {
+                    if (ID < oID) {
+                        return -1;
+                    }
+                    return 0;
                 }
-                return 0;
             }
+            return -3;
         }
-        return -2;
     }
 
     /**

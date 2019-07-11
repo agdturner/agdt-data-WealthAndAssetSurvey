@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
+package uk.ac.leeds.ccg.andyt.generic.data.waas.data.id;
 
 /**
  *
@@ -29,26 +29,27 @@ public class WaAS_W2ID extends WaAS_ID {
     public String toString() {
         return "CASEW2 " + getID();
     }
-    
+
     @Override
     public int compareTo(Object o) {
         if (o instanceof WaAS_W2ID) {
             return super.compareTo(o);
         }
-        return -1;
+        return -2;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof WaAS_W2ID) {
-            return super.equals(o);
+        if (super.equals(o)) {
+            if (o instanceof WaAS_W2ID) {
+                return true;
+            }
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        return hash;
+        return super.hashCode();
     }
 }

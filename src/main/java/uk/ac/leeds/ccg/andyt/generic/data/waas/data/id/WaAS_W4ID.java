@@ -13,26 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
+package uk.ac.leeds.ccg.andyt.generic.data.waas.data.id;
 
 /**
  *
  * @author geoagdt
  */
-public class WaAS_W1ID extends WaAS_ID {
+public class WaAS_W4ID extends WaAS_ID {
 
-    public WaAS_W1ID(short CASEW1) {
-        super(CASEW1);
+    public WaAS_W4ID(short CASEW4) {
+        super(CASEW4);
     }
 
     @Override
     public String toString() {
-        return "CASEW1 " + getID();
+        return "CASEW4 " + getID();
     }
     
     @Override
     public int compareTo(Object o) {
-        if (o instanceof WaAS_W1ID) {
+        if (o instanceof WaAS_W4ID) {
             return super.compareTo(o);
         }
         return -2;
@@ -40,15 +40,16 @@ public class WaAS_W1ID extends WaAS_ID {
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof WaAS_W1ID) {
-            return super.equals(o);
+        if (super.equals(o)) {
+            if (o instanceof WaAS_W4ID) {
+                return true;
+            }
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        return hash;
+        return super.hashCode();
     }
 }

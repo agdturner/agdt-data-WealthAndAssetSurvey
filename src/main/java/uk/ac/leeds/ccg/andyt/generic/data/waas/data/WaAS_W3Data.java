@@ -15,6 +15,10 @@
  */
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
 
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_W3Record;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W1ID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W2ID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W3ID;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.TreeMap;
@@ -27,7 +31,7 @@ import java.util.TreeSet;
 public class WaAS_W3Data  implements Serializable {
 
         /**
-         * Keys are w3ID and values are WaAS_Wave3_HHOLD_Records
+         * Keys are w3ID and values are WaAS_W3Record
          */
         public final TreeMap<WaAS_W3ID, WaAS_W3Record> lookup;
         /**

@@ -13,9 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
+package uk.ac.leeds.ccg.andyt.generic.data.waas.data.records;
 
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W4ID;
 import java.util.ArrayList;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W4HRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W4PRecord;
 
@@ -23,25 +26,30 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W4PRecord;
  *
  * @author geoagdt
  */
-public class WaAS_W4Record extends WaAS_ID {
-    
-    private WaAS_W4HRecord hhold;
-    
+public class WaAS_W4Record extends WaAS_Object {
+
+    public final WaAS_W4ID w4ID;
+
+    private final WaAS_W4HRecord hhold;
+
     private final ArrayList<WaAS_W4PRecord> people;
-    
-    public WaAS_W4Record(WaAS_W4ID w4ID){
-        super(w4ID.getID());
+
+    public WaAS_W4Record(WaAS_Environment e, WaAS_W4ID w4ID) {
+        super(e);
+        this.w4ID = w4ID;
         hhold = null;
         people = new ArrayList<>();
     }
-    
-    public WaAS_W4Record(WaAS_W4HRecord hhold){
-        this(hhold, new ArrayList<>());
+
+    public WaAS_W4Record(WaAS_Environment e,
+            WaAS_W4ID w4ID, WaAS_W4HRecord hhold) {
+        this(e, w4ID, hhold, new ArrayList<>());
     }
-    
-    public WaAS_W4Record(WaAS_W4HRecord hhold,
-            ArrayList<WaAS_W4PRecord> people){
-        super(hhold.getCASEW4());
+
+    public WaAS_W4Record(WaAS_Environment e, WaAS_W4ID w4ID,
+            WaAS_W4HRecord hhold, ArrayList<WaAS_W4PRecord> people) {
+        super(e);
+        this.w4ID = w4ID;
         this.hhold = hhold;
         this.people = people;
     }
@@ -58,12 +66,5 @@ public class WaAS_W4Record extends WaAS_ID {
      */
     public ArrayList<WaAS_W4PRecord> getPeople() {
         return people;
-    }
-
-    /**
-     * @param hhold the hhold to set
-     */
-    public void setHhold(WaAS_W4HRecord hhold) {
-        this.hhold = hhold;
     }
 }

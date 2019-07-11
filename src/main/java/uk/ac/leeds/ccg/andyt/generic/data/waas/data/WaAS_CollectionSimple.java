@@ -15,6 +15,9 @@
  */
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
 
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_CombinedRecordSimple;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W1ID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_CollectionID;
 import java.io.Serializable;
 import java.util.HashMap;
 

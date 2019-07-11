@@ -13,20 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
+package uk.ac.leeds.ccg.andyt.generic.data.waas.data.records;
+
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
 
 /**
  *
  * @author geoagdt
  */
-public class WaAS_CollectionID extends WaAS_ID {
+public class WaAS_CombinedRecordSimple extends WaAS_Object {
 
-    public WaAS_CollectionID(short id) {
-        super(id);
-    }
+    public WaAS_W1Record w1Rec;
 
-    @Override
-    public String toString() {
-        return "" + getID();
+    public WaAS_W2Record w2Rec;
+
+    public WaAS_W3Record w3Rec;
+
+    public WaAS_W4Record w4Rec;
+
+    public WaAS_W5Record w5Rec;
+
+    public WaAS_CombinedRecordSimple(WaAS_Environment e, WaAS_W1Record w1Rec) {
+        super(e);
+        this.w1Rec = w1Rec;
     }
 }

@@ -15,12 +15,18 @@
  */
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
 
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W4ID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W1ID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_CollectionID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W5ID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W2ID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W3ID;
 import java.io.File;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_ObjectW;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
@@ -29,56 +35,58 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
  *
  * @author geoagdt
  */
-public class WaAS_Data extends WaAS_ObjectW {
+public class WaAS_Data extends WaAS_Object {
 
+    public HashMap<Short, WaAS_CollectionID> cIDs;
+    
     /**
-     * Stores the number of waves in the WaAS
+     * For storing the number of Collections.
      */
-    public static final byte NWAVES = 5;
-
+    public int nOC;
+    
     /**
      * The main WaAS data stored in collections. Keys are Collection IDs.
      */
-    public HashMap<WaAS_CollectionID, WaAS_Collection> collections;
+    public final HashMap<WaAS_CollectionID, WaAS_Collection> collections;
 
     /**
      * The main WaAS data store in simple collections. Keys are Collection IDs.
      */
-    public HashMap<WaAS_CollectionID, WaAS_CollectionSimple> collectionsSimple;
+    public final HashMap<WaAS_CollectionID, WaAS_CollectionSimple> collectionsSimple;
 
     /**
      * Looks up from a CASEW1 to the Collection ID.
      */
-    public HashMap<WaAS_W1ID, WaAS_CollectionID> w1_To_c;
+    public final HashMap<WaAS_W1ID, WaAS_CollectionID> w1_To_c;
 
     /**
      * Looks up from a CASEW1 to the ID.
      */
-    public HashMap<Short, WaAS_W1ID> CASEW1_To_w1;
+    public final HashMap<Short, WaAS_W1ID> CASEW1_To_w1;
 
     /**
      * Looks up from a CASEW2 to the ID.
      */
-    public HashMap<Short, WaAS_W2ID> CASEW2_To_w2;
+    public final HashMap<Short, WaAS_W2ID> CASEW2_To_w2;
 
     /**
      * Looks up from a CASEW3 to the ID.
      */
-    public HashMap<Short, WaAS_W3ID> CASEW3_To_w3;
+    public final HashMap<Short, WaAS_W3ID> CASEW3_To_w3;
 
     /**
      * Looks up from a CASEW4 to the ID.
      */
-    public HashMap<Short, WaAS_W4ID> CASEW4_To_w4;
+    public final HashMap<Short, WaAS_W4ID> CASEW4_To_w4;
     
     /**
      * Looks up from a CASEW5 to the ID.
      */
-    public HashMap<Short, WaAS_W5ID> CASEW5_To_w5;
+    public final HashMap<Short, WaAS_W5ID> CASEW5_To_w5;
 
 
-    public WaAS_Data(WaAS_Environment we) {
-        super(we);
+    public WaAS_Data(WaAS_Environment e) {
+        super(e);
         collections = new HashMap<>();
         collectionsSimple = new HashMap<>();
         w1_To_c = new HashMap<>();

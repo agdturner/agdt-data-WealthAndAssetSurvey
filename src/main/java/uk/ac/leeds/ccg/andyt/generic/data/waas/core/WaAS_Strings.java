@@ -36,6 +36,7 @@ public class WaAS_Strings extends Data_Strings {
     public static final String s_person = "person";
     public static final String s_Simple = "Simple";
     public static final String s_StableHouseholdCompositionSubset = "StableHouseholdCompositionSubset";
+    public static final String s_Subset = "Subset";
     public static final String s__To_ = "_To_";
     public static final String s_TOTWLTH = "TOTWLTH";
     public static final String s_WaAS = "WaAS";

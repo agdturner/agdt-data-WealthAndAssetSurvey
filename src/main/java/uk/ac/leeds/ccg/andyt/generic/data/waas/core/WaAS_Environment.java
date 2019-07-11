@@ -21,7 +21,7 @@ import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
 //import uk.ac.leeds.ccg.andyt.data.postcode.Generic_UKPostcode_Handler;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_Data;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_HHOLD_Handler;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.handlers.WaAS_HHOLD_Handler;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 
 /**
@@ -33,25 +33,38 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
 
     public final transient Generic_Environment ge;
     public final transient WaAS_Files files;
-    public final WaAS_HHOLD_Handler hh;
-    public final WaAS_Data data;
+    public final transient WaAS_HHOLD_Handler hh;
+    public WaAS_Data data;
     public transient static final String EOL = System.getProperty("line.separator");
+    
+    public transient static final byte W1 = 1;
+    public transient static final byte W2 = 2;
+    public transient static final byte W3 = 3;
+    public transient static final byte W4 = 4;
+    public transient static final byte W5 = 5;
+    
+    /**
+     * Stores the number of waves in the WaAS
+     */
+    public transient static final byte NWAVES = 5;
 
     /**
      * Stores the {@link ge} log ID for the log set up for WaAS.
      */
     public final int logID;
 
-    public WaAS_Environment(File dataDir) {
-        this(new Generic_Environment(dataDir), dataDir);
+    public WaAS_Environment() {
+        this(new Generic_Environment());
     }
-
     public WaAS_Environment(Generic_Environment ge) {
         this(ge, ge.getFiles().getDataDir());
     }
-
+    
+    public WaAS_Environment(File dataDir) {
+        this(new Generic_Environment(), dataDir);
+    }
+    
     public WaAS_Environment(Generic_Environment ge, File dataDir) {
-        //Memory_Threshold = 3000000000L;
         this.ge = ge;
         files = new WaAS_Files(dataDir);
         File f = files.getEnvDataFile();

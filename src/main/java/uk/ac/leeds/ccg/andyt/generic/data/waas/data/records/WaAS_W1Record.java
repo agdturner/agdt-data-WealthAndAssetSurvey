@@ -13,9 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
+package uk.ac.leeds.ccg.andyt.generic.data.waas.data.records;
 
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W1ID;
 import java.util.ArrayList;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W1HRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W1PRecord;
 
@@ -23,25 +26,30 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W1PRecord;
  *
  * @author geoagdt
  */
-public class WaAS_W1Record extends WaAS_ID {
-    
-    private WaAS_W1HRecord hhold;
-    
+public class WaAS_W1Record extends WaAS_Object {
+
+    public final WaAS_W1ID w1ID;
+
+    private final WaAS_W1HRecord hhold;
+
     private final ArrayList<WaAS_W1PRecord> people;
-    
-    public WaAS_W1Record(short CASEW1){
-        super(CASEW1);
+
+    public WaAS_W1Record(WaAS_Environment e, WaAS_W1ID w1ID) {
+        super(e);
+        this.w1ID = w1ID;
         hhold = null;
         people = new ArrayList<>();
     }
-    
-    public WaAS_W1Record(WaAS_W1HRecord hhold){
-        this(hhold, new ArrayList<>());
+
+    public WaAS_W1Record(WaAS_Environment e,
+            WaAS_W1ID w1ID, WaAS_W1HRecord hhold) {
+        this(e, w1ID, hhold, new ArrayList<>());
     }
-    
-    public WaAS_W1Record(WaAS_W1HRecord hhold,
-            ArrayList<WaAS_W1PRecord> people){
-        super(hhold.getCASEW1());
+
+    public WaAS_W1Record(WaAS_Environment e, WaAS_W1ID w1ID,
+            WaAS_W1HRecord hhold, ArrayList<WaAS_W1PRecord> people) {
+        super(e);
+        this.w1ID = w1ID;
         this.hhold = hhold;
         this.people = people;
     }
@@ -52,18 +60,11 @@ public class WaAS_W1Record extends WaAS_ID {
     public WaAS_W1HRecord getHhold() {
         return hhold;
     }
-    
+
     /**
      * @return the people
      */
     public ArrayList<WaAS_W1PRecord> getPeople() {
         return people;
-    }
-
-    /**
-     * @param hhold the hhold to set
-     */
-    public void setHhold(WaAS_W1HRecord hhold) {
-        this.hhold = hhold;
     }
 }

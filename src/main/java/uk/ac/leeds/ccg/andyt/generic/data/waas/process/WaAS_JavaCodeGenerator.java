@@ -28,10 +28,8 @@ import java.util.logging.Logger;
 import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_Data;
 import uk.ac.leeds.ccg.andyt.math.Math_Byte;
 import uk.ac.leeds.ccg.andyt.math.Math_Double;
 import uk.ac.leeds.ccg.andyt.math.Math_Integer;
@@ -64,32 +62,26 @@ import uk.ac.leeds.ccg.andyt.math.Math_Short;
  */
 public class WaAS_JavaCodeGenerator extends WaAS_Object {
 
-    // For convenience
-    public WaAS_Files files;
-
     protected WaAS_JavaCodeGenerator() {
         super();
-        files = env.files;
     }
 
     public WaAS_JavaCodeGenerator(WaAS_Environment env) {
         super(env);
-        files = env.files;
     }
 
     public static void main(String[] args) {
-        WaAS_JavaCodeGenerator p = new WaAS_JavaCodeGenerator(
-                new WaAS_Environment(new Generic_Environment()));
-        int nwaves = WaAS_Data.NWAVES;
+        WaAS_Environment e = new WaAS_Environment();
+        WaAS_JavaCodeGenerator p = new WaAS_JavaCodeGenerator(e);
         String type;
         // hhold
         type = WaAS_Strings.s_hhold;
-        Object[] hholdTypes = p.getFieldTypes(type, nwaves);
-        p.run(type, hholdTypes, nwaves);
+        Object[] hholdTypes = p.getFieldTypes(type);
+        p.run(type, hholdTypes);
         // person
         type = WaAS_Strings.s_person;
-        Object[] personTypes = p.getFieldTypes(type, nwaves);
-        p.run(type, personTypes, nwaves);
+        Object[] personTypes = p.getFieldTypes(type);
+        p.run(type, personTypes);
     }
 
     /**
@@ -97,17 +89,17 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
  each field in the collections.
      *
      * @param type
-     * @param nwaves
      * @return keys are standardised field names, value is: 0 if field is to be
      * represented by a String; 1 if field is to be represented by a double; 2
      * if field is to be represented by a int; 3 if field is to be represented
      * by a short; 4 if field is to be represented by a byte; 5 if field is to
      * be represented by a boolean.
      */
-    protected Object[] getFieldTypes(String type, int nwaves) {
+    protected Object[] getFieldTypes(String type) {
+        int nwaves = WaAS_Environment.NWAVES; 
         Object[] r = new Object[4];
-        File indir = files.getInputWaASDir();
-        File generateddir = files.getGeneratedWaASDir();
+        File indir = env.files.getInputWaASDir();
+        File generateddir = env.files.getGeneratedWaASDir();
         File outdir = new File(generateddir, WaAS_Strings.s_Subsets);
         outdir.mkdirs();
         HashMap<String, Integer>[] allFieldTypes = new HashMap[nwaves];
@@ -388,7 +380,8 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
         }
     }
 
-    public void run(String type, Object[] types, int nwaves) {
+    public void run(String type, Object[] types) {
+        int nwaves = WaAS_Environment.NWAVES;
         HashMap<String, Integer> fieldTypes;
         fieldTypes = (HashMap<String, Integer>) types[0];
         String[][] headers;
@@ -405,7 +398,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
         v0m0 = setCommonBooleanMaps(v0ms, v1ms, fields, fieldTypes);
 
         File outdir;
-        outdir = new File(files.getDataDir(), "..");
+        outdir = new File(env.files.getDataDir(), "..");
         outdir = new File(outdir, WaAS_Strings.s_src);
         outdir = new File(outdir, WaAS_Strings.s_main);
         outdir = new File(outdir, WaAS_Strings.s_java);

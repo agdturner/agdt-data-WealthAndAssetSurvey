@@ -15,15 +15,25 @@
  */
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
 
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_W2Record;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_W4Record;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_W5Record;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_W1Record;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_W3Record;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W4ID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W1ID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W5ID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W2ID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W3ID;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.TreeMap;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_ObjectW;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 import uk.ac.leeds.ccg.andyt.generic.util.Generic_Collections;
 
-public class WaAS_DataInAllWaves extends WaAS_ObjectW {
+public class WaAS_DataInAllWaves extends WaAS_Object {
 
     public WaAS_W1Data w1Data;
     public TreeMap<WaAS_W1ID, WaAS_W1Record> w1recs;
@@ -145,7 +155,9 @@ public class WaAS_DataInAllWaves extends WaAS_ObjectW {
             w1recs.put(w1ID, w1Data.lookup.get(w1ID));
         }
         //env.log("w1IDs.size() " + w1IDs.size());
-        env.hh.cacheSubset(W1, w1recs, type);
+        env.hh.cacheSubset(env.W1, w1recs, type);
+        w1Data = null; // Save some space
+        w1recs = null; // Save some space
         /**
          * Step 2.2.2: Wave 2.
          */
@@ -164,10 +176,12 @@ public class WaAS_DataInAllWaves extends WaAS_ObjectW {
             w2_To_w1.put(w2ID, w1ID);
         }
         //env.log("w2IDs.size() " + w2IDs.size());
-        env.hh.cacheSubset(W2, w2recs, type);
+        env.hh.cacheSubset(env.W2, w2recs, type);
         env.log("w1_To_w2.size() " + w1_To_w2.size());
         env.log("w2_To_w1.size() " + w2_To_w1.size());
-        env.hh.cacheSubsetLookups(W1, w1_To_w2, w2_To_w1);
+        env.hh.cacheSubsetLookups(env.W1, w1_To_w2, w2_To_w1);
+        w2Data = null; // Save some space
+        w2recs = null; // Save some space
         /**
          * Step 2.2.3: Wave 3.
          */
@@ -185,10 +199,12 @@ public class WaAS_DataInAllWaves extends WaAS_ObjectW {
                 w3_To_w2.put(w3ID, w2ID);
             }
         }
-        env.hh.cacheSubset(W3, w3recs, type);
+        env.hh.cacheSubset(env.W3, w3recs, type);
         env.log("w2_To_w3.size() " + w2_To_w3.size());
         env.log("w3_To_w2.size() " + w3_To_w2.size());
-        env.hh.cacheSubsetLookups(W2, w2_To_w3, w3_To_w2);
+        env.hh.cacheSubsetLookups(env.W2, w2_To_w3, w3_To_w2);
+        w3Data = null; // Save some space
+        w3recs = null; // Save some space
         /**
          * Step 2.2.4: Wave 4.
          */
@@ -209,10 +225,12 @@ public class WaAS_DataInAllWaves extends WaAS_ObjectW {
                 }
             }
         }
-        env.hh.cacheSubset(W4, w4recs, type);
+        env.hh.cacheSubset(env.W4, w4recs, type);
         env.log("w3_To_w4.size() " + w3_To_w4.size());
         env.log("w4_To_w3.size() " + w4_To_w3.size());
-        env.hh.cacheSubsetLookups(W3, w3_To_w4, w4_To_w3);
+        env.hh.cacheSubsetLookups(env.W3, w3_To_w4, w4_To_w3);
+        w4Data = null; // Save some space
+        w4recs = null; // Save some space
         /**
          * Step 2.2.5: Wave 5.
          */
@@ -233,10 +251,12 @@ public class WaAS_DataInAllWaves extends WaAS_ObjectW {
                 }
             }
         }
-        env.hh.cacheSubset(W5, w5recs, type);
+        env.hh.cacheSubset(env.W5, w5recs, type);
         env.log("w4_To_w5.size() " + w4_To_w5.size());
         env.log("w5_To_w4.size() " + w5_To_w4.size());
-        env.hh.cacheSubsetLookups(W4, w4_To_w5, w5_To_w4);
+        env.hh.cacheSubsetLookups(env.W4, w4_To_w5, w5_To_w4);
+        w5Data = null; // Save some space
+        w5recs = null; // Save some space
         env.logEndTag(m);
     }
 

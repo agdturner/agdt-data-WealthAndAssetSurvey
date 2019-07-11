@@ -13,16 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
+package uk.ac.leeds.ccg.andyt.generic.data.waas.data.handlers;
 
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.subset.WaAS_DataSubsetW2;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.subset.WaAS_DataSubsetW4;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.subset.WaAS_DataSubsetW5;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.subset.WaAS_DataSubsetW3;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.subset.WaAS_DataSubsetW1;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W4ID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_CollectionID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W1ID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W5ID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W2ID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W3ID;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Serializable;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -37,7 +45,6 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W2PRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W3PRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W4PRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W5PRecord;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 
 /**
  *
@@ -49,255 +56,9 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
         super(e);
     }
 
-    /**
-     *
-     * @param wave
-     * @return
-     */
-    protected File getFile(byte wave) {
-        return new File(files.getGeneratedWaASDir(),
-                getType() + WaAS_Strings.s_W + wave + WaAS_Files.DOT_DAT);
-    }
-
     @Override
     public String getType() {
         return WaAS_Strings.s_person;
-    }
-
-    public class DataSubset implements Serializable {
-
-        /**
-         * Collection Files
-         */
-        public TreeMap<WaAS_CollectionID, File> cFs;
-
-        public int cSize;
-
-        public int nOC;
-
-        /**
-         * Create a new DataSubset
-         *
-         * @param nOC
-         * @param wave
-         */
-        public DataSubset(int cSize, int nOC, byte wave) {
-            this.cSize = cSize;
-            this.nOC = nOC;
-            cFs = new TreeMap<>();
-            for (short s = 0; s < nOC; s++) {
-                File f = new File(files.getGeneratedWaASSubsetsDir(),
-                        WaAS_Strings.s_person + wave
-                        + WaAS_Strings.symbol_underscore + s + ".tab");
-                WaAS_CollectionID cID = new WaAS_CollectionID(s);
-                cFs.put(cID, f);
-            }
-        }
-    }
-
-    public class DataSubsetW1 extends DataSubset {
-
-        /**
-         * Lookup from WaAS_CollectionID to WaAS_W1ID.
-         */
-        public TreeMap<WaAS_CollectionID, HashSet<WaAS_W1ID>> c_To_w1;
-
-        /**
-         * Lookup from WaAS_W1ID to WaAS_CollectionID.
-         */
-        public HashMap<WaAS_W1ID, WaAS_CollectionID> w1_To_c;
-
-        /**
-         *
-         * @param w1IDs
-         * @param cSize
-         * @param nOC Number of collections.
-         * @param wave
-         */
-        public DataSubsetW1(TreeSet<WaAS_W1ID> w1IDs, int cSize, int nOC,
-                byte wave) {
-            super(cSize, nOC, wave);
-            c_To_w1 = new TreeMap<>();
-            w1_To_c = new HashMap<>();
-            Iterator<WaAS_W1ID> ite = w1IDs.iterator();
-            short s = 0;
-            WaAS_CollectionID cID = new WaAS_CollectionID(s);
-            int i = 0;
-            while (ite.hasNext()) {
-                WaAS_W1ID w1ID = ite.next();
-                w1_To_c.put(w1ID, cID);
-                i++;
-                if (i == cSize) {
-                    i = 0;
-                    s++;
-                    cID = new WaAS_CollectionID(s);
-                }
-            }
-        }
-    }
-
-    public class DataSubsetW2 extends DataSubset {
-
-        /**
-         * Lookup from WaAS_CollectionID to WaAS_W2ID.
-         */
-        public TreeMap<WaAS_CollectionID, HashSet<WaAS_W2ID>> c_To_w2;
-
-        /**
-         * Lookup from WaAS_W2ID to WaAS_CollectionID.
-         */
-        public HashMap<WaAS_W2ID, WaAS_CollectionID> w2_To_c;
-
-        /**
-         *
-         * @param w2IDs
-         * @param cSize
-         * @param nOC Number of collections.
-         * @param wave
-         */
-        public DataSubsetW2(TreeSet<WaAS_W2ID> w2IDs, int cSize, int nOC,
-                byte wave) {
-            super(cSize, nOC, wave);
-            c_To_w2 = new TreeMap<>();
-            w2_To_c = new HashMap<>();
-            Iterator<WaAS_W2ID> ite = w2IDs.iterator();
-            short s = 0;
-            WaAS_CollectionID cID = new WaAS_CollectionID(s);
-            int i = 0;
-            while (ite.hasNext()) {
-                WaAS_W2ID w2ID = ite.next();
-                w2_To_c.put(w2ID, cID);
-                i++;
-                if (i == cSize) {
-                    i = 0;
-                    s++;
-                    cID = new WaAS_CollectionID(s);
-                }
-            }
-        }
-    }
-
-    public class DataSubsetW3 extends DataSubset {
-
-        /**
-         * Lookup from WaAS_CollectionID to WaAS_W3ID.
-         */
-        public TreeMap<WaAS_CollectionID, HashSet<WaAS_W3ID>> c_To_w3;
-
-        /**
-         * Lookup from WaAS_W3ID to WaAS_CollectionID.
-         */
-        public HashMap<WaAS_W3ID, WaAS_CollectionID> w3_To_c;
-
-        /**
-         *
-         * @param w3IDs
-         * @param cSize
-         * @param nOC Number of collections.
-         * @param wave
-         */
-        public DataSubsetW3(TreeSet<WaAS_W3ID> w3IDs, int cSize, int nOC,
-                byte wave) {
-            super(cSize, nOC, wave);
-            c_To_w3 = new TreeMap<>();
-            w3_To_c = new HashMap<>();
-            Iterator<WaAS_W3ID> ite = w3IDs.iterator();
-            short s = 0;
-            WaAS_CollectionID cID = new WaAS_CollectionID(s);
-            int i = 0;
-            while (ite.hasNext()) {
-                WaAS_W3ID w3ID = ite.next();
-                w3_To_c.put(w3ID, cID);
-                i++;
-                if (i == cSize) {
-                    i = 0;
-                    s++;
-                    cID = new WaAS_CollectionID(s);
-                }
-            }
-        }
-    }
-
-    public class DataSubsetW4 extends DataSubset {
-
-        /**
-         * Lookup from WaAS_CollectionID to WaAS_W4ID.
-         */
-        public TreeMap<WaAS_CollectionID, HashSet<WaAS_W4ID>> c_To_w4;
-
-        /**
-         * Lookup from WaAS_W4ID to WaAS_CollectionID.
-         */
-        public HashMap<WaAS_W4ID, WaAS_CollectionID> w4_To_c;
-
-        /**
-         *
-         * @param w4IDs
-         * @param cSize
-         * @param nOC Number of collections.
-         * @param wave
-         */
-        public DataSubsetW4(TreeSet<WaAS_W4ID> w4IDs, int cSize, int nOC,
-                byte wave) {
-            super(cSize, nOC, wave);
-            c_To_w4 = new TreeMap<>();
-            w4_To_c = new HashMap<>();
-            Iterator<WaAS_W4ID> ite = w4IDs.iterator();
-            short s = 0;
-            WaAS_CollectionID cID = new WaAS_CollectionID(s);
-            int i = 0;
-            while (ite.hasNext()) {
-                WaAS_W4ID w4ID = ite.next();
-                w4_To_c.put(w4ID, cID);
-                i++;
-                if (i == cSize) {
-                    i = 0;
-                    s++;
-                    cID = new WaAS_CollectionID(s);
-                }
-            }
-        }
-    }
-
-    public class DataSubsetW5 extends DataSubset {
-
-        /**
-         * Lookup from WaAS_CollectionID to WaAS_W5ID.
-         */
-        public TreeMap<WaAS_CollectionID, HashSet<WaAS_W5ID>> c_To_w5;
-
-        /**
-         * Lookup from WaAS_W5ID to WaAS_CollectionID.
-         */
-        public HashMap<WaAS_W5ID, WaAS_CollectionID> w5_To_c;
-
-        /**
-         *
-         * @param w5IDs
-         * @param cSize
-         * @param nOC Number of collections.
-         * @param wave
-         */
-        public DataSubsetW5(TreeSet<WaAS_W5ID> w5IDs, int cSize, int nOC,
-                byte wave) {
-            super(cSize, nOC, wave);
-            c_To_w5 = new TreeMap<>();
-            w5_To_c = new HashMap<>();
-            Iterator<WaAS_W5ID> ite = w5IDs.iterator();
-            short s = 0;
-            WaAS_CollectionID cID = new WaAS_CollectionID(s);
-            int i = 0;
-            while (ite.hasNext()) {
-                WaAS_W5ID w5ID = ite.next();
-                w5_To_c.put(w5ID, cID);
-                i++;
-                if (i == cSize) {
-                    i = 0;
-                    s++;
-                    cID = new WaAS_CollectionID(s);
-                }
-            }
-        }
     }
 
     /**
@@ -306,25 +67,23 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * the data are selected and the cache is written for next time.
      *
      * @param w1IDs
-     * @param nOC Number of collections.
-     * @param wave
      * @return
      */
-    public DataSubsetW1 loadSubsetWave1(TreeSet<WaAS_W1ID> w1IDs, int nOC,
-            byte wave) {
-        File cf = getFile(wave);
+    public WaAS_DataSubsetW1 loadDataSubsetW1(TreeSet<WaAS_W1ID> w1IDs) {
+        byte w = WaAS_Environment.W1;
+        File cf = getFile(w);
         if (cf.exists()) {
-            return (DataSubsetW1) Generic_IO.readObject(cf);
+            return (WaAS_DataSubsetW1) Generic_IO.readObject(cf);
         } else {
             // Calculate how many subsets
-            int cSize = getCSize(w1IDs, nOC);
-            DataSubsetW1 r = new DataSubsetW1(w1IDs, cSize, nOC, wave);
+            int cSize = getCSize(w1IDs, env.data.nOC);
+            WaAS_DataSubsetW1 r = new WaAS_DataSubsetW1(env, w1IDs, cSize);
             HashMap<WaAS_CollectionID, PrintWriter> cPWs = initPWs(r.cFs);
             /**
              * Read through the lines and figure out which lines should be put
              * in which collection.
              */
-            File f = getInputFile(wave);
+            File f = getInputFile(w);
             BufferedReader br = Generic_IO.getBufferedReader(f);
             /**
              * Read and write header.
@@ -351,7 +110,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
             Generic_IO.closeBufferedReader(br);
             // Close the PrintWriters.
             closePWs(cPWs);
-            cache(wave, cf, r);
+            cache(w, cf, r);
             return r;
         }
     }
@@ -410,26 +169,26 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * CASEW2IDs.If this data are in a cache then the cache is loaded otherwise
      * the data are selected and the cache is written for next time.
      *
-     * @param dataSubsetW1
-     * @param wave
+     * @param sW1
      * @param w2_To_w1
      * @return
      */
-    public DataSubsetW2 loadSubsetWave2(DataSubsetW1 dataSubsetW1, byte wave,
+    public WaAS_DataSubsetW2 loadDataSubsetW2(WaAS_DataSubsetW1 sW1,
             TreeMap<WaAS_W2ID, WaAS_W1ID> w2_To_w1) {
-        File cf = getFile(wave);
+        byte w = WaAS_Environment.W2;
+        File cf = getFile(w);
         if (cf.exists()) {
-            return (DataSubsetW2) Generic_IO.readObject(cf);
+            return (WaAS_DataSubsetW2) Generic_IO.readObject(cf);
         } else {
             TreeSet<WaAS_W2ID> w2IDs = new TreeSet<>();
             w2IDs.addAll(w2_To_w1.keySet());
-            DataSubsetW2 r = new DataSubsetW2(w2IDs, dataSubsetW1.cSize, dataSubsetW1.nOC, wave);
+            WaAS_DataSubsetW2 r = new WaAS_DataSubsetW2(env, w2IDs);
             HashMap<WaAS_CollectionID, PrintWriter> cPWs = initPWs(r.cFs);
             /**
              * Read through the lines and figure out which lines should be put
              * in which collection.
              */
-            File f = getInputFile(wave);
+            File f = getInputFile(w);
             BufferedReader br = Generic_IO.getBufferedReader(f);
             /**
              * Read and write header.
@@ -444,14 +203,14 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
                 WaAS_W2ID w2ID = env.data.CASEW2_To_w2.get(rec.getCASEW2());
                 if (w2_To_w1.containsKey(w2ID)) {
                     WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
-                    write(dataSubsetW1.w1_To_c, w1ID, cPWs, l);
+                    write(sW1.w1_To_c, w1ID, cPWs, l);
                 }
             });
             // Close br
             Generic_IO.closeBufferedReader(br);
             // Close the PrintWriters.
             closePWs(cPWs);
-            cache(wave, cf, r);
+            cache(w, cf, r);
             return r;
         }
     }
@@ -473,46 +232,35 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
     }
 
     /**
-     *
-     * @param c
-     * @param nOC numberOfCollections
-     * @return (int) Math.ceil(c.size()/ (double) numberOfCollections)
-     */
-    protected int getCSize(Collection c, int nOC) {
-        int n = c.size();
-        return (int) Math.ceil((double) n / (double) nOC);
-    }
-
-    /**
      * Loads Wave 3 of the person WaAS for those records with CASEW3 in
      * CASEW3IDs.If this data are in a cache then the cache is loaded otherwise
      * the data are selected and the cache is written for next time.
      *
-     * @param dataSubsetW2
+     * @param sW2
      * @param w1_To_c
-     * @param wave
      * @param w2_To_w1
      * @param w3_To_w2
      * @return
      */
-    public DataSubsetW3 loadSubsetWave3(DataSubsetW2 dataSubsetW2,
-            HashMap<WaAS_W1ID, WaAS_CollectionID> w1_To_c, byte wave,
+    public WaAS_DataSubsetW3 loadDataSubsetW3(WaAS_DataSubsetW2 sW2,
+            HashMap<WaAS_W1ID, WaAS_CollectionID> w1_To_c, 
             TreeMap<WaAS_W2ID, WaAS_W1ID> w2_To_w1,
             TreeMap<WaAS_W3ID, WaAS_W2ID> w3_To_w2) {
-        File cf = getFile(wave);
+        byte w = WaAS_Environment.W3;
+        File cf = getFile(w);
         if (cf.exists()) {
-            return (DataSubsetW3) Generic_IO.readObject(cf);
+            return (WaAS_DataSubsetW3) Generic_IO.readObject(cf);
         } else {
             TreeSet<WaAS_W3ID> w3IDs = new TreeSet<>();
             w3IDs.addAll(w3_To_w2.keySet());
-            DataSubsetW3 r = new DataSubsetW3(w3IDs, dataSubsetW2.cSize, dataSubsetW2.nOC, wave);
+            WaAS_DataSubsetW3 r = new WaAS_DataSubsetW3(env, w3IDs);
             HashMap<WaAS_CollectionID, PrintWriter> cPWs = initPWs(r.cFs);
 
             /**
              * Read through the lines and figure out which lines should be put
              * in which collection.
              */
-            File f = getInputFile(wave);
+            File f = getInputFile(w);
             BufferedReader br = Generic_IO.getBufferedReader(f);
             /**
              * Read and write header.
@@ -536,7 +284,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
             Generic_IO.closeBufferedReader(br);
             // Close the PrintWriters.
             closePWs(cPWs);
-            cache(wave, cf, r);
+            cache(w, cf, r);
             return r;
         }
     }
@@ -546,33 +294,32 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * CASEW4IDs.If this data are in a cache then the cache is loaded otherwise
      * the data are selected and the cache is written for next time.
      *
-     * @param dataSubsetW3
+     * @param sW3
      * @param w1_To_c
-     * @param wave
      * @param w2_To_w1
      * @param w3_To_w2
      * @param w4_To_w3
      * @return
      */
-    public DataSubsetW4 loadSubsetWave4(
-            DataSubsetW3 dataSubsetW3,
-            HashMap<WaAS_W1ID, WaAS_CollectionID> w1_To_c, byte wave,
+    public WaAS_DataSubsetW4 loadDataSubsetW4(WaAS_DataSubsetW3 sW3,
+            HashMap<WaAS_W1ID, WaAS_CollectionID> w1_To_c, 
             TreeMap<WaAS_W2ID, WaAS_W1ID> w2_To_w1,
             TreeMap<WaAS_W3ID, WaAS_W2ID> w3_To_w2,
             TreeMap<WaAS_W4ID, WaAS_W3ID> w4_To_w3) {
-        File cf = getFile(wave);
+        byte w = WaAS_Environment.W4;
+        File cf = getFile(w);
         if (cf.exists()) {
-            return (DataSubsetW4) Generic_IO.readObject(cf);
+            return (WaAS_DataSubsetW4) Generic_IO.readObject(cf);
         } else {
             TreeSet<WaAS_W4ID> w4IDs = new TreeSet<>();
             w4IDs.addAll(w4_To_w3.keySet());
-            DataSubsetW4 r = new DataSubsetW4(w4IDs, dataSubsetW3.cSize, dataSubsetW3.nOC, wave);
+            WaAS_DataSubsetW4 r = new WaAS_DataSubsetW4(env, w4IDs);
             HashMap<WaAS_CollectionID, PrintWriter> cPWs = initPWs(r.cFs);
             /**
              * Read through the lines and figure out which lines should be put
              * in which collection.
              */
-            File f = getInputFile(wave);
+            File f = getInputFile(w);
             BufferedReader br = Generic_IO.getBufferedReader(f);
             /**
              * Read and write header.
@@ -596,44 +343,44 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
             Generic_IO.closeBufferedReader(br);
             // Close the PrintWriters.
             closePWs(cPWs);
-            cache(wave, cf, r);
+            cache(w, cf, r);
             return r;
         }
     }
 
     /**
      * Loads Wave 5 of the person WaAS for those records with CASEW5 in
-     * CASEW5IDs.If this data are in a cache then the cache is loaded otherwise
+     * CASEW5IDs. If this data are in a cache then the cache is loaded otherwise
      * the data are selected and the cache is written for next time.
      *
-     * @param dataSubsetW4
+     * @param sW4
      * @param w1_To_c
-     * @param wave
      * @param w2_To_w1
      * @param w3_To_w2
      * @param w5_To_w4
      * @param w4_To_w3
      * @return
      */
-    public DataSubsetW5 loadSubsetWave5(DataSubsetW4 dataSubsetW4,
-            HashMap<WaAS_W1ID, WaAS_CollectionID> w1_To_c, byte wave,
+    public WaAS_DataSubsetW5 loadDataSubsetW5(WaAS_DataSubsetW4 sW4,
+            HashMap<WaAS_W1ID, WaAS_CollectionID> w1_To_c, 
             TreeMap<WaAS_W2ID, WaAS_W1ID> w2_To_w1,
             TreeMap<WaAS_W3ID, WaAS_W2ID> w3_To_w2,
             TreeMap<WaAS_W4ID, WaAS_W3ID> w4_To_w3,
             TreeMap<WaAS_W5ID, WaAS_W4ID> w5_To_w4) {
-        File cf = getFile(wave);
+        byte w = WaAS_Environment.W5;
+        File cf = getFile(w);
         if (cf.exists()) {
-            return (DataSubsetW5) Generic_IO.readObject(cf);
+            return (WaAS_DataSubsetW5) Generic_IO.readObject(cf);
         } else {
             TreeSet<WaAS_W5ID> w5IDs = new TreeSet<>();
             w5IDs.addAll(w5_To_w4.keySet());
-            DataSubsetW5 r = new DataSubsetW5(w5IDs, dataSubsetW4.cSize, dataSubsetW4.nOC, wave);
+            WaAS_DataSubsetW5 r = new WaAS_DataSubsetW5(env, w5IDs);
             HashMap<WaAS_CollectionID, PrintWriter> cPWs = initPWs(r.cFs);
             /**
              * Read through the lines and figure out which lines should be put
              * in which collection.
              */
-            File f = getInputFile(wave);
+            File f = getInputFile(w);
             BufferedReader br = Generic_IO.getBufferedReader(f);
             /**
              * Read and write header.
@@ -660,7 +407,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
             Generic_IO.closeBufferedReader(br);
             // Close the PrintWriters.
             closePWs(cPWs);
-            cache(wave, cf, r);
+            cache(w, cf, r);
             return r;
         }
     }
@@ -673,17 +420,17 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * @return an Object[] r with size 5. r[] is a HashMap with keys that are
      * Integer CASEW1Each element is an Object[] ...
      */
-    public Object[] loadSubsets(byte nwaves, String type) {
+    public Object[] loadDataSubsets(byte nwaves, String type) {
         Object[] r;
         r = new Object[nwaves];
         for (byte wave = 1; wave <= nwaves; wave++) {
             // Load Waves 1 to 5 inclusive.
-            r[wave] = loadSubset(wave, type);
+            r[wave] = loadDataSubset(wave, type);
         }
         return r;
     }
 
-    public Object[] loadSubset(byte wave, String type) {
+    public Object[] loadDataSubset(byte wave, String type) {
         Object[] r;
         File f = getSubsetCacheFile(wave, type);
         if (f.exists()) {

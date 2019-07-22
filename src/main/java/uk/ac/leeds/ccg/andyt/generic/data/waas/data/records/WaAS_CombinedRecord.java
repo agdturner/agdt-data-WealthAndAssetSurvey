@@ -15,19 +15,18 @@
  */
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data.records;
 
+import java.io.Serializable;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W4ID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W5ID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W2ID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W3ID;
 import java.util.HashMap;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
 
 /**
  *
  * @author geoagdt
  */
-public class WaAS_CombinedRecord extends WaAS_Object {
+public class WaAS_CombinedRecord implements Serializable {
 
     public final WaAS_W1Record w1Rec;
 
@@ -52,8 +51,7 @@ public class WaAS_CombinedRecord extends WaAS_Object {
      */
     public final HashMap<WaAS_W2ID, HashMap<WaAS_W3ID, HashMap<WaAS_W4ID, HashMap<WaAS_W5ID, WaAS_W5Record>>>> w5Recs;
 
-    public WaAS_CombinedRecord(WaAS_Environment e, WaAS_W1Record w1Rec) {
-        super(e);
+    public WaAS_CombinedRecord(WaAS_W1Record w1Rec) {
         this.w1Rec = w1Rec;
         w2Recs = new HashMap<>();
         w3Recs = new HashMap<>();

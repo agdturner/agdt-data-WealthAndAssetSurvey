@@ -15,14 +15,13 @@
  */
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data.records;
 
-import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
+import java.io.Serializable;
 
 /**
  *
  * @author geoagdt
  */
-public class WaAS_CombinedRecordSimple extends WaAS_Object {
+public class WaAS_CombinedRecordSimple implements Serializable {
 
     public WaAS_W1Record w1Rec;
 
@@ -34,8 +33,11 @@ public class WaAS_CombinedRecordSimple extends WaAS_Object {
 
     public WaAS_W5Record w5Rec;
 
-    public WaAS_CombinedRecordSimple(WaAS_Environment e, WaAS_W1Record w1Rec) {
-        super(e);
+    public WaAS_CombinedRecordSimple(){
+        this(null);
+    }
+    
+    public WaAS_CombinedRecordSimple(WaAS_W1Record w1Rec) {
         this.w1Rec = w1Rec;
     }
 }

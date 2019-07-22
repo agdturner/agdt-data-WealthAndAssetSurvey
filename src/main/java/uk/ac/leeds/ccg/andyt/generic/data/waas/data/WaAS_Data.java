@@ -23,13 +23,9 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W2ID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W3ID;
 import java.io.File;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
-import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 
 /**
  *
@@ -37,7 +33,7 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
  */
 public class WaAS_Data extends WaAS_Object {
 
-    public HashMap<Short, WaAS_CollectionID> cIDs;
+    public final HashMap<Short, WaAS_CollectionID> cIDs;
     
     /**
      * For storing the number of Collections.
@@ -95,6 +91,7 @@ public class WaAS_Data extends WaAS_Object {
         CASEW3_To_w3 = new HashMap<>();
         CASEW4_To_w4 = new HashMap<>();
         CASEW5_To_w5 = new HashMap<>();
+        cIDs = new HashMap<>();
     }
 
     /**
@@ -131,7 +128,12 @@ public class WaAS_Data extends WaAS_Object {
      * @param cID the ID of the subset collection to be set to {@code null}.
      */
     public void clearCollection(WaAS_CollectionID cID) {
+        String m = "clearCollection " + cID;
+        env.logStartTag(m);
+        env.log("TotalFreeMemory " + env.getTotalFreeMemory());
         collections.put(cID, null);
+        env.log("TotalFreeMemory " + env.getTotalFreeMemory());
+        env.logEndTag(m);
     }
 
     /**
@@ -153,16 +155,20 @@ public class WaAS_Data extends WaAS_Object {
         while (ite.hasNext()) {
             WaAS_CollectionID cID = ite.next();
             WaAS_Collection c = collections.get(cID);
-            cacheSubsetCollection(cID, c);
-            collections.put(cID, null);
+            if (c != null) {
+                cacheSubsetCollection(cID, c);
+                collections.put(cID, null);
+            }
             return true;
         }
         ite = collectionsSimple.keySet().iterator();
         while (ite.hasNext()) {
             WaAS_CollectionID cID = ite.next();
             WaAS_CollectionSimple c = collectionsSimple.get(cID);
-            cacheSubsetCollectionSimple(cID, c);
-            collectionsSimple.put(cID, null);
+            if (c != null) {
+                cacheSubsetCollectionSimple(cID, c);
+                collectionsSimple.put(cID, null);
+            }
             return true;
         }
         return false;
@@ -179,17 +185,21 @@ public class WaAS_Data extends WaAS_Object {
         while (ite.hasNext()) {
             WaAS_CollectionID cID = ite.next();
             WaAS_Collection c = collections.get(cID);
-            cacheSubsetCollection(cID, c);
-            collections.put(cID, null);
-            r++;
+            if (c != null) {
+                cacheSubsetCollection(cID, c);
+                collections.put(cID, null);
+                r++;
+            }
         }
         ite = collectionsSimple.keySet().iterator();
         while (ite.hasNext()) {
             WaAS_CollectionID cID = ite.next();
             WaAS_CollectionSimple c = collectionsSimple.get(cID);
+            if (c != null) {
             cacheSubsetCollectionSimple(cID, c);
             collectionsSimple.put(cID, null);
             r++;
+            }
         }
         return r;
     }
@@ -201,7 +211,7 @@ public class WaAS_Data extends WaAS_Object {
      * @param o the subset collection to be cached.
      */
     public void cacheSubsetCollection(WaAS_CollectionID cID, Object o) {
-        cache(getWaASSubsetCollectionFile(cID), o);
+        cache(getSubsetCollectionFile(cID), o);
     }
 
     /**
@@ -211,7 +221,7 @@ public class WaAS_Data extends WaAS_Object {
      * @param o the subset collection to be cached.
      */
     public void cacheSubsetCollectionSimple(WaAS_CollectionID cID, Object o) {
-        cache(getWaASSubsetCollectionSimpleFile(cID), o);
+        cache(getSubsetCollectionSimpleFile(cID), o);
     }
 
     /**
@@ -221,7 +231,7 @@ public class WaAS_Data extends WaAS_Object {
      * @return the subset collection loaded.
      */
     public Object loadSubsetCollection(WaAS_CollectionID cID) {
-        return load(getWaASSubsetCollectionFile(cID));
+        return load(getSubsetCollectionFile(cID));
     }
 
     /**
@@ -231,7 +241,7 @@ public class WaAS_Data extends WaAS_Object {
      * @return the subset collection loaded.
      */
     public Object loadSubsetCollectionSimple(WaAS_CollectionID cID) {
-        return load(getWaASSubsetCollectionSimpleFile(cID));
+        return load(getSubsetCollectionSimpleFile(cID));
     }
 
     /**
@@ -240,10 +250,10 @@ public class WaAS_Data extends WaAS_Object {
      * @param cID the ID of subset collection.
      * @return the subset collection file for cID.
      */
-    public File getWaASSubsetCollectionFile(WaAS_CollectionID cID) {
+    public File getSubsetCollectionFile(WaAS_CollectionID cID) {
         return new File(env.files.getGeneratedWaASSubsetsDir(),
-                WaAS_Strings.s_WaAS + WaAS_Strings.symbol_underscore + cID
-                + WaAS_Files.DOT_DAT);
+                env.strings.s_WaAS + env.strings.symbol_underscore + cID
+                + env.files.DOT_DAT);
     }
     
     /**
@@ -252,10 +262,10 @@ public class WaAS_Data extends WaAS_Object {
      * @param cID the ID of subset collection.
      * @return the subset collection file for cID.
      */
-    public File getWaASSubsetCollectionSimpleFile(WaAS_CollectionID cID) {
+    public File getSubsetCollectionSimpleFile(WaAS_CollectionID cID) {
         return new File(env.files.getGeneratedWaASSubsetsDir(),
-                WaAS_Strings.s_WaAS + WaAS_Strings.symbol_underscore
-                + WaAS_Strings.s_Simple + cID + WaAS_Files.DOT_DAT);
+                env.strings.s_WaAS + env.strings.symbol_underscore
+                + env.strings.s_Simple + cID + env.files.DOT_DAT);
     }
 
     /**
@@ -267,7 +277,7 @@ public class WaAS_Data extends WaAS_Object {
     protected Object load(File f) {
         String m = "load object from " + f.toString();
         env.logStartTag(m);
-        Object r = Generic_IO.readObject(f);
+        Object r = env.ge.io.readObject(f);
         env.logEndTag(m);
         return r;
     }
@@ -281,7 +291,7 @@ public class WaAS_Data extends WaAS_Object {
     protected void cache(File f, Object o) {
         String m = "cache object to " + f.toString();
         env.logStartTag(m);
-        Generic_IO.writeObject(o, f);
+        env.ge.io.writeObject(o, f);
         env.logEndTag(m);
     }
 

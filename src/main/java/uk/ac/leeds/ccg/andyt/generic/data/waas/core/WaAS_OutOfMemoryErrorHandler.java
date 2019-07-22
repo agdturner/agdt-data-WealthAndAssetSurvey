@@ -15,21 +15,18 @@
  */
 package uk.ac.leeds.ccg.andyt.generic.data.waas.core;
 
-import java.io.Serializable;
 import uk.ac.leeds.ccg.andyt.generic.memory.Generic_OutOfMemoryErrorHandler;
-import uk.ac.leeds.ccg.andyt.generic.memory.Generic_OutOfMemoryErrorHandlerInterface;
 
 /**
  *
  * @author Andy Turner
  */
 public abstract class WaAS_OutOfMemoryErrorHandler
-        extends Generic_OutOfMemoryErrorHandler
-        implements Serializable, Generic_OutOfMemoryErrorHandlerInterface {
+        extends Generic_OutOfMemoryErrorHandler {
 
     //static final long serialVersionUID = 1L;
     //public static long Memory_Threshold = 3000000000L;
-    public static long Memory_Threshold = 2000000000L;
+    public long Memory_Threshold = 2000000000L;
 
     @Override
     public boolean swapDataAny() {

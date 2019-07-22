@@ -30,7 +30,6 @@ import java.util.Iterator;
 import java.util.TreeMap;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 import uk.ac.leeds.ccg.andyt.generic.util.Generic_Collections;
 
 public class WaAS_DataInAllWaves extends WaAS_Object {
@@ -109,36 +108,36 @@ public class WaAS_DataInAllWaves extends WaAS_Object {
          * contains all those Wave 4 records that have Wave 3 record identifiers
          * and that are in the main set loaded in Step 1.1.
          */
-        w4Data = env.hh.loadW4InS(w5Data.w4_In_w5, WaAS_Strings.s__In_ + "w3w5");
+        w4Data = env.hh.loadW4InSAndW3(w5Data.w5_To_w4.values(), env.strings.s__In_ + "w3w5");
         /**
          * Step 1.3: Wave 3 initial load. After this load the main set of data
          * contains all those Wave 3 records that have Wave 2 record identifiers
          * and that are in the main set loaded in Step 1.2.
          */
-        w3Data = env.hh.loadW3InSAndW2(w4Data.w3_In_w4, WaAS_Strings.s__In_ + "w2w4w5");
+        w3Data = env.hh.loadW3InSAndW2(w4Data.w4_To_w3.values(), env.strings.s__In_ + "w2w4w5");
         /**
          * Step 1.4: Wave 2 initial load. After this load the main set of data
          * contains all those Wave 2 records that have Wave 1 record identifiers
          * and that are in the main set loaded in Step 1.3.
          */
-        w2Data = env.hh.loadW2InSAndW1(w3Data.w2_In_w3, WaAS_Strings.s__In_ + "w1w3w4w5");
+        w2Data = env.hh.loadW2InSAndW1(w3Data.w3_To_w2.values(), env.strings.s__In_ + "w1w3w4w5");
         /**
          * Step 1.5: Wave 1 initial load. After this load the main set of data
          * contains all those Wave 1 records that are in the main set loaded in
          * Step 1.4.
          */
-        w1Data = env.hh.loadW1(w2Data.w1_In_w2, WaAS_Strings.s__In_ + "w2w4w5");
+        w1Data = env.hh.loadW1(w2Data.w2_To_w1.values(), env.strings.s__In_ + "w2w3w4w5");
         /**
          * Step 2: Check what is loaded and go through creating ID sets.
          */
         /**
          * Step 2.1: Log status of the main sets loaded in Step 1.
          */
-        env.log("There are " + w1Data.lookup.size() + " w1recs.");
-        env.log("There are " + w2Data.lookup.size() + " w2recs.");
-        env.log("There are " + w3Data.lookup.size() + " w3recs.");
-        env.log("There are " + w4Data.lookup.size() + " w4recs.");
         env.log("There are " + w5Data.lookup.size() + " w5recs.");
+        env.log("There are " + w4Data.lookup.size() + " w4recs.");
+        env.log("There are " + w3Data.lookup.size() + " w3recs.");
+        env.log("There are " + w2Data.lookup.size() + " w2recs.");
+        env.log("There are " + w1Data.lookup.size() + " w1recs.");
         /**
          * Step 2.2: Filter sets.
          */
@@ -150,14 +149,12 @@ public class WaAS_DataInAllWaves extends WaAS_Object {
         Iterator<WaAS_W1ID> iteW1 = w1Data.lookup.keySet().iterator();
         while (iteW1.hasNext()) {
             WaAS_W1ID w1ID = iteW1.next();
-            //WaAS_ID2 ID = new WaAS_ID2(w1ID, w1ID);
-            //w1IDs.add(ID);
             w1recs.put(w1ID, w1Data.lookup.get(w1ID));
         }
         //env.log("w1IDs.size() " + w1IDs.size());
         env.hh.cacheSubset(env.W1, w1recs, type);
         w1Data = null; // Save some space
-        w1recs = null; // Save some space
+        //w1recs = null; // Save some space
         /**
          * Step 2.2.2: Wave 2.
          */
@@ -169,11 +166,11 @@ public class WaAS_DataInAllWaves extends WaAS_Object {
         while (iteW2.hasNext()) {
             WaAS_W2ID w2ID = iteW2.next();
             WaAS_W1ID w1ID = w2Data.w2_To_w1.get(w2ID);
-            //WaAS_ID2 ID = new WaAS_ID2(w1ID, w2ID);
-            //w2IDs.add(ID);
+            if (w1recs.keySet().contains(w1ID)) {
             w2recs.put(w2ID, w2Data.lookup.get(w2ID));
             Generic_Collections.addToMap(w1_To_w2, w1ID, w2ID);
             w2_To_w1.put(w2ID, w1ID);
+            }
         }
         //env.log("w2IDs.size() " + w2IDs.size());
         env.hh.cacheSubset(env.W2, w2recs, type);
@@ -181,7 +178,7 @@ public class WaAS_DataInAllWaves extends WaAS_Object {
         env.log("w2_To_w1.size() " + w2_To_w1.size());
         env.hh.cacheSubsetLookups(env.W1, w1_To_w2, w2_To_w1);
         w2Data = null; // Save some space
-        w2recs = null; // Save some space
+        //w2recs = null; // Save some space
         /**
          * Step 2.2.3: Wave 3.
          */
@@ -192,7 +189,8 @@ public class WaAS_DataInAllWaves extends WaAS_Object {
         while (iteW3.hasNext()) {
             WaAS_W3ID w3ID = iteW3.next();
             WaAS_W2ID w2ID = w3Data.w3_To_w2.get(w3ID);
-            if (w2_To_w1.containsKey(w2ID)) {
+            //if (w2_To_w1.containsKey(w2ID)) {
+            if (w2recs.keySet().contains(w2ID)) {
                 w3recs.put(w3ID, w3Data.lookup.get(w3ID));
                 w3_To_w2.put(w3ID, w2ID);
                 Generic_Collections.addToMap(w2_To_w3, w2ID, w3ID);
@@ -204,7 +202,7 @@ public class WaAS_DataInAllWaves extends WaAS_Object {
         env.log("w3_To_w2.size() " + w3_To_w2.size());
         env.hh.cacheSubsetLookups(env.W2, w2_To_w3, w3_To_w2);
         w3Data = null; // Save some space
-        w3recs = null; // Save some space
+        //w3recs = null; // Save some space
         /**
          * Step 2.2.4: Wave 4.
          */
@@ -218,7 +216,8 @@ public class WaAS_DataInAllWaves extends WaAS_Object {
             if (w3ID == null) {
                 env.log("w4Data.w4_To_w3.get(w4ID) = null for w4ID " + w4ID);
             } else {
-                if (w3_To_w2.containsKey(w3ID)) {
+                //if (w3_To_w2.containsKey(w3ID)) {
+                if (w3recs.keySet().contains(w3ID)) {
                     w4recs.put(w4ID, w4Data.lookup.get(w4ID));
                     w4_To_w3.put(w4ID, w3ID);
                     Generic_Collections.addToMap(w3_To_w4, w3ID, w4ID);
@@ -230,7 +229,7 @@ public class WaAS_DataInAllWaves extends WaAS_Object {
         env.log("w4_To_w3.size() " + w4_To_w3.size());
         env.hh.cacheSubsetLookups(env.W3, w3_To_w4, w4_To_w3);
         w4Data = null; // Save some space
-        w4recs = null; // Save some space
+        //w4recs = null; // Save some space
         /**
          * Step 2.2.5: Wave 5.
          */
@@ -242,9 +241,10 @@ public class WaAS_DataInAllWaves extends WaAS_Object {
             WaAS_W5ID w5ID = iteW5.next();
             WaAS_W4ID w4ID = w5Data.w5_To_w4.get(w5ID);
             if (w4ID == null) {
-                env.log("w5Data.w5_To_w4.get(w5ID) = null for w5ID " + w5ID);
+                //env.log("w5Data.w5_To_w4.get(w5ID) = null for w5ID " + w5ID);
             } else {
-                if (w4_To_w3.containsKey(w4ID)) {
+                //if (w4_To_w3.containsKey(w4ID)) {
+                if (w4recs.keySet().contains(w4ID)) {
                     w5recs.put(w5ID, w5Data.lookup.get(w5ID));
                     w5_To_w4.put(w5ID, w4ID);
                     Generic_Collections.addToMap(w4_To_w5, w4ID, w5ID);
@@ -256,7 +256,7 @@ public class WaAS_DataInAllWaves extends WaAS_Object {
         env.log("w5_To_w4.size() " + w5_To_w4.size());
         env.hh.cacheSubsetLookups(env.W4, w4_To_w5, w5_To_w4);
         w5Data = null; // Save some space
-        w5recs = null; // Save some space
+        //w5recs = null; // Save some space
         env.logEndTag(m);
     }
 

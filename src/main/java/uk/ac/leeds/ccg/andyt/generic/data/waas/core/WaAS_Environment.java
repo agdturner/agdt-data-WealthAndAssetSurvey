@@ -16,10 +16,7 @@
 package uk.ac.leeds.ccg.andyt.generic.data.waas.core;
 
 import java.io.File;
-import java.io.Serializable;
 import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
-//import uk.ac.leeds.ccg.andyt.data.postcode.Generic_UKPostcode_Handler;
-import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_Data;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.handlers.WaAS_HHOLD_Handler;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
@@ -28,36 +25,35 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
  *
  * @author geoagdt
  */
-public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
-        implements Serializable {
+public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler {
 
-    public final transient Generic_Environment ge;
-    public final transient WaAS_Files files;
-    public final transient WaAS_HHOLD_Handler hh;
-    public WaAS_Data data;
-    public transient static final String EOL = System.getProperty("line.separator");
-    
-    public transient static final byte W1 = 1;
-    public transient static final byte W2 = 2;
-    public transient static final byte W3 = 3;
-    public transient static final byte W4 = 4;
-    public transient static final byte W5 = 5;
+    public transient final Generic_Environment ge;
+    public transient final WaAS_Strings strings;
+    public transient final WaAS_Files files;
+    public transient final WaAS_HHOLD_Handler hh;
+    public transient WaAS_Data data;
+    public transient final String EOL = System.getProperty("line.separator");
+    public transient final byte W1 = 1;
+    public transient final byte W2 = 2;
+    public transient final byte W3 = 3;
+    public transient final byte W4 = 4;
+    public transient final byte W5 = 5;
     
     /**
      * Stores the number of waves in the WaAS
      */
-    public transient static final byte NWAVES = 5;
+    public transient final byte NWAVES = 5;
 
     /**
      * Stores the {@link ge} log ID for the log set up for WaAS.
      */
-    public final int logID;
+    public transient final int logID;
 
     public WaAS_Environment() {
         this(new Generic_Environment());
     }
     public WaAS_Environment(Generic_Environment ge) {
-        this(ge, ge.getFiles().getDataDir());
+        this(ge, ge.files.getDataDir());
     }
     
     public WaAS_Environment(File dataDir) {
@@ -66,16 +62,17 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
     
     public WaAS_Environment(Generic_Environment ge, File dataDir) {
         this.ge = ge;
-        files = new WaAS_Files(dataDir);
+        strings = new WaAS_Strings();
+        files = new WaAS_Files(strings, dataDir);
         File f = files.getEnvDataFile();
         if (f.exists()) {
-            data = (WaAS_Data) Generic_IO.readObject(f);
+            data = (WaAS_Data) ge.io.readObject(f);
             initData();
             //data.env = this;
         } else {
             data = new WaAS_Data(this);
         }
-        logID = ge.initLog(WaAS_Strings.s_WaAS);
+        logID = ge.initLog(strings.s_WaAS);
         hh = new WaAS_HHOLD_Handler(this);
     }
 
@@ -172,7 +169,7 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
     public void cacheData() {
         String m = "cacheData";
         logStartTag(m);
-        Generic_IO.writeObject(data, files.getEnvDataFile());
+        ge.io.writeObject(data, files.getEnvDataFile());
         logEndTag(m);
     }
 
@@ -184,6 +181,15 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
      */
     public final void logStartTag(String s) {
         ge.logStartTag(s, logID);
+    }
+
+    /**
+     * 
+     * @param s The tag name.
+     */
+    public final void logStartTagMem(String s) {
+        ge.logStartTag(s, logID);
+        log("TotalFreeMemory " + getTotalFreeMemory());
     }
 
     /**
@@ -204,4 +210,10 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler
     public final void logEndTag(String s) {
         ge.logEndTag(s, logID);
     }
+    
+    public final void logEndTagMem(String s) {
+        log("TotalFreeMemory " + getTotalFreeMemory());
+        ge.logEndTag(s, logID);
+    }
+    
 }

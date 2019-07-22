@@ -37,9 +37,7 @@ import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
-import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.util.Generic_Collections;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W1PRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W2PRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W3PRecord;
@@ -58,7 +56,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
 
     @Override
     public String getType() {
-        return WaAS_Strings.s_person;
+        return env.strings.s_person;
     }
 
     /**
@@ -70,10 +68,10 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * @return
      */
     public WaAS_DataSubsetW1 loadDataSubsetW1(TreeSet<WaAS_W1ID> w1IDs) {
-        byte w = WaAS_Environment.W1;
+        byte w = W1;
         File cf = getFile(w);
         if (cf.exists()) {
-            return (WaAS_DataSubsetW1) Generic_IO.readObject(cf);
+            return (WaAS_DataSubsetW1) env.ge.io.readObject(cf);
         } else {
             // Calculate the number of things in a normal collection
             int cSize = getCSize(w1IDs, env.data.nOC);
@@ -84,7 +82,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
              * in which collection.
              */
             File f = getInputFile(w);
-            BufferedReader br = Generic_IO.getBufferedReader(f);
+            BufferedReader br = env.ge.io.getBufferedReader(f);
             /**
              * Read and write header.
              */
@@ -112,7 +110,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
                 }
             });
             // Close br
-            Generic_IO.closeBufferedReader(br);
+            env.ge.io.closeBufferedReader(br);
             // Close the PrintWriters.
             closePWs(cPWs);
             cache(w, cf, r);
@@ -134,7 +132,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
             WaAS_CollectionID cID = ite.next();
             //env.log("Init PW with cID " + cID);
             File f = cFs.get(cID);
-            r.put(cID, Generic_IO.getPrintWriter(f, false));
+            r.put(cID, env.ge.io.getPrintWriter(f, false));
         }
         return r;
     }
@@ -181,10 +179,10 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      */
     public WaAS_DataSubsetW2 loadDataSubsetW2(WaAS_DataSubsetW1 sW1,
             TreeMap<WaAS_W2ID, WaAS_W1ID> w2_To_w1) {
-        byte w = WaAS_Environment.W2;
+        byte w = W2;
         File cf = getFile(w);
         if (cf.exists()) {
-            return (WaAS_DataSubsetW2) Generic_IO.readObject(cf);
+            return (WaAS_DataSubsetW2) env.ge.io.readObject(cf);
         } else {
             TreeSet<WaAS_W2ID> w2IDs = new TreeSet<>();
             w2IDs.addAll(w2_To_w1.keySet());
@@ -195,7 +193,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
              * in which collection.
              */
             File f = getInputFile(w);
-            BufferedReader br = Generic_IO.getBufferedReader(f);
+            BufferedReader br = env.ge.io.getBufferedReader(f);
             /**
              * Read and write header.
              */
@@ -213,7 +211,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
                 }
             });
             // Close br
-            Generic_IO.closeBufferedReader(br);
+            env.ge.io.closeBufferedReader(br);
             // Close the PrintWriters.
             closePWs(cPWs);
             cache(w, cf, r);
@@ -252,10 +250,10 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
             HashMap<WaAS_W1ID, WaAS_CollectionID> w1_To_c, 
             TreeMap<WaAS_W2ID, WaAS_W1ID> w2_To_w1,
             TreeMap<WaAS_W3ID, WaAS_W2ID> w3_To_w2) {
-        byte w = WaAS_Environment.W3;
+        byte w = W3;
         File cf = getFile(w);
         if (cf.exists()) {
-            return (WaAS_DataSubsetW3) Generic_IO.readObject(cf);
+            return (WaAS_DataSubsetW3) env.ge.io.readObject(cf);
         } else {
             TreeSet<WaAS_W3ID> w3IDs = new TreeSet<>();
             w3IDs.addAll(w3_To_w2.keySet());
@@ -267,7 +265,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
              * in which collection.
              */
             File f = getInputFile(w);
-            BufferedReader br = Generic_IO.getBufferedReader(f);
+            BufferedReader br = env.ge.io.getBufferedReader(f);
             /**
              * Read and write header.
              */
@@ -287,7 +285,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
                 }
             });
             // Close br
-            Generic_IO.closeBufferedReader(br);
+            env.ge.io.closeBufferedReader(br);
             // Close the PrintWriters.
             closePWs(cPWs);
             cache(w, cf, r);
@@ -312,10 +310,10 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
             TreeMap<WaAS_W2ID, WaAS_W1ID> w2_To_w1,
             TreeMap<WaAS_W3ID, WaAS_W2ID> w3_To_w2,
             TreeMap<WaAS_W4ID, WaAS_W3ID> w4_To_w3) {
-        byte w = WaAS_Environment.W4;
+        byte w = W4;
         File cf = getFile(w);
         if (cf.exists()) {
-            return (WaAS_DataSubsetW4) Generic_IO.readObject(cf);
+            return (WaAS_DataSubsetW4) env.ge.io.readObject(cf);
         } else {
             TreeSet<WaAS_W4ID> w4IDs = new TreeSet<>();
             w4IDs.addAll(w4_To_w3.keySet());
@@ -326,7 +324,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
              * in which collection.
              */
             File f = getInputFile(w);
-            BufferedReader br = Generic_IO.getBufferedReader(f);
+            BufferedReader br = env.ge.io.getBufferedReader(f);
             /**
              * Read and write header.
              */
@@ -346,7 +344,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
                 }
             });
             // Close br
-            Generic_IO.closeBufferedReader(br);
+            env.ge.io.closeBufferedReader(br);
             // Close the PrintWriters.
             closePWs(cPWs);
             cache(w, cf, r);
@@ -373,10 +371,10 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
             TreeMap<WaAS_W3ID, WaAS_W2ID> w3_To_w2,
             TreeMap<WaAS_W4ID, WaAS_W3ID> w4_To_w3,
             TreeMap<WaAS_W5ID, WaAS_W4ID> w5_To_w4) {
-        byte w = WaAS_Environment.W5;
+        byte w = W5;
         File cf = getFile(w);
         if (cf.exists()) {
-            return (WaAS_DataSubsetW5) Generic_IO.readObject(cf);
+            return (WaAS_DataSubsetW5) env.ge.io.readObject(cf);
         } else {
             TreeSet<WaAS_W5ID> w5IDs = new TreeSet<>();
             w5IDs.addAll(w5_To_w4.keySet());
@@ -387,7 +385,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
              * in which collection.
              */
             File f = getInputFile(w);
-            BufferedReader br = Generic_IO.getBufferedReader(f);
+            BufferedReader br = env.ge.io.getBufferedReader(f);
             /**
              * Read and write header.
              */
@@ -410,7 +408,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
                 }
             });
             // Close br
-            Generic_IO.closeBufferedReader(br);
+            env.ge.io.closeBufferedReader(br);
             // Close the PrintWriters.
             closePWs(cPWs);
             cache(w, cf, r);
@@ -440,7 +438,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
         Object[] r;
         File f = getSubsetCacheFile(wave, type);
         if (f.exists()) {
-            r = (Object[]) Generic_IO.readObject(f);
+            r = (Object[]) env.ge.io.readObject(f);
         } else {
             r = null;
         }

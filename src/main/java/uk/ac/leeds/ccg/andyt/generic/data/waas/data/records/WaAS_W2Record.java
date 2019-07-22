@@ -15,10 +15,9 @@
  */
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data.records;
 
+import java.io.Serializable;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W2ID;
 import java.util.ArrayList;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W2HRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W2PRecord;
 
@@ -26,45 +25,46 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W2PRecord;
  *
  * @author geoagdt
  */
-public class WaAS_W2Record extends WaAS_Object {
-    
+public class WaAS_W2Record implements Serializable {
+
     public final WaAS_W2ID w2ID;
 
-    private final WaAS_W2HRecord hhold;
+    private final WaAS_W2HRecord hr;
 
-    private final ArrayList<WaAS_W2PRecord> people;
+    private final ArrayList<WaAS_W2PRecord> prs;
 
-    public WaAS_W2Record(WaAS_Environment e, WaAS_W2ID w2ID) {
-        super(e);
-        this.w2ID = w2ID;
-        hhold = null;
-        people = new ArrayList<>();
+    /**
+     * Defaults hr to null and prs to a new ArrayList<>().
+     *
+     * @param e
+     * @param w2ID
+     */
+    public WaAS_W2Record(WaAS_W2ID w2ID) {
+        this(w2ID, null, new ArrayList<>());
     }
 
-    public WaAS_W2Record(WaAS_Environment e,
-            WaAS_W2ID w2ID, WaAS_W2HRecord hhold) {
-        this(e, w2ID, hhold, new ArrayList<>());
+    public WaAS_W2Record(WaAS_W2ID w2ID, WaAS_W2HRecord hr) {
+        this(w2ID, hr, new ArrayList<>());
     }
 
-    public WaAS_W2Record(WaAS_Environment e, WaAS_W2ID w2ID,
-            WaAS_W2HRecord hhold, ArrayList<WaAS_W2PRecord> people) {
-        super(e);
+    public WaAS_W2Record(WaAS_W2ID w2ID, WaAS_W2HRecord hr,
+            ArrayList<WaAS_W2PRecord> prs) {
         this.w2ID = w2ID;
-        this.hhold = hhold;
-        this.people = people;
+        this.hr = hr;
+        this.prs = prs;
     }
 
     /**
-     * @return the hhold
+     * @return the hr
      */
-    public WaAS_W2HRecord getHhold() {
-        return hhold;
+    public WaAS_W2HRecord getHr() {
+        return hr;
     }
 
     /**
-     * @return the people
+     * @return the prs
      */
-    public ArrayList<WaAS_W2PRecord> getPeople() {
-        return people;
+    public ArrayList<WaAS_W2PRecord> getPrs() {
+        return prs;
     }
 }

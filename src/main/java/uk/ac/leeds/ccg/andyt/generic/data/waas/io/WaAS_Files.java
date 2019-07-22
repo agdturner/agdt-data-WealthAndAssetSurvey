@@ -27,28 +27,33 @@ public class WaAS_Files extends Data_Files {
 
     /**
      *
+     * @param strings
      * @param dataDir
      */
-    public WaAS_Files(File dataDir) {
-        super(dataDir);
+    public WaAS_Files(WaAS_Strings strings, File dataDir) {
+        super(strings, dataDir);
     }
 
     public File getInputWaASDir() {
-        File r = new File(getInputDataDir(), WaAS_Strings.s_WaAS);
+        File r = new File(getInputDataDir(), getStrings().s_WaAS);
         r = new File(r, "UKDA-7215-tab");
         r = new File(r, "tab");
         return r;
     }
 
     public File getGeneratedWaASDir() {
-        File r  = new File(getGeneratedDataDir(), WaAS_Strings.s_WaAS);
+        File r  = new File(getGeneratedDataDir(), getStrings().s_WaAS);
         r.mkdirs();
         return r;
     }
     
     public File getGeneratedWaASSubsetsDir() {
-        File f = new File(getGeneratedWaASDir(), WaAS_Strings.s_Subsets);
+        File f = new File(getGeneratedWaASDir(), getStrings().s_Subsets);
         f.mkdirs();
         return f;
+    }
+    
+    public WaAS_Strings getStrings() {
+        return (WaAS_Strings) strings;
     }
 }

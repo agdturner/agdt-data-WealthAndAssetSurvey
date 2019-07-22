@@ -15,10 +15,9 @@
  */
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data.records;
 
+import java.io.Serializable;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W5ID;
 import java.util.ArrayList;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W5HRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W5PRecord;
 
@@ -26,45 +25,45 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W5PRecord;
  *
  * @author geoagdt
  */
-public class WaAS_W5Record extends WaAS_Object {
+public class WaAS_W5Record implements Serializable {
 
     public final WaAS_W5ID w5ID;
 
-    private final WaAS_W5HRecord hhold;
+    private final WaAS_W5HRecord hr;
 
-    private final ArrayList<WaAS_W5PRecord> people;
+    private final ArrayList<WaAS_W5PRecord> prs;
 
-    public WaAS_W5Record(WaAS_Environment e, WaAS_W5ID w5ID) {
-        super(e);
-        this.w5ID = w5ID;
-        hhold = null;
-        people = new ArrayList<>();
+    /**
+     * Defaults hr to null and prs to a new ArrayList<>().
+     *
+     * @param w5ID
+     */
+    public WaAS_W5Record(WaAS_W5ID w5ID) {
+        this(w5ID, null, new ArrayList<>());
     }
 
-    public WaAS_W5Record(WaAS_Environment e,
-            WaAS_W5ID w5ID, WaAS_W5HRecord hhold) {
-        this(e, w5ID, hhold, new ArrayList<>());
+    public WaAS_W5Record(WaAS_W5ID w5ID, WaAS_W5HRecord hr) {
+        this(w5ID, hr, new ArrayList<>());
     }
 
-    public WaAS_W5Record(WaAS_Environment e, WaAS_W5ID w5ID,
-            WaAS_W5HRecord hhold, ArrayList<WaAS_W5PRecord> people) {
-        super(e);
+    public WaAS_W5Record(WaAS_W5ID w5ID, WaAS_W5HRecord hr, 
+            ArrayList<WaAS_W5PRecord> prs) {
         this.w5ID = w5ID;
-        this.hhold = hhold;
-        this.people = people;
+        this.hr = hr;
+        this.prs = prs;
     }
 
     /**
-     * @return the hhold
+     * @return the hr
      */
-    public WaAS_W5HRecord getHhold() {
-        return hhold;
+    public WaAS_W5HRecord getHr() {
+        return hr;
     }
 
     /**
-     * @return the people
+     * @return the prs
      */
-    public ArrayList<WaAS_W5PRecord> getPeople() {
-        return people;
+    public ArrayList<WaAS_W5PRecord> getPrs() {
+        return prs;
     }
 }

@@ -17,13 +17,11 @@ package uk.ac.leeds.ccg.andyt.generic.data.waas.data.subset;
 
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_CollectionID;
 import java.io.File;
-import java.io.Serializable;
 import java.util.TreeMap;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 
-public class WaAS_DataSubset extends WaAS_Object implements Serializable {
+public class WaAS_DataSubset extends WaAS_Object {
 
     /**
      * For storing the normal number of things in a collection
@@ -54,8 +52,8 @@ public class WaAS_DataSubset extends WaAS_Object implements Serializable {
         cFs = new TreeMap<>();
         for (short s = 0; s < env.data.nOC; s++) {
             File f = new File(env.files.getGeneratedWaASSubsetsDir(),
-                    WaAS_Strings.s_Data + WaAS_Strings.s_Subset + wave
-                    + WaAS_Strings.symbol_underscore + s + ".tab");
+                    env.strings.s_Data + env.strings.s_Subset + wave
+                    + env.strings.symbol_underscore + s + ".tab");
             WaAS_CollectionID cID = getCollectionID(s);
 //            env.log("s " + s);
 //            env.log("File " + f);
@@ -64,10 +62,10 @@ public class WaAS_DataSubset extends WaAS_Object implements Serializable {
         }
     }
     
-    WaAS_CollectionID getCollectionID(short s) {
+    protected final WaAS_CollectionID getCollectionID(short s) {
         WaAS_CollectionID r = env.data.cIDs.get(s);
         if (r == null) {
-            env.log("Strange: no existing collection for short " + s);
+            env.log("No existing collection for short " + s);
             r = new WaAS_CollectionID(s);
             env.data.cIDs.put(s, r);
         }

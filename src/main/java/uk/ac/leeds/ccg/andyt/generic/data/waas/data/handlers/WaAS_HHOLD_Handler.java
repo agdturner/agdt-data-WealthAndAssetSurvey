@@ -30,7 +30,6 @@ import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
-import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.util.Generic_Collections;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_Collection;
@@ -45,7 +44,6 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W2HRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W3HRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W4HRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W5HRecord;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 import uk.ac.leeds.ccg.andyt.stats.Generic_Statistics;
 
 /**
@@ -60,7 +58,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
 
     @Override
     public String getType() {
-        return WaAS_Strings.s_hhold;
+        return env.strings.s_hhold;
     }
     
     /**
@@ -81,7 +79,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             File f = getInputFile(W5);
             String m1 = getMessage(W5, f);
             env.logStartTag(m1);
-            BufferedReader br = Generic_IO.getBufferedReader(f);
+            BufferedReader br = env.ge.io.getBufferedReader(f);
             br.lines().skip(1).forEach(l -> {
                 WaAS_W5HRecord rec = new WaAS_W5HRecord(l);
                 short CASEW5 = rec.getCASEW5();
@@ -90,7 +88,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 env.data.CASEW5_To_w5.put(CASEW5, w5ID);
             });
             // Close br
-            Generic_IO.closeBufferedReader(br);
+            env.ge.io.closeBufferedReader(br);
             env.logEndTag(m1);
             cache(W5, cf, r);
         }
@@ -116,7 +114,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             File f = getInputFile(W4);
             String m1 = getMessage(W4, f);
             env.logStartTag(m1);
-            BufferedReader br = Generic_IO.getBufferedReader(f);
+            BufferedReader br = env.ge.io.getBufferedReader(f);
             br.lines().skip(1).forEach(l -> {
                 WaAS_W4HRecord rec = new WaAS_W4HRecord(l);
                 short CASEW4 = rec.getCASEW4();
@@ -125,7 +123,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 env.data.CASEW4_To_w4.put(CASEW4, w4ID);
             });
             // Close br
-            Generic_IO.closeBufferedReader(br);
+            env.ge.io.closeBufferedReader(br);
             env.logEndTag(m1);
             cache(W4, cf, r);
         }
@@ -151,7 +149,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             File f = getInputFile(W3);
             String m1 = getMessage(W3, f);
             env.logStartTag(m1);
-            BufferedReader br = Generic_IO.getBufferedReader(f);
+            BufferedReader br = env.ge.io.getBufferedReader(f);
             br.lines().skip(1).forEach(l -> {
                 WaAS_W3HRecord rec = new WaAS_W3HRecord(l);
                 short CASEW3 = rec.getCASEW3();
@@ -160,7 +158,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 env.data.CASEW3_To_w3.put(CASEW3, w3ID);
             });
             // Close br
-            Generic_IO.closeBufferedReader(br);
+            env.ge.io.closeBufferedReader(br);
             env.logEndTag(m1);
             cache(W3, cf, r);
             env.logEndTag(m);
@@ -186,7 +184,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             File f = getInputFile(W2);
             String m1 = getMessage(W2, f);
             env.logStartTag(m1);
-            BufferedReader br = Generic_IO.getBufferedReader(f);
+            BufferedReader br = env.ge.io.getBufferedReader(f);
             br.lines().skip(1).forEach(l -> {
                 WaAS_W2HRecord rec = new WaAS_W2HRecord(l);
                 short CASEW2 = rec.getCASEW2();
@@ -195,7 +193,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 env.data.CASEW2_To_w2.put(CASEW2, w2ID);
             });
             // Close br
-            Generic_IO.closeBufferedReader(br);
+            env.ge.io.closeBufferedReader(br);
             env.logEndTag(m1);
             cache(W2, cf, r);
         }
@@ -221,7 +219,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             File f = getInputFile(W1);
             String m1 = getMessage(W1, f);
             env.logStartTag(m1);
-            BufferedReader br = Generic_IO.getBufferedReader(f);
+            BufferedReader br = env.ge.io.getBufferedReader(f);
             br.lines().skip(1).forEach(l -> {
                 WaAS_W1HRecord rec = new WaAS_W1HRecord(l);
                 short CASEW1 = rec.getCASEW1();
@@ -230,7 +228,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
                 env.data.CASEW1_To_w1.put(CASEW1, w1ID);
             });
             // Close br
-            Generic_IO.closeBufferedReader(br);
+            env.ge.io.closeBufferedReader(br);
             env.logEndTag(m1);
             cache(W1, cf, r);
         }
@@ -292,8 +290,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * @return a specific generated File.
      */
     protected File getGeneratedAllFile(byte wave) {
-        return new File(env.files.getGeneratedWaASDir(), getType() + WaAS_Strings.s_W
-                + wave + WaAS_Strings.s_All + WaAS_Files.DOT_DAT);
+        return new File(env.files.getGeneratedWaASDir(), getType() + env.strings.s_W
+                + wave + env.strings.s_All + env.files.DOT_DAT);
     }
 
 
@@ -357,7 +355,7 @@ env.data.collections.keySet().stream().forEach(cID -> {
                 c.getData().keySet().stream().forEach(w1ID -> {
                     if (subset.contains(w1ID)) {
                         WaAS_CombinedRecord cr = c.getData().get(w1ID);
-                        WaAS_W1HRecord w1 = cr.w1Rec.getHhold();
+                        WaAS_W1HRecord w1 = cr.w1Rec.getHr();
                         Byte GOR = GORSubsetsAndLookups.w1_To_gor.get(w1ID);
                         Generic_Collections.addToMap(r, GOR, w1ID, w1.getHVALUE());
                     }
@@ -375,7 +373,7 @@ env.data.collections.keySet().stream().forEach(cID -> {
                         while (ite2.hasNext()) {
                             WaAS_W2ID w2ID = ite2.next();
                             Byte GOR = GORSubsetsAndLookups.w2_To_gor.get(w2ID);
-                            WaAS_W2HRecord w2 = recs.get(w2ID).getHhold();
+                            WaAS_W2HRecord w2 = recs.get(w2ID).getHr();
                             Generic_Collections.addToMap(r, GOR, w2ID, w2.getHVALUE());
                         }
                     }
@@ -397,7 +395,7 @@ env.data.collections.keySet().stream().forEach(cID -> {
                             while (ite2.hasNext()) {
                                 WaAS_W3ID w3ID = ite2.next();
                                 Byte GOR = GORSubsetsAndLookups.w3_To_gor.get(w3ID);
-                                WaAS_W3HRecord w3 = w3_2.get(w3ID).getHhold();
+                                WaAS_W3HRecord w3 = w3_2.get(w3ID).getHr();
                                 Generic_Collections.addToMap(r, GOR, w3ID, w3.getHVALUE());
                             }
                         }
@@ -424,7 +422,7 @@ env.data.collections.keySet().stream().forEach(cID -> {
                                 while (ite3.hasNext()) {
                                     WaAS_W4ID w4ID = ite3.next();
                                     Byte GOR = GORSubsetsAndLookups.w4_To_gor.get(w4ID);
-                                    WaAS_W4HRecord w4 = w4_3.get(w4ID).getHhold();
+                                    WaAS_W4HRecord w4 = w4_3.get(w4ID).getHr();
                                     Generic_Collections.addToMap(r, GOR, w4ID, w4.getHVALUE());
                                 }
                             }
@@ -456,7 +454,7 @@ env.data.collections.keySet().stream().forEach(cID -> {
                                     while (ite4.hasNext()) {
                                         WaAS_W5ID w5ID = ite4.next();
                                         Byte GOR = GORSubsetsAndLookups.w5_To_gor.get(w5ID);
-                                        WaAS_W5HRecord w5 = w5_4.get(w5ID).getHhold();
+                                        WaAS_W5HRecord w5 = w5_4.get(w5ID).getHr();
                                         Generic_Collections.addToMap(r, GOR, w5ID, w5.getHVALUE());
                                     }
                                 }
@@ -493,7 +491,7 @@ env.data.collections.keySet().stream().forEach(cID -> {
         int countNegative = 0;
         int countZero = 0;
         Iterator<WaAS_W1ID> ite = m.keySet().iterator();
-        if (vName.equalsIgnoreCase(WaAS_Strings.s_HVALUE)) {
+        if (vName.equalsIgnoreCase(env.strings.s_HVALUE)) {
             while (ite.hasNext()) {
                 WaAS_W1ID w1ID = ite.next();
                 WaAS_W1HRecord recH = (WaAS_W1HRecord) m.get(w1ID);
@@ -506,7 +504,7 @@ env.data.collections.keySet().stream().forEach(cID -> {
                 }
                 Generic_Collections.addToMap(r, GOR, w1ID, v);
             }
-        } else if (vName.equalsIgnoreCase(WaAS_Strings.s_HPROPW)) {
+        } else if (vName.equalsIgnoreCase(env.strings.s_HPROPW)) {
             while (ite.hasNext()) {
                 WaAS_W1ID w1ID = ite.next();
                 WaAS_W1HRecord recH = (WaAS_W1HRecord) m.get(w1ID);
@@ -519,7 +517,7 @@ env.data.collections.keySet().stream().forEach(cID -> {
                 }
                 Generic_Collections.addToMap(r, GOR, w1ID, v);
             }
-        } else if (vName.equalsIgnoreCase(WaAS_Strings.s_TOTWLTH)) {
+        } else if (vName.equalsIgnoreCase(env.strings.s_TOTWLTH)) {
             while (ite.hasNext()) {
                 WaAS_W1ID w1ID = ite.next();
                 WaAS_W1HRecord recH = (WaAS_W1HRecord) m.get(w1ID);
@@ -565,7 +563,7 @@ env.data.collections.keySet().stream().forEach(cID -> {
         int countNegative = 0;
         int countZero = 0;
         Iterator<WaAS_W5ID> ite = m.keySet().iterator();
-        if (vName.equalsIgnoreCase(WaAS_Strings.s_HVALUE)) {
+        if (vName.equalsIgnoreCase(env.strings.s_HVALUE)) {
             while (ite.hasNext()) {
                 WaAS_W5ID w5ID = ite.next();
                 WaAS_W5HRecord recH = (WaAS_W5HRecord) m.get(w5ID);
@@ -578,7 +576,7 @@ env.data.collections.keySet().stream().forEach(cID -> {
                 }
                 Generic_Collections.addToMap(r, GOR, w5ID, v);
             }
-        } else if (vName.equalsIgnoreCase(WaAS_Strings.s_HPROPW)) {
+        } else if (vName.equalsIgnoreCase(env.strings.s_HPROPW)) {
             while (ite.hasNext()) {
                 WaAS_W5ID w5ID = ite.next();
                 WaAS_W5HRecord recH = (WaAS_W5HRecord) m.get(w5ID);
@@ -591,7 +589,7 @@ env.data.collections.keySet().stream().forEach(cID -> {
                 }
                 Generic_Collections.addToMap(r, GOR, w5ID, v);
             }
-        } else if (vName.equalsIgnoreCase(WaAS_Strings.s_TOTWLTH)) {
+        } else if (vName.equalsIgnoreCase(env.strings.s_TOTWLTH)) {
             while (ite.hasNext()) {
                 WaAS_W5ID w5ID = ite.next();
                 WaAS_W5HRecord recH = (WaAS_W5HRecord) m.get(w5ID);

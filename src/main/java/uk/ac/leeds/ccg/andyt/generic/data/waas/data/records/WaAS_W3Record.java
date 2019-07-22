@@ -15,10 +15,9 @@
  */
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data.records;
 
+import java.io.Serializable;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W3ID;
 import java.util.ArrayList;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W3HRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W3PRecord;
 
@@ -26,45 +25,45 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W3PRecord;
  *
  * @author geoagdt
  */
-public class WaAS_W3Record extends WaAS_Object {
+public class WaAS_W3Record implements Serializable {
 
     public final WaAS_W3ID w3ID;
 
-    private final WaAS_W3HRecord hhold;
+    private final WaAS_W3HRecord hr;
 
-    private final ArrayList<WaAS_W3PRecord> people;
+    private final ArrayList<WaAS_W3PRecord> prs;
 
-    public WaAS_W3Record(WaAS_Environment e, WaAS_W3ID w3ID) {
-        super(e);
-        this.w3ID = w3ID;
-        hhold = null;
-        people = new ArrayList<>();
+    /**
+     * Defaults hr to null and prs to a new ArrayList<>().
+     *
+     * @param w3ID
+     */
+    public WaAS_W3Record(WaAS_W3ID w3ID) {
+        this(w3ID, null, new ArrayList<>());
     }
 
-    public WaAS_W3Record(WaAS_Environment e,
-            WaAS_W3ID w3ID, WaAS_W3HRecord hhold) {
-        this(e, w3ID, hhold, new ArrayList<>());
+    public WaAS_W3Record(            WaAS_W3ID w3ID, WaAS_W3HRecord hr) {
+        this(w3ID, hr, new ArrayList<>());
     }
 
-    public WaAS_W3Record(WaAS_Environment e, WaAS_W3ID w3ID,
-            WaAS_W3HRecord hhold, ArrayList<WaAS_W3PRecord> people) {
-        super(e);
+    public WaAS_W3Record(WaAS_W3ID w3ID,
+            WaAS_W3HRecord hr, ArrayList<WaAS_W3PRecord> prs) {
         this.w3ID = w3ID;
-        this.hhold = hhold;
-        this.people = people;
+        this.hr = hr;
+        this.prs = prs;
     }
 
     /**
-     * @return the hhold
+     * @return the hr
      */
-    public WaAS_W3HRecord getHhold() {
-        return hhold;
+    public WaAS_W3HRecord getHr() {
+        return hr;
     }
 
     /**
-     * @return the people
+     * @return the prs
      */
-    public ArrayList<WaAS_W3PRecord> getPeople() {
-        return people;
+    public ArrayList<WaAS_W3PRecord> getPrs() {
+        return prs;
     }
 }

@@ -33,7 +33,7 @@ public class WaAS_Collection implements Serializable {
      * The keys are CASEW1, the values are the respective combined record.
      */
     private final HashMap<WaAS_W1ID, WaAS_CombinedRecord> data;
-
+    
     public WaAS_Collection(WaAS_CollectionID ID) {
         this.ID = ID;
         data = new HashMap<>();

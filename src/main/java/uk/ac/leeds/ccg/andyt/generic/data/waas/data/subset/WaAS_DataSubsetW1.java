@@ -48,9 +48,7 @@ public class WaAS_DataSubsetW1 extends WaAS_DataSubset {
         w1_To_c = new HashMap<>();
         Iterator<WaAS_W1ID> ite = w1IDs.iterator();
         short s = 0;
-        e.data.cIDs = new HashMap<>();
-        WaAS_CollectionID cID = new WaAS_CollectionID(s);
-        e.data.cIDs.put(s, cID);
+        WaAS_CollectionID cID = getCollectionID(s);
         int i = 0;
         while (ite.hasNext()) {
             WaAS_W1ID w1ID = ite.next();
@@ -59,10 +57,9 @@ public class WaAS_DataSubsetW1 extends WaAS_DataSubset {
             if (i == cSize) {
                 i = 0;
                 s++;
-                cID = new WaAS_CollectionID(s);
-                e.data.cIDs.put(s, cID);
+                cID = getCollectionID(s);
             }
         }
-        initCFs(WaAS_Environment.W1);
+        initCFs(env.W1);
     }
 }

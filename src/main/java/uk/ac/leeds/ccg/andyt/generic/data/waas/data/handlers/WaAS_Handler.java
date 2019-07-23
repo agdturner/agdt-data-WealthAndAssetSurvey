@@ -33,6 +33,7 @@ import java.util.TreeMap;
 import uk.ac.leeds.ccg.andyt.data.interval.Data_IntervalLong1;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_Collection;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_CollectionSimple;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_CombinedRecord;
@@ -94,7 +95,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      */
     protected File getFile(byte wave) {
         return new File(env.files.getGeneratedWaASDir(),
-                getType() + env.strings.s_W + wave + env.files.DOT_DAT);
+                getType() + WaAS_Strings.s_W + wave + env.files.DOT_DAT);
     }
 
     /**
@@ -129,9 +130,9 @@ public abstract class WaAS_Handler extends WaAS_Object {
     }
 
     protected String getString0(byte wave, File f) {
-        return getString0(wave) + env.strings.symbol_space
-                + env.strings.s_WaAS + env.strings.symbol_space
-                + env.strings.s_file + env.strings.symbol_space + f.toString();
+        return getString0(wave) + WaAS_Strings.symbol_space
+                + WaAS_Strings.s_WaAS + WaAS_Strings.symbol_space
+                + WaAS_Strings.s_file + WaAS_Strings.symbol_space + f.toString();
     }
 
     /**
@@ -157,7 +158,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      */
     public File getSubsetCacheFile(byte wave, String type) {
         return new File(env.files.getGeneratedWaASSubsetsDir(),
-                getType() + env.strings.s_w + wave + type + env.files.DOT_DAT);
+                getType() + WaAS_Strings.s_w + wave + type + env.files.DOT_DAT);
     }
 
     /**
@@ -168,7 +169,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      */
     public File getSubsetCacheFile2(byte wave, String type) {
         return new File(env.files.getGeneratedWaASSubsetsDir(),
-                getType() + env.strings.s_w + wave + type + "_2" + env.files.DOT_DAT);
+                getType() + WaAS_Strings.s_w + wave + type + "_2" + env.files.DOT_DAT);
     }
 
     /**
@@ -257,16 +258,16 @@ public abstract class WaAS_Handler extends WaAS_Object {
     }
 
     protected String getString0(int wave) {
-        return env.strings.s_w + wave;
-        //return getType() + env.strings.s_w + wave;
+        return WaAS_Strings.s_w + wave;
+        //return getType() + WaAS_Strings.s_w + wave;
     }
 
     protected String getString1(byte wave, short cID) {
-        return getString0(wave) + env.strings.symbol_underscore + cID;
+        return getString0(wave) + WaAS_Strings.symbol_underscore + cID;
     }
 
     protected String getStringToWaveDotDat(int wave) {
-        return env.strings.s__To_ + env.strings.s_w + wave + env.files.DOT_DAT;
+        return WaAS_Strings.s__To_ + WaAS_Strings.s_w + wave + env.files.DOT_DAT;
     }
 
     public void cacheSubsetCollection(short cID, byte wave, Object o) {
@@ -1580,7 +1581,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @return
      */
     public String getMessage(byte wave, File f) {
-        return "load wave " + wave + " " + getType() + " " + env.strings.s_WaAS
+        return "load wave " + wave + " " + getType() + " " + WaAS_Strings.s_WaAS
                 + " from " + f;
     }
 
@@ -1747,7 +1748,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      *
      * @param s a set containing CASEW2 values.
      * @param type for loading an already computed result. Expected value:
-     * {@link env.strings#s_InW1W2W3W4W5}
+     * {@link WaAS_Strings#s_InW1W2W3W4W5}
      *
      * @return the loaded collections
      */
@@ -2018,7 +2019,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
         String m = "loadW3InW2";
         env.logStartTag(m);
         WaAS_W3Data r;
-        File cf = getSubsetCacheFile2(W3, env.strings.s__In_ + env.strings.s_w2);
+        File cf = getSubsetCacheFile2(W3, WaAS_Strings.s__In_ + WaAS_Strings.s_w2);
         if (cf.exists()) {
             r = (WaAS_W3Data) load(W3, cf);
         } else {
@@ -2296,7 +2297,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
         String m = "loadW5InW4";
         env.logStartTag(m);
         WaAS_W5Data r;
-        File cf = getSubsetCacheFile2(W5, env.strings.s__In_ + env.strings.s_w4);
+        File cf = getSubsetCacheFile2(W5, WaAS_Strings.s__In_ + WaAS_Strings.s_w4);
         if (cf.exists()) {
             r = (WaAS_W5Data) load(W5, cf);
         } else {
@@ -2382,7 +2383,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
         String m = "loadSimple";
         env.logStartTag(m);
         //WaAS_CollectionSimple r;
-        File cf = getSubsetCacheFile2(W5, env.strings.s__In_ + env.strings.s_w4 + env.strings.s_w3 + env.strings.s_w2 + env.strings.s_w1);
+        File cf = getSubsetCacheFile2(W5, WaAS_Strings.s__In_ + WaAS_Strings.s_w4 + WaAS_Strings.s_w3 + WaAS_Strings.s_w2 + WaAS_Strings.s_w1);
         if (cf.exists()) {
             //    r = (WaAS_CollectionSimple) load(W5, cf);
         } else {
@@ -2401,7 +2402,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
              * is expected to be rare. One example explanation for this
              * happening is someone returning to a hhold having left it.
              */
-            f = getInputFile(W5, env.strings.s_hhold);
+            f = getInputFile(W5, WaAS_Strings.s_hhold);
             String m1 = getMessage(W5, f);
             env.logStartTag(m1);
             BufferedReader br = env.ge.io.getBufferedReader(f);
@@ -2515,7 +2516,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      *
      * @param s a set containing CASEW2 values.
      * @param type for loading an already computed result. Expected value:
-     * {@link env.strings#s_InW3}
+     * {@link WaAS_Strings#s_InW3}
      *
      * @return the loaded collections
      */
@@ -2610,7 +2611,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
         String m = "loadW4InW3";
         env.logStartTag(m);
         WaAS_W4Data r;
-        File cf = getSubsetCacheFile2(W4, env.strings.s__In_ + env.strings.s_w3);
+        File cf = getSubsetCacheFile2(W4, WaAS_Strings.s__In_ + WaAS_Strings.s_w3);
         if (cf.exists()) {
             r = (WaAS_W4Data) load(W4, cf);
         } else {
@@ -2667,8 +2668,8 @@ public abstract class WaAS_Handler extends WaAS_Object {
      *
      * @param s a Collection containing CASEW1 values.
      * @param type for loading an already computed result. Expected values
-     * include: {@link env.strings#s_InW1W2W3W4W5} and
-     * {@link env.strings#s_InW2}.
+     * include: {@link WaAS_Strings#s_InW1W2W3W4W5} and
+     * {@link WaAS_Strings#s_InW2}.
      *
      * @return the loaded collections
      */

@@ -28,7 +28,6 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
 public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler {
 
     public transient final Generic_Environment ge;
-    public transient final WaAS_Strings strings;
     public transient final WaAS_Files files;
     public transient final WaAS_HHOLD_Handler hh;
     public transient WaAS_Data data;
@@ -62,8 +61,7 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler {
     
     public WaAS_Environment(Generic_Environment ge, File dataDir) {
         this.ge = ge;
-        strings = new WaAS_Strings();
-        files = new WaAS_Files(strings, dataDir);
+        files = new WaAS_Files(dataDir);
         File f = files.getEnvDataFile();
         if (f.exists()) {
             data = (WaAS_Data) ge.io.readObject(f);
@@ -72,7 +70,7 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler {
         } else {
             data = new WaAS_Data(this);
         }
-        logID = ge.initLog(strings.s_WaAS);
+        logID = ge.initLog(WaAS_Strings.s_WaAS);
         hh = new WaAS_HHOLD_Handler(this);
     }
 

@@ -37,6 +37,7 @@ import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 import uk.ac.leeds.ccg.andyt.generic.util.Generic_Collections;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W1PRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W2PRecord;
@@ -56,7 +57,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
 
     @Override
     public String getType() {
-        return env.strings.s_person;
+        return WaAS_Strings.s_person;
     }
 
     /**

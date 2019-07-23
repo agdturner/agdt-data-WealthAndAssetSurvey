@@ -20,6 +20,7 @@ import java.io.File;
 import java.util.TreeMap;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 
 public class WaAS_DataSubset extends WaAS_Object {
 
@@ -52,8 +53,8 @@ public class WaAS_DataSubset extends WaAS_Object {
         cFs = new TreeMap<>();
         for (short s = 0; s < env.data.nOC; s++) {
             File f = new File(env.files.getGeneratedWaASSubsetsDir(),
-                    env.strings.s_Data + env.strings.s_Subset + wave
-                    + env.strings.symbol_underscore + s + ".tab");
+                    WaAS_Strings.s_Data + WaAS_Strings.s_Subset + wave
+                    + WaAS_Strings.symbol_underscore + s + ".tab");
             WaAS_CollectionID cID = getCollectionID(s);
 //            env.log("s " + s);
 //            env.log("File " + f);

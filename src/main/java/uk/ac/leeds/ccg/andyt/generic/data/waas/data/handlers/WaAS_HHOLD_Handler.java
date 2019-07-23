@@ -58,7 +58,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
 
     @Override
     public String getType() {
-        return env.strings.s_hhold;
+        return WaAS_Strings.s_hhold;
     }
     
     /**
@@ -290,8 +290,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * @return a specific generated File.
      */
     protected File getGeneratedAllFile(byte wave) {
-        return new File(env.files.getGeneratedWaASDir(), getType() + env.strings.s_W
-                + wave + env.strings.s_All + env.files.DOT_DAT);
+        return new File(env.files.getGeneratedWaASDir(), getType() + WaAS_Strings.s_W
+                + wave + WaAS_Strings.s_All + env.files.DOT_DAT);
     }
 
 
@@ -491,7 +491,7 @@ env.data.collections.keySet().stream().forEach(cID -> {
         int countNegative = 0;
         int countZero = 0;
         Iterator<WaAS_W1ID> ite = m.keySet().iterator();
-        if (vName.equalsIgnoreCase(env.strings.s_HVALUE)) {
+        if (vName.equalsIgnoreCase(WaAS_Strings.s_HVALUE)) {
             while (ite.hasNext()) {
                 WaAS_W1ID w1ID = ite.next();
                 WaAS_W1HRecord recH = (WaAS_W1HRecord) m.get(w1ID);
@@ -504,7 +504,7 @@ env.data.collections.keySet().stream().forEach(cID -> {
                 }
                 Generic_Collections.addToMap(r, GOR, w1ID, v);
             }
-        } else if (vName.equalsIgnoreCase(env.strings.s_HPROPW)) {
+        } else if (vName.equalsIgnoreCase(WaAS_Strings.s_HPROPW)) {
             while (ite.hasNext()) {
                 WaAS_W1ID w1ID = ite.next();
                 WaAS_W1HRecord recH = (WaAS_W1HRecord) m.get(w1ID);
@@ -517,7 +517,7 @@ env.data.collections.keySet().stream().forEach(cID -> {
                 }
                 Generic_Collections.addToMap(r, GOR, w1ID, v);
             }
-        } else if (vName.equalsIgnoreCase(env.strings.s_TOTWLTH)) {
+        } else if (vName.equalsIgnoreCase(WaAS_Strings.s_TOTWLTH)) {
             while (ite.hasNext()) {
                 WaAS_W1ID w1ID = ite.next();
                 WaAS_W1HRecord recH = (WaAS_W1HRecord) m.get(w1ID);
@@ -563,7 +563,7 @@ env.data.collections.keySet().stream().forEach(cID -> {
         int countNegative = 0;
         int countZero = 0;
         Iterator<WaAS_W5ID> ite = m.keySet().iterator();
-        if (vName.equalsIgnoreCase(env.strings.s_HVALUE)) {
+        if (vName.equalsIgnoreCase(WaAS_Strings.s_HVALUE)) {
             while (ite.hasNext()) {
                 WaAS_W5ID w5ID = ite.next();
                 WaAS_W5HRecord recH = (WaAS_W5HRecord) m.get(w5ID);
@@ -576,7 +576,7 @@ env.data.collections.keySet().stream().forEach(cID -> {
                 }
                 Generic_Collections.addToMap(r, GOR, w5ID, v);
             }
-        } else if (vName.equalsIgnoreCase(env.strings.s_HPROPW)) {
+        } else if (vName.equalsIgnoreCase(WaAS_Strings.s_HPROPW)) {
             while (ite.hasNext()) {
                 WaAS_W5ID w5ID = ite.next();
                 WaAS_W5HRecord recH = (WaAS_W5HRecord) m.get(w5ID);
@@ -589,7 +589,7 @@ env.data.collections.keySet().stream().forEach(cID -> {
                 }
                 Generic_Collections.addToMap(r, GOR, w5ID, v);
             }
-        } else if (vName.equalsIgnoreCase(env.strings.s_TOTWLTH)) {
+        } else if (vName.equalsIgnoreCase(WaAS_Strings.s_TOTWLTH)) {
             while (ite.hasNext()) {
                 WaAS_W5ID w5ID = ite.next();
                 WaAS_W5HRecord recH = (WaAS_W5HRecord) m.get(w5ID);

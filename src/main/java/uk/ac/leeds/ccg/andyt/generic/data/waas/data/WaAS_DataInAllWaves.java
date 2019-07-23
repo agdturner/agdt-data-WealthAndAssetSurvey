@@ -30,6 +30,7 @@ import java.util.Iterator;
 import java.util.TreeMap;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 import uk.ac.leeds.ccg.andyt.generic.util.Generic_Collections;
 
 public class WaAS_DataInAllWaves extends WaAS_Object {
@@ -108,25 +109,25 @@ public class WaAS_DataInAllWaves extends WaAS_Object {
          * contains all those Wave 4 records that have Wave 3 record identifiers
          * and that are in the main set loaded in Step 1.1.
          */
-        w4Data = env.hh.loadW4InSAndW3(w5Data.w5_To_w4.values(), env.strings.s__In_ + "w3w5");
+        w4Data = env.hh.loadW4InSAndW3(w5Data.w5_To_w4.values(), WaAS_Strings.s__In_ + "w3w5");
         /**
          * Step 1.3: Wave 3 initial load. After this load the main set of data
          * contains all those Wave 3 records that have Wave 2 record identifiers
          * and that are in the main set loaded in Step 1.2.
          */
-        w3Data = env.hh.loadW3InSAndW2(w4Data.w4_To_w3.values(), env.strings.s__In_ + "w2w4w5");
+        w3Data = env.hh.loadW3InSAndW2(w4Data.w4_To_w3.values(), WaAS_Strings.s__In_ + "w2w4w5");
         /**
          * Step 1.4: Wave 2 initial load. After this load the main set of data
          * contains all those Wave 2 records that have Wave 1 record identifiers
          * and that are in the main set loaded in Step 1.3.
          */
-        w2Data = env.hh.loadW2InSAndW1(w3Data.w3_To_w2.values(), env.strings.s__In_ + "w1w3w4w5");
+        w2Data = env.hh.loadW2InSAndW1(w3Data.w3_To_w2.values(), WaAS_Strings.s__In_ + "w1w3w4w5");
         /**
          * Step 1.5: Wave 1 initial load. After this load the main set of data
          * contains all those Wave 1 records that are in the main set loaded in
          * Step 1.4.
          */
-        w1Data = env.hh.loadW1(w2Data.w2_To_w1.values(), env.strings.s__In_ + "w2w3w4w5");
+        w1Data = env.hh.loadW1(w2Data.w2_To_w1.values(), WaAS_Strings.s__In_ + "w2w3w4w5");
         /**
          * Step 2: Check what is loaded and go through creating ID sets.
          */

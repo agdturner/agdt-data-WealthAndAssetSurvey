@@ -27,6 +27,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_Collection;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_CollectionID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_CollectionSimple;
@@ -96,7 +97,7 @@ public class WaAS_Main_Process extends WaAS_Object {
         }
         if (doLoadHouseholdsAndIndividualsInAllWaves) {
             WaAS_DataInAllWaves dataInAllWaves = new WaAS_DataInAllWaves(env);
-            String type = env.strings.s__In_w1w2w3w4w5;
+            String type = WaAS_Strings.s__In_w1w2w3w4w5;
             dataInAllWaves.loadDataInAllWaves(type);
             mergePersonAndHouseholdDataIntoCollections(type, chunkSize);
             if (doLoadHouseholdsInPairedWaves) {
@@ -107,8 +108,8 @@ public class WaAS_Main_Process extends WaAS_Object {
                     //W2InW1Recs = (TreeMap<Short, WaAS_W2HRecord>) w2_In_w1[0];
                     //TreeSet<Short>[] W2InW1Sets = (TreeSet<Short>[]) w2_In_w1[1];
                     //TreeSet<Short> W2InW1CASEW1 = W2InW1Sets[0];
-                    //Object[] w1_In_w2 = hH.loadW1(W2InW1CASEW1, env.strings.s_InW2);
-                    WaAS_W1Data W1InW2 = env.hh.loadW1(W2InW1.w1_In_w2, env.strings.s__In_ + env.strings.s_w2);
+                    //Object[] w1_In_w2 = hH.loadW1(W2InW1CASEW1, WaAS_Strings.s_InW2);
+                    WaAS_W1Data W1InW2 = env.hh.loadW1(W2InW1.w1_In_w2, WaAS_Strings.s__In_ + WaAS_Strings.s_w2);
                     //TreeMap<Short, WaAS_W1HRecord> W1InW2Recs;
                     //W1InW2Recs = (TreeMap<Short, WaAS_W1HRecord>) w1_In_w2[0];
                     //env.log(W2InW1Recs.size() + "\t W2InW1Recs.size()");
@@ -123,8 +124,8 @@ public class WaAS_Main_Process extends WaAS_Object {
                     //W3InW2Recs = (TreeMap<Short, WaAS_W3HRecord>) W3InW2[0];
                     //TreeSet<Short>[] W3InW2Sets = (TreeSet<Short>[]) W3InW2[1];
                     //TreeSet<Short> W3InW2CASEW2 = W3InW2Sets[1];
-                    WaAS_W2Data W2InW3 = env.hh.loadW2InS(W3InW2.w2_In_w3, env.strings.s__In_ + env.strings.s_w3);
-                    //Object[] w2_In_w3 = hH.loadW2(W3InW2CASEW2, env.strings.s_InW3);
+                    WaAS_W2Data W2InW3 = env.hh.loadW2InS(W3InW2.w2_In_w3, WaAS_Strings.s__In_ + WaAS_Strings.s_w3);
+                    //Object[] w2_In_w3 = hH.loadW2(W3InW2CASEW2, WaAS_Strings.s_InW3);
                     //TreeMap<Short, WaAS_W1HRecord> W2InW3Recs;
                     //W2InW3Recs = (TreeMap<Short, WaAS_W1HRecord>) w2_In_w3[0];
                     env.log(W3InW2.lookup.size() + "\t W3InW2.lookup.size()");
@@ -137,9 +138,9 @@ public class WaAS_Main_Process extends WaAS_Object {
                     //W4InW3Recs = (TreeMap<WaAS_W4ID, WaAS_W4HRecord>) W4InW3[0];
                     //TreeSet<Short>[] W4InW3Sets = (TreeSet<Short>[]) W4InW3[1];
                     //TreeSet<Short> W4InW3CASEW3 = W4InW3Sets[2];
-                    //Object[] w3_In_w4 = hH.loadW3InW2(W4InW3CASEW3, env.strings.s_InW4);
-                    //W3Data w3_In_w4 = hH.loadW3InW2(W4InW3CASEW3, env.strings.s_InW4);
-                    WaAS_W3Data W3InW4 = env.hh.loadW3InS(W4InW3.w3_In_w4, env.strings.s__In_ + env.strings.s_w4);
+                    //Object[] w3_In_w4 = hH.loadW3InW2(W4InW3CASEW3, WaAS_Strings.s_InW4);
+                    //W3Data w3_In_w4 = hH.loadW3InW2(W4InW3CASEW3, WaAS_Strings.s_InW4);
+                    WaAS_W3Data W3InW4 = env.hh.loadW3InS(W4InW3.w3_In_w4, WaAS_Strings.s__In_ + WaAS_Strings.s_w4);
                     //TreeMap<Short, WaAS_W1HRecord> W3InW4Recs;
                     //W3InW4Recs = (TreeMap<Short, WaAS_W1HRecord>) w3_In_w4[0];
                     //env.log(W4InW3Recs.size() + "\t W4InW3Recs.size()");
@@ -154,8 +155,8 @@ public class WaAS_Main_Process extends WaAS_Object {
                     //W5InW4Recs = (TreeMap<WaAS_W5ID, WaAS_W5HRecord>) W5InW4[0];
                     //TreeSet<Short>[] W5InW4Sets = (TreeSet<Short>[]) W5InW4[1];
                     //TreeSet<Short> W5InW4CASEW4 = W5InW4Sets[3];
-                    WaAS_W4Data W4InW5 = env.hh.loadW4InS(W5InW4.w4_In_w5, env.strings.s__In_ + env.strings.s_w5);
-                    //Object[] w4_In_w5 = hH.loadW4InW3(W5InW4CASEW4, env.strings.s_InW5);
+                    WaAS_W4Data W4InW5 = env.hh.loadW4InS(W5InW4.w4_In_w5, WaAS_Strings.s__In_ + WaAS_Strings.s_w5);
+                    //Object[] w4_In_w5 = hH.loadW4InW3(W5InW4CASEW4, WaAS_Strings.s_InW5);
                     //TreeMap<Short, WaAS_W1HRecord> W4InW5Recs;
                     //W4InW5Recs = (TreeMap<Short, WaAS_W1HRecord>) w4_In_w5[0];
                     //env.log(W5InW4Recs.size() + "\t W5InW4Recs.size()");
@@ -163,7 +164,7 @@ public class WaAS_Main_Process extends WaAS_Object {
                     env.log(W5InW4.lookup.size() + "\t W5InW4.lookup.size()");
                     env.log(W4InW5.lookup.size() + "\t W4InW5.lookup.size()");
                 }
-                mergePersonAndHouseholdDataIntoCollections(env.strings.s_Paired, chunkSize);
+                mergePersonAndHouseholdDataIntoCollections(WaAS_Strings.s_Paired, chunkSize);
             }
         }
         if (doSubset) {
@@ -264,10 +265,10 @@ public class WaAS_Main_Process extends WaAS_Object {
         env.logStartTagMem(m0);
         //Object[] r = new Object[3];
         TreeMap<WaAS_W1ID, WaAS_W1Record> hs;
-        if (type.equalsIgnoreCase(env.strings.s__In_w1w2w3w4w5)) {
+        if (type.equalsIgnoreCase(WaAS_Strings.s__In_w1w2w3w4w5)) {
             hs = env.hh.loadCachedSubsetW1(type);
-        } else if (type.equalsIgnoreCase(env.strings.s_Paired)) {
-            hs = env.hh.loadCachedSubset2W1(env.strings.s__In_ + env.strings.s_w2);
+        } else if (type.equalsIgnoreCase(WaAS_Strings.s_Paired)) {
+            hs = env.hh.loadCachedSubset2W1(WaAS_Strings.s__In_ + WaAS_Strings.s_w2);
         } else {
             env.log("Unrecognised type " + type);
             hs = null;
@@ -393,10 +394,10 @@ public class WaAS_Main_Process extends WaAS_Object {
         String m0 = "mergePersonAndHouseholdDataIntoCollectionsW2";
         env.logStartTagMem(m0);
         TreeMap<WaAS_W2ID, WaAS_W2Record> hs;
-        if (type.equalsIgnoreCase(env.strings.s__In_w1w2w3w4w5)) {
+        if (type.equalsIgnoreCase(WaAS_Strings.s__In_w1w2w3w4w5)) {
             hs = env.hh.loadCachedSubsetW2(type);
-        } else if (type.equalsIgnoreCase(env.strings.s_Paired)) {
-            hs = env.hh.loadCachedSubset2W2(env.strings.s__In_ + env.strings.s_w3);
+        } else if (type.equalsIgnoreCase(WaAS_Strings.s_Paired)) {
+            hs = env.hh.loadCachedSubset2W2(WaAS_Strings.s__In_ + WaAS_Strings.s_w3);
 
             // Debugging code.
             if (hs == null) {
@@ -608,10 +609,10 @@ public class WaAS_Main_Process extends WaAS_Object {
         String m0 = "mergePersonAndHouseholdDataIntoCollectionsW3";
         env.logStartTag(m0);
         TreeMap<WaAS_W3ID, WaAS_W3Record> hs;
-        if (type.equalsIgnoreCase(env.strings.s__In_w1w2w3w4w5)) {
+        if (type.equalsIgnoreCase(WaAS_Strings.s__In_w1w2w3w4w5)) {
             hs = env.hh.loadCachedSubsetW3(type);
-        } else if (type.equalsIgnoreCase(env.strings.s_Paired)) {
-            hs = env.hh.loadCachedSubset2W3(env.strings.s__In_ + env.strings.s_w4);
+        } else if (type.equalsIgnoreCase(WaAS_Strings.s_Paired)) {
+            hs = env.hh.loadCachedSubset2W3(WaAS_Strings.s__In_ + WaAS_Strings.s_w4);
         } else {
             env.log("Unrecognised type " + type);
             hs = null;
@@ -814,10 +815,10 @@ public class WaAS_Main_Process extends WaAS_Object {
         String m0 = "mergePersonAndHouseholdDataIntoCollectionsW4";
         env.logStartTag(m0);
         TreeMap<WaAS_W4ID, WaAS_W4Record> hs;
-        if (type.equalsIgnoreCase(env.strings.s__In_w1w2w3w4w5)) {
+        if (type.equalsIgnoreCase(WaAS_Strings.s__In_w1w2w3w4w5)) {
             hs = env.hh.loadCachedSubsetW4(type);
-        } else if (type.equalsIgnoreCase(env.strings.s_Paired)) {
-            hs = env.hh.loadCachedSubset2W4(env.strings.s__In_ + env.strings.s_w5);
+        } else if (type.equalsIgnoreCase(WaAS_Strings.s_Paired)) {
+            hs = env.hh.loadCachedSubset2W4(WaAS_Strings.s__In_ + WaAS_Strings.s_w5);
         } else {
             env.log("Unrecognised type " + type);
             hs = null;
@@ -1075,10 +1076,10 @@ public class WaAS_Main_Process extends WaAS_Object {
         String m0 = "mergePersonAndHouseholdDataIntoCollectionsW5";
         env.logStartTag(m0);
         TreeMap<WaAS_W5ID, WaAS_W5Record> hs;
-        if (type.equalsIgnoreCase(env.strings.s__In_w1w2w3w4w5)) {
+        if (type.equalsIgnoreCase(WaAS_Strings.s__In_w1w2w3w4w5)) {
             hs = env.hh.loadCachedSubsetW5(type);
-        } else if (type.equalsIgnoreCase(env.strings.s_Paired)) {
-            hs = env.hh.loadCachedSubset2W5(env.strings.s__In_ + env.strings.s_w4); // It may seem eems wierd to be W4 not W5, but probably right!?
+        } else if (type.equalsIgnoreCase(WaAS_Strings.s_Paired)) {
+            hs = env.hh.loadCachedSubset2W5(WaAS_Strings.s__In_ + WaAS_Strings.s_w4); // It may seem eems wierd to be W4 not W5, but probably right!?
             if (hs == null) {
                 env.log("WTF1");
             }

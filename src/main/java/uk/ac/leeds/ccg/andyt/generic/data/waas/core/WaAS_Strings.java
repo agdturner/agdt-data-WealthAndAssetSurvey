@@ -23,29 +23,29 @@ import uk.ac.leeds.ccg.andyt.data.core.Data_Strings;
  */
 public class WaAS_Strings extends Data_Strings {
 
-    public final String PROJECT_NAME = "agdt-java-generic-data-WealthAndAssetsSurvey";
+    public static final String PROJECT_NAME = "agdt-java-generic-data-WealthAndAssetsSurvey";
 
-    public final String s_hhold = "hhold";
-    public final String s_HPROPW = "HPROPW";
-    public final String s_HVALUE = "HVALUE";
-    public final String s_In = "In";
+    public static final String s_hhold = "hhold";
+    public static final String s_HPROPW = "HPROPW";
+    public static final String s_HVALUE = "HVALUE";
+    public static final String s_In = "In";
     
-    public final String s__In_ = "_In_";
-    public final String s__In_w1w2w3w4w5 = "_In_w1w2w3w4w5";
-    public final String s_Paired = "Paired";
-    public final String s_person = "person";
-    public final String s_Simple = "Simple";
-    public final String s_StableHouseholdCompositionSubset = "StableHouseholdCompositionSubset";
-    public final String s_Subset = "Subset";
-    public final String s__To_ = "_To_";
-    public final String s_TOTWLTH = "TOTWLTH";
-    public final String s_WaAS = "WaAS";
-    public final String s_waas = "waas";
-    public final String s_w1 = "w1";
-    public final String s_w2 = "w2";
-    public final String s_w3 = "w3";
-    public final String s_w4 = "w4";
-    public final String s_w5 = "w5";
+    public static final String s__In_ = "_In_";
+    public static final String s__In_w1w2w3w4w5 = "_In_w1w2w3w4w5";
+    public static final String s_Paired = "Paired";
+    public static final String s_person = "person";
+    public static final String s_Simple = "Simple";
+    public static final String s_StableHouseholdCompositionSubset = "StableHouseholdCompositionSubset";
+    public static final String s_Subset = "Subset";
+    public static final String s__To_ = "_To_";
+    public static final String s_TOTWLTH = "TOTWLTH";
+    public static final String s_WaAS = "WaAS";
+    public static final String s_waas = "waas";
+    public static final String s_w1 = "w1";
+    public static final String s_w2 = "w2";
+    public static final String s_w3 = "w3";
+    public static final String s_w4 = "w4";
+    public static final String s_w5 = "w5";
 
     public WaAS_Strings() {
         super();

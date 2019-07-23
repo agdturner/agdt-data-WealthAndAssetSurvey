@@ -27,6 +27,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 import uk.ac.leeds.ccg.andyt.math.Math_Byte;
 import uk.ac.leeds.ccg.andyt.math.Math_Double;
 import uk.ac.leeds.ccg.andyt.math.Math_Integer;
@@ -72,11 +73,11 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
         WaAS_JavaCodeGenerator p = new WaAS_JavaCodeGenerator(e);
         String type;
         // hhold
-        type = e.strings.s_hhold;
+        type = WaAS_Strings.s_hhold;
         Object[] hholdTypes = p.getFieldTypes(type);
         p.run(type, hholdTypes);
         // person
-        type = e.strings.s_person;
+        type = WaAS_Strings.s_person;
         Object[] personTypes = p.getFieldTypes(type);
         p.run(type, personTypes);
     }
@@ -97,7 +98,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
         Object[] r = new Object[4];
         File indir = env.files.getInputWaASDir();
         File generateddir = env.files.getGeneratedWaASDir();
-        File outdir = new File(generateddir, env.strings.s_Subsets);
+        File outdir = new File(generateddir, WaAS_Strings.s_Subsets);
         outdir.mkdirs();
         HashMap<String, Integer>[] allFieldTypes = new HashMap[nwaves];
         String[][] headers = new String[nwaves][];
@@ -396,18 +397,18 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
 
         File outdir;
         outdir = new File(env.files.getDataDir(), "..");
-        outdir = new File(outdir, env.strings.s_src);
-        outdir = new File(outdir, env.strings.s_main);
-        outdir = new File(outdir, env.strings.s_java);
-        outdir = new File(outdir, env.strings.s_uk);
-        outdir = new File(outdir, env.strings.s_ac);
-        outdir = new File(outdir, env.strings.s_leeds);
-        outdir = new File(outdir, env.strings.s_ccg);
-        outdir = new File(outdir, env.strings.s_andyt);
-        outdir = new File(outdir, env.strings.s_generic);
-        outdir = new File(outdir, env.strings.s_data);
-        outdir = new File(outdir, env.strings.s_waas);
-        outdir = new File(outdir, env.strings.s_data);
+        outdir = new File(outdir, WaAS_Strings.s_src);
+        outdir = new File(outdir, WaAS_Strings.s_main);
+        outdir = new File(outdir, WaAS_Strings.s_java);
+        outdir = new File(outdir, WaAS_Strings.s_uk);
+        outdir = new File(outdir, WaAS_Strings.s_ac);
+        outdir = new File(outdir, WaAS_Strings.s_leeds);
+        outdir = new File(outdir, WaAS_Strings.s_ccg);
+        outdir = new File(outdir, WaAS_Strings.s_andyt);
+        outdir = new File(outdir, WaAS_Strings.s_generic);
+        outdir = new File(outdir, WaAS_Strings.s_data);
+        outdir = new File(outdir, WaAS_Strings.s_waas);
+        outdir = new File(outdir, WaAS_Strings.s_data);
         outdir = new File(outdir, type);
         outdir.mkdirs();
         String packageName;
@@ -419,7 +420,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
         int wave;
         String className;
         String extendedClassName;
-        String prepend = env.strings.s_WaAS + env.strings.symbol_underscore;
+        String prepend = WaAS_Strings.s_WaAS + WaAS_Strings.symbol_underscore;
         type = type.toUpperCase().substring(0, 1);
 
         for (int w = 0; w < fields.length; w++) {

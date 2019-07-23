@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 
 /**
  *
@@ -252,7 +253,7 @@ public class WaAS_Data extends WaAS_Object {
      */
     public File getSubsetCollectionFile(WaAS_CollectionID cID) {
         return new File(env.files.getGeneratedWaASSubsetsDir(),
-                env.strings.s_WaAS + env.strings.symbol_underscore + cID
+                WaAS_Strings.s_WaAS + WaAS_Strings.symbol_underscore + cID
                 + env.files.DOT_DAT);
     }
     
@@ -264,8 +265,8 @@ public class WaAS_Data extends WaAS_Object {
      */
     public File getSubsetCollectionSimpleFile(WaAS_CollectionID cID) {
         return new File(env.files.getGeneratedWaASSubsetsDir(),
-                env.strings.s_WaAS + env.strings.symbol_underscore
-                + env.strings.s_Simple + cID + env.files.DOT_DAT);
+                WaAS_Strings.s_WaAS + WaAS_Strings.symbol_underscore
+                + WaAS_Strings.s_Simple + cID + env.files.DOT_DAT);
     }
 
     /**

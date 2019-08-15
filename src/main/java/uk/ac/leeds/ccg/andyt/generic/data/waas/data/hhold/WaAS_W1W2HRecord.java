@@ -5,53 +5,20 @@ package uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold;
 public class WaAS_W1W2HRecord extends WaAS_W1W2W3W4W5HRecord {
 protected int DVBLDDEBT;
 protected int DVBLDVAL;
-protected double DVCACRVAL_SUM;
-protected short DVCACTV_SUM;
-protected double DVCAODVAL_SUM;
-protected int DVCASVV_SUM;
-protected double DVCAVAL_SUM;
-protected int DVCISAV_SUM;
-protected double DVDBRWEALTHVAL_SUM;
 protected int DVEQHIP;
 protected double DVEQRUPM;
-protected int DVFBONDV_SUM;
-protected int DVFCOLLV_SUM;
-protected int DVFESHARES_SUM;
-protected double DVFFASSETS_SUM;
-protected int DVFGLTFOV_SUM;
-protected int DVFGLTUKV_SUM;
-protected int DVFINFLV_SUM;
-protected int DVFINFVAL_SUM;
-protected int DVFINFV_SUM;
-protected int DVFINVOTV_SUM;
-protected int DVFNSVAL_SUM;
-protected int DVFSHOSV_SUM;
-protected int DVFSHUKV_SUM;
 protected byte DVHRPNUM;
 protected int DVHSEDEBT;
 protected int DVHSEVAL;
-protected int DVIISAV_SUM;
-protected int DVINSV_SUM;
-protected int DVISAVAL_SUM;
-protected int DVKISAV_SUM;
 protected int DVLOSDEBT;
 protected int DVLOSVAL;
 protected int DVLUKDEBT;
 protected int DVLUKVAL;
 protected int DVOPRDEBT;
 protected int DVOPRVAL;
-protected double DVPAVCUV_SUM;
-protected double DVPFCURVAL_SUM;
-protected int DVPFDDV_SUM;
-protected double DVPINPVAL_SUM;
-protected double DVPPVAL_SUM;
-protected double DVSAVAL_SUM;
-protected double DVSPEN_SUM;
 protected int DVTOTCARVAL;
 protected int DVTOTMOTBVAL;
 protected int DVTOTVANVAL;
-protected double DVVALDBT_SUM;
-protected double DVVALDCOS_SUM;
 protected int DVVESTV2_I;
 protected boolean DVVESTV2_IFLAG;
 protected int DVVESTV3_I;
@@ -87,22 +54,17 @@ protected boolean ERENTB;
 protected short ERVREC;
 protected boolean ERVRECB;
 protected byte ERVREG;
-protected int GCONTVLS2;
 protected boolean GCPREAM;
-protected double HFINL_SUM;
-protected double HFINW_EXCENDW_SUM;
-protected short HPARR_SUM;
+protected byte GOR;
 protected byte HRPDVAGE15;
 protected byte HRPEMPSTAT2;
 protected byte HRPIOUT1;
-protected byte HRPPART;
 protected byte HRPPARTIOUT1;
 protected byte HVALRS1;
 protected byte HVALRS2;
 protected byte HVALRS3;
 protected byte HVALRS4;
 protected boolean HVALRS5;
-protected int LNARR_SUM;
 protected byte MALL;
 protected byte MALLTY;
 protected byte MALLTY3_I;
@@ -117,6 +79,8 @@ protected byte MENDNUM;
 protected byte MENDNUM_I;
 protected boolean MENDNUM_IFLAG;
 protected int MENDV;
+protected int MENDV11_I;
+protected boolean MENDV11_IFLAG;
 protected byte MENDVB;
 protected boolean MENDVB5;
 protected boolean MENDVB8;
@@ -137,6 +101,8 @@ protected boolean MINC8;
 protected boolean MINC9;
 protected byte MNAME;
 protected int MNEG;
+protected int MNEG3_I;
+protected boolean MNEG3_IFLAG;
 protected byte MNEGB;
 protected int MNEG_I;
 protected boolean MNEG_IFLAG;
@@ -171,16 +137,6 @@ protected byte NUMJOB;
 protected boolean NUMSSEX;
 protected byte NVESTV;
 protected int OTHMORT;
-protected int TOTBILLARR_SUM;
-protected int TOTCC_SUM;
-protected double TOTHP_SUM;
-protected double TOTLOS_SUM;
-protected double TOTMO_SUM;
-protected double TOTPEN_SUM;
-protected short TOTSC_SUM;
-protected double T_FLNS_SUM;
-protected double T_LNS_SUM;
-protected double T_SLNS_SUM;
 protected int VESTV;
 protected int VESTV2;
 protected int VESTV2_I;
@@ -202,8 +158,6 @@ protected boolean VOTYP3_IFLAG;
 protected boolean VOTYP4_IFLAG;
 protected boolean VOTYP5;
 protected boolean VOTYP5_IFLAG;
-protected byte VOVLB_I;
-protected boolean VOVLB_IFLAG;
 protected byte VTYPE;
 protected boolean VTYPE2_IFLAG;
 protected byte VTYPE_I;
@@ -223,62 +177,6 @@ DVBLDVAL = Integer.MIN_VALUE;
 }
 }
 
-protected final void initDVCACRVAL_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVCACRVAL_SUM = Double.parseDouble(s);
-} else {
-DVCACRVAL_SUM = Double.NaN;
-}
-}
-
-protected final void initDVCACTV_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVCACTV_SUM = Short.parseShort(s);
-} else {
-DVCACTV_SUM = Short.MIN_VALUE;
-}
-}
-
-protected final void initDVCAODVAL_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVCAODVAL_SUM = Double.parseDouble(s);
-} else {
-DVCAODVAL_SUM = Double.NaN;
-}
-}
-
-protected final void initDVCASVV_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVCASVV_SUM = Integer.parseInt(s);
-} else {
-DVCASVV_SUM = Integer.MIN_VALUE;
-}
-}
-
-protected final void initDVCAVAL_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVCAVAL_SUM = Double.parseDouble(s);
-} else {
-DVCAVAL_SUM = Double.NaN;
-}
-}
-
-protected final void initDVCISAV_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVCISAV_SUM = Integer.parseInt(s);
-} else {
-DVCISAV_SUM = Integer.MIN_VALUE;
-}
-}
-
-protected final void initDVDBRWEALTHVAL_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVDBRWEALTHVAL_SUM = Double.parseDouble(s);
-} else {
-DVDBRWEALTHVAL_SUM = Double.NaN;
-}
-}
-
 protected final void initDVEQHIP(String s) {
 if (!s.trim().isEmpty()) {
 DVEQHIP = Integer.parseInt(s);
@@ -292,110 +190,6 @@ if (!s.trim().isEmpty()) {
 DVEQRUPM = Double.parseDouble(s);
 } else {
 DVEQRUPM = Double.NaN;
-}
-}
-
-protected final void initDVFBONDV_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVFBONDV_SUM = Integer.parseInt(s);
-} else {
-DVFBONDV_SUM = Integer.MIN_VALUE;
-}
-}
-
-protected final void initDVFCOLLV_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVFCOLLV_SUM = Integer.parseInt(s);
-} else {
-DVFCOLLV_SUM = Integer.MIN_VALUE;
-}
-}
-
-protected final void initDVFESHARES_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVFESHARES_SUM = Integer.parseInt(s);
-} else {
-DVFESHARES_SUM = Integer.MIN_VALUE;
-}
-}
-
-protected final void initDVFFASSETS_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVFFASSETS_SUM = Double.parseDouble(s);
-} else {
-DVFFASSETS_SUM = Double.NaN;
-}
-}
-
-protected final void initDVFGLTFOV_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVFGLTFOV_SUM = Integer.parseInt(s);
-} else {
-DVFGLTFOV_SUM = Integer.MIN_VALUE;
-}
-}
-
-protected final void initDVFGLTUKV_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVFGLTUKV_SUM = Integer.parseInt(s);
-} else {
-DVFGLTUKV_SUM = Integer.MIN_VALUE;
-}
-}
-
-protected final void initDVFINFLV_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVFINFLV_SUM = Integer.parseInt(s);
-} else {
-DVFINFLV_SUM = Integer.MIN_VALUE;
-}
-}
-
-protected final void initDVFINFVAL_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVFINFVAL_SUM = Integer.parseInt(s);
-} else {
-DVFINFVAL_SUM = Integer.MIN_VALUE;
-}
-}
-
-protected final void initDVFINFV_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVFINFV_SUM = Integer.parseInt(s);
-} else {
-DVFINFV_SUM = Integer.MIN_VALUE;
-}
-}
-
-protected final void initDVFINVOTV_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVFINVOTV_SUM = Integer.parseInt(s);
-} else {
-DVFINVOTV_SUM = Integer.MIN_VALUE;
-}
-}
-
-protected final void initDVFNSVAL_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVFNSVAL_SUM = Integer.parseInt(s);
-} else {
-DVFNSVAL_SUM = Integer.MIN_VALUE;
-}
-}
-
-protected final void initDVFSHOSV_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVFSHOSV_SUM = Integer.parseInt(s);
-} else {
-DVFSHOSV_SUM = Integer.MIN_VALUE;
-}
-}
-
-protected final void initDVFSHUKV_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVFSHUKV_SUM = Integer.parseInt(s);
-} else {
-DVFSHUKV_SUM = Integer.MIN_VALUE;
 }
 }
 
@@ -420,38 +214,6 @@ if (!s.trim().isEmpty()) {
 DVHSEVAL = Integer.parseInt(s);
 } else {
 DVHSEVAL = Integer.MIN_VALUE;
-}
-}
-
-protected final void initDVIISAV_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVIISAV_SUM = Integer.parseInt(s);
-} else {
-DVIISAV_SUM = Integer.MIN_VALUE;
-}
-}
-
-protected final void initDVINSV_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVINSV_SUM = Integer.parseInt(s);
-} else {
-DVINSV_SUM = Integer.MIN_VALUE;
-}
-}
-
-protected final void initDVISAVAL_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVISAVAL_SUM = Integer.parseInt(s);
-} else {
-DVISAVAL_SUM = Integer.MIN_VALUE;
-}
-}
-
-protected final void initDVKISAV_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVKISAV_SUM = Integer.parseInt(s);
-} else {
-DVKISAV_SUM = Integer.MIN_VALUE;
 }
 }
 
@@ -503,62 +265,6 @@ DVOPRVAL = Integer.MIN_VALUE;
 }
 }
 
-protected final void initDVPAVCUV_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVPAVCUV_SUM = Double.parseDouble(s);
-} else {
-DVPAVCUV_SUM = Double.NaN;
-}
-}
-
-protected final void initDVPFCURVAL_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVPFCURVAL_SUM = Double.parseDouble(s);
-} else {
-DVPFCURVAL_SUM = Double.NaN;
-}
-}
-
-protected final void initDVPFDDV_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVPFDDV_SUM = Integer.parseInt(s);
-} else {
-DVPFDDV_SUM = Integer.MIN_VALUE;
-}
-}
-
-protected final void initDVPINPVAL_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVPINPVAL_SUM = Double.parseDouble(s);
-} else {
-DVPINPVAL_SUM = Double.NaN;
-}
-}
-
-protected final void initDVPPVAL_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVPPVAL_SUM = Double.parseDouble(s);
-} else {
-DVPPVAL_SUM = Double.NaN;
-}
-}
-
-protected final void initDVSAVAL_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVSAVAL_SUM = Double.parseDouble(s);
-} else {
-DVSAVAL_SUM = Double.NaN;
-}
-}
-
-protected final void initDVSPEN_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVSPEN_SUM = Double.parseDouble(s);
-} else {
-DVSPEN_SUM = Double.NaN;
-}
-}
-
 protected final void initDVTOTCARVAL(String s) {
 if (!s.trim().isEmpty()) {
 DVTOTCARVAL = Integer.parseInt(s);
@@ -580,22 +286,6 @@ if (!s.trim().isEmpty()) {
 DVTOTVANVAL = Integer.parseInt(s);
 } else {
 DVTOTVANVAL = Integer.MIN_VALUE;
-}
-}
-
-protected final void initDVVALDBT_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVVALDBT_SUM = Double.parseDouble(s);
-} else {
-DVVALDBT_SUM = Double.NaN;
-}
-}
-
-protected final void initDVVALDCOS_SUM(String s) {
-if (!s.trim().isEmpty()) {
-DVVALDCOS_SUM = Double.parseDouble(s);
-} else {
-DVVALDCOS_SUM = Double.NaN;
 }
 }
 
@@ -868,14 +558,6 @@ ERVREG = Byte.MIN_VALUE;
 }
 }
 
-protected final void initGCONTVLS2(String s) {
-if (!s.trim().isEmpty()) {
-GCONTVLS2 = Integer.parseInt(s);
-} else {
-GCONTVLS2 = Integer.MIN_VALUE;
-}
-}
-
 protected final void initGCPREAM(String s) {
 if (!s.trim().isEmpty()) {
 byte b = Byte.parseByte(s);
@@ -883,27 +565,11 @@ GCPREAM = false;
 }
 }
 
-protected final void initHFINL_SUM(String s) {
+protected final void initGOR(String s) {
 if (!s.trim().isEmpty()) {
-HFINL_SUM = Double.parseDouble(s);
+GOR = Byte.parseByte(s);
 } else {
-HFINL_SUM = Double.NaN;
-}
-}
-
-protected final void initHFINW_EXCENDW_SUM(String s) {
-if (!s.trim().isEmpty()) {
-HFINW_EXCENDW_SUM = Double.parseDouble(s);
-} else {
-HFINW_EXCENDW_SUM = Double.NaN;
-}
-}
-
-protected final void initHPARR_SUM(String s) {
-if (!s.trim().isEmpty()) {
-HPARR_SUM = Short.parseShort(s);
-} else {
-HPARR_SUM = Short.MIN_VALUE;
+GOR = Byte.MIN_VALUE;
 }
 }
 
@@ -928,14 +594,6 @@ if (!s.trim().isEmpty()) {
 HRPIOUT1 = Byte.parseByte(s);
 } else {
 HRPIOUT1 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initHRPPART(String s) {
-if (!s.trim().isEmpty()) {
-HRPPART = Byte.parseByte(s);
-} else {
-HRPPART = Byte.MIN_VALUE;
 }
 }
 
@@ -983,14 +641,6 @@ protected final void initHVALRS5(String s) {
 if (!s.trim().isEmpty()) {
 byte b = Byte.parseByte(s);
 HVALRS5 = false;
-}
-}
-
-protected final void initLNARR_SUM(String s) {
-if (!s.trim().isEmpty()) {
-LNARR_SUM = Integer.parseInt(s);
-} else {
-LNARR_SUM = Integer.MIN_VALUE;
 }
 }
 
@@ -1099,6 +749,21 @@ if (!s.trim().isEmpty()) {
 MENDV = Integer.parseInt(s);
 } else {
 MENDV = Integer.MIN_VALUE;
+}
+}
+
+protected final void initMENDV11_I(String s) {
+if (!s.trim().isEmpty()) {
+MENDV11_I = Integer.parseInt(s);
+} else {
+MENDV11_I = Integer.MIN_VALUE;
+}
+}
+
+protected final void initMENDV11_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+MENDV11_IFLAG = false;
 }
 }
 
@@ -1251,6 +916,21 @@ if (!s.trim().isEmpty()) {
 MNEG = Integer.parseInt(s);
 } else {
 MNEG = Integer.MIN_VALUE;
+}
+}
+
+protected final void initMNEG3_I(String s) {
+if (!s.trim().isEmpty()) {
+MNEG3_I = Integer.parseInt(s);
+} else {
+MNEG3_I = Integer.MIN_VALUE;
+}
+}
+
+protected final void initMNEG3_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+MNEG3_IFLAG = false;
 }
 }
 
@@ -1520,86 +1200,6 @@ OTHMORT = Integer.MIN_VALUE;
 }
 }
 
-protected final void initTOTBILLARR_SUM(String s) {
-if (!s.trim().isEmpty()) {
-TOTBILLARR_SUM = Integer.parseInt(s);
-} else {
-TOTBILLARR_SUM = Integer.MIN_VALUE;
-}
-}
-
-protected final void initTOTCC_SUM(String s) {
-if (!s.trim().isEmpty()) {
-TOTCC_SUM = Integer.parseInt(s);
-} else {
-TOTCC_SUM = Integer.MIN_VALUE;
-}
-}
-
-protected final void initTOTHP_SUM(String s) {
-if (!s.trim().isEmpty()) {
-TOTHP_SUM = Double.parseDouble(s);
-} else {
-TOTHP_SUM = Double.NaN;
-}
-}
-
-protected final void initTOTLOS_SUM(String s) {
-if (!s.trim().isEmpty()) {
-TOTLOS_SUM = Double.parseDouble(s);
-} else {
-TOTLOS_SUM = Double.NaN;
-}
-}
-
-protected final void initTOTMO_SUM(String s) {
-if (!s.trim().isEmpty()) {
-TOTMO_SUM = Double.parseDouble(s);
-} else {
-TOTMO_SUM = Double.NaN;
-}
-}
-
-protected final void initTOTPEN_SUM(String s) {
-if (!s.trim().isEmpty()) {
-TOTPEN_SUM = Double.parseDouble(s);
-} else {
-TOTPEN_SUM = Double.NaN;
-}
-}
-
-protected final void initTOTSC_SUM(String s) {
-if (!s.trim().isEmpty()) {
-TOTSC_SUM = Short.parseShort(s);
-} else {
-TOTSC_SUM = Short.MIN_VALUE;
-}
-}
-
-protected final void initT_FLNS_SUM(String s) {
-if (!s.trim().isEmpty()) {
-T_FLNS_SUM = Double.parseDouble(s);
-} else {
-T_FLNS_SUM = Double.NaN;
-}
-}
-
-protected final void initT_LNS_SUM(String s) {
-if (!s.trim().isEmpty()) {
-T_LNS_SUM = Double.parseDouble(s);
-} else {
-T_LNS_SUM = Double.NaN;
-}
-}
-
-protected final void initT_SLNS_SUM(String s) {
-if (!s.trim().isEmpty()) {
-T_SLNS_SUM = Double.parseDouble(s);
-} else {
-T_SLNS_SUM = Double.NaN;
-}
-}
-
 protected final void initVESTV(String s) {
 if (!s.trim().isEmpty()) {
 VESTV = Integer.parseInt(s);
@@ -1758,21 +1358,6 @@ VOTYP5_IFLAG = false;
 }
 }
 
-protected final void initVOVLB_I(String s) {
-if (!s.trim().isEmpty()) {
-VOVLB_I = Byte.parseByte(s);
-} else {
-VOVLB_I = Byte.MIN_VALUE;
-}
-}
-
-protected final void initVOVLB_IFLAG(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-VOVLB_IFLAG = false;
-}
-}
-
 protected final void initVTYPE(String s) {
 if (!s.trim().isEmpty()) {
 VTYPE = Byte.parseByte(s);
@@ -1804,92 +1389,12 @@ public int getDVBLDVAL() {
 return DVBLDVAL;
 }
 
-public double getDVCACRVAL_SUM() {
-return DVCACRVAL_SUM;
-}
-
-public short getDVCACTV_SUM() {
-return DVCACTV_SUM;
-}
-
-public double getDVCAODVAL_SUM() {
-return DVCAODVAL_SUM;
-}
-
-public int getDVCASVV_SUM() {
-return DVCASVV_SUM;
-}
-
-public double getDVCAVAL_SUM() {
-return DVCAVAL_SUM;
-}
-
-public int getDVCISAV_SUM() {
-return DVCISAV_SUM;
-}
-
-public double getDVDBRWEALTHVAL_SUM() {
-return DVDBRWEALTHVAL_SUM;
-}
-
 public int getDVEQHIP() {
 return DVEQHIP;
 }
 
 public double getDVEQRUPM() {
 return DVEQRUPM;
-}
-
-public int getDVFBONDV_SUM() {
-return DVFBONDV_SUM;
-}
-
-public int getDVFCOLLV_SUM() {
-return DVFCOLLV_SUM;
-}
-
-public int getDVFESHARES_SUM() {
-return DVFESHARES_SUM;
-}
-
-public double getDVFFASSETS_SUM() {
-return DVFFASSETS_SUM;
-}
-
-public int getDVFGLTFOV_SUM() {
-return DVFGLTFOV_SUM;
-}
-
-public int getDVFGLTUKV_SUM() {
-return DVFGLTUKV_SUM;
-}
-
-public int getDVFINFLV_SUM() {
-return DVFINFLV_SUM;
-}
-
-public int getDVFINFVAL_SUM() {
-return DVFINFVAL_SUM;
-}
-
-public int getDVFINFV_SUM() {
-return DVFINFV_SUM;
-}
-
-public int getDVFINVOTV_SUM() {
-return DVFINVOTV_SUM;
-}
-
-public int getDVFNSVAL_SUM() {
-return DVFNSVAL_SUM;
-}
-
-public int getDVFSHOSV_SUM() {
-return DVFSHOSV_SUM;
-}
-
-public int getDVFSHUKV_SUM() {
-return DVFSHUKV_SUM;
 }
 
 public byte getDVHRPNUM() {
@@ -1902,22 +1407,6 @@ return DVHSEDEBT;
 
 public int getDVHSEVAL() {
 return DVHSEVAL;
-}
-
-public int getDVIISAV_SUM() {
-return DVIISAV_SUM;
-}
-
-public int getDVINSV_SUM() {
-return DVINSV_SUM;
-}
-
-public int getDVISAVAL_SUM() {
-return DVISAVAL_SUM;
-}
-
-public int getDVKISAV_SUM() {
-return DVKISAV_SUM;
 }
 
 public int getDVLOSDEBT() {
@@ -1944,34 +1433,6 @@ public int getDVOPRVAL() {
 return DVOPRVAL;
 }
 
-public double getDVPAVCUV_SUM() {
-return DVPAVCUV_SUM;
-}
-
-public double getDVPFCURVAL_SUM() {
-return DVPFCURVAL_SUM;
-}
-
-public int getDVPFDDV_SUM() {
-return DVPFDDV_SUM;
-}
-
-public double getDVPINPVAL_SUM() {
-return DVPINPVAL_SUM;
-}
-
-public double getDVPPVAL_SUM() {
-return DVPPVAL_SUM;
-}
-
-public double getDVSAVAL_SUM() {
-return DVSAVAL_SUM;
-}
-
-public double getDVSPEN_SUM() {
-return DVSPEN_SUM;
-}
-
 public int getDVTOTCARVAL() {
 return DVTOTCARVAL;
 }
@@ -1982,14 +1443,6 @@ return DVTOTMOTBVAL;
 
 public int getDVTOTVANVAL() {
 return DVTOTVANVAL;
-}
-
-public double getDVVALDBT_SUM() {
-return DVVALDBT_SUM;
-}
-
-public double getDVVALDCOS_SUM() {
-return DVVALDCOS_SUM;
 }
 
 public int getDVVESTV2_I() {
@@ -2132,24 +1585,12 @@ public byte getERVREG() {
 return ERVREG;
 }
 
-public int getGCONTVLS2() {
-return GCONTVLS2;
-}
-
 public boolean getGCPREAM() {
 return GCPREAM;
 }
 
-public double getHFINL_SUM() {
-return HFINL_SUM;
-}
-
-public double getHFINW_EXCENDW_SUM() {
-return HFINW_EXCENDW_SUM;
-}
-
-public short getHPARR_SUM() {
-return HPARR_SUM;
+public byte getGOR() {
+return GOR;
 }
 
 public byte getHRPDVAGE15() {
@@ -2162,10 +1603,6 @@ return HRPEMPSTAT2;
 
 public byte getHRPIOUT1() {
 return HRPIOUT1;
-}
-
-public byte getHRPPART() {
-return HRPPART;
 }
 
 public byte getHRPPARTIOUT1() {
@@ -2190,10 +1627,6 @@ return HVALRS4;
 
 public boolean getHVALRS5() {
 return HVALRS5;
-}
-
-public int getLNARR_SUM() {
-return LNARR_SUM;
 }
 
 public byte getMALL() {
@@ -2250,6 +1683,14 @@ return MENDNUM_IFLAG;
 
 public int getMENDV() {
 return MENDV;
+}
+
+public int getMENDV11_I() {
+return MENDV11_I;
+}
+
+public boolean getMENDV11_IFLAG() {
+return MENDV11_IFLAG;
 }
 
 public byte getMENDVB() {
@@ -2330,6 +1771,14 @@ return MNAME;
 
 public int getMNEG() {
 return MNEG;
+}
+
+public int getMNEG3_I() {
+return MNEG3_I;
+}
+
+public boolean getMNEG3_IFLAG() {
+return MNEG3_IFLAG;
 }
 
 public byte getMNEGB() {
@@ -2468,46 +1917,6 @@ public int getOTHMORT() {
 return OTHMORT;
 }
 
-public int getTOTBILLARR_SUM() {
-return TOTBILLARR_SUM;
-}
-
-public int getTOTCC_SUM() {
-return TOTCC_SUM;
-}
-
-public double getTOTHP_SUM() {
-return TOTHP_SUM;
-}
-
-public double getTOTLOS_SUM() {
-return TOTLOS_SUM;
-}
-
-public double getTOTMO_SUM() {
-return TOTMO_SUM;
-}
-
-public double getTOTPEN_SUM() {
-return TOTPEN_SUM;
-}
-
-public short getTOTSC_SUM() {
-return TOTSC_SUM;
-}
-
-public double getT_FLNS_SUM() {
-return T_FLNS_SUM;
-}
-
-public double getT_LNS_SUM() {
-return T_LNS_SUM;
-}
-
-public double getT_SLNS_SUM() {
-return T_SLNS_SUM;
-}
-
 public int getVESTV() {
 return VESTV;
 }
@@ -2590,14 +1999,6 @@ return VOTYP5;
 
 public boolean getVOTYP5_IFLAG() {
 return VOTYP5_IFLAG;
-}
-
-public byte getVOVLB_I() {
-return VOVLB_I;
-}
-
-public boolean getVOVLB_IFLAG() {
-return VOVLB_IFLAG;
 }
 
 public byte getVTYPE() {

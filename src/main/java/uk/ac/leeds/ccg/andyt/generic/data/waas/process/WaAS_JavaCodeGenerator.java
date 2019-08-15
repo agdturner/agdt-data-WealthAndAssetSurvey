@@ -200,7 +200,8 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
         Object[] r = new Object[9];
         HashMap<String, Byte> v0m = new HashMap<>();
         HashMap<String, Byte> v1m = new HashMap<>();
-        File f = getInputFile(wave, TYPE, indir);
+        //File f = getInputFile(wave, TYPE, indir);
+        File f = env.hh.getInputFile((byte) wave, TYPE);
         BufferedReader br = env.ge.io.getBufferedReader(f);
         String line = br.lines().findFirst().get();
         String[] fields = parseHeader(line, wave);
@@ -258,17 +259,6 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
         r[8] = v1m;
         env.logEndTag(m);
         return r;
-    }
-
-    public File getInputFile(int wave, String type, File indir) {
-        File f;
-        String filename = "was_wave_" + wave + "_" + type + "_eul_final";
-        if (wave < 4) {
-            filename += "_v2";
-        }
-        filename += ".tab";
-        f = new File(indir, filename);
-        return f;
     }
 
     /**

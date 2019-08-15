@@ -78,13 +78,14 @@ protected int CASVV;
 protected int CASVV_I;
 protected byte CASVV_IFLAG;
 protected byte COURSE;
-protected boolean CURRAC;
 protected byte DBURD;
 protected byte DBURDA;
 protected int DCAMC2;
 protected int DCAMC3;
 protected short DCAMD2;
 protected short DCAMD3;
+protected int DCAMOS2;
+protected int DCAMOS3;
 protected short DCAMP2;
 protected short DCAMP3;
 protected byte DCANU;
@@ -103,6 +104,8 @@ protected int DCOINV2;
 protected int DCOINV2_I;
 protected byte DCOINV2_IFLAG;
 protected short DCOINV3;
+protected short DCOINV3_I;
+protected byte DCOINV3_IFLAG;
 protected byte DCOINVB2;
 protected byte DCOINVB3;
 protected byte DCONM1;
@@ -312,11 +315,11 @@ protected byte DLWEST2;
 protected byte DLWEST3;
 protected byte DLWEST4;
 protected byte DLWEST5;
-protected short DLWHNM2;
-protected short DLWHNM2_I;
+protected byte DLWHNM2;
+protected byte DLWHNM2_I;
 protected byte DLWHNM2_IFLAG;
-protected short DLWHNM3;
-protected short DLWHNM3_I;
+protected byte DLWHNM3;
+protected byte DLWHNM3_I;
 protected byte DLWHNM3_IFLAG;
 protected byte DLWHNM4;
 protected byte DLWHNM4_I;
@@ -343,7 +346,6 @@ protected byte DLWHY16;
 protected byte DLWHY2;
 protected byte DLWHY22;
 protected byte DLWHY23;
-protected byte DLWHY29;
 protected byte DLWHY3;
 protected byte DLWHY4;
 protected byte DLWHY5;
@@ -380,6 +382,8 @@ protected short DSAMC2;
 protected short DSAMC3;
 protected short DSAMD2;
 protected short DSAMD3;
+protected short DSAMOS2;
+protected short DSAMOS3;
 protected short DSAMP2;
 protected short DSAMP3;
 protected byte DSANU1;
@@ -446,6 +450,7 @@ protected short DVDHPOWE2;
 protected int DVDLOWE2;
 protected short DVDLOWE3;
 protected short DVDLOWE4;
+protected short DVDLOWE5;
 protected short DVDMOOWE2;
 protected byte DVELARR;
 protected int DVFBONDV;
@@ -473,7 +478,7 @@ protected byte DVHASDB;
 protected boolean DVHASDC;
 protected boolean DVHASPFCUR;
 protected boolean DVHASPFD;
-protected boolean DVHASPP;
+protected byte DVHASPP;
 protected byte DVHPAR;
 protected int DVIISAV;
 protected byte DVILO3A;
@@ -645,6 +650,7 @@ protected byte FINVTY09_I;
 protected byte FINVTY10;
 protected byte FINVTY10_I;
 protected byte FINVTY11;
+protected byte FINVTY11_I;
 protected byte FISA1;
 protected byte FISA1_I;
 protected byte FISA1_IFLAG;
@@ -692,6 +698,7 @@ protected byte FNSAV1;
 protected byte FNSAV2;
 protected byte FNSAV3;
 protected byte FNSAV4;
+protected int FNSVAL_I;
 protected byte FNSVAL_IFLAG;
 protected byte FNSVB;
 protected byte FSACSH;
@@ -741,7 +748,6 @@ protected boolean FSTYPSH4;
 protected byte FTED;
 protected byte FTED19;
 protected byte FTPTWK;
-protected byte GOR;
 protected byte GRSESM;
 protected byte GRSESP;
 protected boolean HASCHD;
@@ -783,6 +789,8 @@ protected int ILUPP;
 protected byte ILWNB;
 protected byte IOUT1;
 protected boolean ISDEP;
+protected boolean ISHRP;
+protected boolean ISHRPPART;
 protected boolean ISNDEP;
 protected byte IVALB2;
 protected byte IVALB3;
@@ -863,7 +871,7 @@ protected byte OTHSRC2_I;
 protected boolean OTHSRC2_IFLAG;
 protected byte OTHSRC3;
 protected byte OTHSRC3_I;
-protected byte OTHSRC3_IFLAG;
+protected boolean OTHSRC3_IFLAG;
 protected byte OTRUST01;
 protected byte OTRUST02;
 protected byte OTRUST03;
@@ -897,7 +905,7 @@ protected byte PAYSLP;
 protected byte PEARLRS;
 protected byte PEMELG;
 protected byte PEMELG_I;
-protected boolean PEMELG_IFLAG;
+protected byte PEMELG_IFLAG;
 protected byte PEMMEM;
 protected byte PEMMEM_I;
 protected boolean PEMMEM_IFLAG;
@@ -908,14 +916,14 @@ protected byte PERSONW1;
 protected byte PERSPROX;
 protected byte PEVERC;
 protected byte PEVERC_I;
-protected byte PEVERC_IFLAG;
+protected boolean PEVERC_IFLAG;
 protected byte PEVERNC;
 protected byte PEVERNC_I;
-protected byte PEVERNC_IFLAG;
+protected boolean PEVERNC_IFLAG;
 protected byte PEXPRET;
 protected byte PFNUM;
 protected byte PFNUM_I;
-protected byte PFNUM_IFLAG;
+protected boolean PFNUM_IFLAG;
 protected byte PFULRET;
 protected double PINCINP;
 protected byte POCNMSC;
@@ -927,7 +935,7 @@ protected boolean PPRNMSC_IFLAG;
 protected byte PPYSTP10;
 protected byte PRETAIN;
 protected byte PRETAIN_I;
-protected byte PRETAIN_IFLAG;
+protected boolean PRETAIN_IFLAG;
 protected byte PSCHM_F;
 protected byte PSCHM_F_I;
 protected boolean PSCHM_F_IFLAG;
@@ -1599,17 +1607,6 @@ COURSE = Byte.MIN_VALUE;
 }
 }
 
-protected final void initCURRAC(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-if (b == 0) {
-CURRAC = false;
-} else {
-CURRAC = true;
-}
-}
-}
-
 protected final void initDBURD(String s) {
 if (!s.trim().isEmpty()) {
 DBURD = Byte.parseByte(s);
@@ -1655,6 +1652,22 @@ if (!s.trim().isEmpty()) {
 DCAMD3 = Short.parseShort(s);
 } else {
 DCAMD3 = Short.MIN_VALUE;
+}
+}
+
+protected final void initDCAMOS2(String s) {
+if (!s.trim().isEmpty()) {
+DCAMOS2 = Integer.parseInt(s);
+} else {
+DCAMOS2 = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDCAMOS3(String s) {
+if (!s.trim().isEmpty()) {
+DCAMOS3 = Integer.parseInt(s);
+} else {
+DCAMOS3 = Integer.MIN_VALUE;
 }
 }
 
@@ -1799,6 +1812,22 @@ if (!s.trim().isEmpty()) {
 DCOINV3 = Short.parseShort(s);
 } else {
 DCOINV3 = Short.MIN_VALUE;
+}
+}
+
+protected final void initDCOINV3_I(String s) {
+if (!s.trim().isEmpty()) {
+DCOINV3_I = Short.parseShort(s);
+} else {
+DCOINV3_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initDCOINV3_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCOINV3_IFLAG = Byte.parseByte(s);
+} else {
+DCOINV3_IFLAG = Byte.MIN_VALUE;
 }
 }
 
@@ -3476,17 +3505,17 @@ DLWEST5 = Byte.MIN_VALUE;
 
 protected final void initDLWHNM2(String s) {
 if (!s.trim().isEmpty()) {
-DLWHNM2 = Short.parseShort(s);
+DLWHNM2 = Byte.parseByte(s);
 } else {
-DLWHNM2 = Short.MIN_VALUE;
+DLWHNM2 = Byte.MIN_VALUE;
 }
 }
 
 protected final void initDLWHNM2_I(String s) {
 if (!s.trim().isEmpty()) {
-DLWHNM2_I = Short.parseShort(s);
+DLWHNM2_I = Byte.parseByte(s);
 } else {
-DLWHNM2_I = Short.MIN_VALUE;
+DLWHNM2_I = Byte.MIN_VALUE;
 }
 }
 
@@ -3500,17 +3529,17 @@ DLWHNM2_IFLAG = Byte.MIN_VALUE;
 
 protected final void initDLWHNM3(String s) {
 if (!s.trim().isEmpty()) {
-DLWHNM3 = Short.parseShort(s);
+DLWHNM3 = Byte.parseByte(s);
 } else {
-DLWHNM3 = Short.MIN_VALUE;
+DLWHNM3 = Byte.MIN_VALUE;
 }
 }
 
 protected final void initDLWHNM3_I(String s) {
 if (!s.trim().isEmpty()) {
-DLWHNM3_I = Short.parseShort(s);
+DLWHNM3_I = Byte.parseByte(s);
 } else {
-DLWHNM3_I = Short.MIN_VALUE;
+DLWHNM3_I = Byte.MIN_VALUE;
 }
 }
 
@@ -3719,14 +3748,6 @@ if (!s.trim().isEmpty()) {
 DLWHY23 = Byte.parseByte(s);
 } else {
 DLWHY23 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initDLWHY29(String s) {
-if (!s.trim().isEmpty()) {
-DLWHY29 = Byte.parseByte(s);
-} else {
-DLWHY29 = Byte.MIN_VALUE;
 }
 }
 
@@ -4015,6 +4036,22 @@ if (!s.trim().isEmpty()) {
 DSAMD3 = Short.parseShort(s);
 } else {
 DSAMD3 = Short.MIN_VALUE;
+}
+}
+
+protected final void initDSAMOS2(String s) {
+if (!s.trim().isEmpty()) {
+DSAMOS2 = Short.parseShort(s);
+} else {
+DSAMOS2 = Short.MIN_VALUE;
+}
+}
+
+protected final void initDSAMOS3(String s) {
+if (!s.trim().isEmpty()) {
+DSAMOS3 = Short.parseShort(s);
+} else {
+DSAMOS3 = Short.MIN_VALUE;
 }
 }
 
@@ -4550,6 +4587,14 @@ DVDLOWE4 = Short.MIN_VALUE;
 }
 }
 
+protected final void initDVDLOWE5(String s) {
+if (!s.trim().isEmpty()) {
+DVDLOWE5 = Short.parseShort(s);
+} else {
+DVDLOWE5 = Short.MIN_VALUE;
+}
+}
+
 protected final void initDVDMOOWE2(String s) {
 if (!s.trim().isEmpty()) {
 DVDMOOWE2 = Short.parseShort(s);
@@ -4780,12 +4825,9 @@ DVHASPFD = true;
 
 protected final void initDVHASPP(String s) {
 if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-if (b == 0) {
-DVHASPP = false;
+DVHASPP = Byte.parseByte(s);
 } else {
-DVHASPP = true;
-}
+DVHASPP = Byte.MIN_VALUE;
 }
 }
 
@@ -6157,6 +6199,14 @@ FINVTY11 = Byte.MIN_VALUE;
 }
 }
 
+protected final void initFINVTY11_I(String s) {
+if (!s.trim().isEmpty()) {
+FINVTY11_I = Byte.parseByte(s);
+} else {
+FINVTY11_I = Byte.MIN_VALUE;
+}
+}
+
 protected final void initFISA1(String s) {
 if (!s.trim().isEmpty()) {
 FISA1 = Byte.parseByte(s);
@@ -6536,6 +6586,14 @@ if (!s.trim().isEmpty()) {
 FNSAV4 = Byte.parseByte(s);
 } else {
 FNSAV4 = Byte.MIN_VALUE;
+}
+}
+
+protected final void initFNSVAL_I(String s) {
+if (!s.trim().isEmpty()) {
+FNSVAL_I = Integer.parseInt(s);
+} else {
+FNSVAL_I = Integer.MIN_VALUE;
 }
 }
 
@@ -6934,14 +6992,6 @@ FTPTWK = Byte.MIN_VALUE;
 }
 }
 
-protected final void initGOR(String s) {
-if (!s.trim().isEmpty()) {
-GOR = Byte.parseByte(s);
-} else {
-GOR = Byte.MIN_VALUE;
-}
-}
-
 protected final void initGRSESM(String s) {
 if (!s.trim().isEmpty()) {
 GRSESM = Byte.parseByte(s);
@@ -7278,6 +7328,28 @@ if (b == 1) {
 ISDEP = false;
 } else {
 ISDEP = true;
+}
+}
+}
+
+protected final void initISHRP(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 1) {
+ISHRP = false;
+} else {
+ISHRP = true;
+}
+}
+}
+
+protected final void initISHRPPART(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 1) {
+ISHRPPART = false;
+} else {
+ISHRPPART = true;
 }
 }
 }
@@ -7933,9 +8005,12 @@ OTHSRC3_I = Byte.MIN_VALUE;
 
 protected final void initOTHSRC3_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-OTHSRC3_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+OTHSRC3_IFLAG = false;
 } else {
-OTHSRC3_IFLAG = Byte.MIN_VALUE;
+OTHSRC3_IFLAG = true;
+}
 }
 }
 
@@ -8208,12 +8283,9 @@ PEMELG_I = Byte.MIN_VALUE;
 
 protected final void initPEMELG_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-if (b == 0) {
-PEMELG_IFLAG = false;
+PEMELG_IFLAG = Byte.parseByte(s);
 } else {
-PEMELG_IFLAG = true;
-}
+PEMELG_IFLAG = Byte.MIN_VALUE;
 }
 }
 
@@ -8305,9 +8377,12 @@ PEVERC_I = Byte.MIN_VALUE;
 
 protected final void initPEVERC_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-PEVERC_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+PEVERC_IFLAG = false;
 } else {
-PEVERC_IFLAG = Byte.MIN_VALUE;
+PEVERC_IFLAG = true;
+}
 }
 }
 
@@ -8329,9 +8404,12 @@ PEVERNC_I = Byte.MIN_VALUE;
 
 protected final void initPEVERNC_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-PEVERNC_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+PEVERNC_IFLAG = false;
 } else {
-PEVERNC_IFLAG = Byte.MIN_VALUE;
+PEVERNC_IFLAG = true;
+}
 }
 }
 
@@ -8361,9 +8439,12 @@ PFNUM_I = Byte.MIN_VALUE;
 
 protected final void initPFNUM_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-PFNUM_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+PFNUM_IFLAG = false;
 } else {
-PFNUM_IFLAG = Byte.MIN_VALUE;
+PFNUM_IFLAG = true;
+}
 }
 }
 
@@ -8463,9 +8544,12 @@ PRETAIN_I = Byte.MIN_VALUE;
 
 protected final void initPRETAIN_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-PRETAIN_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+PRETAIN_IFLAG = false;
 } else {
-PRETAIN_IFLAG = Byte.MIN_VALUE;
+PRETAIN_IFLAG = true;
+}
 }
 }
 
@@ -9528,10 +9612,6 @@ public byte getCOURSE() {
 return COURSE;
 }
 
-public boolean getCURRAC() {
-return CURRAC;
-}
-
 public byte getDBURD() {
 return DBURD;
 }
@@ -9554,6 +9634,14 @@ return DCAMD2;
 
 public short getDCAMD3() {
 return DCAMD3;
+}
+
+public int getDCAMOS2() {
+return DCAMOS2;
+}
+
+public int getDCAMOS3() {
+return DCAMOS3;
 }
 
 public short getDCAMP2() {
@@ -9626,6 +9714,14 @@ return DCOINV2_IFLAG;
 
 public short getDCOINV3() {
 return DCOINV3;
+}
+
+public short getDCOINV3_I() {
+return DCOINV3_I;
+}
+
+public byte getDCOINV3_IFLAG() {
+return DCOINV3_IFLAG;
 }
 
 public byte getDCOINVB2() {
@@ -10464,11 +10560,11 @@ public byte getDLWEST5() {
 return DLWEST5;
 }
 
-public short getDLWHNM2() {
+public byte getDLWHNM2() {
 return DLWHNM2;
 }
 
-public short getDLWHNM2_I() {
+public byte getDLWHNM2_I() {
 return DLWHNM2_I;
 }
 
@@ -10476,11 +10572,11 @@ public byte getDLWHNM2_IFLAG() {
 return DLWHNM2_IFLAG;
 }
 
-public short getDLWHNM3() {
+public byte getDLWHNM3() {
 return DLWHNM3;
 }
 
-public short getDLWHNM3_I() {
+public byte getDLWHNM3_I() {
 return DLWHNM3_I;
 }
 
@@ -10586,10 +10682,6 @@ return DLWHY22;
 
 public byte getDLWHY23() {
 return DLWHY23;
-}
-
-public byte getDLWHY29() {
-return DLWHY29;
 }
 
 public byte getDLWHY3() {
@@ -10734,6 +10826,14 @@ return DSAMD2;
 
 public short getDSAMD3() {
 return DSAMD3;
+}
+
+public short getDSAMOS2() {
+return DSAMOS2;
+}
+
+public short getDSAMOS3() {
+return DSAMOS3;
 }
 
 public short getDSAMP2() {
@@ -11000,6 +11100,10 @@ public short getDVDLOWE4() {
 return DVDLOWE4;
 }
 
+public short getDVDLOWE5() {
+return DVDLOWE5;
+}
+
 public short getDVDMOOWE2() {
 return DVDMOOWE2;
 }
@@ -11108,7 +11212,7 @@ public boolean getDVHASPFD() {
 return DVHASPFD;
 }
 
-public boolean getDVHASPP() {
+public byte getDVHASPP() {
 return DVHASPP;
 }
 
@@ -11796,6 +11900,10 @@ public byte getFINVTY11() {
 return FINVTY11;
 }
 
+public byte getFINVTY11_I() {
+return FINVTY11_I;
+}
+
 public byte getFISA1() {
 return FISA1;
 }
@@ -11982,6 +12090,10 @@ return FNSAV3;
 
 public byte getFNSAV4() {
 return FNSAV4;
+}
+
+public int getFNSVAL_I() {
+return FNSVAL_I;
 }
 
 public byte getFNSVAL_IFLAG() {
@@ -12180,10 +12292,6 @@ public byte getFTPTWK() {
 return FTPTWK;
 }
 
-public byte getGOR() {
-return GOR;
-}
-
 public byte getGRSESM() {
 return GRSESM;
 }
@@ -12346,6 +12454,14 @@ return IOUT1;
 
 public boolean getISDEP() {
 return ISDEP;
+}
+
+public boolean getISHRP() {
+return ISHRP;
+}
+
+public boolean getISHRPPART() {
+return ISHRPPART;
 }
 
 public boolean getISNDEP() {
@@ -12668,7 +12784,7 @@ public byte getOTHSRC3_I() {
 return OTHSRC3_I;
 }
 
-public byte getOTHSRC3_IFLAG() {
+public boolean getOTHSRC3_IFLAG() {
 return OTHSRC3_IFLAG;
 }
 
@@ -12804,7 +12920,7 @@ public byte getPEMELG_I() {
 return PEMELG_I;
 }
 
-public boolean getPEMELG_IFLAG() {
+public byte getPEMELG_IFLAG() {
 return PEMELG_IFLAG;
 }
 
@@ -12848,7 +12964,7 @@ public byte getPEVERC_I() {
 return PEVERC_I;
 }
 
-public byte getPEVERC_IFLAG() {
+public boolean getPEVERC_IFLAG() {
 return PEVERC_IFLAG;
 }
 
@@ -12860,7 +12976,7 @@ public byte getPEVERNC_I() {
 return PEVERNC_I;
 }
 
-public byte getPEVERNC_IFLAG() {
+public boolean getPEVERNC_IFLAG() {
 return PEVERNC_IFLAG;
 }
 
@@ -12876,7 +12992,7 @@ public byte getPFNUM_I() {
 return PFNUM_I;
 }
 
-public byte getPFNUM_IFLAG() {
+public boolean getPFNUM_IFLAG() {
 return PFNUM_IFLAG;
 }
 
@@ -12924,7 +13040,7 @@ public byte getPRETAIN_I() {
 return PRETAIN_I;
 }
 
-public byte getPRETAIN_IFLAG() {
+public boolean getPRETAIN_IFLAG() {
 return PRETAIN_IFLAG;
 }
 

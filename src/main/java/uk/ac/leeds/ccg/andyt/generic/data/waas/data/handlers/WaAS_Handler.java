@@ -114,7 +114,8 @@ public abstract class WaAS_Handler extends WaAS_Object {
     public File getInputFile(byte wave, String type) {
         String filename;
         filename = "was_wave_" + wave + "_" + type + "_eul_final";
-        if (wave < 4) {
+        //if (wave < 4) { // Change for new
+        if (wave == 1) {
             filename += "_v2";
         }
         filename += ".tab";
@@ -388,7 +389,14 @@ public abstract class WaAS_Handler extends WaAS_Object {
                                 while (ite4.hasNext()) {
                                     WaAS_W4ID w4ID = ite4.next();
                                     WaAS_W4Record w4 = w4_3.get(w4ID);
-                                    byte GOR = w4.getHr().getGOR();
+                                    /**
+                                     * The following line fails as GORW4 is not
+                                     * a variable in the household data for wave
+                                     * 4 in the EUL data version from April
+                                     * 2019.
+                                     */
+                                    //byte GOR = w4.getHr().getGOR();
+                                    byte GOR = w4.getPrs().get(0).getGOR();
                                     Generic_Collections.addToMap(r.gor_To_w4, GOR, w4ID);
                                     r.w4_To_gor.put(w4ID, GOR);
                                 }
@@ -506,7 +514,13 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         WaAS_CombinedRecordSimple cr = c.getData().get(w1ID);
                         WaAS_W4Record w4 = cr.w4Rec;
                         WaAS_W4ID w4ID = w4.w4ID;
-                        byte GOR = w4.getHr().getGOR();
+                        /**
+                         * The following line fails as GORW4 is not a variable
+                         * in the household data for wave 4 in the EUL data
+                         * version from April 2019.
+                         */
+                        //byte GOR = w4.getHr().getGOR();
+                        byte GOR = w4.getPrs().get(0).getGOR();
                         Generic_Collections.addToMap(r.gor_To_w4, GOR, w4ID);
                         r.w4_To_gor.put(w4ID, GOR);
                     }
@@ -2318,14 +2332,18 @@ public abstract class WaAS_Handler extends WaAS_Object {
                 short CASEW4 = rec.getCASEW4();
                 if (CASEW4 > Short.MIN_VALUE) {
                     WaAS_W4ID w4ID = env.data.CASEW4_To_w4.get(CASEW4);
-                    //WaAS_W4ID w4ID = new WaAS_W4ID(CASEW4);
-                    WaAS_W5ID w5ID = env.data.CASEW5_To_w5.get(rec.getCASEW5());
-                    //WaAS_W5ID w5ID = new WaAS_W5ID(rec.getCASEW5());
-                    if (!r.w4_In_w5.add(w4ID)) {
-                        env.log("In Wave 5: hhold with CASEW4 " + CASEW4 + " reportedly split into multiple hholds.");
-                        return 1;
+                    if (w4ID == null) {
+                        env.log("w4ID == null for CASEW4 " + CASEW4);
+                    } else {
+                        //WaAS_W4ID w4ID = new WaAS_W4ID(CASEW4);
+                        WaAS_W5ID w5ID = env.data.CASEW5_To_w5.get(rec.getCASEW5());
+                        //WaAS_W5ID w5ID = new WaAS_W5ID(rec.getCASEW5());
+                        if (!r.w4_In_w5.add(w4ID)) {
+                            env.log("In Wave 5: hhold with CASEW4 " + CASEW4 + " reportedly split into multiple hholds.");
+                            return 1;
+                        }
+                        r.w5_To_w4.put(w5ID, w4ID);
                     }
-                    r.w5_To_w4.put(w5ID, w4ID);
                 }
                 return 0;
             }).sum();
@@ -2342,8 +2360,12 @@ public abstract class WaAS_Handler extends WaAS_Object {
                 short CASEW1 = rec.getCASEW1();
                 if (CASEW4 > Short.MIN_VALUE) {
                     WaAS_W4ID w4ID = env.data.CASEW4_To_w4.get(CASEW4);
+                    if (w4ID == null) {
+                        env.log("env.data.CASEW4_To_w4.get(CASEW4) == null for CASEW4 " + CASEW4);
+                    } else {
                     Generic_Collections.addToMap(r.w4_To_w5, w4ID, w5ID);
                     r.lookup.put(w5ID, w5rec);
+                    }
                 }
                 r.all.add(w5ID);
                 if (CASEW3 > Short.MIN_VALUE) {

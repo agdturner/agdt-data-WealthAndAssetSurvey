@@ -6,6 +6,7 @@ public class WaAS_W3PRecord extends WaAS_W3W4W5PRecord {
 protected double ACCFRAC;
 protected double AGEASAF1;
 protected double AGMSAF2T;
+protected double AGMSAFT;
 protected double AGMSAFT1;
 protected String BACCEND1;
 protected String BACCEND2;
@@ -62,8 +63,8 @@ protected boolean CAOTHER3;
 protected boolean CAOTHER4;
 protected boolean CAOTHER5;
 protected byte CATYPE;
-protected byte CCAC4_I;
-protected byte CCAC5_I;
+protected byte CCAC4;
+protected byte CCAC5;
 protected byte COMBPD;
 protected byte COMMIT1;
 protected byte COMMIT2;
@@ -92,30 +93,102 @@ protected int DCAMC4;
 protected short DCAMC5;
 protected short DCAMD4;
 protected short DCAMD5;
-protected short DCAMOS4_I;
-protected short DCAMOS5_I;
+protected int DCAMOS4;
+protected short DCAMOS5;
+protected short DCAMP1_I;
+protected boolean DCAMP1_IFLAG;
+protected short DCAMP2_I;
+protected byte DCAMP2_IFLAG;
+protected short DCAMP3_I;
+protected byte DCAMP3_IFLAG;
 protected short DCAMP4;
+protected short DCAMP4_I;
+protected byte DCAMP4_IFLAG;
 protected short DCAMP5;
+protected short DCAMP5_I;
+protected byte DCAMP5_IFLAG;
+protected byte DCANU_I;
+protected byte DCANU_IFLAG;
+protected byte DCANY_I;
+protected byte DCANY_IFLAG;
+protected byte DCCOS1_I;
+protected boolean DCCOS1_IFLAG;
+protected byte DCCOS2_I;
+protected byte DCCOS2_IFLAG;
+protected byte DCCOS3_I;
+protected byte DCCOS3_IFLAG;
 protected byte DCCOS4;
+protected byte DCCOS4_I;
+protected byte DCCOS4_IFLAG;
 protected byte DCCOS5;
+protected byte DCCOS5_I;
+protected byte DCCOS5_IFLAG;
+protected byte DCCSP1_I;
+protected boolean DCCSP1_IFLAG;
+protected byte DCCSP2_I;
+protected byte DCCSP2_IFLAG;
+protected byte DCCSP3_I;
+protected byte DCCSP3_IFLAG;
 protected byte DCCSP4;
+protected byte DCCSP4_I;
+protected boolean DCCSP4_IFLAG;
 protected byte DCCSP5;
+protected byte DCCSP5_I;
+protected boolean DCCSP5_IFLAG;
 protected byte DCESB4;
 protected byte DCESB5;
 protected byte DCINZ4;
 protected byte DCINZ5;
+protected byte DCNAM1_I;
+protected boolean DCNAM1_IFLAG;
+protected byte DCNAM2_I;
+protected byte DCNAM2_IFLAG;
+protected byte DCNAM3_I;
+protected byte DCNAM3_IFLAG;
 protected byte DCNAM4;
+protected byte DCNAM4_I;
+protected byte DCNAM4_IFLAG;
 protected byte DCNAM5;
+protected byte DCNAM5_I;
+protected byte DCNAM5_IFLAG;
+protected byte DCNUM1_I;
+protected boolean DCNUM1_IFLAG;
+protected byte DCNUM2_I;
+protected boolean DCNUM2_IFLAG;
 protected boolean DCONM10;
 protected byte DCONM7;
 protected boolean DCONM8;
 protected byte DCONM9;
+protected boolean DCOSHV4_I;
+protected boolean DCOSHV4_IFLAG;
+protected boolean DCOSHV5_I;
+protected boolean DCOSHV5_IFLAG;
 protected boolean DCPER4;
 protected boolean DCPER5;
+protected byte DCREC1_I;
+protected boolean DCREC1_IFLAG;
+protected byte DCREC2_I;
+protected byte DCREC2_IFLAG;
+protected byte DCREC3_I;
+protected byte DCREC3_IFLAG;
 protected byte DCREC4;
+protected byte DCREC4_I;
+protected byte DCREC4_IFLAG;
 protected byte DCREC5;
+protected byte DCREC5_I;
+protected byte DCREC5_IFLAG;
+protected boolean DCRSP1_I;
+protected boolean DCRSP1_IFLAG;
+protected byte DCRSP2_I;
+protected byte DCRSP2_IFLAG;
+protected byte DCRSP3_I;
+protected byte DCRSP3_IFLAG;
 protected boolean DCRSP4;
+protected byte DCRSP4_I;
+protected byte DCRSP4_IFLAG;
 protected boolean DCRSP5;
+protected byte DCRSP5_I;
+protected boolean DCRSP5_IFLAG;
 protected boolean DHBANY08_I;
 protected boolean DHBANY08_IFLAG;
 protected boolean DHBANY09_I;
@@ -133,7 +206,7 @@ protected byte DHPBEH3_I;
 protected byte DHPBEH3_IFLAG;
 protected byte DHPBEH4;
 protected byte DHPBEH4_I;
-protected byte DHPBEH4_IFLAG;
+protected boolean DHPBEH4_IFLAG;
 protected byte DHPBEH5;
 protected byte DHPBEH5_I;
 protected boolean DHPBEH5_IFLAG;
@@ -157,7 +230,7 @@ protected byte DHPOFT3_I;
 protected byte DHPOFT3_IFLAG;
 protected byte DHPOFT4;
 protected byte DHPOFT4_I;
-protected byte DHPOFT4_IFLAG;
+protected boolean DHPOFT4_IFLAG;
 protected byte DHPOFT5;
 protected byte DHPOFT5_I;
 protected boolean DHPOFT5_IFLAG;
@@ -205,6 +278,8 @@ protected boolean DLWHY25;
 protected boolean DLWHY26;
 protected boolean DLWHY27;
 protected boolean DLWHY28;
+protected byte DLWHY29;
+protected boolean DLWHY30;
 protected boolean DLWHY31;
 protected boolean DLWHY32;
 protected boolean DLWHY33;
@@ -215,22 +290,22 @@ protected byte DMOBEH3_I;
 protected byte DMOBEH3_IFLAG;
 protected byte DMOBEH4;
 protected byte DMOBEH4_I;
-protected byte DMOBEH4_IFLAG;
+protected boolean DMOBEH4_IFLAG;
 protected byte DMOBEH5;
 protected byte DMOBEH5_I;
-protected byte DMOBEH5_IFLAG;
+protected boolean DMOBEH5_IFLAG;
 protected byte DMOEST3;
 protected byte DMOEST4;
 protected byte DMOEST5;
 protected short DMOINS3;
-protected short DMOINS3_I;
-protected byte DMOINS3_IFLAG;
+protected byte DMOINS3_I;
+protected boolean DMOINS3_IFLAG;
 protected short DMOINS4;
 protected byte DMOINS4_I;
 protected byte DMOINS4_IFLAG;
 protected byte DMOINS5;
 protected byte DMOINS5_I;
-protected byte DMOINS5_IFLAG;
+protected boolean DMOINS5_IFLAG;
 protected byte DMOINT3;
 protected byte DMOINT4;
 protected byte DMOINT5;
@@ -239,16 +314,16 @@ protected byte DMOOFT3_I;
 protected byte DMOOFT3_IFLAG;
 protected byte DMOOFT4;
 protected byte DMOOFT4_I;
-protected byte DMOOFT4_IFLAG;
+protected boolean DMOOFT4_IFLAG;
 protected byte DMOOFT5;
 protected boolean DMOOFT5_I;
-protected byte DMOOFT5_IFLAG;
+protected boolean DMOOFT5_IFLAG;
 protected short DMOOWE3;
 protected short DMOOWE3_I;
 protected byte DMOOWE3_IFLAG;
 protected short DMOOWE4;
 protected short DMOOWE4_I;
-protected byte DMOOWE4_IFLAG;
+protected boolean DMOOWE4_IFLAG;
 protected short DMOOWE5;
 protected short DMOOWE5_I;
 protected boolean DMOOWE5_IFLAG;
@@ -260,41 +335,113 @@ protected byte DMOWHNM3_I;
 protected byte DMOWHNM3_IFLAG;
 protected byte DMOWHNM4;
 protected byte DMOWHNM4_I;
-protected byte DMOWHNM4_IFLAG;
+protected boolean DMOWHNM4_IFLAG;
 protected byte DMOWHNM5;
 protected byte DMOWHNM5_I;
-protected byte DMOWHNM5_IFLAG;
+protected boolean DMOWHNM5_IFLAG;
 protected short DMOWHNY3;
 protected short DMOWHNY3_I;
 protected byte DMOWHNY3_IFLAG;
 protected short DMOWHNY4;
 protected short DMOWHNY4_I;
-protected byte DMOWHNY4_IFLAG;
+protected boolean DMOWHNY4_IFLAG;
 protected short DMOWHNY5;
 protected short DMOWHNY5_I;
-protected byte DMOWHNY5_IFLAG;
+protected boolean DMOWHNY5_IFLAG;
 protected byte DS12BEH4;
 protected byte DS12BEH5;
 protected boolean DS12OWE4;
 protected boolean DS12OWE5;
+protected short DSAMC1_I;
+protected boolean DSAMC1_IFLAG;
+protected short DSAMC2_I;
+protected byte DSAMC2_IFLAG;
+protected short DSAMC3_I;
+protected boolean DSAMC3_IFLAG;
 protected short DSAMC4;
+protected short DSAMC4_I;
+protected byte DSAMC4_IFLAG;
 protected short DSAMC5;
+protected short DSAMC5_I;
+protected boolean DSAMC5_IFLAG;
+protected short DSAMD1_I;
+protected boolean DSAMD1_IFLAG;
+protected short DSAMD2_I;
+protected byte DSAMD2_IFLAG;
+protected short DSAMD3_I;
+protected boolean DSAMD3_IFLAG;
 protected short DSAMD4;
+protected short DSAMD4_I;
+protected boolean DSAMD4_IFLAG;
 protected byte DSAMD5;
-protected short DSAMOS4_I;
-protected short DSAMOS5_I;
+protected short DSAMD5_I;
+protected boolean DSAMD5_IFLAG;
+protected short DSAMOS4;
+protected short DSAMOS5;
+protected short DSAMP1_I;
+protected boolean DSAMP1_IFLAG;
+protected short DSAMP2_I;
+protected byte DSAMP2_IFLAG;
+protected short DSAMP3_I;
+protected boolean DSAMP3_IFLAG;
 protected short DSAMP4;
+protected short DSAMP4_I;
+protected byte DSAMP4_IFLAG;
 protected short DSAMP5;
+protected short DSAMP5_I;
+protected boolean DSAMP5_IFLAG;
+protected byte DSANU1_I;
+protected byte DSANU1_IFLAG;
+protected boolean DSANU2_I;
+protected boolean DSANU2_IFLAG;
+protected byte DSANY1_I;
+protected byte DSANY1_IFLAG;
+protected boolean DSANY2_I;
+protected boolean DSANY2_IFLAG;
+protected byte DSCOS1_I;
+protected boolean DSCOS1_IFLAG;
+protected byte DSCOS2_I;
+protected byte DSCOS2_IFLAG;
+protected byte DSCOS3_I;
+protected byte DSCOS3_IFLAG;
 protected byte DSCOS4;
+protected byte DSCOS4_I;
+protected byte DSCOS4_IFLAG;
 protected byte DSCOS5;
+protected byte DSCOS5_I;
+protected byte DSCOS5_IFLAG;
+protected byte DSCSP1_I;
+protected boolean DSCSP1_IFLAG;
+protected byte DSCSP2_I;
+protected boolean DSCSP2_IFLAG;
+protected byte DSCSP3_I;
+protected boolean DSCSP3_IFLAG;
 protected byte DSCSP4;
+protected boolean DSCSP4_I;
+protected boolean DSCSP4_IFLAG;
 protected byte DSCSP5;
+protected byte DSCSP5_I;
+protected boolean DSCSP5_IFLAG;
 protected byte DSESB4;
 protected boolean DSESB5;
 protected boolean DSLEST5_IFLAG;
+protected byte DSNAM1_I;
+protected boolean DSNAM1_IFLAG;
+protected byte DSNAM2_I;
+protected byte DSNAM2_IFLAG;
+protected byte DSNAM3_I;
+protected byte DSNAM3_IFLAG;
 protected byte DSNAM4;
+protected boolean DSNAM4_I;
+protected byte DSNAM4_IFLAG;
 protected byte DSNAM5;
+protected boolean DSNAM5_I;
+protected boolean DSNAM5_IFLAG;
 protected byte DSNUM;
+protected byte DSNUM2_I;
+protected boolean DSNUM2_IFLAG;
+protected byte DSNUM_I;
+protected byte DSNUM_IFLAG;
 protected boolean DSONM10;
 protected boolean DSONM7;
 protected boolean DSONM8;
@@ -304,35 +451,55 @@ protected boolean DSPER5;
 protected boolean DSREC4;
 protected boolean DSREC5;
 protected boolean DSRSP1;
+protected boolean DSRSP1_I;
+protected boolean DSRSP1_IFLAG;
 protected byte DSRSP2;
+protected boolean DSRSP2_I;
+protected byte DSRSP2_IFLAG;
 protected boolean DSRSP3;
+protected boolean DSRSP3_I;
+protected boolean DSRSP3_IFLAG;
 protected boolean DSRSP4;
+protected boolean DSRSP4_I;
+protected boolean DSRSP4_IFLAG;
 protected boolean DSRSP5;
+protected boolean DSRSP5_I;
+protected boolean DSRSP5_IFLAG;
 protected int DTLOWE1;
 protected int DTLOWE1_I;
 protected boolean DTLOWE1_IFLAG;
 protected short DTLOWE2;
 protected short DTLOWE2_I;
-protected byte DTLOWE2_IFLAG;
+protected boolean DTLOWE2_IFLAG;
 protected short DTLOWE3;
 protected short DTLOWE3_I;
-protected byte DTLOWE3_IFLAG;
+protected boolean DTLOWE3_IFLAG;
 protected boolean DTLOWE4_I;
 protected boolean DTLOWE4_IFLAG;
 protected boolean DTLOWE5_I;
 protected boolean DTLOWE5_IFLAG;
 protected byte DTLOWEB1;
+protected byte DTLOWEB1_I;
+protected boolean DTLOWEB1_IFLAG;
 protected byte DTLOWEB2;
+protected byte DTLOWEB2_I;
+protected boolean DTLOWEB2_IFLAG;
 protected boolean DTLOWEB3;
+protected byte DTLOWEB3_I;
+protected boolean DTLOWEB3_IFLAG;
+protected boolean DTLOWEB4_I;
+protected boolean DTLOWEB4_IFLAG;
+protected boolean DTLOWEB5_I;
+protected boolean DTLOWEB5_IFLAG;
 protected byte DTLTYPE1;
 protected byte DTLTYPE1_I;
 protected boolean DTLTYPE1_IFLAG;
 protected byte DTLTYPE2;
 protected byte DTLTYPE2_I;
-protected byte DTLTYPE2_IFLAG;
+protected boolean DTLTYPE2_IFLAG;
 protected byte DTLTYPE3;
 protected byte DTLTYPE3_I;
-protected byte DTLTYPE3_IFLAG;
+protected boolean DTLTYPE3_IFLAG;
 protected boolean DTLTYPE4_I;
 protected boolean DTLTYPE4_IFLAG;
 protected boolean DTLTYPE5_I;
@@ -363,7 +530,6 @@ protected short DVCTCANNUAL;
 protected short DVDHPOWE3;
 protected short DVDHPOWE4;
 protected short DVDHPOWE5;
-protected short DVDLOWE5;
 protected short DVDMOOWE3;
 protected short DVDMOOWE4;
 protected short DVDMOOWE5;
@@ -381,10 +547,7 @@ protected boolean DVHASNOFA;
 protected boolean DVHASNSP;
 protected boolean DVHASOINV;
 protected boolean DVHASOTHSH;
-protected boolean DVHASSAVDEP;
 protected byte DVHASSC;
-protected byte DVHASSHSAC;
-protected boolean DVHASSL;
 protected boolean DVHASUTRUST;
 protected int DVNETPAY_I;
 protected boolean DVNETPAY_IFLAG;
@@ -396,8 +559,14 @@ protected int DVOIGPPANNUAL_I;
 protected short DVOIGRRANNUAL;
 protected byte DVPUBLPRIV;
 protected int DVRENTAMTANNUAL;
+protected byte DVRENTBNDANNUAL_I;
+protected boolean DVRENTBNDANNUAL_IFLAG;
 protected byte DVSAME_I;
 protected boolean DVSAME_IFLAG;
+protected byte DVSEGRSPAYBAND_I;
+protected boolean DVSEGRSPAYBAND_IFLAG;
+protected byte DVSENETPAYBAND_I;
+protected boolean DVSENETPAYBAND_IFLAG;
 protected boolean DVSEPANNUAL09;
 protected boolean DVSEPANNUAL10;
 protected boolean DVSEPANNUAL11;
@@ -447,7 +616,6 @@ protected boolean FINVTY11_IFLAG;
 protected short FLNOS5;
 protected byte FLOORN;
 protected int FNSVAL1;
-protected int FNSVAL1_I;
 protected int FSHADA;
 protected byte FSHADAB;
 protected byte FSHADD;
@@ -456,30 +624,15 @@ protected boolean FSTYPSH5;
 protected double HPLFT3;
 protected double HPLFT4;
 protected double HPLFT5;
-protected byte HPNMN3;
-protected byte HPNMN4;
-protected byte HPNMN5;
-protected byte HPNYR3;
-protected byte HPNYR4;
-protected boolean HPNYR5;
+protected byte HPMN3;
+protected byte HPMN4;
+protected byte HPMN5;
 protected double HPOS3;
 protected double HPOS4;
 protected double HPOS5;
-protected byte HRPDVAGE;
-protected byte HRPDVAGE9;
-protected byte HRPDVILO3A;
-protected byte HRPDVMRDF;
-protected byte HRPEDATTN1;
-protected byte HRPEDATTN2;
-protected byte HRPEDATTN3;
-protected byte HRPEDLEVEL;
-protected byte HRPEMPSTAT2;
-protected byte HRPETHNIC;
-protected byte HRPIOUT1;
-protected byte HRPNSSEC3;
-protected byte HRPPARTIOUT1;
-protected byte HRPSEX;
-protected byte HRP_RESP;
+protected byte HPYR3;
+protected byte HPYR4;
+protected byte HPYR5;
 protected byte H_FLAG1;
 protected boolean IGDS12;
 protected boolean IGDS13;
@@ -524,8 +677,6 @@ protected boolean ILUMTY7_I;
 protected boolean ILUMTY7_IFLAG;
 protected byte INSPOL;
 protected byte INTRO;
-protected boolean ISHRP;
-protected boolean ISHRPPART;
 protected int IVAL1;
 protected int IVAL2_I;
 protected int IVAL3_I;
@@ -540,40 +691,31 @@ protected boolean IWAT18;
 protected byte IWAT8;
 protected byte IWAT9;
 protected byte IWHO;
+protected String LEA;
 protected byte LIVWTH;
-protected byte LNMN1;
-protected byte LNMN2;
-protected byte LNMN3;
-protected byte LNMN4;
-protected byte LNMN5;
-protected byte LNYR1;
-protected byte LNYR2;
-protected byte LNYR3;
-protected byte LNYR4;
-protected byte LNYR5;
 protected byte LVTDAY;
 protected double MOLFT3;
 protected double MOLFT4;
 protected double MOLFT5;
+protected byte MOMN3;
+protected byte MOMN4;
+protected byte MOMN5;
 protected double MOOS3;
 protected double MOOS4;
 protected double MOOS5;
-protected byte NMN1;
-protected byte NMN2;
-protected byte NMN3;
-protected byte NMN4;
-protected byte NMN5;
+protected byte MOYR3;
+protected byte MOYR4;
+protected byte MOYR5;
+protected boolean NSLBNK4;
+protected boolean NSLBNK5;
+protected boolean NSLC4;
+protected boolean NSLC5;
 protected double NSSEC;
 protected byte NWHP;
 protected byte NWHPNO;
 protected short NWHPVAL1;
 protected short NWHPVAL2;
 protected short NWHPVAL3;
-protected byte NYR1;
-protected byte NYR2;
-protected byte NYR3;
-protected byte NYR4;
-protected byte NYR5;
 protected short OIGGT;
 protected short OIGRR;
 protected boolean OIMPRS7;
@@ -591,9 +733,8 @@ protected byte OSAFERET;
 protected byte OSAVA;
 protected byte OSAVB;
 protected byte OSAVC;
-protected short OSLC4;
-protected boolean OTHSRC5_I;
-protected boolean OTHSRC5_IFLAG;
+protected boolean OSLBNK4;
+protected boolean OSLBNK5;
 protected byte OWHYSAV01;
 protected byte OWHYSAV02;
 protected byte OWHYSAV03;
@@ -625,7 +766,8 @@ protected boolean PAVCPR2;
 protected boolean PDCVAL3;
 protected byte PEMFIN;
 protected byte PESAME_I;
-protected byte PESAME_IFLAG;
+protected boolean PESAME_IFLAG;
+protected boolean PEVERC_PEVERNC__SFLAG;
 protected byte PEWYNO01;
 protected byte PEWYNO02;
 protected byte PEWYNO03;
@@ -720,23 +862,13 @@ protected boolean PFCASH6_I;
 protected boolean PFCASH6_IFLAG;
 protected int PFDDV4;
 protected boolean PFDDV5;
-protected boolean PFDDV5_I;
-protected boolean PFDDV5_IFLAG;
 protected boolean PFDDV6;
-protected boolean PFDDV6_I;
-protected boolean PFDDV6_IFLAG;
 protected boolean PFDDVB4;
 protected boolean PFDDVB5;
 protected boolean PFDDVB6;
 protected boolean PFDRAW4;
-protected boolean PFDRAW4_I;
-protected byte PFDRAW4_IFLAG;
 protected boolean PFDRAW5;
-protected boolean PFDRAW5_I;
-protected boolean PFDRAW5_IFLAG;
 protected boolean PFDRAW6;
-protected boolean PFDRAW6_I;
-protected boolean PFDRAW6_IFLAG;
 protected boolean PFDRA___W3;
 protected short PFDRINC2;
 protected boolean PFDRINC3;
@@ -837,7 +969,11 @@ protected boolean PFLMV6_I;
 protected boolean PFLMV6_IFLAG;
 protected boolean PFLMVB4;
 protected boolean PFLMVB5;
+protected boolean PFLMVB5_I;
+protected boolean PFLMVB5_IFLAG;
 protected boolean PFLMVB6;
+protected boolean PFLMVB6_I;
+protected boolean PFLMVB6_IFLAG;
 protected boolean PFLUMALL5;
 protected boolean PFLUMALL5_I;
 protected boolean PFLUMALL5_IFLAG;
@@ -1140,17 +1276,15 @@ protected boolean REGLRPY5_IFLAG;
 protected byte RELIGE;
 protected byte RELIGS;
 protected byte RELIGW;
-protected byte RF;
-protected boolean RPCRET1;
+protected byte RPCRET1;
 protected boolean RPCRET2;
 protected boolean RPCRET3;
 protected byte RPDBCAL_F;
-protected byte RS;
-protected byte SCAC4_I;
-protected byte SCAC5_I;
+protected byte SCAC4;
+protected byte SCAC5;
+protected byte SEGRSBAND;
+protected byte SENETBAND;
 protected byte SENO;
-protected boolean SOA1;
-protected boolean SOA2;
 protected byte SOC2000;
 protected double SPASAF_IORIG;
 protected double SPECAMT10;
@@ -1195,7 +1329,6 @@ protected byte SPECWHEN7;
 protected byte SPECWHEN8;
 protected byte SPECWHEN9;
 protected byte SPENDM;
-protected boolean STATSWARD;
 protected boolean STATUS;
 protected byte TACC3;
 protected boolean TADDVB3;
@@ -1286,9 +1419,6 @@ protected boolean UPRTYP;
 protected double W1W3WGT;
 protected double W2W3WGT;
 protected double W3XSWGT;
-protected boolean WARD98;
-protected boolean WARDC91;
-protected boolean WARDO91;
 protected byte WHOREATT;
 protected byte WHORECAR;
 protected byte WHOREMOB;
@@ -1327,6 +1457,14 @@ if (!s.trim().isEmpty()) {
 AGMSAF2T = Double.parseDouble(s);
 } else {
 AGMSAF2T = Double.NaN;
+}
+}
+
+protected final void initAGMSAFT(String s) {
+if (!s.trim().isEmpty()) {
+AGMSAFT = Double.parseDouble(s);
+} else {
+AGMSAFT = Double.NaN;
 }
 }
 
@@ -1889,19 +2027,19 @@ CATYPE = Byte.MIN_VALUE;
 }
 }
 
-protected final void initCCAC4_I(String s) {
+protected final void initCCAC4(String s) {
 if (!s.trim().isEmpty()) {
-CCAC4_I = Byte.parseByte(s);
+CCAC4 = Byte.parseByte(s);
 } else {
-CCAC4_I = Byte.MIN_VALUE;
+CCAC4 = Byte.MIN_VALUE;
 }
 }
 
-protected final void initCCAC5_I(String s) {
+protected final void initCCAC5(String s) {
 if (!s.trim().isEmpty()) {
-CCAC5_I = Byte.parseByte(s);
+CCAC5 = Byte.parseByte(s);
 } else {
-CCAC5_I = Byte.MIN_VALUE;
+CCAC5 = Byte.MIN_VALUE;
 }
 }
 
@@ -2135,19 +2273,70 @@ DCAMD5 = Short.MIN_VALUE;
 }
 }
 
-protected final void initDCAMOS4_I(String s) {
+protected final void initDCAMOS4(String s) {
 if (!s.trim().isEmpty()) {
-DCAMOS4_I = Short.parseShort(s);
+DCAMOS4 = Integer.parseInt(s);
 } else {
-DCAMOS4_I = Short.MIN_VALUE;
+DCAMOS4 = Integer.MIN_VALUE;
 }
 }
 
-protected final void initDCAMOS5_I(String s) {
+protected final void initDCAMOS5(String s) {
 if (!s.trim().isEmpty()) {
-DCAMOS5_I = Short.parseShort(s);
+DCAMOS5 = Short.parseShort(s);
 } else {
-DCAMOS5_I = Short.MIN_VALUE;
+DCAMOS5 = Short.MIN_VALUE;
+}
+}
+
+protected final void initDCAMP1_I(String s) {
+if (!s.trim().isEmpty()) {
+DCAMP1_I = Short.parseShort(s);
+} else {
+DCAMP1_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initDCAMP1_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DCAMP1_IFLAG = false;
+} else {
+DCAMP1_IFLAG = true;
+}
+}
+}
+
+protected final void initDCAMP2_I(String s) {
+if (!s.trim().isEmpty()) {
+DCAMP2_I = Short.parseShort(s);
+} else {
+DCAMP2_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initDCAMP2_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCAMP2_IFLAG = Byte.parseByte(s);
+} else {
+DCAMP2_IFLAG = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCAMP3_I(String s) {
+if (!s.trim().isEmpty()) {
+DCAMP3_I = Short.parseShort(s);
+} else {
+DCAMP3_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initDCAMP3_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCAMP3_IFLAG = Byte.parseByte(s);
+} else {
+DCAMP3_IFLAG = Byte.MIN_VALUE;
 }
 }
 
@@ -2159,11 +2348,126 @@ DCAMP4 = Short.MIN_VALUE;
 }
 }
 
+protected final void initDCAMP4_I(String s) {
+if (!s.trim().isEmpty()) {
+DCAMP4_I = Short.parseShort(s);
+} else {
+DCAMP4_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initDCAMP4_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCAMP4_IFLAG = Byte.parseByte(s);
+} else {
+DCAMP4_IFLAG = Byte.MIN_VALUE;
+}
+}
+
 protected final void initDCAMP5(String s) {
 if (!s.trim().isEmpty()) {
 DCAMP5 = Short.parseShort(s);
 } else {
 DCAMP5 = Short.MIN_VALUE;
+}
+}
+
+protected final void initDCAMP5_I(String s) {
+if (!s.trim().isEmpty()) {
+DCAMP5_I = Short.parseShort(s);
+} else {
+DCAMP5_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initDCAMP5_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCAMP5_IFLAG = Byte.parseByte(s);
+} else {
+DCAMP5_IFLAG = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCANU_I(String s) {
+if (!s.trim().isEmpty()) {
+DCANU_I = Byte.parseByte(s);
+} else {
+DCANU_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCANU_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCANU_IFLAG = Byte.parseByte(s);
+} else {
+DCANU_IFLAG = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCANY_I(String s) {
+if (!s.trim().isEmpty()) {
+DCANY_I = Byte.parseByte(s);
+} else {
+DCANY_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCANY_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCANY_IFLAG = Byte.parseByte(s);
+} else {
+DCANY_IFLAG = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCCOS1_I(String s) {
+if (!s.trim().isEmpty()) {
+DCCOS1_I = Byte.parseByte(s);
+} else {
+DCCOS1_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCCOS1_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DCCOS1_IFLAG = false;
+} else {
+DCCOS1_IFLAG = true;
+}
+}
+}
+
+protected final void initDCCOS2_I(String s) {
+if (!s.trim().isEmpty()) {
+DCCOS2_I = Byte.parseByte(s);
+} else {
+DCCOS2_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCCOS2_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCCOS2_IFLAG = Byte.parseByte(s);
+} else {
+DCCOS2_IFLAG = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCCOS3_I(String s) {
+if (!s.trim().isEmpty()) {
+DCCOS3_I = Byte.parseByte(s);
+} else {
+DCCOS3_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCCOS3_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCCOS3_IFLAG = Byte.parseByte(s);
+} else {
+DCCOS3_IFLAG = Byte.MIN_VALUE;
 }
 }
 
@@ -2175,11 +2479,94 @@ DCCOS4 = Byte.MIN_VALUE;
 }
 }
 
+protected final void initDCCOS4_I(String s) {
+if (!s.trim().isEmpty()) {
+DCCOS4_I = Byte.parseByte(s);
+} else {
+DCCOS4_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCCOS4_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCCOS4_IFLAG = Byte.parseByte(s);
+} else {
+DCCOS4_IFLAG = Byte.MIN_VALUE;
+}
+}
+
 protected final void initDCCOS5(String s) {
 if (!s.trim().isEmpty()) {
 DCCOS5 = Byte.parseByte(s);
 } else {
 DCCOS5 = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCCOS5_I(String s) {
+if (!s.trim().isEmpty()) {
+DCCOS5_I = Byte.parseByte(s);
+} else {
+DCCOS5_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCCOS5_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCCOS5_IFLAG = Byte.parseByte(s);
+} else {
+DCCOS5_IFLAG = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCCSP1_I(String s) {
+if (!s.trim().isEmpty()) {
+DCCSP1_I = Byte.parseByte(s);
+} else {
+DCCSP1_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCCSP1_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DCCSP1_IFLAG = false;
+} else {
+DCCSP1_IFLAG = true;
+}
+}
+}
+
+protected final void initDCCSP2_I(String s) {
+if (!s.trim().isEmpty()) {
+DCCSP2_I = Byte.parseByte(s);
+} else {
+DCCSP2_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCCSP2_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCCSP2_IFLAG = Byte.parseByte(s);
+} else {
+DCCSP2_IFLAG = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCCSP3_I(String s) {
+if (!s.trim().isEmpty()) {
+DCCSP3_I = Byte.parseByte(s);
+} else {
+DCCSP3_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCCSP3_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCCSP3_IFLAG = Byte.parseByte(s);
+} else {
+DCCSP3_IFLAG = Byte.MIN_VALUE;
 }
 }
 
@@ -2191,11 +2578,49 @@ DCCSP4 = Byte.MIN_VALUE;
 }
 }
 
+protected final void initDCCSP4_I(String s) {
+if (!s.trim().isEmpty()) {
+DCCSP4_I = Byte.parseByte(s);
+} else {
+DCCSP4_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCCSP4_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DCCSP4_IFLAG = false;
+} else {
+DCCSP4_IFLAG = true;
+}
+}
+}
+
 protected final void initDCCSP5(String s) {
 if (!s.trim().isEmpty()) {
 DCCSP5 = Byte.parseByte(s);
 } else {
 DCCSP5 = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCCSP5_I(String s) {
+if (!s.trim().isEmpty()) {
+DCCSP5_I = Byte.parseByte(s);
+} else {
+DCCSP5_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCCSP5_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DCCSP5_IFLAG = false;
+} else {
+DCCSP5_IFLAG = true;
+}
 }
 }
 
@@ -2231,6 +2656,57 @@ DCINZ5 = Byte.MIN_VALUE;
 }
 }
 
+protected final void initDCNAM1_I(String s) {
+if (!s.trim().isEmpty()) {
+DCNAM1_I = Byte.parseByte(s);
+} else {
+DCNAM1_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCNAM1_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DCNAM1_IFLAG = false;
+} else {
+DCNAM1_IFLAG = true;
+}
+}
+}
+
+protected final void initDCNAM2_I(String s) {
+if (!s.trim().isEmpty()) {
+DCNAM2_I = Byte.parseByte(s);
+} else {
+DCNAM2_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCNAM2_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCNAM2_IFLAG = Byte.parseByte(s);
+} else {
+DCNAM2_IFLAG = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCNAM3_I(String s) {
+if (!s.trim().isEmpty()) {
+DCNAM3_I = Byte.parseByte(s);
+} else {
+DCNAM3_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCNAM3_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCNAM3_IFLAG = Byte.parseByte(s);
+} else {
+DCNAM3_IFLAG = Byte.MIN_VALUE;
+}
+}
+
 protected final void initDCNAM4(String s) {
 if (!s.trim().isEmpty()) {
 DCNAM4 = Byte.parseByte(s);
@@ -2239,11 +2715,81 @@ DCNAM4 = Byte.MIN_VALUE;
 }
 }
 
+protected final void initDCNAM4_I(String s) {
+if (!s.trim().isEmpty()) {
+DCNAM4_I = Byte.parseByte(s);
+} else {
+DCNAM4_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCNAM4_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCNAM4_IFLAG = Byte.parseByte(s);
+} else {
+DCNAM4_IFLAG = Byte.MIN_VALUE;
+}
+}
+
 protected final void initDCNAM5(String s) {
 if (!s.trim().isEmpty()) {
 DCNAM5 = Byte.parseByte(s);
 } else {
 DCNAM5 = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCNAM5_I(String s) {
+if (!s.trim().isEmpty()) {
+DCNAM5_I = Byte.parseByte(s);
+} else {
+DCNAM5_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCNAM5_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCNAM5_IFLAG = Byte.parseByte(s);
+} else {
+DCNAM5_IFLAG = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCNUM1_I(String s) {
+if (!s.trim().isEmpty()) {
+DCNUM1_I = Byte.parseByte(s);
+} else {
+DCNUM1_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCNUM1_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DCNUM1_IFLAG = false;
+} else {
+DCNUM1_IFLAG = true;
+}
+}
+}
+
+protected final void initDCNUM2_I(String s) {
+if (!s.trim().isEmpty()) {
+DCNUM2_I = Byte.parseByte(s);
+} else {
+DCNUM2_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCNUM2_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DCNUM2_IFLAG = false;
+} else {
+DCNUM2_IFLAG = true;
+}
 }
 }
 
@@ -2285,6 +2831,50 @@ DCONM9 = Byte.MIN_VALUE;
 }
 }
 
+protected final void initDCOSHV4_I(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == -7) {
+DCOSHV4_I = false;
+} else {
+DCOSHV4_I = true;
+}
+}
+}
+
+protected final void initDCOSHV4_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DCOSHV4_IFLAG = false;
+} else {
+DCOSHV4_IFLAG = true;
+}
+}
+}
+
+protected final void initDCOSHV5_I(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == -7) {
+DCOSHV5_I = false;
+} else {
+DCOSHV5_I = true;
+}
+}
+}
+
+protected final void initDCOSHV5_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DCOSHV5_IFLAG = false;
+} else {
+DCOSHV5_IFLAG = true;
+}
+}
+}
+
 protected final void initDCPER4(String s) {
 if (!s.trim().isEmpty()) {
 byte b = Byte.parseByte(s);
@@ -2307,6 +2897,57 @@ DCPER5 = true;
 }
 }
 
+protected final void initDCREC1_I(String s) {
+if (!s.trim().isEmpty()) {
+DCREC1_I = Byte.parseByte(s);
+} else {
+DCREC1_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCREC1_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DCREC1_IFLAG = false;
+} else {
+DCREC1_IFLAG = true;
+}
+}
+}
+
+protected final void initDCREC2_I(String s) {
+if (!s.trim().isEmpty()) {
+DCREC2_I = Byte.parseByte(s);
+} else {
+DCREC2_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCREC2_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCREC2_IFLAG = Byte.parseByte(s);
+} else {
+DCREC2_IFLAG = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCREC3_I(String s) {
+if (!s.trim().isEmpty()) {
+DCREC3_I = Byte.parseByte(s);
+} else {
+DCREC3_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCREC3_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCREC3_IFLAG = Byte.parseByte(s);
+} else {
+DCREC3_IFLAG = Byte.MIN_VALUE;
+}
+}
+
 protected final void initDCREC4(String s) {
 if (!s.trim().isEmpty()) {
 DCREC4 = Byte.parseByte(s);
@@ -2315,11 +2956,97 @@ DCREC4 = Byte.MIN_VALUE;
 }
 }
 
+protected final void initDCREC4_I(String s) {
+if (!s.trim().isEmpty()) {
+DCREC4_I = Byte.parseByte(s);
+} else {
+DCREC4_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCREC4_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCREC4_IFLAG = Byte.parseByte(s);
+} else {
+DCREC4_IFLAG = Byte.MIN_VALUE;
+}
+}
+
 protected final void initDCREC5(String s) {
 if (!s.trim().isEmpty()) {
 DCREC5 = Byte.parseByte(s);
 } else {
 DCREC5 = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCREC5_I(String s) {
+if (!s.trim().isEmpty()) {
+DCREC5_I = Byte.parseByte(s);
+} else {
+DCREC5_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCREC5_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCREC5_IFLAG = Byte.parseByte(s);
+} else {
+DCREC5_IFLAG = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCRSP1_I(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == -7) {
+DCRSP1_I = false;
+} else {
+DCRSP1_I = true;
+}
+}
+}
+
+protected final void initDCRSP1_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DCRSP1_IFLAG = false;
+} else {
+DCRSP1_IFLAG = true;
+}
+}
+}
+
+protected final void initDCRSP2_I(String s) {
+if (!s.trim().isEmpty()) {
+DCRSP2_I = Byte.parseByte(s);
+} else {
+DCRSP2_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCRSP2_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCRSP2_IFLAG = Byte.parseByte(s);
+} else {
+DCRSP2_IFLAG = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCRSP3_I(String s) {
+if (!s.trim().isEmpty()) {
+DCRSP3_I = Byte.parseByte(s);
+} else {
+DCRSP3_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCRSP3_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCRSP3_IFLAG = Byte.parseByte(s);
+} else {
+DCRSP3_IFLAG = Byte.MIN_VALUE;
 }
 }
 
@@ -2334,6 +3061,22 @@ DCRSP4 = true;
 }
 }
 
+protected final void initDCRSP4_I(String s) {
+if (!s.trim().isEmpty()) {
+DCRSP4_I = Byte.parseByte(s);
+} else {
+DCRSP4_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCRSP4_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DCRSP4_IFLAG = Byte.parseByte(s);
+} else {
+DCRSP4_IFLAG = Byte.MIN_VALUE;
+}
+}
+
 protected final void initDCRSP5(String s) {
 if (!s.trim().isEmpty()) {
 byte b = Byte.parseByte(s);
@@ -2341,6 +3084,25 @@ if (b == -7) {
 DCRSP5 = false;
 } else {
 DCRSP5 = true;
+}
+}
+}
+
+protected final void initDCRSP5_I(String s) {
+if (!s.trim().isEmpty()) {
+DCRSP5_I = Byte.parseByte(s);
+} else {
+DCRSP5_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDCRSP5_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DCRSP5_IFLAG = false;
+} else {
+DCRSP5_IFLAG = true;
 }
 }
 }
@@ -2519,9 +3281,12 @@ DHPBEH4_I = Byte.MIN_VALUE;
 
 protected final void initDHPBEH4_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-DHPBEH4_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DHPBEH4_IFLAG = false;
 } else {
-DHPBEH4_IFLAG = Byte.MIN_VALUE;
+DHPBEH4_IFLAG = true;
+}
 }
 }
 
@@ -2717,9 +3482,12 @@ DHPOFT4_I = Byte.MIN_VALUE;
 
 protected final void initDHPOFT4_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-DHPOFT4_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DHPOFT4_IFLAG = false;
 } else {
-DHPOFT4_IFLAG = Byte.MIN_VALUE;
+DHPOFT4_IFLAG = true;
+}
 }
 }
 
@@ -3141,6 +3909,25 @@ DLWHY28 = true;
 }
 }
 
+protected final void initDLWHY29(String s) {
+if (!s.trim().isEmpty()) {
+DLWHY29 = Byte.parseByte(s);
+} else {
+DLWHY29 = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDLWHY30(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == -7) {
+DLWHY30 = false;
+} else {
+DLWHY30 = true;
+}
+}
+}
+
 protected final void initDLWHY31(String s) {
 if (!s.trim().isEmpty()) {
 byte b = Byte.parseByte(s);
@@ -3238,9 +4025,12 @@ DMOBEH4_I = Byte.MIN_VALUE;
 
 protected final void initDMOBEH4_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-DMOBEH4_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DMOBEH4_IFLAG = false;
 } else {
-DMOBEH4_IFLAG = Byte.MIN_VALUE;
+DMOBEH4_IFLAG = true;
+}
 }
 }
 
@@ -3262,9 +4052,12 @@ DMOBEH5_I = Byte.MIN_VALUE;
 
 protected final void initDMOBEH5_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-DMOBEH5_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DMOBEH5_IFLAG = false;
 } else {
-DMOBEH5_IFLAG = Byte.MIN_VALUE;
+DMOBEH5_IFLAG = true;
+}
 }
 }
 
@@ -3302,17 +4095,20 @@ DMOINS3 = Short.MIN_VALUE;
 
 protected final void initDMOINS3_I(String s) {
 if (!s.trim().isEmpty()) {
-DMOINS3_I = Short.parseShort(s);
+DMOINS3_I = Byte.parseByte(s);
 } else {
-DMOINS3_I = Short.MIN_VALUE;
+DMOINS3_I = Byte.MIN_VALUE;
 }
 }
 
 protected final void initDMOINS3_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-DMOINS3_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DMOINS3_IFLAG = false;
 } else {
-DMOINS3_IFLAG = Byte.MIN_VALUE;
+DMOINS3_IFLAG = true;
+}
 }
 }
 
@@ -3358,9 +4154,12 @@ DMOINS5_I = Byte.MIN_VALUE;
 
 protected final void initDMOINS5_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-DMOINS5_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DMOINS5_IFLAG = false;
 } else {
-DMOINS5_IFLAG = Byte.MIN_VALUE;
+DMOINS5_IFLAG = true;
+}
 }
 }
 
@@ -3430,9 +4229,12 @@ DMOOFT4_I = Byte.MIN_VALUE;
 
 protected final void initDMOOFT4_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-DMOOFT4_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DMOOFT4_IFLAG = false;
 } else {
-DMOOFT4_IFLAG = Byte.MIN_VALUE;
+DMOOFT4_IFLAG = true;
+}
 }
 }
 
@@ -3457,9 +4259,12 @@ DMOOFT5_I = true;
 
 protected final void initDMOOFT5_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-DMOOFT5_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DMOOFT5_IFLAG = false;
 } else {
-DMOOFT5_IFLAG = Byte.MIN_VALUE;
+DMOOFT5_IFLAG = true;
+}
 }
 }
 
@@ -3505,9 +4310,12 @@ DMOOWE4_I = Short.MIN_VALUE;
 
 protected final void initDMOOWE4_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-DMOOWE4_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DMOOWE4_IFLAG = false;
 } else {
-DMOOWE4_IFLAG = Byte.MIN_VALUE;
+DMOOWE4_IFLAG = true;
+}
 }
 }
 
@@ -3604,9 +4412,12 @@ DMOWHNM4_I = Byte.MIN_VALUE;
 
 protected final void initDMOWHNM4_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-DMOWHNM4_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DMOWHNM4_IFLAG = false;
 } else {
-DMOWHNM4_IFLAG = Byte.MIN_VALUE;
+DMOWHNM4_IFLAG = true;
+}
 }
 }
 
@@ -3628,9 +4439,12 @@ DMOWHNM5_I = Byte.MIN_VALUE;
 
 protected final void initDMOWHNM5_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-DMOWHNM5_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DMOWHNM5_IFLAG = false;
 } else {
-DMOWHNM5_IFLAG = Byte.MIN_VALUE;
+DMOWHNM5_IFLAG = true;
+}
 }
 }
 
@@ -3676,9 +4490,12 @@ DMOWHNY4_I = Short.MIN_VALUE;
 
 protected final void initDMOWHNY4_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-DMOWHNY4_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DMOWHNY4_IFLAG = false;
 } else {
-DMOWHNY4_IFLAG = Byte.MIN_VALUE;
+DMOWHNY4_IFLAG = true;
+}
 }
 }
 
@@ -3700,9 +4517,12 @@ DMOWHNY5_I = Short.MIN_VALUE;
 
 protected final void initDMOWHNY5_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-DMOWHNY5_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DMOWHNY5_IFLAG = false;
 } else {
-DMOWHNY5_IFLAG = Byte.MIN_VALUE;
+DMOWHNY5_IFLAG = true;
+}
 }
 }
 
@@ -3744,11 +4564,81 @@ DS12OWE5 = true;
 }
 }
 
+protected final void initDSAMC1_I(String s) {
+if (!s.trim().isEmpty()) {
+DSAMC1_I = Short.parseShort(s);
+} else {
+DSAMC1_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initDSAMC1_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSAMC1_IFLAG = false;
+} else {
+DSAMC1_IFLAG = true;
+}
+}
+}
+
+protected final void initDSAMC2_I(String s) {
+if (!s.trim().isEmpty()) {
+DSAMC2_I = Short.parseShort(s);
+} else {
+DSAMC2_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initDSAMC2_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DSAMC2_IFLAG = Byte.parseByte(s);
+} else {
+DSAMC2_IFLAG = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSAMC3_I(String s) {
+if (!s.trim().isEmpty()) {
+DSAMC3_I = Short.parseShort(s);
+} else {
+DSAMC3_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initDSAMC3_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSAMC3_IFLAG = false;
+} else {
+DSAMC3_IFLAG = true;
+}
+}
+}
+
 protected final void initDSAMC4(String s) {
 if (!s.trim().isEmpty()) {
 DSAMC4 = Short.parseShort(s);
 } else {
 DSAMC4 = Short.MIN_VALUE;
+}
+}
+
+protected final void initDSAMC4_I(String s) {
+if (!s.trim().isEmpty()) {
+DSAMC4_I = Short.parseShort(s);
+} else {
+DSAMC4_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initDSAMC4_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DSAMC4_IFLAG = Byte.parseByte(s);
+} else {
+DSAMC4_IFLAG = Byte.MIN_VALUE;
 }
 }
 
@@ -3760,11 +4650,103 @@ DSAMC5 = Short.MIN_VALUE;
 }
 }
 
+protected final void initDSAMC5_I(String s) {
+if (!s.trim().isEmpty()) {
+DSAMC5_I = Short.parseShort(s);
+} else {
+DSAMC5_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initDSAMC5_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSAMC5_IFLAG = false;
+} else {
+DSAMC5_IFLAG = true;
+}
+}
+}
+
+protected final void initDSAMD1_I(String s) {
+if (!s.trim().isEmpty()) {
+DSAMD1_I = Short.parseShort(s);
+} else {
+DSAMD1_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initDSAMD1_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSAMD1_IFLAG = false;
+} else {
+DSAMD1_IFLAG = true;
+}
+}
+}
+
+protected final void initDSAMD2_I(String s) {
+if (!s.trim().isEmpty()) {
+DSAMD2_I = Short.parseShort(s);
+} else {
+DSAMD2_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initDSAMD2_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DSAMD2_IFLAG = Byte.parseByte(s);
+} else {
+DSAMD2_IFLAG = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSAMD3_I(String s) {
+if (!s.trim().isEmpty()) {
+DSAMD3_I = Short.parseShort(s);
+} else {
+DSAMD3_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initDSAMD3_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSAMD3_IFLAG = false;
+} else {
+DSAMD3_IFLAG = true;
+}
+}
+}
+
 protected final void initDSAMD4(String s) {
 if (!s.trim().isEmpty()) {
 DSAMD4 = Short.parseShort(s);
 } else {
 DSAMD4 = Short.MIN_VALUE;
+}
+}
+
+protected final void initDSAMD4_I(String s) {
+if (!s.trim().isEmpty()) {
+DSAMD4_I = Short.parseShort(s);
+} else {
+DSAMD4_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initDSAMD4_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSAMD4_IFLAG = false;
+} else {
+DSAMD4_IFLAG = true;
+}
 }
 }
 
@@ -3776,19 +4758,92 @@ DSAMD5 = Byte.MIN_VALUE;
 }
 }
 
-protected final void initDSAMOS4_I(String s) {
+protected final void initDSAMD5_I(String s) {
 if (!s.trim().isEmpty()) {
-DSAMOS4_I = Short.parseShort(s);
+DSAMD5_I = Short.parseShort(s);
 } else {
-DSAMOS4_I = Short.MIN_VALUE;
+DSAMD5_I = Short.MIN_VALUE;
 }
 }
 
-protected final void initDSAMOS5_I(String s) {
+protected final void initDSAMD5_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-DSAMOS5_I = Short.parseShort(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSAMD5_IFLAG = false;
 } else {
-DSAMOS5_I = Short.MIN_VALUE;
+DSAMD5_IFLAG = true;
+}
+}
+}
+
+protected final void initDSAMOS4(String s) {
+if (!s.trim().isEmpty()) {
+DSAMOS4 = Short.parseShort(s);
+} else {
+DSAMOS4 = Short.MIN_VALUE;
+}
+}
+
+protected final void initDSAMOS5(String s) {
+if (!s.trim().isEmpty()) {
+DSAMOS5 = Short.parseShort(s);
+} else {
+DSAMOS5 = Short.MIN_VALUE;
+}
+}
+
+protected final void initDSAMP1_I(String s) {
+if (!s.trim().isEmpty()) {
+DSAMP1_I = Short.parseShort(s);
+} else {
+DSAMP1_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initDSAMP1_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSAMP1_IFLAG = false;
+} else {
+DSAMP1_IFLAG = true;
+}
+}
+}
+
+protected final void initDSAMP2_I(String s) {
+if (!s.trim().isEmpty()) {
+DSAMP2_I = Short.parseShort(s);
+} else {
+DSAMP2_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initDSAMP2_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DSAMP2_IFLAG = Byte.parseByte(s);
+} else {
+DSAMP2_IFLAG = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSAMP3_I(String s) {
+if (!s.trim().isEmpty()) {
+DSAMP3_I = Short.parseShort(s);
+} else {
+DSAMP3_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initDSAMP3_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSAMP3_IFLAG = false;
+} else {
+DSAMP3_IFLAG = true;
+}
 }
 }
 
@@ -3800,11 +4855,173 @@ DSAMP4 = Short.MIN_VALUE;
 }
 }
 
+protected final void initDSAMP4_I(String s) {
+if (!s.trim().isEmpty()) {
+DSAMP4_I = Short.parseShort(s);
+} else {
+DSAMP4_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initDSAMP4_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DSAMP4_IFLAG = Byte.parseByte(s);
+} else {
+DSAMP4_IFLAG = Byte.MIN_VALUE;
+}
+}
+
 protected final void initDSAMP5(String s) {
 if (!s.trim().isEmpty()) {
 DSAMP5 = Short.parseShort(s);
 } else {
 DSAMP5 = Short.MIN_VALUE;
+}
+}
+
+protected final void initDSAMP5_I(String s) {
+if (!s.trim().isEmpty()) {
+DSAMP5_I = Short.parseShort(s);
+} else {
+DSAMP5_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initDSAMP5_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSAMP5_IFLAG = false;
+} else {
+DSAMP5_IFLAG = true;
+}
+}
+}
+
+protected final void initDSANU1_I(String s) {
+if (!s.trim().isEmpty()) {
+DSANU1_I = Byte.parseByte(s);
+} else {
+DSANU1_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSANU1_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DSANU1_IFLAG = Byte.parseByte(s);
+} else {
+DSANU1_IFLAG = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSANU2_I(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == -7) {
+DSANU2_I = false;
+} else {
+DSANU2_I = true;
+}
+}
+}
+
+protected final void initDSANU2_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSANU2_IFLAG = false;
+} else {
+DSANU2_IFLAG = true;
+}
+}
+}
+
+protected final void initDSANY1_I(String s) {
+if (!s.trim().isEmpty()) {
+DSANY1_I = Byte.parseByte(s);
+} else {
+DSANY1_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSANY1_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DSANY1_IFLAG = Byte.parseByte(s);
+} else {
+DSANY1_IFLAG = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSANY2_I(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == -7) {
+DSANY2_I = false;
+} else {
+DSANY2_I = true;
+}
+}
+}
+
+protected final void initDSANY2_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSANY2_IFLAG = false;
+} else {
+DSANY2_IFLAG = true;
+}
+}
+}
+
+protected final void initDSCOS1_I(String s) {
+if (!s.trim().isEmpty()) {
+DSCOS1_I = Byte.parseByte(s);
+} else {
+DSCOS1_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSCOS1_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSCOS1_IFLAG = false;
+} else {
+DSCOS1_IFLAG = true;
+}
+}
+}
+
+protected final void initDSCOS2_I(String s) {
+if (!s.trim().isEmpty()) {
+DSCOS2_I = Byte.parseByte(s);
+} else {
+DSCOS2_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSCOS2_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DSCOS2_IFLAG = Byte.parseByte(s);
+} else {
+DSCOS2_IFLAG = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSCOS3_I(String s) {
+if (!s.trim().isEmpty()) {
+DSCOS3_I = Byte.parseByte(s);
+} else {
+DSCOS3_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSCOS3_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DSCOS3_IFLAG = Byte.parseByte(s);
+} else {
+DSCOS3_IFLAG = Byte.MIN_VALUE;
 }
 }
 
@@ -3816,11 +5033,100 @@ DSCOS4 = Byte.MIN_VALUE;
 }
 }
 
+protected final void initDSCOS4_I(String s) {
+if (!s.trim().isEmpty()) {
+DSCOS4_I = Byte.parseByte(s);
+} else {
+DSCOS4_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSCOS4_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DSCOS4_IFLAG = Byte.parseByte(s);
+} else {
+DSCOS4_IFLAG = Byte.MIN_VALUE;
+}
+}
+
 protected final void initDSCOS5(String s) {
 if (!s.trim().isEmpty()) {
 DSCOS5 = Byte.parseByte(s);
 } else {
 DSCOS5 = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSCOS5_I(String s) {
+if (!s.trim().isEmpty()) {
+DSCOS5_I = Byte.parseByte(s);
+} else {
+DSCOS5_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSCOS5_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DSCOS5_IFLAG = Byte.parseByte(s);
+} else {
+DSCOS5_IFLAG = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSCSP1_I(String s) {
+if (!s.trim().isEmpty()) {
+DSCSP1_I = Byte.parseByte(s);
+} else {
+DSCSP1_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSCSP1_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSCSP1_IFLAG = false;
+} else {
+DSCSP1_IFLAG = true;
+}
+}
+}
+
+protected final void initDSCSP2_I(String s) {
+if (!s.trim().isEmpty()) {
+DSCSP2_I = Byte.parseByte(s);
+} else {
+DSCSP2_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSCSP2_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSCSP2_IFLAG = false;
+} else {
+DSCSP2_IFLAG = true;
+}
+}
+}
+
+protected final void initDSCSP3_I(String s) {
+if (!s.trim().isEmpty()) {
+DSCSP3_I = Byte.parseByte(s);
+} else {
+DSCSP3_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSCSP3_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSCSP3_IFLAG = false;
+} else {
+DSCSP3_IFLAG = true;
+}
 }
 }
 
@@ -3832,11 +5138,52 @@ DSCSP4 = Byte.MIN_VALUE;
 }
 }
 
+protected final void initDSCSP4_I(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == -7) {
+DSCSP4_I = false;
+} else {
+DSCSP4_I = true;
+}
+}
+}
+
+protected final void initDSCSP4_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSCSP4_IFLAG = false;
+} else {
+DSCSP4_IFLAG = true;
+}
+}
+}
+
 protected final void initDSCSP5(String s) {
 if (!s.trim().isEmpty()) {
 DSCSP5 = Byte.parseByte(s);
 } else {
 DSCSP5 = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSCSP5_I(String s) {
+if (!s.trim().isEmpty()) {
+DSCSP5_I = Byte.parseByte(s);
+} else {
+DSCSP5_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSCSP5_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSCSP5_IFLAG = false;
+} else {
+DSCSP5_IFLAG = true;
+}
 }
 }
 
@@ -3870,11 +5217,81 @@ DSLEST5_IFLAG = true;
 }
 }
 
+protected final void initDSNAM1_I(String s) {
+if (!s.trim().isEmpty()) {
+DSNAM1_I = Byte.parseByte(s);
+} else {
+DSNAM1_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSNAM1_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSNAM1_IFLAG = false;
+} else {
+DSNAM1_IFLAG = true;
+}
+}
+}
+
+protected final void initDSNAM2_I(String s) {
+if (!s.trim().isEmpty()) {
+DSNAM2_I = Byte.parseByte(s);
+} else {
+DSNAM2_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSNAM2_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DSNAM2_IFLAG = Byte.parseByte(s);
+} else {
+DSNAM2_IFLAG = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSNAM3_I(String s) {
+if (!s.trim().isEmpty()) {
+DSNAM3_I = Byte.parseByte(s);
+} else {
+DSNAM3_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSNAM3_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DSNAM3_IFLAG = Byte.parseByte(s);
+} else {
+DSNAM3_IFLAG = Byte.MIN_VALUE;
+}
+}
+
 protected final void initDSNAM4(String s) {
 if (!s.trim().isEmpty()) {
 DSNAM4 = Byte.parseByte(s);
 } else {
 DSNAM4 = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSNAM4_I(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == -7) {
+DSNAM4_I = false;
+} else {
+DSNAM4_I = true;
+}
+}
+}
+
+protected final void initDSNAM4_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DSNAM4_IFLAG = Byte.parseByte(s);
+} else {
+DSNAM4_IFLAG = Byte.MIN_VALUE;
 }
 }
 
@@ -3886,11 +5303,68 @@ DSNAM5 = Byte.MIN_VALUE;
 }
 }
 
+protected final void initDSNAM5_I(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == -7) {
+DSNAM5_I = false;
+} else {
+DSNAM5_I = true;
+}
+}
+}
+
+protected final void initDSNAM5_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSNAM5_IFLAG = false;
+} else {
+DSNAM5_IFLAG = true;
+}
+}
+}
+
 protected final void initDSNUM(String s) {
 if (!s.trim().isEmpty()) {
 DSNUM = Byte.parseByte(s);
 } else {
 DSNUM = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSNUM2_I(String s) {
+if (!s.trim().isEmpty()) {
+DSNUM2_I = Byte.parseByte(s);
+} else {
+DSNUM2_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSNUM2_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSNUM2_IFLAG = false;
+} else {
+DSNUM2_IFLAG = true;
+}
+}
+}
+
+protected final void initDSNUM_I(String s) {
+if (!s.trim().isEmpty()) {
+DSNUM_I = Byte.parseByte(s);
+} else {
+DSNUM_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSNUM_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DSNUM_IFLAG = Byte.parseByte(s);
+} else {
+DSNUM_IFLAG = Byte.MIN_VALUE;
 }
 }
 
@@ -3993,11 +5467,52 @@ DSRSP1 = true;
 }
 }
 
+protected final void initDSRSP1_I(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == -9) {
+DSRSP1_I = false;
+} else {
+DSRSP1_I = true;
+}
+}
+}
+
+protected final void initDSRSP1_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSRSP1_IFLAG = false;
+} else {
+DSRSP1_IFLAG = true;
+}
+}
+}
+
 protected final void initDSRSP2(String s) {
 if (!s.trim().isEmpty()) {
 DSRSP2 = Byte.parseByte(s);
 } else {
 DSRSP2 = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDSRSP2_I(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == -9) {
+DSRSP2_I = false;
+} else {
+DSRSP2_I = true;
+}
+}
+}
+
+protected final void initDSRSP2_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+DSRSP2_IFLAG = Byte.parseByte(s);
+} else {
+DSRSP2_IFLAG = Byte.MIN_VALUE;
 }
 }
 
@@ -4008,6 +5523,28 @@ if (b == -9) {
 DSRSP3 = false;
 } else {
 DSRSP3 = true;
+}
+}
+}
+
+protected final void initDSRSP3_I(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == -9) {
+DSRSP3_I = false;
+} else {
+DSRSP3_I = true;
+}
+}
+}
+
+protected final void initDSRSP3_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSRSP3_IFLAG = false;
+} else {
+DSRSP3_IFLAG = true;
 }
 }
 }
@@ -4023,6 +5560,28 @@ DSRSP4 = true;
 }
 }
 
+protected final void initDSRSP4_I(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == -9) {
+DSRSP4_I = false;
+} else {
+DSRSP4_I = true;
+}
+}
+}
+
+protected final void initDSRSP4_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSRSP4_IFLAG = false;
+} else {
+DSRSP4_IFLAG = true;
+}
+}
+}
+
 protected final void initDSRSP5(String s) {
 if (!s.trim().isEmpty()) {
 byte b = Byte.parseByte(s);
@@ -4030,6 +5589,28 @@ if (b == -9) {
 DSRSP5 = false;
 } else {
 DSRSP5 = true;
+}
+}
+}
+
+protected final void initDSRSP5_I(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == -9) {
+DSRSP5_I = false;
+} else {
+DSRSP5_I = true;
+}
+}
+}
+
+protected final void initDSRSP5_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DSRSP5_IFLAG = false;
+} else {
+DSRSP5_IFLAG = true;
 }
 }
 }
@@ -4079,9 +5660,12 @@ DTLOWE2_I = Short.MIN_VALUE;
 
 protected final void initDTLOWE2_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-DTLOWE2_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DTLOWE2_IFLAG = false;
 } else {
-DTLOWE2_IFLAG = Byte.MIN_VALUE;
+DTLOWE2_IFLAG = true;
+}
 }
 }
 
@@ -4103,9 +5687,12 @@ DTLOWE3_I = Short.MIN_VALUE;
 
 protected final void initDTLOWE3_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-DTLOWE3_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DTLOWE3_IFLAG = false;
 } else {
-DTLOWE3_IFLAG = Byte.MIN_VALUE;
+DTLOWE3_IFLAG = true;
+}
 }
 }
 
@@ -4161,11 +5748,49 @@ DTLOWEB1 = Byte.MIN_VALUE;
 }
 }
 
+protected final void initDTLOWEB1_I(String s) {
+if (!s.trim().isEmpty()) {
+DTLOWEB1_I = Byte.parseByte(s);
+} else {
+DTLOWEB1_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDTLOWEB1_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DTLOWEB1_IFLAG = false;
+} else {
+DTLOWEB1_IFLAG = true;
+}
+}
+}
+
 protected final void initDTLOWEB2(String s) {
 if (!s.trim().isEmpty()) {
 DTLOWEB2 = Byte.parseByte(s);
 } else {
 DTLOWEB2 = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDTLOWEB2_I(String s) {
+if (!s.trim().isEmpty()) {
+DTLOWEB2_I = Byte.parseByte(s);
+} else {
+DTLOWEB2_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDTLOWEB2_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DTLOWEB2_IFLAG = false;
+} else {
+DTLOWEB2_IFLAG = true;
+}
 }
 }
 
@@ -4176,6 +5801,69 @@ if (b == -7) {
 DTLOWEB3 = false;
 } else {
 DTLOWEB3 = true;
+}
+}
+}
+
+protected final void initDTLOWEB3_I(String s) {
+if (!s.trim().isEmpty()) {
+DTLOWEB3_I = Byte.parseByte(s);
+} else {
+DTLOWEB3_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDTLOWEB3_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DTLOWEB3_IFLAG = false;
+} else {
+DTLOWEB3_IFLAG = true;
+}
+}
+}
+
+protected final void initDTLOWEB4_I(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == -7) {
+DTLOWEB4_I = false;
+} else {
+DTLOWEB4_I = true;
+}
+}
+}
+
+protected final void initDTLOWEB4_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DTLOWEB4_IFLAG = false;
+} else {
+DTLOWEB4_IFLAG = true;
+}
+}
+}
+
+protected final void initDTLOWEB5_I(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == -7) {
+DTLOWEB5_I = false;
+} else {
+DTLOWEB5_I = true;
+}
+}
+}
+
+protected final void initDTLOWEB5_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DTLOWEB5_IFLAG = false;
+} else {
+DTLOWEB5_IFLAG = true;
 }
 }
 }
@@ -4225,9 +5913,12 @@ DTLTYPE2_I = Byte.MIN_VALUE;
 
 protected final void initDTLTYPE2_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-DTLTYPE2_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DTLTYPE2_IFLAG = false;
 } else {
-DTLTYPE2_IFLAG = Byte.MIN_VALUE;
+DTLTYPE2_IFLAG = true;
+}
 }
 }
 
@@ -4249,9 +5940,12 @@ DTLTYPE3_I = Byte.MIN_VALUE;
 
 protected final void initDTLTYPE3_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-DTLTYPE3_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DTLTYPE3_IFLAG = false;
 } else {
-DTLTYPE3_IFLAG = Byte.MIN_VALUE;
+DTLTYPE3_IFLAG = true;
+}
 }
 }
 
@@ -4552,14 +6246,6 @@ DVDHPOWE5 = Short.MIN_VALUE;
 }
 }
 
-protected final void initDVDLOWE5(String s) {
-if (!s.trim().isEmpty()) {
-DVDLOWE5 = Short.parseShort(s);
-} else {
-DVDLOWE5 = Short.MIN_VALUE;
-}
-}
-
 protected final void initDVDMOOWE3(String s) {
 if (!s.trim().isEmpty()) {
 DVDMOOWE3 = Short.parseShort(s);
@@ -4732,41 +6418,11 @@ DVHASOTHSH = true;
 }
 }
 
-protected final void initDVHASSAVDEP(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-if (b == 0) {
-DVHASSAVDEP = false;
-} else {
-DVHASSAVDEP = true;
-}
-}
-}
-
 protected final void initDVHASSC(String s) {
 if (!s.trim().isEmpty()) {
 DVHASSC = Byte.parseByte(s);
 } else {
 DVHASSC = Byte.MIN_VALUE;
-}
-}
-
-protected final void initDVHASSHSAC(String s) {
-if (!s.trim().isEmpty()) {
-DVHASSHSAC = Byte.parseByte(s);
-} else {
-DVHASSHSAC = Byte.MIN_VALUE;
-}
-}
-
-protected final void initDVHASSL(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-if (b == 0) {
-DVHASSL = false;
-} else {
-DVHASSL = true;
-}
 }
 }
 
@@ -4864,6 +6520,25 @@ DVRENTAMTANNUAL = Integer.MIN_VALUE;
 }
 }
 
+protected final void initDVRENTBNDANNUAL_I(String s) {
+if (!s.trim().isEmpty()) {
+DVRENTBNDANNUAL_I = Byte.parseByte(s);
+} else {
+DVRENTBNDANNUAL_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDVRENTBNDANNUAL_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DVRENTBNDANNUAL_IFLAG = false;
+} else {
+DVRENTBNDANNUAL_IFLAG = true;
+}
+}
+}
+
 protected final void initDVSAME_I(String s) {
 if (!s.trim().isEmpty()) {
 DVSAME_I = Byte.parseByte(s);
@@ -4879,6 +6554,44 @@ if (b == 0) {
 DVSAME_IFLAG = false;
 } else {
 DVSAME_IFLAG = true;
+}
+}
+}
+
+protected final void initDVSEGRSPAYBAND_I(String s) {
+if (!s.trim().isEmpty()) {
+DVSEGRSPAYBAND_I = Byte.parseByte(s);
+} else {
+DVSEGRSPAYBAND_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDVSEGRSPAYBAND_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DVSEGRSPAYBAND_IFLAG = false;
+} else {
+DVSEGRSPAYBAND_IFLAG = true;
+}
+}
+}
+
+protected final void initDVSENETPAYBAND_I(String s) {
+if (!s.trim().isEmpty()) {
+DVSENETPAYBAND_I = Byte.parseByte(s);
+} else {
+DVSENETPAYBAND_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initDVSENETPAYBAND_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+DVSENETPAYBAND_IFLAG = false;
+} else {
+DVSENETPAYBAND_IFLAG = true;
 }
 }
 }
@@ -5326,14 +7039,6 @@ FNSVAL1 = Integer.MIN_VALUE;
 }
 }
 
-protected final void initFNSVAL1_I(String s) {
-if (!s.trim().isEmpty()) {
-FNSVAL1_I = Integer.parseInt(s);
-} else {
-FNSVAL1_I = Integer.MIN_VALUE;
-}
-}
-
 protected final void initFSHADA(String s) {
 if (!s.trim().isEmpty()) {
 FSHADA = Integer.parseInt(s);
@@ -5404,54 +7109,27 @@ HPLFT5 = Double.NaN;
 }
 }
 
-protected final void initHPNMN3(String s) {
+protected final void initHPMN3(String s) {
 if (!s.trim().isEmpty()) {
-HPNMN3 = Byte.parseByte(s);
+HPMN3 = Byte.parseByte(s);
 } else {
-HPNMN3 = Byte.MIN_VALUE;
+HPMN3 = Byte.MIN_VALUE;
 }
 }
 
-protected final void initHPNMN4(String s) {
+protected final void initHPMN4(String s) {
 if (!s.trim().isEmpty()) {
-HPNMN4 = Byte.parseByte(s);
+HPMN4 = Byte.parseByte(s);
 } else {
-HPNMN4 = Byte.MIN_VALUE;
+HPMN4 = Byte.MIN_VALUE;
 }
 }
 
-protected final void initHPNMN5(String s) {
+protected final void initHPMN5(String s) {
 if (!s.trim().isEmpty()) {
-HPNMN5 = Byte.parseByte(s);
+HPMN5 = Byte.parseByte(s);
 } else {
-HPNMN5 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initHPNYR3(String s) {
-if (!s.trim().isEmpty()) {
-HPNYR3 = Byte.parseByte(s);
-} else {
-HPNYR3 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initHPNYR4(String s) {
-if (!s.trim().isEmpty()) {
-HPNYR4 = Byte.parseByte(s);
-} else {
-HPNYR4 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initHPNYR5(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-if (b == 1) {
-HPNYR5 = false;
-} else {
-HPNYR5 = true;
-}
+HPMN5 = Byte.MIN_VALUE;
 }
 }
 
@@ -5479,123 +7157,27 @@ HPOS5 = Double.NaN;
 }
 }
 
-protected final void initHRPDVAGE(String s) {
+protected final void initHPYR3(String s) {
 if (!s.trim().isEmpty()) {
-HRPDVAGE = Byte.parseByte(s);
+HPYR3 = Byte.parseByte(s);
 } else {
-HRPDVAGE = Byte.MIN_VALUE;
+HPYR3 = Byte.MIN_VALUE;
 }
 }
 
-protected final void initHRPDVAGE9(String s) {
+protected final void initHPYR4(String s) {
 if (!s.trim().isEmpty()) {
-HRPDVAGE9 = Byte.parseByte(s);
+HPYR4 = Byte.parseByte(s);
 } else {
-HRPDVAGE9 = Byte.MIN_VALUE;
+HPYR4 = Byte.MIN_VALUE;
 }
 }
 
-protected final void initHRPDVILO3A(String s) {
+protected final void initHPYR5(String s) {
 if (!s.trim().isEmpty()) {
-HRPDVILO3A = Byte.parseByte(s);
+HPYR5 = Byte.parseByte(s);
 } else {
-HRPDVILO3A = Byte.MIN_VALUE;
-}
-}
-
-protected final void initHRPDVMRDF(String s) {
-if (!s.trim().isEmpty()) {
-HRPDVMRDF = Byte.parseByte(s);
-} else {
-HRPDVMRDF = Byte.MIN_VALUE;
-}
-}
-
-protected final void initHRPEDATTN1(String s) {
-if (!s.trim().isEmpty()) {
-HRPEDATTN1 = Byte.parseByte(s);
-} else {
-HRPEDATTN1 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initHRPEDATTN2(String s) {
-if (!s.trim().isEmpty()) {
-HRPEDATTN2 = Byte.parseByte(s);
-} else {
-HRPEDATTN2 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initHRPEDATTN3(String s) {
-if (!s.trim().isEmpty()) {
-HRPEDATTN3 = Byte.parseByte(s);
-} else {
-HRPEDATTN3 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initHRPEDLEVEL(String s) {
-if (!s.trim().isEmpty()) {
-HRPEDLEVEL = Byte.parseByte(s);
-} else {
-HRPEDLEVEL = Byte.MIN_VALUE;
-}
-}
-
-protected final void initHRPEMPSTAT2(String s) {
-if (!s.trim().isEmpty()) {
-HRPEMPSTAT2 = Byte.parseByte(s);
-} else {
-HRPEMPSTAT2 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initHRPETHNIC(String s) {
-if (!s.trim().isEmpty()) {
-HRPETHNIC = Byte.parseByte(s);
-} else {
-HRPETHNIC = Byte.MIN_VALUE;
-}
-}
-
-protected final void initHRPIOUT1(String s) {
-if (!s.trim().isEmpty()) {
-HRPIOUT1 = Byte.parseByte(s);
-} else {
-HRPIOUT1 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initHRPNSSEC3(String s) {
-if (!s.trim().isEmpty()) {
-HRPNSSEC3 = Byte.parseByte(s);
-} else {
-HRPNSSEC3 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initHRPPARTIOUT1(String s) {
-if (!s.trim().isEmpty()) {
-HRPPARTIOUT1 = Byte.parseByte(s);
-} else {
-HRPPARTIOUT1 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initHRPSEX(String s) {
-if (!s.trim().isEmpty()) {
-HRPSEX = Byte.parseByte(s);
-} else {
-HRPSEX = Byte.MIN_VALUE;
-}
-}
-
-protected final void initHRP_RESP(String s) {
-if (!s.trim().isEmpty()) {
-HRP_RESP = Byte.parseByte(s);
-} else {
-HRP_RESP = Byte.MIN_VALUE;
+HPYR5 = Byte.MIN_VALUE;
 }
 }
 
@@ -6068,28 +7650,6 @@ INTRO = Byte.MIN_VALUE;
 }
 }
 
-protected final void initISHRP(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-if (b == 1) {
-ISHRP = false;
-} else {
-ISHRP = true;
-}
-}
-}
-
-protected final void initISHRPPART(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-if (b == 1) {
-ISHRPPART = false;
-} else {
-ISHRPPART = true;
-}
-}
-}
-
 protected final void initIVAL1(String s) {
 if (!s.trim().isEmpty()) {
 IVAL1 = Integer.parseInt(s);
@@ -6226,91 +7786,17 @@ IWHO = Byte.MIN_VALUE;
 }
 }
 
+protected final void initLEA(String s) {
+if (!s.trim().isEmpty()) {
+LEA = s;
+}
+}
+
 protected final void initLIVWTH(String s) {
 if (!s.trim().isEmpty()) {
 LIVWTH = Byte.parseByte(s);
 } else {
 LIVWTH = Byte.MIN_VALUE;
-}
-}
-
-protected final void initLNMN1(String s) {
-if (!s.trim().isEmpty()) {
-LNMN1 = Byte.parseByte(s);
-} else {
-LNMN1 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initLNMN2(String s) {
-if (!s.trim().isEmpty()) {
-LNMN2 = Byte.parseByte(s);
-} else {
-LNMN2 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initLNMN3(String s) {
-if (!s.trim().isEmpty()) {
-LNMN3 = Byte.parseByte(s);
-} else {
-LNMN3 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initLNMN4(String s) {
-if (!s.trim().isEmpty()) {
-LNMN4 = Byte.parseByte(s);
-} else {
-LNMN4 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initLNMN5(String s) {
-if (!s.trim().isEmpty()) {
-LNMN5 = Byte.parseByte(s);
-} else {
-LNMN5 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initLNYR1(String s) {
-if (!s.trim().isEmpty()) {
-LNYR1 = Byte.parseByte(s);
-} else {
-LNYR1 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initLNYR2(String s) {
-if (!s.trim().isEmpty()) {
-LNYR2 = Byte.parseByte(s);
-} else {
-LNYR2 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initLNYR3(String s) {
-if (!s.trim().isEmpty()) {
-LNYR3 = Byte.parseByte(s);
-} else {
-LNYR3 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initLNYR4(String s) {
-if (!s.trim().isEmpty()) {
-LNYR4 = Byte.parseByte(s);
-} else {
-LNYR4 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initLNYR5(String s) {
-if (!s.trim().isEmpty()) {
-LNYR5 = Byte.parseByte(s);
-} else {
-LNYR5 = Byte.MIN_VALUE;
 }
 }
 
@@ -6346,6 +7832,30 @@ MOLFT5 = Double.NaN;
 }
 }
 
+protected final void initMOMN3(String s) {
+if (!s.trim().isEmpty()) {
+MOMN3 = Byte.parseByte(s);
+} else {
+MOMN3 = Byte.MIN_VALUE;
+}
+}
+
+protected final void initMOMN4(String s) {
+if (!s.trim().isEmpty()) {
+MOMN4 = Byte.parseByte(s);
+} else {
+MOMN4 = Byte.MIN_VALUE;
+}
+}
+
+protected final void initMOMN5(String s) {
+if (!s.trim().isEmpty()) {
+MOMN5 = Byte.parseByte(s);
+} else {
+MOMN5 = Byte.MIN_VALUE;
+}
+}
+
 protected final void initMOOS3(String s) {
 if (!s.trim().isEmpty()) {
 MOOS3 = Double.parseDouble(s);
@@ -6370,43 +7880,71 @@ MOOS5 = Double.NaN;
 }
 }
 
-protected final void initNMN1(String s) {
+protected final void initMOYR3(String s) {
 if (!s.trim().isEmpty()) {
-NMN1 = Byte.parseByte(s);
+MOYR3 = Byte.parseByte(s);
 } else {
-NMN1 = Byte.MIN_VALUE;
+MOYR3 = Byte.MIN_VALUE;
 }
 }
 
-protected final void initNMN2(String s) {
+protected final void initMOYR4(String s) {
 if (!s.trim().isEmpty()) {
-NMN2 = Byte.parseByte(s);
+MOYR4 = Byte.parseByte(s);
 } else {
-NMN2 = Byte.MIN_VALUE;
+MOYR4 = Byte.MIN_VALUE;
 }
 }
 
-protected final void initNMN3(String s) {
+protected final void initMOYR5(String s) {
 if (!s.trim().isEmpty()) {
-NMN3 = Byte.parseByte(s);
+MOYR5 = Byte.parseByte(s);
 } else {
-NMN3 = Byte.MIN_VALUE;
+MOYR5 = Byte.MIN_VALUE;
 }
 }
 
-protected final void initNMN4(String s) {
+protected final void initNSLBNK4(String s) {
 if (!s.trim().isEmpty()) {
-NMN4 = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+NSLBNK4 = false;
 } else {
-NMN4 = Byte.MIN_VALUE;
+NSLBNK4 = true;
+}
 }
 }
 
-protected final void initNMN5(String s) {
+protected final void initNSLBNK5(String s) {
 if (!s.trim().isEmpty()) {
-NMN5 = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+NSLBNK5 = false;
 } else {
-NMN5 = Byte.MIN_VALUE;
+NSLBNK5 = true;
+}
+}
+}
+
+protected final void initNSLC4(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+NSLC4 = false;
+} else {
+NSLC4 = true;
+}
+}
+}
+
+protected final void initNSLC5(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+NSLC5 = false;
+} else {
+NSLC5 = true;
+}
 }
 }
 
@@ -6455,46 +7993,6 @@ if (!s.trim().isEmpty()) {
 NWHPVAL3 = Short.parseShort(s);
 } else {
 NWHPVAL3 = Short.MIN_VALUE;
-}
-}
-
-protected final void initNYR1(String s) {
-if (!s.trim().isEmpty()) {
-NYR1 = Byte.parseByte(s);
-} else {
-NYR1 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initNYR2(String s) {
-if (!s.trim().isEmpty()) {
-NYR2 = Byte.parseByte(s);
-} else {
-NYR2 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initNYR3(String s) {
-if (!s.trim().isEmpty()) {
-NYR3 = Byte.parseByte(s);
-} else {
-NYR3 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initNYR4(String s) {
-if (!s.trim().isEmpty()) {
-NYR4 = Byte.parseByte(s);
-} else {
-NYR4 = Byte.MIN_VALUE;
-}
-}
-
-protected final void initNYR5(String s) {
-if (!s.trim().isEmpty()) {
-NYR5 = Byte.parseByte(s);
-} else {
-NYR5 = Byte.MIN_VALUE;
 }
 }
 
@@ -6661,32 +8159,24 @@ OSAVC = Byte.MIN_VALUE;
 }
 }
 
-protected final void initOSLC4(String s) {
-if (!s.trim().isEmpty()) {
-OSLC4 = Short.parseShort(s);
-} else {
-OSLC4 = Short.MIN_VALUE;
-}
-}
-
-protected final void initOTHSRC5_I(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-if (b == -7) {
-OTHSRC5_I = false;
-} else {
-OTHSRC5_I = true;
-}
-}
-}
-
-protected final void initOTHSRC5_IFLAG(String s) {
+protected final void initOSLBNK4(String s) {
 if (!s.trim().isEmpty()) {
 byte b = Byte.parseByte(s);
 if (b == 0) {
-OTHSRC5_IFLAG = false;
+OSLBNK4 = false;
 } else {
-OTHSRC5_IFLAG = true;
+OSLBNK4 = true;
+}
+}
+}
+
+protected final void initOSLBNK5(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+OSLBNK5 = false;
+} else {
+OSLBNK5 = true;
 }
 }
 }
@@ -6965,9 +8455,23 @@ PESAME_I = Byte.MIN_VALUE;
 
 protected final void initPESAME_IFLAG(String s) {
 if (!s.trim().isEmpty()) {
-PESAME_IFLAG = Byte.parseByte(s);
+byte b = Byte.parseByte(s);
+if (b == 0) {
+PESAME_IFLAG = false;
 } else {
-PESAME_IFLAG = Byte.MIN_VALUE;
+PESAME_IFLAG = true;
+}
+}
+}
+
+protected final void initPEVERC_PEVERNC__SFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 1) {
+PEVERC_PEVERNC__SFLAG = false;
+} else {
+PEVERC_PEVERNC__SFLAG = true;
+}
 }
 }
 
@@ -7957,28 +9461,6 @@ PFDDV5 = true;
 }
 }
 
-protected final void initPFDDV5_I(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-if (b == -7) {
-PFDDV5_I = false;
-} else {
-PFDDV5_I = true;
-}
-}
-}
-
-protected final void initPFDDV5_IFLAG(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-if (b == 0) {
-PFDDV5_IFLAG = false;
-} else {
-PFDDV5_IFLAG = true;
-}
-}
-}
-
 protected final void initPFDDV6(String s) {
 if (!s.trim().isEmpty()) {
 byte b = Byte.parseByte(s);
@@ -7986,28 +9468,6 @@ if (b == -7) {
 PFDDV6 = false;
 } else {
 PFDDV6 = true;
-}
-}
-}
-
-protected final void initPFDDV6_I(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-if (b == -7) {
-PFDDV6_I = false;
-} else {
-PFDDV6_I = true;
-}
-}
-}
-
-protected final void initPFDDV6_IFLAG(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-if (b == 0) {
-PFDDV6_IFLAG = false;
-} else {
-PFDDV6_IFLAG = true;
 }
 }
 }
@@ -8056,25 +9516,6 @@ PFDRAW4 = true;
 }
 }
 
-protected final void initPFDRAW4_I(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-if (b == -7) {
-PFDRAW4_I = false;
-} else {
-PFDRAW4_I = true;
-}
-}
-}
-
-protected final void initPFDRAW4_IFLAG(String s) {
-if (!s.trim().isEmpty()) {
-PFDRAW4_IFLAG = Byte.parseByte(s);
-} else {
-PFDRAW4_IFLAG = Byte.MIN_VALUE;
-}
-}
-
 protected final void initPFDRAW5(String s) {
 if (!s.trim().isEmpty()) {
 byte b = Byte.parseByte(s);
@@ -8086,28 +9527,6 @@ PFDRAW5 = true;
 }
 }
 
-protected final void initPFDRAW5_I(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-if (b == -7) {
-PFDRAW5_I = false;
-} else {
-PFDRAW5_I = true;
-}
-}
-}
-
-protected final void initPFDRAW5_IFLAG(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-if (b == 0) {
-PFDRAW5_IFLAG = false;
-} else {
-PFDRAW5_IFLAG = true;
-}
-}
-}
-
 protected final void initPFDRAW6(String s) {
 if (!s.trim().isEmpty()) {
 byte b = Byte.parseByte(s);
@@ -8115,28 +9534,6 @@ if (b == -7) {
 PFDRAW6 = false;
 } else {
 PFDRAW6 = true;
-}
-}
-}
-
-protected final void initPFDRAW6_I(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-if (b == -7) {
-PFDRAW6_I = false;
-} else {
-PFDRAW6_I = true;
-}
-}
-}
-
-protected final void initPFDRAW6_IFLAG(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-if (b == 0) {
-PFDRAW6_IFLAG = false;
-} else {
-PFDRAW6_IFLAG = true;
 }
 }
 }
@@ -9217,6 +10614,28 @@ PFLMVB5 = true;
 }
 }
 
+protected final void initPFLMVB5_I(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == -7) {
+PFLMVB5_I = false;
+} else {
+PFLMVB5_I = true;
+}
+}
+}
+
+protected final void initPFLMVB5_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+PFLMVB5_IFLAG = false;
+} else {
+PFLMVB5_IFLAG = true;
+}
+}
+}
+
 protected final void initPFLMVB6(String s) {
 if (!s.trim().isEmpty()) {
 byte b = Byte.parseByte(s);
@@ -9224,6 +10643,28 @@ if (b == -7) {
 PFLMVB6 = false;
 } else {
 PFLMVB6 = true;
+}
+}
+}
+
+protected final void initPFLMVB6_I(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == -7) {
+PFLMVB6_I = false;
+} else {
+PFLMVB6_I = true;
+}
+}
+}
+
+protected final void initPFLMVB6_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+PFLMVB6_IFLAG = false;
+} else {
+PFLMVB6_IFLAG = true;
 }
 }
 }
@@ -12268,22 +13709,11 @@ RELIGW = Byte.MIN_VALUE;
 }
 }
 
-protected final void initRF(String s) {
-if (!s.trim().isEmpty()) {
-RF = Byte.parseByte(s);
-} else {
-RF = Byte.MIN_VALUE;
-}
-}
-
 protected final void initRPCRET1(String s) {
 if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-if (b == -7) {
-RPCRET1 = false;
+RPCRET1 = Byte.parseByte(s);
 } else {
-RPCRET1 = true;
-}
+RPCRET1 = Byte.MIN_VALUE;
 }
 }
 
@@ -12317,27 +13747,35 @@ RPDBCAL_F = Byte.MIN_VALUE;
 }
 }
 
-protected final void initRS(String s) {
+protected final void initSCAC4(String s) {
 if (!s.trim().isEmpty()) {
-RS = Byte.parseByte(s);
+SCAC4 = Byte.parseByte(s);
 } else {
-RS = Byte.MIN_VALUE;
+SCAC4 = Byte.MIN_VALUE;
 }
 }
 
-protected final void initSCAC4_I(String s) {
+protected final void initSCAC5(String s) {
 if (!s.trim().isEmpty()) {
-SCAC4_I = Byte.parseByte(s);
+SCAC5 = Byte.parseByte(s);
 } else {
-SCAC4_I = Byte.MIN_VALUE;
+SCAC5 = Byte.MIN_VALUE;
 }
 }
 
-protected final void initSCAC5_I(String s) {
+protected final void initSEGRSBAND(String s) {
 if (!s.trim().isEmpty()) {
-SCAC5_I = Byte.parseByte(s);
+SEGRSBAND = Byte.parseByte(s);
 } else {
-SCAC5_I = Byte.MIN_VALUE;
+SEGRSBAND = Byte.MIN_VALUE;
+}
+}
+
+protected final void initSENETBAND(String s) {
+if (!s.trim().isEmpty()) {
+SENETBAND = Byte.parseByte(s);
+} else {
+SENETBAND = Byte.MIN_VALUE;
 }
 }
 
@@ -12346,20 +13784,6 @@ if (!s.trim().isEmpty()) {
 SENO = Byte.parseByte(s);
 } else {
 SENO = Byte.MIN_VALUE;
-}
-}
-
-protected final void initSOA1(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-SOA1 = false;
-}
-}
-
-protected final void initSOA2(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-SOA2 = false;
 }
 }
 
@@ -12727,13 +14151,6 @@ if (!s.trim().isEmpty()) {
 SPENDM = Byte.parseByte(s);
 } else {
 SPENDM = Byte.MIN_VALUE;
-}
-}
-
-protected final void initSTATSWARD(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-STATSWARD = false;
 }
 }
 
@@ -13607,27 +15024,6 @@ W3XSWGT = Double.NaN;
 }
 }
 
-protected final void initWARD98(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-WARD98 = false;
-}
-}
-
-protected final void initWARDC91(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-WARDC91 = false;
-}
-}
-
-protected final void initWARDO91(String s) {
-if (!s.trim().isEmpty()) {
-byte b = Byte.parseByte(s);
-WARDO91 = false;
-}
-}
-
 protected final void initWHOREATT(String s) {
 if (!s.trim().isEmpty()) {
 WHOREATT = Byte.parseByte(s);
@@ -13798,6 +15194,10 @@ return AGEASAF1;
 
 public double getAGMSAF2T() {
 return AGMSAF2T;
+}
+
+public double getAGMSAFT() {
+return AGMSAFT;
 }
 
 public double getAGMSAFT1() {
@@ -14024,12 +15424,12 @@ public byte getCATYPE() {
 return CATYPE;
 }
 
-public byte getCCAC4_I() {
-return CCAC4_I;
+public byte getCCAC4() {
+return CCAC4;
 }
 
-public byte getCCAC5_I() {
-return CCAC5_I;
+public byte getCCAC5() {
+return CCAC5;
 }
 
 public byte getCOMBPD() {
@@ -14144,36 +15544,172 @@ public short getDCAMD5() {
 return DCAMD5;
 }
 
-public short getDCAMOS4_I() {
-return DCAMOS4_I;
+public int getDCAMOS4() {
+return DCAMOS4;
 }
 
-public short getDCAMOS5_I() {
-return DCAMOS5_I;
+public short getDCAMOS5() {
+return DCAMOS5;
+}
+
+public short getDCAMP1_I() {
+return DCAMP1_I;
+}
+
+public boolean getDCAMP1_IFLAG() {
+return DCAMP1_IFLAG;
+}
+
+public short getDCAMP2_I() {
+return DCAMP2_I;
+}
+
+public byte getDCAMP2_IFLAG() {
+return DCAMP2_IFLAG;
+}
+
+public short getDCAMP3_I() {
+return DCAMP3_I;
+}
+
+public byte getDCAMP3_IFLAG() {
+return DCAMP3_IFLAG;
 }
 
 public short getDCAMP4() {
 return DCAMP4;
 }
 
+public short getDCAMP4_I() {
+return DCAMP4_I;
+}
+
+public byte getDCAMP4_IFLAG() {
+return DCAMP4_IFLAG;
+}
+
 public short getDCAMP5() {
 return DCAMP5;
+}
+
+public short getDCAMP5_I() {
+return DCAMP5_I;
+}
+
+public byte getDCAMP5_IFLAG() {
+return DCAMP5_IFLAG;
+}
+
+public byte getDCANU_I() {
+return DCANU_I;
+}
+
+public byte getDCANU_IFLAG() {
+return DCANU_IFLAG;
+}
+
+public byte getDCANY_I() {
+return DCANY_I;
+}
+
+public byte getDCANY_IFLAG() {
+return DCANY_IFLAG;
+}
+
+public byte getDCCOS1_I() {
+return DCCOS1_I;
+}
+
+public boolean getDCCOS1_IFLAG() {
+return DCCOS1_IFLAG;
+}
+
+public byte getDCCOS2_I() {
+return DCCOS2_I;
+}
+
+public byte getDCCOS2_IFLAG() {
+return DCCOS2_IFLAG;
+}
+
+public byte getDCCOS3_I() {
+return DCCOS3_I;
+}
+
+public byte getDCCOS3_IFLAG() {
+return DCCOS3_IFLAG;
 }
 
 public byte getDCCOS4() {
 return DCCOS4;
 }
 
+public byte getDCCOS4_I() {
+return DCCOS4_I;
+}
+
+public byte getDCCOS4_IFLAG() {
+return DCCOS4_IFLAG;
+}
+
 public byte getDCCOS5() {
 return DCCOS5;
+}
+
+public byte getDCCOS5_I() {
+return DCCOS5_I;
+}
+
+public byte getDCCOS5_IFLAG() {
+return DCCOS5_IFLAG;
+}
+
+public byte getDCCSP1_I() {
+return DCCSP1_I;
+}
+
+public boolean getDCCSP1_IFLAG() {
+return DCCSP1_IFLAG;
+}
+
+public byte getDCCSP2_I() {
+return DCCSP2_I;
+}
+
+public byte getDCCSP2_IFLAG() {
+return DCCSP2_IFLAG;
+}
+
+public byte getDCCSP3_I() {
+return DCCSP3_I;
+}
+
+public byte getDCCSP3_IFLAG() {
+return DCCSP3_IFLAG;
 }
 
 public byte getDCCSP4() {
 return DCCSP4;
 }
 
+public byte getDCCSP4_I() {
+return DCCSP4_I;
+}
+
+public boolean getDCCSP4_IFLAG() {
+return DCCSP4_IFLAG;
+}
+
 public byte getDCCSP5() {
 return DCCSP5;
+}
+
+public byte getDCCSP5_I() {
+return DCCSP5_I;
+}
+
+public boolean getDCCSP5_IFLAG() {
+return DCCSP5_IFLAG;
 }
 
 public byte getDCESB4() {
@@ -14192,12 +15728,68 @@ public byte getDCINZ5() {
 return DCINZ5;
 }
 
+public byte getDCNAM1_I() {
+return DCNAM1_I;
+}
+
+public boolean getDCNAM1_IFLAG() {
+return DCNAM1_IFLAG;
+}
+
+public byte getDCNAM2_I() {
+return DCNAM2_I;
+}
+
+public byte getDCNAM2_IFLAG() {
+return DCNAM2_IFLAG;
+}
+
+public byte getDCNAM3_I() {
+return DCNAM3_I;
+}
+
+public byte getDCNAM3_IFLAG() {
+return DCNAM3_IFLAG;
+}
+
 public byte getDCNAM4() {
 return DCNAM4;
 }
 
+public byte getDCNAM4_I() {
+return DCNAM4_I;
+}
+
+public byte getDCNAM4_IFLAG() {
+return DCNAM4_IFLAG;
+}
+
 public byte getDCNAM5() {
 return DCNAM5;
+}
+
+public byte getDCNAM5_I() {
+return DCNAM5_I;
+}
+
+public byte getDCNAM5_IFLAG() {
+return DCNAM5_IFLAG;
+}
+
+public byte getDCNUM1_I() {
+return DCNUM1_I;
+}
+
+public boolean getDCNUM1_IFLAG() {
+return DCNUM1_IFLAG;
+}
+
+public byte getDCNUM2_I() {
+return DCNUM2_I;
+}
+
+public boolean getDCNUM2_IFLAG() {
+return DCNUM2_IFLAG;
 }
 
 public boolean getDCONM10() {
@@ -14216,6 +15808,22 @@ public byte getDCONM9() {
 return DCONM9;
 }
 
+public boolean getDCOSHV4_I() {
+return DCOSHV4_I;
+}
+
+public boolean getDCOSHV4_IFLAG() {
+return DCOSHV4_IFLAG;
+}
+
+public boolean getDCOSHV5_I() {
+return DCOSHV5_I;
+}
+
+public boolean getDCOSHV5_IFLAG() {
+return DCOSHV5_IFLAG;
+}
+
 public boolean getDCPER4() {
 return DCPER4;
 }
@@ -14224,20 +15832,100 @@ public boolean getDCPER5() {
 return DCPER5;
 }
 
+public byte getDCREC1_I() {
+return DCREC1_I;
+}
+
+public boolean getDCREC1_IFLAG() {
+return DCREC1_IFLAG;
+}
+
+public byte getDCREC2_I() {
+return DCREC2_I;
+}
+
+public byte getDCREC2_IFLAG() {
+return DCREC2_IFLAG;
+}
+
+public byte getDCREC3_I() {
+return DCREC3_I;
+}
+
+public byte getDCREC3_IFLAG() {
+return DCREC3_IFLAG;
+}
+
 public byte getDCREC4() {
 return DCREC4;
+}
+
+public byte getDCREC4_I() {
+return DCREC4_I;
+}
+
+public byte getDCREC4_IFLAG() {
+return DCREC4_IFLAG;
 }
 
 public byte getDCREC5() {
 return DCREC5;
 }
 
+public byte getDCREC5_I() {
+return DCREC5_I;
+}
+
+public byte getDCREC5_IFLAG() {
+return DCREC5_IFLAG;
+}
+
+public boolean getDCRSP1_I() {
+return DCRSP1_I;
+}
+
+public boolean getDCRSP1_IFLAG() {
+return DCRSP1_IFLAG;
+}
+
+public byte getDCRSP2_I() {
+return DCRSP2_I;
+}
+
+public byte getDCRSP2_IFLAG() {
+return DCRSP2_IFLAG;
+}
+
+public byte getDCRSP3_I() {
+return DCRSP3_I;
+}
+
+public byte getDCRSP3_IFLAG() {
+return DCRSP3_IFLAG;
+}
+
 public boolean getDCRSP4() {
 return DCRSP4;
 }
 
+public byte getDCRSP4_I() {
+return DCRSP4_I;
+}
+
+public byte getDCRSP4_IFLAG() {
+return DCRSP4_IFLAG;
+}
+
 public boolean getDCRSP5() {
 return DCRSP5;
+}
+
+public byte getDCRSP5_I() {
+return DCRSP5_I;
+}
+
+public boolean getDCRSP5_IFLAG() {
+return DCRSP5_IFLAG;
 }
 
 public boolean getDHBANY08_I() {
@@ -14308,7 +15996,7 @@ public byte getDHPBEH4_I() {
 return DHPBEH4_I;
 }
 
-public byte getDHPBEH4_IFLAG() {
+public boolean getDHPBEH4_IFLAG() {
 return DHPBEH4_IFLAG;
 }
 
@@ -14404,7 +16092,7 @@ public byte getDHPOFT4_I() {
 return DHPOFT4_I;
 }
 
-public byte getDHPOFT4_IFLAG() {
+public boolean getDHPOFT4_IFLAG() {
 return DHPOFT4_IFLAG;
 }
 
@@ -14596,6 +16284,14 @@ public boolean getDLWHY28() {
 return DLWHY28;
 }
 
+public byte getDLWHY29() {
+return DLWHY29;
+}
+
+public boolean getDLWHY30() {
+return DLWHY30;
+}
+
 public boolean getDLWHY31() {
 return DLWHY31;
 }
@@ -14636,7 +16332,7 @@ public byte getDMOBEH4_I() {
 return DMOBEH4_I;
 }
 
-public byte getDMOBEH4_IFLAG() {
+public boolean getDMOBEH4_IFLAG() {
 return DMOBEH4_IFLAG;
 }
 
@@ -14648,7 +16344,7 @@ public byte getDMOBEH5_I() {
 return DMOBEH5_I;
 }
 
-public byte getDMOBEH5_IFLAG() {
+public boolean getDMOBEH5_IFLAG() {
 return DMOBEH5_IFLAG;
 }
 
@@ -14668,11 +16364,11 @@ public short getDMOINS3() {
 return DMOINS3;
 }
 
-public short getDMOINS3_I() {
+public byte getDMOINS3_I() {
 return DMOINS3_I;
 }
 
-public byte getDMOINS3_IFLAG() {
+public boolean getDMOINS3_IFLAG() {
 return DMOINS3_IFLAG;
 }
 
@@ -14696,7 +16392,7 @@ public byte getDMOINS5_I() {
 return DMOINS5_I;
 }
 
-public byte getDMOINS5_IFLAG() {
+public boolean getDMOINS5_IFLAG() {
 return DMOINS5_IFLAG;
 }
 
@@ -14732,7 +16428,7 @@ public byte getDMOOFT4_I() {
 return DMOOFT4_I;
 }
 
-public byte getDMOOFT4_IFLAG() {
+public boolean getDMOOFT4_IFLAG() {
 return DMOOFT4_IFLAG;
 }
 
@@ -14744,7 +16440,7 @@ public boolean getDMOOFT5_I() {
 return DMOOFT5_I;
 }
 
-public byte getDMOOFT5_IFLAG() {
+public boolean getDMOOFT5_IFLAG() {
 return DMOOFT5_IFLAG;
 }
 
@@ -14768,7 +16464,7 @@ public short getDMOOWE4_I() {
 return DMOOWE4_I;
 }
 
-public byte getDMOOWE4_IFLAG() {
+public boolean getDMOOWE4_IFLAG() {
 return DMOOWE4_IFLAG;
 }
 
@@ -14816,7 +16512,7 @@ public byte getDMOWHNM4_I() {
 return DMOWHNM4_I;
 }
 
-public byte getDMOWHNM4_IFLAG() {
+public boolean getDMOWHNM4_IFLAG() {
 return DMOWHNM4_IFLAG;
 }
 
@@ -14828,7 +16524,7 @@ public byte getDMOWHNM5_I() {
 return DMOWHNM5_I;
 }
 
-public byte getDMOWHNM5_IFLAG() {
+public boolean getDMOWHNM5_IFLAG() {
 return DMOWHNM5_IFLAG;
 }
 
@@ -14852,7 +16548,7 @@ public short getDMOWHNY4_I() {
 return DMOWHNY4_I;
 }
 
-public byte getDMOWHNY4_IFLAG() {
+public boolean getDMOWHNY4_IFLAG() {
 return DMOWHNY4_IFLAG;
 }
 
@@ -14864,7 +16560,7 @@ public short getDMOWHNY5_I() {
 return DMOWHNY5_I;
 }
 
-public byte getDMOWHNY5_IFLAG() {
+public boolean getDMOWHNY5_IFLAG() {
 return DMOWHNY5_IFLAG;
 }
 
@@ -14884,52 +16580,284 @@ public boolean getDS12OWE5() {
 return DS12OWE5;
 }
 
+public short getDSAMC1_I() {
+return DSAMC1_I;
+}
+
+public boolean getDSAMC1_IFLAG() {
+return DSAMC1_IFLAG;
+}
+
+public short getDSAMC2_I() {
+return DSAMC2_I;
+}
+
+public byte getDSAMC2_IFLAG() {
+return DSAMC2_IFLAG;
+}
+
+public short getDSAMC3_I() {
+return DSAMC3_I;
+}
+
+public boolean getDSAMC3_IFLAG() {
+return DSAMC3_IFLAG;
+}
+
 public short getDSAMC4() {
 return DSAMC4;
+}
+
+public short getDSAMC4_I() {
+return DSAMC4_I;
+}
+
+public byte getDSAMC4_IFLAG() {
+return DSAMC4_IFLAG;
 }
 
 public short getDSAMC5() {
 return DSAMC5;
 }
 
+public short getDSAMC5_I() {
+return DSAMC5_I;
+}
+
+public boolean getDSAMC5_IFLAG() {
+return DSAMC5_IFLAG;
+}
+
+public short getDSAMD1_I() {
+return DSAMD1_I;
+}
+
+public boolean getDSAMD1_IFLAG() {
+return DSAMD1_IFLAG;
+}
+
+public short getDSAMD2_I() {
+return DSAMD2_I;
+}
+
+public byte getDSAMD2_IFLAG() {
+return DSAMD2_IFLAG;
+}
+
+public short getDSAMD3_I() {
+return DSAMD3_I;
+}
+
+public boolean getDSAMD3_IFLAG() {
+return DSAMD3_IFLAG;
+}
+
 public short getDSAMD4() {
 return DSAMD4;
+}
+
+public short getDSAMD4_I() {
+return DSAMD4_I;
+}
+
+public boolean getDSAMD4_IFLAG() {
+return DSAMD4_IFLAG;
 }
 
 public byte getDSAMD5() {
 return DSAMD5;
 }
 
-public short getDSAMOS4_I() {
-return DSAMOS4_I;
+public short getDSAMD5_I() {
+return DSAMD5_I;
 }
 
-public short getDSAMOS5_I() {
-return DSAMOS5_I;
+public boolean getDSAMD5_IFLAG() {
+return DSAMD5_IFLAG;
+}
+
+public short getDSAMOS4() {
+return DSAMOS4;
+}
+
+public short getDSAMOS5() {
+return DSAMOS5;
+}
+
+public short getDSAMP1_I() {
+return DSAMP1_I;
+}
+
+public boolean getDSAMP1_IFLAG() {
+return DSAMP1_IFLAG;
+}
+
+public short getDSAMP2_I() {
+return DSAMP2_I;
+}
+
+public byte getDSAMP2_IFLAG() {
+return DSAMP2_IFLAG;
+}
+
+public short getDSAMP3_I() {
+return DSAMP3_I;
+}
+
+public boolean getDSAMP3_IFLAG() {
+return DSAMP3_IFLAG;
 }
 
 public short getDSAMP4() {
 return DSAMP4;
 }
 
+public short getDSAMP4_I() {
+return DSAMP4_I;
+}
+
+public byte getDSAMP4_IFLAG() {
+return DSAMP4_IFLAG;
+}
+
 public short getDSAMP5() {
 return DSAMP5;
+}
+
+public short getDSAMP5_I() {
+return DSAMP5_I;
+}
+
+public boolean getDSAMP5_IFLAG() {
+return DSAMP5_IFLAG;
+}
+
+public byte getDSANU1_I() {
+return DSANU1_I;
+}
+
+public byte getDSANU1_IFLAG() {
+return DSANU1_IFLAG;
+}
+
+public boolean getDSANU2_I() {
+return DSANU2_I;
+}
+
+public boolean getDSANU2_IFLAG() {
+return DSANU2_IFLAG;
+}
+
+public byte getDSANY1_I() {
+return DSANY1_I;
+}
+
+public byte getDSANY1_IFLAG() {
+return DSANY1_IFLAG;
+}
+
+public boolean getDSANY2_I() {
+return DSANY2_I;
+}
+
+public boolean getDSANY2_IFLAG() {
+return DSANY2_IFLAG;
+}
+
+public byte getDSCOS1_I() {
+return DSCOS1_I;
+}
+
+public boolean getDSCOS1_IFLAG() {
+return DSCOS1_IFLAG;
+}
+
+public byte getDSCOS2_I() {
+return DSCOS2_I;
+}
+
+public byte getDSCOS2_IFLAG() {
+return DSCOS2_IFLAG;
+}
+
+public byte getDSCOS3_I() {
+return DSCOS3_I;
+}
+
+public byte getDSCOS3_IFLAG() {
+return DSCOS3_IFLAG;
 }
 
 public byte getDSCOS4() {
 return DSCOS4;
 }
 
+public byte getDSCOS4_I() {
+return DSCOS4_I;
+}
+
+public byte getDSCOS4_IFLAG() {
+return DSCOS4_IFLAG;
+}
+
 public byte getDSCOS5() {
 return DSCOS5;
+}
+
+public byte getDSCOS5_I() {
+return DSCOS5_I;
+}
+
+public byte getDSCOS5_IFLAG() {
+return DSCOS5_IFLAG;
+}
+
+public byte getDSCSP1_I() {
+return DSCSP1_I;
+}
+
+public boolean getDSCSP1_IFLAG() {
+return DSCSP1_IFLAG;
+}
+
+public byte getDSCSP2_I() {
+return DSCSP2_I;
+}
+
+public boolean getDSCSP2_IFLAG() {
+return DSCSP2_IFLAG;
+}
+
+public byte getDSCSP3_I() {
+return DSCSP3_I;
+}
+
+public boolean getDSCSP3_IFLAG() {
+return DSCSP3_IFLAG;
 }
 
 public byte getDSCSP4() {
 return DSCSP4;
 }
 
+public boolean getDSCSP4_I() {
+return DSCSP4_I;
+}
+
+public boolean getDSCSP4_IFLAG() {
+return DSCSP4_IFLAG;
+}
+
 public byte getDSCSP5() {
 return DSCSP5;
+}
+
+public byte getDSCSP5_I() {
+return DSCSP5_I;
+}
+
+public boolean getDSCSP5_IFLAG() {
+return DSCSP5_IFLAG;
 }
 
 public byte getDSESB4() {
@@ -14944,16 +16872,72 @@ public boolean getDSLEST5_IFLAG() {
 return DSLEST5_IFLAG;
 }
 
+public byte getDSNAM1_I() {
+return DSNAM1_I;
+}
+
+public boolean getDSNAM1_IFLAG() {
+return DSNAM1_IFLAG;
+}
+
+public byte getDSNAM2_I() {
+return DSNAM2_I;
+}
+
+public byte getDSNAM2_IFLAG() {
+return DSNAM2_IFLAG;
+}
+
+public byte getDSNAM3_I() {
+return DSNAM3_I;
+}
+
+public byte getDSNAM3_IFLAG() {
+return DSNAM3_IFLAG;
+}
+
 public byte getDSNAM4() {
 return DSNAM4;
+}
+
+public boolean getDSNAM4_I() {
+return DSNAM4_I;
+}
+
+public byte getDSNAM4_IFLAG() {
+return DSNAM4_IFLAG;
 }
 
 public byte getDSNAM5() {
 return DSNAM5;
 }
 
+public boolean getDSNAM5_I() {
+return DSNAM5_I;
+}
+
+public boolean getDSNAM5_IFLAG() {
+return DSNAM5_IFLAG;
+}
+
 public byte getDSNUM() {
 return DSNUM;
+}
+
+public byte getDSNUM2_I() {
+return DSNUM2_I;
+}
+
+public boolean getDSNUM2_IFLAG() {
+return DSNUM2_IFLAG;
+}
+
+public byte getDSNUM_I() {
+return DSNUM_I;
+}
+
+public byte getDSNUM_IFLAG() {
+return DSNUM_IFLAG;
 }
 
 public boolean getDSONM10() {
@@ -14992,20 +16976,60 @@ public boolean getDSRSP1() {
 return DSRSP1;
 }
 
+public boolean getDSRSP1_I() {
+return DSRSP1_I;
+}
+
+public boolean getDSRSP1_IFLAG() {
+return DSRSP1_IFLAG;
+}
+
 public byte getDSRSP2() {
 return DSRSP2;
+}
+
+public boolean getDSRSP2_I() {
+return DSRSP2_I;
+}
+
+public byte getDSRSP2_IFLAG() {
+return DSRSP2_IFLAG;
 }
 
 public boolean getDSRSP3() {
 return DSRSP3;
 }
 
+public boolean getDSRSP3_I() {
+return DSRSP3_I;
+}
+
+public boolean getDSRSP3_IFLAG() {
+return DSRSP3_IFLAG;
+}
+
 public boolean getDSRSP4() {
 return DSRSP4;
 }
 
+public boolean getDSRSP4_I() {
+return DSRSP4_I;
+}
+
+public boolean getDSRSP4_IFLAG() {
+return DSRSP4_IFLAG;
+}
+
 public boolean getDSRSP5() {
 return DSRSP5;
+}
+
+public boolean getDSRSP5_I() {
+return DSRSP5_I;
+}
+
+public boolean getDSRSP5_IFLAG() {
+return DSRSP5_IFLAG;
 }
 
 public int getDTLOWE1() {
@@ -15028,7 +17052,7 @@ public short getDTLOWE2_I() {
 return DTLOWE2_I;
 }
 
-public byte getDTLOWE2_IFLAG() {
+public boolean getDTLOWE2_IFLAG() {
 return DTLOWE2_IFLAG;
 }
 
@@ -15040,7 +17064,7 @@ public short getDTLOWE3_I() {
 return DTLOWE3_I;
 }
 
-public byte getDTLOWE3_IFLAG() {
+public boolean getDTLOWE3_IFLAG() {
 return DTLOWE3_IFLAG;
 }
 
@@ -15064,12 +17088,52 @@ public byte getDTLOWEB1() {
 return DTLOWEB1;
 }
 
+public byte getDTLOWEB1_I() {
+return DTLOWEB1_I;
+}
+
+public boolean getDTLOWEB1_IFLAG() {
+return DTLOWEB1_IFLAG;
+}
+
 public byte getDTLOWEB2() {
 return DTLOWEB2;
 }
 
+public byte getDTLOWEB2_I() {
+return DTLOWEB2_I;
+}
+
+public boolean getDTLOWEB2_IFLAG() {
+return DTLOWEB2_IFLAG;
+}
+
 public boolean getDTLOWEB3() {
 return DTLOWEB3;
+}
+
+public byte getDTLOWEB3_I() {
+return DTLOWEB3_I;
+}
+
+public boolean getDTLOWEB3_IFLAG() {
+return DTLOWEB3_IFLAG;
+}
+
+public boolean getDTLOWEB4_I() {
+return DTLOWEB4_I;
+}
+
+public boolean getDTLOWEB4_IFLAG() {
+return DTLOWEB4_IFLAG;
+}
+
+public boolean getDTLOWEB5_I() {
+return DTLOWEB5_I;
+}
+
+public boolean getDTLOWEB5_IFLAG() {
+return DTLOWEB5_IFLAG;
 }
 
 public byte getDTLTYPE1() {
@@ -15092,7 +17156,7 @@ public byte getDTLTYPE2_I() {
 return DTLTYPE2_I;
 }
 
-public byte getDTLTYPE2_IFLAG() {
+public boolean getDTLTYPE2_IFLAG() {
 return DTLTYPE2_IFLAG;
 }
 
@@ -15104,7 +17168,7 @@ public byte getDTLTYPE3_I() {
 return DTLTYPE3_I;
 }
 
-public byte getDTLTYPE3_IFLAG() {
+public boolean getDTLTYPE3_IFLAG() {
 return DTLTYPE3_IFLAG;
 }
 
@@ -15228,10 +17292,6 @@ public short getDVDHPOWE5() {
 return DVDHPOWE5;
 }
 
-public short getDVDLOWE5() {
-return DVDLOWE5;
-}
-
 public short getDVDMOOWE3() {
 return DVDMOOWE3;
 }
@@ -15300,20 +17360,8 @@ public boolean getDVHASOTHSH() {
 return DVHASOTHSH;
 }
 
-public boolean getDVHASSAVDEP() {
-return DVHASSAVDEP;
-}
-
 public byte getDVHASSC() {
 return DVHASSC;
-}
-
-public byte getDVHASSHSAC() {
-return DVHASSHSAC;
-}
-
-public boolean getDVHASSL() {
-return DVHASSL;
 }
 
 public boolean getDVHASUTRUST() {
@@ -15360,12 +17408,36 @@ public int getDVRENTAMTANNUAL() {
 return DVRENTAMTANNUAL;
 }
 
+public byte getDVRENTBNDANNUAL_I() {
+return DVRENTBNDANNUAL_I;
+}
+
+public boolean getDVRENTBNDANNUAL_IFLAG() {
+return DVRENTBNDANNUAL_IFLAG;
+}
+
 public byte getDVSAME_I() {
 return DVSAME_I;
 }
 
 public boolean getDVSAME_IFLAG() {
 return DVSAME_IFLAG;
+}
+
+public byte getDVSEGRSPAYBAND_I() {
+return DVSEGRSPAYBAND_I;
+}
+
+public boolean getDVSEGRSPAYBAND_IFLAG() {
+return DVSEGRSPAYBAND_IFLAG;
+}
+
+public byte getDVSENETPAYBAND_I() {
+return DVSENETPAYBAND_I;
+}
+
+public boolean getDVSENETPAYBAND_IFLAG() {
+return DVSENETPAYBAND_IFLAG;
 }
 
 public boolean getDVSEPANNUAL09() {
@@ -15564,10 +17636,6 @@ public int getFNSVAL1() {
 return FNSVAL1;
 }
 
-public int getFNSVAL1_I() {
-return FNSVAL1_I;
-}
-
 public int getFSHADA() {
 return FSHADA;
 }
@@ -15600,28 +17668,16 @@ public double getHPLFT5() {
 return HPLFT5;
 }
 
-public byte getHPNMN3() {
-return HPNMN3;
+public byte getHPMN3() {
+return HPMN3;
 }
 
-public byte getHPNMN4() {
-return HPNMN4;
+public byte getHPMN4() {
+return HPMN4;
 }
 
-public byte getHPNMN5() {
-return HPNMN5;
-}
-
-public byte getHPNYR3() {
-return HPNYR3;
-}
-
-public byte getHPNYR4() {
-return HPNYR4;
-}
-
-public boolean getHPNYR5() {
-return HPNYR5;
+public byte getHPMN5() {
+return HPMN5;
 }
 
 public double getHPOS3() {
@@ -15636,64 +17692,16 @@ public double getHPOS5() {
 return HPOS5;
 }
 
-public byte getHRPDVAGE() {
-return HRPDVAGE;
+public byte getHPYR3() {
+return HPYR3;
 }
 
-public byte getHRPDVAGE9() {
-return HRPDVAGE9;
+public byte getHPYR4() {
+return HPYR4;
 }
 
-public byte getHRPDVILO3A() {
-return HRPDVILO3A;
-}
-
-public byte getHRPDVMRDF() {
-return HRPDVMRDF;
-}
-
-public byte getHRPEDATTN1() {
-return HRPEDATTN1;
-}
-
-public byte getHRPEDATTN2() {
-return HRPEDATTN2;
-}
-
-public byte getHRPEDATTN3() {
-return HRPEDATTN3;
-}
-
-public byte getHRPEDLEVEL() {
-return HRPEDLEVEL;
-}
-
-public byte getHRPEMPSTAT2() {
-return HRPEMPSTAT2;
-}
-
-public byte getHRPETHNIC() {
-return HRPETHNIC;
-}
-
-public byte getHRPIOUT1() {
-return HRPIOUT1;
-}
-
-public byte getHRPNSSEC3() {
-return HRPNSSEC3;
-}
-
-public byte getHRPPARTIOUT1() {
-return HRPPARTIOUT1;
-}
-
-public byte getHRPSEX() {
-return HRPSEX;
-}
-
-public byte getHRP_RESP() {
-return HRP_RESP;
+public byte getHPYR5() {
+return HPYR5;
 }
 
 public byte getH_FLAG1() {
@@ -15872,14 +17880,6 @@ public byte getINTRO() {
 return INTRO;
 }
 
-public boolean getISHRP() {
-return ISHRP;
-}
-
-public boolean getISHRPPART() {
-return ISHRPPART;
-}
-
 public int getIVAL1() {
 return IVAL1;
 }
@@ -15936,48 +17936,12 @@ public byte getIWHO() {
 return IWHO;
 }
 
+public String getLEA() {
+return LEA;
+}
+
 public byte getLIVWTH() {
 return LIVWTH;
-}
-
-public byte getLNMN1() {
-return LNMN1;
-}
-
-public byte getLNMN2() {
-return LNMN2;
-}
-
-public byte getLNMN3() {
-return LNMN3;
-}
-
-public byte getLNMN4() {
-return LNMN4;
-}
-
-public byte getLNMN5() {
-return LNMN5;
-}
-
-public byte getLNYR1() {
-return LNYR1;
-}
-
-public byte getLNYR2() {
-return LNYR2;
-}
-
-public byte getLNYR3() {
-return LNYR3;
-}
-
-public byte getLNYR4() {
-return LNYR4;
-}
-
-public byte getLNYR5() {
-return LNYR5;
 }
 
 public byte getLVTDAY() {
@@ -15996,6 +17960,18 @@ public double getMOLFT5() {
 return MOLFT5;
 }
 
+public byte getMOMN3() {
+return MOMN3;
+}
+
+public byte getMOMN4() {
+return MOMN4;
+}
+
+public byte getMOMN5() {
+return MOMN5;
+}
+
 public double getMOOS3() {
 return MOOS3;
 }
@@ -16008,24 +17984,32 @@ public double getMOOS5() {
 return MOOS5;
 }
 
-public byte getNMN1() {
-return NMN1;
+public byte getMOYR3() {
+return MOYR3;
 }
 
-public byte getNMN2() {
-return NMN2;
+public byte getMOYR4() {
+return MOYR4;
 }
 
-public byte getNMN3() {
-return NMN3;
+public byte getMOYR5() {
+return MOYR5;
 }
 
-public byte getNMN4() {
-return NMN4;
+public boolean getNSLBNK4() {
+return NSLBNK4;
 }
 
-public byte getNMN5() {
-return NMN5;
+public boolean getNSLBNK5() {
+return NSLBNK5;
+}
+
+public boolean getNSLC4() {
+return NSLC4;
+}
+
+public boolean getNSLC5() {
+return NSLC5;
 }
 
 public double getNSSEC() {
@@ -16050,26 +18034,6 @@ return NWHPVAL2;
 
 public short getNWHPVAL3() {
 return NWHPVAL3;
-}
-
-public byte getNYR1() {
-return NYR1;
-}
-
-public byte getNYR2() {
-return NYR2;
-}
-
-public byte getNYR3() {
-return NYR3;
-}
-
-public byte getNYR4() {
-return NYR4;
-}
-
-public byte getNYR5() {
-return NYR5;
 }
 
 public short getOIGGT() {
@@ -16140,16 +18104,12 @@ public byte getOSAVC() {
 return OSAVC;
 }
 
-public short getOSLC4() {
-return OSLC4;
+public boolean getOSLBNK4() {
+return OSLBNK4;
 }
 
-public boolean getOTHSRC5_I() {
-return OTHSRC5_I;
-}
-
-public boolean getOTHSRC5_IFLAG() {
-return OTHSRC5_IFLAG;
+public boolean getOSLBNK5() {
+return OSLBNK5;
 }
 
 public byte getOWHYSAV01() {
@@ -16276,8 +18236,12 @@ public byte getPESAME_I() {
 return PESAME_I;
 }
 
-public byte getPESAME_IFLAG() {
+public boolean getPESAME_IFLAG() {
 return PESAME_IFLAG;
+}
+
+public boolean getPEVERC_PEVERNC__SFLAG() {
+return PEVERC_PEVERNC__SFLAG;
 }
 
 public byte getPEWYNO01() {
@@ -16656,24 +18620,8 @@ public boolean getPFDDV5() {
 return PFDDV5;
 }
 
-public boolean getPFDDV5_I() {
-return PFDDV5_I;
-}
-
-public boolean getPFDDV5_IFLAG() {
-return PFDDV5_IFLAG;
-}
-
 public boolean getPFDDV6() {
 return PFDDV6;
-}
-
-public boolean getPFDDV6_I() {
-return PFDDV6_I;
-}
-
-public boolean getPFDDV6_IFLAG() {
-return PFDDV6_IFLAG;
 }
 
 public boolean getPFDDVB4() {
@@ -16692,36 +18640,12 @@ public boolean getPFDRAW4() {
 return PFDRAW4;
 }
 
-public boolean getPFDRAW4_I() {
-return PFDRAW4_I;
-}
-
-public byte getPFDRAW4_IFLAG() {
-return PFDRAW4_IFLAG;
-}
-
 public boolean getPFDRAW5() {
 return PFDRAW5;
 }
 
-public boolean getPFDRAW5_I() {
-return PFDRAW5_I;
-}
-
-public boolean getPFDRAW5_IFLAG() {
-return PFDRAW5_IFLAG;
-}
-
 public boolean getPFDRAW6() {
 return PFDRAW6;
-}
-
-public boolean getPFDRAW6_I() {
-return PFDRAW6_I;
-}
-
-public boolean getPFDRAW6_IFLAG() {
-return PFDRAW6_IFLAG;
 }
 
 public boolean getPFDRA___W3() {
@@ -17124,8 +19048,24 @@ public boolean getPFLMVB5() {
 return PFLMVB5;
 }
 
+public boolean getPFLMVB5_I() {
+return PFLMVB5_I;
+}
+
+public boolean getPFLMVB5_IFLAG() {
+return PFLMVB5_IFLAG;
+}
+
 public boolean getPFLMVB6() {
 return PFLMVB6;
+}
+
+public boolean getPFLMVB6_I() {
+return PFLMVB6_I;
+}
+
+public boolean getPFLMVB6_IFLAG() {
+return PFLMVB6_IFLAG;
 }
 
 public boolean getPFLUMALL5() {
@@ -18336,11 +20276,7 @@ public byte getRELIGW() {
 return RELIGW;
 }
 
-public byte getRF() {
-return RF;
-}
-
-public boolean getRPCRET1() {
+public byte getRPCRET1() {
 return RPCRET1;
 }
 
@@ -18356,28 +20292,24 @@ public byte getRPDBCAL_F() {
 return RPDBCAL_F;
 }
 
-public byte getRS() {
-return RS;
+public byte getSCAC4() {
+return SCAC4;
 }
 
-public byte getSCAC4_I() {
-return SCAC4_I;
+public byte getSCAC5() {
+return SCAC5;
 }
 
-public byte getSCAC5_I() {
-return SCAC5_I;
+public byte getSEGRSBAND() {
+return SEGRSBAND;
+}
+
+public byte getSENETBAND() {
+return SENETBAND;
 }
 
 public byte getSENO() {
 return SENO;
-}
-
-public boolean getSOA1() {
-return SOA1;
-}
-
-public boolean getSOA2() {
-return SOA2;
 }
 
 public byte getSOC2000() {
@@ -18554,10 +20486,6 @@ return SPECWHEN9;
 
 public byte getSPENDM() {
 return SPENDM;
-}
-
-public boolean getSTATSWARD() {
-return STATSWARD;
 }
 
 public boolean getSTATUS() {
@@ -18920,18 +20848,6 @@ public double getW3XSWGT() {
 return W3XSWGT;
 }
 
-public boolean getWARD98() {
-return WARD98;
-}
-
-public boolean getWARDC91() {
-return WARDC91;
-}
-
-public boolean getWARDO91() {
-return WARDO91;
-}
-
 public byte getWHOREATT() {
 return WHOREATT;
 }
@@ -19002,3858 +20918,4251 @@ return XICONSC;
 
 public WaAS_W3PRecord(String line) {
 s = line.split("\t");
-initPERSONW1(s[0]);
-initPERSONW2(s[1]);
-initPERSONW3(s[2]);
-initDVWAVE(s[3]);
-initCURSTAT(s[4]);
-initRPDBCAL_F(s[5]);
-initSTATUS(s[6]);
-initDVAGEW3BAND(s[7]);
-initXMARSTA(s[8]);
-initMARBEF(s[9]);
-initLIVWTH(s[10]);
-initHHLDR(s[11]);
-initDVAGE4(s[12]);
-initDVAGE5(s[13]);
-initDVAGE6(s[14]);
-initDVAGE7(s[15]);
-initDVAGE9(s[16]);
-initDVAGE17(s[17]);
-initDVAGE18(s[18]);
-initWORKAGE(s[19]);
-initNUMADULT(s[20]);
-initNUMCHILD(s[21]);
-initNUMCIVPTR(s[22]);
-initNUMSSEX(s[23]);
-initNUMCPART(s[24]);
-initNUMCH18(s[25]);
-initPENFLAG(s[26]);
-initFTED(s[27]);
-initFTED19(s[28]);
-initTRAINEE(s[29]);
-initQUALCHK(s[30]);
-initHIHNUM(s[31]);
-initDVHRPNUM(s[32]);
-initHRPPART(s[33]);
-initR01(s[34]);
-initR02(s[35]);
-initR03(s[36]);
-initR04(s[37]);
-initR05(s[38]);
-initR06(s[39]);
-initR07(s[40]);
-initR08(s[41]);
-initR09(s[42]);
-initR10(s[43]);
-initR11(s[44]);
-initRESPDNT(s[45]);
-initPARTNER(s[46]);
-initPARTNO(s[47]);
-initISDEP(s[48]);
-initISNDEP(s[49]);
-initNUMDEPCH(s[50]);
-initHASCHD(s[51]);
-initHASDEP(s[52]);
-initHASNDEP(s[53]);
-initSINGPAR(s[54]);
-initPERSPROX(s[55]);
-initPROXYNUM(s[56]);
-initPRCRELIG(s[57]);
-initWRKING(s[58]);
-initSCHEMEET(s[59]);
-initJBAWAY(s[60]);
-initOWNBUS(s[61]);
-initRELBUS(s[62]);
-initLOOKED(s[63]);
-initSTARTJ(s[64]);
-initLKTIME(s[65]);
-initYINACT(s[66]);
-initDVILO3A(s[67]);
-initDVILO4A(s[68]);
-initWKBETW(s[69]);
-initMRECJB(s[70]);
-initSAMJOB(s[71]);
-initSAMEMP(s[72]);
-initPERNOWK(s[73]);
-initEMPSTAT1(s[74]);
-initNUMJOB(s[75]);
-initDTJBL(s[76]);
-initDVJB12ML(s[77]);
-initSAMEJOB1(s[78]);
-initSAMEJOB2(s[79]);
-initSAMEJOB3(s[80]);
-initSAMEJOB4(s[81]);
-initSAMEJOB5(s[82]);
-initSAMEJOB6(s[83]);
-initSECTOR(s[84]);
-initSECTR2(s[85]);
-initETYPE(s[86]);
-initSTAT(s[87]);
-initDVSTAT(s[88]);
-initSVISE(s[89]);
-initEMPNO(s[90]);
-initEMPN(s[91]);
-initONETEN(s[92]);
-initDVEMPNO(s[93]);
-initSOLO(s[94]);
-initDVSENO(s[95]);
-initSENO(s[96]);
-initSEMN(s[97]);
-initFTPTWK(s[98]);
-initWKHRS(s[99]);
-initWKHRSIR(s[100]);
-initEMPSTY(s[101]);
-initSEMPSTY(s[102]);
-initPERMJB(s[103]);
-initTEA(s[104]);
-initPNOWK(s[105]);
-initPNOWKLN(s[106]);
-initEDATTN1(s[107]);
-initEDATTN2(s[108]);
-initEDATTN3(s[109]);
-initENROLL(s[110]);
-initATTEND(s[111]);
-initCOURSE(s[112]);
-initCOURSE20(s[113]);
-initEDAGE(s[114]);
-initFTSTUD(s[115]);
-initJOBNO(s[116]);
-initBTYPE1(s[117]);
-initBDIRNI1(s[118]);
-initBOWN1(s[119]);
-initBPROPN1(s[120]);
-initBACCSA1(s[121]);
-initBACCSB1(s[122]);
-initBPART1(s[123]);
-initBACCBEG1(s[124]);
-initBACCEND1(s[125]);
-initBDOCS1(s[126]);
-initBPROFIT1(s[127]);
-initBPRFLOSS1(s[128]);
-initBTAX1(s[129]);
-initBNATINS1(s[130]);
-initBBEFORE1(s[131]);
-initBCARRY1(s[132]);
-initBSIZE1(s[133]);
-initBEMPN1(s[134]);
-initBYEAR1(s[135]);
-initBSTART1(s[136]);
-initBFUND1(s[137]);
-initBFUND2(s[138]);
-initBFUND3(s[139]);
-initBFUND4(s[140]);
-initBFUND5(s[141]);
-initBFUND6(s[142]);
-initBFUND7(s[143]);
-initBFUND8(s[144]);
-initBRETIRE1(s[145]);
-initBDEBTS1(s[146]);
-initBOWED1(s[147]);
-initBVAL1(s[148]);
-initBVALB1(s[149]);
-initBTYPE2(s[150]);
-initBDIRNI2(s[151]);
-initBOWN2(s[152]);
-initBPROPN2(s[153]);
-initBACCSA2(s[154]);
-initBACCSB2(s[155]);
-initBPART2(s[156]);
-initBACCBEG2(s[157]);
-initBACCEND2(s[158]);
-initBDOCS2(s[159]);
-initBPROFIT2(s[160]);
-initBPRFLOSS2(s[161]);
-initBTAX2(s[162]);
-initBNATINS2(s[163]);
-initBBEFORE2(s[164]);
-initBCARRY2(s[165]);
-initBSIZE2(s[166]);
-initBEMPN2(s[167]);
-initBYEAR2(s[168]);
-initBSTART2(s[169]);
-initBFUND9(s[170]);
-initBFUND10(s[171]);
-initBFUND11(s[172]);
-initBFUND12(s[173]);
-initBFUND13(s[174]);
-initBFUND14(s[175]);
-initBFUND15(s[176]);
-initBFUND16(s[177]);
-initBRETIRE2(s[178]);
-initBDEBTS2(s[179]);
-initBOWED2(s[180]);
-initBVAL2(s[181]);
-initBVALB2(s[182]);
-initBTYPE3(s[183]);
-initBDIRNI3(s[184]);
-initBOWN3(s[185]);
-initBPROPN3(s[186]);
-initBACCSA3(s[187]);
-initBACCSB3(s[188]);
-initBPART3(s[189]);
-initBACCBEG3(s[190]);
-initBACCEND3(s[191]);
-initBDOCS3(s[192]);
-initBPROFIT3(s[193]);
-initBPRFLOSS3(s[194]);
-initBTAX3(s[195]);
-initBNATINS3(s[196]);
-initBBEFORE3(s[197]);
-initBCARRY3(s[198]);
-initBSIZE3(s[199]);
-initBEMPN3(s[200]);
-initBYEAR3(s[201]);
-initBSTART3(s[202]);
-initBFUND17(s[203]);
-initBFUND18(s[204]);
-initBFUND19(s[205]);
-initBFUND20(s[206]);
-initBFUND21(s[207]);
-initBFUND22(s[208]);
-initBFUND23(s[209]);
-initBFUND24(s[210]);
-initBRETIRE3(s[211]);
-initBDEBTS3(s[212]);
-initBOWED3(s[213]);
-initBVAL3(s[214]);
-initBVALB3(s[215]);
-initBPAST(s[216]);
-initBSELLYR(s[217]);
-initBSELLAM(s[218]);
-initBSELLAB(s[219]);
-initBSELLTX(s[220]);
-initBMOREBUS(s[221]);
-initBWORTH(s[222]);
-initBWORTHB(s[223]);
-initPAYPER(s[224]);
-initPAYESP(s[225]);
-initPAYESM(s[226]);
-initGRSESP(s[227]);
-initGRSESM(s[228]);
-initPAYINC1(s[229]);
-initPAYINC2(s[230]);
-initPAYINC3(s[231]);
-initPAYINC4(s[232]);
-initPAYINC5(s[233]);
-initPAYINC6(s[234]);
-initPAYINC7(s[235]);
-initSMTPEN(s[236]);
-initPAYSLP(s[237]);
-initPAYBON(s[238]);
-initBONTAX(s[239]);
-initEMSHAR1(s[240]);
-initEMSHAR2(s[241]);
-initEMSHAR3(s[242]);
-initSEPER(s[243]);
-initSEAMK(s[244]);
-initSEESW(s[245]);
-initSEESM(s[246]);
-initGROSSPER(s[247]);
-initGRSAMK(s[248]);
-initGRSEESW(s[249]);
-initGRSEESM(s[250]);
-initSEPEL(s[251]);
-initSJOB2(s[252]);
-initSJEMP1(s[253]);
-initSJEMP2(s[254]);
-initINTRO(s[255]);
-initBENTYPE01(s[256]);
-initBENTYPE02(s[257]);
-initBENTYPE03(s[258]);
-initBENTYPE04(s[259]);
-initBENTYPE05(s[260]);
-initBENTYPE06(s[261]);
-initBENTYPE07(s[262]);
-initBENTYPE08(s[263]);
-initBENTYPE09(s[264]);
-initBENTYPE10(s[265]);
-initBENTYPE11(s[266]);
-initBENTYPE12(s[267]);
-initBTOGSEP(s[268]);
-initBPAYNUM(s[269]);
-initBTOGPD(s[270]);
-initBSEPPD01(s[271]);
-initBSEPPD02(s[272]);
-initBSEPPD03(s[273]);
-initBSEPPD04(s[274]);
-initBSEPPD05(s[275]);
-initBSEPPD06(s[276]);
-initBSEPPD07(s[277]);
-initBSEPPD08(s[278]);
-initBSEPPD09(s[279]);
-initBSEPPD10(s[280]);
-initBSEPPD11(s[281]);
-initBSEPPD12(s[282]);
-initBSEPPD13(s[283]);
-initBSEPPD14(s[284]);
-initBSEPPD15(s[285]);
-initBSEPPD16(s[286]);
-initBSEPPD17(s[287]);
-initBSEPPD18(s[288]);
-initBSEPPD19(s[289]);
-initBSEPPD20(s[290]);
-initCREDTYPE1(s[291]);
-initCREDTYPE2(s[292]);
-initCTOGSEP(s[293]);
-initWTCPD(s[294]);
-initCTCPD(s[295]);
-initCOMBPD(s[296]);
-initSPECIAL01(s[297]);
-initSPECIAL02(s[298]);
-initSPECIAL03(s[299]);
-initSPECIAL04(s[300]);
-initSPECIAL05(s[301]);
-initSPECIAL06(s[302]);
-initSPECIAL07(s[303]);
-initSPECIAL08(s[304]);
-initSPECIAL09(s[305]);
-initSPECIAL10(s[306]);
-initWHORECAR(s[307]);
-initWHOREMOB(s[308]);
-initWHOREATT(s[309]);
-initSPECPD1(s[310]);
-initSPECWHEN1(s[311]);
-initSPECINCL1(s[312]);
-initSPECPD2(s[313]);
-initSPECWHEN2(s[314]);
-initSPECINCL2(s[315]);
-initSPECPD3(s[316]);
-initSPECWHEN3(s[317]);
-initSPECINCL3(s[318]);
-initSPECPD4(s[319]);
-initSPECWHEN4(s[320]);
-initSPECINCL4(s[321]);
-initSPECPD5(s[322]);
-initSPECWHEN5(s[323]);
-initSPECINCL5(s[324]);
-initSPECPD6(s[325]);
-initSPECWHEN6(s[326]);
-initSPECINCL6(s[327]);
-initSPECPD7(s[328]);
-initSPECWHEN7(s[329]);
-initSPECINCL7(s[330]);
-initSPECPD8(s[331]);
-initSPECWHEN8(s[332]);
-initSPECINCL8(s[333]);
-initSPECPD9(s[334]);
-initSPECWHEN9(s[335]);
-initSPECINCL9(s[336]);
-initSPECAMT10(s[337]);
-initSPECPD10(s[338]);
-initSPECWHEN10(s[339]);
-initSPECINCL10(s[340]);
-initOSAVA(s[341]);
-initOSAVB(s[342]);
-initOSAVC(s[343]);
-initOWAIT(s[344]);
-initOLEFT(s[345]);
-initOLEFTDO(s[346]);
-initOSAV2Y(s[347]);
-initOWHYSAV01(s[348]);
-initOWHYSAV02(s[349]);
-initOWHYSAV03(s[350]);
-initOWHYSAV04(s[351]);
-initOWHYSAV05(s[352]);
-initOWHYSAV06(s[353]);
-initOWHYSAV07(s[354]);
-initOWHYSAV08(s[355]);
-initOWHYSAV09(s[356]);
-initOWHYSAV10(s[357]);
-initOWHYSAV11(s[358]);
-initONOSAVE1(s[359]);
-initONOSAVE2(s[360]);
-initONOSAVE3(s[361]);
-initONOSAVE4(s[362]);
-initONOSAVE5(s[363]);
-initONOSAVE6(s[364]);
-initONOSAVE7(s[365]);
-initONOSAVE8(s[366]);
-initONOSAVE9(s[367]);
-initOINTEND(s[368]);
-initOSAVEXT(s[369]);
-initPSIT(s[370]);
-initPSITF(s[371]);
-initPNOWKRS(s[372]);
-initPAGESTP(s[373]);
-initPEXPRET(s[374]);
-initPAGERET(s[375]);
-initPFULRET(s[376]);
-initPEARLRS(s[377]);
-initOLONG(s[378]);
-initOLONGYR(s[379]);
-initOSAFERET(s[380]);
-initOSAFERE2(s[381]);
-initOUNDER(s[382]);
-initPESAME(s[383]);
-initPEMOFF(s[384]);
-initPEMELG(s[385]);
-initPEMMEM(s[386]);
-initPNEWMEM(s[387]);
-initPEWYNO01(s[388]);
-initPEWYNO02(s[389]);
-initPEWYNO03(s[390]);
-initPEWYNO04(s[391]);
-initPEWYNO05(s[392]);
-initPEWYNO06(s[393]);
-initPEWYNO07(s[394]);
-initPEWYNO08(s[395]);
-initPEWYNO09(s[396]);
-initPEWYNO10(s[397]);
-initPEWYNO11(s[398]);
-initPEMFIN(s[399]);
-initPCONT(s[400]);
-initPANYO(s[401]);
-initPNUMOS(s[402]);
-initPOCNMSC(s[403]);
-initPPRNMSC(s[404]);
-initPSCHM_F(s[405]);
-initPSCHY_F(s[406]);
-initPSCHM_S(s[407]);
-initPSCHY_S(s[408]);
-initPSCHM_T(s[409]);
-initPSCHY_T(s[410]);
-initPOCTYP1(s[411]);
-initPOJOIN1(s[412]);
-initPORAGE1(s[413]);
-initPOMETH1(s[414]);
-initPOPYCH(s[415]);
-initPOCONH1(s[416]);
-initPOCNPR1(s[417]);
-initPOCNFR1(s[418]);
-initPOCNFG1(s[419]);
-initPOLSYR1(s[420]);
-initPOYRAM1(s[421]);
-initPOEMP1(s[422]);
-initPOEMPH1(s[423]);
-initPOEMAM1(s[424]);
-initPOEMPR1(s[425]);
-initPOEMFR1(s[426]);
-initPOEMFG1(s[427]);
-initPOADD1(s[428]);
-initPOADD2(s[429]);
-initPOADD3(s[430]);
-initPAVCH1(s[431]);
-initPAVCAM1(s[432]);
-initPAVCPR1(s[433]);
-initPAVCFR1(s[434]);
-initPAVCFG1(s[435]);
-initPAVCIN1(s[436]);
-initPIRREG(s[437]);
-initPADDFUT(s[438]);
-initPOCONCH1(s[439]);
-initPOCNHOW1(s[440]);
-initPOCNVOL1(s[441]);
-initPOCNLRS1(s[442]);
-initPOCNLRS2(s[443]);
-initPOCNLRS3(s[444]);
-initPOCNLRS4(s[445]);
-initPOCNDRS1(s[446]);
-initPOCNDRS2(s[447]);
-initPOCNDRS3(s[448]);
-initPOCNDRS4(s[449]);
-initPOCNDRS5(s[450]);
-initPOCNDRS6(s[451]);
-initPOCNPLN1(s[452]);
-initPDBCAL1(s[453]);
-initPBFRAC1(s[454]);
-initPBQUAL1(s[455]);
-initPBLUMV1(s[456]);
-initPBINCH1(s[457]);
-initPBINCF1(s[458]);
-initPBINCA1(s[459]);
-initPBDOCS1(s[460]);
-initPBSTYR1(s[461]);
-initPBSTMN1(s[462]);
-initPAVCUV1(s[463]);
-initPAVCVB1(s[464]);
-initPAVDOC1(s[465]);
-initPASTYR1(s[466]);
-initPASTMN1(s[467]);
-initPDCVAL1(s[468]);
-initPDCVB1(s[469]);
-initPCDOCS1(s[470]);
-initPCSTYR1(s[471]);
-initPCSTMN1(s[472]);
-initPOLUM1(s[473]);
-initPOLMV1(s[474]);
-initPOLMVB1(s[475]);
-initPOLMUS1(s[476]);
-initPOLMUS2(s[477]);
-initPOLMUS3(s[478]);
-initPOLMUS4(s[479]);
-initPOLMUS5(s[480]);
-initPOLMUS6(s[481]);
-initPOCASH1(s[482]);
-initPOANN1(s[483]);
-initPOANN2(s[484]);
-initPOANN3(s[485]);
-initPOANN4(s[486]);
-initPOANLM1(s[487]);
-initPOANEXY1(s[488]);
-initPOANEXM1(s[489]);
-initPOANJT1(s[490]);
-initPOANIF1(s[491]);
-initPOANEH1(s[492]);
-initPOANGA1(s[493]);
-initPOANVI1(s[494]);
-initPOANVB(s[495]);
-initPODRVI1(s[496]);
-initPODRVB1(s[497]);
-initPODRINC1(s[498]);
-initPODRINCB1(s[499]);
-initPOPENVI(s[500]);
-initPOPENVB(s[501]);
-initPOFAN1(s[502]);
-initPOFAN2(s[503]);
-initPOFAN3(s[504]);
-initPOFAN4(s[505]);
-initPOFAN5(s[506]);
-initPOFAN6(s[507]);
-initPOFAWH1(s[508]);
-initPOFAWH2(s[509]);
-initPOFAWH3(s[510]);
-initPOFAWH4(s[511]);
-initPOFAWH5(s[512]);
-initPOFAWH6(s[513]);
-initPOFAAG1(s[514]);
-initPOCTYP2(s[515]);
-initPOJOIN2(s[516]);
-initPORAGE2(s[517]);
-initPOMETH2(s[518]);
-initPOPYCH2(s[519]);
-initPOCONH2(s[520]);
-initPOCNPR2(s[521]);
-initPOCNFR2(s[522]);
-initPOCNFG2(s[523]);
-initPOLSYR2(s[524]);
-initPOYRAM2(s[525]);
-initPOEMP2(s[526]);
-initPOEMPH2(s[527]);
-initPOEMAM2(s[528]);
-initPOEMPR2(s[529]);
-initPOEMFR2(s[530]);
-initPOEMFG2(s[531]);
-initPOADD4(s[532]);
-initPOADD5(s[533]);
-initPOADD6(s[534]);
-initPAVCH2(s[535]);
-initPAVCAM2(s[536]);
-initPAVCPR2(s[537]);
-initPAVCFR2(s[538]);
-initPAVCFG2(s[539]);
-initPAVCIN2(s[540]);
-initPIRREG2(s[541]);
-initPADDFUT2(s[542]);
-initPOCONCH2(s[543]);
-initPOCNHOW2(s[544]);
-initPOCNVOL2(s[545]);
-initPOCNLRS5(s[546]);
-initPOCNLRS6(s[547]);
-initPOCNLRS7(s[548]);
-initPOCNLRS8(s[549]);
-initPOCNDRS7(s[550]);
-initPOCNDRS8(s[551]);
-initPOCNDRS9(s[552]);
-initPOCNDRS10(s[553]);
-initPOCNDRS11(s[554]);
-initPOCNDRS12(s[555]);
-initPOCNPLN2(s[556]);
-initPDBCAL2(s[557]);
-initPBFRAC2(s[558]);
-initPBQUAL2(s[559]);
-initPBLUMV2(s[560]);
-initPBLMVB2(s[561]);
-initPBINCH2(s[562]);
-initPBINCF2(s[563]);
-initPBINCA2(s[564]);
-initPBDOCS2(s[565]);
-initPBSTYR2(s[566]);
-initPBSTMN2(s[567]);
-initPAVCUV2(s[568]);
-initPAVCVB2(s[569]);
-initPAVDOC2(s[570]);
-initPASTYR2(s[571]);
-initPASTMN2(s[572]);
-initPDCVAL2(s[573]);
-initPDCVB2(s[574]);
-initPCDOCS2(s[575]);
-initPCSTYR2(s[576]);
-initPCSTMN2(s[577]);
-initPOLUM2(s[578]);
-initPOLMV2(s[579]);
-initPOLMVB2(s[580]);
-initPOLMUS7(s[581]);
-initPOLMUS8(s[582]);
-initPOLMUS9(s[583]);
-initPOLMUS10(s[584]);
-initPOLMUS11(s[585]);
-initPOLMUS12(s[586]);
-initPOCASH2(s[587]);
-initPOANN5(s[588]);
-initPOANN6(s[589]);
-initPOANN7(s[590]);
-initPOANN8(s[591]);
-initPOANLM2(s[592]);
-initPOANEXY2(s[593]);
-initPOANEXM2(s[594]);
-initPOANJT2(s[595]);
-initPOANIF2(s[596]);
-initPOANEH2(s[597]);
-initPOANGA2(s[598]);
-initPOANVI2(s[599]);
-initPOANVB2(s[600]);
-initPODRVI2(s[601]);
-initPODRVB2(s[602]);
-initPODRINC2(s[603]);
-initPODRINCB2(s[604]);
-initPOPENVI2(s[605]);
-initPOPENVB2(s[606]);
-initPOFAN7(s[607]);
-initPOFAN8(s[608]);
-initPOFAN9(s[609]);
-initPOFAN10(s[610]);
-initPOFAN11(s[611]);
-initPOFAN12(s[612]);
-initPOFAWH7(s[613]);
-initPOFAWH8(s[614]);
-initPOFAWH9(s[615]);
-initPOFAWH10(s[616]);
-initPOFAWH11(s[617]);
-initPOFAWH12(s[618]);
-initPOFAAG2(s[619]);
-initPPYRST1(s[620]);
-initPPORG1(s[621]);
-initPPTYP1(s[622]);
-initPPSIPP1(s[623]);
-initPPPAY1(s[624]);
-initPPRGH1(s[625]);
-initPPRGAM(s[626]);
-initPPRGPE1(s[627]);
-initPPRGFR1(s[628]);
-initPPRGFG1(s[629]);
-initPPIRRY1(s[630]);
-initPPIRRH1(s[631]);
-initPPIRRA1(s[632]);
-initPPIRRF1(s[633]);
-initPPIRNO1(s[634]);
-initPPLASY1(s[635]);
-initPPLSTA1(s[636]);
-initPPLSTP1(s[637]);
-initPPEVRG1(s[638]);
-initPPYSTP1(s[639]);
-initPPYSTP2(s[640]);
-initPPYSTP3(s[641]);
-initPPYSTP4(s[642]);
-initPPYSTP5(s[643]);
-initPPYSTP6(s[644]);
-initPPYSTP7(s[645]);
-initPPCONCH(s[646]);
-initPPCNHOW1(s[647]);
-initPPCNLRS1(s[648]);
-initPPCNLRS2(s[649]);
-initPPCNLRS3(s[650]);
-initPPCNLRS4(s[651]);
-initPPCNDRS1(s[652]);
-initPPCNDRS2(s[653]);
-initPPCNDRS3(s[654]);
-initPPCNDRS4(s[655]);
-initPPCNDRS5(s[656]);
-initPPCNDRS6(s[657]);
-initPPCNDRS7(s[658]);
-initPPCNDRS8(s[659]);
-initPPCNPLN1(s[660]);
-initPPEMP1(s[661]);
-initPPEMPH1(s[662]);
-initPPEMAM1(s[663]);
-initPPEMPR1(s[664]);
-initPPEMFR1(s[665]);
-initPPEIRH1(s[666]);
-initPPEIRA1(s[667]);
-initPPEIRF1(s[668]);
-initPPNINS1(s[669]);
-initPPVINT1(s[670]);
-initPSTYPE1(s[671]);
-initPSTYPE2(s[672]);
-initPSTYPE3(s[673]);
-initPSTYPE4(s[674]);
-initPSTYPE5(s[675]);
-initPSTYPE6(s[676]);
-initPSTYPE7(s[677]);
-initPPVAL1(s[678]);
-initPPVALB1(s[679]);
-initPPDOCS1(s[680]);
-initPPSTYR1(s[681]);
-initPPSTMN1(s[682]);
-initPMORTC(s[683]);
-initPPLUM1(s[684]);
-initPPLMV1(s[685]);
-initPPLMVB1(s[686]);
-initPPLMUS1(s[687]);
-initPPCASH1(s[688]);
-initPPANN1(s[689]);
-initPPANN2(s[690]);
-initPPANN3(s[691]);
-initPPANN4(s[692]);
-initPPANLM1(s[693]);
-initPPANEXY1(s[694]);
-initPPANEXM1(s[695]);
-initPPANJT1(s[696]);
-initPPANIF1(s[697]);
-initPPANEH1(s[698]);
-initPPANGA1(s[699]);
-initPPANVI1(s[700]);
-initPPANVB1(s[701]);
-initPPDRVI1(s[702]);
-initPPDRVB1(s[703]);
-initPPDRINC1(s[704]);
-initPPDRINCB(s[705]);
-initPPFAN1(s[706]);
-initPPFAN2(s[707]);
-initPPFAN3(s[708]);
-initPPFAN4(s[709]);
-initPPFAN5(s[710]);
-initPPFAWH1(s[711]);
-initPPFAWH2(s[712]);
-initPPFAWH3(s[713]);
-initPPFAWH4(s[714]);
-initPPFAWH5(s[715]);
-initPPFAWH6(s[716]);
-initPPFAWH7(s[717]);
-initPPFAAG1(s[718]);
-initPPACCU1(s[719]);
-initPPYRST2(s[720]);
-initPPORG2(s[721]);
-initPPTYP2(s[722]);
-initPPSIPP2(s[723]);
-initPPPAY2(s[724]);
-initPPRGH2(s[725]);
-initPPRGAM2(s[726]);
-initPPRGPE2(s[727]);
-initPPRGFR2(s[728]);
-initPPRGFG2(s[729]);
-initPPIRRY2(s[730]);
-initPPIRRH2(s[731]);
-initPPIRRA2(s[732]);
-initPPIRRF2(s[733]);
-initPPIRNO2(s[734]);
-initPPLASY2(s[735]);
-initPPLSTA2(s[736]);
-initPPLSTP2(s[737]);
-initPPEVRG2(s[738]);
-initPPYSTP8(s[739]);
-initPPYSTP9(s[740]);
-initPPYSTP10(s[741]);
-initPPYSTP11(s[742]);
-initPPYSTP12(s[743]);
-initPPYSTP13(s[744]);
-initPPYSTP14(s[745]);
-initPPCONCH2(s[746]);
-initPPCNHOW2(s[747]);
-initPPCNLRS5(s[748]);
-initPPCNLRS6(s[749]);
-initPPCNLRS7(s[750]);
-initPPCNLRS8(s[751]);
-initPPCNDRS9(s[752]);
-initPPCNDRS10(s[753]);
-initPPCNDRS11(s[754]);
-initPPCNDRS12(s[755]);
-initPPCNDRS13(s[756]);
-initPPCNDRS14(s[757]);
-initPPCNDRS15(s[758]);
-initPPCNDRS16(s[759]);
-initPPCNPLN2(s[760]);
-initPPEMP2(s[761]);
-initPPEMPH2(s[762]);
-initPPEMAM2(s[763]);
-initPPEMPR2(s[764]);
-initPPEMFR2(s[765]);
-initPPEIRH2(s[766]);
-initPPEIRA2(s[767]);
-initPPEIRF2(s[768]);
-initPPNINS2(s[769]);
-initPPVINT2(s[770]);
-initPSTYPE8(s[771]);
-initPSTYPE9(s[772]);
-initPSTYPE10(s[773]);
-initPSTYPE11(s[774]);
-initPSTYPE12(s[775]);
-initPSTYPE13(s[776]);
-initPSTYPE14(s[777]);
-initPPVAL2(s[778]);
-initPPVALB2(s[779]);
-initPPDOCS2(s[780]);
-initPPSTYR2(s[781]);
-initPPSTMN2(s[782]);
-initPMORTC2(s[783]);
-initPPLUM2(s[784]);
-initPPLMV2(s[785]);
-initPPLMVB2(s[786]);
-initPPLMUS2(s[787]);
-initPPCASH2(s[788]);
-initPPANN5(s[789]);
-initPPANN6(s[790]);
-initPPANN7(s[791]);
-initPPANN8(s[792]);
-initPPANLM2(s[793]);
-initPPANEXY2(s[794]);
-initPPANEXM2(s[795]);
-initPPANJT2(s[796]);
-initPPANIF2(s[797]);
-initPPANEH2(s[798]);
-initPPANGA2(s[799]);
-initPPANVI2(s[800]);
-initPPANVB2(s[801]);
-initPPDRVI2(s[802]);
-initPPDRVB2(s[803]);
-initPPDRINC2(s[804]);
-initPPDRINCB2(s[805]);
-initPPFAN6(s[806]);
-initPPFAN7(s[807]);
-initPPFAN8(s[808]);
-initPPFAN9(s[809]);
-initPPFAN10(s[810]);
-initPPFAWH8(s[811]);
-initPPFAWH9(s[812]);
-initPPFAWH10(s[813]);
-initPPFAWH11(s[814]);
-initPPFAWH12(s[815]);
-initPPFAWH13(s[816]);
-initPPFAWH14(s[817]);
-initPPFAAG2(s[818]);
-initPPACCU2(s[819]);
-initPPYRST3(s[820]);
-initPPORG3(s[821]);
-initPPTYP3(s[822]);
-initPPSIPP3(s[823]);
-initPPPAY3(s[824]);
-initPPRGH3(s[825]);
-initPPRGAM3(s[826]);
-initPPRGPE3(s[827]);
-initPPRGFR3(s[828]);
-initPPRGFG3(s[829]);
-initPPIRRY3(s[830]);
-initPPIRRH3(s[831]);
-initPPIRRA3(s[832]);
-initPPIRRF3(s[833]);
-initPPIRNO3(s[834]);
-initPPLASY3(s[835]);
-initPPLSTA3(s[836]);
-initPPLSTP3(s[837]);
-initPPEVRG3(s[838]);
-initPPYSTP15(s[839]);
-initPPYSTP16(s[840]);
-initPPYSTP17(s[841]);
-initPPYSTP18(s[842]);
-initPPYSTP19(s[843]);
-initPPYSTP20(s[844]);
-initPPYSTP21(s[845]);
-initPPCONCH3(s[846]);
-initPPCNHO___W3(s[847]);
-initPPCNLRS9(s[848]);
-initPPCNLRS10(s[849]);
-initPPCNLRS11(s[850]);
-initPPCNLRS12(s[851]);
-initPPCNDRS17(s[852]);
-initPPCNDRS18(s[853]);
-initPPCNDRS19(s[854]);
-initPPCNDRS20(s[855]);
-initPPCNDRS21(s[856]);
-initPPCNDRS22(s[857]);
-initPPCNDRS23(s[858]);
-initPPCNDRS24(s[859]);
-initPPCNPLN3(s[860]);
-initPPEMP3(s[861]);
-initPPEMPH3(s[862]);
-initPPEMAM3(s[863]);
-initPPEMPR3(s[864]);
-initPPEMFR3(s[865]);
-initPPEIRH3(s[866]);
-initPPEIRA3(s[867]);
-initPPEIRF3(s[868]);
-initPPNINS3(s[869]);
-initPPVINT3(s[870]);
-initPSTYPE15(s[871]);
-initPSTYPE16(s[872]);
-initPSTYPE17(s[873]);
-initPSTYPE18(s[874]);
-initPSTYPE19(s[875]);
-initPSTYPE20(s[876]);
-initPSTYPE21(s[877]);
-initPPVAL3(s[878]);
-initPPVALB3(s[879]);
-initPPDOCS3(s[880]);
-initPPSTYR3(s[881]);
-initPPSTMN3(s[882]);
-initPMORTC3(s[883]);
-initPPLUM3(s[884]);
-initPPLMV3(s[885]);
-initPPLMVB3(s[886]);
-initPPLMUS3(s[887]);
-initPPCASH3(s[888]);
-initPPANN9(s[889]);
-initPPANN10(s[890]);
-initPPANN11(s[891]);
-initPPANN12(s[892]);
-initPPANLM3(s[893]);
-initPPANEXY3(s[894]);
-initPPANEXM3(s[895]);
-initPPANJT3(s[896]);
-initPPANIF3(s[897]);
-initPPANEH3(s[898]);
-initPPANGA3(s[899]);
-initPPANVI3(s[900]);
-initPPANVB3(s[901]);
-initPPDRVI3(s[902]);
-initPPDRVB3(s[903]);
-initPPDRINC3(s[904]);
-initPPDRINCB3(s[905]);
-initPPFAN11(s[906]);
-initPPFAN12(s[907]);
-initPPFAN13(s[908]);
-initPPFAN14(s[909]);
-initPPFAN15(s[910]);
-initPPFAWH15(s[911]);
-initPPFAWH16(s[912]);
-initPPFAWH17(s[913]);
-initPPFAWH18(s[914]);
-initPPFAWH19(s[915]);
-initPPFAWH20(s[916]);
-initPPFAWH21(s[917]);
-initPPFAAG3(s[918]);
-initPPACCU3(s[919]);
-initPFNEW(s[920]);
-initPFNEWNO(s[921]);
-initPEVERC(s[922]);
-initPEVERNC(s[923]);
-initPRETAIN(s[924]);
-initPFNUM(s[925]);
-initPFEN(s[926]);
-initPFENNUM(s[927]);
-initRPFCRET1(s[928]);
-initRPFCRET2(s[929]);
-initRPFCRET3(s[930]);
-initRPFCRET4(s[931]);
-initRPFCRET5(s[932]);
-initRPFCRET6(s[933]);
-initRPCRET1(s[934]);
-initRPCRET2(s[935]);
-initRPCRET3(s[936]);
-initPFTYP1(s[937]);
-initPFOCTY1(s[938]);
-initPFLUM1(s[939]);
-initPFLMV1(s[940]);
-initPFLMVB1(s[941]);
-initPFLMUS1(s[942]);
-initPFLUMALL1(s[943]);
-initPFCASH1(s[944]);
-initPFANN1(s[945]);
-initPFANN2(s[946]);
-initPFANN3(s[947]);
-initPFANN4(s[948]);
-initPFANN5(s[949]);
-initPFREM1(s[950]);
-initPFANLM1(s[951]);
-initPFANEXY1(s[952]);
-initPFANEXM1(s[953]);
-initPFANJT1(s[954]);
-initPFANIF1(s[955]);
-initPFANEH1(s[956]);
-initPFANGA1(s[957]);
-initPFANVI1(s[958]);
-initPFANVB1(s[959]);
-initPFDRVI1(s[960]);
-initPFDRVB1(s[961]);
-initPFDRINC1(s[962]);
-initPFDRINCB1(s[963]);
-initPFPENVI1(s[964]);
-initPFPENVB1(s[965]);
-initPFFAN1(s[966]);
-initPFFAN2(s[967]);
-initPFFAN3(s[968]);
-initPFFAN4(s[969]);
-initPFFAN5(s[970]);
-initPFFAWH1(s[971]);
-initPFFAWH2(s[972]);
-initPFFAWH3(s[973]);
-initPFFAWH4(s[974]);
-initPFFAWH5(s[975]);
-initPFFAWH6(s[976]);
-initPFFAAG1(s[977]);
-initPFREC1(s[978]);
-initPFDRAW1(s[979]);
-initPFDDV1(s[980]);
-initPFDDVB1(s[981]);
-initPFBEG1(s[982]);
-initPFEND1(s[983]);
-initPFSIPTY1(s[984]);
-initPFSIPTY2(s[985]);
-initPFSIPTY3(s[986]);
-initPFSIPTY4(s[987]);
-initPFSIPTY5(s[988]);
-initPFSIPTY6(s[989]);
-initPFSIPTY7(s[990]);
-initPFCURV1(s[991]);
-initPFCUVB1(s[992]);
-initPFLUMV1(s[993]);
-initPFLUVB1(s[994]);
-initPFINCP1(s[995]);
-initPFINCA1(s[996]);
-initPFDOCS1(s[997]);
-initPFSTMY1(s[998]);
-initPFSTMM1(s[999]);
-initPFSTAT1(s[1000]);
-initPFTYP2(s[1001]);
-initPFOCTY2(s[1002]);
-initPFLUM2(s[1003]);
-initPFLMV2(s[1004]);
-initPFLMVB2(s[1005]);
-initPFLMUS2(s[1006]);
-initPFLUMALL2(s[1007]);
-initPFCASH2(s[1008]);
-initPFANN6(s[1009]);
-initPFANN7(s[1010]);
-initPFANN8(s[1011]);
-initPFANN9(s[1012]);
-initPFANN10(s[1013]);
-initPFREM2(s[1014]);
-initPFANLM2(s[1015]);
-initPFANEXY2(s[1016]);
-initPFANEXM2(s[1017]);
-initPFANJT2(s[1018]);
-initPFANIF2(s[1019]);
-initPFANEH2(s[1020]);
-initPFANGA2(s[1021]);
-initPFANVI2(s[1022]);
-initPFANVB2(s[1023]);
-initPFDRVI2(s[1024]);
-initPFDRVB2(s[1025]);
-initPFDRINC2(s[1026]);
-initPFDRINCB2(s[1027]);
-initPFPENVI2(s[1028]);
-initPFPENVB2(s[1029]);
-initPFFAN6(s[1030]);
-initPFFAN7(s[1031]);
-initPFFAN8(s[1032]);
-initPFFAN9(s[1033]);
-initPFFAN10(s[1034]);
-initPFFAWH7(s[1035]);
-initPFFAWH8(s[1036]);
-initPFFAWH9(s[1037]);
-initPFFAWH10(s[1038]);
-initPFFAWH11(s[1039]);
-initPFFAWH12(s[1040]);
-initPFFAAG2(s[1041]);
-initPFREC2(s[1042]);
-initPFDRAW2(s[1043]);
-initPFDDV2(s[1044]);
-initPFDDVB2(s[1045]);
-initPFBEG2(s[1046]);
-initPFEND2(s[1047]);
-initPFSIPTY8(s[1048]);
-initPFSIPTY9(s[1049]);
-initPFSIPTY10(s[1050]);
-initPFSIPTY11(s[1051]);
-initPFSIPTY12(s[1052]);
-initPFSIPTY13(s[1053]);
-initPFSIPTY14(s[1054]);
-initPFCURV2(s[1055]);
-initPFCUVB2(s[1056]);
-initPFLUMV2(s[1057]);
-initPFLUVB2(s[1058]);
-initPFINCP2(s[1059]);
-initPFINCA2(s[1060]);
-initPFDOCS2(s[1061]);
-initPFSTMY2(s[1062]);
-initPFSTMM2(s[1063]);
-initPFSTAT2(s[1064]);
-initPFTYP3(s[1065]);
-initPFOCTY3(s[1066]);
-initPFLUM3(s[1067]);
-initPFLMV3(s[1068]);
-initPFLMVB3(s[1069]);
-initPFLMUS3(s[1070]);
-initPFLUMALL3(s[1071]);
-initPFCASH3(s[1072]);
-initPFANN11(s[1073]);
-initPFANN12(s[1074]);
-initPFANN13(s[1075]);
-initPFANN14(s[1076]);
-initPFANN15(s[1077]);
-initPFREM3(s[1078]);
-initPFANLM3(s[1079]);
-initPFANEXY3(s[1080]);
-initPFANEXM3(s[1081]);
-initPFANJT3(s[1082]);
-initPFANIF3(s[1083]);
-initPFANEH3(s[1084]);
-initPFANGA3(s[1085]);
-initPFANVI3(s[1086]);
-initPFANVB3(s[1087]);
-initPFDRVI3(s[1088]);
-initPFDRVB3(s[1089]);
-initPFDRINC3(s[1090]);
-initPFDRINCB3(s[1091]);
-initPFPENVI3(s[1092]);
-initPFPENVB3(s[1093]);
-initPFFAN11(s[1094]);
-initPFFAN12(s[1095]);
-initPFFAN13(s[1096]);
-initPFFAN14(s[1097]);
-initPFFAN15(s[1098]);
-initPFFAWH13(s[1099]);
-initPFFAWH14(s[1100]);
-initPFFAWH15(s[1101]);
-initPFFAWH16(s[1102]);
-initPFFAWH17(s[1103]);
-initPFFAWH18(s[1104]);
-initPFFAAG3(s[1105]);
-initPFREC3(s[1106]);
-initPFDRA___W3(s[1107]);
-initPFDDV3(s[1108]);
-initPFDDVB3(s[1109]);
-initPFBEG3(s[1110]);
-initPFEND3(s[1111]);
-initPFSIPTY15(s[1112]);
-initPFSIPTY16(s[1113]);
-initPFSIPTY17(s[1114]);
-initPFSIPTY18(s[1115]);
-initPFSIPTY19(s[1116]);
-initPFSIPTY20(s[1117]);
-initPFSIPTY21(s[1118]);
-initPFCURV3(s[1119]);
-initPFCUVB3(s[1120]);
-initPFLUMV3(s[1121]);
-initPFLUVB3(s[1122]);
-initPFINCP3(s[1123]);
-initPFINCA3(s[1124]);
-initPFDOCS3(s[1125]);
-initPFSTMY3(s[1126]);
-initPFSTMM3(s[1127]);
-initPFSTAT3(s[1128]);
-initPFTYP4(s[1129]);
-initPFOCTY4(s[1130]);
-initPFLUM4(s[1131]);
-initPFLMV4(s[1132]);
-initPFLMVB4(s[1133]);
-initPFLMUS4(s[1134]);
-initPFLUMALL4(s[1135]);
-initPFCASH4(s[1136]);
-initPFANN16(s[1137]);
-initPFANN17(s[1138]);
-initPFANN18(s[1139]);
-initPFANN19(s[1140]);
-initPFANN20(s[1141]);
-initPFREM4(s[1142]);
-initPFANLM4(s[1143]);
-initPFANEXY4(s[1144]);
-initPFANEXM4(s[1145]);
-initPFANJT4(s[1146]);
-initPFANIF4(s[1147]);
-initPFANEH4(s[1148]);
-initPFANGA4(s[1149]);
-initPFANVI4(s[1150]);
-initPFANVB4(s[1151]);
-initPFDRVI4(s[1152]);
-initPFDRVB4(s[1153]);
-initPFDRINC4(s[1154]);
-initPFDRINCB4(s[1155]);
-initPFPENVI4(s[1156]);
-initPFPENVB4(s[1157]);
-initPFFAN16(s[1158]);
-initPFFAN17(s[1159]);
-initPFFAN18(s[1160]);
-initPFFAN19(s[1161]);
-initPFFAN20(s[1162]);
-initPFFAWH19(s[1163]);
-initPFFAWH20(s[1164]);
-initPFFAWH21(s[1165]);
-initPFFAWH22(s[1166]);
-initPFFAWH23(s[1167]);
-initPFFAWH24(s[1168]);
-initPFFAAG4(s[1169]);
-initPFREC4(s[1170]);
-initPFDRAW4(s[1171]);
-initPFDDV4(s[1172]);
-initPFDDVB4(s[1173]);
-initPFBEG4(s[1174]);
-initPFEND4(s[1175]);
-initPFSIPTY22(s[1176]);
-initPFSIPTY23(s[1177]);
-initPFSIPTY24(s[1178]);
-initPFSIPTY25(s[1179]);
-initPFSIPTY26(s[1180]);
-initPFSIPTY27(s[1181]);
-initPFSIPTY28(s[1182]);
-initPFCURV4(s[1183]);
-initPFCUVB4(s[1184]);
-initPFLUMV4(s[1185]);
-initPFLUVB4(s[1186]);
-initPFINCP4(s[1187]);
-initPFINCA4(s[1188]);
-initPFDOCS4(s[1189]);
-initPFSTMY4(s[1190]);
-initPFSTMM4(s[1191]);
-initPFSTAT4(s[1192]);
-initPFTYP5(s[1193]);
-initPFOCTY5(s[1194]);
-initPFLUM5(s[1195]);
-initPFLMV5(s[1196]);
-initPFLMVB5(s[1197]);
-initPFLMUS5(s[1198]);
-initPFLUMALL5(s[1199]);
-initPFCASH5(s[1200]);
-initPFANN21(s[1201]);
-initPFANN22(s[1202]);
-initPFANN23(s[1203]);
-initPFANN24(s[1204]);
-initPFANN25(s[1205]);
-initPFREM5(s[1206]);
-initPFANLM5(s[1207]);
-initPFANEXY5(s[1208]);
-initPFANEXM5(s[1209]);
-initPFANJT5(s[1210]);
-initPFANIF5(s[1211]);
-initPFANEH5(s[1212]);
-initPFANGA5(s[1213]);
-initPFANVI5(s[1214]);
-initPFANVB5(s[1215]);
-initPFDRVI5(s[1216]);
-initPFDRVB5(s[1217]);
-initPFDRINC5(s[1218]);
-initPFDRINCB5(s[1219]);
-initPFPENVI5(s[1220]);
-initPFPENVB5(s[1221]);
-initPFFAN21(s[1222]);
-initPFFAN22(s[1223]);
-initPFFAN23(s[1224]);
-initPFFAN24(s[1225]);
-initPFFAN25(s[1226]);
-initPFFAWH25(s[1227]);
-initPFFAWH26(s[1228]);
-initPFFAWH27(s[1229]);
-initPFFAWH28(s[1230]);
-initPFFAWH29(s[1231]);
-initPFFAWH30(s[1232]);
-initPFFAAG5(s[1233]);
-initPFREC5(s[1234]);
-initPFDRAW5(s[1235]);
-initPFDDV5(s[1236]);
-initPFDDVB5(s[1237]);
-initPFBEG5(s[1238]);
-initPFEND5(s[1239]);
-initPFSIPTY29(s[1240]);
-initPFSIPTY30(s[1241]);
-initPFSIPTY31(s[1242]);
-initPFSIPTY32(s[1243]);
-initPFSIPTY33(s[1244]);
-initPFSIPTY34(s[1245]);
-initPFSIPTY35(s[1246]);
-initPFCURV5(s[1247]);
-initPFCUVB5(s[1248]);
-initPFLUMV5(s[1249]);
-initPFLUVB5(s[1250]);
-initPFINCP5(s[1251]);
-initPFINCA5(s[1252]);
-initPFDOCS5(s[1253]);
-initPFSTMY5(s[1254]);
-initPFSTMM5(s[1255]);
-initPFSTAT5(s[1256]);
-initPFTYP6(s[1257]);
-initPFOCTY6(s[1258]);
-initPFLUM6(s[1259]);
-initPFLMV6(s[1260]);
-initPFLMVB6(s[1261]);
-initPFLMUS6(s[1262]);
-initPFLUMALL6(s[1263]);
-initPFCASH6(s[1264]);
-initPFANN26(s[1265]);
-initPFANN27(s[1266]);
-initPFANN28(s[1267]);
-initPFANN29(s[1268]);
-initPFANN30(s[1269]);
-initPFREM6(s[1270]);
-initPFANLM6(s[1271]);
-initPFANEXY6(s[1272]);
-initPFANEXM6(s[1273]);
-initPFANJT6(s[1274]);
-initPFANIF6(s[1275]);
-initPFANEH6(s[1276]);
-initPFANGA6(s[1277]);
-initPFANVI6(s[1278]);
-initPFANVB6(s[1279]);
-initPFDRVI6(s[1280]);
-initPFDRVB6(s[1281]);
-initPFDRINC6(s[1282]);
-initPFDRINCB6(s[1283]);
-initPFPENVI6(s[1284]);
-initPFPENVB6(s[1285]);
-initPFFAN26(s[1286]);
-initPFFAN27(s[1287]);
-initPFFAN28(s[1288]);
-initPFFAN29(s[1289]);
-initPFFAN30(s[1290]);
-initPFFAWH31(s[1291]);
-initPFFAWH32(s[1292]);
-initPFFAWH33(s[1293]);
-initPFFAWH34(s[1294]);
-initPFFAWH35(s[1295]);
-initPFFAWH36(s[1296]);
-initPFFAAG6(s[1297]);
-initPFREC6(s[1298]);
-initPFDRAW6(s[1299]);
-initPFDDV6(s[1300]);
-initPFDDVB6(s[1301]);
-initPFBEG6(s[1302]);
-initPFEND6(s[1303]);
-initPFSIPTY36(s[1304]);
-initPFSIPTY37(s[1305]);
-initPFSIPTY38(s[1306]);
-initPFSIPTY39(s[1307]);
-initPFSIPTY40(s[1308]);
-initPFSIPTY41(s[1309]);
-initPFSIPTY42(s[1310]);
-initPFCURV6(s[1311]);
-initPFCUVB6(s[1312]);
-initPFLUMV6(s[1313]);
-initPFLUVB6(s[1314]);
-initPFINCP6(s[1315]);
-initPFINCA6(s[1316]);
-initPFDOCS6(s[1317]);
-initPFSTMY6(s[1318]);
-initPFSTMM6(s[1319]);
-initPFSTAT6(s[1320]);
-initPWID(s[1321]);
-initPWIDFUT(s[1322]);
-initPWLUM(s[1323]);
-initPWLUVAL(s[1324]);
-initPWEXPH(s[1325]);
-initPWEXPA(s[1326]);
-initPSPSE(s[1327]);
-initPSPLUM(s[1328]);
-initPSPLUVAL(s[1329]);
-initPSPEXPH(s[1330]);
-initPSPEXPA(s[1331]);
-initPWACCU(s[1332]);
-initOPENS01(s[1333]);
-initOPENS02(s[1334]);
-initOPENS03(s[1335]);
-initOPENS04(s[1336]);
-initOPENS05(s[1337]);
-initOPENS06(s[1338]);
-initOPENS07(s[1339]);
-initOPENS08(s[1340]);
-initOPENS09(s[1341]);
-initOPENS10(s[1342]);
-initOPENS11(s[1343]);
-initOPENS12(s[1344]);
-initOPENS13(s[1345]);
-initOPENS14(s[1346]);
-initOPENS15(s[1347]);
-initOEXPINC01(s[1348]);
-initOEXPINC02(s[1349]);
-initOEXPINC03(s[1350]);
-initOEXPINC04(s[1351]);
-initOEXPINC05(s[1352]);
-initOEXPINC06(s[1353]);
-initOEXPINC07(s[1354]);
-initOEXPINC08(s[1355]);
-initOEXPINC09(s[1356]);
-initOEXPINC10(s[1357]);
-initOEXPINC11(s[1358]);
-initOEXPINC12(s[1359]);
-initOEXPINC13(s[1360]);
-initOEXPINC14(s[1361]);
-initOEXPINC15(s[1362]);
-initOLARGE(s[1363]);
-initOPENSAV(s[1364]);
-initOSTANDL(s[1365]);
-initFINVTY01(s[1366]);
-initFINVTY02(s[1367]);
-initFINVTY03(s[1368]);
-initFINVTY04(s[1369]);
-initFINVTY05(s[1370]);
-initFINVTY06(s[1371]);
-initFINVTY07(s[1372]);
-initFINVTY08(s[1373]);
-initFINVTY09(s[1374]);
-initFINVTY10(s[1375]);
-initFINVTY11(s[1376]);
-initDCOSHV1(s[1377]);
-initDCOSHVB1(s[1378]);
-initDCOSHV2(s[1379]);
-initDCOSHVB2(s[1380]);
-initDCOSHV3(s[1381]);
-initDCOSHVB3(s[1382]);
-initDCOSHV4(s[1383]);
-initDCOSHVB4(s[1384]);
-initDCOSHV5(s[1385]);
-initDCOSHVB5(s[1386]);
-initDCOINV1(s[1387]);
-initDCOINVB1(s[1388]);
-initDCOINV2(s[1389]);
-initDCOINVB2(s[1390]);
-initDCOINV3(s[1391]);
-initDCOINVB3(s[1392]);
-initDCOINV4(s[1393]);
-initDCOINVB4(s[1394]);
-initDCOINV5(s[1395]);
-initDCOINVB5(s[1396]);
-initFCACSH(s[1397]);
-initFCNUMSH(s[1398]);
-initFCNUMIN(s[1399]);
-initFCSUPPR(s[1400]);
-initFCOVDSH(s[1401]);
-initFCOVNSH(s[1402]);
-initFCSHVAL(s[1403]);
-initFCSHVLB(s[1404]);
-initFCOVDIN(s[1405]);
-initFCOVNIN(s[1406]);
-initFCOVDIF(s[1407]);
-initFCINVAL(s[1408]);
-initFCINVLB(s[1409]);
-initFSACSH(s[1410]);
-initFSNUMSH(s[1411]);
-initFSNUMIN(s[1412]);
-initFSSUPPR(s[1413]);
-initFSTYPSH1(s[1414]);
-initFSTYPSH2(s[1415]);
-initFSTYPSH3(s[1416]);
-initFSTYPSH4(s[1417]);
-initFSTYPSH5(s[1418]);
-initFSTYPIN1(s[1419]);
-initFSTYPIN2(s[1420]);
-initFSTYPIN3(s[1421]);
-initFSTYPIN4(s[1422]);
-initFSTYPIN5(s[1423]);
-initFSSHVAL(s[1424]);
-initFSSHVLB(s[1425]);
-initFSINVAL(s[1426]);
-initFSINVLB(s[1427]);
-initFSOSHAV(s[1428]);
-initFSOSVLB(s[1429]);
-initFISA1(s[1430]);
-initFISA2(s[1431]);
-initFCISAV(s[1432]);
-initFCISAB(s[1433]);
-initFIISAV(s[1434]);
-initFIISAB(s[1435]);
-initFKISAV(s[1436]);
-initFKISAB(s[1437]);
-initNEWFCMX(s[1438]);
-initFCISAWD(s[1439]);
-initFCIWNUM(s[1440]);
-initFCIWDAB(s[1441]);
-initFCISCE(s[1442]);
-initFBONDTY1(s[1443]);
-initFBONDTY2(s[1444]);
-initFBONDTY3(s[1445]);
-initFBONDV(s[1446]);
-initFBONDVB(s[1447]);
-initFCOLLV(s[1448]);
-initFCOLLVB(s[1449]);
-initFESHA(s[1450]);
-initFESHAV(s[1451]);
-initFESHVB(s[1452]);
-initFEOPTV(s[1453]);
-initFEOPVB(s[1454]);
-initFSHARE1(s[1455]);
-initFSHARE2(s[1456]);
-initFSHARE3(s[1457]);
-initFSHUKV(s[1458]);
-initFSHUKVB(s[1459]);
-initFSHOSV(s[1460]);
-initFSHOSVB(s[1461]);
-initFSHADD(s[1462]);
-initFSHADA(s[1463]);
-initFSHADAB(s[1464]);
-initFNSAV1(s[1465]);
-initFNSAV2(s[1466]);
-initFNSAV3(s[1467]);
-initFNSAV4(s[1468]);
-initFNSVAL1(s[1469]);
-initFNSVB(s[1470]);
-initFGILTS1(s[1471]);
-initFGILTS2(s[1472]);
-initFGILTS3(s[1473]);
-initFGILTS4(s[1474]);
-initFGLTUKV(s[1475]);
-initFGUKVB(s[1476]);
-initFGLTFOV(s[1477]);
-initFGFOVB(s[1478]);
-initFLFENV(s[1479]);
-initFLFENVB(s[1480]);
-initFLFSIV(s[1481]);
-initFLFSIVB(s[1482]);
-initFLFFSV(s[1483]);
-initFLFFSVB(s[1484]);
-initFLFTEV(s[1485]);
-initFLFTEVB(s[1486]);
-initFINS(s[1487]);
-initFINSV(s[1488]);
-initFLPROD1(s[1489]);
-initFLPROD2(s[1490]);
-initFLPROD3(s[1491]);
-initFLPROD4(s[1492]);
-initFINVOTV(s[1493]);
-initFINVOVB(s[1494]);
-initFINCVB(s[1495]);
-initFINFSAV1(s[1496]);
-initFINFSAV2(s[1497]);
-initFINFSAV3(s[1498]);
-initFINFSAV4(s[1499]);
-initFINFLV(s[1500]);
-initFLOANVB(s[1501]);
-initFINFV(s[1502]);
-initFINFVB(s[1503]);
-initFSAVED(s[1504]);
-initFWITHD(s[1505]);
-initFSAVAB(s[1506]);
-initUPROP1(s[1507]);
-initUPROP2(s[1508]);
-initUPROP3(s[1509]);
-initUPROP4(s[1510]);
-initUNMTYP(s[1511]);
-initUNUMHS(s[1512]);
-initUBUYLET(s[1513]);
-initUNUMBD(s[1514]);
-initUNUMLA(s[1515]);
-initUNUMOV(s[1516]);
-initUNUMRE(s[1517]);
-initUPRTYP(s[1518]);
-initUPRSH1(s[1519]);
-initUPRSH2(s[1520]);
-initUPRTYP2(s[1521]);
-initUPRSH3(s[1522]);
-initUPRSH4(s[1523]);
-initUPRTYP3(s[1524]);
-initUPRSH5(s[1525]);
-initUPRSH6(s[1526]);
-initUPRTYP4(s[1527]);
-initUPRTYP5(s[1528]);
-initUPRTYP6(s[1529]);
-initUPRTYP7(s[1530]);
-initUPRSH13(s[1531]);
-initUPRSH14(s[1532]);
-initUPRTYP8(s[1533]);
-initUPRSH15(s[1534]);
-initUPRSH16(s[1535]);
-initUPRTYP9(s[1536]);
-initUPRSH17(s[1537]);
-initUPRSH18(s[1538]);
-initUPRTYP10(s[1539]);
-initUPRSH19(s[1540]);
-initUPRSH20(s[1541]);
-initULAND10(s[1542]);
-initUPRTYP11(s[1543]);
-initUPRSH21(s[1544]);
-initUPRSH22(s[1545]);
-initULAND11(s[1546]);
-initUPRTYP12(s[1547]);
-initUPRSH23(s[1548]);
-initUPRSH24(s[1549]);
-initULAND12(s[1550]);
-initUPRTYP13(s[1551]);
-initUPRSH25(s[1552]);
-initUPRSH26(s[1553]);
-initUPRTYP14(s[1554]);
-initUPRSH27(s[1555]);
-initUPRSH28(s[1556]);
-initUPRTYP15(s[1557]);
-initUPRSH29(s[1558]);
-initUPRSH30(s[1559]);
-initUPRTYP16(s[1560]);
-initUPRSH31(s[1561]);
-initUPRSH32(s[1562]);
-initULAND16(s[1563]);
-initUPRTYP17(s[1564]);
-initUPRSH33(s[1565]);
-initUPRSH34(s[1566]);
-initULAND17(s[1567]);
-initUPRTYP18(s[1568]);
-initUPRSH35(s[1569]);
-initUPRSH36(s[1570]);
-initULAND18(s[1571]);
-initDCNUM2(s[1572]);
-initDCANY(s[1573]);
-initDCANU(s[1574]);
-initDCNUM1(s[1575]);
-initDCCOS1(s[1576]);
-initDCCSP1(s[1577]);
-initDCNAM1(s[1578]);
-initDCONM1(s[1579]);
-initDCONM2(s[1580]);
-initDCRSP1(s[1581]);
-initDCREC1(s[1582]);
-initDCPER1(s[1583]);
-initDCAMC1(s[1584]);
-initDCAMP1(s[1585]);
-initDCAMD1(s[1586]);
-initDCESB1(s[1587]);
-initDCINZ1(s[1588]);
-initDC12BEH1(s[1589]);
-initDC12OWE1(s[1590]);
-initDCCOS2(s[1591]);
-initDCCSP2(s[1592]);
-initDCNAM2(s[1593]);
-initDCONM3(s[1594]);
-initDCONM4(s[1595]);
-initDCRSP2(s[1596]);
-initDCREC2(s[1597]);
-initDCPER2(s[1598]);
-initDCAMC2(s[1599]);
-initDCAMP2(s[1600]);
-initDCAMD2(s[1601]);
-initDCESB2(s[1602]);
-initDCINZ2(s[1603]);
-initDC12BEH2(s[1604]);
-initDC12OWE2(s[1605]);
-initDCCOS3(s[1606]);
-initDCCSP3(s[1607]);
-initDCNAM3(s[1608]);
-initDCONM5(s[1609]);
-initDCONM6(s[1610]);
-initDCRSP3(s[1611]);
-initDCREC3(s[1612]);
-initDCPER3(s[1613]);
-initDCAMC3(s[1614]);
-initDCAMP3(s[1615]);
-initDCAMD3(s[1616]);
-initDCESB3(s[1617]);
-initDCINZ3(s[1618]);
-initDC12BEH3(s[1619]);
-initDC12OWE3(s[1620]);
-initDCCOS4(s[1621]);
-initDCCSP4(s[1622]);
-initDCNAM4(s[1623]);
-initDCONM7(s[1624]);
-initDCONM8(s[1625]);
-initDCRSP4(s[1626]);
-initDCREC4(s[1627]);
-initDCPER4(s[1628]);
-initDCAMC4(s[1629]);
-initDCAMP4(s[1630]);
-initDCAMD4(s[1631]);
-initDCESB4(s[1632]);
-initDCINZ4(s[1633]);
-initDC12BEH4(s[1634]);
-initDC12OWE4(s[1635]);
-initDCCOS5(s[1636]);
-initDCCSP5(s[1637]);
-initDCNAM5(s[1638]);
-initDCONM9(s[1639]);
-initDCONM10(s[1640]);
-initDCRSP5(s[1641]);
-initDCREC5(s[1642]);
-initDCPER5(s[1643]);
-initDCAMC5(s[1644]);
-initDCAMP5(s[1645]);
-initDCAMD5(s[1646]);
-initDCESB5(s[1647]);
-initDCINZ5(s[1648]);
-initDC12BEH5(s[1649]);
-initDC12OWE5(s[1650]);
-initDSNUM2(s[1651]);
-initDSANY1(s[1652]);
-initDSANY2(s[1653]);
-initDSANU1(s[1654]);
-initDSANU2(s[1655]);
-initDSNUM(s[1656]);
-initDSCOS1(s[1657]);
-initDSCSP1(s[1658]);
-initDSNAM1(s[1659]);
-initDSONM1(s[1660]);
-initDSONM2(s[1661]);
-initDSRSP1(s[1662]);
-initDSREC1(s[1663]);
-initDSPER1(s[1664]);
-initDSAMC1(s[1665]);
-initDSAMP1(s[1666]);
-initDSAMD1(s[1667]);
-initDSESB1(s[1668]);
-initDS12BEH1(s[1669]);
-initDS12OWE1(s[1670]);
-initDSCOS2(s[1671]);
-initDSCSP2(s[1672]);
-initDSNAM2(s[1673]);
-initDSONM3(s[1674]);
-initDSONM4(s[1675]);
-initDSRSP2(s[1676]);
-initDSREC2(s[1677]);
-initDSPER2(s[1678]);
-initDSAMC2(s[1679]);
-initDSAMP2(s[1680]);
-initDSAMD2(s[1681]);
-initDSESB2(s[1682]);
-initDS12BEH2(s[1683]);
-initDS12OWE2(s[1684]);
-initDSCOS3(s[1685]);
-initDSCSP3(s[1686]);
-initDSNAM3(s[1687]);
-initDSONM5(s[1688]);
-initDSONM6(s[1689]);
-initDSRSP3(s[1690]);
-initDSREC3(s[1691]);
-initDSPER3(s[1692]);
-initDSAMC3(s[1693]);
-initDSAMP3(s[1694]);
-initDSAMD3(s[1695]);
-initDSESB3(s[1696]);
-initDS12BEH3(s[1697]);
-initDS12OWE3(s[1698]);
-initDSCOS4(s[1699]);
-initDSCSP4(s[1700]);
-initDSNAM4(s[1701]);
-initDSONM7(s[1702]);
-initDSONM8(s[1703]);
-initDSRSP4(s[1704]);
-initDSREC4(s[1705]);
-initDSPER4(s[1706]);
-initDSAMC4(s[1707]);
-initDSAMP4(s[1708]);
-initDSAMD4(s[1709]);
-initDSESB4(s[1710]);
-initDS12BEH4(s[1711]);
-initDS12OWE4(s[1712]);
-initDSCOS5(s[1713]);
-initDSCSP5(s[1714]);
-initDSNAM5(s[1715]);
-initDSONM9(s[1716]);
-initDSONM10(s[1717]);
-initDSRSP5(s[1718]);
-initDSREC5(s[1719]);
-initDSPER5(s[1720]);
-initDSAMC5(s[1721]);
-initDSAMP5(s[1722]);
-initDSAMD5(s[1723]);
-initDSESB5(s[1724]);
-initDS12BEH5(s[1725]);
-initDS12OWE5(s[1726]);
-initPRESMON(s[1727]);
-initPRESYR(s[1728]);
-initDMOANY(s[1729]);
-initDMONUM(s[1730]);
-initDMOINS1(s[1731]);
-initDMOEST1(s[1732]);
-initDMOOFT1(s[1733]);
-initDMOWHNY1(s[1734]);
-initDMOWHNM1(s[1735]);
-initDMOWEST1(s[1736]);
-initDMOINT1(s[1737]);
-initDMOBEH1(s[1738]);
-initDMOOWE1(s[1739]);
-initDMOINS2(s[1740]);
-initDMOEST2(s[1741]);
-initDMOOFT2(s[1742]);
-initDMOWHNY2(s[1743]);
-initDMOWHNM2(s[1744]);
-initDMOWEST2(s[1745]);
-initDMOINT2(s[1746]);
-initDMOBEH2(s[1747]);
-initDMOOWE2(s[1748]);
-initDMOINS3(s[1749]);
-initDMOEST3(s[1750]);
-initDMOOFT3(s[1751]);
-initDMOWHNY3(s[1752]);
-initDMOWHNM3(s[1753]);
-initDMOWEST3(s[1754]);
-initDMOINT3(s[1755]);
-initDMOBEH3(s[1756]);
-initDMOOWE3(s[1757]);
-initDMOINS4(s[1758]);
-initDMOEST4(s[1759]);
-initDMOOFT4(s[1760]);
-initDMOWHNY4(s[1761]);
-initDMOWHNM4(s[1762]);
-initDMOWEST4(s[1763]);
-initDMOINT4(s[1764]);
-initDMOBEH4(s[1765]);
-initDMOOWE4(s[1766]);
-initDMOINS5(s[1767]);
-initDMOEST5(s[1768]);
-initDMOOFT5(s[1769]);
-initDMOWHNY5(s[1770]);
-initDMOWHNM5(s[1771]);
-initDMOWEST5(s[1772]);
-initDMOINT5(s[1773]);
-initDMOBEH5(s[1774]);
-initDMOOWE5(s[1775]);
-initDHPANY1(s[1776]);
-initDHPANY2(s[1777]);
-initDHPANY3(s[1778]);
-initDHPANY4(s[1779]);
-initDHPANY5(s[1780]);
-initDHPANY6(s[1781]);
-initDHPANY7(s[1782]);
-initDHPNUM(s[1783]);
-initDHPINS1(s[1784]);
-initDHPEST1(s[1785]);
-initDHPOFT1(s[1786]);
-initDHPWHNY1(s[1787]);
-initDHPWHNM1(s[1788]);
-initDHPWEST1(s[1789]);
-initDHPINT1(s[1790]);
-initDHPBEH1(s[1791]);
-initDHPOWE1(s[1792]);
-initDTTOWE1(s[1793]);
-initDTTOWEB1(s[1794]);
-initDTTOWE2(s[1795]);
-initDTTOWEB2(s[1796]);
-initDTTOWE3(s[1797]);
-initDTTOWEB3(s[1798]);
-initDHPINS2(s[1799]);
-initDHPEST2(s[1800]);
-initDHPOFT2(s[1801]);
-initDHPWHNY2(s[1802]);
-initDHPWHNM2(s[1803]);
-initDHPWEST2(s[1804]);
-initDHPINT2(s[1805]);
-initDHPBEH2(s[1806]);
-initDHPOWE2(s[1807]);
-initDTTOWEB4(s[1808]);
-initDTTOWEB5(s[1809]);
-initDTTOWEB6(s[1810]);
-initDHPINS3(s[1811]);
-initDHPEST3(s[1812]);
-initDHPOFT3(s[1813]);
-initDHPWHNY3(s[1814]);
-initDHPWHNM3(s[1815]);
-initDHPWEST3(s[1816]);
-initDHPINT3(s[1817]);
-initDHPBEH3(s[1818]);
-initDHPOWE3(s[1819]);
-initDTTOWEB7(s[1820]);
-initDTTOWEB8(s[1821]);
-initDTTOWEB9(s[1822]);
-initDHPINS4(s[1823]);
-initDHPEST4(s[1824]);
-initDHPOFT4(s[1825]);
-initDHPWHNY4(s[1826]);
-initDHPWHNM4(s[1827]);
-initDHPWEST4(s[1828]);
-initDHPINT4(s[1829]);
-initDHPBEH4(s[1830]);
-initDHPOWE4(s[1831]);
-initDTTOWEB10(s[1832]);
-initDTTOWEB11(s[1833]);
-initDTTOWEB12(s[1834]);
-initDHPINS5(s[1835]);
-initDHPEST5(s[1836]);
-initDHPOFT5(s[1837]);
-initDHPWHNY5(s[1838]);
-initDHPWHNM5(s[1839]);
-initDHPWEST5(s[1840]);
-initDHPINT5(s[1841]);
-initDHPBEH5(s[1842]);
-initDHPOWE5(s[1843]);
-initDTTOWEB13(s[1844]);
-initDTTOWEB14(s[1845]);
-initDTTOWEB15(s[1846]);
-initNWHP(s[1847]);
-initNWHPNO(s[1848]);
-initDLONM(s[1849]);
-initDLOLD1(s[1850]);
-initDLOLD2(s[1851]);
-initDLOLD3(s[1852]);
-initDLOLD4(s[1853]);
-initDLOLD5(s[1854]);
-initDLANY(s[1855]);
-initDLNNM(s[1856]);
-initDLNUM(s[1857]);
-initDLTYPE1(s[1858]);
-initDSLPAY1(s[1859]);
-initDSLAMT1(s[1860]);
-initDSLEST1(s[1861]);
-initDLWHY1(s[1862]);
-initDLWHY2(s[1863]);
-initDLWHY3(s[1864]);
-initDLWHY4(s[1865]);
-initDLWHY5(s[1866]);
-initDLWHY6(s[1867]);
-initDLWHY7(s[1868]);
-initDLSEC1(s[1869]);
-initDLINS1(s[1870]);
-initDLEST1(s[1871]);
-initDLOFT1(s[1872]);
-initDLWHNY1(s[1873]);
-initDLWHNM1(s[1874]);
-initDLWEST1(s[1875]);
-initDLINT1(s[1876]);
-initDLBEH1(s[1877]);
-initDLOWE1(s[1878]);
-initDLTYPE2(s[1879]);
-initDSLPAY2(s[1880]);
-initDSLAMT2(s[1881]);
-initDSLEST2(s[1882]);
-initDLWHY8(s[1883]);
-initDLWHY9(s[1884]);
-initDLWHY10(s[1885]);
-initDLWHY11(s[1886]);
-initDLWHY12(s[1887]);
-initDLWHY13(s[1888]);
-initDLWHY14(s[1889]);
-initDLSEC2(s[1890]);
-initDLINS2(s[1891]);
-initDLEST2(s[1892]);
-initDLOFT2(s[1893]);
-initDLWHNY2(s[1894]);
-initDLWHNM2(s[1895]);
-initDLWEST2(s[1896]);
-initDLINT2(s[1897]);
-initDLBEH2(s[1898]);
-initDLOWE2(s[1899]);
-initDLTYPE3(s[1900]);
-initDSLPAY3(s[1901]);
-initDSLAMT3(s[1902]);
-initDSLEST3(s[1903]);
-initDLWHY15(s[1904]);
-initDLWHY16(s[1905]);
-initDLWHY17(s[1906]);
-initDLWHY18(s[1907]);
-initDLWHY19(s[1908]);
-initDLWHY20(s[1909]);
-initDLWHY21(s[1910]);
-initDLSEC3(s[1911]);
-initDLINS3(s[1912]);
-initDLEST3(s[1913]);
-initDLOFT3(s[1914]);
-initDLWHNY3(s[1915]);
-initDLWHNM3(s[1916]);
-initDLWEST3(s[1917]);
-initDLINT3(s[1918]);
-initDLBEH3(s[1919]);
-initDLOWE3(s[1920]);
-initDLTYPE4(s[1921]);
-initDSLPAY4(s[1922]);
-initDSLAMT4(s[1923]);
-initDSLEST4(s[1924]);
-initDLWHY22(s[1925]);
-initDLWHY23(s[1926]);
-initDLWHY24(s[1927]);
-initDLWHY25(s[1928]);
-initDLWHY26(s[1929]);
-initDLWHY27(s[1930]);
-initDLWHY28(s[1931]);
-initDLSEC4(s[1932]);
-initDLINS4(s[1933]);
-initDLEST4(s[1934]);
-initDLOFT4(s[1935]);
-initDLWHNY4(s[1936]);
-initDLWHNM4(s[1937]);
-initDLWEST4(s[1938]);
-initDLINT4(s[1939]);
-initDLBEH4(s[1940]);
-initDLOWE4(s[1941]);
-initDLTYPE5(s[1942]);
-initDSLPAY5(s[1943]);
-initDSLAMT5(s[1944]);
-initDSLEST5(s[1945]);
-initDLWHY29(s[1946]);
-initDLWHY30(s[1947]);
-initDLWHY31(s[1948]);
-initDLWHY32(s[1949]);
-initDLWHY33(s[1950]);
-initDLWHY34(s[1951]);
-initDLWHY35(s[1952]);
-initDLSEC5(s[1953]);
-initDLINS5(s[1954]);
-initDLEST5(s[1955]);
-initDLOFT5(s[1956]);
-initDLWHNY5(s[1957]);
-initDLWHNM5(s[1958]);
-initDLWEST5(s[1959]);
-initDLINT5(s[1960]);
-initDLBEH5(s[1961]);
-initDLOWE5(s[1962]);
-initNWLN(s[1963]);
-initNWLNNO(s[1964]);
-initDTLTYPE1(s[1965]);
-initDTLOWE1(s[1966]);
-initDTLOWEB1(s[1967]);
-initDTLTYPE2(s[1968]);
-initDTLOWE2(s[1969]);
-initDTLOWEB2(s[1970]);
-initDTLTYPE3(s[1971]);
-initDTLOWE3(s[1972]);
-initDTLOWEB3(s[1973]);
-initDHBFIX(s[1974]);
-initDHBANY01(s[1975]);
-initDHBANY02(s[1976]);
-initDHBANY03(s[1977]);
-initDHBANY04(s[1978]);
-initDHBANY05(s[1979]);
-initDHBANY06(s[1980]);
-initDHBANY07(s[1981]);
-initDHBANY08(s[1982]);
-initDHBANY09(s[1983]);
-initDHBANY10(s[1984]);
-initDHBANY11(s[1985]);
-initDHBAMT01(s[1986]);
-initDHBAMT02(s[1987]);
-initDHBAMT03(s[1988]);
-initDHBAMT04(s[1989]);
-initDHBAMT05(s[1990]);
-initDHBAMT06(s[1991]);
-initDHBAMT07(s[1992]);
-initDHBAMT08(s[1993]);
-initDHBAMT09(s[1994]);
-initDHBAMT10(s[1995]);
-initDHBAMT11(s[1996]);
-initDHBEST01(s[1997]);
-initDHBEST02(s[1998]);
-initDHBEST03(s[1999]);
-initDHBEST04(s[2000]);
-initDHBEST05(s[2001]);
-initDHBEST06(s[2002]);
-initDHBEST07(s[2003]);
-initDHBEST08(s[2004]);
-initDHBEST09(s[2005]);
-initDHBEST10(s[2006]);
-initDHBEST11(s[2007]);
-initDBURD(s[2008]);
-initDBURDA(s[2009]);
-initDBURDW1(s[2010]);
-initDBURDW2(s[2011]);
-initDBURD___W3(s[2012]);
-initDBURDW4(s[2013]);
-initDBURDW5(s[2014]);
-initDBURDW6(s[2015]);
-initDBURDW7(s[2016]);
-initDADVMTH(s[2017]);
-initDADVACT1(s[2018]);
-initDADVACT2(s[2019]);
-initDADVACT3(s[2020]);
-initDBURDH(s[2021]);
-initINSPOL(s[2022]);
-initCOMMIT1(s[2023]);
-initCOMMIT2(s[2024]);
-initCOMMIT3(s[2025]);
-initCOMMIT4(s[2026]);
-initCOMMIT5(s[2027]);
-initXINSOL(s[2028]);
-initXINTYP(s[2029]);
-initXINCSE(s[2030]);
-initXBCONSC(s[2031]);
-initXBCON(s[2032]);
-initXBCONREM(s[2033]);
-initXBOK(s[2034]);
-initXBCRT(s[2035]);
-initXDCONSC(s[2036]);
-initXDCON(s[2037]);
-initXDCONREM(s[2038]);
-initXDOK(s[2039]);
-initXDREF(s[2040]);
-initXICONSC(s[2041]);
-initXICON(s[2042]);
-initXICONREM(s[2043]);
-initRENTPAY(s[2044]);
-initDVRENTAMTANNUAL(s[2045]);
-initOTHSRC1(s[2046]);
-initOTHSRC2(s[2047]);
-initOTHSRC3(s[2048]);
-initOIGRR(s[2049]);
-initOIGGT(s[2050]);
-initREGLRPY1(s[2051]);
-initREGLRPY2(s[2052]);
-initREGLRPY3(s[2053]);
-initREGLRPY4(s[2054]);
-initREGLRPY5(s[2055]);
-initOTRUST01(s[2056]);
-initOTRUST02(s[2057]);
-initOTRUST03(s[2058]);
-initOTRUST04(s[2059]);
-initOTRUST05(s[2060]);
-initOTRUST06(s[2061]);
-initOTRUST07(s[2062]);
-initOTRUST08(s[2063]);
-initOTRUST09(s[2064]);
-initOTRUST10(s[2065]);
-initOTRUST11(s[2066]);
-initOTRUST12(s[2067]);
-initOTRUST13(s[2068]);
-initOTRUST14(s[2069]);
-initOTRUST15(s[2070]);
-initOSITUAT(s[2071]);
-initOSITCH(s[2072]);
-initOIMPRS1(s[2073]);
-initOIMPRS2(s[2074]);
-initOIMPRS3(s[2075]);
-initOIMPRS4(s[2076]);
-initOIMPRS5(s[2077]);
-initOIMPRS6(s[2078]);
-initOIMPRS7(s[2079]);
-initOIMPRS8(s[2080]);
-initOIMPRS9(s[2081]);
-initOWRSRS01(s[2082]);
-initOWRSRS02(s[2083]);
-initOWRSRS03(s[2084]);
-initOWRSRS04(s[2085]);
-initOWRSRS05(s[2086]);
-initOWRSRS06(s[2087]);
-initOWRSRS07(s[2088]);
-initOWRSRS08(s[2089]);
-initOWRSRS09(s[2090]);
-initOWRSRS10(s[2091]);
-initORETINC(s[2092]);
-initSELECTAD(s[2093]);
-initCACTF(s[2094]);
-initCACTV(s[2095]);
-initCACTVB(s[2096]);
-initCATYPE(s[2097]);
-initCAOPEN(s[2098]);
-initCACONTR1(s[2099]);
-initCACONTR2(s[2100]);
-initCACONTR3(s[2101]);
-initCACONTR4(s[2102]);
-initCACONTR5(s[2103]);
-initCACONTR6(s[2104]);
-initCAEXTRA(s[2105]);
-initCASAV(s[2106]);
-initCASVV(s[2107]);
-initCASVB(s[2108]);
-initCACONTRAM1(s[2109]);
-initCACONTRAMB1(s[2110]);
-initCACONTRAM2(s[2111]);
-initCACONTRAMB2(s[2112]);
-initCACONTRAM3(s[2113]);
-initCACONTRAMB3(s[2114]);
-initCACONTRAM4(s[2115]);
-initCACONTRAMB4(s[2116]);
-initCACONTRAM5(s[2117]);
-initCACONTRAMB5(s[2118]);
-initCACONTRAM6(s[2119]);
-initCACONTRAMB6(s[2120]);
-initCAOLDER(s[2121]);
-initCAOTHER1(s[2122]);
-initCAOTHER2(s[2123]);
-initCAOTHER3(s[2124]);
-initCAOTHER4(s[2125]);
-initCAOTHER5(s[2126]);
-initNUMCHSAV(s[2127]);
-initOCSVR1(s[2128]);
-initOCSVR2(s[2129]);
-initOCSVR3(s[2130]);
-initOCSVR4(s[2131]);
-initOCSVR5(s[2132]);
-initOCSVR6(s[2133]);
-initOCSVR7(s[2134]);
-initOCSVR8(s[2135]);
-initIHRECNT(s[2136]);
-initIHRCNUM(s[2137]);
-initIWAT1(s[2138]);
-initIWAT2(s[2139]);
-initIWAT3(s[2140]);
-initIWAT4(s[2141]);
-initIWAT5(s[2142]);
-initIWAT6(s[2143]);
-initIWHO(s[2144]);
-initIVAL1(s[2145]);
-initIVALB1(s[2146]);
-initIHSE1(s[2147]);
-initIHSE2(s[2148]);
-initIHSE3(s[2149]);
-initIHSE4(s[2150]);
-initIHSE5(s[2151]);
-initIHSE6(s[2152]);
-initIGDS1(s[2153]);
-initIGDS2(s[2154]);
-initIGDS3(s[2155]);
-initIGDS4(s[2156]);
-initIGDS5(s[2157]);
-initIGDS6(s[2158]);
-initIGDS7(s[2159]);
-initIWAT7(s[2160]);
-initIWAT8(s[2161]);
-initIWAT9(s[2162]);
-initIWAT10(s[2163]);
-initIWAT11(s[2164]);
-initIWAT12(s[2165]);
-initIWHO2(s[2166]);
-initIVALB2(s[2167]);
-initIHSE7(s[2168]);
-initIHSE8(s[2169]);
-initIHSE9(s[2170]);
-initIHSE10(s[2171]);
-initIHSE11(s[2172]);
-initIHSE12(s[2173]);
-initIGDS8(s[2174]);
-initIGDS9(s[2175]);
-initIGDS10(s[2176]);
-initIGDS11(s[2177]);
-initIGDS12(s[2178]);
-initIGDS13(s[2179]);
-initIGDS14(s[2180]);
-initIWAT13(s[2181]);
-initIWAT14(s[2182]);
-initIWAT15(s[2183]);
-initIWAT16(s[2184]);
-initIWAT17(s[2185]);
-initIWAT18(s[2186]);
-initIWHO3(s[2187]);
-initIVALB3(s[2188]);
-initIHSE13(s[2189]);
-initIHSE14(s[2190]);
-initIHSE15(s[2191]);
-initIHSE16(s[2192]);
-initIHSE17(s[2193]);
-initIHSE18(s[2194]);
-initIGDS15(s[2195]);
-initIGDS16(s[2196]);
-initIGDS17(s[2197]);
-initIGDS18(s[2198]);
-initIGDS19(s[2199]);
-initIGDS20(s[2200]);
-initIGDS21(s[2201]);
-initILGIFT(s[2202]);
-initIGFVALB(s[2203]);
-initNEWGIFT(s[2204]);
-initILOAN(s[2205]);
-initILNUSE01(s[2206]);
-initILNUSE02(s[2207]);
-initILNUSE03(s[2208]);
-initILNUSE04(s[2209]);
-initILNUSE05(s[2210]);
-initILNUSE06(s[2211]);
-initILNUSE07(s[2212]);
-initILNUSE08(s[2213]);
-initILNUSE09(s[2214]);
-initILNUSE10(s[2215]);
-initILNVAL(s[2216]);
-initILNVALB(s[2217]);
-initILNPBK(s[2218]);
-initILNPBAM(s[2219]);
-initILUMP(s[2220]);
-initILUMTY1(s[2221]);
-initILUMTY2(s[2222]);
-initILUMTY3(s[2223]);
-initILUMTY4(s[2224]);
-initILUMTY5(s[2225]);
-initILUMTY6(s[2226]);
-initILUMTY7(s[2227]);
-initILIFB(s[2228]);
-initILUPP(s[2229]);
-initILUPB(s[2230]);
-initILACB(s[2231]);
-initILINB(s[2232]);
-initILRDB(s[2233]);
-initILWNB(s[2234]);
-initILOTB(s[2235]);
-initTINTRO(s[2236]);
-initTSETT(s[2237]);
-initTSNUM1(s[2238]);
-initTSNEW(s[2239]);
-initTSNUM2(s[2240]);
-initTJNT1(s[2241]);
-initTJNT2(s[2242]);
-initTACC1(s[2243]);
-initTBEN1(s[2244]);
-initTBEN2(s[2245]);
-initTBEN3(s[2246]);
-initTBEN4(s[2247]);
-initTBEN5(s[2248]);
-initTBEN6(s[2249]);
-initTBEN7(s[2250]);
-initTBEN8(s[2251]);
-initTVAL1(s[2252]);
-initTVALB1(s[2253]);
-initTDUP1(s[2254]);
-initTDUPA1(s[2255]);
-initTADDVL(s[2256]);
-initTADDVB1(s[2257]);
-initTJNT3(s[2258]);
-initTJNT4(s[2259]);
-initTACC2(s[2260]);
-initTBEN9(s[2261]);
-initTBEN10(s[2262]);
-initTBEN11(s[2263]);
-initTBEN12(s[2264]);
-initTBEN13(s[2265]);
-initTBEN14(s[2266]);
-initTBEN15(s[2267]);
-initTBEN16(s[2268]);
-initTVAL2(s[2269]);
-initTVALB2(s[2270]);
-initTDUP2(s[2271]);
-initTDUPA2(s[2272]);
-initTADDVL2(s[2273]);
-initTADDVB2(s[2274]);
-initTSNO3(s[2275]);
-initTJNT5(s[2276]);
-initTJNT6(s[2277]);
-initTACC3(s[2278]);
-initTBEN17(s[2279]);
-initTBEN18(s[2280]);
-initTBEN19(s[2281]);
-initTBEN20(s[2282]);
-initTBEN21(s[2283]);
-initTBEN22(s[2284]);
-initTBEN23(s[2285]);
-initTBEN24(s[2286]);
-initTVAL3(s[2287]);
-initTVALB3(s[2288]);
-initTDUP3(s[2289]);
-initTDUPA3(s[2290]);
-initTADDVL3(s[2291]);
-initTADDVB3(s[2292]);
-initTBENEF(s[2293]);
-initTBENNUM(s[2294]);
-initTWHO1(s[2295]);
-initTWHO2(s[2296]);
-initTWHO3(s[2297]);
-initTWHO4(s[2298]);
-initTWHO5(s[2299]);
-initTWHO6(s[2300]);
-initTBINC1(s[2301]);
-initTBREC1(s[2302]);
-initTBRECB1(s[2303]);
-initTBCAP1(s[2304]);
-initTBCKNO1(s[2305]);
-initTBCAPY1(s[2306]);
-initTBVALB1(s[2307]);
-initTWHO7(s[2308]);
-initTWHO8(s[2309]);
-initTWHO9(s[2310]);
-initTWHO10(s[2311]);
-initTWHO11(s[2312]);
-initTWHO12(s[2313]);
-initTBINC2(s[2314]);
-initTBREC2(s[2315]);
-initTBRECB2(s[2316]);
-initTBCAP2(s[2317]);
-initTBCKNO2(s[2318]);
-initTBCAPY2(s[2319]);
-initTBVALB2(s[2320]);
-initTWHO13(s[2321]);
-initTWHO14(s[2322]);
-initTWHO15(s[2323]);
-initTWHO16(s[2324]);
-initTWHO17(s[2325]);
-initTWHO18(s[2326]);
-initTBINC3(s[2327]);
-initTBREC3(s[2328]);
-initTBRECB3(s[2329]);
-initTBCAP3(s[2330]);
-initTBCKNO3(s[2331]);
-initTBCAPY3(s[2332]);
-initTBVALB3(s[2333]);
-initOTHASCH(s[2334]);
-initOTHASVL(s[2335]);
-initOTHASVB(s[2336]);
-initCOMMI(s[2337]);
-initORUNOUT(s[2338]);
-initORUNDO01(s[2339]);
-initORUNDO02(s[2340]);
-initORUNDO03(s[2341]);
-initORUNDO04(s[2342]);
-initORUNDO05(s[2343]);
-initORUNDO06(s[2344]);
-initORUNDO07(s[2345]);
-initORUNDO08(s[2346]);
-initORUNDO09(s[2347]);
-initORUNDO10(s[2348]);
-initORUNDO11(s[2349]);
-initIFBANKACC(s[2350]);
-initKNOWBALANCE(s[2351]);
-initOFTCHECKED(s[2352]);
-initKNOHOWMUCH(s[2353]);
-initINCDROP(s[2354]);
-initFNDCASH1(s[2355]);
-initFNDCASH2(s[2356]);
-initFNDCASH3(s[2357]);
-initFNDCASH4(s[2358]);
-initFNDCASH5(s[2359]);
-initORGNSED(s[2360]);
-initRNYDAY(s[2361]);
-initLVTDAY(s[2362]);
-initSPENDM(s[2363]);
-initGSTDNW(s[2364]);
-initPRODTS(s[2365]);
-initSOURC2P(s[2366]);
-initCHOICP(s[2367]);
-initEYE1(s[2368]);
-initEYE2(s[2369]);
-initEYE3(s[2370]);
-initEYE4(s[2371]);
-initEYE5(s[2372]);
-initEYE6(s[2373]);
-initEYE7(s[2374]);
-initEYE8(s[2375]);
-initINDFREQ(s[2376]);
-initORISKA(s[2377]);
-initORISKC(s[2378]);
-initOSAFESAV(s[2379]);
-initORISKS(s[2380]);
-initQHEALTH1(s[2381]);
-initCUTDOWN(s[2382]);
-initLSILL(s[2383]);
-initILLLIM(s[2384]);
-initDISTYPE1(s[2385]);
-initDISTYPE2(s[2386]);
-initDISTYPE3(s[2387]);
-initDISTYPE4(s[2388]);
-initDISTYPE5(s[2389]);
-initDISTYPE6(s[2390]);
-initDISTYPE7(s[2391]);
-initDISTYPE8(s[2392]);
-initDISTYPE9(s[2393]);
-initDISEVER(s[2394]);
-initFBSITU(s[2395]);
-initFBSIBS(s[2396]);
-initFBTEN(s[2397]);
-initFBFAED(s[2398]);
-initFBMOED(s[2399]);
-initFTHECST(s[2400]);
-initMTHECST(s[2401]);
-initDWELLTYP(s[2402]);
-initFLOORN(s[2403]);
-initIOUT1(s[2404]);
-initPROXPERS(s[2405]);
-initNOUNITS(s[2406]);
-initDVBENU1(s[2407]);
-initDVNUMBU(s[2408]);
-initES2000(s[2409]);
-initNSSEC(s[2410]);
-initNSSECB(s[2411]);
-initNSSEC5(s[2412]);
-initNSSEC3(s[2413]);
-initHOUT(s[2414]);
-initHPROX(s[2415]);
-initPENIND1(s[2416]);
-initPENIND2(s[2417]);
-initPENIND3(s[2418]);
-initPENIND4(s[2419]);
-initPENIND5(s[2420]);
-initPENIND6(s[2421]);
-initUVALS(s[2422]);
-initUVALBS(s[2423]);
-initUDEBTS(s[2424]);
-initUDEBTBS(s[2425]);
-initUGDVBS(s[2426]);
-initUVALL(s[2427]);
-initUVALBL(s[2428]);
-initUDEBTL(s[2429]);
-initUDEBTBL(s[2430]);
-initUGDVBL(s[2431]);
-initUVALO(s[2432]);
-initUVALBO(s[2433]);
-initUDEBTO(s[2434]);
-initUDEBTBO(s[2435]);
-initUVALLU(s[2436]);
-initUVALBLU(s[2437]);
-initUDEBTLU(s[2438]);
-initUDEBTBLU(s[2439]);
-initUVALOS(s[2440]);
-initUVALBOS(s[2441]);
-initUDEBTOS(s[2442]);
-initUDEBTBOS(s[2443]);
-initUGDVBOS(s[2444]);
-initUVALOR(s[2445]);
-initUVALBOR(s[2446]);
-initUDEBTOR(s[2447]);
-initUDEBTBOR(s[2448]);
-initRELIGE(s[2449]);
-initRELIGW(s[2450]);
-initRELIGS(s[2451]);
-initCTPAY(s[2452]);
-initCTPAYW(s[2453]);
-initCTPAYS(s[2454]);
-initEVERWK(s[2455]);
-initPDCVAL3(s[2456]);
-initDVPUBLPRIV(s[2457]);
-initUDEBTS_I(s[2458]);
-initUDEBTS_IFLAG(s[2459]);
-initUDEBTL_I(s[2460]);
-initUDEBTL_IFLAG(s[2461]);
-initUDEBTO_I(s[2462]);
-initUDEBTO_IFLAG(s[2463]);
-initUDEBTLU_I(s[2464]);
-initUDEBTLU_IFLAG(s[2465]);
-initUDEBTOS_I(s[2466]);
-initUDEBTOS_IFLAG(s[2467]);
-initUDEBTOR_I(s[2468]);
-initUDEBTOR_IFLAG(s[2469]);
-initUPROP1_I(s[2470]);
-initUPROP1_IFLAG(s[2471]);
-initUPROP2_I(s[2472]);
-initUPROP2_IFLAG(s[2473]);
-initUPROP3_I(s[2474]);
-initUPROP3_IFLAG(s[2475]);
-initUPROP4_I(s[2476]);
-initUPROP4_IFLAG(s[2477]);
-initUPROP5_I(s[2478]);
-initUPROP5_IFLAG(s[2479]);
-initUPROP6_I(s[2480]);
-initUPROP6_IFLAG(s[2481]);
-initUNUMHS_I(s[2482]);
-initUNUMHS_IFLAG(s[2483]);
-initUBUYLET_I(s[2484]);
-initUBUYLET_IFLAG(s[2485]);
-initUNUMBD_I(s[2486]);
-initUNUMBD_IFLAG(s[2487]);
-initUNUMLA_I(s[2488]);
-initUNUMLA_IFLAG(s[2489]);
-initUNUMOV_I(s[2490]);
-initUNUMOV_IFLAG(s[2491]);
-initUNUMRE_I(s[2492]);
-initUNUMRE_IFLAG(s[2493]);
-initUVALS_I(s[2494]);
-initUVALS_IFLAG(s[2495]);
-initUVALL_I(s[2496]);
-initUVALL_IFLAG(s[2497]);
-initUVALO_I(s[2498]);
-initUVALO_IFLAG(s[2499]);
-initUVALLU_I(s[2500]);
-initUVALLU_IFLAG(s[2501]);
-initUVALOS_I(s[2502]);
-initUVALOS_IFLAG(s[2503]);
-initUVALOR_I(s[2504]);
-initUVALOR_IFLAG(s[2505]);
-initUGDVBS_I(s[2506]);
-initUGDVBS_IFLAG(s[2507]);
-initUGDVBL_I(s[2508]);
-initUGDVBL_IFLAG(s[2509]);
-initUGDVBOS_I(s[2510]);
-initUGDVBOS_IFLAG(s[2511]);
-initDVHSEDEBT(s[2512]);
-initDVBLTDEBT(s[2513]);
-initDVBLDDEBT(s[2514]);
-initDVLUKDEBT(s[2515]);
-initDVLOSDEBT(s[2516]);
-initDVOPRDEBT(s[2517]);
-initDVHSEVAL(s[2518]);
-initDVBLTVAL(s[2519]);
-initDVBLDVAL(s[2520]);
-initDVLUKVAL(s[2521]);
-initDVLOSVAL(s[2522]);
-initDVOPRVAL(s[2523]);
-initOTHMORT(s[2524]);
-initHOUSGDST(s[2525]);
-initBUYLGDST(s[2526]);
-initHOUSGDSOST(s[2527]);
-initPHYSHOUSGDST(s[2528]);
-initPHYSBUYLGDST(s[2529]);
-initPHYSHOUSGDSOST(s[2530]);
-initTYPE(s[2531]);
-initP_FLAG1(s[2532]);
-initP_FLAG3(s[2533]);
-initP_FLAG4(s[2534]);
-initH_FLAG1(s[2535]);
-initDVSAME(s[2536]);
-initPBLMVB1(s[2537]);
-initALLRET(s[2538]);
-initNUMCOUPLES(s[2539]);
-initCOUPLENUM(s[2540]);
-initPARTNSSEC(s[2541]);
-initPARTNSSECB(s[2542]);
-initPARTNSSEC8(s[2543]);
-initPARTNSSEC5(s[2544]);
-initPARTNSSEC3(s[2545]);
-initHRPEDLEVEL(s[2546]);
-initWRKING_I(s[2547]);
-initWRKING_IFLAG(s[2548]);
-initSCHEMEET_I(s[2549]);
-initSCHEMEET_IFLAG(s[2550]);
-initJBAWAY_I(s[2551]);
-initJBAWAY_IFLAG(s[2552]);
-initOWNBUS_I(s[2553]);
-initOWNBUS_IFLAG(s[2554]);
-initRELBUS_I(s[2555]);
-initRELBUS_IFLAG(s[2556]);
-initLOOKED_I(s[2557]);
-initLOOKED_IFLAG(s[2558]);
-initSTARTJ_I(s[2559]);
-initSTARTJ_IFLAG(s[2560]);
-initDVILO3A_I(s[2561]);
-initDVILO3A_IFLAG(s[2562]);
-initEVERWK_I(s[2563]);
-initEVERWK_IFLAG(s[2564]);
-initSTAT_I(s[2565]);
-initSTAT_IFLAG(s[2566]);
-initBTYPE1_I(s[2567]);
-initBTYPE1_IFLAG(s[2568]);
-initBDIRNI1_I(s[2569]);
-initBDIRNI1_IFLAG(s[2570]);
-initSEX(s[2571]);
-initDVSAME_I(s[2572]);
-initDVSAME_IFLAG(s[2573]);
-initPESAME_I(s[2574]);
-initPESAME_IFLAG(s[2575]);
-initPEMOFF_I(s[2576]);
-initPEMOFF_IFLAG(s[2577]);
-initPEMELG_I(s[2578]);
-initPEMELG_IFLAG(s[2579]);
-initPEMMEM_I(s[2580]);
-initPEMMEM_IFLAG(s[2581]);
-initPCONT_I(s[2582]);
-initPCONT_IFLAG(s[2583]);
-initPANYO_I(s[2584]);
-initPANYO_IFLAG(s[2585]);
-initPNUMOS_I(s[2586]);
-initPNUMOS_IFLAG(s[2587]);
-initPSCHM_F_I(s[2588]);
-initPSCHM_F_IFLAG(s[2589]);
-initPSCHM_S_I(s[2590]);
-initPSCHM_S_IFLAG(s[2591]);
-initPSCHM_T_I(s[2592]);
-initPSCHM_T_IFLAG(s[2593]);
-initPOCNMSC_I(s[2594]);
-initPOCNMSC_IFLAG(s[2595]);
-initPOCTYP1_I(s[2596]);
-initPOCTYP1_IFLAG(s[2597]);
-initPOCTYP2_I(s[2598]);
-initPOCTYP2_IFLAG(s[2599]);
-initPBFRAC1_I(s[2600]);
-initPBFRAC1_IFLAG(s[2601]);
-initPBFRAC2_I(s[2602]);
-initPBFRAC2_IFLAG(s[2603]);
-initPBQUAL1_I(s[2604]);
-initPBQUAL1_IFLAG(s[2605]);
-initPBQUAL2_I(s[2606]);
-initPBQUAL2_IFLAG(s[2607]);
-initPBLUMV1_I(s[2608]);
-initPBLUMV1_IFLAG(s[2609]);
-initPBLUMV2_I(s[2610]);
-initPBLUMV2_IFLAG(s[2611]);
-initASAF2T(s[2612]);
-initPOWER1T(s[2613]);
-initPOWER2T(s[2614]);
-initPPRNMSC_I(s[2615]);
-initPPRNMSC_IFLAG(s[2616]);
-initPPVAL1_I(s[2617]);
-initPPVAL1_IFLAG(s[2618]);
-initPPVAL2_I(s[2619]);
-initPPVAL2_IFLAG(s[2620]);
-initPPVAL3_I(s[2621]);
-initPPVAL3_IFLAG(s[2622]);
-initW3XSWGT(s[2623]);
-initW1W3WGT(s[2624]);
-initW2W3WGT(s[2625]);
-initPDCVAL1_I(s[2626]);
-initPDCVAL1_IFLAG(s[2627]);
-initPDCVAL2_I(s[2628]);
-initPDCVAL2_IFLAG(s[2629]);
-initPOADD1_I(s[2630]);
-initPOADD1_IFLAG(s[2631]);
-initPOADD2_I(s[2632]);
-initPOADD2_IFLAG(s[2633]);
-initPOADD3_I(s[2634]);
-initPOADD3_IFLAG(s[2635]);
-initPOADD4_I(s[2636]);
-initPOADD4_IFLAG(s[2637]);
-initPOADD5_I(s[2638]);
-initPOADD5_IFLAG(s[2639]);
-initPOADD6_I(s[2640]);
-initPOADD6_IFLAG(s[2641]);
-initPAVCUV1_I(s[2642]);
-initPAVCUV1_IFLAG(s[2643]);
-initPAVCUV2_I(s[2644]);
-initPAVCUV2_IFLAG(s[2645]);
-initDVHASAVC(s[2646]);
-initDVPAVCUV(s[2647]);
-initDVHASDC(s[2648]);
-initDVVALDCOS(s[2649]);
-initDVPPVAL(s[2650]);
-initDVHASPP(s[2651]);
-initDVHASDB(s[2652]);
-initFRSTSCH(s[2653]);
-initACCFRAC1(s[2654]);
-initACCFRAC2(s[2655]);
-initVALPBLUM1(s[2656]);
-initVALPBLUM2(s[2657]);
-initDVVALDBLUM(s[2658]);
-initDVPENINC1(s[2659]);
-initDVPENINC2(s[2660]);
-initASAF1T(s[2661]);
-initTOPDVDBOPEN1T(s[2662]);
-initBOTDVDBOPEN1T(s[2663]);
-initDVDBOPEN1T(s[2664]);
-initTOPDVDBOPEN2T(s[2665]);
-initBOTDVDBOPEN2T(s[2666]);
-initDVDBOPEN2T(s[2667]);
-initDVVALDBT(s[2668]);
-initTRUST(s[2669]);
-initFSACSH_I(s[2670]);
-initFSNUMIN_I(s[2671]);
-initFSINVAL_I(s[2672]);
-initFSSHVAL_I(s[2673]);
-initFSNUMSH_I(s[2674]);
-initFINVTY01_I(s[2675]);
-initFINVTY02_I(s[2676]);
-initFINVTY03_I(s[2677]);
-initFINVTY04_I(s[2678]);
-initFINVTY05_I(s[2679]);
-initFINVTY06_I(s[2680]);
-initFINVTY07_I(s[2681]);
-initFINVTY08_I(s[2682]);
-initFINVTY09_I(s[2683]);
-initFINVTY10_I(s[2684]);
-initFINVTY11_I(s[2685]);
-initFCACSH_I(s[2686]);
-initFCNUMSH_I(s[2687]);
-initFCNUMIN_I(s[2688]);
-initFCOVDSH_I(s[2689]);
-initFCOVNSH_I(s[2690]);
-initDCOSHV1_I(s[2691]);
-initDCOSHV2_I(s[2692]);
-initDCOSHV3_I(s[2693]);
-initFCSHVAL_I(s[2694]);
-initFCOVDIN_I(s[2695]);
-initFCOVNIN_I(s[2696]);
-initDCOINV1_I(s[2697]);
-initDCOINV2_I(s[2698]);
-initDCOINV3_I(s[2699]);
-initDCOINV4_I(s[2700]);
-initDCOINV5_I(s[2701]);
-initFCINVAL_I(s[2702]);
-initFISA1_I(s[2703]);
-initFISA2_I(s[2704]);
-initFCISAV_I(s[2705]);
-initFIISAV_I(s[2706]);
-initFKISAV_I(s[2707]);
-initFBONDV_I(s[2708]);
-initFCOLLV_I(s[2709]);
-initFESHA_I(s[2710]);
-initFESHAV_I(s[2711]);
-initFEOPTV_I(s[2712]);
-initFSHARE1_I(s[2713]);
-initFSHARE2_I(s[2714]);
-initFSHARE3_I(s[2715]);
-initFSHUKV_I(s[2716]);
-initFSHOSV_I(s[2717]);
-initFNSVAL1_I(s[2718]);
-initFGILTS1_I(s[2719]);
-initFGILTS2_I(s[2720]);
-initFGILTS3_I(s[2721]);
-initFGILTS4_I(s[2722]);
-initFGLTUKV_I(s[2723]);
-initFGLTFOV_I(s[2724]);
-initFINS_I(s[2725]);
-initFINSV_I(s[2726]);
-initFLPROD1_I(s[2727]);
-initFLPROD2_I(s[2728]);
-initFLPROD3_I(s[2729]);
-initFLPROD4_I(s[2730]);
-initFLFENV_I(s[2731]);
-initFLFSIV_I(s[2732]);
-initFLFFSV_I(s[2733]);
-initFLFTEV_I(s[2734]);
-initFINVOTV_I(s[2735]);
-initFSACSH_IFLAG(s[2736]);
-initFSNUMIN_IFLAG(s[2737]);
-initFSSHVAL_IFLAG(s[2738]);
-initFSINVAL_IFLAG(s[2739]);
-initFSNUMSH_IFLAG(s[2740]);
-initFINVTY01_IFLAG(s[2741]);
-initFINVTY02_IFLAG(s[2742]);
-initFINVTY03_IFLAG(s[2743]);
-initFINVTY04_IFLAG(s[2744]);
-initFINVTY05_IFLAG(s[2745]);
-initFINVTY06_IFLAG(s[2746]);
-initFINVTY07_IFLAG(s[2747]);
-initFINVTY08_IFLAG(s[2748]);
-initFINVTY09_IFLAG(s[2749]);
-initFINVTY10_IFLAG(s[2750]);
-initFINVTY11_IFLAG(s[2751]);
-initFCACSH_IFLAG(s[2752]);
-initFCNUMSH_IFLAG(s[2753]);
-initFCNUMIN_IFLAG(s[2754]);
-initFCOVDSH_IFLAG(s[2755]);
-initFCOVNSH_IFLAG(s[2756]);
-initDCOSHV1_IFLAG(s[2757]);
-initDCOSHV2_IFLAG(s[2758]);
-initDCOSHV3_IFLAG(s[2759]);
-initFCSHVAL_IFLAG(s[2760]);
-initFCOVDIN_IFLAG(s[2761]);
-initFCOVNIN_IFLAG(s[2762]);
-initDCOINV1_IFLAG(s[2763]);
-initDCOINV2_IFLAG(s[2764]);
-initDCOINV3_IFLAG(s[2765]);
-initDCOINV4_IFLAG(s[2766]);
-initDCOINV5_IFLAG(s[2767]);
-initFCINVAL_IFLAG(s[2768]);
-initFISA1_IFLAG(s[2769]);
-initFISA2_IFLAG(s[2770]);
-initFCISAV_IFLAG(s[2771]);
-initFIISAV_IFLAG(s[2772]);
-initFKISAV_IFLAG(s[2773]);
-initFBONDV_IFLAG(s[2774]);
-initFCOLLV_IFLAG(s[2775]);
-initFESHA_IFLAG(s[2776]);
-initFESHAV_IFLAG(s[2777]);
-initFEOPTV_IFLAG(s[2778]);
-initFSHARE1_IFLAG(s[2779]);
-initFSHARE2_IFLAG(s[2780]);
-initFSHARE3_IFLAG(s[2781]);
-initFSHUKV_IFLAG(s[2782]);
-initFSHOSV_IFLAG(s[2783]);
-initFNSVAL_IFLAG(s[2784]);
-initFGILTS1_IFLAG(s[2785]);
-initFGILTS2_IFLAG(s[2786]);
-initFGILTS3_IFLAG(s[2787]);
-initFGILTS4_IFLAG(s[2788]);
-initFGLTUKV_IFLAG(s[2789]);
-initFGLTFOV_IFLAG(s[2790]);
-initFINS_IFLAG(s[2791]);
-initFINSV_IFLAG(s[2792]);
-initFLPROD1_IFLAG(s[2793]);
-initFLPROD2_IFLAG(s[2794]);
-initFLPROD3_IFLAG(s[2795]);
-initFLPROD4_IFLAG(s[2796]);
-initFLFENV_IFLAG(s[2797]);
-initFLFSIV_IFLAG(s[2798]);
-initFLFFSV_IFLAG(s[2799]);
-initFLFTEV_IFLAG(s[2800]);
-initFINVOTV_IFLAG(s[2801]);
-initPEVERC_I(s[2802]);
-initPEVERC_IFLAG(s[2803]);
-initPEVERNC_I(s[2804]);
-initPEVERNC_IFLAG(s[2805]);
-initPRETAIN_I(s[2806]);
-initPRETAIN_IFLAG(s[2807]);
-initPFNUM_I(s[2808]);
-initPFNUM_IFLAG(s[2809]);
-initPFNEW_I(s[2810]);
-initPFNEW_IFLAG(s[2811]);
-initPFNEWNO_I(s[2812]);
-initPFNEWNO_IFLAG(s[2813]);
-initALLRET_I(s[2814]);
-initPFTYP1_I(s[2815]);
-initPFTYP1_IFLAG(s[2816]);
-initPFTYP2_I(s[2817]);
-initPFTYP2_IFLAG(s[2818]);
-initPFTYP3_I(s[2819]);
-initPFTYP3_IFLAG(s[2820]);
-initPFTYP4_I(s[2821]);
-initPFTYP4_IFLAG(s[2822]);
-initPFTYP5_I(s[2823]);
-initPFTYP5_IFLAG(s[2824]);
-initPFTYP6_I(s[2825]);
-initPFTYP6_IFLAG(s[2826]);
-initPFOCTY1_I(s[2827]);
-initPFOCTY1_IFLAG(s[2828]);
-initPFOCTY2_I(s[2829]);
-initPFOCTY2_IFLAG(s[2830]);
-initPFOCTY3_I(s[2831]);
-initPFOCTY3_IFLAG(s[2832]);
-initPFOCTY4_I(s[2833]);
-initPFOCTY4_IFLAG(s[2834]);
-initPFOCTY5_I(s[2835]);
-initPFOCTY5_IFLAG(s[2836]);
-initPFOCTY6_I(s[2837]);
-initPFOCTY6_IFLAG(s[2838]);
-initPFLUM1_I(s[2839]);
-initPFLUM1_IFLAG(s[2840]);
-initPFLUM2_I(s[2841]);
-initPFLUM2_IFLAG(s[2842]);
-initPFLUM3_I(s[2843]);
-initPFLUM3_IFLAG(s[2844]);
-initPFLUM4_I(s[2845]);
-initPFLUM4_IFLAG(s[2846]);
-initPFLUM5_I(s[2847]);
-initPFLUM5_IFLAG(s[2848]);
-initPFLUM6_I(s[2849]);
-initPFLUM6_IFLAG(s[2850]);
-initPFLUMALL1_I(s[2851]);
-initPFLUMALL1_IFLAG(s[2852]);
-initPFLUMALL2_I(s[2853]);
-initPFLUMALL2_IFLAG(s[2854]);
-initPFLUMALL3_I(s[2855]);
-initPFLUMALL3_IFLAG(s[2856]);
-initPFLUMALL4_I(s[2857]);
-initPFLUMALL4_IFLAG(s[2858]);
-initPFLUMALL5_I(s[2859]);
-initPFLUMALL5_IFLAG(s[2860]);
-initPFLUMALL6_I(s[2861]);
-initPFLUMALL6_IFLAG(s[2862]);
-initPFCASH1_I(s[2863]);
-initPFCASH1_IFLAG(s[2864]);
-initPFCASH2_I(s[2865]);
-initPFCASH2_IFLAG(s[2866]);
-initPFCASH3_I(s[2867]);
-initPFCASH3_IFLAG(s[2868]);
-initPFCASH4_I(s[2869]);
-initPFCASH4_IFLAG(s[2870]);
-initPFCASH5_I(s[2871]);
-initPFCASH5_IFLAG(s[2872]);
-initPFCASH6_I(s[2873]);
-initPFCASH6_IFLAG(s[2874]);
-initPFREM1_I(s[2875]);
-initPFREM1_IFLAG(s[2876]);
-initPFREM2_I(s[2877]);
-initPFREM2_IFLAG(s[2878]);
-initPFREM3_I(s[2879]);
-initPFREM3_IFLAG(s[2880]);
-initPFREM4_I(s[2881]);
-initPFREM4_IFLAG(s[2882]);
-initPFREM5_I(s[2883]);
-initPFREM5_IFLAG(s[2884]);
-initPFREM6_I(s[2885]);
-initPFREM6_IFLAG(s[2886]);
-initPFREC1_I(s[2887]);
-initPFREC1_IFLAG(s[2888]);
-initPFREC2_I(s[2889]);
-initPFREC2_IFLAG(s[2890]);
-initPFREC3_I(s[2891]);
-initPFREC3_IFLAG(s[2892]);
-initPFREC4_I(s[2893]);
-initPFREC4_IFLAG(s[2894]);
-initPFREC5_I(s[2895]);
-initPFREC5_IFLAG(s[2896]);
-initPFREC6_I(s[2897]);
-initPFREC6_IFLAG(s[2898]);
-initPFDRAW1_I(s[2899]);
-initPFDRAW1_IFLAG(s[2900]);
-initPFDRAW2_I(s[2901]);
-initPFDRAW2_IFLAG(s[2902]);
-initPFDRAW3_I(s[2903]);
-initPFDRAW3_IFLAG(s[2904]);
-initPFDRAW4_I(s[2905]);
-initPFDRAW4_IFLAG(s[2906]);
-initPFDRAW5_I(s[2907]);
-initPFDRAW5_IFLAG(s[2908]);
-initPFDRAW6_I(s[2909]);
-initPFDRAW6_IFLAG(s[2910]);
-initPFLUMV1_IFLAG(s[2911]);
-initPFLUMV2_IFLAG(s[2912]);
-initPFLUMV3_IFLAG(s[2913]);
-initPFLUMV4_IFLAG(s[2914]);
-initPFLUMV5_IFLAG(s[2915]);
-initPFLUMV6_IFLAG(s[2916]);
-initPFINCP1_I(s[2917]);
-initPFINCP1_IFLAG(s[2918]);
-initPFINCP2_I(s[2919]);
-initPFINCP2_IFLAG(s[2920]);
-initPFINCP3_I(s[2921]);
-initPFINCP3_IFLAG(s[2922]);
-initPFINCP4_I(s[2923]);
-initPFINCP4_IFLAG(s[2924]);
-initPFINCP5_I(s[2925]);
-initPFINCP5_IFLAG(s[2926]);
-initPFINCP6_I(s[2927]);
-initPFINCP6_IFLAG(s[2928]);
-initPFINCA1_I(s[2929]);
-initPFINCA1_IFLAG(s[2930]);
-initPFINCA2_I(s[2931]);
-initPFINCA2_IFLAG(s[2932]);
-initPFINCA3_I(s[2933]);
-initPFINCA3_IFLAG(s[2934]);
-initPFINCA4_I(s[2935]);
-initPFINCA4_IFLAG(s[2936]);
-initPFINCA5_I(s[2937]);
-initPFINCA5_IFLAG(s[2938]);
-initPFINCA6_I(s[2939]);
-initPFINCA6_IFLAG(s[2940]);
-initOTHSRC1_I(s[2941]);
-initOTHSRC1_IFLAG(s[2942]);
-initOTHSRC2_I(s[2943]);
-initOTHSRC2_IFLAG(s[2944]);
-initOTHSRC3_I(s[2945]);
-initOTHSRC3_IFLAG(s[2946]);
-initOTHSRC4_I(s[2947]);
-initOTHSRC4_IFLAG(s[2948]);
-initOTHSRC5_I(s[2949]);
-initOTHSRC5_IFLAG(s[2950]);
-initPSPEXPH_I(s[2951]);
-initPSPEXPH_IFLAG(s[2952]);
-initPSPSE_I(s[2953]);
-initPSPSE_IFLAG(s[2954]);
-initPWEXPH_I(s[2955]);
-initPWEXPH_IFLAG(s[2956]);
-initPWIDFUT_I(s[2957]);
-initPWIDFUT_IFLAG(s[2958]);
-initXMARSTA_I(s[2959]);
-initXMARSTA_IFLAG(s[2960]);
-initMARBEF_I(s[2961]);
-initMARBEF_IFLAG(s[2962]);
-initPWEXPA_I(s[2963]);
-initPWEXPA_IFLAG(s[2964]);
-initPSPEXPA_I(s[2965]);
-initPSPEXPA_IFLAG(s[2966]);
-initAGEASAF1(s[2967]);
-initSPASAF_IORIG(s[2968]);
-initPINCINP(s[2969]);
-initPFCURV1_IFLAG(s[2970]);
-initPFCURV2_IFLAG(s[2971]);
-initPFCURV3_IFLAG(s[2972]);
-initPFCURV4_IFLAG(s[2973]);
-initPFCURV5_IFLAG(s[2974]);
-initPFCURV6_IFLAG(s[2975]);
-initPFDDV1_I(s[2976]);
-initPFDDV1_IFLAG(s[2977]);
-initPFDDV2_I(s[2978]);
-initPFDDV2_IFLAG(s[2979]);
-initPFDDV3_I(s[2980]);
-initPFDDV3_IFLAG(s[2981]);
-initPFDDV4_I(s[2982]);
-initPFDDV4_IFLAG(s[2983]);
-initPFDDV5_I(s[2984]);
-initPFDDV5_IFLAG(s[2985]);
-initPFDDV6_I(s[2986]);
-initPFDDV6_IFLAG(s[2987]);
-initDVHSIZE(s[2988]);
-initPINC(s[2989]);
-initHASSHAC(s[2990]);
-initCACRNUM(s[2991]);
-initDVSHCVAL(s[2992]);
-initCAODNUM(s[2993]);
-initDVSHODVAL(s[2994]);
-initDVSHODVAL2(s[2995]);
-initDVSHODVAL3(s[2996]);
-initDVFCINVAL(s[2997]);
-initDVCOINV(s[2998]);
-initDVCOINV2(s[2999]);
-initDVCOINV3(s[3000]);
-initDVCOINV4(s[3001]);
-initDVCOINV5(s[3002]);
-initDVCACRVAL_SUM(s[3003]);
-initDVCAODVAL_SUM(s[3004]);
-initDVCAVAL_SUM(s[3005]);
-initDLANY_I(s[3006]);
-initDLNUM_I(s[3007]);
-initDLTYPE1_I(s[3008]);
-initDLTYPE2_I(s[3009]);
-initDLTYPE3_I(s[3010]);
-initDLTYPE4_I(s[3011]);
-initDLTYPE5_I(s[3012]);
-initDLINS1_I(s[3013]);
-initDLINS2_I(s[3014]);
-initDLINS3_I(s[3015]);
-initDLINS4_I(s[3016]);
-initDLINS5_I(s[3017]);
-initDLOFT1_I(s[3018]);
-initDLOFT2_I(s[3019]);
-initDLOFT3_I(s[3020]);
-initDLOFT4_I(s[3021]);
-initDLOFT5_I(s[3022]);
-initDLWHNY1_I(s[3023]);
-initDLWHNY2_I(s[3024]);
-initDLWHNY3_I(s[3025]);
-initDLWHNY4_I(s[3026]);
-initDLWHNY5_I(s[3027]);
-initDLWHNM1_I(s[3028]);
-initDLWHNM2_I(s[3029]);
-initDLWHNM3_I(s[3030]);
-initDLWHNM4_I(s[3031]);
-initDLWHNM5_I(s[3032]);
-initDSLAMT1_I(s[3033]);
-initDSLAMT2_I(s[3034]);
-initDSLAMT3_I(s[3035]);
-initDSLAMT4_I(s[3036]);
-initDSLAMT5_I(s[3037]);
-initNWLN_I(s[3038]);
-initNWLN_IFLAG(s[3039]);
-initNWLNNO_I(s[3040]);
-initDTLTYPE1_I(s[3041]);
-initDTLTYPE2_I(s[3042]);
-initDTLTYPE3_I(s[3043]);
-initDTLTYPE4_I(s[3044]);
-initDTLTYPE5_I(s[3045]);
-initDTLOWE1_I(s[3046]);
-initDTLOWE2_I(s[3047]);
-initDTLOWE3_I(s[3048]);
-initDTLOWE4_I(s[3049]);
-initDTLOWE5_I(s[3050]);
-initDLBEH1_I(s[3051]);
-initDLBEH2_I(s[3052]);
-initDLBEH3_I(s[3053]);
-initDLBEH4_I(s[3054]);
-initDLBEH5_I(s[3055]);
-initDLOWE1_I(s[3056]);
-initDLOWE2_I(s[3057]);
-initDLOWE3_I(s[3058]);
-initDLOWE4_I(s[3059]);
-initDLOWE5_I(s[3060]);
-initDLANY_IFLAG(s[3061]);
-initDLNUM_IFLAG(s[3062]);
-initDLTYPE1_IFLAG(s[3063]);
-initDLTYPE2_IFLAG(s[3064]);
-initDLTYPE3_IFLAG(s[3065]);
-initDLTYPE4_IFLAG(s[3066]);
-initDLTYPE5_IFLAG(s[3067]);
-initDLINS1_IFLAG(s[3068]);
-initDLINS2_IFLAG(s[3069]);
-initDLINS3_IFLAG(s[3070]);
-initDLINS4_IFLAG(s[3071]);
-initDLINS5_IFLAG(s[3072]);
-initDLOFT1_IFLAG(s[3073]);
-initDLOFT2_IFLAG(s[3074]);
-initDLOFT3_IFLAG(s[3075]);
-initDLOFT4_IFLAG(s[3076]);
-initDLOFT5_IFLAG(s[3077]);
-initDLWHNY1_IFLAG(s[3078]);
-initDLWHNY2_IFLAG(s[3079]);
-initDLWHNY3_IFLAG(s[3080]);
-initDLWHNY4_IFLAG(s[3081]);
-initDLWHNY5_IFLAG(s[3082]);
-initDLWHNM1_IFLAG(s[3083]);
-initDLWHNM2_IFLAG(s[3084]);
-initDLWHNM3_IFLAG(s[3085]);
-initDLWHNM4_IFLAG(s[3086]);
-initDLWHNM5_IFLAG(s[3087]);
-initDSLAMT1_IFLAG(s[3088]);
-initDSLAMT2_IFLAG(s[3089]);
-initDSLAMT3_IFLAG(s[3090]);
-initDSLAMT4_IFLAG(s[3091]);
-initDSLAMT5_IFLAG(s[3092]);
-initNWLNNO_IFLAG(s[3093]);
-initDTLTYPE1_IFLAG(s[3094]);
-initDTLTYPE2_IFLAG(s[3095]);
-initDTLTYPE3_IFLAG(s[3096]);
-initDTLTYPE4_IFLAG(s[3097]);
-initDTLTYPE5_IFLAG(s[3098]);
-initDTLOWE1_IFLAG(s[3099]);
-initDTLOWE2_IFLAG(s[3100]);
-initDTLOWE3_IFLAG(s[3101]);
-initDTLOWE4_IFLAG(s[3102]);
-initDTLOWE5_IFLAG(s[3103]);
-initDLBEH1_IFLAG(s[3104]);
-initDLBEH2_IFLAG(s[3105]);
-initDLBEH3_IFLAG(s[3106]);
-initDLBEH4_IFLAG(s[3107]);
-initDLBEH5_IFLAG(s[3108]);
-initDLOWE1_IFLAG(s[3109]);
-initDLOWE2_IFLAG(s[3110]);
-initDLOWE3_IFLAG(s[3111]);
-initDLOWE4_IFLAG(s[3112]);
-initDLOWE5_IFLAG(s[3113]);
-initDHBANY01_I(s[3114]);
-initDHBANY02_I(s[3115]);
-initDHBANY03_I(s[3116]);
-initDHBANY04_I(s[3117]);
-initDHBANY05_I(s[3118]);
-initDHBANY06_I(s[3119]);
-initDHBANY07_I(s[3120]);
-initDHBANY08_I(s[3121]);
-initDHBANY09_I(s[3122]);
-initDHBANY10_I(s[3123]);
-initDHBANY11_I(s[3124]);
-initDHBAMT01_I(s[3125]);
-initDHBAMT02_I(s[3126]);
-initDHBAMT03_I(s[3127]);
-initDHBAMT04_I(s[3128]);
-initDHBAMT05_I(s[3129]);
-initDHBAMT06_I(s[3130]);
-initDHBAMT07_I(s[3131]);
-initDHBAMT08_I(s[3132]);
-initDHBAMT09_I(s[3133]);
-initDHBAMT10_I(s[3134]);
-initDHBAMT11_I(s[3135]);
-initCACTF_I(s[3136]);
-initCASAV_I(s[3137]);
-initCACTV_I(s[3138]);
-initCASVV_I(s[3139]);
-initFINFSAV1_I(s[3140]);
-initFINFSAV2_I(s[3141]);
-initFINFSAV3_I(s[3142]);
-initFINFSAV4_I(s[3143]);
-initFINFLV_I(s[3144]);
-initFINFV_I(s[3145]);
-initDHBANY01_IFLAG(s[3146]);
-initDHBANY02_IFLAG(s[3147]);
-initDHBANY03_IFLAG(s[3148]);
-initDHBANY04_IFLAG(s[3149]);
-initDHBANY05_IFLAG(s[3150]);
-initDHBANY06_IFLAG(s[3151]);
-initDHBANY07_IFLAG(s[3152]);
-initDHBANY08_IFLAG(s[3153]);
-initDHBANY09_IFLAG(s[3154]);
-initDHBANY10_IFLAG(s[3155]);
-initDHBANY11_IFLAG(s[3156]);
-initDHBAMT01_IFLAG(s[3157]);
-initDHBAMT02_IFLAG(s[3158]);
-initDHBAMT03_IFLAG(s[3159]);
-initDHBAMT04_IFLAG(s[3160]);
-initDHBAMT05_IFLAG(s[3161]);
-initDHBAMT06_IFLAG(s[3162]);
-initDHBAMT07_IFLAG(s[3163]);
-initDHBAMT08_IFLAG(s[3164]);
-initDHBAMT09_IFLAG(s[3165]);
-initDHBAMT10_IFLAG(s[3166]);
-initDHBAMT11_IFLAG(s[3167]);
-initCACTF_IFLAG(s[3168]);
-initCASAV_IFLAG(s[3169]);
-initCACTV_IFLAG(s[3170]);
-initCASVV_IFLAG(s[3171]);
-initFINFSAV1_IFLAG(s[3172]);
-initFINFSAV2_IFLAG(s[3173]);
-initFINFSAV3_IFLAG(s[3174]);
-initFINFSAV4_IFLAG(s[3175]);
-initFINFLV_IFLAG(s[3176]);
-initFINFV_IFLAG(s[3177]);
-initDVHASSAVDEP(s[3178]);
-initDVHASSHSAC(s[3179]);
-initSAVNUM(s[3180]);
-initDVSHSVAL(s[3181]);
-initDVFSINVAL(s[3182]);
-initDVSAVAL_SUM(s[3183]);
-initDVELARR(s[3184]);
-initDVGASARR(s[3185]);
-initDVCTARR(s[3186]);
-initDVTELARR(s[3187]);
-initDVWATARR(s[3188]);
-initDVRNTARR(s[3189]);
-initDVCHMARR(s[3190]);
-initDVCRTARR(s[3191]);
-initDVTAXARR(s[3192]);
-initDVVATARR(s[3193]);
-initDVOTHARR(s[3194]);
-initDVANYARR(s[3195]);
-initTOTBILLARR_SUM(s[3196]);
-initDVHASISA(s[3197]);
-initDVHASBOND(s[3198]);
-initDVHASUTRUST(s[3199]);
-initDVHASEMPSH(s[3200]);
-initDVHASOTHSH(s[3201]);
-initDVHASNSP(s[3202]);
-initDVHASGILT(s[3203]);
-initDVHASLINS(s[3204]);
-initDVHASOINV(s[3205]);
-initDVHASNOFA(s[3206]);
-initDVCISAV(s[3207]);
-initDVIISAV(s[3208]);
-initDVKISAV(s[3209]);
-initDVFNSVAL(s[3210]);
-initDVFSHUKV(s[3211]);
-initDVFLFENV(s[3212]);
-initDVFLFSIV(s[3213]);
-initDVFLFFSV(s[3214]);
-initDVFLFTEV(s[3215]);
-initDVFBONDV(s[3216]);
-initDVFEOPTV(s[3217]);
-initDVFESHAV(s[3218]);
-initDVFCOLLV(s[3219]);
-initDVFSHOSV(s[3220]);
-initDVFGLTUKV(s[3221]);
-initDVFGLTFOV(s[3222]);
-initDVFINVOTV(s[3223]);
-initDVFINFLV(s[3224]);
-initDVFINFV(s[3225]);
-initDVCACTV(s[3226]);
-initDVCASVV(s[3227]);
-initDVISAVAL_SUM(s[3228]);
-initDVINSV_SUM(s[3229]);
-initDVFESHARES_SUM(s[3230]);
-initDVFINFVAL_SUM(s[3231]);
-initNWFLNVAL1(s[3232]);
-initNWILNVAL1(s[3233]);
-initNWFLNVAL2(s[3234]);
-initNWILNVAL2(s[3235]);
-initNWFLNVAL3(s[3236]);
-initNWILNVAL3(s[3237]);
-initDVNWFLN_SUM(s[3238]);
-initDVNWILN_SUM(s[3239]);
-initLNYR1(s[3240]);
-initLNMN1(s[3241]);
-initLNLFT1(s[3242]);
-initLNYR2(s[3243]);
-initLNMN2(s[3244]);
-initLNLFT2(s[3245]);
-initLNYR3(s[3246]);
-initLNMN3(s[3247]);
-initLNLFT3(s[3248]);
-initLNYR4(s[3249]);
-initLNMN4(s[3250]);
-initLNLFT4(s[3251]);
-initLNYR5(s[3252]);
-initLNMN5(s[3253]);
-initLNLFT5(s[3254]);
-initLNOS1(s[3255]);
-initLNOS2(s[3256]);
-initLNOS3(s[3257]);
-initLNOS4(s[3258]);
-initLNOS5(s[3259]);
-initFLNOS1(s[3260]);
-initFLNOS2(s[3261]);
-initFLNOS3(s[3262]);
-initFLNOS4(s[3263]);
-initFLNOS5(s[3264]);
-initDVHASLF(s[3265]);
-initDVHASPLINF(s[3266]);
-initDVHASSL(s[3267]);
-initDVDLOWE1(s[3268]);
-initDVDLOWE2(s[3269]);
-initDVDLOWE3(s[3270]);
-initDVDLOWE4(s[3271]);
-initDVDLOWE5(s[3272]);
-initLNARR_SUM(s[3273]);
-initDVHASLNAR(s[3274]);
-initDMOANY_I(s[3275]);
-initDMONUM_I(s[3276]);
-initDMOINS1_I(s[3277]);
-initDMOINS2_I(s[3278]);
-initDMOINS3_I(s[3279]);
-initDMOINS4_I(s[3280]);
-initDMOINS5_I(s[3281]);
-initDMOOFT1_I(s[3282]);
-initDMOOFT2_I(s[3283]);
-initDMOOFT3_I(s[3284]);
-initDMOOFT4_I(s[3285]);
-initDMOOFT5_I(s[3286]);
-initDMOWHNY1_I(s[3287]);
-initDMOWHNY2_I(s[3288]);
-initDMOWHNY3_I(s[3289]);
-initDMOWHNY4_I(s[3290]);
-initDMOWHNY5_I(s[3291]);
-initDMOWHNM1_I(s[3292]);
-initDMOWHNM2_I(s[3293]);
-initDMOWHNM3_I(s[3294]);
-initDMOWHNM4_I(s[3295]);
-initDMOWHNM5_I(s[3296]);
-initDMOBEH1_I(s[3297]);
-initDMOBEH2_I(s[3298]);
-initDMOBEH3_I(s[3299]);
-initDMOBEH4_I(s[3300]);
-initDMOBEH5_I(s[3301]);
-initDMOOWE1_I(s[3302]);
-initDMOOWE2_I(s[3303]);
-initDMOOWE3_I(s[3304]);
-initDMOOWE4_I(s[3305]);
-initDMOOWE5_I(s[3306]);
-initDMOANY_IFLAG(s[3307]);
-initDMONUM_IFLAG(s[3308]);
-initDMOINS1_IFLAG(s[3309]);
-initDMOINS2_IFLAG(s[3310]);
-initDMOINS3_IFLAG(s[3311]);
-initDMOINS4_IFLAG(s[3312]);
-initDMOINS5_IFLAG(s[3313]);
-initDMOOFT1_IFLAG(s[3314]);
-initDMOOFT2_IFLAG(s[3315]);
-initDMOOFT3_IFLAG(s[3316]);
-initDMOOFT4_IFLAG(s[3317]);
-initDMOOFT5_IFLAG(s[3318]);
-initDMOWHNY1_IFLAG(s[3319]);
-initDMOWHNY2_IFLAG(s[3320]);
-initDMOWHNY3_IFLAG(s[3321]);
-initDMOWHNY4_IFLAG(s[3322]);
-initDMOWHNY5_IFLAG(s[3323]);
-initDMOWHNM1_IFLAG(s[3324]);
-initDMOWHNM2_IFLAG(s[3325]);
-initDMOWHNM3_IFLAG(s[3326]);
-initDMOWHNM4_IFLAG(s[3327]);
-initDMOWHNM5_IFLAG(s[3328]);
-initDMOBEH1_IFLAG(s[3329]);
-initDMOBEH2_IFLAG(s[3330]);
-initDMOBEH3_IFLAG(s[3331]);
-initDMOBEH4_IFLAG(s[3332]);
-initDMOBEH5_IFLAG(s[3333]);
-initDMOOWE1_IFLAG(s[3334]);
-initDMOOWE2_IFLAG(s[3335]);
-initDMOOWE3_IFLAG(s[3336]);
-initDMOOWE4_IFLAG(s[3337]);
-initDMOOWE5_IFLAG(s[3338]);
-initMOLFT1(s[3339]);
-initNYR1(s[3340]);
-initNMN1(s[3341]);
-initMOLFT2(s[3342]);
-initNYR2(s[3343]);
-initNMN2(s[3344]);
-initMOLFT3(s[3345]);
-initNYR3(s[3346]);
-initNMN3(s[3347]);
-initMOLFT4(s[3348]);
-initNYR4(s[3349]);
-initNMN4(s[3350]);
-initMOLFT5(s[3351]);
-initNYR5(s[3352]);
-initNMN5(s[3353]);
-initMOOS1(s[3354]);
-initMOOS2(s[3355]);
-initMOOS3(s[3356]);
-initMOOS4(s[3357]);
-initMOOS5(s[3358]);
-initTOTMO_SUM(s[3359]);
-initDVDMOOWE1(s[3360]);
-initDVDMOOWE2(s[3361]);
-initDVDMOOWE3(s[3362]);
-initDVDMOOWE4(s[3363]);
-initDVDMOOWE5(s[3364]);
-initMOARR_SUM(s[3365]);
-initDVHASMOAR(s[3366]);
-initPFLUMV1_I(s[3367]);
-initPFLUMV2_I(s[3368]);
-initPFLUMV3_I(s[3369]);
-initPFLUMV4_I(s[3370]);
-initPFLUMV5_I(s[3371]);
-initPFLUMV6_I(s[3372]);
-initPFCURV1_I(s[3373]);
-initPFCURV2_I(s[3374]);
-initPFCURV3_I(s[3375]);
-initPFCURV4_I(s[3376]);
-initPFCURV5_I(s[3377]);
-initPFCURV6_I(s[3378]);
-initCCAC1_I(s[3379]);
-initDCAMOS1_I(s[3380]);
-initCCAC2_I(s[3381]);
-initDCAMOS2_I(s[3382]);
-initCCAC3_I(s[3383]);
-initDCAMOS3_I(s[3384]);
-initCCAC4_I(s[3385]);
-initDCAMOS4_I(s[3386]);
-initCCAC5_I(s[3387]);
-initDCAMOS5_I(s[3388]);
-initSCAC1_I(s[3389]);
-initDSAMOS1_I(s[3390]);
-initSCAC2_I(s[3391]);
-initDSAMOS2_I(s[3392]);
-initSCAC3_I(s[3393]);
-initDSAMOS3_I(s[3394]);
-initSCAC4_I(s[3395]);
-initDSAMOS4_I(s[3396]);
-initSCAC5_I(s[3397]);
-initDSAMOS5_I(s[3398]);
-initTOTSC_SUM(s[3399]);
-initDVHASSC(s[3400]);
-initTOTCC_SUM(s[3401]);
-initDVHASCC(s[3402]);
-initOSLC1(s[3403]);
-initOSLC2(s[3404]);
-initOSLC3(s[3405]);
-initOSLC4(s[3406]);
-initNSLC1(s[3407]);
-initNSLC2(s[3408]);
-initNSLC3(s[3409]);
-initOSLBNK1(s[3410]);
-initOSLBNK2(s[3411]);
-initOSLBNK3(s[3412]);
-initNSLBNK1(s[3413]);
-initNSLBNK2(s[3414]);
-initNSLBNK3(s[3415]);
-initTOTSLC_SUM(s[3416]);
-initTOTSLBNK_SUM(s[3417]);
-initDVHASSLC(s[3418]);
-initDVHASSLBNK(s[3419]);
-initDHPBEH1_I(s[3420]);
-initDHPBEH2_I(s[3421]);
-initDHPBEH3_I(s[3422]);
-initDHPBEH4_I(s[3423]);
-initDHPBEH5_I(s[3424]);
-initDHPOWE1_I(s[3425]);
-initDHPOWE2_I(s[3426]);
-initDHPOWE3_I(s[3427]);
-initDHPOWE4_I(s[3428]);
-initDHPOWE5_I(s[3429]);
-initDHPANY1_I(s[3430]);
-initDHPANY2_I(s[3431]);
-initDHPANY3_I(s[3432]);
-initDHPNUM_I(s[3433]);
-initDHPOFT1_I(s[3434]);
-initDHPOFT2_I(s[3435]);
-initDHPOFT3_I(s[3436]);
-initDHPOFT4_I(s[3437]);
-initDHPOFT5_I(s[3438]);
-initDHPINS1_I(s[3439]);
-initDHPINS2_I(s[3440]);
-initDHPINS3_I(s[3441]);
-initDHPINS4_I(s[3442]);
-initDHPINS5_I(s[3443]);
-initDHPWHNY1_I(s[3444]);
-initDHPWHNM1_I(s[3445]);
-initDHPWHNY2_I(s[3446]);
-initDHPWHNM2_I(s[3447]);
-initDHPWHNY3_I(s[3448]);
-initDHPWHNM3_I(s[3449]);
-initDHPWHNY4_I(s[3450]);
-initDHPWHNM4_I(s[3451]);
-initDHPWHNY5_I(s[3452]);
-initDHPWHNM5_I(s[3453]);
-initDHPBEH1_IFLAG(s[3454]);
-initDHPBEH2_IFLAG(s[3455]);
-initDHPBEH3_IFLAG(s[3456]);
-initDHPBEH4_IFLAG(s[3457]);
-initDHPBEH5_IFLAG(s[3458]);
-initDHPOWE1_IFLAG(s[3459]);
-initDHPOWE2_IFLAG(s[3460]);
-initDHPOWE3_IFLAG(s[3461]);
-initDHPOWE4_IFLAG(s[3462]);
-initDHPOWE5_IFLAG(s[3463]);
-initDHPANY1_IFLAG(s[3464]);
-initDHPANY2_IFLAG(s[3465]);
-initDHPANY3_IFLAG(s[3466]);
-initDHPNUM_IFLAG(s[3467]);
-initDHPOFT1_IFLAG(s[3468]);
-initDHPOFT2_IFLAG(s[3469]);
-initDHPOFT3_IFLAG(s[3470]);
-initDHPOFT4_IFLAG(s[3471]);
-initDHPOFT5_IFLAG(s[3472]);
-initDHPINS1_IFLAG(s[3473]);
-initDHPINS2_IFLAG(s[3474]);
-initDHPINS3_IFLAG(s[3475]);
-initDHPINS4_IFLAG(s[3476]);
-initDHPINS5_IFLAG(s[3477]);
-initDHPWHNY1_IFLAG(s[3478]);
-initDHPWHNM1_IFLAG(s[3479]);
-initDHPWHNY2_IFLAG(s[3480]);
-initDHPWHNM2_IFLAG(s[3481]);
-initDHPWHNY3_IFLAG(s[3482]);
-initDHPWHNM3_IFLAG(s[3483]);
-initDHPWHNY4_IFLAG(s[3484]);
-initDHPWHNM4_IFLAG(s[3485]);
-initDHPWHNY5_IFLAG(s[3486]);
-initDHPWHNM5_IFLAG(s[3487]);
-initDVMRDF(s[3488]);
-initDVDBLUMP1(s[3489]);
-initDVDBLUMP2(s[3490]);
-initDVDBLUMP3(s[3491]);
-initDVDBLUMP4(s[3492]);
-initDVDBLUMP5(s[3493]);
-initDVDBLUMP6(s[3494]);
-initDVDBINC1(s[3495]);
-initDVDBINC2(s[3496]);
-initDVDBINC3(s[3497]);
-initDVDBINC4(s[3498]);
-initDVDBINC5(s[3499]);
-initDVDBINC6(s[3500]);
-initDVHASPFD(s[3501]);
-initDVPFDDV(s[3502]);
-initHPNYR1(s[3503]);
-initHPNMN1(s[3504]);
-initHPLFT1(s[3505]);
-initHPNYR2(s[3506]);
-initHPNMN2(s[3507]);
-initHPLFT2(s[3508]);
-initHPNYR3(s[3509]);
-initHPNMN3(s[3510]);
-initHPLFT3(s[3511]);
-initHPNYR4(s[3512]);
-initHPNMN4(s[3513]);
-initHPLFT4(s[3514]);
-initHPNYR5(s[3515]);
-initHPNMN5(s[3516]);
-initHPLFT5(s[3517]);
-initHPOS1(s[3518]);
-initHPOS2(s[3519]);
-initHPOS3(s[3520]);
-initHPOS4(s[3521]);
-initHPOS5(s[3522]);
-initDVHASHP(s[3523]);
-initDVDHPOWE1(s[3524]);
-initDVDHPOWE2(s[3525]);
-initDVDHPOWE3(s[3526]);
-initDVDHPOWE4(s[3527]);
-initDVDHPOWE5(s[3528]);
-initHPARR_SUM(s[3529]);
-initDVHPAR(s[3530]);
-initNWHPVAL1(s[3531]);
-initNWHPVAL2(s[3532]);
-initNWHPVAL3(s[3533]);
-initDVNWHP_SUM(s[3534]);
-initDVHASNHP(s[3535]);
-initTOTNSLC_SUM(s[3536]);
-initTOTNSLBNK_SUM(s[3537]);
-initTOTOSLC_SUM(s[3538]);
-initTOTOSLBNK_SUM(s[3539]);
-initEMPSTAT2(s[3540]);
-initTOTNLOS_SUM(s[3541]);
-initTOTARR_EXCMORT_SUM(s[3542]);
-initHFINW_EXCENDW_SUM(s[3543]);
-initDVFFASSETS_SUM(s[3544]);
-initDVGRSBONAMT(s[3545]);
-initDVHASNLF(s[3546]);
-initDVHASNLI(s[3547]);
-initDVSEPANNUAL09(s[3548]);
-initDVSEPANNUAL10(s[3549]);
-initDVSEPANNUAL11(s[3550]);
-initDVSEPANNUAL12(s[3551]);
-initDVSEPANNUAL13(s[3552]);
-initDVSEPANNUAL14(s[3553]);
-initDVSEPANNUAL15(s[3554]);
-initDVSEPANNUAL16(s[3555]);
-initDVSEPANNUAL17(s[3556]);
-initDVSEPANNUAL18(s[3557]);
-initDVSEPANNUAL19(s[3558]);
-initDVSEPANNUAL20(s[3559]);
-initDVNETPAY_I(s[3560]);
-initDVNETPAY_IFLAG(s[3561]);
-initDVGRSPAY_I(s[3562]);
-initDVGRSPAY_IFLAG(s[3563]);
-initSJOB2_I(s[3564]);
-initSJOB2_IFLAG(s[3565]);
-initSJEMP1_I(s[3566]);
-initSJEMP1_IFLAG(s[3567]);
-initDVNETEMPSECJOB_IFLAG(s[3568]);
-initDVGRSEMPSECJOB_IFLAG(s[3569]);
-initPAYBON_I(s[3570]);
-initPAYBON_IFLAG(s[3571]);
-initDVNETBONAMT_IFLAG(s[3572]);
-initDVGRSBONAMT_IFLAG(s[3573]);
-initDVSENETPAY_IFLAG(s[3574]);
-initDVSEGRSPAY_IFLAG(s[3575]);
-initDVGRSSESECJOB_IFLAG(s[3576]);
-initEDLEVEL(s[3577]);
-initDVOIGGTANNUAL(s[3578]);
-initFINCV_IFLAG(s[3579]);
-initRENTPAY_I(s[3580]);
-initRENTPAY_IFLAG(s[3581]);
-initDVRENTAMTANNUAL_IFLAG(s[3582]);
-initDVOINRRANNUAL_IFLAG(s[3583]);
-initDVOINGTANNUAL_IFLAG(s[3584]);
-initREGLRPY1_I(s[3585]);
-initREGLRPY2_I(s[3586]);
-initREGLRPY3_I(s[3587]);
-initREGLRPY4_I(s[3588]);
-initREGLRPY5_I(s[3589]);
-initREGLRPY1_IFLAG(s[3590]);
-initREGLRPY2_IFLAG(s[3591]);
-initREGLRPY3_IFLAG(s[3592]);
-initREGLRPY4_IFLAG(s[3593]);
-initREGLRPY5_IFLAG(s[3594]);
-initDVOINEGANNUAL_IFLAG(s[3595]);
-initDVOINFRANNUAL_IFLAG(s[3596]);
-initDVOINMAANNUAL_IFLAG(s[3597]);
-initDVOINROANNUAL_IFLAG(s[3598]);
-initDVOINOPANNUAL_IFLAG(s[3599]);
-initTOTLNS_SUM(s[3600]);
-initTOTFLNS_SUM(s[3601]);
-initTOTHP_SUM(s[3602]);
-initTOTLOS_SUM(s[3603]);
-initHFINL_SUM(s[3604]);
-initPOLUM1_I(s[3605]);
-initPOLUM1_IFLAG(s[3606]);
-initPOLUM2_I(s[3607]);
-initPOLUM2_IFLAG(s[3608]);
-initPOLMV1_I(s[3609]);
-initPOLMV1_IFLAG(s[3610]);
-initPPLUM1_I(s[3611]);
-initPPLUM1_IFLAG(s[3612]);
-initPPLUM2_I(s[3613]);
-initPPLUM2_IFLAG(s[3614]);
-initPPLUM3_I(s[3615]);
-initPPLUM3_IFLAG(s[3616]);
-initPPLMV1_I(s[3617]);
-initPPLMV1_IFLAG(s[3618]);
-initPPLMV2_I(s[3619]);
-initPPLMV2_IFLAG(s[3620]);
-initPPLMV3_I(s[3621]);
-initPPLMV3_IFLAG(s[3622]);
-initPFLMV1_I(s[3623]);
-initPFLMV1_IFLAG(s[3624]);
-initPFLMV2_I(s[3625]);
-initPFLMV2_IFLAG(s[3626]);
-initPFLMV3_I(s[3627]);
-initPFLMV3_IFLAG(s[3628]);
-initPFLMV4_I(s[3629]);
-initPFLMV4_IFLAG(s[3630]);
-initPFLMV5_I(s[3631]);
-initPFLMV5_IFLAG(s[3632]);
-initPFLMV6_I(s[3633]);
-initPFLMV6_IFLAG(s[3634]);
-initIHRECNT_I(s[3635]);
-initIHRECNT_IFLAG(s[3636]);
-initIHRCNUM_I(s[3637]);
-initIHRCNUM_IFLAG(s[3638]);
-initIVAL1_IFLAG(s[3639]);
-initIVAL2_I(s[3640]);
-initIVAL2_IFLAG(s[3641]);
-initIVAL3_I(s[3642]);
-initIVAL3_IFLAG(s[3643]);
-initILGIFT_I(s[3644]);
-initILGIFT_IFLAG(s[3645]);
-initIGIFVAL_IFLAG(s[3646]);
-initILUMTY1_I(s[3647]);
-initILUMTY2_I(s[3648]);
-initILUMTY3_I(s[3649]);
-initILUMTY4_I(s[3650]);
-initILUMTY5_I(s[3651]);
-initILUMTY6_I(s[3652]);
-initILUMTY7_I(s[3653]);
-initILUMTY1_IFLAG(s[3654]);
-initILUMTY2_IFLAG(s[3655]);
-initILUMTY3_IFLAG(s[3656]);
-initILUMTY4_IFLAG(s[3657]);
-initILUMTY5_IFLAG(s[3658]);
-initILUMTY6_IFLAG(s[3659]);
-initILUMTY7_IFLAG(s[3660]);
-initILIFB_I(s[3661]);
-initILIFB_IFLAG(s[3662]);
-initILIFE_IFLAG(s[3663]);
-initILUPP_I(s[3664]);
-initILUPP_IFLAG(s[3665]);
-initILACC_IFLAG(s[3666]);
-initILINS_IFLAG(s[3667]);
-initILRED_IFLAG(s[3668]);
-initILWIN_IFLAG(s[3669]);
-initILOTH_IFLAG(s[3670]);
-initNSSEC8(s[3671]);
-initAGMSAFT1(s[3672]);
-initAGMSAF2T(s[3673]);
-initMNTHSCAPE(s[3674]);
-initACCFRAC(s[3675]);
-initRETFRAC(s[3676]);
-initDVPINPVAL(s[3677]);
-initDVWID(s[3678]);
-initDVSPS(s[3679]);
-initDVSPEN(s[3680]);
-initDVDBINCALL(s[3681]);
-initDVVALPBLUM(s[3682]);
-initDVPFCURVAL(s[3683]);
-initDVDBRWEALTHVAL(s[3684]);
-initTOTPEN(s[3685]);
-initDVNIEMP(s[3686]);
-initCURRAC(s[3687]);
-initDVHASPFCUR(s[3688]);
-initDVHASDBR_ORIG(s[3689]);
-initDVHASPFOCC(s[3690]);
-initDVHASPFGRP(s[3691]);
-initDVHASPFPRIV(s[3692]);
-initDVHASPFSIPP(s[3693]);
-initDVHASPFRAC(s[3694]);
-initPOLMV2_IFLAG(s[3695]);
-initPOLMV2_I(s[3696]);
-initSCNDSCH(s[3697]);
-initRF(s[3698]);
-initRS(s[3699]);
-initSOA2(s[3700]);
-initSOA1(s[3701]);
-initWARDC91(s[3702]);
-initWARDO91(s[3703]);
-initWARD98(s[3704]);
-initSTATSWARD(s[3705]);
-initSATIS(s[3706]);
-initWORTH(s[3707]);
-initHAPPY(s[3708]);
-initANXIOUS(s[3709]);
-initISHRP(s[3710]);
-initISHRPPART(s[3711]);
-initHRPIOUT1(s[3712]);
-initHRPPARTIOUT1(s[3713]);
-initHRP_RESP(s[3714]);
-initHRPDVAGE(s[3715]);
-initHRPDVAGE9(s[3716]);
-initHRPSEX(s[3717]);
-initHRPNSSEC3(s[3718]);
-initHRPDVILO3A(s[3719]);
-initHRPDVMRDF(s[3720]);
-initHRPEDATTN1(s[3721]);
-initHRPEDATTN2(s[3722]);
-initHRPEDATTN3(s[3723]);
-initHRPEMPSTAT2(s[3724]);
-initHRPETHNIC(s[3725]);
-initBONTAX_I(s[3726]);
-initBONTAX_IFLAG(s[3727]);
-initPFEN_I(s[3728]);
-initPFEN_IFLAG(s[3729]);
-initPFENNUM_I(s[3730]);
-initPFENNUM_IFLAG(s[3731]);
-initILUMP_I(s[3732]);
-initILUMP_IFLAG(s[3733]);
-initCAJISA_I(s[3734]);
-initCAJISA_IFLAG(s[3735]);
-initDSLEST5_IFLAG(s[3736]);
-initDVCCARDYN_I(s[3737]);
-initDVCCARDYN_IFLAG(s[3738]);
-initDVCCARDNUM_I(s[3739]);
-initDVCCARDNUM_IFLAG(s[3740]);
-initCCAC1_IFLAG(s[3741]);
-initCCAC2_IFLAG(s[3742]);
-initCCAC3_IFLAG(s[3743]);
-initDCAMOS1_IFLAG(s[3744]);
-initDCAMOS2_IFLAG(s[3745]);
-initDCAMOS3_IFLAG(s[3746]);
-initDVSCARDYN_I(s[3747]);
-initDVSCARDYN_IFLAG(s[3748]);
-initDVSCARDNUM_I(s[3749]);
-initDVSCARDNUM_IFLAG(s[3750]);
-initSCAC1_IFLAG(s[3751]);
-initSCAC2_IFLAG(s[3752]);
-initSCAC3_IFLAG(s[3753]);
-initDSAMOS1_IFLAG(s[3754]);
-initDSAMOS2_IFLAG(s[3755]);
-initDSAMOS3_IFLAG(s[3756]);
-initDVOIGOEANNUAL_I(s[3757]);
-initDVOIGOEANNUAL_IFLAG(s[3758]);
-initDVOIGOSANNUAL_I(s[3759]);
-initDVOIGOSANNUAL_IFLAG(s[3760]);
-initDVOIGPPANNUAL_I(s[3761]);
-initDVOIGPPANNUAL_IFLAG(s[3762]);
-initCASEW3(s[3763]);
-initCASEW2(s[3764]);
-initCASEW1(s[3765]);
-initSOC2010(s[3766]);
-initSICCODE(s[3767]);
-initSOC2000(s[3768]);
-initDVSEPANNUAL01(s[3769]);
-initDVSEPANNUAL02(s[3770]);
-initDVSEPANNUAL03(s[3771]);
-initDVSEPANNUAL04(s[3772]);
-initDVSEPANNUAL05(s[3773]);
-initDVSEPANNUAL06(s[3774]);
-initDVSEPANNUAL07(s[3775]);
-initDVSEPANNUAL08(s[3776]);
-initDVSPECANNUAL01(s[3777]);
-initDVSPECANNUAL02(s[3778]);
-initDVSPECANNUAL03(s[3779]);
-initDVSPECANNUAL04(s[3780]);
-initDVSPECANNUAL05(s[3781]);
-initDVSPECANNUAL06(s[3782]);
-initDVSPECANNUAL07(s[3783]);
-initDVSPECANNUAL08(s[3784]);
-initDVSPECANNUAL09(s[3785]);
-initDVSPECANNUAL10(s[3786]);
-initDVTOTALLBENANNUAL(s[3787]);
-initDVTOTTAXANNUAL(s[3788]);
-initDVGIEMP(s[3789]);
-initDVGIPPEN(s[3790]);
-initDVGRSSESECJOB(s[3791]);
-initDVGRSSESECJOB_I(s[3792]);
-initDVNETRENTAMTANNUAL(s[3793]);
-initDVOIGROANNUAL_I(s[3794]);
-initDVBTOGANNUAL(s[3795]);
-initDVCTCANNUAL(s[3796]);
-initDVGIINV(s[3797]);
-initDVGISE(s[3798]);
-initDVGRSBONAMT_I(s[3799]);
-initDVGRSEMPSECJOB(s[3800]);
-initDVGRSEMPSECJOB_I(s[3801]);
-initDVGRSPAY(s[3802]);
-initDVRENTAMTANNUAL_I(s[3803]);
-initDVGRSRENTAMTANNUAL(s[3804]);
-initDVNETBONAMT(s[3805]);
-initDVNETBONAMT_I(s[3806]);
-initDVNETEMPSECJOB(s[3807]);
-initDVNETEMPSECJOB_I(s[3808]);
-initDVNETPAY(s[3809]);
-initDVNETSESECJOB(s[3810]);
-initDVNIINV(s[3811]);
-initDVNIPPEN(s[3812]);
-initDVNISE(s[3813]);
-initPARTGRSPAY(s[3814]);
-initTOTPARTGRSPAY(s[3815]);
-initDVOIGEGANNUAL_I(s[3816]);
-initDVOIGFRANNUAL_I(s[3817]);
-initDVOIGGTANNUAL_I(s[3818]);
-initDVOIGMAANNUAL_I(s[3819]);
-initDVOIGOPANNUAL_I(s[3820]);
-initDVOIGRRANNUAL(s[3821]);
-initDVOIGRRANNUAL_I(s[3822]);
-initDVOINEGANNUAL_I(s[3823]);
-initDVOINFRANNUAL_I(s[3824]);
-initDVOINGTANNUAL_I(s[3825]);
-initDVOINMAANNUAL_I(s[3826]);
-initDVOINOPANNUAL_I(s[3827]);
-initDVOINROANNUAL_I(s[3828]);
-initDVOINRRANNUAL_I(s[3829]);
-initDVSEGRSPAY(s[3830]);
-initDVSEGRSPAY_I(s[3831]);
-initDVSENETPAY(s[3832]);
-initDVSENETPAY_I(s[3833]);
-initDVTOGTCANNUAL(s[3834]);
-initDVTOTBENANNUAL(s[3835]);
-initDVWTCANNUAL(s[3836]);
-initDVNIOTHI(s[3837]);
-initDVIRREGOTHANNUAL(s[3838]);
-initDVWINANNUAL(s[3839]);
-initDVACCINANNUAL(s[3840]);
-initDVLUMPPENANNUAL(s[3841]);
-initDVREDUNANNUAL(s[3842]);
-initDVOTHINSANNUAL(s[3843]);
-initDVLIFEANNUAL(s[3844]);
-initDVINHERITANNUAL(s[3845]);
-initDVGIFTANNUAL(s[3846]);
-initGRSPAYEMPORSE(s[3847]);
-initMARST(s[3848]);
-initECACT(s[3849]);
-initYEAR(s[3850]);
-initMONTH(s[3851]);
-initGOR(s[3852]);
+initCASEW3(s[0]);
+initYEAR(s[1]);
+initMONTH(s[2]);
+initPERSONW3(s[3]);
+initCASEW2(s[4]);
+initYEARW2(s[5]);
+initMONTHW2(s[6]);
+initPERSONW2(s[7]);
+initCASEW1(s[8]);
+initYEARW1(s[9]);
+initMONTHW1(s[10]);
+initPERSONW1(s[11]);
+initW3XSWGT(s[12]);
+initW1W3WGT(s[13]);
+initW2W3WGT(s[14]);
+initGOR(s[15]);
+initLEA(s[16]);
+initDVWAVE(s[17]);
+initCURSTAT(s[18]);
+initRPDBCAL_F(s[19]);
+initSTATUS(s[20]);
+initDVAGEW3BAND(s[21]);
+initXMARSTA(s[22]);
+initMARBEF(s[23]);
+initLIVWTH(s[24]);
+initHHLDR(s[25]);
+initDVAGE4(s[26]);
+initDVAGE5(s[27]);
+initDVAGE6(s[28]);
+initDVAGE9(s[29]);
+initDVAGE18(s[30]);
+initWORKAGE(s[31]);
+initNUMADULT(s[32]);
+initNUMCHILD(s[33]);
+initNUMCIVPTR(s[34]);
+initNUMSSEX(s[35]);
+initNUMCPART(s[36]);
+initNUMCH18(s[37]);
+initPENFLAG(s[38]);
+initFTED(s[39]);
+initFTED19(s[40]);
+initTRAINEE(s[41]);
+initQUALCHK(s[42]);
+initHIHNUM(s[43]);
+initDVHRPNUM(s[44]);
+initHRPPART(s[45]);
+initR01(s[46]);
+initR02(s[47]);
+initR03(s[48]);
+initR04(s[49]);
+initR05(s[50]);
+initR06(s[51]);
+initR07(s[52]);
+initR08(s[53]);
+initR09(s[54]);
+initR10(s[55]);
+initR11(s[56]);
+initRESPDNT(s[57]);
+initPARTNER(s[58]);
+initPARTNO(s[59]);
+initISDEP(s[60]);
+initISNDEP(s[61]);
+initNUMDEPCH(s[62]);
+initHASCHD(s[63]);
+initHASDEP(s[64]);
+initHASNDEP(s[65]);
+initSINGPAR(s[66]);
+initPERSPROX(s[67]);
+initPROXYNUM(s[68]);
+initPRCRELIG(s[69]);
+initWRKING(s[70]);
+initSCHEMEET(s[71]);
+initJBAWAY(s[72]);
+initOWNBUS(s[73]);
+initRELBUS(s[74]);
+initLOOKED(s[75]);
+initSTARTJ(s[76]);
+initLKTIME(s[77]);
+initYINACT(s[78]);
+initDVILO3A(s[79]);
+initDVILO4A(s[80]);
+initWKBETW(s[81]);
+initMRECJB(s[82]);
+initSAMJOB(s[83]);
+initSAMEMP(s[84]);
+initPERNOWK(s[85]);
+initEMPSTAT1(s[86]);
+initNUMJOB(s[87]);
+initDTJBL(s[88]);
+initDVJB12ML(s[89]);
+initSAMEJOB1(s[90]);
+initSAMEJOB2(s[91]);
+initSAMEJOB3(s[92]);
+initSAMEJOB4(s[93]);
+initSAMEJOB5(s[94]);
+initSAMEJOB6(s[95]);
+initSECTOR(s[96]);
+initSECTR2(s[97]);
+initETYPE(s[98]);
+initSTAT(s[99]);
+initDVSTAT(s[100]);
+initSVISE(s[101]);
+initEMPNO(s[102]);
+initEMPN(s[103]);
+initONETEN(s[104]);
+initDVEMPNO(s[105]);
+initSOLO(s[106]);
+initDVSENO(s[107]);
+initSENO(s[108]);
+initSEMN(s[109]);
+initFTPTWK(s[110]);
+initWKHRS(s[111]);
+initWKHRSIR(s[112]);
+initEMPSTY(s[113]);
+initSEMPSTY(s[114]);
+initPERMJB(s[115]);
+initTEA(s[116]);
+initPNOWK(s[117]);
+initPNOWKLN(s[118]);
+initEDATTN1(s[119]);
+initEDATTN2(s[120]);
+initEDATTN3(s[121]);
+initENROLL(s[122]);
+initATTEND(s[123]);
+initCOURSE(s[124]);
+initCOURSE20(s[125]);
+initEDAGE(s[126]);
+initFTSTUD(s[127]);
+initJOBNO(s[128]);
+initBTYPE1(s[129]);
+initBDIRNI1(s[130]);
+initBOWN1(s[131]);
+initBPROPN1(s[132]);
+initBACCSA1(s[133]);
+initBACCSB1(s[134]);
+initBPART1(s[135]);
+initBACCBEG1(s[136]);
+initBACCEND1(s[137]);
+initBDOCS1(s[138]);
+initBPROFIT1(s[139]);
+initBPRFLOSS1(s[140]);
+initBTAX1(s[141]);
+initBNATINS1(s[142]);
+initBBEFORE1(s[143]);
+initBCARRY1(s[144]);
+initBSIZE1(s[145]);
+initBEMPN1(s[146]);
+initBYEAR1(s[147]);
+initBSTART1(s[148]);
+initBFUND1(s[149]);
+initBFUND2(s[150]);
+initBFUND3(s[151]);
+initBFUND4(s[152]);
+initBFUND5(s[153]);
+initBFUND6(s[154]);
+initBFUND7(s[155]);
+initBFUND8(s[156]);
+initBRETIRE1(s[157]);
+initBDEBTS1(s[158]);
+initBOWED1(s[159]);
+initBVAL1(s[160]);
+initBVALB1(s[161]);
+initBTYPE2(s[162]);
+initBDIRNI2(s[163]);
+initBOWN2(s[164]);
+initBPROPN2(s[165]);
+initBACCSA2(s[166]);
+initBACCSB2(s[167]);
+initBPART2(s[168]);
+initBACCBEG2(s[169]);
+initBACCEND2(s[170]);
+initBDOCS2(s[171]);
+initBPROFIT2(s[172]);
+initBPRFLOSS2(s[173]);
+initBTAX2(s[174]);
+initBNATINS2(s[175]);
+initBBEFORE2(s[176]);
+initBCARRY2(s[177]);
+initBSIZE2(s[178]);
+initBEMPN2(s[179]);
+initBYEAR2(s[180]);
+initBSTART2(s[181]);
+initBFUND9(s[182]);
+initBFUND10(s[183]);
+initBFUND11(s[184]);
+initBFUND12(s[185]);
+initBFUND13(s[186]);
+initBFUND14(s[187]);
+initBFUND15(s[188]);
+initBFUND16(s[189]);
+initBRETIRE2(s[190]);
+initBDEBTS2(s[191]);
+initBOWED2(s[192]);
+initBVAL2(s[193]);
+initBVALB2(s[194]);
+initBTYPE3(s[195]);
+initBDIRNI3(s[196]);
+initBOWN3(s[197]);
+initBPROPN3(s[198]);
+initBACCSA3(s[199]);
+initBACCSB3(s[200]);
+initBPART3(s[201]);
+initBACCBEG3(s[202]);
+initBACCEND3(s[203]);
+initBDOCS3(s[204]);
+initBPROFIT3(s[205]);
+initBPRFLOSS3(s[206]);
+initBTAX3(s[207]);
+initBNATINS3(s[208]);
+initBBEFORE3(s[209]);
+initBCARRY3(s[210]);
+initBSIZE3(s[211]);
+initBEMPN3(s[212]);
+initBYEAR3(s[213]);
+initBSTART3(s[214]);
+initBFUND17(s[215]);
+initBFUND18(s[216]);
+initBFUND19(s[217]);
+initBFUND20(s[218]);
+initBFUND21(s[219]);
+initBFUND22(s[220]);
+initBFUND23(s[221]);
+initBFUND24(s[222]);
+initBRETIRE3(s[223]);
+initBDEBTS3(s[224]);
+initBOWED3(s[225]);
+initBVAL3(s[226]);
+initBVALB3(s[227]);
+initBPAST(s[228]);
+initBSELLYR(s[229]);
+initBSELLAM(s[230]);
+initBSELLAB(s[231]);
+initBSELLTX(s[232]);
+initBMOREBUS(s[233]);
+initBWORTH(s[234]);
+initBWORTHB(s[235]);
+initPAYPER(s[236]);
+initPAYESP(s[237]);
+initPAYESM(s[238]);
+initGRSESP(s[239]);
+initGRSESM(s[240]);
+initPAYINC1(s[241]);
+initPAYINC2(s[242]);
+initPAYINC3(s[243]);
+initPAYINC4(s[244]);
+initPAYINC5(s[245]);
+initPAYINC6(s[246]);
+initPAYINC7(s[247]);
+initSMTPEN(s[248]);
+initPAYSLP(s[249]);
+initPAYBON(s[250]);
+initBONTAX(s[251]);
+initEMSHAR1(s[252]);
+initEMSHAR2(s[253]);
+initEMSHAR3(s[254]);
+initSEPER(s[255]);
+initSEAMK(s[256]);
+initSEESW(s[257]);
+initSEESM(s[258]);
+initGROSSPER(s[259]);
+initGRSAMK(s[260]);
+initGRSEESW(s[261]);
+initGRSEESM(s[262]);
+initSEPEL(s[263]);
+initSJOB2(s[264]);
+initSJEMP1(s[265]);
+initSJEMP2(s[266]);
+initINTRO(s[267]);
+initBENTYPE01(s[268]);
+initBENTYPE02(s[269]);
+initBENTYPE03(s[270]);
+initBENTYPE04(s[271]);
+initBENTYPE05(s[272]);
+initBENTYPE06(s[273]);
+initBENTYPE07(s[274]);
+initBENTYPE08(s[275]);
+initBENTYPE09(s[276]);
+initBENTYPE10(s[277]);
+initBENTYPE11(s[278]);
+initBENTYPE12(s[279]);
+initBTOGSEP(s[280]);
+initBPAYNUM(s[281]);
+initBTOGPD(s[282]);
+initBSEPPD01(s[283]);
+initBSEPPD02(s[284]);
+initBSEPPD03(s[285]);
+initBSEPPD04(s[286]);
+initBSEPPD05(s[287]);
+initBSEPPD06(s[288]);
+initBSEPPD07(s[289]);
+initBSEPPD08(s[290]);
+initBSEPPD09(s[291]);
+initBSEPPD10(s[292]);
+initBSEPPD11(s[293]);
+initBSEPPD12(s[294]);
+initBSEPPD13(s[295]);
+initBSEPPD14(s[296]);
+initBSEPPD15(s[297]);
+initBSEPPD16(s[298]);
+initBSEPPD17(s[299]);
+initBSEPPD18(s[300]);
+initBSEPPD19(s[301]);
+initBSEPPD20(s[302]);
+initCREDTYPE1(s[303]);
+initCREDTYPE2(s[304]);
+initCTOGSEP(s[305]);
+initWTCPD(s[306]);
+initCTCPD(s[307]);
+initCOMBPD(s[308]);
+initSPECIAL01(s[309]);
+initSPECIAL02(s[310]);
+initSPECIAL03(s[311]);
+initSPECIAL04(s[312]);
+initSPECIAL05(s[313]);
+initSPECIAL06(s[314]);
+initSPECIAL07(s[315]);
+initSPECIAL08(s[316]);
+initSPECIAL09(s[317]);
+initSPECIAL10(s[318]);
+initWHORECAR(s[319]);
+initWHOREMOB(s[320]);
+initWHOREATT(s[321]);
+initSPECPD1(s[322]);
+initSPECWHEN1(s[323]);
+initSPECINCL1(s[324]);
+initSPECPD2(s[325]);
+initSPECWHEN2(s[326]);
+initSPECINCL2(s[327]);
+initSPECPD3(s[328]);
+initSPECWHEN3(s[329]);
+initSPECINCL3(s[330]);
+initSPECPD4(s[331]);
+initSPECWHEN4(s[332]);
+initSPECINCL4(s[333]);
+initSPECPD5(s[334]);
+initSPECWHEN5(s[335]);
+initSPECINCL5(s[336]);
+initSPECPD6(s[337]);
+initSPECWHEN6(s[338]);
+initSPECINCL6(s[339]);
+initSPECPD7(s[340]);
+initSPECWHEN7(s[341]);
+initSPECINCL7(s[342]);
+initSPECPD8(s[343]);
+initSPECWHEN8(s[344]);
+initSPECINCL8(s[345]);
+initSPECPD9(s[346]);
+initSPECWHEN9(s[347]);
+initSPECINCL9(s[348]);
+initSPECAMT10(s[349]);
+initSPECPD10(s[350]);
+initSPECWHEN10(s[351]);
+initSPECINCL10(s[352]);
+initOSAVA(s[353]);
+initOSAVB(s[354]);
+initOSAVC(s[355]);
+initOWAIT(s[356]);
+initOLEFT(s[357]);
+initOLEFTDO(s[358]);
+initOSAV2Y(s[359]);
+initOWHYSAV01(s[360]);
+initOWHYSAV02(s[361]);
+initOWHYSAV03(s[362]);
+initOWHYSAV04(s[363]);
+initOWHYSAV05(s[364]);
+initOWHYSAV06(s[365]);
+initOWHYSAV07(s[366]);
+initOWHYSAV08(s[367]);
+initOWHYSAV09(s[368]);
+initOWHYSAV10(s[369]);
+initOWHYSAV11(s[370]);
+initONOSAVE1(s[371]);
+initONOSAVE2(s[372]);
+initONOSAVE3(s[373]);
+initONOSAVE4(s[374]);
+initONOSAVE5(s[375]);
+initONOSAVE6(s[376]);
+initONOSAVE7(s[377]);
+initONOSAVE8(s[378]);
+initONOSAVE9(s[379]);
+initOINTEND(s[380]);
+initOSAVEXT(s[381]);
+initPSIT(s[382]);
+initPSITF(s[383]);
+initPNOWKRS(s[384]);
+initPAGESTP(s[385]);
+initPEXPRET(s[386]);
+initPAGERET(s[387]);
+initPFULRET(s[388]);
+initPEARLRS(s[389]);
+initOLONG(s[390]);
+initOLONGYR(s[391]);
+initOSAFERET(s[392]);
+initOSAFERE2(s[393]);
+initOUNDER(s[394]);
+initPESAME(s[395]);
+initPEMOFF(s[396]);
+initPEMELG(s[397]);
+initPEMMEM(s[398]);
+initPNEWMEM(s[399]);
+initPEWYNO01(s[400]);
+initPEWYNO02(s[401]);
+initPEWYNO03(s[402]);
+initPEWYNO04(s[403]);
+initPEWYNO05(s[404]);
+initPEWYNO06(s[405]);
+initPEWYNO07(s[406]);
+initPEWYNO08(s[407]);
+initPEWYNO09(s[408]);
+initPEWYNO10(s[409]);
+initPEWYNO11(s[410]);
+initPEMFIN(s[411]);
+initPCONT(s[412]);
+initPANYO(s[413]);
+initPNUMOS(s[414]);
+initPOCNMSC(s[415]);
+initPPRNMSC(s[416]);
+initPSCHM_F(s[417]);
+initPSCHY_F(s[418]);
+initPSCHM_S(s[419]);
+initPSCHY_S(s[420]);
+initPSCHM_T(s[421]);
+initPSCHY_T(s[422]);
+initPOCTYP1(s[423]);
+initPOJOIN1(s[424]);
+initPORAGE1(s[425]);
+initPOMETH1(s[426]);
+initPOPYCH(s[427]);
+initPOCONH1(s[428]);
+initPOCNPR1(s[429]);
+initPOCNFR1(s[430]);
+initPOCNFG1(s[431]);
+initPOLSYR1(s[432]);
+initPOYRAM1(s[433]);
+initPOEMP1(s[434]);
+initPOEMPH1(s[435]);
+initPOEMAM1(s[436]);
+initPOEMPR1(s[437]);
+initPOEMFR1(s[438]);
+initPOEMFG1(s[439]);
+initPOADD1(s[440]);
+initPOADD2(s[441]);
+initPOADD3(s[442]);
+initPAVCH1(s[443]);
+initPAVCAM1(s[444]);
+initPAVCPR1(s[445]);
+initPAVCFR1(s[446]);
+initPAVCFG1(s[447]);
+initPAVCIN1(s[448]);
+initPIRREG(s[449]);
+initPADDFUT(s[450]);
+initPOCONCH1(s[451]);
+initPOCNHOW1(s[452]);
+initPOCNVOL1(s[453]);
+initPOCNLRS1(s[454]);
+initPOCNLRS2(s[455]);
+initPOCNLRS3(s[456]);
+initPOCNLRS4(s[457]);
+initPOCNDRS1(s[458]);
+initPOCNDRS2(s[459]);
+initPOCNDRS3(s[460]);
+initPOCNDRS4(s[461]);
+initPOCNDRS5(s[462]);
+initPOCNDRS6(s[463]);
+initPOCNPLN1(s[464]);
+initPDBCAL1(s[465]);
+initPBFRAC1(s[466]);
+initPBQUAL1(s[467]);
+initPBLUMV1(s[468]);
+initPBINCH1(s[469]);
+initPBINCF1(s[470]);
+initPBINCA1(s[471]);
+initPBDOCS1(s[472]);
+initPBSTYR1(s[473]);
+initPBSTMN1(s[474]);
+initPAVCUV1(s[475]);
+initPAVCVB1(s[476]);
+initPAVDOC1(s[477]);
+initPASTYR1(s[478]);
+initPASTMN1(s[479]);
+initPDCVAL1(s[480]);
+initPDCVB1(s[481]);
+initPCDOCS1(s[482]);
+initPCSTYR1(s[483]);
+initPCSTMN1(s[484]);
+initPOLUM1(s[485]);
+initPOLMV1(s[486]);
+initPOLMVB1(s[487]);
+initPOLMUS1(s[488]);
+initPOLMUS2(s[489]);
+initPOLMUS3(s[490]);
+initPOLMUS4(s[491]);
+initPOLMUS5(s[492]);
+initPOLMUS6(s[493]);
+initPOCASH1(s[494]);
+initPOANN1(s[495]);
+initPOANN2(s[496]);
+initPOANN3(s[497]);
+initPOANN4(s[498]);
+initPOANLM1(s[499]);
+initPOANEXY1(s[500]);
+initPOANEXM1(s[501]);
+initPOANJT1(s[502]);
+initPOANIF1(s[503]);
+initPOANEH1(s[504]);
+initPOANGA1(s[505]);
+initPOANVI1(s[506]);
+initPOANVB(s[507]);
+initPODRVI1(s[508]);
+initPODRVB1(s[509]);
+initPODRINC1(s[510]);
+initPODRINCB1(s[511]);
+initPOPENVI(s[512]);
+initPOPENVB(s[513]);
+initPOFAN1(s[514]);
+initPOFAN2(s[515]);
+initPOFAN3(s[516]);
+initPOFAN4(s[517]);
+initPOFAN5(s[518]);
+initPOFAN6(s[519]);
+initPOFAWH1(s[520]);
+initPOFAWH2(s[521]);
+initPOFAWH3(s[522]);
+initPOFAWH4(s[523]);
+initPOFAWH5(s[524]);
+initPOFAWH6(s[525]);
+initPOFAAG1(s[526]);
+initPOCTYP2(s[527]);
+initPOJOIN2(s[528]);
+initPORAGE2(s[529]);
+initPOMETH2(s[530]);
+initPOPYCH2(s[531]);
+initPOCONH2(s[532]);
+initPOCNPR2(s[533]);
+initPOCNFR2(s[534]);
+initPOCNFG2(s[535]);
+initPOLSYR2(s[536]);
+initPOYRAM2(s[537]);
+initPOEMP2(s[538]);
+initPOEMPH2(s[539]);
+initPOEMAM2(s[540]);
+initPOEMPR2(s[541]);
+initPOEMFR2(s[542]);
+initPOEMFG2(s[543]);
+initPOADD4(s[544]);
+initPOADD5(s[545]);
+initPOADD6(s[546]);
+initPAVCH2(s[547]);
+initPAVCAM2(s[548]);
+initPAVCPR2(s[549]);
+initPAVCFR2(s[550]);
+initPAVCFG2(s[551]);
+initPAVCIN2(s[552]);
+initPIRREG2(s[553]);
+initPADDFUT2(s[554]);
+initPOCONCH2(s[555]);
+initPOCNHOW2(s[556]);
+initPOCNVOL2(s[557]);
+initPOCNLRS5(s[558]);
+initPOCNLRS6(s[559]);
+initPOCNLRS7(s[560]);
+initPOCNLRS8(s[561]);
+initPOCNDRS7(s[562]);
+initPOCNDRS8(s[563]);
+initPOCNDRS9(s[564]);
+initPOCNDRS10(s[565]);
+initPOCNDRS11(s[566]);
+initPOCNDRS12(s[567]);
+initPOCNPLN2(s[568]);
+initPDBCAL2(s[569]);
+initPBFRAC2(s[570]);
+initPBQUAL2(s[571]);
+initPBLUMV2(s[572]);
+initPBLMVB2(s[573]);
+initPBINCH2(s[574]);
+initPBINCF2(s[575]);
+initPBINCA2(s[576]);
+initPBDOCS2(s[577]);
+initPBSTYR2(s[578]);
+initPBSTMN2(s[579]);
+initPAVCUV2(s[580]);
+initPAVCVB2(s[581]);
+initPAVDOC2(s[582]);
+initPASTYR2(s[583]);
+initPASTMN2(s[584]);
+initPDCVAL2(s[585]);
+initPDCVB2(s[586]);
+initPCDOCS2(s[587]);
+initPCSTYR2(s[588]);
+initPCSTMN2(s[589]);
+initPOLUM2(s[590]);
+initPOLMV2(s[591]);
+initPOLMVB2(s[592]);
+initPOLMUS7(s[593]);
+initPOLMUS8(s[594]);
+initPOLMUS9(s[595]);
+initPOLMUS10(s[596]);
+initPOLMUS11(s[597]);
+initPOLMUS12(s[598]);
+initPOCASH2(s[599]);
+initPOANN5(s[600]);
+initPOANN6(s[601]);
+initPOANN7(s[602]);
+initPOANN8(s[603]);
+initPOANLM2(s[604]);
+initPOANEXY2(s[605]);
+initPOANEXM2(s[606]);
+initPOANJT2(s[607]);
+initPOANIF2(s[608]);
+initPOANEH2(s[609]);
+initPOANGA2(s[610]);
+initPOANVI2(s[611]);
+initPOANVB2(s[612]);
+initPODRVI2(s[613]);
+initPODRVB2(s[614]);
+initPODRINC2(s[615]);
+initPODRINCB2(s[616]);
+initPOPENVI2(s[617]);
+initPOPENVB2(s[618]);
+initPOFAN7(s[619]);
+initPOFAN8(s[620]);
+initPOFAN9(s[621]);
+initPOFAN10(s[622]);
+initPOFAN11(s[623]);
+initPOFAN12(s[624]);
+initPOFAWH7(s[625]);
+initPOFAWH8(s[626]);
+initPOFAWH9(s[627]);
+initPOFAWH10(s[628]);
+initPOFAWH11(s[629]);
+initPOFAWH12(s[630]);
+initPOFAAG2(s[631]);
+initPPYRST1(s[632]);
+initPPORG1(s[633]);
+initPPTYP1(s[634]);
+initPPSIPP1(s[635]);
+initPPPAY1(s[636]);
+initPPRGH1(s[637]);
+initPPRGAM(s[638]);
+initPPRGPE1(s[639]);
+initPPRGFR1(s[640]);
+initPPRGFG1(s[641]);
+initPPIRRY1(s[642]);
+initPPIRRH1(s[643]);
+initPPIRRA1(s[644]);
+initPPIRRF1(s[645]);
+initPPIRNO1(s[646]);
+initPPLASY1(s[647]);
+initPPLSTA1(s[648]);
+initPPLSTP1(s[649]);
+initPPEVRG1(s[650]);
+initPPYSTP1(s[651]);
+initPPYSTP2(s[652]);
+initPPYSTP3(s[653]);
+initPPYSTP4(s[654]);
+initPPYSTP5(s[655]);
+initPPYSTP6(s[656]);
+initPPYSTP7(s[657]);
+initPPCONCH(s[658]);
+initPPCNHOW1(s[659]);
+initPPCNLRS1(s[660]);
+initPPCNLRS2(s[661]);
+initPPCNLRS3(s[662]);
+initPPCNLRS4(s[663]);
+initPPCNDRS1(s[664]);
+initPPCNDRS2(s[665]);
+initPPCNDRS3(s[666]);
+initPPCNDRS4(s[667]);
+initPPCNDRS5(s[668]);
+initPPCNDRS6(s[669]);
+initPPCNDRS7(s[670]);
+initPPCNDRS8(s[671]);
+initPPCNPLN1(s[672]);
+initPPEMP1(s[673]);
+initPPEMPH1(s[674]);
+initPPEMAM1(s[675]);
+initPPEMPR1(s[676]);
+initPPEMFR1(s[677]);
+initPPEIRH1(s[678]);
+initPPEIRA1(s[679]);
+initPPEIRF1(s[680]);
+initPPNINS1(s[681]);
+initPPVINT1(s[682]);
+initPSTYPE1(s[683]);
+initPSTYPE2(s[684]);
+initPSTYPE3(s[685]);
+initPSTYPE4(s[686]);
+initPSTYPE5(s[687]);
+initPSTYPE6(s[688]);
+initPSTYPE7(s[689]);
+initPPVAL1(s[690]);
+initPPVALB1(s[691]);
+initPPDOCS1(s[692]);
+initPPSTYR1(s[693]);
+initPPSTMN1(s[694]);
+initPMORTC(s[695]);
+initPPLUM1(s[696]);
+initPPLMV1(s[697]);
+initPPLMVB1(s[698]);
+initPPLMUS1(s[699]);
+initPPCASH1(s[700]);
+initPPANN1(s[701]);
+initPPANN2(s[702]);
+initPPANN3(s[703]);
+initPPANN4(s[704]);
+initPPANLM1(s[705]);
+initPPANEXY1(s[706]);
+initPPANEXM1(s[707]);
+initPPANJT1(s[708]);
+initPPANIF1(s[709]);
+initPPANEH1(s[710]);
+initPPANGA1(s[711]);
+initPPANVI1(s[712]);
+initPPANVB1(s[713]);
+initPPDRVI1(s[714]);
+initPPDRVB1(s[715]);
+initPPDRINC1(s[716]);
+initPPDRINCB(s[717]);
+initPPFAN1(s[718]);
+initPPFAN2(s[719]);
+initPPFAN3(s[720]);
+initPPFAN4(s[721]);
+initPPFAN5(s[722]);
+initPPFAWH1(s[723]);
+initPPFAWH2(s[724]);
+initPPFAWH3(s[725]);
+initPPFAWH4(s[726]);
+initPPFAWH5(s[727]);
+initPPFAWH6(s[728]);
+initPPFAWH7(s[729]);
+initPPFAAG1(s[730]);
+initPPACCU1(s[731]);
+initPPYRST2(s[732]);
+initPPORG2(s[733]);
+initPPTYP2(s[734]);
+initPPSIPP2(s[735]);
+initPPPAY2(s[736]);
+initPPRGH2(s[737]);
+initPPRGAM2(s[738]);
+initPPRGPE2(s[739]);
+initPPRGFR2(s[740]);
+initPPRGFG2(s[741]);
+initPPIRRY2(s[742]);
+initPPIRRH2(s[743]);
+initPPIRRA2(s[744]);
+initPPIRRF2(s[745]);
+initPPIRNO2(s[746]);
+initPPLASY2(s[747]);
+initPPLSTA2(s[748]);
+initPPLSTP2(s[749]);
+initPPEVRG2(s[750]);
+initPPYSTP8(s[751]);
+initPPYSTP9(s[752]);
+initPPYSTP10(s[753]);
+initPPYSTP11(s[754]);
+initPPYSTP12(s[755]);
+initPPYSTP13(s[756]);
+initPPYSTP14(s[757]);
+initPPCONCH2(s[758]);
+initPPCNHOW2(s[759]);
+initPPCNLRS5(s[760]);
+initPPCNLRS6(s[761]);
+initPPCNLRS7(s[762]);
+initPPCNLRS8(s[763]);
+initPPCNDRS9(s[764]);
+initPPCNDRS10(s[765]);
+initPPCNDRS11(s[766]);
+initPPCNDRS12(s[767]);
+initPPCNDRS13(s[768]);
+initPPCNDRS14(s[769]);
+initPPCNDRS15(s[770]);
+initPPCNDRS16(s[771]);
+initPPCNPLN2(s[772]);
+initPPEMP2(s[773]);
+initPPEMPH2(s[774]);
+initPPEMAM2(s[775]);
+initPPEMPR2(s[776]);
+initPPEMFR2(s[777]);
+initPPEIRH2(s[778]);
+initPPEIRA2(s[779]);
+initPPEIRF2(s[780]);
+initPPNINS2(s[781]);
+initPPVINT2(s[782]);
+initPSTYPE8(s[783]);
+initPSTYPE9(s[784]);
+initPSTYPE10(s[785]);
+initPSTYPE11(s[786]);
+initPSTYPE12(s[787]);
+initPSTYPE13(s[788]);
+initPSTYPE14(s[789]);
+initPPVAL2(s[790]);
+initPPVALB2(s[791]);
+initPPDOCS2(s[792]);
+initPPSTYR2(s[793]);
+initPPSTMN2(s[794]);
+initPMORTC2(s[795]);
+initPPLUM2(s[796]);
+initPPLMV2(s[797]);
+initPPLMVB2(s[798]);
+initPPLMUS2(s[799]);
+initPPCASH2(s[800]);
+initPPANN5(s[801]);
+initPPANN6(s[802]);
+initPPANN7(s[803]);
+initPPANN8(s[804]);
+initPPANLM2(s[805]);
+initPPANEXY2(s[806]);
+initPPANEXM2(s[807]);
+initPPANJT2(s[808]);
+initPPANIF2(s[809]);
+initPPANEH2(s[810]);
+initPPANGA2(s[811]);
+initPPANVI2(s[812]);
+initPPANVB2(s[813]);
+initPPDRVI2(s[814]);
+initPPDRVB2(s[815]);
+initPPDRINC2(s[816]);
+initPPDRINCB2(s[817]);
+initPPFAN6(s[818]);
+initPPFAN7(s[819]);
+initPPFAN8(s[820]);
+initPPFAN9(s[821]);
+initPPFAN10(s[822]);
+initPPFAWH8(s[823]);
+initPPFAWH9(s[824]);
+initPPFAWH10(s[825]);
+initPPFAWH11(s[826]);
+initPPFAWH12(s[827]);
+initPPFAWH13(s[828]);
+initPPFAWH14(s[829]);
+initPPFAAG2(s[830]);
+initPPACCU2(s[831]);
+initPPYRST3(s[832]);
+initPPORG3(s[833]);
+initPPTYP3(s[834]);
+initPPSIPP3(s[835]);
+initPPPAY3(s[836]);
+initPPRGH3(s[837]);
+initPPRGAM3(s[838]);
+initPPRGPE3(s[839]);
+initPPRGFR3(s[840]);
+initPPRGFG3(s[841]);
+initPPIRRY3(s[842]);
+initPPIRRH3(s[843]);
+initPPIRRA3(s[844]);
+initPPIRRF3(s[845]);
+initPPIRNO3(s[846]);
+initPPLASY3(s[847]);
+initPPLSTA3(s[848]);
+initPPLSTP3(s[849]);
+initPPEVRG3(s[850]);
+initPPYSTP15(s[851]);
+initPPYSTP16(s[852]);
+initPPYSTP17(s[853]);
+initPPYSTP18(s[854]);
+initPPYSTP19(s[855]);
+initPPYSTP20(s[856]);
+initPPYSTP21(s[857]);
+initPPCONCH3(s[858]);
+initPPCNHO___W3(s[859]);
+initPPCNLRS9(s[860]);
+initPPCNLRS10(s[861]);
+initPPCNLRS11(s[862]);
+initPPCNLRS12(s[863]);
+initPPCNDRS17(s[864]);
+initPPCNDRS18(s[865]);
+initPPCNDRS19(s[866]);
+initPPCNDRS20(s[867]);
+initPPCNDRS21(s[868]);
+initPPCNDRS22(s[869]);
+initPPCNDRS23(s[870]);
+initPPCNDRS24(s[871]);
+initPPCNPLN3(s[872]);
+initPPEMP3(s[873]);
+initPPEMPH3(s[874]);
+initPPEMAM3(s[875]);
+initPPEMPR3(s[876]);
+initPPEMFR3(s[877]);
+initPPEIRH3(s[878]);
+initPPEIRA3(s[879]);
+initPPEIRF3(s[880]);
+initPPNINS3(s[881]);
+initPPVINT3(s[882]);
+initPSTYPE15(s[883]);
+initPSTYPE16(s[884]);
+initPSTYPE17(s[885]);
+initPSTYPE18(s[886]);
+initPSTYPE19(s[887]);
+initPSTYPE20(s[888]);
+initPSTYPE21(s[889]);
+initPPVAL3(s[890]);
+initPPVALB3(s[891]);
+initPPDOCS3(s[892]);
+initPPSTYR3(s[893]);
+initPPSTMN3(s[894]);
+initPMORTC3(s[895]);
+initPPLUM3(s[896]);
+initPPLMV3(s[897]);
+initPPLMVB3(s[898]);
+initPPLMUS3(s[899]);
+initPPCASH3(s[900]);
+initPPANN9(s[901]);
+initPPANN10(s[902]);
+initPPANN11(s[903]);
+initPPANN12(s[904]);
+initPPANLM3(s[905]);
+initPPANEXY3(s[906]);
+initPPANEXM3(s[907]);
+initPPANJT3(s[908]);
+initPPANIF3(s[909]);
+initPPANEH3(s[910]);
+initPPANGA3(s[911]);
+initPPANVI3(s[912]);
+initPPANVB3(s[913]);
+initPPDRVI3(s[914]);
+initPPDRVB3(s[915]);
+initPPDRINC3(s[916]);
+initPPDRINCB3(s[917]);
+initPPFAN11(s[918]);
+initPPFAN12(s[919]);
+initPPFAN13(s[920]);
+initPPFAN14(s[921]);
+initPPFAN15(s[922]);
+initPPFAWH15(s[923]);
+initPPFAWH16(s[924]);
+initPPFAWH17(s[925]);
+initPPFAWH18(s[926]);
+initPPFAWH19(s[927]);
+initPPFAWH20(s[928]);
+initPPFAWH21(s[929]);
+initPPFAAG3(s[930]);
+initPPACCU3(s[931]);
+initPFNEW(s[932]);
+initPFNEWNO(s[933]);
+initPEVERC(s[934]);
+initPEVERNC(s[935]);
+initPRETAIN(s[936]);
+initPFNUM(s[937]);
+initPFEN(s[938]);
+initPFENNUM(s[939]);
+initRPFCRET1(s[940]);
+initRPFCRET2(s[941]);
+initRPFCRET3(s[942]);
+initRPFCRET4(s[943]);
+initRPFCRET5(s[944]);
+initRPFCRET6(s[945]);
+initRPCRET1(s[946]);
+initRPCRET2(s[947]);
+initRPCRET3(s[948]);
+initPFTYP1(s[949]);
+initPFOCTY1(s[950]);
+initPFLUM1(s[951]);
+initPFLMV1(s[952]);
+initPFLMVB1(s[953]);
+initPFLMUS1(s[954]);
+initPFLUMALL1(s[955]);
+initPFCASH1(s[956]);
+initPFANN1(s[957]);
+initPFANN2(s[958]);
+initPFANN3(s[959]);
+initPFANN4(s[960]);
+initPFANN5(s[961]);
+initPFREM1(s[962]);
+initPFANLM1(s[963]);
+initPFANEXY1(s[964]);
+initPFANEXM1(s[965]);
+initPFANJT1(s[966]);
+initPFANIF1(s[967]);
+initPFANEH1(s[968]);
+initPFANGA1(s[969]);
+initPFANVI1(s[970]);
+initPFANVB1(s[971]);
+initPFDRVI1(s[972]);
+initPFDRVB1(s[973]);
+initPFDRINC1(s[974]);
+initPFDRINCB1(s[975]);
+initPFPENVI1(s[976]);
+initPFPENVB1(s[977]);
+initPFFAN1(s[978]);
+initPFFAN2(s[979]);
+initPFFAN3(s[980]);
+initPFFAN4(s[981]);
+initPFFAN5(s[982]);
+initPFFAWH1(s[983]);
+initPFFAWH2(s[984]);
+initPFFAWH3(s[985]);
+initPFFAWH4(s[986]);
+initPFFAWH5(s[987]);
+initPFFAWH6(s[988]);
+initPFFAAG1(s[989]);
+initPFREC1(s[990]);
+initPFDRAW1(s[991]);
+initPFDDV1(s[992]);
+initPFDDVB1(s[993]);
+initPFBEG1(s[994]);
+initPFEND1(s[995]);
+initPFSIPTY1(s[996]);
+initPFSIPTY2(s[997]);
+initPFSIPTY3(s[998]);
+initPFSIPTY4(s[999]);
+initPFSIPTY5(s[1000]);
+initPFSIPTY6(s[1001]);
+initPFSIPTY7(s[1002]);
+initPFCURV1(s[1003]);
+initPFCUVB1(s[1004]);
+initPFLUMV1(s[1005]);
+initPFLUVB1(s[1006]);
+initPFINCP1(s[1007]);
+initPFINCA1(s[1008]);
+initPFDOCS1(s[1009]);
+initPFSTMY1(s[1010]);
+initPFSTMM1(s[1011]);
+initPFSTAT1(s[1012]);
+initPFTYP2(s[1013]);
+initPFOCTY2(s[1014]);
+initPFLUM2(s[1015]);
+initPFLMV2(s[1016]);
+initPFLMVB2(s[1017]);
+initPFLMUS2(s[1018]);
+initPFLUMALL2(s[1019]);
+initPFCASH2(s[1020]);
+initPFANN6(s[1021]);
+initPFANN7(s[1022]);
+initPFANN8(s[1023]);
+initPFANN9(s[1024]);
+initPFANN10(s[1025]);
+initPFREM2(s[1026]);
+initPFANLM2(s[1027]);
+initPFANEXY2(s[1028]);
+initPFANEXM2(s[1029]);
+initPFANJT2(s[1030]);
+initPFANIF2(s[1031]);
+initPFANEH2(s[1032]);
+initPFANGA2(s[1033]);
+initPFANVI2(s[1034]);
+initPFANVB2(s[1035]);
+initPFDRVI2(s[1036]);
+initPFDRVB2(s[1037]);
+initPFDRINC2(s[1038]);
+initPFDRINCB2(s[1039]);
+initPFPENVI2(s[1040]);
+initPFPENVB2(s[1041]);
+initPFFAN6(s[1042]);
+initPFFAN7(s[1043]);
+initPFFAN8(s[1044]);
+initPFFAN9(s[1045]);
+initPFFAN10(s[1046]);
+initPFFAWH7(s[1047]);
+initPFFAWH8(s[1048]);
+initPFFAWH9(s[1049]);
+initPFFAWH10(s[1050]);
+initPFFAWH11(s[1051]);
+initPFFAWH12(s[1052]);
+initPFFAAG2(s[1053]);
+initPFREC2(s[1054]);
+initPFDRAW2(s[1055]);
+initPFDDV2(s[1056]);
+initPFDDVB2(s[1057]);
+initPFBEG2(s[1058]);
+initPFEND2(s[1059]);
+initPFSIPTY8(s[1060]);
+initPFSIPTY9(s[1061]);
+initPFSIPTY10(s[1062]);
+initPFSIPTY11(s[1063]);
+initPFSIPTY12(s[1064]);
+initPFSIPTY13(s[1065]);
+initPFSIPTY14(s[1066]);
+initPFCURV2(s[1067]);
+initPFCUVB2(s[1068]);
+initPFLUMV2(s[1069]);
+initPFLUVB2(s[1070]);
+initPFINCP2(s[1071]);
+initPFINCA2(s[1072]);
+initPFDOCS2(s[1073]);
+initPFSTMY2(s[1074]);
+initPFSTMM2(s[1075]);
+initPFSTAT2(s[1076]);
+initPFTYP3(s[1077]);
+initPFOCTY3(s[1078]);
+initPFLUM3(s[1079]);
+initPFLMV3(s[1080]);
+initPFLMVB3(s[1081]);
+initPFLMUS3(s[1082]);
+initPFLUMALL3(s[1083]);
+initPFCASH3(s[1084]);
+initPFANN11(s[1085]);
+initPFANN12(s[1086]);
+initPFANN13(s[1087]);
+initPFANN14(s[1088]);
+initPFANN15(s[1089]);
+initPFREM3(s[1090]);
+initPFANLM3(s[1091]);
+initPFANEXY3(s[1092]);
+initPFANEXM3(s[1093]);
+initPFANJT3(s[1094]);
+initPFANIF3(s[1095]);
+initPFANEH3(s[1096]);
+initPFANGA3(s[1097]);
+initPFANVI3(s[1098]);
+initPFANVB3(s[1099]);
+initPFDRVI3(s[1100]);
+initPFDRVB3(s[1101]);
+initPFDRINC3(s[1102]);
+initPFDRINCB3(s[1103]);
+initPFPENVI3(s[1104]);
+initPFPENVB3(s[1105]);
+initPFFAN11(s[1106]);
+initPFFAN12(s[1107]);
+initPFFAN13(s[1108]);
+initPFFAN14(s[1109]);
+initPFFAN15(s[1110]);
+initPFFAWH13(s[1111]);
+initPFFAWH14(s[1112]);
+initPFFAWH15(s[1113]);
+initPFFAWH16(s[1114]);
+initPFFAWH17(s[1115]);
+initPFFAWH18(s[1116]);
+initPFFAAG3(s[1117]);
+initPFREC3(s[1118]);
+initPFDRA___W3(s[1119]);
+initPFDDV3(s[1120]);
+initPFDDVB3(s[1121]);
+initPFBEG3(s[1122]);
+initPFEND3(s[1123]);
+initPFSIPTY15(s[1124]);
+initPFSIPTY16(s[1125]);
+initPFSIPTY17(s[1126]);
+initPFSIPTY18(s[1127]);
+initPFSIPTY19(s[1128]);
+initPFSIPTY20(s[1129]);
+initPFSIPTY21(s[1130]);
+initPFCURV3(s[1131]);
+initPFCUVB3(s[1132]);
+initPFLUMV3(s[1133]);
+initPFLUVB3(s[1134]);
+initPFINCP3(s[1135]);
+initPFINCA3(s[1136]);
+initPFDOCS3(s[1137]);
+initPFSTMY3(s[1138]);
+initPFSTMM3(s[1139]);
+initPFSTAT3(s[1140]);
+initPFTYP4(s[1141]);
+initPFOCTY4(s[1142]);
+initPFLUM4(s[1143]);
+initPFLMV4(s[1144]);
+initPFLMVB4(s[1145]);
+initPFLMUS4(s[1146]);
+initPFLUMALL4(s[1147]);
+initPFCASH4(s[1148]);
+initPFANN16(s[1149]);
+initPFANN17(s[1150]);
+initPFANN18(s[1151]);
+initPFANN19(s[1152]);
+initPFANN20(s[1153]);
+initPFREM4(s[1154]);
+initPFANLM4(s[1155]);
+initPFANEXY4(s[1156]);
+initPFANEXM4(s[1157]);
+initPFANJT4(s[1158]);
+initPFANIF4(s[1159]);
+initPFANEH4(s[1160]);
+initPFANGA4(s[1161]);
+initPFANVI4(s[1162]);
+initPFANVB4(s[1163]);
+initPFDRVI4(s[1164]);
+initPFDRVB4(s[1165]);
+initPFDRINC4(s[1166]);
+initPFDRINCB4(s[1167]);
+initPFPENVI4(s[1168]);
+initPFPENVB4(s[1169]);
+initPFFAN16(s[1170]);
+initPFFAN17(s[1171]);
+initPFFAN18(s[1172]);
+initPFFAN19(s[1173]);
+initPFFAN20(s[1174]);
+initPFFAWH19(s[1175]);
+initPFFAWH20(s[1176]);
+initPFFAWH21(s[1177]);
+initPFFAWH22(s[1178]);
+initPFFAWH23(s[1179]);
+initPFFAWH24(s[1180]);
+initPFFAAG4(s[1181]);
+initPFREC4(s[1182]);
+initPFDRAW4(s[1183]);
+initPFDDV4(s[1184]);
+initPFDDVB4(s[1185]);
+initPFBEG4(s[1186]);
+initPFEND4(s[1187]);
+initPFSIPTY22(s[1188]);
+initPFSIPTY23(s[1189]);
+initPFSIPTY24(s[1190]);
+initPFSIPTY25(s[1191]);
+initPFSIPTY26(s[1192]);
+initPFSIPTY27(s[1193]);
+initPFSIPTY28(s[1194]);
+initPFCURV4(s[1195]);
+initPFCUVB4(s[1196]);
+initPFLUMV4(s[1197]);
+initPFLUVB4(s[1198]);
+initPFINCP4(s[1199]);
+initPFINCA4(s[1200]);
+initPFDOCS4(s[1201]);
+initPFSTMY4(s[1202]);
+initPFSTMM4(s[1203]);
+initPFSTAT4(s[1204]);
+initPFTYP5(s[1205]);
+initPFOCTY5(s[1206]);
+initPFLUM5(s[1207]);
+initPFLMV5(s[1208]);
+initPFLMVB5(s[1209]);
+initPFLMUS5(s[1210]);
+initPFLUMALL5(s[1211]);
+initPFCASH5(s[1212]);
+initPFANN21(s[1213]);
+initPFANN22(s[1214]);
+initPFANN23(s[1215]);
+initPFANN24(s[1216]);
+initPFANN25(s[1217]);
+initPFREM5(s[1218]);
+initPFANLM5(s[1219]);
+initPFANEXY5(s[1220]);
+initPFANEXM5(s[1221]);
+initPFANJT5(s[1222]);
+initPFANIF5(s[1223]);
+initPFANEH5(s[1224]);
+initPFANGA5(s[1225]);
+initPFANVI5(s[1226]);
+initPFANVB5(s[1227]);
+initPFDRVI5(s[1228]);
+initPFDRVB5(s[1229]);
+initPFDRINC5(s[1230]);
+initPFDRINCB5(s[1231]);
+initPFPENVI5(s[1232]);
+initPFPENVB5(s[1233]);
+initPFFAN21(s[1234]);
+initPFFAN22(s[1235]);
+initPFFAN23(s[1236]);
+initPFFAN24(s[1237]);
+initPFFAN25(s[1238]);
+initPFFAWH25(s[1239]);
+initPFFAWH26(s[1240]);
+initPFFAWH27(s[1241]);
+initPFFAWH28(s[1242]);
+initPFFAWH29(s[1243]);
+initPFFAWH30(s[1244]);
+initPFFAAG5(s[1245]);
+initPFREC5(s[1246]);
+initPFDRAW5(s[1247]);
+initPFDDV5(s[1248]);
+initPFDDVB5(s[1249]);
+initPFBEG5(s[1250]);
+initPFEND5(s[1251]);
+initPFSIPTY29(s[1252]);
+initPFSIPTY30(s[1253]);
+initPFSIPTY31(s[1254]);
+initPFSIPTY32(s[1255]);
+initPFSIPTY33(s[1256]);
+initPFSIPTY34(s[1257]);
+initPFSIPTY35(s[1258]);
+initPFCURV5(s[1259]);
+initPFCUVB5(s[1260]);
+initPFLUMV5(s[1261]);
+initPFLUVB5(s[1262]);
+initPFINCP5(s[1263]);
+initPFINCA5(s[1264]);
+initPFDOCS5(s[1265]);
+initPFSTMY5(s[1266]);
+initPFSTMM5(s[1267]);
+initPFSTAT5(s[1268]);
+initPFTYP6(s[1269]);
+initPFOCTY6(s[1270]);
+initPFLUM6(s[1271]);
+initPFLMV6(s[1272]);
+initPFLMVB6(s[1273]);
+initPFLMUS6(s[1274]);
+initPFLUMALL6(s[1275]);
+initPFCASH6(s[1276]);
+initPFANN26(s[1277]);
+initPFANN27(s[1278]);
+initPFANN28(s[1279]);
+initPFANN29(s[1280]);
+initPFANN30(s[1281]);
+initPFREM6(s[1282]);
+initPFANLM6(s[1283]);
+initPFANEXY6(s[1284]);
+initPFANEXM6(s[1285]);
+initPFANJT6(s[1286]);
+initPFANIF6(s[1287]);
+initPFANEH6(s[1288]);
+initPFANGA6(s[1289]);
+initPFANVI6(s[1290]);
+initPFANVB6(s[1291]);
+initPFDRVI6(s[1292]);
+initPFDRVB6(s[1293]);
+initPFDRINC6(s[1294]);
+initPFDRINCB6(s[1295]);
+initPFPENVI6(s[1296]);
+initPFPENVB6(s[1297]);
+initPFFAN26(s[1298]);
+initPFFAN27(s[1299]);
+initPFFAN28(s[1300]);
+initPFFAN29(s[1301]);
+initPFFAN30(s[1302]);
+initPFFAWH31(s[1303]);
+initPFFAWH32(s[1304]);
+initPFFAWH33(s[1305]);
+initPFFAWH34(s[1306]);
+initPFFAWH35(s[1307]);
+initPFFAWH36(s[1308]);
+initPFFAAG6(s[1309]);
+initPFREC6(s[1310]);
+initPFDRAW6(s[1311]);
+initPFDDV6(s[1312]);
+initPFDDVB6(s[1313]);
+initPFBEG6(s[1314]);
+initPFEND6(s[1315]);
+initPFSIPTY36(s[1316]);
+initPFSIPTY37(s[1317]);
+initPFSIPTY38(s[1318]);
+initPFSIPTY39(s[1319]);
+initPFSIPTY40(s[1320]);
+initPFSIPTY41(s[1321]);
+initPFSIPTY42(s[1322]);
+initPFCURV6(s[1323]);
+initPFCUVB6(s[1324]);
+initPFLUMV6(s[1325]);
+initPFLUVB6(s[1326]);
+initPFINCP6(s[1327]);
+initPFINCA6(s[1328]);
+initPFDOCS6(s[1329]);
+initPFSTMY6(s[1330]);
+initPFSTMM6(s[1331]);
+initPFSTAT6(s[1332]);
+initPWID(s[1333]);
+initPWIDFUT(s[1334]);
+initPWLUM(s[1335]);
+initPWLUVAL(s[1336]);
+initPWEXPH(s[1337]);
+initPWEXPA(s[1338]);
+initPSPSE(s[1339]);
+initPSPLUM(s[1340]);
+initPSPLUVAL(s[1341]);
+initPSPEXPH(s[1342]);
+initPSPEXPA(s[1343]);
+initPWACCU(s[1344]);
+initOPENS01(s[1345]);
+initOPENS02(s[1346]);
+initOPENS03(s[1347]);
+initOPENS04(s[1348]);
+initOPENS05(s[1349]);
+initOPENS06(s[1350]);
+initOPENS07(s[1351]);
+initOPENS08(s[1352]);
+initOPENS09(s[1353]);
+initOPENS10(s[1354]);
+initOPENS11(s[1355]);
+initOPENS12(s[1356]);
+initOPENS13(s[1357]);
+initOPENS14(s[1358]);
+initOPENS15(s[1359]);
+initOEXPINC01(s[1360]);
+initOEXPINC02(s[1361]);
+initOEXPINC03(s[1362]);
+initOEXPINC04(s[1363]);
+initOEXPINC05(s[1364]);
+initOEXPINC06(s[1365]);
+initOEXPINC07(s[1366]);
+initOEXPINC08(s[1367]);
+initOEXPINC09(s[1368]);
+initOEXPINC10(s[1369]);
+initOEXPINC11(s[1370]);
+initOEXPINC12(s[1371]);
+initOEXPINC13(s[1372]);
+initOEXPINC14(s[1373]);
+initOEXPINC15(s[1374]);
+initOLARGE(s[1375]);
+initOPENSAV(s[1376]);
+initOSTANDL(s[1377]);
+initFINVTY01(s[1378]);
+initFINVTY02(s[1379]);
+initFINVTY03(s[1380]);
+initFINVTY04(s[1381]);
+initFINVTY05(s[1382]);
+initFINVTY06(s[1383]);
+initFINVTY07(s[1384]);
+initFINVTY08(s[1385]);
+initFINVTY09(s[1386]);
+initFINVTY10(s[1387]);
+initFINVTY11(s[1388]);
+initDCOSHV1(s[1389]);
+initDCOSHVB1(s[1390]);
+initDCOSHV2(s[1391]);
+initDCOSHVB2(s[1392]);
+initDCOSHV3(s[1393]);
+initDCOSHVB3(s[1394]);
+initDCOSHV4(s[1395]);
+initDCOSHVB4(s[1396]);
+initDCOSHV5(s[1397]);
+initDCOSHVB5(s[1398]);
+initDCOINV1(s[1399]);
+initDCOINVB1(s[1400]);
+initDCOINV2(s[1401]);
+initDCOINVB2(s[1402]);
+initDCOINV3(s[1403]);
+initDCOINVB3(s[1404]);
+initDCOINV4(s[1405]);
+initDCOINVB4(s[1406]);
+initDCOINV5(s[1407]);
+initDCOINVB5(s[1408]);
+initFCACSH(s[1409]);
+initFCNUMSH(s[1410]);
+initFCNUMIN(s[1411]);
+initFCSUPPR(s[1412]);
+initFCOVDSH(s[1413]);
+initFCOVNSH(s[1414]);
+initFCSHVAL(s[1415]);
+initFCSHVLB(s[1416]);
+initFCOVDIN(s[1417]);
+initFCOVNIN(s[1418]);
+initFCOVDIF(s[1419]);
+initFCINVAL(s[1420]);
+initFCINVLB(s[1421]);
+initFSACSH(s[1422]);
+initFSNUMSH(s[1423]);
+initFSNUMIN(s[1424]);
+initFSSUPPR(s[1425]);
+initFSTYPSH1(s[1426]);
+initFSTYPSH2(s[1427]);
+initFSTYPSH3(s[1428]);
+initFSTYPSH4(s[1429]);
+initFSTYPSH5(s[1430]);
+initFSTYPIN1(s[1431]);
+initFSTYPIN2(s[1432]);
+initFSTYPIN3(s[1433]);
+initFSTYPIN4(s[1434]);
+initFSTYPIN5(s[1435]);
+initFSSHVAL(s[1436]);
+initFSSHVLB(s[1437]);
+initFSINVAL(s[1438]);
+initFSINVLB(s[1439]);
+initFSOSHAV(s[1440]);
+initFSOSVLB(s[1441]);
+initFISA1(s[1442]);
+initFISA2(s[1443]);
+initFCISAV(s[1444]);
+initFCISAB(s[1445]);
+initFIISAV(s[1446]);
+initFIISAB(s[1447]);
+initFKISAV(s[1448]);
+initFKISAB(s[1449]);
+initNEWFCMX(s[1450]);
+initFCISAWD(s[1451]);
+initFCIWNUM(s[1452]);
+initFCIWDAB(s[1453]);
+initFCISCE(s[1454]);
+initFBONDTY1(s[1455]);
+initFBONDTY2(s[1456]);
+initFBONDTY3(s[1457]);
+initFBONDV(s[1458]);
+initFBONDVB(s[1459]);
+initFCOLLV(s[1460]);
+initFCOLLVB(s[1461]);
+initFESHA(s[1462]);
+initFESHAV(s[1463]);
+initFESHVB(s[1464]);
+initFEOPTV(s[1465]);
+initFEOPVB(s[1466]);
+initFSHARE1(s[1467]);
+initFSHARE2(s[1468]);
+initFSHARE3(s[1469]);
+initFSHUKV(s[1470]);
+initFSHUKVB(s[1471]);
+initFSHOSV(s[1472]);
+initFSHOSVB(s[1473]);
+initFSHADD(s[1474]);
+initFSHADA(s[1475]);
+initFSHADAB(s[1476]);
+initFNSAV1(s[1477]);
+initFNSAV2(s[1478]);
+initFNSAV3(s[1479]);
+initFNSAV4(s[1480]);
+initFNSVAL1(s[1481]);
+initFNSVB(s[1482]);
+initFGILTS1(s[1483]);
+initFGILTS2(s[1484]);
+initFGILTS3(s[1485]);
+initFGILTS4(s[1486]);
+initFGLTUKV(s[1487]);
+initFGUKVB(s[1488]);
+initFGLTFOV(s[1489]);
+initFGFOVB(s[1490]);
+initFLFENV(s[1491]);
+initFLFENVB(s[1492]);
+initFLFSIV(s[1493]);
+initFLFSIVB(s[1494]);
+initFLFFSV(s[1495]);
+initFLFFSVB(s[1496]);
+initFLFTEV(s[1497]);
+initFLFTEVB(s[1498]);
+initFINS(s[1499]);
+initFINSV(s[1500]);
+initFLPROD1(s[1501]);
+initFLPROD2(s[1502]);
+initFLPROD3(s[1503]);
+initFLPROD4(s[1504]);
+initFINVOTV(s[1505]);
+initFINVOVB(s[1506]);
+initFINCVB(s[1507]);
+initFINFSAV1(s[1508]);
+initFINFSAV2(s[1509]);
+initFINFSAV3(s[1510]);
+initFINFSAV4(s[1511]);
+initFINFLV(s[1512]);
+initFLOANVB(s[1513]);
+initFINFV(s[1514]);
+initFINFVB(s[1515]);
+initFSAVED(s[1516]);
+initFWITHD(s[1517]);
+initFSAVAB(s[1518]);
+initUPROP1(s[1519]);
+initUPROP2(s[1520]);
+initUPROP3(s[1521]);
+initUPROP4(s[1522]);
+initUNMTYP(s[1523]);
+initUNUMHS(s[1524]);
+initUBUYLET(s[1525]);
+initUNUMBD(s[1526]);
+initUNUMLA(s[1527]);
+initUNUMOV(s[1528]);
+initUNUMRE(s[1529]);
+initUPRTYP(s[1530]);
+initUPRSH1(s[1531]);
+initUPRSH2(s[1532]);
+initUPRTYP2(s[1533]);
+initUPRSH3(s[1534]);
+initUPRSH4(s[1535]);
+initUPRTYP3(s[1536]);
+initUPRSH5(s[1537]);
+initUPRSH6(s[1538]);
+initUPRTYP4(s[1539]);
+initUPRTYP5(s[1540]);
+initUPRTYP6(s[1541]);
+initUPRTYP7(s[1542]);
+initUPRSH13(s[1543]);
+initUPRSH14(s[1544]);
+initUPRTYP8(s[1545]);
+initUPRSH15(s[1546]);
+initUPRSH16(s[1547]);
+initUPRTYP9(s[1548]);
+initUPRSH17(s[1549]);
+initUPRSH18(s[1550]);
+initUPRTYP10(s[1551]);
+initUPRSH19(s[1552]);
+initUPRSH20(s[1553]);
+initULAND10(s[1554]);
+initUPRTYP11(s[1555]);
+initUPRSH21(s[1556]);
+initUPRSH22(s[1557]);
+initULAND11(s[1558]);
+initUPRTYP12(s[1559]);
+initUPRSH23(s[1560]);
+initUPRSH24(s[1561]);
+initULAND12(s[1562]);
+initUPRTYP13(s[1563]);
+initUPRSH25(s[1564]);
+initUPRSH26(s[1565]);
+initUPRTYP14(s[1566]);
+initUPRSH27(s[1567]);
+initUPRSH28(s[1568]);
+initUPRTYP15(s[1569]);
+initUPRSH29(s[1570]);
+initUPRSH30(s[1571]);
+initUPRTYP16(s[1572]);
+initUPRSH31(s[1573]);
+initUPRSH32(s[1574]);
+initULAND16(s[1575]);
+initUPRTYP17(s[1576]);
+initUPRSH33(s[1577]);
+initUPRSH34(s[1578]);
+initULAND17(s[1579]);
+initUPRTYP18(s[1580]);
+initUPRSH35(s[1581]);
+initUPRSH36(s[1582]);
+initULAND18(s[1583]);
+initDCNUM2(s[1584]);
+initDCANY(s[1585]);
+initDCANU(s[1586]);
+initDCNUM1(s[1587]);
+initDCCOS1(s[1588]);
+initDCCSP1(s[1589]);
+initDCNAM1(s[1590]);
+initDCONM1(s[1591]);
+initDCONM2(s[1592]);
+initDCRSP1(s[1593]);
+initDCREC1(s[1594]);
+initDCPER1(s[1595]);
+initDCAMC1(s[1596]);
+initDCAMP1(s[1597]);
+initDCAMD1(s[1598]);
+initDCESB1(s[1599]);
+initDCINZ1(s[1600]);
+initDC12BEH1(s[1601]);
+initDC12OWE1(s[1602]);
+initDCCOS2(s[1603]);
+initDCCSP2(s[1604]);
+initDCNAM2(s[1605]);
+initDCONM3(s[1606]);
+initDCONM4(s[1607]);
+initDCRSP2(s[1608]);
+initDCREC2(s[1609]);
+initDCPER2(s[1610]);
+initDCAMC2(s[1611]);
+initDCAMP2(s[1612]);
+initDCAMD2(s[1613]);
+initDCESB2(s[1614]);
+initDCINZ2(s[1615]);
+initDC12BEH2(s[1616]);
+initDC12OWE2(s[1617]);
+initDCCOS3(s[1618]);
+initDCCSP3(s[1619]);
+initDCNAM3(s[1620]);
+initDCONM5(s[1621]);
+initDCONM6(s[1622]);
+initDCRSP3(s[1623]);
+initDCREC3(s[1624]);
+initDCPER3(s[1625]);
+initDCAMC3(s[1626]);
+initDCAMP3(s[1627]);
+initDCAMD3(s[1628]);
+initDCESB3(s[1629]);
+initDCINZ3(s[1630]);
+initDC12BEH3(s[1631]);
+initDC12OWE3(s[1632]);
+initDCCOS4(s[1633]);
+initDCCSP4(s[1634]);
+initDCNAM4(s[1635]);
+initDCONM7(s[1636]);
+initDCONM8(s[1637]);
+initDCRSP4(s[1638]);
+initDCREC4(s[1639]);
+initDCPER4(s[1640]);
+initDCAMC4(s[1641]);
+initDCAMP4(s[1642]);
+initDCAMD4(s[1643]);
+initDCESB4(s[1644]);
+initDCINZ4(s[1645]);
+initDC12BEH4(s[1646]);
+initDC12OWE4(s[1647]);
+initDCCOS5(s[1648]);
+initDCCSP5(s[1649]);
+initDCNAM5(s[1650]);
+initDCONM9(s[1651]);
+initDCONM10(s[1652]);
+initDCRSP5(s[1653]);
+initDCREC5(s[1654]);
+initDCPER5(s[1655]);
+initDCAMC5(s[1656]);
+initDCAMP5(s[1657]);
+initDCAMD5(s[1658]);
+initDCESB5(s[1659]);
+initDCINZ5(s[1660]);
+initDC12BEH5(s[1661]);
+initDC12OWE5(s[1662]);
+initDSNUM2(s[1663]);
+initDSANY1(s[1664]);
+initDSANY2(s[1665]);
+initDSANU1(s[1666]);
+initDSANU2(s[1667]);
+initDSNUM(s[1668]);
+initDSCOS1(s[1669]);
+initDSCSP1(s[1670]);
+initDSNAM1(s[1671]);
+initDSONM1(s[1672]);
+initDSONM2(s[1673]);
+initDSRSP1(s[1674]);
+initDSREC1(s[1675]);
+initDSPER1(s[1676]);
+initDSAMC1(s[1677]);
+initDSAMP1(s[1678]);
+initDSAMD1(s[1679]);
+initDSESB1(s[1680]);
+initDS12BEH1(s[1681]);
+initDS12OWE1(s[1682]);
+initDSCOS2(s[1683]);
+initDSCSP2(s[1684]);
+initDSNAM2(s[1685]);
+initDSONM3(s[1686]);
+initDSONM4(s[1687]);
+initDSRSP2(s[1688]);
+initDSREC2(s[1689]);
+initDSPER2(s[1690]);
+initDSAMC2(s[1691]);
+initDSAMP2(s[1692]);
+initDSAMD2(s[1693]);
+initDSESB2(s[1694]);
+initDS12BEH2(s[1695]);
+initDS12OWE2(s[1696]);
+initDSCOS3(s[1697]);
+initDSCSP3(s[1698]);
+initDSNAM3(s[1699]);
+initDSONM5(s[1700]);
+initDSONM6(s[1701]);
+initDSRSP3(s[1702]);
+initDSREC3(s[1703]);
+initDSPER3(s[1704]);
+initDSAMC3(s[1705]);
+initDSAMP3(s[1706]);
+initDSAMD3(s[1707]);
+initDSESB3(s[1708]);
+initDS12BEH3(s[1709]);
+initDS12OWE3(s[1710]);
+initDSCOS4(s[1711]);
+initDSCSP4(s[1712]);
+initDSNAM4(s[1713]);
+initDSONM7(s[1714]);
+initDSONM8(s[1715]);
+initDSRSP4(s[1716]);
+initDSREC4(s[1717]);
+initDSPER4(s[1718]);
+initDSAMC4(s[1719]);
+initDSAMP4(s[1720]);
+initDSAMD4(s[1721]);
+initDSESB4(s[1722]);
+initDS12BEH4(s[1723]);
+initDS12OWE4(s[1724]);
+initDSCOS5(s[1725]);
+initDSCSP5(s[1726]);
+initDSNAM5(s[1727]);
+initDSONM9(s[1728]);
+initDSONM10(s[1729]);
+initDSRSP5(s[1730]);
+initDSREC5(s[1731]);
+initDSPER5(s[1732]);
+initDSAMC5(s[1733]);
+initDSAMP5(s[1734]);
+initDSAMD5(s[1735]);
+initDSESB5(s[1736]);
+initDS12BEH5(s[1737]);
+initDS12OWE5(s[1738]);
+initPRESMON(s[1739]);
+initPRESYR(s[1740]);
+initDMOANY(s[1741]);
+initDMONUM(s[1742]);
+initDMOINS1(s[1743]);
+initDMOEST1(s[1744]);
+initDMOOFT1(s[1745]);
+initDMOWHNY1(s[1746]);
+initDMOWHNM1(s[1747]);
+initDMOWEST1(s[1748]);
+initDMOINT1(s[1749]);
+initDMOBEH1(s[1750]);
+initDMOOWE1(s[1751]);
+initDMOINS2(s[1752]);
+initDMOEST2(s[1753]);
+initDMOOFT2(s[1754]);
+initDMOWHNY2(s[1755]);
+initDMOWHNM2(s[1756]);
+initDMOWEST2(s[1757]);
+initDMOINT2(s[1758]);
+initDMOBEH2(s[1759]);
+initDMOOWE2(s[1760]);
+initDMOINS3(s[1761]);
+initDMOEST3(s[1762]);
+initDMOOFT3(s[1763]);
+initDMOWHNY3(s[1764]);
+initDMOWHNM3(s[1765]);
+initDMOWEST3(s[1766]);
+initDMOINT3(s[1767]);
+initDMOBEH3(s[1768]);
+initDMOOWE3(s[1769]);
+initDMOINS4(s[1770]);
+initDMOEST4(s[1771]);
+initDMOOFT4(s[1772]);
+initDMOWHNY4(s[1773]);
+initDMOWHNM4(s[1774]);
+initDMOWEST4(s[1775]);
+initDMOINT4(s[1776]);
+initDMOBEH4(s[1777]);
+initDMOOWE4(s[1778]);
+initDMOINS5(s[1779]);
+initDMOEST5(s[1780]);
+initDMOOFT5(s[1781]);
+initDMOWHNY5(s[1782]);
+initDMOWHNM5(s[1783]);
+initDMOWEST5(s[1784]);
+initDMOINT5(s[1785]);
+initDMOBEH5(s[1786]);
+initDMOOWE5(s[1787]);
+initDHPANY1(s[1788]);
+initDHPANY2(s[1789]);
+initDHPANY3(s[1790]);
+initDHPANY4(s[1791]);
+initDHPANY5(s[1792]);
+initDHPANY6(s[1793]);
+initDHPANY7(s[1794]);
+initDHPNUM(s[1795]);
+initDHPINS1(s[1796]);
+initDHPEST1(s[1797]);
+initDHPOFT1(s[1798]);
+initDHPWHNY1(s[1799]);
+initDHPWHNM1(s[1800]);
+initDHPWEST1(s[1801]);
+initDHPINT1(s[1802]);
+initDHPBEH1(s[1803]);
+initDHPOWE1(s[1804]);
+initDTTOWE1(s[1805]);
+initDTTOWEB1(s[1806]);
+initDTTOWE2(s[1807]);
+initDTTOWEB2(s[1808]);
+initDTTOWE3(s[1809]);
+initDTTOWEB3(s[1810]);
+initDHPINS2(s[1811]);
+initDHPEST2(s[1812]);
+initDHPOFT2(s[1813]);
+initDHPWHNY2(s[1814]);
+initDHPWHNM2(s[1815]);
+initDHPWEST2(s[1816]);
+initDHPINT2(s[1817]);
+initDHPBEH2(s[1818]);
+initDHPOWE2(s[1819]);
+initDTTOWEB4(s[1820]);
+initDTTOWEB5(s[1821]);
+initDTTOWEB6(s[1822]);
+initDHPINS3(s[1823]);
+initDHPEST3(s[1824]);
+initDHPOFT3(s[1825]);
+initDHPWHNY3(s[1826]);
+initDHPWHNM3(s[1827]);
+initDHPWEST3(s[1828]);
+initDHPINT3(s[1829]);
+initDHPBEH3(s[1830]);
+initDHPOWE3(s[1831]);
+initDTTOWEB7(s[1832]);
+initDTTOWEB8(s[1833]);
+initDTTOWEB9(s[1834]);
+initDHPINS4(s[1835]);
+initDHPEST4(s[1836]);
+initDHPOFT4(s[1837]);
+initDHPWHNY4(s[1838]);
+initDHPWHNM4(s[1839]);
+initDHPWEST4(s[1840]);
+initDHPINT4(s[1841]);
+initDHPBEH4(s[1842]);
+initDHPOWE4(s[1843]);
+initDTTOWEB10(s[1844]);
+initDTTOWEB11(s[1845]);
+initDTTOWEB12(s[1846]);
+initDHPINS5(s[1847]);
+initDHPEST5(s[1848]);
+initDHPOFT5(s[1849]);
+initDHPWHNY5(s[1850]);
+initDHPWHNM5(s[1851]);
+initDHPWEST5(s[1852]);
+initDHPINT5(s[1853]);
+initDHPBEH5(s[1854]);
+initDHPOWE5(s[1855]);
+initDTTOWEB13(s[1856]);
+initDTTOWEB14(s[1857]);
+initDTTOWEB15(s[1858]);
+initNWHP(s[1859]);
+initNWHPNO(s[1860]);
+initDLONM(s[1861]);
+initDLOLD1(s[1862]);
+initDLOLD2(s[1863]);
+initDLOLD3(s[1864]);
+initDLOLD4(s[1865]);
+initDLOLD5(s[1866]);
+initDLANY(s[1867]);
+initDLNNM(s[1868]);
+initDLNUM(s[1869]);
+initDLTYPE1(s[1870]);
+initDSLPAY1(s[1871]);
+initDSLAMT1(s[1872]);
+initDSLEST1(s[1873]);
+initDLWHY1(s[1874]);
+initDLWHY2(s[1875]);
+initDLWHY3(s[1876]);
+initDLWHY4(s[1877]);
+initDLWHY5(s[1878]);
+initDLWHY6(s[1879]);
+initDLWHY7(s[1880]);
+initDLSEC1(s[1881]);
+initDLINS1(s[1882]);
+initDLEST1(s[1883]);
+initDLOFT1(s[1884]);
+initDLWHNY1(s[1885]);
+initDLWHNM1(s[1886]);
+initDLWEST1(s[1887]);
+initDLINT1(s[1888]);
+initDLBEH1(s[1889]);
+initDLOWE1(s[1890]);
+initDLTYPE2(s[1891]);
+initDSLPAY2(s[1892]);
+initDSLAMT2(s[1893]);
+initDSLEST2(s[1894]);
+initDLWHY8(s[1895]);
+initDLWHY9(s[1896]);
+initDLWHY10(s[1897]);
+initDLWHY11(s[1898]);
+initDLWHY12(s[1899]);
+initDLWHY13(s[1900]);
+initDLWHY14(s[1901]);
+initDLSEC2(s[1902]);
+initDLINS2(s[1903]);
+initDLEST2(s[1904]);
+initDLOFT2(s[1905]);
+initDLWHNY2(s[1906]);
+initDLWHNM2(s[1907]);
+initDLWEST2(s[1908]);
+initDLINT2(s[1909]);
+initDLBEH2(s[1910]);
+initDLOWE2(s[1911]);
+initDLTYPE3(s[1912]);
+initDSLPAY3(s[1913]);
+initDSLAMT3(s[1914]);
+initDSLEST3(s[1915]);
+initDLWHY15(s[1916]);
+initDLWHY16(s[1917]);
+initDLWHY17(s[1918]);
+initDLWHY18(s[1919]);
+initDLWHY19(s[1920]);
+initDLWHY20(s[1921]);
+initDLWHY21(s[1922]);
+initDLSEC3(s[1923]);
+initDLINS3(s[1924]);
+initDLEST3(s[1925]);
+initDLOFT3(s[1926]);
+initDLWHNY3(s[1927]);
+initDLWHNM3(s[1928]);
+initDLWEST3(s[1929]);
+initDLINT3(s[1930]);
+initDLBEH3(s[1931]);
+initDLOWE3(s[1932]);
+initDLTYPE4(s[1933]);
+initDSLPAY4(s[1934]);
+initDSLAMT4(s[1935]);
+initDSLEST4(s[1936]);
+initDLWHY22(s[1937]);
+initDLWHY23(s[1938]);
+initDLWHY24(s[1939]);
+initDLWHY25(s[1940]);
+initDLWHY26(s[1941]);
+initDLWHY27(s[1942]);
+initDLWHY28(s[1943]);
+initDLSEC4(s[1944]);
+initDLINS4(s[1945]);
+initDLEST4(s[1946]);
+initDLOFT4(s[1947]);
+initDLWHNY4(s[1948]);
+initDLWHNM4(s[1949]);
+initDLWEST4(s[1950]);
+initDLINT4(s[1951]);
+initDLBEH4(s[1952]);
+initDLOWE4(s[1953]);
+initDLTYPE5(s[1954]);
+initDSLPAY5(s[1955]);
+initDSLAMT5(s[1956]);
+initDSLEST5(s[1957]);
+initDLWHY29(s[1958]);
+initDLWHY30(s[1959]);
+initDLWHY31(s[1960]);
+initDLWHY32(s[1961]);
+initDLWHY33(s[1962]);
+initDLWHY34(s[1963]);
+initDLWHY35(s[1964]);
+initDLSEC5(s[1965]);
+initDLINS5(s[1966]);
+initDLEST5(s[1967]);
+initDLOFT5(s[1968]);
+initDLWHNY5(s[1969]);
+initDLWHNM5(s[1970]);
+initDLWEST5(s[1971]);
+initDLINT5(s[1972]);
+initDLBEH5(s[1973]);
+initDLOWE5(s[1974]);
+initNWLN(s[1975]);
+initNWLNNO(s[1976]);
+initDTLTYPE1(s[1977]);
+initDTLOWE1(s[1978]);
+initDTLOWEB1(s[1979]);
+initDTLTYPE2(s[1980]);
+initDTLOWE2(s[1981]);
+initDTLOWEB2(s[1982]);
+initDTLTYPE3(s[1983]);
+initDTLOWE3(s[1984]);
+initDTLOWEB3(s[1985]);
+initDHBFIX(s[1986]);
+initDHBANY01(s[1987]);
+initDHBANY02(s[1988]);
+initDHBANY03(s[1989]);
+initDHBANY04(s[1990]);
+initDHBANY05(s[1991]);
+initDHBANY06(s[1992]);
+initDHBANY07(s[1993]);
+initDHBANY08(s[1994]);
+initDHBANY09(s[1995]);
+initDHBANY10(s[1996]);
+initDHBANY11(s[1997]);
+initDHBAMT01(s[1998]);
+initDHBAMT02(s[1999]);
+initDHBAMT03(s[2000]);
+initDHBAMT04(s[2001]);
+initDHBAMT05(s[2002]);
+initDHBAMT06(s[2003]);
+initDHBAMT07(s[2004]);
+initDHBAMT08(s[2005]);
+initDHBAMT09(s[2006]);
+initDHBAMT10(s[2007]);
+initDHBAMT11(s[2008]);
+initDHBEST01(s[2009]);
+initDHBEST02(s[2010]);
+initDHBEST03(s[2011]);
+initDHBEST04(s[2012]);
+initDHBEST05(s[2013]);
+initDHBEST06(s[2014]);
+initDHBEST07(s[2015]);
+initDHBEST08(s[2016]);
+initDHBEST09(s[2017]);
+initDHBEST10(s[2018]);
+initDHBEST11(s[2019]);
+initDBURD(s[2020]);
+initDBURDA(s[2021]);
+initDBURDW1(s[2022]);
+initDBURDW2(s[2023]);
+initDBURD___W3(s[2024]);
+initDBURDW4(s[2025]);
+initDBURDW5(s[2026]);
+initDBURDW6(s[2027]);
+initDBURDW7(s[2028]);
+initDADVMTH(s[2029]);
+initDADVACT1(s[2030]);
+initDADVACT2(s[2031]);
+initDADVACT3(s[2032]);
+initDBURDH(s[2033]);
+initINSPOL(s[2034]);
+initCOMMIT1(s[2035]);
+initCOMMIT2(s[2036]);
+initCOMMIT3(s[2037]);
+initCOMMIT4(s[2038]);
+initCOMMIT5(s[2039]);
+initXINSOL(s[2040]);
+initXINTYP(s[2041]);
+initXINCSE(s[2042]);
+initXBCONSC(s[2043]);
+initXBCON(s[2044]);
+initXBCONREM(s[2045]);
+initXBOK(s[2046]);
+initXBCRT(s[2047]);
+initXDCONSC(s[2048]);
+initXDCON(s[2049]);
+initXDCONREM(s[2050]);
+initXDOK(s[2051]);
+initXDREF(s[2052]);
+initXICONSC(s[2053]);
+initXICON(s[2054]);
+initXICONREM(s[2055]);
+initRENTPAY(s[2056]);
+initOTHSRC1(s[2057]);
+initOTHSRC2(s[2058]);
+initOTHSRC3(s[2059]);
+initOIGRR(s[2060]);
+initOIGGT(s[2061]);
+initREGLRPY1(s[2062]);
+initREGLRPY2(s[2063]);
+initREGLRPY3(s[2064]);
+initREGLRPY4(s[2065]);
+initREGLRPY5(s[2066]);
+initOTRUST01(s[2067]);
+initOTRUST02(s[2068]);
+initOTRUST03(s[2069]);
+initOTRUST04(s[2070]);
+initOTRUST05(s[2071]);
+initOTRUST06(s[2072]);
+initOTRUST07(s[2073]);
+initOTRUST08(s[2074]);
+initOTRUST09(s[2075]);
+initOTRUST10(s[2076]);
+initOTRUST11(s[2077]);
+initOTRUST12(s[2078]);
+initOTRUST13(s[2079]);
+initOTRUST14(s[2080]);
+initOTRUST15(s[2081]);
+initOSITUAT(s[2082]);
+initOSITCH(s[2083]);
+initOIMPRS1(s[2084]);
+initOIMPRS2(s[2085]);
+initOIMPRS3(s[2086]);
+initOIMPRS4(s[2087]);
+initOIMPRS5(s[2088]);
+initOIMPRS6(s[2089]);
+initOIMPRS7(s[2090]);
+initOIMPRS8(s[2091]);
+initOIMPRS9(s[2092]);
+initOWRSRS01(s[2093]);
+initOWRSRS02(s[2094]);
+initOWRSRS03(s[2095]);
+initOWRSRS04(s[2096]);
+initOWRSRS05(s[2097]);
+initOWRSRS06(s[2098]);
+initOWRSRS07(s[2099]);
+initOWRSRS08(s[2100]);
+initOWRSRS09(s[2101]);
+initOWRSRS10(s[2102]);
+initORETINC(s[2103]);
+initSELECTAD(s[2104]);
+initCACTF(s[2105]);
+initCACTV(s[2106]);
+initCACTVB(s[2107]);
+initCATYPE(s[2108]);
+initCAOPEN(s[2109]);
+initCACONTR1(s[2110]);
+initCACONTR2(s[2111]);
+initCACONTR3(s[2112]);
+initCACONTR4(s[2113]);
+initCACONTR5(s[2114]);
+initCACONTR6(s[2115]);
+initCAEXTRA(s[2116]);
+initCASAV(s[2117]);
+initCASVV(s[2118]);
+initCASVB(s[2119]);
+initCACONTRAM1(s[2120]);
+initCACONTRAMB1(s[2121]);
+initCACONTRAM2(s[2122]);
+initCACONTRAMB2(s[2123]);
+initCACONTRAM3(s[2124]);
+initCACONTRAMB3(s[2125]);
+initCACONTRAM4(s[2126]);
+initCACONTRAMB4(s[2127]);
+initCACONTRAM5(s[2128]);
+initCACONTRAMB5(s[2129]);
+initCACONTRAM6(s[2130]);
+initCACONTRAMB6(s[2131]);
+initCAOLDER(s[2132]);
+initCAOTHER1(s[2133]);
+initCAOTHER2(s[2134]);
+initCAOTHER3(s[2135]);
+initCAOTHER4(s[2136]);
+initCAOTHER5(s[2137]);
+initNUMCHSAV(s[2138]);
+initOCSVR1(s[2139]);
+initOCSVR2(s[2140]);
+initOCSVR3(s[2141]);
+initOCSVR4(s[2142]);
+initOCSVR5(s[2143]);
+initOCSVR6(s[2144]);
+initOCSVR7(s[2145]);
+initOCSVR8(s[2146]);
+initIHRECNT(s[2147]);
+initIHRCNUM(s[2148]);
+initIWAT1(s[2149]);
+initIWAT2(s[2150]);
+initIWAT3(s[2151]);
+initIWAT4(s[2152]);
+initIWAT5(s[2153]);
+initIWAT6(s[2154]);
+initIWHO(s[2155]);
+initIVAL1(s[2156]);
+initIVALB1(s[2157]);
+initIHSE1(s[2158]);
+initIHSE2(s[2159]);
+initIHSE3(s[2160]);
+initIHSE4(s[2161]);
+initIHSE5(s[2162]);
+initIHSE6(s[2163]);
+initIGDS1(s[2164]);
+initIGDS2(s[2165]);
+initIGDS3(s[2166]);
+initIGDS4(s[2167]);
+initIGDS5(s[2168]);
+initIGDS6(s[2169]);
+initIGDS7(s[2170]);
+initIWAT7(s[2171]);
+initIWAT8(s[2172]);
+initIWAT9(s[2173]);
+initIWAT10(s[2174]);
+initIWAT11(s[2175]);
+initIWAT12(s[2176]);
+initIWHO2(s[2177]);
+initIVALB2(s[2178]);
+initIHSE7(s[2179]);
+initIHSE8(s[2180]);
+initIHSE9(s[2181]);
+initIHSE10(s[2182]);
+initIHSE11(s[2183]);
+initIHSE12(s[2184]);
+initIGDS8(s[2185]);
+initIGDS9(s[2186]);
+initIGDS10(s[2187]);
+initIGDS11(s[2188]);
+initIGDS12(s[2189]);
+initIGDS13(s[2190]);
+initIGDS14(s[2191]);
+initIWAT13(s[2192]);
+initIWAT14(s[2193]);
+initIWAT15(s[2194]);
+initIWAT16(s[2195]);
+initIWAT17(s[2196]);
+initIWAT18(s[2197]);
+initIWHO3(s[2198]);
+initIVALB3(s[2199]);
+initIHSE13(s[2200]);
+initIHSE14(s[2201]);
+initIHSE15(s[2202]);
+initIHSE16(s[2203]);
+initIHSE17(s[2204]);
+initIHSE18(s[2205]);
+initIGDS15(s[2206]);
+initIGDS16(s[2207]);
+initIGDS17(s[2208]);
+initIGDS18(s[2209]);
+initIGDS19(s[2210]);
+initIGDS20(s[2211]);
+initIGDS21(s[2212]);
+initILGIFT(s[2213]);
+initIGFVALB(s[2214]);
+initNEWGIFT(s[2215]);
+initILOAN(s[2216]);
+initILNUSE01(s[2217]);
+initILNUSE02(s[2218]);
+initILNUSE03(s[2219]);
+initILNUSE04(s[2220]);
+initILNUSE05(s[2221]);
+initILNUSE06(s[2222]);
+initILNUSE07(s[2223]);
+initILNUSE08(s[2224]);
+initILNUSE09(s[2225]);
+initILNUSE10(s[2226]);
+initILNVAL(s[2227]);
+initILNVALB(s[2228]);
+initILNPBK(s[2229]);
+initILNPBAM(s[2230]);
+initILUMP(s[2231]);
+initILUMTY1(s[2232]);
+initILUMTY2(s[2233]);
+initILUMTY3(s[2234]);
+initILUMTY4(s[2235]);
+initILUMTY5(s[2236]);
+initILUMTY6(s[2237]);
+initILUMTY7(s[2238]);
+initILIFB(s[2239]);
+initILUPP(s[2240]);
+initILUPB(s[2241]);
+initILACB(s[2242]);
+initILINB(s[2243]);
+initILRDB(s[2244]);
+initILWNB(s[2245]);
+initILOTB(s[2246]);
+initTINTRO(s[2247]);
+initTSETT(s[2248]);
+initTSNUM1(s[2249]);
+initTSNEW(s[2250]);
+initTSNUM2(s[2251]);
+initTJNT1(s[2252]);
+initTJNT2(s[2253]);
+initTACC1(s[2254]);
+initTBEN1(s[2255]);
+initTBEN2(s[2256]);
+initTBEN3(s[2257]);
+initTBEN4(s[2258]);
+initTBEN5(s[2259]);
+initTBEN6(s[2260]);
+initTBEN7(s[2261]);
+initTBEN8(s[2262]);
+initTVAL1(s[2263]);
+initTVALB1(s[2264]);
+initTDUP1(s[2265]);
+initTDUPA1(s[2266]);
+initTADDVL(s[2267]);
+initTADDVB1(s[2268]);
+initTJNT3(s[2269]);
+initTJNT4(s[2270]);
+initTACC2(s[2271]);
+initTBEN9(s[2272]);
+initTBEN10(s[2273]);
+initTBEN11(s[2274]);
+initTBEN12(s[2275]);
+initTBEN13(s[2276]);
+initTBEN14(s[2277]);
+initTBEN15(s[2278]);
+initTBEN16(s[2279]);
+initTVAL2(s[2280]);
+initTVALB2(s[2281]);
+initTDUP2(s[2282]);
+initTDUPA2(s[2283]);
+initTADDVL2(s[2284]);
+initTADDVB2(s[2285]);
+initTSNO3(s[2286]);
+initTJNT5(s[2287]);
+initTJNT6(s[2288]);
+initTACC3(s[2289]);
+initTBEN17(s[2290]);
+initTBEN18(s[2291]);
+initTBEN19(s[2292]);
+initTBEN20(s[2293]);
+initTBEN21(s[2294]);
+initTBEN22(s[2295]);
+initTBEN23(s[2296]);
+initTBEN24(s[2297]);
+initTVAL3(s[2298]);
+initTVALB3(s[2299]);
+initTDUP3(s[2300]);
+initTDUPA3(s[2301]);
+initTADDVL3(s[2302]);
+initTADDVB3(s[2303]);
+initTBENEF(s[2304]);
+initTBENNUM(s[2305]);
+initTWHO1(s[2306]);
+initTWHO2(s[2307]);
+initTWHO3(s[2308]);
+initTWHO4(s[2309]);
+initTWHO5(s[2310]);
+initTWHO6(s[2311]);
+initTBINC1(s[2312]);
+initTBREC1(s[2313]);
+initTBRECB1(s[2314]);
+initTBCAP1(s[2315]);
+initTBCKNO1(s[2316]);
+initTBCAPY1(s[2317]);
+initTBVALB1(s[2318]);
+initTWHO7(s[2319]);
+initTWHO8(s[2320]);
+initTWHO9(s[2321]);
+initTWHO10(s[2322]);
+initTWHO11(s[2323]);
+initTWHO12(s[2324]);
+initTBINC2(s[2325]);
+initTBREC2(s[2326]);
+initTBRECB2(s[2327]);
+initTBCAP2(s[2328]);
+initTBCKNO2(s[2329]);
+initTBCAPY2(s[2330]);
+initTBVALB2(s[2331]);
+initTWHO13(s[2332]);
+initTWHO14(s[2333]);
+initTWHO15(s[2334]);
+initTWHO16(s[2335]);
+initTWHO17(s[2336]);
+initTWHO18(s[2337]);
+initTBINC3(s[2338]);
+initTBREC3(s[2339]);
+initTBRECB3(s[2340]);
+initTBCAP3(s[2341]);
+initTBCKNO3(s[2342]);
+initTBCAPY3(s[2343]);
+initTBVALB3(s[2344]);
+initOTHASCH(s[2345]);
+initOTHASVL(s[2346]);
+initOTHASVB(s[2347]);
+initCOMMI(s[2348]);
+initORUNOUT(s[2349]);
+initORUNDO01(s[2350]);
+initORUNDO02(s[2351]);
+initORUNDO03(s[2352]);
+initORUNDO04(s[2353]);
+initORUNDO05(s[2354]);
+initORUNDO06(s[2355]);
+initORUNDO07(s[2356]);
+initORUNDO08(s[2357]);
+initORUNDO09(s[2358]);
+initORUNDO10(s[2359]);
+initORUNDO11(s[2360]);
+initIFBANKACC(s[2361]);
+initKNOWBALANCE(s[2362]);
+initOFTCHECKED(s[2363]);
+initKNOHOWMUCH(s[2364]);
+initINCDROP(s[2365]);
+initFNDCASH1(s[2366]);
+initFNDCASH2(s[2367]);
+initFNDCASH3(s[2368]);
+initFNDCASH4(s[2369]);
+initFNDCASH5(s[2370]);
+initORGNSED(s[2371]);
+initRNYDAY(s[2372]);
+initLVTDAY(s[2373]);
+initSPENDM(s[2374]);
+initGSTDNW(s[2375]);
+initPRODTS(s[2376]);
+initSOURC2P(s[2377]);
+initCHOICP(s[2378]);
+initEYE1(s[2379]);
+initEYE2(s[2380]);
+initEYE3(s[2381]);
+initEYE4(s[2382]);
+initEYE5(s[2383]);
+initEYE6(s[2384]);
+initEYE7(s[2385]);
+initEYE8(s[2386]);
+initINDFREQ(s[2387]);
+initORISKA(s[2388]);
+initORISKC(s[2389]);
+initOSAFESAV(s[2390]);
+initORISKS(s[2391]);
+initQHEALTH1(s[2392]);
+initCUTDOWN(s[2393]);
+initLSILL(s[2394]);
+initILLLIM(s[2395]);
+initDISTYPE1(s[2396]);
+initDISTYPE2(s[2397]);
+initDISTYPE3(s[2398]);
+initDISTYPE4(s[2399]);
+initDISTYPE5(s[2400]);
+initDISTYPE6(s[2401]);
+initDISTYPE7(s[2402]);
+initDISTYPE8(s[2403]);
+initDISTYPE9(s[2404]);
+initDISEVER(s[2405]);
+initFBSITU(s[2406]);
+initFBSIBS(s[2407]);
+initFBTEN(s[2408]);
+initFBFAED(s[2409]);
+initFBMOED(s[2410]);
+initFTHECST(s[2411]);
+initMTHECST(s[2412]);
+initDWELLTYP(s[2413]);
+initFLOORN(s[2414]);
+initIOUT1(s[2415]);
+initPROXPERS(s[2416]);
+initNOUNITS(s[2417]);
+initDVBENU1(s[2418]);
+initDVNUMBU(s[2419]);
+initES2000(s[2420]);
+initNSSEC(s[2421]);
+initNSSECB(s[2422]);
+initNSSEC5(s[2423]);
+initNSSEC3(s[2424]);
+initNSSEC8(s[2425]);
+initHOUT(s[2426]);
+initHPROX(s[2427]);
+initPENIND1(s[2428]);
+initPENIND2(s[2429]);
+initPENIND3(s[2430]);
+initPENIND4(s[2431]);
+initPENIND5(s[2432]);
+initPENIND6(s[2433]);
+initUVALS(s[2434]);
+initUVALBS(s[2435]);
+initUDEBTS(s[2436]);
+initUDEBTBS(s[2437]);
+initUGDVBS(s[2438]);
+initUVALL(s[2439]);
+initUVALBL(s[2440]);
+initUDEBTL(s[2441]);
+initUDEBTBL(s[2442]);
+initUGDVBL(s[2443]);
+initUVALO(s[2444]);
+initUVALBO(s[2445]);
+initUDEBTO(s[2446]);
+initUDEBTBO(s[2447]);
+initUVALLU(s[2448]);
+initUVALBLU(s[2449]);
+initUDEBTLU(s[2450]);
+initUDEBTBLU(s[2451]);
+initUVALOS(s[2452]);
+initUVALBOS(s[2453]);
+initUDEBTOS(s[2454]);
+initUDEBTBOS(s[2455]);
+initUGDVBOS(s[2456]);
+initUVALOR(s[2457]);
+initUVALBOR(s[2458]);
+initUDEBTOR(s[2459]);
+initUDEBTBOR(s[2460]);
+initRELIGE(s[2461]);
+initRELIGW(s[2462]);
+initRELIGS(s[2463]);
+initCTPAY(s[2464]);
+initCTPAYW(s[2465]);
+initCTPAYS(s[2466]);
+initEVERWK(s[2467]);
+initPDCVAL3(s[2468]);
+initDVPUBLPRIV(s[2469]);
+initTYPE(s[2470]);
+initP_FLAG1(s[2471]);
+initP_FLAG3(s[2472]);
+initP_FLAG4(s[2473]);
+initH_FLAG1(s[2474]);
+initDVSAME(s[2475]);
+initPBLMVB1(s[2476]);
+initALLRET(s[2477]);
+initNUMCOUPLES(s[2478]);
+initCOUPLENUM(s[2479]);
+initHRPEDLEVEL(s[2480]);
+initSEX(s[2481]);
+initTRUST(s[2482]);
+initAGEASAF1(s[2483]);
+initSPASAF_IORIG(s[2484]);
+initDVHSIZE(s[2485]);
+initDVHASISA(s[2486]);
+initDVHASBOND(s[2487]);
+initDVHASUTRUST(s[2488]);
+initDVHASEMPSH(s[2489]);
+initDVHASOTHSH(s[2490]);
+initDVHASNSP(s[2491]);
+initDVHASGILT(s[2492]);
+initDVHASLINS(s[2493]);
+initDVHASOINV(s[2494]);
+initDVHASNOFA(s[2495]);
+initDCANY_I(s[2496]);
+initDCANY_IFLAG(s[2497]);
+initDCANU_I(s[2498]);
+initDCANU_IFLAG(s[2499]);
+initDCNUM1_I(s[2500]);
+initDCNUM1_IFLAG(s[2501]);
+initDCNUM2_I(s[2502]);
+initDCNUM2_IFLAG(s[2503]);
+initDCCOS1_I(s[2504]);
+initDCCOS1_IFLAG(s[2505]);
+initDCCSP1_I(s[2506]);
+initDCCSP1_IFLAG(s[2507]);
+initDCNAM1_I(s[2508]);
+initDCNAM1_IFLAG(s[2509]);
+initDCCOS2_I(s[2510]);
+initDCCOS2_IFLAG(s[2511]);
+initDCCSP2_I(s[2512]);
+initDCCSP2_IFLAG(s[2513]);
+initDCNAM2_I(s[2514]);
+initDCNAM2_IFLAG(s[2515]);
+initDCCOS3_I(s[2516]);
+initDCCOS3_IFLAG(s[2517]);
+initDCCSP3_I(s[2518]);
+initDCCSP3_IFLAG(s[2519]);
+initDCNAM3_I(s[2520]);
+initDCNAM3_IFLAG(s[2521]);
+initDCCOS4_I(s[2522]);
+initDCCOS4_IFLAG(s[2523]);
+initDCCSP4_I(s[2524]);
+initDCCSP4_IFLAG(s[2525]);
+initDCNAM4_I(s[2526]);
+initDCNAM4_IFLAG(s[2527]);
+initDCCOS5_I(s[2528]);
+initDCCOS5_IFLAG(s[2529]);
+initDCCSP5_I(s[2530]);
+initDCCSP5_IFLAG(s[2531]);
+initDCNAM5_I(s[2532]);
+initDCNAM5_IFLAG(s[2533]);
+initDCAMP1_I(s[2534]);
+initDCAMP1_IFLAG(s[2535]);
+initDCAMP2_I(s[2536]);
+initDCAMP2_IFLAG(s[2537]);
+initDCAMP3_I(s[2538]);
+initDCAMP3_IFLAG(s[2539]);
+initDCAMP4_I(s[2540]);
+initDCAMP4_IFLAG(s[2541]);
+initDCAMP5_I(s[2542]);
+initDCAMP5_IFLAG(s[2543]);
+initDCRSP1_I(s[2544]);
+initDCRSP1_IFLAG(s[2545]);
+initDCRSP2_I(s[2546]);
+initDCRSP2_IFLAG(s[2547]);
+initDCRSP3_I(s[2548]);
+initDCRSP3_IFLAG(s[2549]);
+initDCRSP4_I(s[2550]);
+initDCRSP4_IFLAG(s[2551]);
+initDCRSP5_I(s[2552]);
+initDCRSP5_IFLAG(s[2553]);
+initDCREC1_I(s[2554]);
+initDCREC1_IFLAG(s[2555]);
+initDCREC2_I(s[2556]);
+initDCREC2_IFLAG(s[2557]);
+initDCREC3_I(s[2558]);
+initDCREC3_IFLAG(s[2559]);
+initDCREC4_I(s[2560]);
+initDCREC4_IFLAG(s[2561]);
+initDCREC5_I(s[2562]);
+initDCREC5_IFLAG(s[2563]);
+initDSANY1_I(s[2564]);
+initDSANY1_IFLAG(s[2565]);
+initDSANU1_I(s[2566]);
+initDSANU1_IFLAG(s[2567]);
+initDSANY2_I(s[2568]);
+initDSANY2_IFLAG(s[2569]);
+initDSANU2_I(s[2570]);
+initDSANU2_IFLAG(s[2571]);
+initDSNUM_I(s[2572]);
+initDSNUM_IFLAG(s[2573]);
+initDSNUM2_I(s[2574]);
+initDSNUM2_IFLAG(s[2575]);
+initDSCOS1_I(s[2576]);
+initDSCOS1_IFLAG(s[2577]);
+initDSCSP1_I(s[2578]);
+initDSCSP1_IFLAG(s[2579]);
+initDSNAM1_I(s[2580]);
+initDSNAM1_IFLAG(s[2581]);
+initDSCOS2_I(s[2582]);
+initDSCOS2_IFLAG(s[2583]);
+initDSCSP2_I(s[2584]);
+initDSCSP2_IFLAG(s[2585]);
+initDSNAM2_I(s[2586]);
+initDSNAM2_IFLAG(s[2587]);
+initDSCOS3_I(s[2588]);
+initDSCOS3_IFLAG(s[2589]);
+initDSCSP3_I(s[2590]);
+initDSCSP3_IFLAG(s[2591]);
+initDSNAM3_I(s[2592]);
+initDSNAM3_IFLAG(s[2593]);
+initDSCOS4_I(s[2594]);
+initDSCOS4_IFLAG(s[2595]);
+initDSCSP4_I(s[2596]);
+initDSCSP4_IFLAG(s[2597]);
+initDSNAM4_I(s[2598]);
+initDSNAM4_IFLAG(s[2599]);
+initDSCOS5_I(s[2600]);
+initDSCOS5_IFLAG(s[2601]);
+initDSCSP5_I(s[2602]);
+initDSCSP5_IFLAG(s[2603]);
+initDSNAM5_I(s[2604]);
+initDSNAM5_IFLAG(s[2605]);
+initDSRSP1_I(s[2606]);
+initDSRSP1_IFLAG(s[2607]);
+initDSRSP2_I(s[2608]);
+initDSRSP2_IFLAG(s[2609]);
+initDSRSP3_I(s[2610]);
+initDSRSP3_IFLAG(s[2611]);
+initDSRSP4_I(s[2612]);
+initDSRSP4_IFLAG(s[2613]);
+initDSRSP5_I(s[2614]);
+initDSRSP5_IFLAG(s[2615]);
+initDSAMC1_I(s[2616]);
+initDSAMC1_IFLAG(s[2617]);
+initDSAMP1_I(s[2618]);
+initDSAMP1_IFLAG(s[2619]);
+initDSAMD1_I(s[2620]);
+initDSAMD1_IFLAG(s[2621]);
+initDSAMC2_I(s[2622]);
+initDSAMC2_IFLAG(s[2623]);
+initDSAMP2_I(s[2624]);
+initDSAMP2_IFLAG(s[2625]);
+initDSAMD2_I(s[2626]);
+initDSAMD2_IFLAG(s[2627]);
+initDSAMC3_I(s[2628]);
+initDSAMC3_IFLAG(s[2629]);
+initDSAMP3_I(s[2630]);
+initDSAMP3_IFLAG(s[2631]);
+initDSAMD3_I(s[2632]);
+initDSAMD3_IFLAG(s[2633]);
+initDSAMC4_I(s[2634]);
+initDSAMC4_IFLAG(s[2635]);
+initDSAMP4_I(s[2636]);
+initDSAMP4_IFLAG(s[2637]);
+initDSAMD4_I(s[2638]);
+initDSAMD4_IFLAG(s[2639]);
+initDSAMC5_I(s[2640]);
+initDSAMC5_IFLAG(s[2641]);
+initDSAMP5_I(s[2642]);
+initDSAMP5_IFLAG(s[2643]);
+initDSAMD5_I(s[2644]);
+initDSAMD5_IFLAG(s[2645]);
+initCCAC1(s[2646]);
+initDCAMOS1(s[2647]);
+initCCAC2(s[2648]);
+initDCAMOS2(s[2649]);
+initCCAC3(s[2650]);
+initDCAMOS3(s[2651]);
+initCCAC4(s[2652]);
+initDCAMOS4(s[2653]);
+initCCAC5(s[2654]);
+initDCAMOS5(s[2655]);
+initSCAC1(s[2656]);
+initDSAMOS1(s[2657]);
+initSCAC2(s[2658]);
+initDSAMOS2(s[2659]);
+initSCAC3(s[2660]);
+initDSAMOS3(s[2661]);
+initSCAC4(s[2662]);
+initDSAMOS4(s[2663]);
+initSCAC5(s[2664]);
+initDSAMOS5(s[2665]);
+initDVHASSC(s[2666]);
+initDVHASCC(s[2667]);
+initDVMRDF(s[2668]);
+initDVDBLUMP1(s[2669]);
+initDVDBLUMP2(s[2670]);
+initDVDBLUMP3(s[2671]);
+initDVDBLUMP4(s[2672]);
+initDVDBLUMP5(s[2673]);
+initDVDBLUMP6(s[2674]);
+initDVDBINC1(s[2675]);
+initDVDBINC2(s[2676]);
+initDVDBINC3(s[2677]);
+initDVDBINC4(s[2678]);
+initDVDBINC5(s[2679]);
+initDVDBINC6(s[2680]);
+initDVHASPFD(s[2681]);
+initNWHPVAL1(s[2682]);
+initNWHPVAL2(s[2683]);
+initNWHPVAL3(s[2684]);
+initDVNWHP_SUM(s[2685]);
+initDVHASNHP(s[2686]);
+initEMPSTAT2(s[2687]);
+initDVGRSBONAMT(s[2688]);
+initDVSEPANNUAL09(s[2689]);
+initDVSEPANNUAL10(s[2690]);
+initDVSEPANNUAL11(s[2691]);
+initDVSEPANNUAL12(s[2692]);
+initDVSEPANNUAL13(s[2693]);
+initDVSEPANNUAL14(s[2694]);
+initDVSEPANNUAL15(s[2695]);
+initDVSEPANNUAL16(s[2696]);
+initDVSEPANNUAL17(s[2697]);
+initDVSEPANNUAL18(s[2698]);
+initDVSEPANNUAL19(s[2699]);
+initDVSEPANNUAL20(s[2700]);
+initDVOIGGTANNUAL(s[2701]);
+initILUMTY2_I(s[2702]);
+initILUMTY3_I(s[2703]);
+initILUMTY4_I(s[2704]);
+initILUMTY5_I(s[2705]);
+initILUMTY6_I(s[2706]);
+initILUMTY7_I(s[2707]);
+initILUMTY2_IFLAG(s[2708]);
+initILUMTY3_IFLAG(s[2709]);
+initILUMTY4_IFLAG(s[2710]);
+initILUMTY5_IFLAG(s[2711]);
+initILUMTY6_IFLAG(s[2712]);
+initILUMTY7_IFLAG(s[2713]);
+initAGMSAFT1(s[2714]);
+initAGMSAF2T(s[2715]);
+initMNTHSCAPE(s[2716]);
+initACCFRAC(s[2717]);
+initRETFRAC(s[2718]);
+initDVDBINCALL(s[2719]);
+initDVVALPBLUM(s[2720]);
+initDVDBRWEALTHVAL(s[2721]);
+initDVHASDBR_ORIG(s[2722]);
+initWRKING_I(s[2723]);
+initWRKING_IFLAG(s[2724]);
+initSCHEMEET_I(s[2725]);
+initSCHEMEET_IFLAG(s[2726]);
+initJBAWAY_I(s[2727]);
+initJBAWAY_IFLAG(s[2728]);
+initOWNBUS_I(s[2729]);
+initOWNBUS_IFLAG(s[2730]);
+initRELBUS_I(s[2731]);
+initRELBUS_IFLAG(s[2732]);
+initLOOKED_I(s[2733]);
+initLOOKED_IFLAG(s[2734]);
+initSTARTJ_I(s[2735]);
+initSTARTJ_IFLAG(s[2736]);
+initDVILO3A_I(s[2737]);
+initDVILO3A_IFLAG(s[2738]);
+initEVERWK_I(s[2739]);
+initEVERWK_IFLAG(s[2740]);
+initSTAT_I(s[2741]);
+initSTAT_IFLAG(s[2742]);
+initBTYPE1_I(s[2743]);
+initBTYPE1_IFLAG(s[2744]);
+initBDIRNI1_I(s[2745]);
+initBDIRNI1_IFLAG(s[2746]);
+initDVNETBAND_I(s[2747]);
+initDVNETBAND_IFLAG(s[2748]);
+initDVGRSBAND_I(s[2749]);
+initDVGRSBAND_IFLAG(s[2750]);
+initDVNETPAY_I(s[2751]);
+initDVNETPAY_IFLAG(s[2752]);
+initDVGRSPAY_I(s[2753]);
+initDVGRSPAY_IFLAG(s[2754]);
+initPAYBON_I(s[2755]);
+initPAYBON_IFLAG(s[2756]);
+initBONTAX_I(s[2757]);
+initBONTAX_IFLAG(s[2758]);
+initDVGRSBONAMT_IFLAG(s[2759]);
+initDVNETBONAMT_IFLAG(s[2760]);
+initDVSENETPAYBAND_I(s[2761]);
+initDVSENETPAYBAND_IFLAG(s[2762]);
+initDVSEGRSPAYBAND_I(s[2763]);
+initDVSEGRSPAYBAND_IFLAG(s[2764]);
+initDVSENETPAY_IFLAG(s[2765]);
+initDVSEGRSPAY_IFLAG(s[2766]);
+initSEGRSBAND(s[2767]);
+initSENETBAND(s[2768]);
+initDVSAME_I(s[2769]);
+initDVSAME_IFLAG(s[2770]);
+initPANYO_I(s[2771]);
+initPANYO_IFLAG(s[2772]);
+initPBFRAC1_I(s[2773]);
+initPBFRAC1_IFLAG(s[2774]);
+initPBFRAC2_I(s[2775]);
+initPBFRAC2_IFLAG(s[2776]);
+initPBLMVB1_I(s[2777]);
+initPBLMVB1_IFLAG(s[2778]);
+initPBLMVB2_I(s[2779]);
+initPBLMVB2_IFLAG(s[2780]);
+initPBLUMV1_I(s[2781]);
+initPBLUMV1_IFLAG(s[2782]);
+initPBLUMV2_I(s[2783]);
+initPBLUMV2_IFLAG(s[2784]);
+initPBQUAL1_I(s[2785]);
+initPBQUAL1_IFLAG(s[2786]);
+initPBQUAL2_I(s[2787]);
+initPBQUAL2_IFLAG(s[2788]);
+initPCONT_I(s[2789]);
+initPCONT_IFLAG(s[2790]);
+initPEMELG_I(s[2791]);
+initPEMELG_IFLAG(s[2792]);
+initPEMMEM_I(s[2793]);
+initPEMMEM_IFLAG(s[2794]);
+initPEMOFF_I(s[2795]);
+initPEMOFF_IFLAG(s[2796]);
+initPESAME_I(s[2797]);
+initPESAME_IFLAG(s[2798]);
+initPNUMOS_I(s[2799]);
+initPNUMOS_IFLAG(s[2800]);
+initPOCNMSC_I(s[2801]);
+initPOCNMSC_IFLAG(s[2802]);
+initPOCTYP1_I(s[2803]);
+initPOCTYP1_IFLAG(s[2804]);
+initPOCTYP2_I(s[2805]);
+initPOCTYP2_IFLAG(s[2806]);
+initPOLMV1_I(s[2807]);
+initPOLMV1_IFLAG(s[2808]);
+initPOLMV2_I(s[2809]);
+initPOLMV2_IFLAG(s[2810]);
+initPOLMVB1_I(s[2811]);
+initPOLMVB1_IFLAG(s[2812]);
+initPOLMVB2_I(s[2813]);
+initPOLMVB2_IFLAG(s[2814]);
+initPOLUM1_I(s[2815]);
+initPOLUM1_IFLAG(s[2816]);
+initPOLUM2_I(s[2817]);
+initPOLUM2_IFLAG(s[2818]);
+initPSCHM_F_I(s[2819]);
+initPSCHM_F_IFLAG(s[2820]);
+initPSCHM_S_I(s[2821]);
+initPSCHM_S_IFLAG(s[2822]);
+initPSCHM_T_I(s[2823]);
+initPSCHM_T_IFLAG(s[2824]);
+initPDCVB1_I(s[2825]);
+initPDCVB1_IFLAG(s[2826]);
+initPDCVB2_I(s[2827]);
+initPDCVB2_IFLAG(s[2828]);
+initPDCVAL1_I(s[2829]);
+initPDCVAL1_IFLAG(s[2830]);
+initPDCVAL2_I(s[2831]);
+initPDCVAL2_IFLAG(s[2832]);
+initPOADD1_I(s[2833]);
+initPOADD1_IFLAG(s[2834]);
+initPOADD2_I(s[2835]);
+initPOADD2_IFLAG(s[2836]);
+initPOADD3_I(s[2837]);
+initPOADD3_IFLAG(s[2838]);
+initPOADD4_I(s[2839]);
+initPOADD4_IFLAG(s[2840]);
+initPOADD5_I(s[2841]);
+initPOADD5_IFLAG(s[2842]);
+initPOADD6_I(s[2843]);
+initPOADD6_IFLAG(s[2844]);
+initPAVCVB1_I(s[2845]);
+initPAVCVB1_IFLAG(s[2846]);
+initPAVCVB2_I(s[2847]);
+initPAVCVB2_IFLAG(s[2848]);
+initPAVCUV1_I(s[2849]);
+initPAVCUV1_IFLAG(s[2850]);
+initPAVCUV2_I(s[2851]);
+initPAVCUV2_IFLAG(s[2852]);
+initPPRNMSC_I(s[2853]);
+initPPRNMSC_IFLAG(s[2854]);
+initPPVALB1_I(s[2855]);
+initPPVALB1_IFLAG(s[2856]);
+initPPVALB2_I(s[2857]);
+initPPVALB2_IFLAG(s[2858]);
+initPPVALB3_I(s[2859]);
+initPPVALB3_IFLAG(s[2860]);
+initPPVAL1_I(s[2861]);
+initPPVAL1_IFLAG(s[2862]);
+initPPVAL2_I(s[2863]);
+initPPVAL2_IFLAG(s[2864]);
+initPPVAL3_I(s[2865]);
+initPPVAL3_IFLAG(s[2866]);
+initPPLUM1_I(s[2867]);
+initPPLUM1_IFLAG(s[2868]);
+initPPLUM2_I(s[2869]);
+initPPLUM2_IFLAG(s[2870]);
+initPPLUM3_I(s[2871]);
+initPPLUM3_IFLAG(s[2872]);
+initPPLMVB1_I(s[2873]);
+initPPLMVB1_IFLAG(s[2874]);
+initPPLMVB2_I(s[2875]);
+initPPLMVB2_IFLAG(s[2876]);
+initPPLMVB3_I(s[2877]);
+initPPLMVB3_IFLAG(s[2878]);
+initPPLMV1_I(s[2879]);
+initPPLMV1_IFLAG(s[2880]);
+initPPLMV2_I(s[2881]);
+initPPLMV2_IFLAG(s[2882]);
+initPPLMV3_I(s[2883]);
+initPPLMV3_IFLAG(s[2884]);
+initDVHASAVC(s[2885]);
+initDVPAVCUV(s[2886]);
+initDVHASDC(s[2887]);
+initDVVALDCOS(s[2888]);
+initDVHASPP(s[2889]);
+initDVPPVAL(s[2890]);
+initPEVERC_I(s[2891]);
+initPEVERC_IFLAG(s[2892]);
+initPEVERNC_I(s[2893]);
+initPEVERNC_IFLAG(s[2894]);
+initPRETAIN_I(s[2895]);
+initPRETAIN_IFLAG(s[2896]);
+initPFNUM_I(s[2897]);
+initPFNUM_IFLAG(s[2898]);
+initPFEN_I(s[2899]);
+initPFEN_IFLAG(s[2900]);
+initPFENNUM_I(s[2901]);
+initPFENNUM_IFLAG(s[2902]);
+initPFNEW_I(s[2903]);
+initPFNEW_IFLAG(s[2904]);
+initPFNEWNO_I(s[2905]);
+initPFNEWNO_IFLAG(s[2906]);
+initPEVERC_PEVERNC__SFLAG(s[2907]);
+initALLRET_I(s[2908]);
+initAGMSAFT(s[2909]);
+initPARTNSSEC(s[2910]);
+initPARTNSSECB(s[2911]);
+initPARTNSSEC3(s[2912]);
+initPARTNSSEC5(s[2913]);
+initPARTNSSEC8(s[2914]);
+initDVRENTAMTANNUAL(s[2915]);
+initOTHSRC1_I(s[2916]);
+initOTHSRC1_IFLAG(s[2917]);
+initOTHSRC2_I(s[2918]);
+initOTHSRC2_IFLAG(s[2919]);
+initOTHSRC3_I(s[2920]);
+initOTHSRC3_IFLAG(s[2921]);
+initOTHSRC4_I(s[2922]);
+initOTHSRC4_IFLAG(s[2923]);
+initOTHSRC5_I(s[2924]);
+initOTHSRC5_IFLAG(s[2925]);
+initDVOIGOEANNUAL_I(s[2926]);
+initDVOIGOEANNUAL_IFLAG(s[2927]);
+initDVOIGOSANNUAL_I(s[2928]);
+initDVOIGOSANNUAL_IFLAG(s[2929]);
+initDVOIGPPANNUAL_I(s[2930]);
+initDVOIGPPANNUAL_IFLAG(s[2931]);
+initDVOINRRANNUAL_IFLAG(s[2932]);
+initDVOINGTANNUAL_IFLAG(s[2933]);
+initPFTYP1_I(s[2934]);
+initPFTYP1_IFLAG(s[2935]);
+initPFTYP2_I(s[2936]);
+initPFTYP2_IFLAG(s[2937]);
+initPFTYP3_I(s[2938]);
+initPFTYP3_IFLAG(s[2939]);
+initPFTYP4_I(s[2940]);
+initPFTYP4_IFLAG(s[2941]);
+initPFTYP5_I(s[2942]);
+initPFTYP5_IFLAG(s[2943]);
+initPFTYP6_I(s[2944]);
+initPFTYP6_IFLAG(s[2945]);
+initPFOCTY1_I(s[2946]);
+initPFOCTY1_IFLAG(s[2947]);
+initPFOCTY2_I(s[2948]);
+initPFOCTY2_IFLAG(s[2949]);
+initPFOCTY3_I(s[2950]);
+initPFOCTY3_IFLAG(s[2951]);
+initPFOCTY4_I(s[2952]);
+initPFOCTY4_IFLAG(s[2953]);
+initPFOCTY5_I(s[2954]);
+initPFOCTY5_IFLAG(s[2955]);
+initPFOCTY6_I(s[2956]);
+initPFOCTY6_IFLAG(s[2957]);
+initPFLUM1_I(s[2958]);
+initPFLUM1_IFLAG(s[2959]);
+initPFLUM2_I(s[2960]);
+initPFLUM2_IFLAG(s[2961]);
+initPFLUM3_I(s[2962]);
+initPFLUM3_IFLAG(s[2963]);
+initPFLUM4_I(s[2964]);
+initPFLUM4_IFLAG(s[2965]);
+initPFLUM5_I(s[2966]);
+initPFLUM5_IFLAG(s[2967]);
+initPFLUM6_I(s[2968]);
+initPFLUM6_IFLAG(s[2969]);
+initPFLUMALL1_I(s[2970]);
+initPFLUMALL1_IFLAG(s[2971]);
+initPFLUMALL2_I(s[2972]);
+initPFLUMALL2_IFLAG(s[2973]);
+initPFLUMALL3_I(s[2974]);
+initPFLUMALL3_IFLAG(s[2975]);
+initPFLUMALL4_I(s[2976]);
+initPFLUMALL4_IFLAG(s[2977]);
+initPFLUMALL5_I(s[2978]);
+initPFLUMALL5_IFLAG(s[2979]);
+initPFLUMALL6_I(s[2980]);
+initPFLUMALL6_IFLAG(s[2981]);
+initPFCASH1_I(s[2982]);
+initPFCASH1_IFLAG(s[2983]);
+initPFCASH2_I(s[2984]);
+initPFCASH2_IFLAG(s[2985]);
+initPFCASH3_I(s[2986]);
+initPFCASH3_IFLAG(s[2987]);
+initPFCASH4_I(s[2988]);
+initPFCASH4_IFLAG(s[2989]);
+initPFCASH5_I(s[2990]);
+initPFCASH5_IFLAG(s[2991]);
+initPFCASH6_I(s[2992]);
+initPFCASH6_IFLAG(s[2993]);
+initPFREM1_I(s[2994]);
+initPFREM1_IFLAG(s[2995]);
+initPFREM2_I(s[2996]);
+initPFREM2_IFLAG(s[2997]);
+initPFREM3_I(s[2998]);
+initPFREM3_IFLAG(s[2999]);
+initPFREM4_I(s[3000]);
+initPFREM4_IFLAG(s[3001]);
+initPFREM5_I(s[3002]);
+initPFREM5_IFLAG(s[3003]);
+initPFREM6_I(s[3004]);
+initPFREM6_IFLAG(s[3005]);
+initPFREC1_I(s[3006]);
+initPFREC1_IFLAG(s[3007]);
+initPFREC2_I(s[3008]);
+initPFREC2_IFLAG(s[3009]);
+initPFREC3_I(s[3010]);
+initPFREC3_IFLAG(s[3011]);
+initPFREC4_I(s[3012]);
+initPFREC4_IFLAG(s[3013]);
+initPFREC5_I(s[3014]);
+initPFREC5_IFLAG(s[3015]);
+initPFREC6_I(s[3016]);
+initPFREC6_IFLAG(s[3017]);
+initPFDRAW1_I(s[3018]);
+initPFDRAW1_IFLAG(s[3019]);
+initPFDRAW2_I(s[3020]);
+initPFDRAW2_IFLAG(s[3021]);
+initPFDRAW3_I(s[3022]);
+initPFDRAW3_IFLAG(s[3023]);
+initPFDRAW4_I(s[3024]);
+initPFDRAW4_IFLAG(s[3025]);
+initPFDRAW5_I(s[3026]);
+initPFDRAW5_IFLAG(s[3027]);
+initPFDRAW6_I(s[3028]);
+initPFDRAW6_IFLAG(s[3029]);
+initPFLUVB1_I(s[3030]);
+initPFLUVB1_IFLAG(s[3031]);
+initPFLUVB2_I(s[3032]);
+initPFLUVB2_IFLAG(s[3033]);
+initPFLUVB3_I(s[3034]);
+initPFLUVB3_IFLAG(s[3035]);
+initPFLUVB4_I(s[3036]);
+initPFLUVB4_IFLAG(s[3037]);
+initPFLUVB5_I(s[3038]);
+initPFLUVB5_IFLAG(s[3039]);
+initPFLUVB6_I(s[3040]);
+initPFLUVB6_IFLAG(s[3041]);
+initPFLUMV1_I(s[3042]);
+initPFLUMV1_IFLAG(s[3043]);
+initPFLUMV2_I(s[3044]);
+initPFLUMV2_IFLAG(s[3045]);
+initPFLUMV3_I(s[3046]);
+initPFLUMV3_IFLAG(s[3047]);
+initPFLUMV4_I(s[3048]);
+initPFLUMV4_IFLAG(s[3049]);
+initPFLUMV5_I(s[3050]);
+initPFLUMV5_IFLAG(s[3051]);
+initPFLUMV6_I(s[3052]);
+initPFLUMV6_IFLAG(s[3053]);
+initPFINCP1_I(s[3054]);
+initPFINCP1_IFLAG(s[3055]);
+initPFINCP2_I(s[3056]);
+initPFINCP2_IFLAG(s[3057]);
+initPFINCP3_I(s[3058]);
+initPFINCP3_IFLAG(s[3059]);
+initPFINCP4_I(s[3060]);
+initPFINCP4_IFLAG(s[3061]);
+initPFINCP5_I(s[3062]);
+initPFINCP5_IFLAG(s[3063]);
+initPFINCP6_I(s[3064]);
+initPFINCP6_IFLAG(s[3065]);
+initPFINCA1_I(s[3066]);
+initPFINCA1_IFLAG(s[3067]);
+initPFINCA2_I(s[3068]);
+initPFINCA2_IFLAG(s[3069]);
+initPFINCA3_I(s[3070]);
+initPFINCA3_IFLAG(s[3071]);
+initPFINCA4_I(s[3072]);
+initPFINCA4_IFLAG(s[3073]);
+initPFINCA5_I(s[3074]);
+initPFINCA5_IFLAG(s[3075]);
+initPFINCA6_I(s[3076]);
+initPFINCA6_IFLAG(s[3077]);
+initPFLMVB1_I(s[3078]);
+initPFLMVB1_IFLAG(s[3079]);
+initPFLMVB2_I(s[3080]);
+initPFLMVB2_IFLAG(s[3081]);
+initPFLMVB3_I(s[3082]);
+initPFLMVB3_IFLAG(s[3083]);
+initPFLMVB4_I(s[3084]);
+initPFLMVB4_IFLAG(s[3085]);
+initPFLMVB5_I(s[3086]);
+initPFLMVB5_IFLAG(s[3087]);
+initPFLMVB6_I(s[3088]);
+initPFLMVB6_IFLAG(s[3089]);
+initPFLMV1_I(s[3090]);
+initPFLMV1_IFLAG(s[3091]);
+initPFLMV2_I(s[3092]);
+initPFLMV2_IFLAG(s[3093]);
+initPFLMV3_I(s[3094]);
+initPFLMV3_IFLAG(s[3095]);
+initPFLMV4_I(s[3096]);
+initPFLMV4_IFLAG(s[3097]);
+initPFLMV5_I(s[3098]);
+initPFLMV5_IFLAG(s[3099]);
+initPFLMV6_I(s[3100]);
+initPFLMV6_IFLAG(s[3101]);
+initEDLEVEL(s[3102]);
+initXMARSTA_I(s[3103]);
+initXMARSTA_IFLAG(s[3104]);
+initMARBEF_I(s[3105]);
+initMARBEF_IFLAG(s[3106]);
+initPWIDFUT_I(s[3107]);
+initPWIDFUT_IFLAG(s[3108]);
+initPSPSE_I(s[3109]);
+initPSPSE_IFLAG(s[3110]);
+initPWEXPH_I(s[3111]);
+initPWEXPH_IFLAG(s[3112]);
+initPSPEXPH_I(s[3113]);
+initPSPEXPH_IFLAG(s[3114]);
+initPWEXPA_I(s[3115]);
+initPWEXPA_IFLAG(s[3116]);
+initPSPEXPA_I(s[3117]);
+initPSPEXPA_IFLAG(s[3118]);
+initFSACSH_I(s[3119]);
+initFSACSH_IFLAG(s[3120]);
+initFSNUMSH_I(s[3121]);
+initFSNUMSH_IFLAG(s[3122]);
+initFSNUMIN_I(s[3123]);
+initFSNUMIN_IFLAG(s[3124]);
+initFSSHVAL_I(s[3125]);
+initFSSHVAL_IFLAG(s[3126]);
+initFSINVAL_I(s[3127]);
+initFSINVAL_IFLAG(s[3128]);
+initFINVTY01_I(s[3129]);
+initFINVTY01_IFLAG(s[3130]);
+initFINVTY02_I(s[3131]);
+initFINVTY02_IFLAG(s[3132]);
+initFINVTY03_I(s[3133]);
+initFINVTY03_IFLAG(s[3134]);
+initFINVTY04_I(s[3135]);
+initFINVTY04_IFLAG(s[3136]);
+initFINVTY05_I(s[3137]);
+initFINVTY05_IFLAG(s[3138]);
+initFINVTY06_I(s[3139]);
+initFINVTY06_IFLAG(s[3140]);
+initFINVTY07_I(s[3141]);
+initFINVTY07_IFLAG(s[3142]);
+initFINVTY08_I(s[3143]);
+initFINVTY08_IFLAG(s[3144]);
+initFINVTY09_I(s[3145]);
+initFINVTY09_IFLAG(s[3146]);
+initFINVTY10_I(s[3147]);
+initFINVTY10_IFLAG(s[3148]);
+initFINVTY11_I(s[3149]);
+initFINVTY11_IFLAG(s[3150]);
+initFCACSH_I(s[3151]);
+initFCACSH_IFLAG(s[3152]);
+initFCNUMSH_I(s[3153]);
+initFCNUMSH_IFLAG(s[3154]);
+initFCNUMIN_I(s[3155]);
+initFCNUMIN_IFLAG(s[3156]);
+initFCOVDSH_I(s[3157]);
+initFCOVDSH_IFLAG(s[3158]);
+initFCOVNSH_I(s[3159]);
+initFCOVNSH_IFLAG(s[3160]);
+initDCOSHV1_I(s[3161]);
+initDCOSHV1_IFLAG(s[3162]);
+initDCOSHV2_I(s[3163]);
+initDCOSHV2_IFLAG(s[3164]);
+initDCOSHV3_I(s[3165]);
+initDCOSHV3_IFLAG(s[3166]);
+initDCOSHV4_I(s[3167]);
+initDCOSHV4_IFLAG(s[3168]);
+initDCOSHV5_I(s[3169]);
+initDCOSHV5_IFLAG(s[3170]);
+initFCSHVAL_I(s[3171]);
+initFCSHVAL_IFLAG(s[3172]);
+initFCOVDIN_I(s[3173]);
+initFCOVDIN_IFLAG(s[3174]);
+initFCOVNIN_I(s[3175]);
+initFCOVNIN_IFLAG(s[3176]);
+initDCOINV1_I(s[3177]);
+initDCOINV1_IFLAG(s[3178]);
+initDCOINV2_I(s[3179]);
+initDCOINV2_IFLAG(s[3180]);
+initDCOINV3_I(s[3181]);
+initDCOINV3_IFLAG(s[3182]);
+initDCOINV4_I(s[3183]);
+initDCOINV4_IFLAG(s[3184]);
+initDCOINV5_I(s[3185]);
+initDCOINV5_IFLAG(s[3186]);
+initFCINVAL_I(s[3187]);
+initFCINVAL_IFLAG(s[3188]);
+initPFCUVB1_I(s[3189]);
+initPFCUVB1_IFLAG(s[3190]);
+initPFCUVB2_I(s[3191]);
+initPFCUVB2_IFLAG(s[3192]);
+initPFCUVB3_I(s[3193]);
+initPFCUVB3_IFLAG(s[3194]);
+initPFCUVB4_I(s[3195]);
+initPFCUVB4_IFLAG(s[3196]);
+initPFCUVB5_I(s[3197]);
+initPFCUVB5_IFLAG(s[3198]);
+initPFCUVB6_I(s[3199]);
+initPFCUVB6_IFLAG(s[3200]);
+initPFCURV1_I(s[3201]);
+initPFCURV1_IFLAG(s[3202]);
+initPFCURV2_I(s[3203]);
+initPFCURV2_IFLAG(s[3204]);
+initPFCURV3_I(s[3205]);
+initPFCURV3_IFLAG(s[3206]);
+initPFCURV4_I(s[3207]);
+initPFCURV4_IFLAG(s[3208]);
+initPFCURV5_I(s[3209]);
+initPFCURV5_IFLAG(s[3210]);
+initPFCURV6_I(s[3211]);
+initPFCURV6_IFLAG(s[3212]);
+initPFDDVB1_I(s[3213]);
+initPFDDVB1_IFLAG(s[3214]);
+initPFDDVB2_I(s[3215]);
+initPFDDVB2_IFLAG(s[3216]);
+initPFDDVB3_I(s[3217]);
+initPFDDVB3_IFLAG(s[3218]);
+initPFDDVB4_I(s[3219]);
+initPFDDVB4_IFLAG(s[3220]);
+initPFDDVB5_I(s[3221]);
+initPFDDVB5_IFLAG(s[3222]);
+initPFDDVB6_I(s[3223]);
+initPFDDVB6_IFLAG(s[3224]);
+initPFDDV1_I(s[3225]);
+initPFDDV1_IFLAG(s[3226]);
+initPFDDV2_I(s[3227]);
+initPFDDV2_IFLAG(s[3228]);
+initPFDDV3_I(s[3229]);
+initPFDDV3_IFLAG(s[3230]);
+initPFDDV4_I(s[3231]);
+initPFDDV4_IFLAG(s[3232]);
+initPFDDV5_I(s[3233]);
+initPFDDV5_IFLAG(s[3234]);
+initPFDDV6_I(s[3235]);
+initPFDDV6_IFLAG(s[3236]);
+initSJOB2_I(s[3237]);
+initSJOB2_IFLAG(s[3238]);
+initSJEMP1_I(s[3239]);
+initSJEMP1_IFLAG(s[3240]);
+initDVNETEMPSECJOB_IFLAG(s[3241]);
+initDVGRSSESECJOB_IFLAG(s[3242]);
+initDVGRSEMPSECJOB_IFLAG(s[3243]);
+initRENTPAY_I(s[3244]);
+initRENTPAY_IFLAG(s[3245]);
+initDVRENTBNDANNUAL_I(s[3246]);
+initDVRENTBNDANNUAL_IFLAG(s[3247]);
+initDVRENTAMTANNUAL_IFLAG(s[3248]);
+initREGLRPY1_I(s[3249]);
+initREGLRPY1_IFLAG(s[3250]);
+initREGLRPY2_I(s[3251]);
+initREGLRPY2_IFLAG(s[3252]);
+initREGLRPY3_I(s[3253]);
+initREGLRPY3_IFLAG(s[3254]);
+initREGLRPY4_I(s[3255]);
+initREGLRPY4_IFLAG(s[3256]);
+initREGLRPY5_I(s[3257]);
+initREGLRPY5_IFLAG(s[3258]);
+initDVOINEGANNUAL_IFLAG(s[3259]);
+initDVOINFRANNUAL_IFLAG(s[3260]);
+initDVOINMAANNUAL_IFLAG(s[3261]);
+initDVOINROANNUAL_IFLAG(s[3262]);
+initDVOINOPANNUAL_IFLAG(s[3263]);
+initDVHASDB(s[3264]);
+initFRSTSCH(s[3265]);
+initSCNDSCH(s[3266]);
+initACCFRAC1(s[3267]);
+initACCFRAC2(s[3268]);
+initVALPBLUM1(s[3269]);
+initVALPBLUM2(s[3270]);
+initDVVALDBLUM(s[3271]);
+initDVPENINC1(s[3272]);
+initDVPENINC2(s[3273]);
+initASAF1T(s[3274]);
+initASAF2T(s[3275]);
+initRF(s[3276]);
+initRS(s[3277]);
+initPOWER1T(s[3278]);
+initTOPDVDBOPEN1T(s[3279]);
+initBOTDVDBOPEN1T(s[3280]);
+initDVDBOPEN1T(s[3281]);
+initPOWER2T(s[3282]);
+initTOPDVDBOPEN2T(s[3283]);
+initBOTDVDBOPEN2T(s[3284]);
+initDVDBOPEN2T(s[3285]);
+initDVVALDBT(s[3286]);
+initDVWID(s[3287]);
+initDVSPS(s[3288]);
+initDVSPEN(s[3289]);
+initPINCINP(s[3290]);
+initDVPINPVAL(s[3291]);
+initDVPFCURVAL(s[3292]);
+initDVHASPFCUR(s[3293]);
+initDVPFDDV(s[3294]);
+initDVHASPFOCC(s[3295]);
+initDVHASPFGRP(s[3296]);
+initDVHASPFPRIV(s[3297]);
+initDVHASPFSIPP(s[3298]);
+initDVHASPFRAC(s[3299]);
+initTOTPEN(s[3300]);
+initPINC(s[3301]);
+initCURRAC(s[3302]);
+initHASSHAC(s[3303]);
+initCACRNUM(s[3304]);
+initDVSHCVAL(s[3305]);
+initCAODNUM(s[3306]);
+initDVSHODVAL(s[3307]);
+initDVSHODVAL2(s[3308]);
+initDVSHODVAL3(s[3309]);
+initDVFCINVAL(s[3310]);
+initDVCOINV(s[3311]);
+initDVCOINV2(s[3312]);
+initDVCOINV3(s[3313]);
+initDVCOINV4(s[3314]);
+initDVCOINV5(s[3315]);
+initDVCACRVAL_SUM(s[3316]);
+initDVCAODVAL_SUM(s[3317]);
+initDVCAVAL_SUM(s[3318]);
+initSAVDEP(s[3319]);
+initHASSHSAC(s[3320]);
+initSAVNUM(s[3321]);
+initDVSHSVAL(s[3322]);
+initDVFSINVAL(s[3323]);
+initDVSAVAL_SUM(s[3324]);
+initIHRECNT_I(s[3325]);
+initIHRECNT_IFLAG(s[3326]);
+initIHRCNUM_I(s[3327]);
+initIHRCNUM_IFLAG(s[3328]);
+initIVAL1_IFLAG(s[3329]);
+initIVALB1_I(s[3330]);
+initIVALB1_IFLAG(s[3331]);
+initIVAL2_I(s[3332]);
+initIVAL2_IFLAG(s[3333]);
+initIVALB2_I(s[3334]);
+initIVALB2_IFLAG(s[3335]);
+initIVAL3_I(s[3336]);
+initIVAL3_IFLAG(s[3337]);
+initIVALB3_I(s[3338]);
+initIVALB3_IFLAG(s[3339]);
+initILGIFT_I(s[3340]);
+initILGIFT_IFLAG(s[3341]);
+initIGIFVAL_IFLAG(s[3342]);
+initIGFVALB_I(s[3343]);
+initIGFVALB_IFLAG(s[3344]);
+initILUMP_I(s[3345]);
+initILUMP_IFLAG(s[3346]);
+initILUMTY1_I(s[3347]);
+initILUMTY1_IFLAG(s[3348]);
+initILIFE_IFLAG(s[3349]);
+initILIFB_I(s[3350]);
+initILIFB_IFLAG(s[3351]);
+initILUPP_I(s[3352]);
+initILUPP_IFLAG(s[3353]);
+initILUPB_I(s[3354]);
+initILUPB_IFLAG(s[3355]);
+initILACC_IFLAG(s[3356]);
+initILACB_I(s[3357]);
+initILACB_IFLAG(s[3358]);
+initILINS_IFLAG(s[3359]);
+initILINB_I(s[3360]);
+initILINB_IFLAG(s[3361]);
+initILRED_IFLAG(s[3362]);
+initILRDB_I(s[3363]);
+initILRDB_IFLAG(s[3364]);
+initILWIN_IFLAG(s[3365]);
+initILWNB_I(s[3366]);
+initILWNB_IFLAG(s[3367]);
+initILOTH_IFLAG(s[3368]);
+initILOTB_I(s[3369]);
+initILOTB_IFLAG(s[3370]);
+initFISA1_I(s[3371]);
+initFISA1_IFLAG(s[3372]);
+initFISA2_I(s[3373]);
+initFISA2_IFLAG(s[3374]);
+initFCISAV_I(s[3375]);
+initFCISAV_IFLAG(s[3376]);
+initFIISAV_I(s[3377]);
+initFIISAV_IFLAG(s[3378]);
+initFKISAV_I(s[3379]);
+initFKISAV_IFLAG(s[3380]);
+initFBONDV_I(s[3381]);
+initFBONDV_IFLAG(s[3382]);
+initFCOLLV_I(s[3383]);
+initFCOLLV_IFLAG(s[3384]);
+initFESHA_I(s[3385]);
+initFESHA_IFLAG(s[3386]);
+initFESHAV_I(s[3387]);
+initFESHAV_IFLAG(s[3388]);
+initFEOPTV_I(s[3389]);
+initFEOPTV_IFLAG(s[3390]);
+initFSHARE1_I(s[3391]);
+initFSHARE1_IFLAG(s[3392]);
+initFSHARE2_I(s[3393]);
+initFSHARE2_IFLAG(s[3394]);
+initFSHARE3_I(s[3395]);
+initFSHARE3_IFLAG(s[3396]);
+initFSHUKV_I(s[3397]);
+initFSHUKV_IFLAG(s[3398]);
+initFSHOSV_I(s[3399]);
+initFSHOSV_IFLAG(s[3400]);
+initFNSVAL_I(s[3401]);
+initFNSVAL_IFLAG(s[3402]);
+initFGILTS1_I(s[3403]);
+initFGILTS1_IFLAG(s[3404]);
+initFGILTS2_I(s[3405]);
+initFGILTS2_IFLAG(s[3406]);
+initFGILTS3_I(s[3407]);
+initFGILTS3_IFLAG(s[3408]);
+initFGILTS4_I(s[3409]);
+initFGILTS4_IFLAG(s[3410]);
+initFGLTUKV_I(s[3411]);
+initFGLTUKV_IFLAG(s[3412]);
+initFGLTFOV_I(s[3413]);
+initFGLTFOV_IFLAG(s[3414]);
+initFINS_I(s[3415]);
+initFINS_IFLAG(s[3416]);
+initFINSV_I(s[3417]);
+initFINSV_IFLAG(s[3418]);
+initFLPROD1_I(s[3419]);
+initFLPROD1_IFLAG(s[3420]);
+initFLPROD2_I(s[3421]);
+initFLPROD2_IFLAG(s[3422]);
+initFLPROD3_I(s[3423]);
+initFLPROD3_IFLAG(s[3424]);
+initFLPROD4_I(s[3425]);
+initFLPROD4_IFLAG(s[3426]);
+initFLFENV_I(s[3427]);
+initFLFENV_IFLAG(s[3428]);
+initFLFSIV_I(s[3429]);
+initFLFSIV_IFLAG(s[3430]);
+initFLFFSV_I(s[3431]);
+initFLFFSV_IFLAG(s[3432]);
+initFLFTEV_I(s[3433]);
+initFLFTEV_IFLAG(s[3434]);
+initFINVOTV_I(s[3435]);
+initFINVOTV_IFLAG(s[3436]);
+initFINFSAV1_I(s[3437]);
+initFINFSAV1_IFLAG(s[3438]);
+initFINFSAV2_I(s[3439]);
+initFINFSAV2_IFLAG(s[3440]);
+initFINFSAV3_I(s[3441]);
+initFINFSAV3_IFLAG(s[3442]);
+initFINFSAV4_I(s[3443]);
+initFINFSAV4_IFLAG(s[3444]);
+initFINFLV_I(s[3445]);
+initFINFLV_IFLAG(s[3446]);
+initFINFV_I(s[3447]);
+initFINFV_IFLAG(s[3448]);
+initFLOANVB_I(s[3449]);
+initFLOANVB_IFLAG(s[3450]);
+initFINFVB_I(s[3451]);
+initFINFVB_IFLAG(s[3452]);
+initSATIS(s[3453]);
+initWORTH(s[3454]);
+initHAPPY(s[3455]);
+initANXIOUS(s[3456]);
+initUPROP1_I(s[3457]);
+initUPROP1_IFLAG(s[3458]);
+initUPROP2_I(s[3459]);
+initUPROP2_IFLAG(s[3460]);
+initUPROP3_I(s[3461]);
+initUPROP3_IFLAG(s[3462]);
+initUPROP4_I(s[3463]);
+initUPROP4_IFLAG(s[3464]);
+initUPROP5_I(s[3465]);
+initUPROP5_IFLAG(s[3466]);
+initUPROP6_I(s[3467]);
+initUPROP6_IFLAG(s[3468]);
+initUNUMHS_I(s[3469]);
+initUNUMHS_IFLAG(s[3470]);
+initUBUYLET_I(s[3471]);
+initUBUYLET_IFLAG(s[3472]);
+initUNUMBD_I(s[3473]);
+initUNUMBD_IFLAG(s[3474]);
+initUNUMLA_I(s[3475]);
+initUNUMLA_IFLAG(s[3476]);
+initUNUMOV_I(s[3477]);
+initUNUMOV_IFLAG(s[3478]);
+initUNUMRE_I(s[3479]);
+initUNUMRE_IFLAG(s[3480]);
+initUVALBS_I(s[3481]);
+initUVALBS_IFLAG(s[3482]);
+initUVALBL_I(s[3483]);
+initUVALBL_IFLAG(s[3484]);
+initUVALBO_I(s[3485]);
+initUVALBO_IFLAG(s[3486]);
+initUVALBLU_I(s[3487]);
+initUVALBLU_IFLAG(s[3488]);
+initUVALBOS_I(s[3489]);
+initUVALBOS_IFLAG(s[3490]);
+initUVALBOR_I(s[3491]);
+initUVALBOR_IFLAG(s[3492]);
+initUVALS_I(s[3493]);
+initUVALS_IFLAG(s[3494]);
+initUVALL_I(s[3495]);
+initUVALL_IFLAG(s[3496]);
+initUVALO_I(s[3497]);
+initUVALO_IFLAG(s[3498]);
+initUVALLU_I(s[3499]);
+initUVALLU_IFLAG(s[3500]);
+initUVALOS_I(s[3501]);
+initUVALOS_IFLAG(s[3502]);
+initUVALOR_I(s[3503]);
+initUVALOR_IFLAG(s[3504]);
+initUDEBTBS_I(s[3505]);
+initUDEBTBS_IFLAG(s[3506]);
+initUDEBTBL_I(s[3507]);
+initUDEBTBL_IFLAG(s[3508]);
+initUDEBTBO_I(s[3509]);
+initUDEBTBO_IFLAG(s[3510]);
+initUDEBTBLU_I(s[3511]);
+initUDEBTBLU_IFLAG(s[3512]);
+initUDEBTBOS_I(s[3513]);
+initUDEBTBOS_IFLAG(s[3514]);
+initUDEBTBOR_I(s[3515]);
+initUDEBTBOR_IFLAG(s[3516]);
+initUDEBTS_I(s[3517]);
+initUDEBTS_IFLAG(s[3518]);
+initUDEBTL_I(s[3519]);
+initUDEBTL_IFLAG(s[3520]);
+initUDEBTO_I(s[3521]);
+initUDEBTO_IFLAG(s[3522]);
+initUDEBTLU_I(s[3523]);
+initUDEBTLU_IFLAG(s[3524]);
+initUDEBTOS_I(s[3525]);
+initUDEBTOS_IFLAG(s[3526]);
+initUDEBTOR_I(s[3527]);
+initUDEBTOR_IFLAG(s[3528]);
+initUGDVBS_I(s[3529]);
+initUGDVBS_IFLAG(s[3530]);
+initUGDVBL_I(s[3531]);
+initUGDVBL_IFLAG(s[3532]);
+initUGDVBOS_I(s[3533]);
+initUGDVBOS_IFLAG(s[3534]);
+initCACTF_I(s[3535]);
+initCACTF_IFLAG(s[3536]);
+initCAJISA_I(s[3537]);
+initCAJISA_IFLAG(s[3538]);
+initCASAV_I(s[3539]);
+initCASAV_IFLAG(s[3540]);
+initCACTV_I(s[3541]);
+initCACTV_IFLAG(s[3542]);
+initCACTVB_I(s[3543]);
+initCACTVB_IFLAG(s[3544]);
+initCASVV_I(s[3545]);
+initCASVV_IFLAG(s[3546]);
+initCASVB_I(s[3547]);
+initCASVB_IFLAG(s[3548]);
+initHASISA(s[3549]);
+initHASBOND(s[3550]);
+initHASUTRUST(s[3551]);
+initHASEMPSH(s[3552]);
+initHASOTHSH(s[3553]);
+initHASNSP(s[3554]);
+initHASGILT(s[3555]);
+initHASLINS(s[3556]);
+initHASOINV(s[3557]);
+initHASNOFA(s[3558]);
+initISHRP(s[3559]);
+initISHRPPART(s[3560]);
+initHRPIOUT1(s[3561]);
+initHRPPARTIOUT1(s[3562]);
+initHRP_RESP(s[3563]);
+initHRPDVAGE(s[3564]);
+initHRPDVAGE9(s[3565]);
+initHRPSEX(s[3566]);
+initHRPNSSEC3(s[3567]);
+initHRPDVILO3A(s[3568]);
+initHRPDVMRDF(s[3569]);
+initHRPEDATTN1(s[3570]);
+initHRPEDATTN2(s[3571]);
+initHRPEDATTN3(s[3572]);
+initHRPEMPSTAT2(s[3573]);
+initHRPETHNIC(s[3574]);
+initDLANY_I(s[3575]);
+initDLANY_IFLAG(s[3576]);
+initDLNUM_I(s[3577]);
+initDLNUM_IFLAG(s[3578]);
+initDLTYPE1_I(s[3579]);
+initDLTYPE1_IFLAG(s[3580]);
+initDLTYPE2_I(s[3581]);
+initDLTYPE2_IFLAG(s[3582]);
+initDLTYPE3_I(s[3583]);
+initDLTYPE3_IFLAG(s[3584]);
+initDLTYPE4_I(s[3585]);
+initDLTYPE4_IFLAG(s[3586]);
+initDLTYPE5_I(s[3587]);
+initDLTYPE5_IFLAG(s[3588]);
+initDLINS1_I(s[3589]);
+initDLINS1_IFLAG(s[3590]);
+initDLINS2_I(s[3591]);
+initDLINS2_IFLAG(s[3592]);
+initDLINS3_I(s[3593]);
+initDLINS3_IFLAG(s[3594]);
+initDLINS4_I(s[3595]);
+initDLINS4_IFLAG(s[3596]);
+initDLINS5_I(s[3597]);
+initDLINS5_IFLAG(s[3598]);
+initDLEST1_I(s[3599]);
+initDLEST1_IFLAG(s[3600]);
+initDLEST2_I(s[3601]);
+initDLEST2_IFLAG(s[3602]);
+initDLEST3_I(s[3603]);
+initDLEST3_IFLAG(s[3604]);
+initDLEST4_I(s[3605]);
+initDLEST4_IFLAG(s[3606]);
+initDLEST5_I(s[3607]);
+initDLEST5_IFLAG(s[3608]);
+initDLOFT1_I(s[3609]);
+initDLOFT1_IFLAG(s[3610]);
+initDLOFT2_I(s[3611]);
+initDLOFT2_IFLAG(s[3612]);
+initDLOFT3_I(s[3613]);
+initDLOFT3_IFLAG(s[3614]);
+initDLOFT4_I(s[3615]);
+initDLOFT4_IFLAG(s[3616]);
+initDLOFT5_I(s[3617]);
+initDLOFT5_IFLAG(s[3618]);
+initDLWHNY1_I(s[3619]);
+initDLWHNY1_IFLAG(s[3620]);
+initDLWHNY2_I(s[3621]);
+initDLWHNY2_IFLAG(s[3622]);
+initDLWHNY3_I(s[3623]);
+initDLWHNY3_IFLAG(s[3624]);
+initDLWHNY4_I(s[3625]);
+initDLWHNY4_IFLAG(s[3626]);
+initDLWHNY5_I(s[3627]);
+initDLWHNY5_IFLAG(s[3628]);
+initDLWHNM1_I(s[3629]);
+initDLWHNM1_IFLAG(s[3630]);
+initDLWHNM2_I(s[3631]);
+initDLWHNM2_IFLAG(s[3632]);
+initDLWHNM3_I(s[3633]);
+initDLWHNM3_IFLAG(s[3634]);
+initDLWHNM4_I(s[3635]);
+initDLWHNM4_IFLAG(s[3636]);
+initDLWHNM5_I(s[3637]);
+initDLWHNM5_IFLAG(s[3638]);
+initDSLAMT1_I(s[3639]);
+initDSLAMT1_IFLAG(s[3640]);
+initDSLAMT2_I(s[3641]);
+initDSLAMT2_IFLAG(s[3642]);
+initDSLAMT3_I(s[3643]);
+initDSLAMT3_IFLAG(s[3644]);
+initDSLAMT4_I(s[3645]);
+initDSLAMT4_IFLAG(s[3646]);
+initDSLAMT5_I(s[3647]);
+initDSLAMT5_IFLAG(s[3648]);
+initDSLEST1_I(s[3649]);
+initDSLEST1_IFLAG(s[3650]);
+initDSLEST2_I(s[3651]);
+initDSLEST2_IFLAG(s[3652]);
+initDSLEST3_I(s[3653]);
+initDSLEST3_IFLAG(s[3654]);
+initDSLEST4_I(s[3655]);
+initDSLEST4_IFLAG(s[3656]);
+initDSLEST5_I(s[3657]);
+initDSLEST5_IFLAG(s[3658]);
+initNWLN_I(s[3659]);
+initNWLN_IFLAG(s[3660]);
+initNWLNNO_I(s[3661]);
+initNWLNNO_IFLAG(s[3662]);
+initDTLTYPE1_I(s[3663]);
+initDTLTYPE1_IFLAG(s[3664]);
+initDTLTYPE2_I(s[3665]);
+initDTLTYPE2_IFLAG(s[3666]);
+initDTLTYPE3_I(s[3667]);
+initDTLTYPE3_IFLAG(s[3668]);
+initDTLTYPE4_I(s[3669]);
+initDTLTYPE4_IFLAG(s[3670]);
+initDTLTYPE5_I(s[3671]);
+initDTLTYPE5_IFLAG(s[3672]);
+initDTLOWE1_I(s[3673]);
+initDTLOWE1_IFLAG(s[3674]);
+initDTLOWE2_I(s[3675]);
+initDTLOWE2_IFLAG(s[3676]);
+initDTLOWE3_I(s[3677]);
+initDTLOWE3_IFLAG(s[3678]);
+initDTLOWE4_I(s[3679]);
+initDTLOWE4_IFLAG(s[3680]);
+initDTLOWE5_I(s[3681]);
+initDTLOWE5_IFLAG(s[3682]);
+initDTLOWEB1_I(s[3683]);
+initDTLOWEB1_IFLAG(s[3684]);
+initDTLOWEB2_I(s[3685]);
+initDTLOWEB2_IFLAG(s[3686]);
+initDTLOWEB3_I(s[3687]);
+initDTLOWEB3_IFLAG(s[3688]);
+initDTLOWEB4_I(s[3689]);
+initDTLOWEB4_IFLAG(s[3690]);
+initDTLOWEB5_I(s[3691]);
+initDTLOWEB5_IFLAG(s[3692]);
+initDLBEH1_I(s[3693]);
+initDLBEH1_IFLAG(s[3694]);
+initDLBEH2_I(s[3695]);
+initDLBEH2_IFLAG(s[3696]);
+initDLBEH3_I(s[3697]);
+initDLBEH3_IFLAG(s[3698]);
+initDLBEH4_I(s[3699]);
+initDLBEH4_IFLAG(s[3700]);
+initDLBEH5_I(s[3701]);
+initDLBEH5_IFLAG(s[3702]);
+initDLOWE1_I(s[3703]);
+initDLOWE1_IFLAG(s[3704]);
+initDLOWE2_I(s[3705]);
+initDLOWE2_IFLAG(s[3706]);
+initDLOWE3_I(s[3707]);
+initDLOWE3_IFLAG(s[3708]);
+initDLOWE4_I(s[3709]);
+initDLOWE4_IFLAG(s[3710]);
+initDLOWE5_I(s[3711]);
+initDLOWE5_IFLAG(s[3712]);
+initDVCISAV(s[3713]);
+initDVIISAV(s[3714]);
+initDVKISAV(s[3715]);
+initDVFNSVAL(s[3716]);
+initDVFSHUKV(s[3717]);
+initDVFLFENV(s[3718]);
+initDVFLFSIV(s[3719]);
+initDVFLFFSV(s[3720]);
+initDVFLFTEV(s[3721]);
+initDVFBONDV(s[3722]);
+initDVFEOPTV(s[3723]);
+initDVFESHAV(s[3724]);
+initDVFCOLLV(s[3725]);
+initDVFSHOSV(s[3726]);
+initDVFGLTUKV(s[3727]);
+initDVFGLTFOV(s[3728]);
+initDVFINVOTV(s[3729]);
+initDVFINFLV(s[3730]);
+initDVFINFV(s[3731]);
+initDVCACTV(s[3732]);
+initDVCASVV(s[3733]);
+initDVISAVAL_SUM(s[3734]);
+initDVINSV_SUM(s[3735]);
+initDVFESHARES_SUM(s[3736]);
+initDVFINFVAL_SUM(s[3737]);
+initPHYSHOUSGDST(s[3738]);
+initPHYSBUYLGDST(s[3739]);
+initPHYSHOUSGDSOST(s[3740]);
+initDVHSEDEBT(s[3741]);
+initDVBLTDEBT(s[3742]);
+initDVBLDDEBT(s[3743]);
+initDVLUKDEBT(s[3744]);
+initDVLOSDEBT(s[3745]);
+initDVOPRDEBT(s[3746]);
+initDVHSEVAL(s[3747]);
+initDVBLTVAL(s[3748]);
+initDVBLDVAL(s[3749]);
+initDVLUKVAL(s[3750]);
+initDVLOSVAL(s[3751]);
+initDVOPRVAL(s[3752]);
+initOTHMORT(s[3753]);
+initDVFFASSETS_SUM(s[3754]);
+initDHPANY1_I(s[3755]);
+initDHPANY1_IFLAG(s[3756]);
+initDHPANY2_I(s[3757]);
+initDHPANY2_IFLAG(s[3758]);
+initDHPANY3_I(s[3759]);
+initDHPANY3_IFLAG(s[3760]);
+initDHPNUM_I(s[3761]);
+initDHPNUM_IFLAG(s[3762]);
+initDHPINS1_I(s[3763]);
+initDHPINS1_IFLAG(s[3764]);
+initDHPINS2_I(s[3765]);
+initDHPINS2_IFLAG(s[3766]);
+initDHPINS3_I(s[3767]);
+initDHPINS3_IFLAG(s[3768]);
+initDHPINS4_I(s[3769]);
+initDHPINS4_IFLAG(s[3770]);
+initDHPINS5_I(s[3771]);
+initDHPINS5_IFLAG(s[3772]);
+initDHPOFT1_I(s[3773]);
+initDHPOFT1_IFLAG(s[3774]);
+initDHPOFT2_I(s[3775]);
+initDHPOFT2_IFLAG(s[3776]);
+initDHPOFT3_I(s[3777]);
+initDHPOFT3_IFLAG(s[3778]);
+initDHPOFT4_I(s[3779]);
+initDHPOFT4_IFLAG(s[3780]);
+initDHPOFT5_I(s[3781]);
+initDHPOFT5_IFLAG(s[3782]);
+initDHPWHNY1_I(s[3783]);
+initDHPWHNY1_IFLAG(s[3784]);
+initDHPWHNY2_I(s[3785]);
+initDHPWHNY2_IFLAG(s[3786]);
+initDHPWHNY3_I(s[3787]);
+initDHPWHNY3_IFLAG(s[3788]);
+initDHPWHNY4_I(s[3789]);
+initDHPWHNY4_IFLAG(s[3790]);
+initDHPWHNY5_I(s[3791]);
+initDHPWHNY5_IFLAG(s[3792]);
+initDHPWHNM1_I(s[3793]);
+initDHPWHNM1_IFLAG(s[3794]);
+initDHPWHNM2_I(s[3795]);
+initDHPWHNM2_IFLAG(s[3796]);
+initDHPWHNM3_I(s[3797]);
+initDHPWHNM3_IFLAG(s[3798]);
+initDHPWHNM4_I(s[3799]);
+initDHPWHNM4_IFLAG(s[3800]);
+initDHPWHNM5_I(s[3801]);
+initDHPWHNM5_IFLAG(s[3802]);
+initDHPBEH1_I(s[3803]);
+initDHPBEH1_IFLAG(s[3804]);
+initDHPBEH2_I(s[3805]);
+initDHPBEH2_IFLAG(s[3806]);
+initDHPBEH3_I(s[3807]);
+initDHPBEH3_IFLAG(s[3808]);
+initDHPBEH4_I(s[3809]);
+initDHPBEH4_IFLAG(s[3810]);
+initDHPBEH5_I(s[3811]);
+initDHPBEH5_IFLAG(s[3812]);
+initDHPOWE1_I(s[3813]);
+initDHPOWE1_IFLAG(s[3814]);
+initDHPOWE2_I(s[3815]);
+initDHPOWE2_IFLAG(s[3816]);
+initDHPOWE3_I(s[3817]);
+initDHPOWE3_IFLAG(s[3818]);
+initDHPOWE4_I(s[3819]);
+initDHPOWE4_IFLAG(s[3820]);
+initDHPOWE5_I(s[3821]);
+initDHPOWE5_IFLAG(s[3822]);
+initDVCCARDYN_I(s[3823]);
+initDVCCARDYN_IFLAG(s[3824]);
+initDVCCARDNUM_I(s[3825]);
+initDVCCARDNUM_IFLAG(s[3826]);
+initCCAC1_I(s[3827]);
+initCCAC1_IFLAG(s[3828]);
+initCCAC2_I(s[3829]);
+initCCAC2_IFLAG(s[3830]);
+initCCAC3_I(s[3831]);
+initCCAC3_IFLAG(s[3832]);
+initDCAMOS1_I(s[3833]);
+initDCAMOS1_IFLAG(s[3834]);
+initDCAMOS2_I(s[3835]);
+initDCAMOS2_IFLAG(s[3836]);
+initDCAMOS3_I(s[3837]);
+initDCAMOS3_IFLAG(s[3838]);
+initDVSCARDYN_I(s[3839]);
+initDVSCARDYN_IFLAG(s[3840]);
+initDVSCARDNUM_I(s[3841]);
+initDVSCARDNUM_IFLAG(s[3842]);
+initSCAC1_I(s[3843]);
+initSCAC1_IFLAG(s[3844]);
+initSCAC2_I(s[3845]);
+initSCAC2_IFLAG(s[3846]);
+initSCAC3_I(s[3847]);
+initSCAC3_IFLAG(s[3848]);
+initDSAMOS1_I(s[3849]);
+initDSAMOS1_IFLAG(s[3850]);
+initDSAMOS2_I(s[3851]);
+initDSAMOS2_IFLAG(s[3852]);
+initDSAMOS3_I(s[3853]);
+initDSAMOS3_IFLAG(s[3854]);
+initTOTSC_SUM(s[3855]);
+initHASSC(s[3856]);
+initTOTCC_SUM(s[3857]);
+initHASCC(s[3858]);
+initDMOANY_I(s[3859]);
+initDMOANY_IFLAG(s[3860]);
+initDMONUM_I(s[3861]);
+initDMONUM_IFLAG(s[3862]);
+initDMOINS1_I(s[3863]);
+initDMOINS1_IFLAG(s[3864]);
+initDMOINS2_I(s[3865]);
+initDMOINS2_IFLAG(s[3866]);
+initDMOINS3_I(s[3867]);
+initDMOINS3_IFLAG(s[3868]);
+initDMOINS4_I(s[3869]);
+initDMOINS4_IFLAG(s[3870]);
+initDMOINS5_I(s[3871]);
+initDMOINS5_IFLAG(s[3872]);
+initDMOOFT1_I(s[3873]);
+initDMOOFT1_IFLAG(s[3874]);
+initDMOOFT2_I(s[3875]);
+initDMOOFT2_IFLAG(s[3876]);
+initDMOOFT3_I(s[3877]);
+initDMOOFT3_IFLAG(s[3878]);
+initDMOOFT4_I(s[3879]);
+initDMOOFT4_IFLAG(s[3880]);
+initDMOOFT5_I(s[3881]);
+initDMOOFT5_IFLAG(s[3882]);
+initDMOWHNY1_I(s[3883]);
+initDMOWHNY1_IFLAG(s[3884]);
+initDMOWHNY2_I(s[3885]);
+initDMOWHNY2_IFLAG(s[3886]);
+initDMOWHNY3_I(s[3887]);
+initDMOWHNY3_IFLAG(s[3888]);
+initDMOWHNY4_I(s[3889]);
+initDMOWHNY4_IFLAG(s[3890]);
+initDMOWHNY5_I(s[3891]);
+initDMOWHNY5_IFLAG(s[3892]);
+initDMOWHNM1_I(s[3893]);
+initDMOWHNM1_IFLAG(s[3894]);
+initDMOWHNM2_I(s[3895]);
+initDMOWHNM2_IFLAG(s[3896]);
+initDMOWHNM3_I(s[3897]);
+initDMOWHNM3_IFLAG(s[3898]);
+initDMOWHNM4_I(s[3899]);
+initDMOWHNM4_IFLAG(s[3900]);
+initDMOWHNM5_I(s[3901]);
+initDMOWHNM5_IFLAG(s[3902]);
+initDMOBEH1_I(s[3903]);
+initDMOBEH1_IFLAG(s[3904]);
+initDMOBEH2_I(s[3905]);
+initDMOBEH2_IFLAG(s[3906]);
+initDMOBEH3_I(s[3907]);
+initDMOBEH3_IFLAG(s[3908]);
+initDMOBEH4_I(s[3909]);
+initDMOBEH4_IFLAG(s[3910]);
+initDMOBEH5_I(s[3911]);
+initDMOBEH5_IFLAG(s[3912]);
+initDMOOWE1_I(s[3913]);
+initDMOOWE1_IFLAG(s[3914]);
+initDMOOWE2_I(s[3915]);
+initDMOOWE2_IFLAG(s[3916]);
+initDMOOWE3_I(s[3917]);
+initDMOOWE3_IFLAG(s[3918]);
+initDMOOWE4_I(s[3919]);
+initDMOOWE4_IFLAG(s[3920]);
+initDMOOWE5_I(s[3921]);
+initDMOOWE5_IFLAG(s[3922]);
+initDHBANY01_I(s[3923]);
+initDHBANY01_IFLAG(s[3924]);
+initDHBANY02_I(s[3925]);
+initDHBANY02_IFLAG(s[3926]);
+initDHBANY03_I(s[3927]);
+initDHBANY03_IFLAG(s[3928]);
+initDHBANY04_I(s[3929]);
+initDHBANY04_IFLAG(s[3930]);
+initDHBANY05_I(s[3931]);
+initDHBANY05_IFLAG(s[3932]);
+initDHBANY06_I(s[3933]);
+initDHBANY06_IFLAG(s[3934]);
+initDHBANY07_I(s[3935]);
+initDHBANY07_IFLAG(s[3936]);
+initDHBANY08_I(s[3937]);
+initDHBANY08_IFLAG(s[3938]);
+initDHBANY09_I(s[3939]);
+initDHBANY09_IFLAG(s[3940]);
+initDHBANY10_I(s[3941]);
+initDHBANY10_IFLAG(s[3942]);
+initDHBANY11_I(s[3943]);
+initDHBANY11_IFLAG(s[3944]);
+initDHBAMT01_I(s[3945]);
+initDHBAMT01_IFLAG(s[3946]);
+initDHBAMT02_I(s[3947]);
+initDHBAMT02_IFLAG(s[3948]);
+initDHBAMT03_I(s[3949]);
+initDHBAMT03_IFLAG(s[3950]);
+initDHBAMT04_I(s[3951]);
+initDHBAMT04_IFLAG(s[3952]);
+initDHBAMT05_I(s[3953]);
+initDHBAMT05_IFLAG(s[3954]);
+initDHBAMT06_I(s[3955]);
+initDHBAMT06_IFLAG(s[3956]);
+initDHBAMT07_I(s[3957]);
+initDHBAMT07_IFLAG(s[3958]);
+initDHBAMT08_I(s[3959]);
+initDHBAMT08_IFLAG(s[3960]);
+initDHBAMT09_I(s[3961]);
+initDHBAMT09_IFLAG(s[3962]);
+initDHBAMT10_I(s[3963]);
+initDHBAMT10_IFLAG(s[3964]);
+initDHBAMT11_I(s[3965]);
+initDHBAMT11_IFLAG(s[3966]);
+initDHBEST01_I(s[3967]);
+initDHBEST01_IFLAG(s[3968]);
+initDHBEST02_I(s[3969]);
+initDHBEST02_IFLAG(s[3970]);
+initDHBEST03_I(s[3971]);
+initDHBEST03_IFLAG(s[3972]);
+initDHBEST04_I(s[3973]);
+initDHBEST04_IFLAG(s[3974]);
+initDHBEST05_I(s[3975]);
+initDHBEST05_IFLAG(s[3976]);
+initDHBEST06_I(s[3977]);
+initDHBEST06_IFLAG(s[3978]);
+initDHBEST07_I(s[3979]);
+initDHBEST07_IFLAG(s[3980]);
+initDHBEST08_I(s[3981]);
+initDHBEST08_IFLAG(s[3982]);
+initDHBEST09_I(s[3983]);
+initDHBEST09_IFLAG(s[3984]);
+initDHBEST10_I(s[3985]);
+initDHBEST10_IFLAG(s[3986]);
+initDHBEST11_I(s[3987]);
+initDHBEST11_IFLAG(s[3988]);
+initFINCV_IFLAG(s[3989]);
+initDVNIEMP(s[3990]);
+initDVHASHP(s[3991]);
+initDVDHPOWE1(s[3992]);
+initDVDHPOWE2(s[3993]);
+initDVDHPOWE3(s[3994]);
+initDVDHPOWE4(s[3995]);
+initDVDHPOWE5(s[3996]);
+initHPARR_SUM(s[3997]);
+initDVHPAR(s[3998]);
+initMOOS1(s[3999]);
+initMOOS2(s[4000]);
+initMOOS3(s[4001]);
+initMOOS4(s[4002]);
+initMOOS5(s[4003]);
+initDVDMOOWE1(s[4004]);
+initDVDMOOWE2(s[4005]);
+initDVDMOOWE3(s[4006]);
+initDVDMOOWE4(s[4007]);
+initDVDMOOWE5(s[4008]);
+initMOARR_SUM(s[4009]);
+initDVHASMOAR(s[4010]);
+initDVHASLF(s[4011]);
+initDVHASPLINF(s[4012]);
+initDVHASSLC(s[4013]);
+initDVHASSLBNK(s[4014]);
+initDVDLOWE1(s[4015]);
+initDVDLOWE2(s[4016]);
+initDVDLOWE3(s[4017]);
+initDVDLOWE4(s[4018]);
+initDVDLOWE5(s[4019]);
+initLNARR_SUM(s[4020]);
+initDVHASLNAR(s[4021]);
+initDVHASNLF(s[4022]);
+initDVHASNLI(s[4023]);
+initHFINW_EXCENDW_SUM(s[4024]);
+initHOUSGDST(s[4025]);
+initBUYLGDST(s[4026]);
+initHOUSGDSOST(s[4027]);
+initDVELARR(s[4028]);
+initDVGASARR(s[4029]);
+initDVCTARR(s[4030]);
+initDVTELARR(s[4031]);
+initDVWATARR(s[4032]);
+initDVRNTARR(s[4033]);
+initDVCHMARR(s[4034]);
+initDVCRTARR(s[4035]);
+initDVTAXARR(s[4036]);
+initDVVATARR(s[4037]);
+initDVOTHARR(s[4038]);
+initDVANYARR(s[4039]);
+initTOTBILLARR_SUM(s[4040]);
+initMOYR1(s[4041]);
+initMOMN1(s[4042]);
+initMOLFT1(s[4043]);
+initMOYR2(s[4044]);
+initMOMN2(s[4045]);
+initMOLFT2(s[4046]);
+initMOYR3(s[4047]);
+initMOMN3(s[4048]);
+initMOLFT3(s[4049]);
+initMOYR4(s[4050]);
+initMOMN4(s[4051]);
+initMOLFT4(s[4052]);
+initMOYR5(s[4053]);
+initMOMN5(s[4054]);
+initMOLFT5(s[4055]);
+initTOTMO_SUM(s[4056]);
+initDVHASMO(s[4057]);
+initHPOS1(s[4058]);
+initHPYR1(s[4059]);
+initHPMN1(s[4060]);
+initHPLFT1(s[4061]);
+initHPOS2(s[4062]);
+initHPYR2(s[4063]);
+initHPMN2(s[4064]);
+initHPLFT2(s[4065]);
+initHPOS3(s[4066]);
+initHPYR3(s[4067]);
+initHPMN3(s[4068]);
+initHPLFT3(s[4069]);
+initHPOS4(s[4070]);
+initHPYR4(s[4071]);
+initHPMN4(s[4072]);
+initHPLFT4(s[4073]);
+initHPOS5(s[4074]);
+initHPYR5(s[4075]);
+initHPMN5(s[4076]);
+initHPLFT5(s[4077]);
+initTOTHP_SUM(s[4078]);
+initLNOS1(s[4079]);
+initOSLC1(s[4080]);
+initFLNOS1(s[4081]);
+initNWFLNVAL1(s[4082]);
+initNSLC1(s[4083]);
+initNWILNVAL1(s[4084]);
+initNSLBNK1(s[4085]);
+initOSLBNK1(s[4086]);
+initLNYR1(s[4087]);
+initLNMN1(s[4088]);
+initLNLFT1(s[4089]);
+initLNOS2(s[4090]);
+initOSLC2(s[4091]);
+initFLNOS2(s[4092]);
+initNWFLNVAL2(s[4093]);
+initNSLC2(s[4094]);
+initNWILNVAL2(s[4095]);
+initNSLBNK2(s[4096]);
+initOSLBNK2(s[4097]);
+initLNYR2(s[4098]);
+initLNMN2(s[4099]);
+initLNLFT2(s[4100]);
+initLNOS3(s[4101]);
+initOSLC3(s[4102]);
+initFLNOS3(s[4103]);
+initNWFLNVAL3(s[4104]);
+initNSLC3(s[4105]);
+initNWILNVAL3(s[4106]);
+initNSLBNK3(s[4107]);
+initOSLBNK3(s[4108]);
+initLNYR3(s[4109]);
+initLNMN3(s[4110]);
+initLNLFT3(s[4111]);
+initLNOS4(s[4112]);
+initOSLC4(s[4113]);
+initFLNOS4(s[4114]);
+initNWFLNVAL4(s[4115]);
+initNSLC4(s[4116]);
+initNWILNVAL4(s[4117]);
+initNSLBNK4(s[4118]);
+initOSLBNK4(s[4119]);
+initLNYR4(s[4120]);
+initLNMN4(s[4121]);
+initLNLFT4(s[4122]);
+initLNOS5(s[4123]);
+initOSLC5(s[4124]);
+initFLNOS5(s[4125]);
+initNWFLNVAL5(s[4126]);
+initNSLC5(s[4127]);
+initNWILNVAL5(s[4128]);
+initNSLBNK5(s[4129]);
+initOSLBNK5(s[4130]);
+initLNYR5(s[4131]);
+initLNMN5(s[4132]);
+initLNLFT5(s[4133]);
+initTOTLNS_SUM(s[4134]);
+initTOTFLNS_SUM(s[4135]);
+initTOTSLC_SUM(s[4136]);
+initTOTLOS_SUM(s[4137]);
+initTOTOSLC_SUM(s[4138]);
+initTOTNSLC_SUM(s[4139]);
+initDVNWFLN_SUM(s[4140]);
+initDVNWILN_SUM(s[4141]);
+initTOTNLOS_SUM(s[4142]);
+initTOTOSLBNK_SUM(s[4143]);
+initTOTNSLBNK_SUM(s[4144]);
+initTOTSLBNK_SUM(s[4145]);
+initTOTARR_EXCMORT_SUM(s[4146]);
+initHFINL_SUM(s[4147]);
+initP_PHYS(s[4148]);
+initP_NET_PROP(s[4149]);
+initP_NET_FIN(s[4150]);
+initP_TOTWLTH(s[4151]);
+initHHPPHYS(s[4152]);
+initPERSPHYS(s[4153]);
+initHOWNF(s[4154]);
+initPHVAL(s[4155]);
+initPMVAL(s[4156]);
+initPEVAL(s[4157]);
+initP_NET_MAIN(s[4158]);
+initP_NET_OTHPROP(s[4159]);
+initDVAGE17(s[4160]);
+initDVAGE7(s[4161]);
+initSOC2010(s[4162]);
+initSICCODE(s[4163]);
+initSOC2000(s[4164]);
+initDVSEPANNUAL01(s[4165]);
+initDVSEPANNUAL02(s[4166]);
+initDVSEPANNUAL03(s[4167]);
+initDVSEPANNUAL04(s[4168]);
+initDVSEPANNUAL05(s[4169]);
+initDVSEPANNUAL06(s[4170]);
+initDVSEPANNUAL07(s[4171]);
+initDVSEPANNUAL08(s[4172]);
+initDVSPECANNUAL01(s[4173]);
+initDVSPECANNUAL02(s[4174]);
+initDVSPECANNUAL03(s[4175]);
+initDVSPECANNUAL04(s[4176]);
+initDVSPECANNUAL05(s[4177]);
+initDVSPECANNUAL06(s[4178]);
+initDVSPECANNUAL07(s[4179]);
+initDVSPECANNUAL08(s[4180]);
+initDVSPECANNUAL09(s[4181]);
+initDVSPECANNUAL10(s[4182]);
+initDVTOTALLBENANNUAL(s[4183]);
+initDVTOTTAXANNUAL(s[4184]);
+initDVGIEMP(s[4185]);
+initDVGIPPEN(s[4186]);
+initDVGRSSESECJOB(s[4187]);
+initDVGRSSESECJOB_I(s[4188]);
+initDVNETRENTAMTANNUAL(s[4189]);
+initDVOIGROANNUAL_I(s[4190]);
+initDVBTOGANNUAL(s[4191]);
+initDVCTCANNUAL(s[4192]);
+initDVGIINV(s[4193]);
+initDVGISE(s[4194]);
+initDVGRSBONAMT_I(s[4195]);
+initDVGRSEMPSECJOB(s[4196]);
+initDVGRSEMPSECJOB_I(s[4197]);
+initDVGRSPAY(s[4198]);
+initDVRENTAMTANNUAL_I(s[4199]);
+initDVGRSRENTAMTANNUAL(s[4200]);
+initDVNETBONAMT(s[4201]);
+initDVNETBONAMT_I(s[4202]);
+initDVNETEMPSECJOB(s[4203]);
+initDVNETEMPSECJOB_I(s[4204]);
+initDVNETPAY(s[4205]);
+initDVNETSESECJOB(s[4206]);
+initDVNIINV(s[4207]);
+initDVNIPPEN(s[4208]);
+initDVNISE(s[4209]);
+initPARTGRSPAY(s[4210]);
+initTOTPARTGRSPAY(s[4211]);
+initDVOIGEGANNUAL_I(s[4212]);
+initDVOIGFRANNUAL_I(s[4213]);
+initDVOIGGTANNUAL_I(s[4214]);
+initDVOIGMAANNUAL_I(s[4215]);
+initDVOIGOPANNUAL_I(s[4216]);
+initDVOIGRRANNUAL(s[4217]);
+initDVOIGRRANNUAL_I(s[4218]);
+initDVOINEGANNUAL_I(s[4219]);
+initDVOINFRANNUAL_I(s[4220]);
+initDVOINGTANNUAL_I(s[4221]);
+initDVOINMAANNUAL_I(s[4222]);
+initDVOINOPANNUAL_I(s[4223]);
+initDVOINROANNUAL_I(s[4224]);
+initDVOINRRANNUAL_I(s[4225]);
+initDVSEGRSPAY(s[4226]);
+initDVSEGRSPAY_I(s[4227]);
+initDVSENETPAY(s[4228]);
+initDVSENETPAY_I(s[4229]);
+initDVTOGTCANNUAL(s[4230]);
+initDVTOTBENANNUAL(s[4231]);
+initDVWTCANNUAL(s[4232]);
+initDVNIOTHI(s[4233]);
+initDVIRREGOTHANNUAL(s[4234]);
+initDVWINANNUAL(s[4235]);
+initDVACCINANNUAL(s[4236]);
+initDVLUMPPENANNUAL(s[4237]);
+initDVREDUNANNUAL(s[4238]);
+initDVOTHINSANNUAL(s[4239]);
+initDVLIFEANNUAL(s[4240]);
+initDVINHERITANNUAL(s[4241]);
+initDVGIFTANNUAL(s[4242]);
+initGRSPAYEMPORSE(s[4243]);
+initMARST(s[4244]);
+initECACT(s[4245]);
 }
 }

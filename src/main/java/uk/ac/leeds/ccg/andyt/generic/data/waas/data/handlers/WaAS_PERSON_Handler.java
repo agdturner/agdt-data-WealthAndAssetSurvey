@@ -96,15 +96,15 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
                 short CASEW1 = rec.getCASEW1();
                 if (CASEW1 > Short.MIN_VALUE) {
                     //WaAS_W1ID w1ID = new WaAS_W1ID(CASEW1);
-                WaAS_W1ID w1ID = env.data.CASEW1_To_w1.get(CASEW1);
+                    WaAS_W1ID w1ID = env.data.CASEW1_To_w1.get(CASEW1);
                     if (r.w1_To_c.containsKey(w1ID)) {
                         WaAS_CollectionID cID = r.w1_To_c.get(w1ID);
                         PrintWriter pw = cPWs.get(cID);
-                        
+
                         if (pw == null) {
                             env.log("cID " + cID + " wID " + w1ID);
                         }
-                        
+
                         pw.println(l);
                         Generic_Collections.addToMap(r.c_To_w1, cID, w1ID);
                     }
@@ -248,7 +248,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * @return
      */
     public WaAS_DataSubsetW3 loadDataSubsetW3(WaAS_DataSubsetW2 sW2,
-            HashMap<WaAS_W1ID, WaAS_CollectionID> w1_To_c, 
+            HashMap<WaAS_W1ID, WaAS_CollectionID> w1_To_c,
             TreeMap<WaAS_W2ID, WaAS_W1ID> w2_To_w1,
             TreeMap<WaAS_W3ID, WaAS_W2ID> w3_To_w2) {
         byte w = W3;
@@ -307,7 +307,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * @return
      */
     public WaAS_DataSubsetW4 loadDataSubsetW4(WaAS_DataSubsetW3 sW3,
-            HashMap<WaAS_W1ID, WaAS_CollectionID> w1_To_c, 
+            HashMap<WaAS_W1ID, WaAS_CollectionID> w1_To_c,
             TreeMap<WaAS_W2ID, WaAS_W1ID> w2_To_w1,
             TreeMap<WaAS_W3ID, WaAS_W2ID> w3_To_w2,
             TreeMap<WaAS_W4ID, WaAS_W3ID> w4_To_w3) {
@@ -337,11 +337,13 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
                 WaAS_W4PRecord rec = new WaAS_W4PRecord(l);
                 //WaAS_W4ID w4ID = new WaAS_W4ID(rec.getCASEW4());
                 WaAS_W4ID w4ID = env.data.CASEW4_To_w4.get(rec.getCASEW4());
-                if (w4_To_w3.containsKey(w4ID)) {
-                    WaAS_W3ID w3ID = w4_To_w3.get(w4ID);
-                    WaAS_W2ID w2ID = w3_To_w2.get(w3ID);
-                    WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
-                    write(w1_To_c, w1ID, cPWs, l);
+                if (w4ID != null) {
+                    if (w4_To_w3.containsKey(w4ID)) {
+                        WaAS_W3ID w3ID = w4_To_w3.get(w4ID);
+                        WaAS_W2ID w2ID = w3_To_w2.get(w3ID);
+                        WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
+                        write(w1_To_c, w1ID, cPWs, l);
+                    }
                 }
             });
             // Close br
@@ -367,7 +369,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * @return
      */
     public WaAS_DataSubsetW5 loadDataSubsetW5(WaAS_DataSubsetW4 sW4,
-            HashMap<WaAS_W1ID, WaAS_CollectionID> w1_To_c, 
+            HashMap<WaAS_W1ID, WaAS_CollectionID> w1_To_c,
             TreeMap<WaAS_W2ID, WaAS_W1ID> w2_To_w1,
             TreeMap<WaAS_W3ID, WaAS_W2ID> w3_To_w2,
             TreeMap<WaAS_W4ID, WaAS_W3ID> w4_To_w3,

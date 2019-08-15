@@ -7,8 +7,45 @@ protected int BUYLGDST_SUM;
 protected short CASEW2;
 protected int DVBLTDEBT;
 protected int DVBLTVAL;
-protected int DVNWFLN_SUM;
-protected int DVNWILN_SUM;
+protected double DVCACRVAL_AGGR;
+protected int DVCACTV_AGGR;
+protected int DVCAODVAL_AGGR;
+protected int DVCASVV_AGGR;
+protected double DVCAVAL_AGGR;
+protected int DVCISAV_AGGR;
+protected double DVDBRWEALTHVAL_AGGR;
+protected int DVFBONDV_AGGR;
+protected int DVFCOLLV_AGGR;
+protected int DVFEOPTV_AGGR;
+protected int DVFESHARES_AGGR;
+protected int DVFESHAV_AGGR;
+protected double DVFFASSETS_AGGR;
+protected int DVFGLTFOV_AGGR;
+protected int DVFGLTUKV_AGGR;
+protected int DVFINFLV_AGGR;
+protected int DVFINFVAL_AGGR;
+protected int DVFINFV_AGGR;
+protected int DVFINVOTV_AGGR;
+protected int DVFLFENV_AGGR;
+protected int DVFLFFSV_AGGR;
+protected int DVFLFSIV_AGGR;
+protected int DVFLFTEV_AGGR;
+protected int DVFNSVAL_AGGR;
+protected int DVFSHOSV_AGGR;
+protected int DVFSHUKV_AGGR;
+protected int DVIISAV_AGGR;
+protected int DVINSV_AGGR;
+protected int DVISAVAL_AGGR;
+protected int DVKISAV_AGGR;
+protected int DVPAVCUV_AGGR;
+protected double DVPFCURVAL_AGGR;
+protected int DVPFDDV_AGGR;
+protected double DVPINPVAL_AGGR;
+protected double DVPPVAL_AGGR;
+protected int DVSAVAL_AGGR;
+protected double DVSPEN_AGGR;
+protected double DVVALDBT_AGGR;
+protected double DVVALDCOS_AGGR;
 protected byte EQNEW;
 protected byte EQNEW_I;
 protected boolean EQNEW_IFLAG;
@@ -20,26 +57,43 @@ protected boolean EQREAS6;
 protected boolean EQREAS7;
 protected boolean EQREAS8;
 protected boolean EQREAS9;
+protected int GCONTVLS;
 protected byte HEXT1;
 protected byte HEXT2;
 protected byte HEXT3;
 protected byte HEXT4;
-protected byte HRPDVAGEW2BAND;
+protected double HFINL_AGGR;
+protected double HFINW_EXCENDW_AGGR;
 protected boolean H_FLAG1;
 protected boolean H_FLAG2;
 protected byte H_FLAG4;
 protected boolean H_FLAG5;
+protected String LEA;
 protected int MARRSV;
 protected int MARRSV2;
 protected short MARRSV3;
 protected byte MCHGE;
 protected byte MCHGENUM;
 protected boolean MENDV10;
+protected boolean MENDV10_I;
+protected boolean MENDV10_IFLAG;
 protected short MENDV12;
+protected short MENDV12_I;
+protected boolean MENDV12_IFLAG;
 protected short MENDV13;
+protected short MENDV13_I;
+protected boolean MENDV13_IFLAG;
 protected boolean MENDV14;
+protected boolean MENDV14_I;
+protected boolean MENDV14_IFLAG;
 protected boolean MENDV15;
+protected boolean MENDV15_I;
+protected boolean MENDV15_IFLAG;
+protected short MENDV8_I;
+protected boolean MENDV8_IFLAG;
 protected boolean MENDV9;
+protected boolean MENDV9_I;
+protected boolean MENDV9_IFLAG;
 protected boolean MENDVB10;
 protected boolean MENDVB12;
 protected boolean MENDVB13;
@@ -73,6 +127,9 @@ protected boolean MNUMBN_IFLAG;
 protected byte MNUMBO;
 protected byte MNUMBO_I;
 protected boolean MNUMBO_IFLAG;
+protected byte MNUMB_I;
+protected boolean MNUMB_IFLAG;
+protected byte MONTHW1;
 protected byte MORTID;
 protected boolean MORTID2;
 protected boolean MORTID3;
@@ -90,11 +147,41 @@ protected byte MYIFCH3;
 protected byte NOUNITS;
 protected byte NUMDEPCH_HH;
 protected boolean NUMNDEP;
+protected int TOTARR_EXCMORT_AGGR;
+protected int TOTBILLARR_AGGR;
+protected int TOTCC_AGGR;
+protected int TOTDVNWFLN_AGGR;
+protected int TOTDVNWILN_AGGR;
+protected double TOTFLNS_AGGR;
+protected short TOTHPARR_AGGR;
+protected double TOTHP_AGGR;
+protected int TOTLNARR_AGGR;
+protected double TOTLNS_AGGR;
+protected double TOTLOS_AGGR;
+protected short TOTMOARR_AGGR;
+protected double TOTMO_AGGR;
+protected int TOTNLOS_AGGR;
+protected int TOTNSLBNK_AGGR;
+protected int TOTNSLC_AGGR;
+protected int TOTOSLBNK_AGGR;
+protected double TOTOSLC_AGGR;
+protected double TOTPEN_AGGR;
+protected short TOTSC_AGGR;
+protected int TOTSLBNK_AGGR;
+protected double TOTSLC_AGGR;
+protected byte URINDEW;
+protected byte URINDSC;
 protected byte VCADD;
 protected byte VCADDN;
+protected boolean VOTYPE1_IFLAG;
+protected boolean VOTYPE2_IFLAG;
+protected boolean VOTYPE3_IFLAG;
+protected boolean VOTYPE4_IFLAG;
+protected boolean VOTYPE5_IFLAG;
 protected byte VPERS_I;
 protected boolean VPERS_IFLAG;
 protected double XS_CALWGT;
+protected short YEARW1;
 protected final void initBUYLGDST_SUM(String s) {
 if (!s.trim().isEmpty()) {
 BUYLGDST_SUM = Integer.parseInt(s);
@@ -127,19 +214,315 @@ DVBLTVAL = Integer.MIN_VALUE;
 }
 }
 
-protected final void initDVNWFLN_SUM(String s) {
+protected final void initDVCACRVAL_AGGR(String s) {
 if (!s.trim().isEmpty()) {
-DVNWFLN_SUM = Integer.parseInt(s);
+DVCACRVAL_AGGR = Double.parseDouble(s);
 } else {
-DVNWFLN_SUM = Integer.MIN_VALUE;
+DVCACRVAL_AGGR = Double.NaN;
 }
 }
 
-protected final void initDVNWILN_SUM(String s) {
+protected final void initDVCACTV_AGGR(String s) {
 if (!s.trim().isEmpty()) {
-DVNWILN_SUM = Integer.parseInt(s);
+DVCACTV_AGGR = Integer.parseInt(s);
 } else {
-DVNWILN_SUM = Integer.MIN_VALUE;
+DVCACTV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVCAODVAL_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVCAODVAL_AGGR = Integer.parseInt(s);
+} else {
+DVCAODVAL_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVCASVV_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVCASVV_AGGR = Integer.parseInt(s);
+} else {
+DVCASVV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVCAVAL_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVCAVAL_AGGR = Double.parseDouble(s);
+} else {
+DVCAVAL_AGGR = Double.NaN;
+}
+}
+
+protected final void initDVCISAV_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVCISAV_AGGR = Integer.parseInt(s);
+} else {
+DVCISAV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVDBRWEALTHVAL_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVDBRWEALTHVAL_AGGR = Double.parseDouble(s);
+} else {
+DVDBRWEALTHVAL_AGGR = Double.NaN;
+}
+}
+
+protected final void initDVFBONDV_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVFBONDV_AGGR = Integer.parseInt(s);
+} else {
+DVFBONDV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVFCOLLV_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVFCOLLV_AGGR = Integer.parseInt(s);
+} else {
+DVFCOLLV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVFEOPTV_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVFEOPTV_AGGR = Integer.parseInt(s);
+} else {
+DVFEOPTV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVFESHARES_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVFESHARES_AGGR = Integer.parseInt(s);
+} else {
+DVFESHARES_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVFESHAV_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVFESHAV_AGGR = Integer.parseInt(s);
+} else {
+DVFESHAV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVFFASSETS_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVFFASSETS_AGGR = Double.parseDouble(s);
+} else {
+DVFFASSETS_AGGR = Double.NaN;
+}
+}
+
+protected final void initDVFGLTFOV_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVFGLTFOV_AGGR = Integer.parseInt(s);
+} else {
+DVFGLTFOV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVFGLTUKV_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVFGLTUKV_AGGR = Integer.parseInt(s);
+} else {
+DVFGLTUKV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVFINFLV_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVFINFLV_AGGR = Integer.parseInt(s);
+} else {
+DVFINFLV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVFINFVAL_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVFINFVAL_AGGR = Integer.parseInt(s);
+} else {
+DVFINFVAL_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVFINFV_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVFINFV_AGGR = Integer.parseInt(s);
+} else {
+DVFINFV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVFINVOTV_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVFINVOTV_AGGR = Integer.parseInt(s);
+} else {
+DVFINVOTV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVFLFENV_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVFLFENV_AGGR = Integer.parseInt(s);
+} else {
+DVFLFENV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVFLFFSV_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVFLFFSV_AGGR = Integer.parseInt(s);
+} else {
+DVFLFFSV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVFLFSIV_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVFLFSIV_AGGR = Integer.parseInt(s);
+} else {
+DVFLFSIV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVFLFTEV_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVFLFTEV_AGGR = Integer.parseInt(s);
+} else {
+DVFLFTEV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVFNSVAL_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVFNSVAL_AGGR = Integer.parseInt(s);
+} else {
+DVFNSVAL_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVFSHOSV_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVFSHOSV_AGGR = Integer.parseInt(s);
+} else {
+DVFSHOSV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVFSHUKV_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVFSHUKV_AGGR = Integer.parseInt(s);
+} else {
+DVFSHUKV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVIISAV_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVIISAV_AGGR = Integer.parseInt(s);
+} else {
+DVIISAV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVINSV_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVINSV_AGGR = Integer.parseInt(s);
+} else {
+DVINSV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVISAVAL_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVISAVAL_AGGR = Integer.parseInt(s);
+} else {
+DVISAVAL_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVKISAV_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVKISAV_AGGR = Integer.parseInt(s);
+} else {
+DVKISAV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVPAVCUV_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVPAVCUV_AGGR = Integer.parseInt(s);
+} else {
+DVPAVCUV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVPFCURVAL_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVPFCURVAL_AGGR = Double.parseDouble(s);
+} else {
+DVPFCURVAL_AGGR = Double.NaN;
+}
+}
+
+protected final void initDVPFDDV_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVPFDDV_AGGR = Integer.parseInt(s);
+} else {
+DVPFDDV_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVPINPVAL_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVPINPVAL_AGGR = Double.parseDouble(s);
+} else {
+DVPINPVAL_AGGR = Double.NaN;
+}
+}
+
+protected final void initDVPPVAL_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVPPVAL_AGGR = Double.parseDouble(s);
+} else {
+DVPPVAL_AGGR = Double.NaN;
+}
+}
+
+protected final void initDVSAVAL_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVSAVAL_AGGR = Integer.parseInt(s);
+} else {
+DVSAVAL_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initDVSPEN_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVSPEN_AGGR = Double.parseDouble(s);
+} else {
+DVSPEN_AGGR = Double.NaN;
+}
+}
+
+protected final void initDVVALDBT_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVVALDBT_AGGR = Double.parseDouble(s);
+} else {
+DVVALDBT_AGGR = Double.NaN;
+}
+}
+
+protected final void initDVVALDCOS_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+DVVALDCOS_AGGR = Double.parseDouble(s);
+} else {
+DVVALDCOS_AGGR = Double.NaN;
 }
 }
 
@@ -252,6 +635,14 @@ EQREAS9 = true;
 }
 }
 
+protected final void initGCONTVLS(String s) {
+if (!s.trim().isEmpty()) {
+GCONTVLS = Integer.parseInt(s);
+} else {
+GCONTVLS = Integer.MIN_VALUE;
+}
+}
+
 protected final void initHEXT1(String s) {
 if (!s.trim().isEmpty()) {
 HEXT1 = Byte.parseByte(s);
@@ -284,11 +675,19 @@ HEXT4 = Byte.MIN_VALUE;
 }
 }
 
-protected final void initHRPDVAGEW2BAND(String s) {
+protected final void initHFINL_AGGR(String s) {
 if (!s.trim().isEmpty()) {
-HRPDVAGEW2BAND = Byte.parseByte(s);
+HFINL_AGGR = Double.parseDouble(s);
 } else {
-HRPDVAGEW2BAND = Byte.MIN_VALUE;
+HFINL_AGGR = Double.NaN;
+}
+}
+
+protected final void initHFINW_EXCENDW_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+HFINW_EXCENDW_AGGR = Double.parseDouble(s);
+} else {
+HFINW_EXCENDW_AGGR = Double.NaN;
 }
 }
 
@@ -330,6 +729,12 @@ H_FLAG5 = false;
 } else {
 H_FLAG5 = true;
 }
+}
+}
+
+protected final void initLEA(String s) {
+if (!s.trim().isEmpty()) {
+LEA = s;
 }
 }
 
@@ -384,11 +789,48 @@ MENDV10 = true;
 }
 }
 
+protected final void initMENDV10_I(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+MENDV10_I = false;
+}
+}
+
+protected final void initMENDV10_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+MENDV10_IFLAG = false;
+} else {
+MENDV10_IFLAG = true;
+}
+}
+}
+
 protected final void initMENDV12(String s) {
 if (!s.trim().isEmpty()) {
 MENDV12 = Short.parseShort(s);
 } else {
 MENDV12 = Short.MIN_VALUE;
+}
+}
+
+protected final void initMENDV12_I(String s) {
+if (!s.trim().isEmpty()) {
+MENDV12_I = Short.parseShort(s);
+} else {
+MENDV12_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initMENDV12_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+MENDV12_IFLAG = false;
+} else {
+MENDV12_IFLAG = true;
+}
 }
 }
 
@@ -400,6 +842,25 @@ MENDV13 = Short.MIN_VALUE;
 }
 }
 
+protected final void initMENDV13_I(String s) {
+if (!s.trim().isEmpty()) {
+MENDV13_I = Short.parseShort(s);
+} else {
+MENDV13_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initMENDV13_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+MENDV13_IFLAG = false;
+} else {
+MENDV13_IFLAG = true;
+}
+}
+}
+
 protected final void initMENDV14(String s) {
 if (!s.trim().isEmpty()) {
 byte b = Byte.parseByte(s);
@@ -407,6 +868,24 @@ if (b == -7) {
 MENDV14 = false;
 } else {
 MENDV14 = true;
+}
+}
+}
+
+protected final void initMENDV14_I(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+MENDV14_I = false;
+}
+}
+
+protected final void initMENDV14_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+MENDV14_IFLAG = false;
+} else {
+MENDV14_IFLAG = true;
 }
 }
 }
@@ -422,6 +901,43 @@ MENDV15 = true;
 }
 }
 
+protected final void initMENDV15_I(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+MENDV15_I = false;
+}
+}
+
+protected final void initMENDV15_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+MENDV15_IFLAG = false;
+} else {
+MENDV15_IFLAG = true;
+}
+}
+}
+
+protected final void initMENDV8_I(String s) {
+if (!s.trim().isEmpty()) {
+MENDV8_I = Short.parseShort(s);
+} else {
+MENDV8_I = Short.MIN_VALUE;
+}
+}
+
+protected final void initMENDV8_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+MENDV8_IFLAG = false;
+} else {
+MENDV8_IFLAG = true;
+}
+}
+}
+
 protected final void initMENDV9(String s) {
 if (!s.trim().isEmpty()) {
 byte b = Byte.parseByte(s);
@@ -429,6 +945,24 @@ if (b == -7) {
 MENDV9 = false;
 } else {
 MENDV9 = true;
+}
+}
+}
+
+protected final void initMENDV9_I(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+MENDV9_I = false;
+}
+}
+
+protected final void initMENDV9_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+MENDV9_IFLAG = false;
+} else {
+MENDV9_IFLAG = true;
 }
 }
 }
@@ -766,6 +1300,33 @@ MNUMBO_IFLAG = true;
 }
 }
 
+protected final void initMNUMB_I(String s) {
+if (!s.trim().isEmpty()) {
+MNUMB_I = Byte.parseByte(s);
+} else {
+MNUMB_I = Byte.MIN_VALUE;
+}
+}
+
+protected final void initMNUMB_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+if (b == 0) {
+MNUMB_IFLAG = false;
+} else {
+MNUMB_IFLAG = true;
+}
+}
+}
+
+protected final void initMONTHW1(String s) {
+if (!s.trim().isEmpty()) {
+MONTHW1 = Byte.parseByte(s);
+} else {
+MONTHW1 = Byte.MIN_VALUE;
+}
+}
+
 protected final void initMORTID(String s) {
 if (!s.trim().isEmpty()) {
 MORTID = Byte.parseByte(s);
@@ -917,6 +1478,198 @@ NUMNDEP = true;
 }
 }
 
+protected final void initTOTARR_EXCMORT_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+TOTARR_EXCMORT_AGGR = Integer.parseInt(s);
+} else {
+TOTARR_EXCMORT_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initTOTBILLARR_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+TOTBILLARR_AGGR = Integer.parseInt(s);
+} else {
+TOTBILLARR_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initTOTCC_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+TOTCC_AGGR = Integer.parseInt(s);
+} else {
+TOTCC_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initTOTDVNWFLN_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+TOTDVNWFLN_AGGR = Integer.parseInt(s);
+} else {
+TOTDVNWFLN_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initTOTDVNWILN_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+TOTDVNWILN_AGGR = Integer.parseInt(s);
+} else {
+TOTDVNWILN_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initTOTFLNS_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+TOTFLNS_AGGR = Double.parseDouble(s);
+} else {
+TOTFLNS_AGGR = Double.NaN;
+}
+}
+
+protected final void initTOTHPARR_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+TOTHPARR_AGGR = Short.parseShort(s);
+} else {
+TOTHPARR_AGGR = Short.MIN_VALUE;
+}
+}
+
+protected final void initTOTHP_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+TOTHP_AGGR = Double.parseDouble(s);
+} else {
+TOTHP_AGGR = Double.NaN;
+}
+}
+
+protected final void initTOTLNARR_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+TOTLNARR_AGGR = Integer.parseInt(s);
+} else {
+TOTLNARR_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initTOTLNS_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+TOTLNS_AGGR = Double.parseDouble(s);
+} else {
+TOTLNS_AGGR = Double.NaN;
+}
+}
+
+protected final void initTOTLOS_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+TOTLOS_AGGR = Double.parseDouble(s);
+} else {
+TOTLOS_AGGR = Double.NaN;
+}
+}
+
+protected final void initTOTMOARR_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+TOTMOARR_AGGR = Short.parseShort(s);
+} else {
+TOTMOARR_AGGR = Short.MIN_VALUE;
+}
+}
+
+protected final void initTOTMO_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+TOTMO_AGGR = Double.parseDouble(s);
+} else {
+TOTMO_AGGR = Double.NaN;
+}
+}
+
+protected final void initTOTNLOS_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+TOTNLOS_AGGR = Integer.parseInt(s);
+} else {
+TOTNLOS_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initTOTNSLBNK_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+TOTNSLBNK_AGGR = Integer.parseInt(s);
+} else {
+TOTNSLBNK_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initTOTNSLC_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+TOTNSLC_AGGR = Integer.parseInt(s);
+} else {
+TOTNSLC_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initTOTOSLBNK_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+TOTOSLBNK_AGGR = Integer.parseInt(s);
+} else {
+TOTOSLBNK_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initTOTOSLC_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+TOTOSLC_AGGR = Double.parseDouble(s);
+} else {
+TOTOSLC_AGGR = Double.NaN;
+}
+}
+
+protected final void initTOTPEN_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+TOTPEN_AGGR = Double.parseDouble(s);
+} else {
+TOTPEN_AGGR = Double.NaN;
+}
+}
+
+protected final void initTOTSC_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+TOTSC_AGGR = Short.parseShort(s);
+} else {
+TOTSC_AGGR = Short.MIN_VALUE;
+}
+}
+
+protected final void initTOTSLBNK_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+TOTSLBNK_AGGR = Integer.parseInt(s);
+} else {
+TOTSLBNK_AGGR = Integer.MIN_VALUE;
+}
+}
+
+protected final void initTOTSLC_AGGR(String s) {
+if (!s.trim().isEmpty()) {
+TOTSLC_AGGR = Double.parseDouble(s);
+} else {
+TOTSLC_AGGR = Double.NaN;
+}
+}
+
+protected final void initURINDEW(String s) {
+if (!s.trim().isEmpty()) {
+URINDEW = Byte.parseByte(s);
+} else {
+URINDEW = Byte.MIN_VALUE;
+}
+}
+
+protected final void initURINDSC(String s) {
+if (!s.trim().isEmpty()) {
+URINDSC = Byte.parseByte(s);
+} else {
+URINDSC = Byte.MIN_VALUE;
+}
+}
+
 protected final void initVCADD(String s) {
 if (!s.trim().isEmpty()) {
 VCADD = Byte.parseByte(s);
@@ -930,6 +1683,41 @@ if (!s.trim().isEmpty()) {
 VCADDN = Byte.parseByte(s);
 } else {
 VCADDN = Byte.MIN_VALUE;
+}
+}
+
+protected final void initVOTYPE1_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+VOTYPE1_IFLAG = false;
+}
+}
+
+protected final void initVOTYPE2_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+VOTYPE2_IFLAG = false;
+}
+}
+
+protected final void initVOTYPE3_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+VOTYPE3_IFLAG = false;
+}
+}
+
+protected final void initVOTYPE4_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+VOTYPE4_IFLAG = false;
+}
+}
+
+protected final void initVOTYPE5_IFLAG(String s) {
+if (!s.trim().isEmpty()) {
+byte b = Byte.parseByte(s);
+VOTYPE5_IFLAG = false;
 }
 }
 
@@ -960,6 +1748,14 @@ XS_CALWGT = Double.NaN;
 }
 }
 
+protected final void initYEARW1(String s) {
+if (!s.trim().isEmpty()) {
+YEARW1 = Short.parseShort(s);
+} else {
+YEARW1 = Short.MIN_VALUE;
+}
+}
+
 public int getBUYLGDST_SUM() {
 return BUYLGDST_SUM;
 }
@@ -976,12 +1772,160 @@ public int getDVBLTVAL() {
 return DVBLTVAL;
 }
 
-public int getDVNWFLN_SUM() {
-return DVNWFLN_SUM;
+public double getDVCACRVAL_AGGR() {
+return DVCACRVAL_AGGR;
 }
 
-public int getDVNWILN_SUM() {
-return DVNWILN_SUM;
+public int getDVCACTV_AGGR() {
+return DVCACTV_AGGR;
+}
+
+public int getDVCAODVAL_AGGR() {
+return DVCAODVAL_AGGR;
+}
+
+public int getDVCASVV_AGGR() {
+return DVCASVV_AGGR;
+}
+
+public double getDVCAVAL_AGGR() {
+return DVCAVAL_AGGR;
+}
+
+public int getDVCISAV_AGGR() {
+return DVCISAV_AGGR;
+}
+
+public double getDVDBRWEALTHVAL_AGGR() {
+return DVDBRWEALTHVAL_AGGR;
+}
+
+public int getDVFBONDV_AGGR() {
+return DVFBONDV_AGGR;
+}
+
+public int getDVFCOLLV_AGGR() {
+return DVFCOLLV_AGGR;
+}
+
+public int getDVFEOPTV_AGGR() {
+return DVFEOPTV_AGGR;
+}
+
+public int getDVFESHARES_AGGR() {
+return DVFESHARES_AGGR;
+}
+
+public int getDVFESHAV_AGGR() {
+return DVFESHAV_AGGR;
+}
+
+public double getDVFFASSETS_AGGR() {
+return DVFFASSETS_AGGR;
+}
+
+public int getDVFGLTFOV_AGGR() {
+return DVFGLTFOV_AGGR;
+}
+
+public int getDVFGLTUKV_AGGR() {
+return DVFGLTUKV_AGGR;
+}
+
+public int getDVFINFLV_AGGR() {
+return DVFINFLV_AGGR;
+}
+
+public int getDVFINFVAL_AGGR() {
+return DVFINFVAL_AGGR;
+}
+
+public int getDVFINFV_AGGR() {
+return DVFINFV_AGGR;
+}
+
+public int getDVFINVOTV_AGGR() {
+return DVFINVOTV_AGGR;
+}
+
+public int getDVFLFENV_AGGR() {
+return DVFLFENV_AGGR;
+}
+
+public int getDVFLFFSV_AGGR() {
+return DVFLFFSV_AGGR;
+}
+
+public int getDVFLFSIV_AGGR() {
+return DVFLFSIV_AGGR;
+}
+
+public int getDVFLFTEV_AGGR() {
+return DVFLFTEV_AGGR;
+}
+
+public int getDVFNSVAL_AGGR() {
+return DVFNSVAL_AGGR;
+}
+
+public int getDVFSHOSV_AGGR() {
+return DVFSHOSV_AGGR;
+}
+
+public int getDVFSHUKV_AGGR() {
+return DVFSHUKV_AGGR;
+}
+
+public int getDVIISAV_AGGR() {
+return DVIISAV_AGGR;
+}
+
+public int getDVINSV_AGGR() {
+return DVINSV_AGGR;
+}
+
+public int getDVISAVAL_AGGR() {
+return DVISAVAL_AGGR;
+}
+
+public int getDVKISAV_AGGR() {
+return DVKISAV_AGGR;
+}
+
+public int getDVPAVCUV_AGGR() {
+return DVPAVCUV_AGGR;
+}
+
+public double getDVPFCURVAL_AGGR() {
+return DVPFCURVAL_AGGR;
+}
+
+public int getDVPFDDV_AGGR() {
+return DVPFDDV_AGGR;
+}
+
+public double getDVPINPVAL_AGGR() {
+return DVPINPVAL_AGGR;
+}
+
+public double getDVPPVAL_AGGR() {
+return DVPPVAL_AGGR;
+}
+
+public int getDVSAVAL_AGGR() {
+return DVSAVAL_AGGR;
+}
+
+public double getDVSPEN_AGGR() {
+return DVSPEN_AGGR;
+}
+
+public double getDVVALDBT_AGGR() {
+return DVVALDBT_AGGR;
+}
+
+public double getDVVALDCOS_AGGR() {
+return DVVALDCOS_AGGR;
 }
 
 public byte getEQNEW() {
@@ -1028,6 +1972,10 @@ public boolean getEQREAS9() {
 return EQREAS9;
 }
 
+public int getGCONTVLS() {
+return GCONTVLS;
+}
+
 public byte getHEXT1() {
 return HEXT1;
 }
@@ -1044,8 +1992,12 @@ public byte getHEXT4() {
 return HEXT4;
 }
 
-public byte getHRPDVAGEW2BAND() {
-return HRPDVAGEW2BAND;
+public double getHFINL_AGGR() {
+return HFINL_AGGR;
+}
+
+public double getHFINW_EXCENDW_AGGR() {
+return HFINW_EXCENDW_AGGR;
 }
 
 public boolean getH_FLAG1() {
@@ -1062,6 +2014,10 @@ return H_FLAG4;
 
 public boolean getH_FLAG5() {
 return H_FLAG5;
+}
+
+public String getLEA() {
+return LEA;
 }
 
 public int getMARRSV() {
@@ -1088,24 +2044,80 @@ public boolean getMENDV10() {
 return MENDV10;
 }
 
+public boolean getMENDV10_I() {
+return MENDV10_I;
+}
+
+public boolean getMENDV10_IFLAG() {
+return MENDV10_IFLAG;
+}
+
 public short getMENDV12() {
 return MENDV12;
+}
+
+public short getMENDV12_I() {
+return MENDV12_I;
+}
+
+public boolean getMENDV12_IFLAG() {
+return MENDV12_IFLAG;
 }
 
 public short getMENDV13() {
 return MENDV13;
 }
 
+public short getMENDV13_I() {
+return MENDV13_I;
+}
+
+public boolean getMENDV13_IFLAG() {
+return MENDV13_IFLAG;
+}
+
 public boolean getMENDV14() {
 return MENDV14;
+}
+
+public boolean getMENDV14_I() {
+return MENDV14_I;
+}
+
+public boolean getMENDV14_IFLAG() {
+return MENDV14_IFLAG;
 }
 
 public boolean getMENDV15() {
 return MENDV15;
 }
 
+public boolean getMENDV15_I() {
+return MENDV15_I;
+}
+
+public boolean getMENDV15_IFLAG() {
+return MENDV15_IFLAG;
+}
+
+public short getMENDV8_I() {
+return MENDV8_I;
+}
+
+public boolean getMENDV8_IFLAG() {
+return MENDV8_IFLAG;
+}
+
 public boolean getMENDV9() {
 return MENDV9;
+}
+
+public boolean getMENDV9_I() {
+return MENDV9_I;
+}
+
+public boolean getMENDV9_IFLAG() {
+return MENDV9_IFLAG;
 }
 
 public boolean getMENDVB10() {
@@ -1240,6 +2252,18 @@ public boolean getMNUMBO_IFLAG() {
 return MNUMBO_IFLAG;
 }
 
+public byte getMNUMB_I() {
+return MNUMB_I;
+}
+
+public boolean getMNUMB_IFLAG() {
+return MNUMB_IFLAG;
+}
+
+public byte getMONTHW1() {
+return MONTHW1;
+}
+
 public byte getMORTID() {
 return MORTID;
 }
@@ -1308,12 +2332,128 @@ public boolean getNUMNDEP() {
 return NUMNDEP;
 }
 
+public int getTOTARR_EXCMORT_AGGR() {
+return TOTARR_EXCMORT_AGGR;
+}
+
+public int getTOTBILLARR_AGGR() {
+return TOTBILLARR_AGGR;
+}
+
+public int getTOTCC_AGGR() {
+return TOTCC_AGGR;
+}
+
+public int getTOTDVNWFLN_AGGR() {
+return TOTDVNWFLN_AGGR;
+}
+
+public int getTOTDVNWILN_AGGR() {
+return TOTDVNWILN_AGGR;
+}
+
+public double getTOTFLNS_AGGR() {
+return TOTFLNS_AGGR;
+}
+
+public short getTOTHPARR_AGGR() {
+return TOTHPARR_AGGR;
+}
+
+public double getTOTHP_AGGR() {
+return TOTHP_AGGR;
+}
+
+public int getTOTLNARR_AGGR() {
+return TOTLNARR_AGGR;
+}
+
+public double getTOTLNS_AGGR() {
+return TOTLNS_AGGR;
+}
+
+public double getTOTLOS_AGGR() {
+return TOTLOS_AGGR;
+}
+
+public short getTOTMOARR_AGGR() {
+return TOTMOARR_AGGR;
+}
+
+public double getTOTMO_AGGR() {
+return TOTMO_AGGR;
+}
+
+public int getTOTNLOS_AGGR() {
+return TOTNLOS_AGGR;
+}
+
+public int getTOTNSLBNK_AGGR() {
+return TOTNSLBNK_AGGR;
+}
+
+public int getTOTNSLC_AGGR() {
+return TOTNSLC_AGGR;
+}
+
+public int getTOTOSLBNK_AGGR() {
+return TOTOSLBNK_AGGR;
+}
+
+public double getTOTOSLC_AGGR() {
+return TOTOSLC_AGGR;
+}
+
+public double getTOTPEN_AGGR() {
+return TOTPEN_AGGR;
+}
+
+public short getTOTSC_AGGR() {
+return TOTSC_AGGR;
+}
+
+public int getTOTSLBNK_AGGR() {
+return TOTSLBNK_AGGR;
+}
+
+public double getTOTSLC_AGGR() {
+return TOTSLC_AGGR;
+}
+
+public byte getURINDEW() {
+return URINDEW;
+}
+
+public byte getURINDSC() {
+return URINDSC;
+}
+
 public byte getVCADD() {
 return VCADD;
 }
 
 public byte getVCADDN() {
 return VCADDN;
+}
+
+public boolean getVOTYPE1_IFLAG() {
+return VOTYPE1_IFLAG;
+}
+
+public boolean getVOTYPE2_IFLAG() {
+return VOTYPE2_IFLAG;
+}
+
+public boolean getVOTYPE3_IFLAG() {
+return VOTYPE3_IFLAG;
+}
+
+public boolean getVOTYPE4_IFLAG() {
+return VOTYPE4_IFLAG;
+}
+
+public boolean getVOTYPE5_IFLAG() {
+return VOTYPE5_IFLAG;
 }
 
 public byte getVPERS_I() {
@@ -1328,545 +2468,595 @@ public double getXS_CALWGT() {
 return XS_CALWGT;
 }
 
+public short getYEARW1() {
+return YEARW1;
+}
+
 public WaAS_W2HRecord(String line) {
 s = line.split("\t");
-initH_FLAG1(s[0]);
-initH_FLAG2(s[1]);
-initH_FLAG4(s[2]);
-initH_FLAG5(s[3]);
-initXS_CALWGT(s[4]);
-initHOUT(s[5]);
-initACCOM(s[6]);
-initACCOTH(s[7]);
-initDVVESTV2_I(s[8]);
-initDVVESTV2_IFLAG(s[9]);
-initDVVESTV3_I(s[10]);
-initDVVESTV3_IFLAG(s[11]);
-initDVVESTV_I(s[12]);
-initDVVESTV_IFLAG(s[13]);
-initDVVOVAL_I(s[14]);
-initDVVOVAL_IFLAG(s[15]);
-initDVVPERV_I(s[16]);
-initDVVPERV_IFLAG(s[17]);
-initEINTPAY(s[18]);
-initEINTRAT(s[19]);
-initEINTRAT_I(s[20]);
-initEINTRAT_IFLAG(s[21]);
-initEOTHIRR(s[22]);
-initEOTHIVA(s[23]);
-initEOTHIVB(s[24]);
-initEOTHREG(s[25]);
-initEOTHRVA(s[26]);
-initEOTHRVB(s[27]);
-initEPRPER(s[28]);
-initEPRVAL(s[29]);
-initEPRVPAY(s[30]);
-initEQFILTER(s[31]);
-initEQNEW(s[32]);
-initEQNEW_I(s[33]);
-initEQNEW_IFLAG(s[34]);
-initEQOLD(s[35]);
-initEQOLD_I(s[36]);
-initEQOLD_IFLAG(s[37]);
-initEQREAS1(s[38]);
-initEQREAS2(s[39]);
-initEQREAS3(s[40]);
-initEQREAS4(s[41]);
-initEQREAS5(s[42]);
-initEQREAS6(s[43]);
-initEQREAS7(s[44]);
-initEQREAS8(s[45]);
-initEQREAS9(s[46]);
-initEQREL(s[47]);
-initEQREL_I(s[48]);
-initEQREL_IFLAG(s[49]);
-initEQTYPE(s[50]);
-initEQTYPE_I(s[51]);
-initEQTYPE_IFLAG(s[52]);
-initEQVALB(s[53]);
-initEQVAL(s[54]);
-initEQVAL_I(s[55]);
-initEQVAL_IFLAG(s[56]);
-initEQWHEN(s[57]);
-initEQYES(s[58]);
-initEQYES_I(s[59]);
-initEQYES_IFLAG(s[60]);
-initERECMB(s[61]);
-initERECM(s[62]);
-initERECTAX(s[63]);
-initERENTAM(s[64]);
-initERENTB(s[65]);
-initERVPRP(s[66]);
-initERVPRP_I(s[67]);
-initERVPRP_IFLAG(s[68]);
-initERVRECB(s[69]);
-initERVREC(s[70]);
-initERVREG(s[71]);
-initERVRENT(s[72]);
-initERVSUMB(s[73]);
-initERVSUM(s[74]);
-initERVTAX(s[75]);
-initFLTTYP(s[76]);
-initFURN(s[77]);
-initGCOLLEC(s[78]);
-initGCOLLEC_I(s[79]);
-initGCOLLEC_IFLAG(s[80]);
-initGCOLLVB(s[81]);
-initGCOLLV(s[82]);
-initGCOLLV_I(s[83]);
-initGCOLLV_IFLAG(s[84]);
-initGCONTVB(s[85]);
-initGCONTVB_I(s[86]);
-initGCONTVB_IFLAG(s[87]);
-initGCONTVLS2(s[88]);
-initGCPREAM(s[89]);
-initHAGEB(s[90]);
-initHAGEYR(s[91]);
-initHBFROM(s[92]);
-initHBUYSE(s[93]);
-initHBUYYR(s[94]);
-initHEXT1(s[95]);
-initHEXT2(s[96]);
-initHEXT3(s[97]);
-initHEXT4(s[98]);
-initHHOSCH(s[99]);
-initHHOWN(s[100]);
-initHMORTG(s[101]);
-initHPHYSW(s[102]);
-initHPRICEB(s[103]);
-initHPRICE(s[104]);
-initHRTBEV(s[105]);
-initHSETYPE(s[106]);
-initHSHAREP(s[107]);
-initHSHAREP_I(s[108]);
-initHSHAREP_IFLAG(s[109]);
-initHSHARE(s[110]);
-initHSHARE_I(s[111]);
-initHSHARE_IFLAG(s[112]);
-initHVALB(s[113]);
-initHVALRS1(s[114]);
-initHVALRS2(s[115]);
-initHVALRS3(s[116]);
-initHVALRS4(s[117]);
-initHVALRS5(s[118]);
-initHVALUE(s[119]);
-initHVALUE_I(s[120]);
-initHVALUE_IFLAG(s[121]);
-initLLORD(s[122]);
-initMALL2(s[123]);
-initMALL2_I(s[124]);
-initMALL2_IFLAG(s[125]);
-initMALL3(s[126]);
-initMALL3_I(s[127]);
-initMALL3_IFLAG(s[128]);
-initMALLTY2(s[129]);
-initMALLTY2_I(s[130]);
-initMALLTY2_IFLAG(s[131]);
-initMALLTY3(s[132]);
-initMALLTY3_I(s[133]);
-initMALLTY3_IFLAG(s[134]);
-initMALLTY(s[135]);
-initMALLTY_I(s[136]);
-initMALLTY_IFLAG(s[137]);
-initMALL(s[138]);
-initMALL_I(s[139]);
-initMALL_IFLAG(s[140]);
-initMARRS2(s[141]);
-initMARRS3(s[142]);
-initMARRSV2(s[143]);
-initMARRSV3(s[144]);
-initMARRSV(s[145]);
-initMARRS(s[146]);
-initMCHGENUM(s[147]);
-initMCHGE(s[148]);
-initMDIFFPY(s[149]);
-initMENDNUM2(s[150]);
-initMENDNUM2_I(s[151]);
-initMENDNUM2_IFLAG(s[152]);
-initMENDNUM3(s[153]);
-initMENDNUM(s[154]);
-initMENDNUM_I(s[155]);
-initMENDNUM_IFLAG(s[156]);
-initMENDV10(s[157]);
-initMENDV11(s[158]);
-initMENDV12(s[159]);
-initMENDV13(s[160]);
-initMENDV14(s[161]);
-initMENDV15(s[162]);
-initMENDV2(s[163]);
-initMENDV2_I(s[164]);
-initMENDV2_IFLAG(s[165]);
-initMENDV3(s[166]);
-initMENDV3_I(s[167]);
-initMENDV3_IFLAG(s[168]);
-initMENDV4(s[169]);
-initMENDV4_I(s[170]);
-initMENDV4_IFLAG(s[171]);
-initMENDV5(s[172]);
-initMENDV6(s[173]);
-initMENDV6_I(s[174]);
-initMENDV6_IFLAG(s[175]);
-initMENDV7(s[176]);
-initMENDV8(s[177]);
-initMENDV9(s[178]);
-initMENDVB10(s[179]);
-initMENDVB11(s[180]);
-initMENDVB12(s[181]);
-initMENDVB13(s[182]);
-initMENDVB14(s[183]);
-initMENDVB15(s[184]);
-initMENDVB2(s[185]);
-initMENDVB3(s[186]);
-initMENDVB4(s[187]);
-initMENDVB5(s[188]);
-initMENDVB6(s[189]);
-initMENDVB7(s[190]);
-initMENDVB8(s[191]);
-initMENDVB9(s[192]);
-initMENDVB(s[193]);
-initMENDV(s[194]);
-initMENDV_I(s[195]);
-initMENDV_IFLAG(s[196]);
-initMEND___W2(s[197]);
-initMENDW2_I(s[198]);
-initMENDW2_IFLAG(s[199]);
-initMENDW3(s[200]);
-initMENDW3_I(s[201]);
-initMENDW3_IFLAG(s[202]);
-initMENDW(s[203]);
-initMENDW_I(s[204]);
-initMENDW_IFLAG(s[205]);
-initMENDX2(s[206]);
-initMENDX3(s[207]);
-initMENDX(s[208]);
-initMENDY10(s[209]);
-initMENDY11(s[210]);
-initMENDY12(s[211]);
-initMENDY13(s[212]);
-initMENDY14(s[213]);
-initMENDY15(s[214]);
-initMENDY2(s[215]);
-initMENDY3(s[216]);
-initMENDY4(s[217]);
-initMENDY5(s[218]);
-initMENDY6(s[219]);
-initMENDY7(s[220]);
-initMENDY8(s[221]);
-initMENDY9(s[222]);
-initMENDY(s[223]);
-initMEXTN(s[224]);
-initMEXTRS1(s[225]);
-initMEXTRS2(s[226]);
-initMEXTRS3(s[227]);
-initMEXTRS4(s[228]);
-initMEXTRS5(s[229]);
-initMEXTRS6(s[230]);
-initMEXTRS7(s[231]);
-initMEXTRS8(s[232]);
-initMEXTRS9(s[233]);
-initMHOWPY2(s[234]);
-initMHOWPY3(s[235]);
-initMHOWPY(s[236]);
-initMINC10(s[237]);
-initMINC11(s[238]);
-initMINC12(s[239]);
-initMINC13(s[240]);
-initMINC14(s[241]);
-initMINC15(s[242]);
-initMINC1(s[243]);
-initMINC2(s[244]);
-initMINC3(s[245]);
-initMINC4(s[246]);
-initMINC5(s[247]);
-initMINC6(s[248]);
-initMINC7(s[249]);
-initMINC8(s[250]);
-initMINC9(s[251]);
-initMJNAME01(s[252]);
-initMJNAME02(s[253]);
-initMJNAME03(s[254]);
-initMJNAME04(s[255]);
-initMJNAME18(s[256]);
-initMJNAME19(s[257]);
-initMJNAME20(s[258]);
-initMJNAME35(s[259]);
-initMJNAME36(s[260]);
-initMNAME2(s[261]);
-initMNAME3(s[262]);
-initMNAME(s[263]);
-initMNEG2(s[264]);
-initMNEG2_I(s[265]);
-initMNEG2_IFLAG(s[266]);
-initMNEG3(s[267]);
-initMNEGB2(s[268]);
-initMNEGB3(s[269]);
-initMNEGB(s[270]);
-initMNEG(s[271]);
-initMNEG_I(s[272]);
-initMNEG_IFLAG(s[273]);
-initMNUMBN(s[274]);
-initMNUMBN_I(s[275]);
-initMNUMBN_IFLAG(s[276]);
-initMNUMBO(s[277]);
-initMNUMBO_I(s[278]);
-initMNUMBO_IFLAG(s[279]);
-initMNUMB(s[280]);
-initMOARR_SUM(s[281]);
-initMONAME2(s[282]);
-initMONAME3(s[283]);
-initMONAME(s[284]);
-initMORTID2(s[285]);
-initMORTID3(s[286]);
-initMORTID(s[287]);
-initMPAYB2(s[288]);
-initMPAYB3(s[289]);
-initMPAYB(s[290]);
-initMPAYM2(s[291]);
-initMPAYM3(s[292]);
-initMPAYM(s[293]);
-initMPP2(s[294]);
-initMPP3(s[295]);
-initMPP(s[296]);
-initMREAS01(s[297]);
-initMREAS02(s[298]);
-initMREAS03(s[299]);
-initMREAS04(s[300]);
-initMREAS05(s[301]);
-initMREAS06(s[302]);
-initMREAS07(s[303]);
-initMREAS08(s[304]);
-initMREAS09(s[305]);
-initMREAS11(s[306]);
-initMREAS12(s[307]);
-initMREAS13(s[308]);
-initMREAS14(s[309]);
-initMREAS15(s[310]);
-initMREAS21(s[311]);
-initMREAS22(s[312]);
-initMREAS23(s[313]);
-initMREAS24(s[314]);
-initMTYPE2(s[315]);
-initMTYPE2_I(s[316]);
-initMTYPE2_IFLAG(s[317]);
-initMTYPE3(s[318]);
-initMTYPE3_I(s[319]);
-initMTYPE3_IFLAG(s[320]);
-initMTYPE(s[321]);
-initMTYPE_I(s[322]);
-initMTYPE_IFLAG(s[323]);
-initMVAL2(s[324]);
-initMVAL2_I(s[325]);
-initMVAL2_IFLAG(s[326]);
-initMVAL3(s[327]);
-initMVAL3_I(s[328]);
-initMVAL3_IFLAG(s[329]);
-initMVALB2(s[330]);
-initMVALB2_I(s[331]);
-initMVALB2_IFLAG(s[332]);
-initMVALB3(s[333]);
-initMVALB(s[334]);
-initMVAL(s[335]);
-initMVAL_I(s[336]);
-initMVAL_IFLAG(s[337]);
-initMW1CHK1(s[338]);
-initMW1CHK2(s[339]);
-initMW1CHK3(s[340]);
-initMYIFCH2(s[341]);
-initMYIFCH3(s[342]);
-initMYIFCH(s[343]);
-initMYLFT2(s[344]);
-initMYLFT3(s[345]);
-initMYLFT(s[346]);
-initNVESTV(s[347]);
-initOFINAL(s[348]);
-initOTHMORT(s[349]);
-initTEN1(s[350]);
-initTEN1_I(s[351]);
-initTEN1_IFLAG(s[352]);
-initTIED(s[353]);
-initVCADDN(s[354]);
-initVCADD(s[355]);
-initVCARN(s[356]);
-initVCARN_I(s[357]);
-initVCARN_IFLAG(s[358]);
-initVESTV2(s[359]);
-initVESTV2_I(s[360]);
-initVESTV2_IFLAG(s[361]);
-initVESTV(s[362]);
-initVESTV_I(s[363]);
-initVESTV_IFLAG(s[364]);
-initVESVB2(s[365]);
-initVESVB(s[366]);
-initVOTHT(s[367]);
-initVOTHT_I(s[368]);
-initVOTHT_IFLAG(s[369]);
-initVOTYP1(s[370]);
-initVOTYP1_IFLAG(s[371]);
-initVOTYP2(s[372]);
-initVOTYP2_IFLAG(s[373]);
-initVOTYP3(s[374]);
-initVOTYP3_IFLAG(s[375]);
-initVOTYP4(s[376]);
-initVOTYP4_IFLAG(s[377]);
-initVOTYP5(s[378]);
-initVOTYP5_IFLAG(s[379]);
-initVOVAL(s[380]);
-initVOVAL_I(s[381]);
-initVOVAL_IFLAG(s[382]);
-initVOVLB(s[383]);
-initVOVLB_I(s[384]);
-initVOVLB_IFLAG(s[385]);
-initVPERS(s[386]);
-initVPERS_I(s[387]);
-initVPERS_IFLAG(s[388]);
-initVPERV(s[389]);
-initVPERV_I(s[390]);
-initVPERV_IFLAG(s[391]);
-initVTYPE2(s[392]);
-initVTYPE2_I(s[393]);
-initVTYPE2_IFLAG(s[394]);
-initVTYPE(s[395]);
-initVTYPE_I(s[396]);
-initVTYPE_IFLAG(s[397]);
-initALLENDW(s[398]);
-initALLGD(s[399]);
-initBUYLGDST_SUM(s[400]);
-initDVBLDDEBT(s[401]);
-initDVBLDVAL(s[402]);
-initDVBLTDEBT(s[403]);
-initDVBLTVAL(s[404]);
-initDVCACRVAL_SUM(s[405]);
-initDVCACTV_SUM(s[406]);
-initDVCAODVAL_SUM(s[407]);
-initDVCASVV_SUM(s[408]);
-initDVCAVAL_SUM(s[409]);
-initDVCISAV_SUM(s[410]);
-initDVDBRWEALTHVAL_SUM(s[411]);
-initDVEQHIP(s[412]);
-initDVEQRELVAL(s[413]);
-initDVEQRUPM(s[414]);
-initDVFBONDV_SUM(s[415]);
-initDVFCOLLV_SUM(s[416]);
-initDVFESHARES_SUM(s[417]);
-initDVFFASSETS_SUM(s[418]);
-initDVFGLTFOV_SUM(s[419]);
-initDVFGLTUKV_SUM(s[420]);
-initDVFINFLV_SUM(s[421]);
-initDVFINFVAL_SUM(s[422]);
-initDVFINFV_SUM(s[423]);
-initDVFINVOTV_SUM(s[424]);
-initDVFNSVAL_SUM(s[425]);
-initDVFSHOSV_SUM(s[426]);
-initDVFSHUKV_SUM(s[427]);
-initDVGCOLLV(s[428]);
-initDVHORP(s[429]);
-initDVHSEDEBT(s[430]);
-initDVHSEVAL(s[431]);
-initDVHVALUE(s[432]);
-initDVIISAV_SUM(s[433]);
-initDVINSV_SUM(s[434]);
-initDVISAVAL_SUM(s[435]);
-initDVKISAV_SUM(s[436]);
-initDVLOSDEBT(s[437]);
-initDVLOSVAL(s[438]);
-initDVLUKDEBT(s[439]);
-initDVLUKVAL(s[440]);
-initDVNWFLN_SUM(s[441]);
-initDVNWILN_SUM(s[442]);
-initDVOPRDEBT(s[443]);
-initDVOPRVAL(s[444]);
-initDVPAVCUV_SUM(s[445]);
-initDVPFCURVAL_SUM(s[446]);
-initDVPFDDV_SUM(s[447]);
-initDVPINPVAL_SUM(s[448]);
-initDVPPVAL_SUM(s[449]);
-initDVPRIRNT(s[450]);
-initDVPROPERTY(s[451]);
-initDVSAVAL_SUM(s[452]);
-initDVSPEN_SUM(s[453]);
-initDVTOTCARVAL(s[454]);
-initDVTOTMOTBVAL(s[455]);
-initDVTOTOTHVEHVAL(s[456]);
-initDVTOTPERNPVAL(s[457]);
-initDVTOTVANVAL(s[458]);
-initDVTOTVEHVAL(s[459]);
-initDVVALDBT_SUM(s[460]);
-initDVVALDCOS_SUM(s[461]);
-initHFINL_SUM(s[462]);
-initHFINW_EXCENDW_SUM(s[463]);
-initHFINWNT_SUM(s[464]);
-initHFINW_SUM(s[465]);
-initHOUSGDST_SUM(s[466]);
-initHPARR_SUM(s[467]);
-initHPROPW(s[468]);
-initLNARR_SUM(s[469]);
-initT_FLNS_SUM(s[470]);
-initT_LNS_SUM(s[471]);
-initT_SLNS_SUM(s[472]);
-initTOTBILLARR_SUM(s[473]);
-initTOTCC_SUM(s[474]);
-initTOTHP_SUM(s[475]);
-initTOTLOS_SUM(s[476]);
-initTOTMNEG(s[477]);
-initTOTMORT(s[478]);
-initTOTMO_SUM(s[479]);
-initTOTMVAL(s[480]);
-initTOTPEN_SUM(s[481]);
-initTOTSC_SUM(s[482]);
-initTOTWLTH(s[483]);
-initDVHRPNUM(s[484]);
-initDVHSIZE(s[485]);
-initHHOLDTYPE(s[486]);
-initHRPDVAGE9(s[487]);
-initHRPDVILO3A(s[488]);
-initHRPDVMRDF(s[489]);
-initHRPEDATTN1(s[490]);
-initHRPEDATTN2(s[491]);
-initHRPEDATTN3(s[492]);
-initHRPEDLEVEL(s[493]);
-initHRPEMPSTAT2(s[494]);
-initHRPIOUT1(s[495]);
-initHRPNSSEC3(s[496]);
-initHRPPARTIOUT1(s[497]);
-initHRPPART(s[498]);
-initHRPSEX(s[499]);
-initNBABY(s[500]);
-initNC1015(s[501]);
-initNC1618(s[502]);
-initNC5TO9(s[503]);
-initNCHILD(s[504]);
-initNCU16(s[505]);
-initNCUND5(s[506]);
-initNDEPC(s[507]);
-initNNDEPC(s[508]);
-initNOUNITS(s[509]);
-initNUMADULT(s[510]);
-initNUMCH18(s[511]);
-initNUMCHILD(s[512]);
-initNUMCIVPTR(s[513]);
-initNUMCPART(s[514]);
-initNUMDEPCH_HH(s[515]);
-initNUMHHLDR(s[516]);
-initNUMJOB(s[517]);
-initNUMMPART(s[518]);
-initNUMNDEP(s[519]);
-initNUMSSEX(s[520]);
-initVESTV3_IFLAG(s[521]);
-initVESVB3(s[522]);
-initVESTV3(s[523]);
-initVESTV3_I(s[524]);
-initHRPDVAGE15(s[525]);
-initHBEDRM(s[526]);
-initVOTYP1_I(s[527]);
-initVOTYP2_I(s[528]);
-initVOTYP3_I(s[529]);
-initVOTYP4_I(s[530]);
-initVOTYP5_I(s[531]);
-initCASEW2(s[532]);
-initCASEW1(s[533]);
-initHRPDVAGEW2BAND(s[534]);
-initGOR(s[535]);
-initYEAR(s[536]);
-initMONTH(s[537]);
+initCASEW2(s[0]);
+initYEAR(s[1]);
+initMONTH(s[2]);
+initCASEW1(s[3]);
+initYEARW1(s[4]);
+initMONTHW1(s[5]);
+initHOUT(s[6]);
+initH_FLAG1(s[7]);
+initH_FLAG2(s[8]);
+initH_FLAG4(s[9]);
+initH_FLAG5(s[10]);
+initXS_CALWGT(s[11]);
+initLEA(s[12]);
+initURINDEW(s[13]);
+initURINDSC(s[14]);
+initACCOM(s[15]);
+initACCOTH(s[16]);
+initDVVESTV2_I(s[17]);
+initDVVESTV2_IFLAG(s[18]);
+initDVVESTV3_I(s[19]);
+initDVVESTV3_IFLAG(s[20]);
+initDVVESTV_I(s[21]);
+initDVVESTV_IFLAG(s[22]);
+initDVVOVAL_I(s[23]);
+initDVVOVAL_IFLAG(s[24]);
+initDVVPERV_I(s[25]);
+initDVVPERV_IFLAG(s[26]);
+initEINTPAY(s[27]);
+initEINTRAT(s[28]);
+initEINTRAT_I(s[29]);
+initEINTRAT_IFLAG(s[30]);
+initEOTHIRR(s[31]);
+initEOTHIVA(s[32]);
+initEOTHIVB(s[33]);
+initEOTHREG(s[34]);
+initEOTHRVA(s[35]);
+initEOTHRVB(s[36]);
+initEPRPER(s[37]);
+initEPRVAL(s[38]);
+initEPRVPAY(s[39]);
+initEQFILTER(s[40]);
+initEQNEW(s[41]);
+initEQNEW_I(s[42]);
+initEQNEW_IFLAG(s[43]);
+initEQOLD(s[44]);
+initEQOLD_I(s[45]);
+initEQOLD_IFLAG(s[46]);
+initEQREAS1(s[47]);
+initEQREAS2(s[48]);
+initEQREAS3(s[49]);
+initEQREAS4(s[50]);
+initEQREAS5(s[51]);
+initEQREAS6(s[52]);
+initEQREAS7(s[53]);
+initEQREAS8(s[54]);
+initEQREAS9(s[55]);
+initEQREL(s[56]);
+initEQREL_I(s[57]);
+initEQREL_IFLAG(s[58]);
+initEQTYPE(s[59]);
+initEQTYPE_I(s[60]);
+initEQTYPE_IFLAG(s[61]);
+initEQVALB(s[62]);
+initEQVAL(s[63]);
+initEQVAL_I(s[64]);
+initEQVAL_IFLAG(s[65]);
+initEQWHEN(s[66]);
+initEQYES(s[67]);
+initEQYES_I(s[68]);
+initEQYES_IFLAG(s[69]);
+initERECMB(s[70]);
+initERECM(s[71]);
+initERECTAX(s[72]);
+initERENTAM(s[73]);
+initERENTB(s[74]);
+initERVPRP(s[75]);
+initERVPRP_I(s[76]);
+initERVPRP_IFLAG(s[77]);
+initERVRECB(s[78]);
+initERVREC(s[79]);
+initERVREG(s[80]);
+initERVRENT(s[81]);
+initERVSUMB(s[82]);
+initERVSUM(s[83]);
+initERVTAX(s[84]);
+initFLTTYP(s[85]);
+initFURN(s[86]);
+initGCOLLEC(s[87]);
+initGCOLLVB(s[88]);
+initGCOLLV(s[89]);
+initGCONTVB(s[90]);
+initGCPREAM(s[91]);
+initHAGEB(s[92]);
+initHAGEYR(s[93]);
+initHBFROM(s[94]);
+initHBUYSE(s[95]);
+initHBUYYR(s[96]);
+initHEXT1(s[97]);
+initHEXT2(s[98]);
+initHEXT3(s[99]);
+initHEXT4(s[100]);
+initHHOSCH(s[101]);
+initHHOWN(s[102]);
+initHMORTG(s[103]);
+initHPRICEB(s[104]);
+initHPRICE(s[105]);
+initHRTBEV(s[106]);
+initHSETYPE(s[107]);
+initHSHAREP(s[108]);
+initHSHAREP_I(s[109]);
+initHSHAREP_IFLAG(s[110]);
+initHSHARE(s[111]);
+initHSHARE_I(s[112]);
+initHSHARE_IFLAG(s[113]);
+initHVALB(s[114]);
+initHVALRS1(s[115]);
+initHVALRS2(s[116]);
+initHVALRS3(s[117]);
+initHVALRS4(s[118]);
+initHVALRS5(s[119]);
+initHVALUE(s[120]);
+initHVALUE_I(s[121]);
+initHVALUE_IFLAG(s[122]);
+initLLORD(s[123]);
+initMALL2(s[124]);
+initMALL2_I(s[125]);
+initMALL2_IFLAG(s[126]);
+initMALL3(s[127]);
+initMALL3_I(s[128]);
+initMALL3_IFLAG(s[129]);
+initMALLTY2(s[130]);
+initMALLTY2_I(s[131]);
+initMALLTY2_IFLAG(s[132]);
+initMALLTY3(s[133]);
+initMALLTY3_I(s[134]);
+initMALLTY3_IFLAG(s[135]);
+initMALLTY(s[136]);
+initMALLTY_I(s[137]);
+initMALLTY_IFLAG(s[138]);
+initMALL(s[139]);
+initMALL_I(s[140]);
+initMALL_IFLAG(s[141]);
+initMARRS2(s[142]);
+initMARRS3(s[143]);
+initMARRSV2(s[144]);
+initMARRSV3(s[145]);
+initMARRSV(s[146]);
+initMARRS(s[147]);
+initMCHGENUM(s[148]);
+initMCHGE(s[149]);
+initMDIFFPY(s[150]);
+initMENDNUM2(s[151]);
+initMENDNUM2_I(s[152]);
+initMENDNUM2_IFLAG(s[153]);
+initMENDNUM3(s[154]);
+initMENDNUM(s[155]);
+initMENDNUM_I(s[156]);
+initMENDNUM_IFLAG(s[157]);
+initMENDV10(s[158]);
+initMENDV11(s[159]);
+initMENDV12(s[160]);
+initMENDV13(s[161]);
+initMENDV14(s[162]);
+initMENDV15(s[163]);
+initMENDV2(s[164]);
+initMENDV2_I(s[165]);
+initMENDV2_IFLAG(s[166]);
+initMENDV3(s[167]);
+initMENDV3_I(s[168]);
+initMENDV3_IFLAG(s[169]);
+initMENDV4(s[170]);
+initMENDV4_I(s[171]);
+initMENDV4_IFLAG(s[172]);
+initMENDV5(s[173]);
+initMENDV6(s[174]);
+initMENDV6_I(s[175]);
+initMENDV6_IFLAG(s[176]);
+initMENDV7(s[177]);
+initMENDV8(s[178]);
+initMENDV9(s[179]);
+initMENDVB10(s[180]);
+initMENDVB11(s[181]);
+initMENDVB12(s[182]);
+initMENDVB13(s[183]);
+initMENDVB14(s[184]);
+initMENDVB15(s[185]);
+initMENDVB2(s[186]);
+initMENDVB3(s[187]);
+initMENDVB4(s[188]);
+initMENDVB5(s[189]);
+initMENDVB6(s[190]);
+initMENDVB7(s[191]);
+initMENDVB8(s[192]);
+initMENDVB9(s[193]);
+initMENDVB(s[194]);
+initMENDV(s[195]);
+initMENDV_I(s[196]);
+initMENDV_IFLAG(s[197]);
+initMEND___W2(s[198]);
+initMENDW2_I(s[199]);
+initMENDW2_IFLAG(s[200]);
+initMENDW3(s[201]);
+initMENDW3_I(s[202]);
+initMENDW3_IFLAG(s[203]);
+initMENDW(s[204]);
+initMENDW_I(s[205]);
+initMENDW_IFLAG(s[206]);
+initMENDX2(s[207]);
+initMENDX3(s[208]);
+initMENDX(s[209]);
+initMENDY10(s[210]);
+initMENDY11(s[211]);
+initMENDY12(s[212]);
+initMENDY13(s[213]);
+initMENDY14(s[214]);
+initMENDY15(s[215]);
+initMENDY2(s[216]);
+initMENDY3(s[217]);
+initMENDY4(s[218]);
+initMENDY5(s[219]);
+initMENDY6(s[220]);
+initMENDY7(s[221]);
+initMENDY8(s[222]);
+initMENDY9(s[223]);
+initMENDY(s[224]);
+initMEXTN(s[225]);
+initMEXTRS1(s[226]);
+initMEXTRS2(s[227]);
+initMEXTRS3(s[228]);
+initMEXTRS4(s[229]);
+initMEXTRS5(s[230]);
+initMEXTRS6(s[231]);
+initMEXTRS7(s[232]);
+initMEXTRS8(s[233]);
+initMEXTRS9(s[234]);
+initMHOWPY2(s[235]);
+initMHOWPY3(s[236]);
+initMHOWPY(s[237]);
+initMINC10(s[238]);
+initMINC11(s[239]);
+initMINC12(s[240]);
+initMINC13(s[241]);
+initMINC14(s[242]);
+initMINC15(s[243]);
+initMINC1(s[244]);
+initMINC2(s[245]);
+initMINC3(s[246]);
+initMINC4(s[247]);
+initMINC5(s[248]);
+initMINC6(s[249]);
+initMINC7(s[250]);
+initMINC8(s[251]);
+initMINC9(s[252]);
+initMJNAME01(s[253]);
+initMJNAME02(s[254]);
+initMJNAME03(s[255]);
+initMJNAME04(s[256]);
+initMJNAME18(s[257]);
+initMJNAME19(s[258]);
+initMJNAME20(s[259]);
+initMJNAME35(s[260]);
+initMJNAME36(s[261]);
+initMNAME2(s[262]);
+initMNAME3(s[263]);
+initMNAME(s[264]);
+initMNEG2(s[265]);
+initMNEG2_I(s[266]);
+initMNEG2_IFLAG(s[267]);
+initMNEG3(s[268]);
+initMNEGB2(s[269]);
+initMNEGB3(s[270]);
+initMNEGB(s[271]);
+initMNEG(s[272]);
+initMNEG_I(s[273]);
+initMNEG_IFLAG(s[274]);
+initMNUMBN(s[275]);
+initMNUMBN_I(s[276]);
+initMNUMBN_IFLAG(s[277]);
+initMNUMBO(s[278]);
+initMNUMBO_I(s[279]);
+initMNUMBO_IFLAG(s[280]);
+initMNUMB(s[281]);
+initMOARR_SUM(s[282]);
+initMONAME2(s[283]);
+initMONAME3(s[284]);
+initMONAME(s[285]);
+initMORTID2(s[286]);
+initMORTID3(s[287]);
+initMORTID(s[288]);
+initMPAYB2(s[289]);
+initMPAYB3(s[290]);
+initMPAYB(s[291]);
+initMPAYM2(s[292]);
+initMPAYM3(s[293]);
+initMPAYM(s[294]);
+initMPP2(s[295]);
+initMPP3(s[296]);
+initMPP(s[297]);
+initMREAS01(s[298]);
+initMREAS02(s[299]);
+initMREAS03(s[300]);
+initMREAS04(s[301]);
+initMREAS05(s[302]);
+initMREAS06(s[303]);
+initMREAS07(s[304]);
+initMREAS08(s[305]);
+initMREAS09(s[306]);
+initMREAS11(s[307]);
+initMREAS12(s[308]);
+initMREAS13(s[309]);
+initMREAS14(s[310]);
+initMREAS15(s[311]);
+initMREAS21(s[312]);
+initMREAS22(s[313]);
+initMREAS23(s[314]);
+initMREAS24(s[315]);
+initMTYPE2(s[316]);
+initMTYPE2_I(s[317]);
+initMTYPE2_IFLAG(s[318]);
+initMTYPE3(s[319]);
+initMTYPE3_I(s[320]);
+initMTYPE3_IFLAG(s[321]);
+initMTYPE(s[322]);
+initMTYPE_I(s[323]);
+initMTYPE_IFLAG(s[324]);
+initMVAL2(s[325]);
+initMVAL2_I(s[326]);
+initMVAL2_IFLAG(s[327]);
+initMVAL3(s[328]);
+initMVAL3_I(s[329]);
+initMVAL3_IFLAG(s[330]);
+initMVALB2(s[331]);
+initMVALB2_I(s[332]);
+initMVALB2_IFLAG(s[333]);
+initMVALB3(s[334]);
+initMVALB(s[335]);
+initMVAL(s[336]);
+initMVAL_I(s[337]);
+initMVAL_IFLAG(s[338]);
+initMW1CHK1(s[339]);
+initMW1CHK2(s[340]);
+initMW1CHK3(s[341]);
+initMYIFCH2(s[342]);
+initMYIFCH3(s[343]);
+initMYIFCH(s[344]);
+initMYLFT2(s[345]);
+initMYLFT3(s[346]);
+initMYLFT(s[347]);
+initNVESTV(s[348]);
+initOFINAL(s[349]);
+initOTHMORT(s[350]);
+initTEN1(s[351]);
+initTEN1_I(s[352]);
+initTEN1_IFLAG(s[353]);
+initTIED(s[354]);
+initVCADDN(s[355]);
+initVCADD(s[356]);
+initVCARN(s[357]);
+initVESTV2(s[358]);
+initVESTV(s[359]);
+initVESVB2(s[360]);
+initVESVB(s[361]);
+initVOTHT(s[362]);
+initVOTHT_I(s[363]);
+initVOTHT_IFLAG(s[364]);
+initVOTYP1(s[365]);
+initVOTYP2(s[366]);
+initVOTYP3(s[367]);
+initVOTYP4(s[368]);
+initVOTYP5(s[369]);
+initVOVAL(s[370]);
+initVOVLB(s[371]);
+initVPERS(s[372]);
+initVPERV(s[373]);
+initVTYPE2(s[374]);
+initVTYPE(s[375]);
+initALLENDW(s[376]);
+initBUYLGDST_SUM(s[377]);
+initDVBLDDEBT(s[378]);
+initDVBLDVAL(s[379]);
+initDVBLTDEBT(s[380]);
+initDVBLTVAL(s[381]);
+initDVEQHIP(s[382]);
+initDVEQRELVAL(s[383]);
+initDVEQRUPM(s[384]);
+initDVHORP(s[385]);
+initDVHSEDEBT(s[386]);
+initDVHSEVAL(s[387]);
+initDVHVALUE(s[388]);
+initDVLOSDEBT(s[389]);
+initDVLOSVAL(s[390]);
+initDVLUKDEBT(s[391]);
+initDVLUKVAL(s[392]);
+initDVOPRDEBT(s[393]);
+initDVOPRVAL(s[394]);
+initDVPRIRNT(s[395]);
+initDVPROPERTY(s[396]);
+initHOUSGDST_SUM(s[397]);
+initHPROPW(s[398]);
+initTOTMNEG(s[399]);
+initTOTMORT(s[400]);
+initTOTMVAL(s[401]);
+initDVHRPNUM(s[402]);
+initDVHSIZE(s[403]);
+initHHOLDTYPE(s[404]);
+initGOR(s[405]);
+initHRPDVAGE9(s[406]);
+initHRPDVILO3A(s[407]);
+initHRPDVMRDF(s[408]);
+initHRPEDATTN1(s[409]);
+initHRPEDATTN2(s[410]);
+initHRPEDATTN3(s[411]);
+initHRPEDLEVEL(s[412]);
+initHRPEMPSTAT2(s[413]);
+initHRPIOUT1(s[414]);
+initHRPNSSEC3(s[415]);
+initHRPPARTIOUT1(s[416]);
+initHRPSEX(s[417]);
+initNBABY(s[418]);
+initNC1015(s[419]);
+initNC1618(s[420]);
+initNC5TO9(s[421]);
+initNCHILD(s[422]);
+initNCU16(s[423]);
+initNCUND5(s[424]);
+initNDEPC(s[425]);
+initNNDEPC(s[426]);
+initNOUNITS(s[427]);
+initNUMADULT(s[428]);
+initNUMCH18(s[429]);
+initNUMCHILD(s[430]);
+initNUMCIVPTR(s[431]);
+initNUMCPART(s[432]);
+initNUMDEPCH_HH(s[433]);
+initNUMHHLDR(s[434]);
+initNUMJOB(s[435]);
+initNUMMPART(s[436]);
+initNUMNDEP(s[437]);
+initNUMSSEX(s[438]);
+initMNUMB_I(s[439]);
+initMNUMB_IFLAG(s[440]);
+initMNEG3_I(s[441]);
+initMNEG3_IFLAG(s[442]);
+initMENDNUM3_I(s[443]);
+initMENDNUM3_IFLAG(s[444]);
+initMENDV5_I(s[445]);
+initMENDV5_IFLAG(s[446]);
+initMENDV7_I(s[447]);
+initMENDV7_IFLAG(s[448]);
+initMENDV8_I(s[449]);
+initMENDV8_IFLAG(s[450]);
+initMENDV9_I(s[451]);
+initMENDV9_IFLAG(s[452]);
+initMENDV10_I(s[453]);
+initMENDV10_IFLAG(s[454]);
+initMENDV11_I(s[455]);
+initMENDV11_IFLAG(s[456]);
+initMENDV12_I(s[457]);
+initMENDV12_IFLAG(s[458]);
+initMENDV13_I(s[459]);
+initMENDV13_IFLAG(s[460]);
+initMENDV14_I(s[461]);
+initMENDV14_IFLAG(s[462]);
+initMENDV15_I(s[463]);
+initMENDV15_IFLAG(s[464]);
+initVCARN_I(s[465]);
+initVESTV_I(s[466]);
+initVESTV2_I(s[467]);
+initVTYPE_I(s[468]);
+initVTYPE2_I(s[469]);
+initVPERS_I(s[470]);
+initVPERV_I(s[471]);
+initVOTYP1_I(s[472]);
+initVOTYP2_I(s[473]);
+initVOTYP3_I(s[474]);
+initVOTYP4_I(s[475]);
+initVOTYP5_I(s[476]);
+initVOVAL_I(s[477]);
+initGCOLLEC_I(s[478]);
+initGCOLLV_I(s[479]);
+initGCONTVB_I(s[480]);
+initGCONTVLS(s[481]);
+initDVGCOLLV(s[482]);
+initDVTOTCARVAL(s[483]);
+initDVTOTVANVAL(s[484]);
+initDVTOTMOTBVAL(s[485]);
+initDVTOTOTHVEHVAL(s[486]);
+initDVTOTPERNPVAL(s[487]);
+initDVTOTVEHVAL(s[488]);
+initALLGD(s[489]);
+initHPHYSW(s[490]);
+initVCARN_IFLAG(s[491]);
+initVESTV_IFLAG(s[492]);
+initVESTV2_IFLAG(s[493]);
+initVTYPE_IFLAG(s[494]);
+initVTYPE2_IFLAG(s[495]);
+initVPERS_IFLAG(s[496]);
+initVPERV_IFLAG(s[497]);
+initVOTYP1_IFLAG(s[498]);
+initVOTYP2_IFLAG(s[499]);
+initVOTYP3_IFLAG(s[500]);
+initVOTYP4_IFLAG(s[501]);
+initVOTYP5_IFLAG(s[502]);
+initVOVAL_IFLAG(s[503]);
+initGCOLLEC_IFLAG(s[504]);
+initGCOLLV_IFLAG(s[505]);
+initGCONTVB_IFLAG(s[506]);
+initVOTYPE1_IFLAG(s[507]);
+initVOTYPE2_IFLAG(s[508]);
+initVOTYPE3_IFLAG(s[509]);
+initVOTYPE4_IFLAG(s[510]);
+initVOTYPE5_IFLAG(s[511]);
+initDVCISAV_AGGR(s[512]);
+initDVIISAV_AGGR(s[513]);
+initDVKISAV_AGGR(s[514]);
+initDVFNSVAL_AGGR(s[515]);
+initDVFSHUKV_AGGR(s[516]);
+initDVINSV_AGGR(s[517]);
+initDVFLFENV_AGGR(s[518]);
+initDVFLFSIV_AGGR(s[519]);
+initDVFLFFSV_AGGR(s[520]);
+initDVFLFTEV_AGGR(s[521]);
+initDVFBONDV_AGGR(s[522]);
+initDVFESHARES_AGGR(s[523]);
+initDVFESHAV_AGGR(s[524]);
+initDVFEOPTV_AGGR(s[525]);
+initDVFCOLLV_AGGR(s[526]);
+initDVFSHOSV_AGGR(s[527]);
+initDVFGLTUKV_AGGR(s[528]);
+initDVFGLTFOV_AGGR(s[529]);
+initDVFINVOTV_AGGR(s[530]);
+initDVFINFVAL_AGGR(s[531]);
+initDVFINFLV_AGGR(s[532]);
+initDVFINFV_AGGR(s[533]);
+initDVISAVAL_AGGR(s[534]);
+initDVFFASSETS_AGGR(s[535]);
+initDVCACTV_AGGR(s[536]);
+initDVCASVV_AGGR(s[537]);
+initDVCAVAL_AGGR(s[538]);
+initDVCACRVAL_AGGR(s[539]);
+initDVCAODVAL_AGGR(s[540]);
+initDVSAVAL_AGGR(s[541]);
+initTOTCC_AGGR(s[542]);
+initTOTSC_AGGR(s[543]);
+initTOTMO_AGGR(s[544]);
+initTOTNLOS_AGGR(s[545]);
+initTOTNSLBNK_AGGR(s[546]);
+initTOTNSLC_AGGR(s[547]);
+initTOTOSLBNK_AGGR(s[548]);
+initTOTOSLC_AGGR(s[549]);
+initTOTHP_AGGR(s[550]);
+initTOTSLBNK_AGGR(s[551]);
+initTOTSLC_AGGR(s[552]);
+initTOTBILLARR_AGGR(s[553]);
+initTOTHPARR_AGGR(s[554]);
+initTOTMOARR_AGGR(s[555]);
+initTOTLNARR_AGGR(s[556]);
+initTOTDVNWFLN_AGGR(s[557]);
+initTOTDVNWILN_AGGR(s[558]);
+initTOTARR_EXCMORT_AGGR(s[559]);
+initHFINW_EXCENDW_AGGR(s[560]);
+initHFINW_SUM(s[561]);
+initHFINWNT_SUM(s[562]);
+initTOTLNS_AGGR(s[563]);
+initTOTFLNS_AGGR(s[564]);
+initHFINL_AGGR(s[565]);
+initTOTLOS_AGGR(s[566]);
+initDVVALDBT_AGGR(s[567]);
+initDVVALDCOS_AGGR(s[568]);
+initDVPAVCUV_AGGR(s[569]);
+initDVDBRWEALTHVAL_AGGR(s[570]);
+initDVPFCURVAL_AGGR(s[571]);
+initDVPFDDV_AGGR(s[572]);
+initDVPINPVAL_AGGR(s[573]);
+initDVSPEN_AGGR(s[574]);
+initDVPPVAL_AGGR(s[575]);
+initTOTPEN_AGGR(s[576]);
+initTOTWLTH(s[577]);
+initVESTV3_IFLAG(s[578]);
+initVESVB3(s[579]);
+initVESTV3(s[580]);
+initVESTV3_I(s[581]);
+initHRPDVAGE15(s[582]);
+initHBEDRM(s[583]);
 }
 }

@@ -5,6 +5,7 @@
  */
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
 
+import java.io.Serializable;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W4ID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W1ID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W5ID;
@@ -19,7 +20,7 @@ import java.util.Iterator;
  *
  * @author geoagdt
  */
-public class WaAS_GORSubsetsAndLookups {
+public class WaAS_GORSubsetsAndLookups implements Serializable {
 
     public HashMap<Byte, HashSet<WaAS_W1ID>> gor_To_w1;
     public HashMap<Byte, HashSet<WaAS_W2ID>> gor_To_w2;

@@ -28,6 +28,7 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W2ID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W3ID;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -68,7 +69,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * @param w1IDs
      * @return
      */
-    public WaAS_DataSubsetW1 loadDataSubsetW1(TreeSet<WaAS_W1ID> w1IDs) {
+    public WaAS_DataSubsetW1 loadDataSubsetW1(TreeSet<WaAS_W1ID> w1IDs) throws IOException {
         byte w = W1;
         File cf = getFile(w);
         if (cf.exists()) {
@@ -126,7 +127,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * @return
      */
     protected HashMap<WaAS_CollectionID, PrintWriter> initPWs(
-            TreeMap<WaAS_CollectionID, File> cFs) {
+            TreeMap<WaAS_CollectionID, File> cFs) throws IOException {
         HashMap<WaAS_CollectionID, PrintWriter> r = new HashMap<>();
         Iterator<WaAS_CollectionID> ite = cFs.keySet().iterator();
         while (ite.hasNext()) {
@@ -179,7 +180,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * @return
      */
     public WaAS_DataSubsetW2 loadDataSubsetW2(WaAS_DataSubsetW1 sW1,
-            TreeMap<WaAS_W2ID, WaAS_W1ID> w2_To_w1) {
+            TreeMap<WaAS_W2ID, WaAS_W1ID> w2_To_w1) throws IOException {
         byte w = W2;
         File cf = getFile(w);
         if (cf.exists()) {
@@ -250,7 +251,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
     public WaAS_DataSubsetW3 loadDataSubsetW3(WaAS_DataSubsetW2 sW2,
             HashMap<WaAS_W1ID, WaAS_CollectionID> w1_To_c,
             TreeMap<WaAS_W2ID, WaAS_W1ID> w2_To_w1,
-            TreeMap<WaAS_W3ID, WaAS_W2ID> w3_To_w2) {
+            TreeMap<WaAS_W3ID, WaAS_W2ID> w3_To_w2) throws IOException {
         byte w = W3;
         File cf = getFile(w);
         if (cf.exists()) {
@@ -310,7 +311,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
             HashMap<WaAS_W1ID, WaAS_CollectionID> w1_To_c,
             TreeMap<WaAS_W2ID, WaAS_W1ID> w2_To_w1,
             TreeMap<WaAS_W3ID, WaAS_W2ID> w3_To_w2,
-            TreeMap<WaAS_W4ID, WaAS_W3ID> w4_To_w3) {
+            TreeMap<WaAS_W4ID, WaAS_W3ID> w4_To_w3) throws IOException {
         byte w = W4;
         File cf = getFile(w);
         if (cf.exists()) {
@@ -373,7 +374,7 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
             TreeMap<WaAS_W2ID, WaAS_W1ID> w2_To_w1,
             TreeMap<WaAS_W3ID, WaAS_W2ID> w3_To_w2,
             TreeMap<WaAS_W4ID, WaAS_W3ID> w4_To_w3,
-            TreeMap<WaAS_W5ID, WaAS_W4ID> w5_To_w4) {
+            TreeMap<WaAS_W5ID, WaAS_W4ID> w5_To_w4) throws IOException {
         byte w = W5;
         File cf = getFile(w);
         if (cf.exists()) {

@@ -16,6 +16,7 @@
 package uk.ac.leeds.ccg.andyt.generic.data.waas.core;
 
 import java.io.File;
+import java.io.IOException;
 import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_Data;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.handlers.WaAS_HHOLD_Handler;
@@ -48,18 +49,19 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler {
      */
     public transient final int logID;
 
-    public WaAS_Environment() {
+    public WaAS_Environment() throws IOException {
         this(new Generic_Environment());
     }
-    public WaAS_Environment(Generic_Environment ge) {
-        this(ge, ge.files.getDataDir());
+    
+    public WaAS_Environment(Generic_Environment ge) throws IOException {
+        this(ge, ge.files.getDir());
     }
     
-    public WaAS_Environment(File dataDir) {
+    public WaAS_Environment(File dataDir) throws IOException {
         this(new Generic_Environment(), dataDir);
     }
     
-    public WaAS_Environment(Generic_Environment ge, File dataDir) {
+    public WaAS_Environment(Generic_Environment ge, File dataDir) throws IOException {
         this.ge = ge;
         files = new WaAS_Files(dataDir);
         File f = files.getEnvDataFile();

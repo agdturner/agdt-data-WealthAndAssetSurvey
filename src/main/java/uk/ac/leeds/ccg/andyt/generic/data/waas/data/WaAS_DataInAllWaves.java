@@ -15,6 +15,7 @@
  */
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
 
+import java.io.FileNotFoundException;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_W2Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_W4Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_W5Record;
@@ -93,7 +94,7 @@ public class WaAS_DataInAllWaves extends WaAS_Object {
      *
      * @param type
      */
-    public void loadDataInAllWaves(String type) {
+    public void loadDataInAllWaves(String type) throws FileNotFoundException {
         String m = "loadDataInAllWaves()";
         env.logStartTag(m);
         /**

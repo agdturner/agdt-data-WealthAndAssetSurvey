@@ -23,6 +23,7 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W2ID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W3ID;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -311,7 +312,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
     public WaAS_GORSubsetsAndLookups getGORSubsetsAndLookups(String name,
             ArrayList<Byte> gors, HashSet<WaAS_W1ID> subset) {
         WaAS_GORSubsetsAndLookups r;
-        File f = new File(env.files.getOutputDataDir(), name + "GORSubsetsAndLookups.dat");
+        File f = new File(env.files.getOutputDir(), name + "GORSubsetsAndLookups.dat");
         if (f.exists()) {
             r = (WaAS_GORSubsetsAndLookups) env.ge.io.readObject(f);
         } else {
@@ -457,7 +458,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
     public WaAS_GORSubsetsAndLookups getGORSubsetsAndLookupsSimple(String name,
             ArrayList<Byte> gors, HashSet<WaAS_W1ID> subset) {
         WaAS_GORSubsetsAndLookups r;
-        File f = new File(env.files.getOutputDataDir(), name + "GORSubsetsAndLookups.dat");
+        File f = new File(env.files.getOutputDir(), name + "GORSubsetsAndLookups.dat");
         if (f.exists()) {
             r = (WaAS_GORSubsetsAndLookups) env.ge.io.readObject(f);
         } else {
@@ -726,7 +727,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
         env.logStartTag(m);
         HashSet<WaAS_W1ID> r;
         String fn = "Subset" + type + "HashSet_CASEW1.dat";
-        File f = new File(env.files.getOutputDataDir(), fn);
+        File f = new File(env.files.getOutputDir(), fn);
         if (f.exists()) {
             r = (HashSet<WaAS_W1ID>) env.ge.io.readObject(f);
         } else {
@@ -904,7 +905,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
         env.logStartTag(m);
         HashSet<WaAS_W1ID> r;
         String fn = "Subset" + type + "HashSet_CASEW1.dat";
-        File f = new File(env.files.getOutputDataDir(), fn);
+        File f = new File(env.files.getOutputDir(), fn);
         if (f.exists()) {
             r = (HashSet<WaAS_W1ID>) env.ge.io.readObject(f);
         } else {
@@ -1709,7 +1710,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      *
      * @return the loaded collections
      */
-    public WaAS_W3Data loadW3InSAndW2(Collection<WaAS_W3ID> s, String type) {
+    public WaAS_W3Data loadW3InSAndW2(Collection<WaAS_W3ID> s, String type) throws FileNotFoundException {
         String m = "loadW3InSAndW2(Set<WaAS_W3ID>, " + type + ")";
         env.logStartTag(m);
         WaAS_W3Data r;
@@ -1766,7 +1767,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      *
      * @return the loaded collections
      */
-    public WaAS_W2Data loadW2InSAndW1(Collection<WaAS_W2ID> s, String type) {
+    public WaAS_W2Data loadW2InSAndW1(Collection<WaAS_W2ID> s, String type) throws FileNotFoundException {
         String m = "loadW2InSAndW1(Set<WaAS_W2ID>, " + type + ")";
         env.logStartTag(m);
         WaAS_W2Data r;
@@ -1806,7 +1807,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
         return r;
     }
 
-    protected BufferedReader loadW3Count(WaAS_W3Data r, File f) {
+    protected BufferedReader loadW3Count(WaAS_W3Data r, File f) throws FileNotFoundException {
         BufferedReader br = env.ge.io.getBufferedReader(f);
         int count = br.lines().skip(1).mapToInt((l) -> {
             WaAS_W3HRecord rec = new WaAS_W3HRecord(l);
@@ -1965,7 +1966,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      *
      * @return the loaded collections
      */
-    public WaAS_W2Data loadW2InW1() {
+    public WaAS_W2Data loadW2InW1() throws FileNotFoundException {
         String m = "loadW2InW1";
         env.logStartTag(m);
         WaAS_W2Data r;
@@ -2002,7 +2003,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
         return r;
     }
 
-    protected BufferedReader loadW2Count(WaAS_W2Data r, File f) {
+    protected BufferedReader loadW2Count(WaAS_W2Data r, File f) throws FileNotFoundException {
         BufferedReader br = env.ge.io.getBufferedReader(f);
         int count = br.lines().skip(1).mapToInt((l) -> {
             WaAS_W2HRecord rec = new WaAS_W2HRecord(l);
@@ -2029,7 +2030,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      *
      * @return the loaded collections
      */
-    public WaAS_W3Data loadW3InW2() {
+    public WaAS_W3Data loadW3InW2() throws FileNotFoundException {
         String m = "loadW3InW2";
         env.logStartTag(m);
         WaAS_W3Data r;
@@ -2132,7 +2133,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      *
      * @return the loaded collections
      */
-    public WaAS_W3Data loadW3InS(Set<WaAS_W3ID> s, String type) {
+    public WaAS_W3Data loadW3InS(Set<WaAS_W3ID> s, String type) throws FileNotFoundException {
         String m = "loadW3InS(Set<WaAS_W3ID>, " + type + ")";
         env.logStartTag(m);
         WaAS_W3Data r;
@@ -2208,7 +2209,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      *
      * @return the loaded collections
      */
-    public WaAS_W4Data loadW4InSAndW3(Collection<WaAS_W4ID> s, String type) {
+    public WaAS_W4Data loadW4InSAndW3(Collection<WaAS_W4ID> s, String type) throws FileNotFoundException {
         String m = "loadW4(Set<WaAS_W4ID>, " + type + ")";
         env.logStartTag(m);
         WaAS_W4Data r;
@@ -2277,7 +2278,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @param f
      * @return
      */
-    protected BufferedReader loadW4Count(WaAS_W4Data r, File f) {
+    protected BufferedReader loadW4Count(WaAS_W4Data r, File f) throws FileNotFoundException {
         BufferedReader br = env.ge.io.getBufferedReader(f);
         int count = br.lines().skip(1).mapToInt((l) -> {
             WaAS_W4HRecord rec = new WaAS_W4HRecord(l);
@@ -2307,7 +2308,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      *
      * @return the loaded collections
      */
-    public WaAS_W5Data loadW5InW4() {
+    public WaAS_W5Data loadW5InW4() throws FileNotFoundException {
         String m = "loadW5InW4";
         env.logStartTag(m);
         WaAS_W5Data r;
@@ -2401,7 +2402,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
     /**
      * This is draft...
      */
-    public void loadSimple() {
+    public void loadSimple() throws FileNotFoundException {
         String m = "loadSimple";
         env.logStartTag(m);
         //WaAS_CollectionSimple r;
@@ -2471,7 +2472,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      *
      * @return the loaded collections
      */
-    public WaAS_W4Data loadW4InS(Set<WaAS_W4ID> s, String type) {
+    public WaAS_W4Data loadW4InS(Set<WaAS_W4ID> s, String type) throws FileNotFoundException {
         String m = "loadW4InS(Set<WaAS_W4ID>, " + type + ")";
         env.logStartTag(m);
         WaAS_W4Data r;
@@ -2542,7 +2543,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      *
      * @return the loaded collections
      */
-    public WaAS_W2Data loadW2InS(Set<WaAS_W2ID> s, String type) {
+    public WaAS_W2Data loadW2InS(Set<WaAS_W2ID> s, String type) throws FileNotFoundException {
         String m = "loadW2InS(Set<WaAS_W2ID>, " + type + ")";
         env.logStartTag(m);
         WaAS_W2Data r;
@@ -2629,7 +2630,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      *
      * @return the loaded collections
      */
-    public WaAS_W4Data loadW4InW3() {
+    public WaAS_W4Data loadW4InW3() throws FileNotFoundException {
         String m = "loadW4InW3";
         env.logStartTag(m);
         WaAS_W4Data r;
@@ -2695,7 +2696,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      *
      * @return the loaded collections
      */
-    public WaAS_W1Data loadW1(Collection<WaAS_W1ID> s, String type) {
+    public WaAS_W1Data loadW1(Collection<WaAS_W1ID> s, String type) throws FileNotFoundException {
         String m = "loadW1(Collection<Short>, " + type + ")";
         env.logStartTag(m);
         WaAS_W1Data r;

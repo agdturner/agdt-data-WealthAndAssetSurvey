@@ -23,6 +23,7 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_ID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W3ID;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -67,7 +68,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * @return a TreeMap with keys as CASEW5 and values as
      * WaAS_Wave5_HHOLD_Records.
      */
-    public TreeMap<WaAS_W5ID, WaAS_W5HRecord> loadAllW5() {
+    public TreeMap<WaAS_W5ID, WaAS_W5HRecord> loadAllW5() throws FileNotFoundException {
         String m = "loadAllW5";
         env.logStartTag(m);
         TreeMap<WaAS_W5ID, WaAS_W5HRecord> r;
@@ -102,7 +103,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * @return a TreeMap with keys as CASEW4 and values as
      * WaAS_Wave4_HHOLD_Records.
      */
-    public TreeMap<WaAS_W4ID, WaAS_W4HRecord> loadAllW4() {
+    public TreeMap<WaAS_W4ID, WaAS_W4HRecord> loadAllW4() throws FileNotFoundException {
         String m = "loadAllW4";
         env.logStartTag(m);
         TreeMap<WaAS_W4ID, WaAS_W4HRecord> r;
@@ -137,7 +138,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * @return a TreeMap with keys as w3ID and values as
      * WaAS_Wave3_HHOLD_Records.
      */
-    public TreeMap<WaAS_W3ID, WaAS_W3HRecord> loadAllW3() {
+    public TreeMap<WaAS_W3ID, WaAS_W3HRecord> loadAllW3() throws FileNotFoundException {
         String m = "loadAllW3";
         env.logStartTag(m);
         TreeMap<WaAS_W3ID, WaAS_W3HRecord> r;
@@ -172,7 +173,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * @return a TreeMap with keys as CASEW2 and values as
      * WaAS_Wave2_HHOLD_Records.
      */
-    public TreeMap<WaAS_W2ID, WaAS_W2HRecord> loadAllW2() {
+    public TreeMap<WaAS_W2ID, WaAS_W2HRecord> loadAllW2() throws FileNotFoundException {
         String m = "loadAllW2";
         env.logStartTag(m);
         TreeMap<WaAS_W2ID, WaAS_W2HRecord> r;
@@ -207,7 +208,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * @return a TreeMap with keys as CASEW1 and values as
      * WaAS_Wave1_HHOLD_Records.
      */
-    public TreeMap<WaAS_W1ID, WaAS_W1HRecord> loadAllW1() {
+    public TreeMap<WaAS_W1ID, WaAS_W1HRecord> loadAllW1() throws FileNotFoundException {
         String m = "loadAllW1(data)";
         env.logStartTag(m);
         TreeMap<WaAS_W1ID, WaAS_W1HRecord> r;
@@ -693,7 +694,7 @@ env.data.collections.keySet().stream().forEach(cID -> {
      * @return
      */
     public <K> TreeMap<Byte, Double> getChangeVariableAll(String vName,
-            ArrayList<Byte> gors, TreeMap<Byte, String> GORNameLookup) {
+            ArrayList<Byte> gors, TreeMap<Byte, String> GORNameLookup) throws FileNotFoundException {
         TreeMap<Byte, Double> r = new TreeMap<>();
         TreeMap<WaAS_W1ID, WaAS_W1HRecord> allW1 = loadAllW1();
         HashMap<Byte, HashMap<WaAS_W1ID, Double>> vAllW1 = getVariableForGORW1(vName, gors, allW1, (byte) 1);

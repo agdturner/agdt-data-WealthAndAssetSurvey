@@ -16,6 +16,7 @@
 package uk.ac.leeds.ccg.andyt.generic.data.waas.io;
 
 import java.io.File;
+import java.io.IOException;
 import uk.ac.leeds.ccg.andyt.data.io.Data_Files;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 
@@ -28,19 +29,19 @@ public class WaAS_Files extends Data_Files {
     /**
      * @param dataDir
      */
-    public WaAS_Files(File dataDir) {
+    public WaAS_Files(File dataDir) throws IOException {
         super(dataDir);
     }
 
     public File getInputWaASDir() {
-        File r = new File(getInputDataDir(), WaAS_Strings.s_WaAS);
+        File r = new File(getInputDir(), WaAS_Strings.s_WaAS);
         r = new File(r, "UKDA-7215-tab");
         r = new File(r, "tab");
         return r;
     }
 
     public File getGeneratedWaASDir() {
-        File r  = new File(getGeneratedDataDir(), WaAS_Strings.s_WaAS);
+        File r  = new File(getGeneratedDir(), WaAS_Strings.s_WaAS);
         r.mkdirs();
         return r;
     }

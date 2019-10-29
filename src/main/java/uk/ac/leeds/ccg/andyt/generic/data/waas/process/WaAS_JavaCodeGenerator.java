@@ -17,6 +17,8 @@ package uk.ac.leeds.ccg.andyt.generic.data.waas.process;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -69,17 +71,21 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
     }
 
     public static void main(String[] args) {
-        WaAS_Environment e = new WaAS_Environment();
-        WaAS_JavaCodeGenerator p = new WaAS_JavaCodeGenerator(e);
-        String type;
-        // hhold
-        type = WaAS_Strings.s_hhold;
-        Object[] hholdTypes = p.getFieldTypes(type);
-        p.run(type, hholdTypes);
-        // person
-        type = WaAS_Strings.s_person;
-        Object[] personTypes = p.getFieldTypes(type);
-        p.run(type, personTypes);
+        try {
+            WaAS_Environment e = new WaAS_Environment();
+            WaAS_JavaCodeGenerator p = new WaAS_JavaCodeGenerator(e);
+            String type;
+            // hhold
+            type = WaAS_Strings.s_hhold;
+            Object[] hholdTypes = p.getFieldTypes(type);
+            p.run(type, hholdTypes);
+            // person
+            type = WaAS_Strings.s_person;
+            Object[] personTypes = p.getFieldTypes(type);
+            p.run(type, personTypes);
+        } catch (IOException ex) {
+            ex.printStackTrace(System.err);
+        }
     }
 
     /**
@@ -93,7 +99,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
      * by a short; 4 if field is to be represented by a byte; 5 if field is to
      * be represented by a boolean.
      */
-    protected Object[] getFieldTypes(String type) {
+    protected Object[] getFieldTypes(String type) throws IOException {
         int nwaves = env.NWAVES; 
         Object[] r = new Object[4];
         File indir = env.files.getInputWaASDir();
@@ -193,7 +199,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
      * @param indir
      * @return
      */
-    public Object[] loadTest(int wave, String TYPE, File indir) {
+    public Object[] loadTest(int wave, String TYPE, File indir) throws FileNotFoundException {
         String m = "loadTest(wave " + wave + ", Type " + TYPE + ", indir "
                 + indir.toString() + ")";
         env.logStartTag(m);
@@ -368,7 +374,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
         }
     }
 
-    public void run(String type, Object[] types) {
+    public void run(String type, Object[] types) throws IOException {
         int nwaves = env.NWAVES;
         HashMap<String, Integer> fieldTypes;
         fieldTypes = (HashMap<String, Integer>) types[0];
@@ -386,7 +392,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
         v0m0 = setCommonBooleanMaps(v0ms, v1ms, fields, fieldTypes);
 
         File outdir;
-        outdir = new File(env.files.getDataDir(), "..");
+        outdir = new File(env.files.getDir(), "..");
         outdir = new File(outdir, WaAS_Strings.s_src);
         outdir = new File(outdir, WaAS_Strings.s_main);
         outdir = new File(outdir, WaAS_Strings.s_java);

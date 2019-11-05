@@ -26,7 +26,7 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
  *
  * @author geoagdt
  */
-public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler {
+public class WaAS_Environment extends WaAS_MemoryManager {
 
     public transient final Generic_Environment ge;
     public transient final WaAS_Files files;
@@ -74,6 +74,7 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler {
         }
         logID = ge.initLog(WaAS_Strings.s_WaAS);
         hh = new WaAS_HHOLD_Handler(this);
+        Memory_Threshold = 2000000000L;
     }
 
     private void initData() {
@@ -93,7 +94,7 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler {
 //            if (clear == 0) {
 //                return false;
 //            }
-            if (!swapDataAny()) {
+            if (!cacheDataAny()) {
                 return false;
             }
         }
@@ -101,21 +102,21 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler {
     }
 
     /**
-     * Attempts to swap some of {@link #data}.
+     * Attempts to cache some of {@link #data}.
      *
      * @param hoome handleOutOfMemoryError
-     * @return {@code true} iff some data was successfully swapped.
+     * @return {@code true} iff some data was successfully cacheped.
      */
     @Override
-    public boolean swapDataAny(boolean hoome) {
+    public boolean cacheDataAny(boolean hoome) {
         try {
-            boolean r = swapDataAny();
+            boolean r = cacheDataAny();
             checkAndMaybeFreeMemory();
             return r;
         } catch (OutOfMemoryError e) {
             if (hoome) {
                 clearMemoryReserve();
-                boolean r = swapDataAny(HOOMEF);
+                boolean r = cacheDataAny(HOOMEF);
                 initMemoryReserve();
                 return r;
             } else {
@@ -125,12 +126,12 @@ public class WaAS_Environment extends WaAS_OutOfMemoryErrorHandler {
     }
 
     /**
-     * Attempts to swap some of {@link #data}.
+     * Attempts to cache some of {@link #data}.
      *
-     * @return {@code true} iff some data was successfully swapped.
+     * @return {@code true} iff some data was successfully cacheped.
      */
     @Override
-    public boolean swapDataAny() {
+    public boolean cacheDataAny() {
         boolean r = clearSomeData();
         if (r) {
             return r;

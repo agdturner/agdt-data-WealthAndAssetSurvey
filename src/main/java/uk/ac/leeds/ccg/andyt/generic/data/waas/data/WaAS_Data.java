@@ -40,7 +40,10 @@ public class WaAS_Data extends Data_Data {
      */
     public WaAS_Environment we;
 
-    public final HashMap<Short, Data_CollectionID> cIDs;
+    /**
+     * For looking up a Data_CollectionID from an int.
+     */
+    public final HashMap<Integer, Data_CollectionID> cIDs;
 
     /**
      * For storing the number of Collections.

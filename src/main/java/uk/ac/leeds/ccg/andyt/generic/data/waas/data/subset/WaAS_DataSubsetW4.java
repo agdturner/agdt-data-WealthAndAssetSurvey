@@ -47,17 +47,17 @@ public class WaAS_DataSubsetW4 extends WaAS_DataSubset {
         c_To_w4 = new TreeMap<>();
         w4_To_c = new HashMap<>();
         Iterator<WaAS_W4ID> ite = w4IDs.iterator();
-        short s = 0;
-        Data_CollectionID cID = getCollectionID(s);
         int i = 0;
+        Data_CollectionID cID = getCollectionID(i);
+        int ci = 0;
         while (ite.hasNext()) {
             WaAS_W4ID w4ID = ite.next();
             w4_To_c.put(w4ID, cID);
-            i++;
-            if (i == cSize) {
-                i = 0;
-                s++;
-                cID = getCollectionID(s);
+            ci++;
+            if (ci == cSize) {
+                ci = 0;
+                i++;
+                cID = getCollectionID(i);
             }
         }
         initCFs(we.W4);

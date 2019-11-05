@@ -51,11 +51,11 @@ public class WaAS_DataSubset extends WaAS_Object {
      */
     public final void initCFs(byte wave) {
         cFs = new TreeMap<>();
-        for (short s = 0; s < we.data.nOC; s++) {
+        for (int i = 0; i < we.data.nOC; i++) {
             File f = new File(we.files.getGeneratedWaASSubsetsDir(),
                     WaAS_Strings.s_Data + WaAS_Strings.s_Subset + wave
-                    + WaAS_Strings.symbol_underscore + s + ".tab");
-            Data_CollectionID cID = getCollectionID(s);
+                    + WaAS_Strings.symbol_underscore + i + ".tab");
+            Data_CollectionID cID = getCollectionID(i);
 //            env.log("s " + s);
 //            env.log("File " + f);
 //            env.log("Data_CollectionID " + cID);
@@ -63,12 +63,12 @@ public class WaAS_DataSubset extends WaAS_Object {
         }
     }
     
-    protected final Data_CollectionID getCollectionID(short s) {
-        Data_CollectionID r = we.data.cIDs.get(s);
+    protected final Data_CollectionID getCollectionID(int i) {
+        Data_CollectionID r = we.data.cIDs.get(i);
         if (r == null) {
-            env.log("No existing collection for short " + s);
-            r = new Data_CollectionID(s);
-            we.data.cIDs.put(s, r);
+            env.log("No existing collection for int " + i);
+            r = new Data_CollectionID(i);
+            we.data.cIDs.put(i, r);
         }
         return r;
     }

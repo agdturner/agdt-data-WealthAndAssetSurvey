@@ -98,12 +98,13 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
      * if field is to be represented by a int; 3 if field is to be represented
      * by a short; 4 if field is to be represented by a byte; 5 if field is to
      * be represented by a boolean.
+     * @throws java.io.IOException If one is encountered.
      */
     protected Object[] getFieldTypes(String type) throws IOException {
-        int nwaves = env.NWAVES; 
+        int nwaves = we.NWAVES; 
         Object[] r = new Object[4];
-        File indir = env.files.getInputWaASDir();
-        File generateddir = env.files.getGeneratedWaASDir();
+        File indir = we.files.getInputWaASDir();
+        File generateddir = we.files.getGeneratedWaASDir();
         File outdir = new File(generateddir, WaAS_Strings.s_Subsets);
         outdir.mkdirs();
         HashMap<String, Integer>[] allFieldTypes = new HashMap[nwaves];
@@ -198,6 +199,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
      * @param TYPE
      * @param indir
      * @return
+     * @throws java.io.FileNotFoundException If one is encountered.
      */
     public Object[] loadTest(int wave, String TYPE, File indir) throws FileNotFoundException {
         String m = "loadTest(wave " + wave + ", Type " + TYPE + ", indir "
@@ -207,8 +209,8 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
         HashMap<String, Byte> v0m = new HashMap<>();
         HashMap<String, Byte> v1m = new HashMap<>();
         //File f = getInputFile(wave, TYPE, indir);
-        File f = env.hh.getInputFile((byte) wave, TYPE);
-        BufferedReader br = env.ge.io.getBufferedReader(f);
+        File f = we.hh.getInputFile((byte) wave, TYPE);
+        BufferedReader br = io.getBufferedReader(f);
         String line = br.lines().findFirst().get();
         String[] fields = parseHeader(line, wave);
         int n = fields.length;
@@ -375,7 +377,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
     }
 
     public void run(String type, Object[] types) throws IOException {
-        int nwaves = env.NWAVES;
+        int nwaves = we.NWAVES;
         HashMap<String, Integer> fieldTypes;
         fieldTypes = (HashMap<String, Integer>) types[0];
         String[][] headers;
@@ -392,7 +394,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
         v0m0 = setCommonBooleanMaps(v0ms, v1ms, fields, fieldTypes);
 
         File outdir;
-        outdir = new File(env.files.getDir(), "..");
+        outdir = new File(we.files.getDir(), "..");
         outdir = new File(outdir, WaAS_Strings.s_src);
         outdir = new File(outdir, WaAS_Strings.s_main);
         outdir = new File(outdir, WaAS_Strings.s_java);
@@ -427,7 +429,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
                 v0m = v0ms[w];
                 className = prepend + "W" + wave + type + "Record";
                 fout = new File(outdir, className + ".java");
-                pw = env.ge.io.getPrintWriter(fout, false);
+                pw = io.getPrintWriter(fout, false);
                 writeHeaderPackageAndImports(pw, packageName, "");
                 switch (w) {
                     case 0:
@@ -469,7 +471,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
                 if (w == nwaves) {
                     className = prepend + "W1W2W3W4W5" + type + "Record";
                     fout = new File(outdir, className + ".java");
-                    pw = env.ge.io.getPrintWriter(fout, false);
+                    pw = io.getPrintWriter(fout, false);
                     writeHeaderPackageAndImports(pw, packageName,
                             "java.io.Serializable");
                     printClassDeclarationSerialVersionUID(pw, packageName,
@@ -478,7 +480,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
                 } else if (w == (nwaves + 1)) {
                     className = prepend + "W1W2" + type + "Record";
                     fout = new File(outdir, className + ".java");
-                    pw = env.ge.io.getPrintWriter(fout, false);
+                    pw = io.getPrintWriter(fout, false);
                     writeHeaderPackageAndImports(pw, packageName, "");
                     extendedClassName = prepend + "W1W2W3W4W5" + type + "Record";
                     printClassDeclarationSerialVersionUID(pw, packageName,
@@ -486,7 +488,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
                 } else if (w == (nwaves + 2)) {
                     className = prepend + "W3W4W5" + type + "Record";
                     fout = new File(outdir, className + ".java");
-                    pw = env.ge.io.getPrintWriter(fout, false);
+                    pw = io.getPrintWriter(fout, false);
                     writeHeaderPackageAndImports(pw, packageName, "");
                     extendedClassName = prepend + "W1W2W3W4W5" + type + "Record";
                     printClassDeclarationSerialVersionUID(pw, packageName,
@@ -494,7 +496,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
                 } else if (w == (nwaves + 3)) {
                     className = prepend + "W4W5" + type + "Record";
                     fout = new File(outdir, className + ".java");
-                    pw = env.ge.io.getPrintWriter(fout, false);
+                    pw = io.getPrintWriter(fout, false);
                     writeHeaderPackageAndImports(pw, packageName, "");
                     extendedClassName = prepend + "W3W4W5" + type + "Record";
                     printClassDeclarationSerialVersionUID(pw, packageName,

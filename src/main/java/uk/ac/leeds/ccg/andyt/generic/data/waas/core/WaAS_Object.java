@@ -16,15 +16,25 @@
 package uk.ac.leeds.ccg.andyt.generic.data.waas.core;
 
 import java.io.Serializable;
+import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
+import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 
 /**
  * @author Andy Turner
  */
 public abstract class WaAS_Object implements Serializable {
 
-    public transient WaAS_Environment env;
+    public transient final WaAS_Environment we;
+    
+    /**
+     * For convenience
+     */
+    public transient final Generic_Environment env;
+    public transient final Generic_IO io;
 
     public WaAS_Object(WaAS_Environment e) {
-        this.env = e;
+        this.we = e;
+        env = e.env;
+        io = env.io;
     }
 }

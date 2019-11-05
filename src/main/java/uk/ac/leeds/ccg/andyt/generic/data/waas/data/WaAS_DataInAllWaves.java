@@ -104,31 +104,31 @@ public class WaAS_DataInAllWaves extends WaAS_Object {
          * Step 1.1: Wave 5 initial load. After this load the lookup contains
          * Wave 5 records that have Wave 4 IDs.
          */
-        w5Data = env.hh.loadW5InW4();
+        w5Data = we.hh.loadW5InW4();
         /**
          * Step 1.2: Wave 4 initial load. After this load the main set of data
          * contains all those Wave 4 records that have Wave 3 record identifiers
          * and that are in the main set loaded in Step 1.1.
          */
-        w4Data = env.hh.loadW4InSAndW3(w5Data.w5_To_w4.values(), WaAS_Strings.s__In_ + "w3w5");
+        w4Data = we.hh.loadW4InSAndW3(w5Data.w5_To_w4.values(), WaAS_Strings.s__In_ + "w3w5");
         /**
          * Step 1.3: Wave 3 initial load. After this load the main set of data
          * contains all those Wave 3 records that have Wave 2 record identifiers
          * and that are in the main set loaded in Step 1.2.
          */
-        w3Data = env.hh.loadW3InSAndW2(w4Data.w4_To_w3.values(), WaAS_Strings.s__In_ + "w2w4w5");
+        w3Data = we.hh.loadW3InSAndW2(w4Data.w4_To_w3.values(), WaAS_Strings.s__In_ + "w2w4w5");
         /**
          * Step 1.4: Wave 2 initial load. After this load the main set of data
          * contains all those Wave 2 records that have Wave 1 record identifiers
          * and that are in the main set loaded in Step 1.3.
          */
-        w2Data = env.hh.loadW2InSAndW1(w3Data.w3_To_w2.values(), WaAS_Strings.s__In_ + "w1w3w4w5");
+        w2Data = we.hh.loadW2InSAndW1(w3Data.w3_To_w2.values(), WaAS_Strings.s__In_ + "w1w3w4w5");
         /**
          * Step 1.5: Wave 1 initial load. After this load the main set of data
          * contains all those Wave 1 records that are in the main set loaded in
          * Step 1.4.
          */
-        w1Data = env.hh.loadW1(w2Data.w2_To_w1.values(), WaAS_Strings.s__In_ + "w2w3w4w5");
+        w1Data = we.hh.loadW1(w2Data.w2_To_w1.values(), WaAS_Strings.s__In_ + "w2w3w4w5");
         /**
          * Step 2: Check what is loaded and go through creating ID sets.
          */
@@ -154,7 +154,7 @@ public class WaAS_DataInAllWaves extends WaAS_Object {
             w1recs.put(w1ID, w1Data.lookup.get(w1ID));
         }
         //env.log("w1IDs.size() " + w1IDs.size());
-        env.hh.cacheSubset(env.W1, w1recs, type);
+        we.hh.cacheSubset(we.W1, w1recs, type);
         w1Data = null; // Save some space
         //w1recs = null; // Save some space
         /**
@@ -175,10 +175,10 @@ public class WaAS_DataInAllWaves extends WaAS_Object {
             }
         }
         //env.log("w2IDs.size() " + w2IDs.size());
-        env.hh.cacheSubset(env.W2, w2recs, type);
+        we.hh.cacheSubset(we.W2, w2recs, type);
         env.log("w1_To_w2.size() " + w1_To_w2.size());
         env.log("w2_To_w1.size() " + w2_To_w1.size());
-        env.hh.cacheSubsetLookups(env.W1, w1_To_w2, w2_To_w1);
+        we.hh.cacheSubsetLookups(we.W1, w1_To_w2, w2_To_w1);
         w2Data = null; // Save some space
         //w2recs = null; // Save some space
         /**
@@ -199,10 +199,10 @@ public class WaAS_DataInAllWaves extends WaAS_Object {
                 w3_To_w2.put(w3ID, w2ID);
             }
         }
-        env.hh.cacheSubset(env.W3, w3recs, type);
+        we.hh.cacheSubset(we.W3, w3recs, type);
         env.log("w2_To_w3.size() " + w2_To_w3.size());
         env.log("w3_To_w2.size() " + w3_To_w2.size());
-        env.hh.cacheSubsetLookups(env.W2, w2_To_w3, w3_To_w2);
+        we.hh.cacheSubsetLookups(we.W2, w2_To_w3, w3_To_w2);
         w3Data = null; // Save some space
         //w3recs = null; // Save some space
         /**
@@ -226,10 +226,10 @@ public class WaAS_DataInAllWaves extends WaAS_Object {
                 }
             }
         }
-        env.hh.cacheSubset(env.W4, w4recs, type);
+        we.hh.cacheSubset(we.W4, w4recs, type);
         env.log("w3_To_w4.size() " + w3_To_w4.size());
         env.log("w4_To_w3.size() " + w4_To_w3.size());
-        env.hh.cacheSubsetLookups(env.W3, w3_To_w4, w4_To_w3);
+        we.hh.cacheSubsetLookups(we.W3, w3_To_w4, w4_To_w3);
         w4Data = null; // Save some space
         //w4recs = null; // Save some space
         /**
@@ -253,10 +253,10 @@ public class WaAS_DataInAllWaves extends WaAS_Object {
                 }
             }
         }
-        env.hh.cacheSubset(env.W5, w5recs, type);
+        we.hh.cacheSubset(we.W5, w5recs, type);
         env.log("w4_To_w5.size() " + w4_To_w5.size());
         env.log("w5_To_w4.size() " + w5_To_w4.size());
-        env.hh.cacheSubsetLookups(env.W4, w4_To_w5, w5_To_w4);
+        we.hh.cacheSubsetLookups(we.W4, w4_To_w5, w5_To_w4);
         w5Data = null; // Save some space
         //w5recs = null; // Save some space
         env.logEndTag(m);

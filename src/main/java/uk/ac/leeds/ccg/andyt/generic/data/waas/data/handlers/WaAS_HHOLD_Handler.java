@@ -19,8 +19,8 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W1ID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W4ID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W5ID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W2ID;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_ID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W3ID;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_WID;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,10 +30,10 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import uk.ac.leeds.ccg.andyt.data.Data_Collection;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.util.Generic_Collections;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_Collection;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_CombinedRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_GORSubsetsAndLookups;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_W2Record;
@@ -67,8 +67,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      *
      * @return a TreeMap with keys as CASEW5 and values as
      * WaAS_Wave5_HHOLD_Records.
+     * @throws java.io.FileNotFoundException If the input file is not found.
      */
-    public TreeMap<WaAS_W5ID, WaAS_W5HRecord> loadAllW5() throws FileNotFoundException {
+    public TreeMap<WaAS_W5ID, WaAS_W5HRecord> loadAllW5() 
+            throws FileNotFoundException {
         String m = "loadAllW5";
         env.logStartTag(m);
         TreeMap<WaAS_W5ID, WaAS_W5HRecord> r;
@@ -80,16 +82,16 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             File f = getInputFile(W5);
             String m1 = getMessage(W5, f);
             env.logStartTag(m1);
-            BufferedReader br = env.ge.io.getBufferedReader(f);
+            BufferedReader br = io.getBufferedReader(f);
             br.lines().skip(1).forEach(l -> {
                 WaAS_W5HRecord rec = new WaAS_W5HRecord(l);
                 short CASEW5 = rec.getCASEW5();
                 WaAS_W5ID w5ID = new WaAS_W5ID(CASEW5);
                 r.put(w5ID, rec);
-                env.data.CASEW5_To_w5.put(CASEW5, w5ID);
+                we.data.CASEW5_To_w5.put(CASEW5, w5ID);
             });
             // Close br
-            env.ge.io.closeBufferedReader(br);
+            io.closeBufferedReader(br);
             env.logEndTag(m1);
             cache(W5, cf, r);
         }
@@ -102,8 +104,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * 
      * @return a TreeMap with keys as CASEW4 and values as
      * WaAS_Wave4_HHOLD_Records.
+     * @throws java.io.FileNotFoundException If the input file is not found.
      */
-    public TreeMap<WaAS_W4ID, WaAS_W4HRecord> loadAllW4() throws FileNotFoundException {
+    public TreeMap<WaAS_W4ID, WaAS_W4HRecord> loadAllW4() 
+            throws FileNotFoundException {
         String m = "loadAllW4";
         env.logStartTag(m);
         TreeMap<WaAS_W4ID, WaAS_W4HRecord> r;
@@ -115,16 +119,16 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             File f = getInputFile(W4);
             String m1 = getMessage(W4, f);
             env.logStartTag(m1);
-            BufferedReader br = env.ge.io.getBufferedReader(f);
+            BufferedReader br = io.getBufferedReader(f);
             br.lines().skip(1).forEach(l -> {
                 WaAS_W4HRecord rec = new WaAS_W4HRecord(l);
                 short CASEW4 = rec.getCASEW4();
                 WaAS_W4ID w4ID = new WaAS_W4ID(CASEW4);
                 r.put(w4ID, rec);
-                env.data.CASEW4_To_w4.put(CASEW4, w4ID);
+                we.data.CASEW4_To_w4.put(CASEW4, w4ID);
             });
             // Close br
-            env.ge.io.closeBufferedReader(br);
+            io.closeBufferedReader(br);
             env.logEndTag(m1);
             cache(W4, cf, r);
         }
@@ -137,8 +141,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      *
      * @return a TreeMap with keys as w3ID and values as
      * WaAS_Wave3_HHOLD_Records.
+     * @throws java.io.FileNotFoundException If the input file is not found.
      */
-    public TreeMap<WaAS_W3ID, WaAS_W3HRecord> loadAllW3() throws FileNotFoundException {
+    public TreeMap<WaAS_W3ID, WaAS_W3HRecord> loadAllW3() 
+            throws FileNotFoundException {
         String m = "loadAllW3";
         env.logStartTag(m);
         TreeMap<WaAS_W3ID, WaAS_W3HRecord> r;
@@ -150,16 +156,16 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             File f = getInputFile(W3);
             String m1 = getMessage(W3, f);
             env.logStartTag(m1);
-            BufferedReader br = env.ge.io.getBufferedReader(f);
+            BufferedReader br = io.getBufferedReader(f);
             br.lines().skip(1).forEach(l -> {
                 WaAS_W3HRecord rec = new WaAS_W3HRecord(l);
                 short CASEW3 = rec.getCASEW3();
                 WaAS_W3ID w3ID = new WaAS_W3ID(CASEW3);
                 r.put(w3ID, rec);
-                env.data.CASEW3_To_w3.put(CASEW3, w3ID);
+                we.data.CASEW3_To_w3.put(CASEW3, w3ID);
             });
             // Close br
-            env.ge.io.closeBufferedReader(br);
+            io.closeBufferedReader(br);
             env.logEndTag(m1);
             cache(W3, cf, r);
             env.logEndTag(m);
@@ -172,8 +178,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      *
      * @return a TreeMap with keys as CASEW2 and values as
      * WaAS_Wave2_HHOLD_Records.
+     * @throws java.io.FileNotFoundException If the input file is not found.
      */
-    public TreeMap<WaAS_W2ID, WaAS_W2HRecord> loadAllW2() throws FileNotFoundException {
+    public TreeMap<WaAS_W2ID, WaAS_W2HRecord> loadAllW2() 
+            throws FileNotFoundException {
         String m = "loadAllW2";
         env.logStartTag(m);
         TreeMap<WaAS_W2ID, WaAS_W2HRecord> r;
@@ -185,16 +193,16 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             File f = getInputFile(W2);
             String m1 = getMessage(W2, f);
             env.logStartTag(m1);
-            BufferedReader br = env.ge.io.getBufferedReader(f);
+            BufferedReader br = io.getBufferedReader(f);
             br.lines().skip(1).forEach(l -> {
                 WaAS_W2HRecord rec = new WaAS_W2HRecord(l);
                 short CASEW2 = rec.getCASEW2();
                 WaAS_W2ID w2ID = new WaAS_W2ID(CASEW2);
                 r.put(w2ID, rec);
-                env.data.CASEW2_To_w2.put(CASEW2, w2ID);
+                we.data.CASEW2_To_w2.put(CASEW2, w2ID);
             });
             // Close br
-            env.ge.io.closeBufferedReader(br);
+            io.closeBufferedReader(br);
             env.logEndTag(m1);
             cache(W2, cf, r);
         }
@@ -207,8 +215,10 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      *
      * @return a TreeMap with keys as CASEW1 and values as
      * WaAS_Wave1_HHOLD_Records.
+     * @throws java.io.FileNotFoundException If the input file is not found.
      */
-    public TreeMap<WaAS_W1ID, WaAS_W1HRecord> loadAllW1() throws FileNotFoundException {
+    public TreeMap<WaAS_W1ID, WaAS_W1HRecord> loadAllW1() 
+            throws FileNotFoundException {
         String m = "loadAllW1(data)";
         env.logStartTag(m);
         TreeMap<WaAS_W1ID, WaAS_W1HRecord> r;
@@ -220,16 +230,16 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
             File f = getInputFile(W1);
             String m1 = getMessage(W1, f);
             env.logStartTag(m1);
-            BufferedReader br = env.ge.io.getBufferedReader(f);
+            BufferedReader br = io.getBufferedReader(f);
             br.lines().skip(1).forEach(l -> {
                 WaAS_W1HRecord rec = new WaAS_W1HRecord(l);
                 short CASEW1 = rec.getCASEW1();
                 WaAS_W1ID w1ID = new WaAS_W1ID(CASEW1);
                 r.put(w1ID, rec);
-                env.data.CASEW1_To_w1.put(CASEW1, w1ID);
+                we.data.CASEW1_To_w1.put(CASEW1, w1ID);
             });
             // Close br
-            env.ge.io.closeBufferedReader(br);
+            io.closeBufferedReader(br);
             env.logEndTag(m1);
             cache(W1, cf, r);
         }
@@ -291,8 +301,8 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * @return a specific generated File.
      */
     protected File getGeneratedAllFile(byte wave) {
-        return new File(env.files.getGeneratedWaASDir(), getType() + WaAS_Strings.s_W
-                + wave + WaAS_Strings.s_All + env.files.DOT_DAT);
+        return new File(we.files.getGeneratedWaASDir(), getType() + WaAS_Strings.s_W
+                + wave + WaAS_Strings.s_All + we.files.DOT_DAT);
     }
 
 
@@ -341,34 +351,36 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * @return Map with keys as GOR and Values as map with keys as CASEWX and
      * values as HVALUE.
      */
-    public HashMap<Byte, HashMap<WaAS_ID, Double>> getVariableForGORSubsets(
+    public HashMap<Byte, HashMap<WaAS_WID, Double>> getVariableForGORSubsets(
             String variableName, byte wave,
             WaAS_GORSubsetsAndLookups GORSubsetsAndLookups, 
             HashSet<WaAS_W1ID> subset) {
-        HashMap<Byte, HashMap<WaAS_ID, Double>> r = new HashMap<>();
+        HashMap<Byte, HashMap<WaAS_WID, Double>> r = new HashMap<>();
         Iterator<Byte> ite = GORSubsetsAndLookups.gor_To_w1.keySet().iterator();
         while (ite.hasNext()) {
             r.put(ite.next(), new HashMap<>());
         }
         if (wave == W1) {
-env.data.collections.keySet().stream().forEach(cID -> {
-                WaAS_Collection c = env.data.getCollection(cID);
-                c.getData().keySet().stream().forEach(w1ID -> {
+            we.data.dataSimple.keySet().stream().forEach(cID -> {
+                Data_Collection c = we.data.getCollection(cID);
+                c.data.keySet().stream().forEach(i -> {
+                    WaAS_W1ID w1ID = (WaAS_W1ID) i;
                     if (subset.contains(w1ID)) {
-                        WaAS_CombinedRecord cr = c.getData().get(w1ID);
+                        WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
                         WaAS_W1HRecord w1 = cr.w1Rec.getHr();
                         Byte GOR = GORSubsetsAndLookups.w1_To_gor.get(w1ID);
                         Generic_Collections.addToMap(r, GOR, w1ID, w1.getHVALUE());
                     }
                 });
-                env.data.clearCollection(cID);
+                we.data.clearCollection(cID);
             });
         } else if (wave == W2) {
-            env.data.collections.keySet().stream().forEach(cID -> {
-                WaAS_Collection c = env.data.getCollection(cID);
-                c.getData().keySet().stream().forEach(w1ID -> {
+            we.data.data.keySet().stream().forEach(cID -> {
+                Data_Collection c = we.data.getCollection(cID);
+                c.data.keySet().stream().forEach(i -> {
+                    WaAS_W1ID w1ID = (WaAS_W1ID) i;
                     if (subset.contains(w1ID)) {
-                        WaAS_CombinedRecord cr = c.getData().get(w1ID);
+                        WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
                         HashMap<WaAS_W2ID, WaAS_W2Record> recs = cr.w2Recs;
                         Iterator<WaAS_W2ID> ite2 = recs.keySet().iterator();
                         while (ite2.hasNext()) {
@@ -379,14 +391,15 @@ env.data.collections.keySet().stream().forEach(cID -> {
                         }
                     }
                 });
-                env.data.clearCollection(cID);
+                we.data.clearCollection(cID);
             });
         } else if (wave == W3) {
-            env.data.collections.keySet().stream().forEach(cID -> {
-                WaAS_Collection c = env.data.getCollection(cID);
-                c.getData().keySet().stream().forEach(CASEW1 -> {
-                    if (subset.contains(CASEW1)) {
-                        WaAS_CombinedRecord cr = c.getData().get(CASEW1);
+            we.data.data.keySet().stream().forEach(cID -> {
+                Data_Collection c = we.data.getCollection(cID);
+                c.data.keySet().stream().forEach(i -> {
+                    WaAS_W1ID w1ID = (WaAS_W1ID) i;
+                    if (subset.contains(w1ID)) {
+                        WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
                         HashMap<WaAS_W2ID, HashMap<WaAS_W3ID, WaAS_W3Record>> recs = cr.w3Recs;
                         Iterator<WaAS_W2ID> ite1 = recs.keySet().iterator();
                         while (ite1.hasNext()) {
@@ -402,14 +415,15 @@ env.data.collections.keySet().stream().forEach(cID -> {
                         }
                     }
                 });
-                env.data.clearCollection(cID);
+                we.data.clearCollection(cID);
             });
         } else if (wave == W4) {
-            env.data.collections.keySet().stream().forEach(cID -> {
-                WaAS_Collection c = env.data.getCollection(cID);
-                c.getData().keySet().stream().forEach(w1ID -> {
+            we.data.data.keySet().stream().forEach(cID -> {
+                Data_Collection c = we.data.getCollection(cID);
+                c.data.keySet().stream().forEach(i -> {
+                    WaAS_W1ID w1ID = (WaAS_W1ID) i;
                     if (subset.contains(w1ID)) {
-                        WaAS_CombinedRecord cr = c.getData().get(w1ID);
+                        WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
                         HashMap<WaAS_W2ID, HashMap<WaAS_W3ID, HashMap<WaAS_W4ID, WaAS_W4Record>>> recs = cr.w4Recs;
                         Iterator<WaAS_W2ID> ite1 = recs.keySet().iterator();
                         while (ite1.hasNext()) {
@@ -430,14 +444,15 @@ env.data.collections.keySet().stream().forEach(cID -> {
                         }
                     }
                 });
-                env.data.clearCollection(cID);
+                we.data.clearCollection(cID);
             });
         } else if (wave == W5) {
-            env.data.collections.keySet().stream().forEach(cID -> {
-                WaAS_Collection c = env.data.getCollection(cID);
-                c.getData().keySet().stream().forEach(CASEW1 -> {
-                    if (subset.contains(CASEW1)) {
-                        WaAS_CombinedRecord cr = c.getData().get(CASEW1);
+            we.data.data.keySet().stream().forEach(cID -> {
+                Data_Collection c = we.data.getCollection(cID);
+                c.data.keySet().stream().forEach(i -> {
+                    WaAS_W1ID w1ID = (WaAS_W1ID) i;
+                    if (subset.contains(w1ID)) {
+                        WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
                         HashMap<WaAS_W2ID, HashMap<WaAS_W3ID, HashMap<WaAS_W4ID, HashMap<WaAS_W5ID, WaAS_W5Record>>>> recs = cr.w5Recs;
                         Iterator<WaAS_W2ID> ite1 = recs.keySet().iterator();
                         while (ite1.hasNext()) {
@@ -463,7 +478,7 @@ env.data.collections.keySet().stream().forEach(cID -> {
                         }
                     }
                 });
-                env.data.clearCollection(cID);
+                we.data.clearCollection(cID);
             });
         }
         return r;
@@ -629,7 +644,7 @@ env.data.collections.keySet().stream().forEach(cID -> {
             ArrayList<Byte> gors, WaAS_GORSubsetsAndLookups GORSubsetsAndLookups,
             TreeMap<Byte, String> GORNameLookup, HashSet<WaAS_W1ID> subset) {
         TreeMap<Byte, Double> r = new TreeMap<>();
-        HashMap<Byte, HashMap<WaAS_ID, Double>>[] variableSubsets;
+        HashMap<Byte, HashMap<WaAS_WID, Double>>[] variableSubsets;
         variableSubsets = new HashMap[NWAVES];
         for (byte w = 0; w < NWAVES; w++) {
             variableSubsets[w] = getVariableForGORSubsets(variableName,

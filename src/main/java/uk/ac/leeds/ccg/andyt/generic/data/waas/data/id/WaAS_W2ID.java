@@ -16,40 +16,18 @@
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data.id;
 
 /**
- *
- * @author geoagdt
+ * A Record ID for Wave 2 to help with type safety.
+ * 
+ * @author Andy Turner
  */
-public class WaAS_W2ID extends WaAS_ID {
+public class WaAS_W2ID extends WaAS_WID {
 
-    public WaAS_W2ID(short CASEW2) {
-        super(CASEW2);
+    public WaAS_W2ID(long l) {
+        super(l);
     }
 
     @Override
     public String toString() {
-        return "CASEW2 " + getID();
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        if (o instanceof WaAS_W2ID) {
-            return super.compareTo(o);
-        }
-        return -2;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (super.equals(o)) {
-            if (o instanceof WaAS_W2ID) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
+        return "CASEW2=" + getID();
     }
 }

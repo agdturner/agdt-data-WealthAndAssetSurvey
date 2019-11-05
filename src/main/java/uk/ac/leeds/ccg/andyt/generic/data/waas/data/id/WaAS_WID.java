@@ -15,20 +15,16 @@
  */
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data.id;
 
+import uk.ac.leeds.ccg.andyt.data.Data_RecordID;
+
 /**
- * A Record ID for Wave 4 to help with type safety.
+ * A Record ID for a Wave to help with type safety.
  * 
  * @author Andy Turner
  */
-public class WaAS_W4ID extends WaAS_WID {
+public class WaAS_WID extends Data_RecordID {
 
-    public WaAS_W4ID(long l) {
+    public WaAS_WID(long l) {
         super(l);
     }
-
-    @Override
-    public String toString() {
-        return "CASEW4=" + getID();
-    }
 }
-

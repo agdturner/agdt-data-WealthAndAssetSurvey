@@ -26,12 +26,12 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import uk.ac.leeds.ccg.andyt.data.Data_Collection;
+import uk.ac.leeds.ccg.andyt.data.Data_CollectionID;
+import uk.ac.leeds.ccg.andyt.data.Data_RecordID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_Collection;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_CollectionID;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_CollectionSimple;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_CombinedRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_CombinedRecordSimple;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_DataInAllWaves;
@@ -76,8 +76,7 @@ public class WaAS_Main_Process extends WaAS_Object {
 
     public static void main(String[] args) {
         try {
-            WaAS_Environment env = new WaAS_Environment();
-            WaAS_Main_Process p = new WaAS_Main_Process(env);
+            WaAS_Main_Process p = new WaAS_Main_Process(new WaAS_Environment());
             // Main switches
 //        p.doJavaCodeGeneration = true;
             p.doLoadAllHouseholdsRecords = true;
@@ -101,21 +100,21 @@ public class WaAS_Main_Process extends WaAS_Object {
             loadAllHouseholdRecords();
         }
         if (doLoadHouseholdsAndIndividualsInAllWaves) {
-            WaAS_DataInAllWaves dataInAllWaves = new WaAS_DataInAllWaves(env);
+            WaAS_DataInAllWaves dataInAllWaves = new WaAS_DataInAllWaves(we);
             String type = WaAS_Strings.s__In_w1w2w3w4w5;
             dataInAllWaves.loadDataInAllWaves(type);
             mergePersonAndHouseholdDataIntoCollections(type, chunkSize);
         }
         if (doLoadHouseholdsInPairedWaves) {
             if (true) {
-                WaAS_W2Data W2InW1 = env.hh.loadW2InW1();
+                WaAS_W2Data W2InW1 = we.hh.loadW2InW1();
                 //Object[] w2_In_w1 = hH.loadHouseholdsInPreviousWave(W2);
                 //TreeMap<Short, WaAS_W2HRecord> W2InW1Recs;
                 //W2InW1Recs = (TreeMap<Short, WaAS_W2HRecord>) w2_In_w1[0];
                 //TreeSet<Short>[] W2InW1Sets = (TreeSet<Short>[]) w2_In_w1[1];
                 //TreeSet<Short> W2InW1CASEW1 = W2InW1Sets[0];
                 //Object[] w1_In_w2 = hH.loadW1(W2InW1CASEW1, WaAS_Strings.s_InW2);
-                WaAS_W1Data W1InW2 = env.hh.loadW1(W2InW1.w1_In_w2, WaAS_Strings.s__In_ + WaAS_Strings.s_w2);
+                WaAS_W1Data W1InW2 = we.hh.loadW1(W2InW1.w1_In_w2, WaAS_Strings.s__In_ + WaAS_Strings.s_w2);
                 //TreeMap<Short, WaAS_W1HRecord> W1InW2Recs;
                 //W1InW2Recs = (TreeMap<Short, WaAS_W1HRecord>) w1_In_w2[0];
                 //env.log(W2InW1Recs.size() + "\t W2InW1Recs.size()");
@@ -124,13 +123,13 @@ public class WaAS_Main_Process extends WaAS_Object {
                 env.log(W1InW2.lookup.size() + "\t W1InW2.lookup.size()");
             }
             if (true) {
-                WaAS_W3Data W3InW2 = env.hh.loadW3InW2();
+                WaAS_W3Data W3InW2 = we.hh.loadW3InW2();
                 //Object[] W3InW2 = hH.loadHouseholdsInPreviousWave(W3);
                 //TreeMap<Short, WaAS_W3HRecord> W3InW2Recs;
                 //W3InW2Recs = (TreeMap<Short, WaAS_W3HRecord>) W3InW2[0];
                 //TreeSet<Short>[] W3InW2Sets = (TreeSet<Short>[]) W3InW2[1];
                 //TreeSet<Short> W3InW2CASEW2 = W3InW2Sets[1];
-                WaAS_W2Data W2InW3 = env.hh.loadW2InS(W3InW2.w2_In_w3, WaAS_Strings.s__In_ + WaAS_Strings.s_w3);
+                WaAS_W2Data W2InW3 = we.hh.loadW2InS(W3InW2.w2_In_w3, WaAS_Strings.s__In_ + WaAS_Strings.s_w3);
                 //Object[] w2_In_w3 = hH.loadW2(W3InW2CASEW2, WaAS_Strings.s_InW3);
                 //TreeMap<Short, WaAS_W1HRecord> W2InW3Recs;
                 //W2InW3Recs = (TreeMap<Short, WaAS_W1HRecord>) w2_In_w3[0];
@@ -138,7 +137,7 @@ public class WaAS_Main_Process extends WaAS_Object {
                 env.log(W2InW3.lookup.size() + "\t W2InW3.lookup.size()");
             }
             if (true) {
-                WaAS_W4Data W4InW3 = env.hh.loadW4InW3();
+                WaAS_W4Data W4InW3 = we.hh.loadW4InW3();
                 //Object[] W4InW3 = hH.loadHouseholdsInPreviousWave(W4);
                 //TreeMap<WaAS_W4ID, WaAS_W4HRecord> W4InW3Recs;
                 //W4InW3Recs = (TreeMap<WaAS_W4ID, WaAS_W4HRecord>) W4InW3[0];
@@ -146,7 +145,7 @@ public class WaAS_Main_Process extends WaAS_Object {
                 //TreeSet<Short> W4InW3CASEW3 = W4InW3Sets[2];
                 //Object[] w3_In_w4 = hH.loadW3InW2(W4InW3CASEW3, WaAS_Strings.s_InW4);
                 //W3Data w3_In_w4 = hH.loadW3InW2(W4InW3CASEW3, WaAS_Strings.s_InW4);
-                WaAS_W3Data W3InW4 = env.hh.loadW3InS(W4InW3.w3_In_w4, WaAS_Strings.s__In_ + WaAS_Strings.s_w4);
+                WaAS_W3Data W3InW4 = we.hh.loadW3InS(W4InW3.w3_In_w4, WaAS_Strings.s__In_ + WaAS_Strings.s_w4);
                 //TreeMap<Short, WaAS_W1HRecord> W3InW4Recs;
                 //W3InW4Recs = (TreeMap<Short, WaAS_W1HRecord>) w3_In_w4[0];
                 //env.log(W4InW3Recs.size() + "\t W4InW3Recs.size()");
@@ -155,13 +154,13 @@ public class WaAS_Main_Process extends WaAS_Object {
                 env.log(W3InW4.lookup.size() + "\t W3InW4.lookup.size()");
             }
             if (true) {
-                WaAS_W5Data W5InW4 = env.hh.loadW5InW4();
+                WaAS_W5Data W5InW4 = we.hh.loadW5InW4();
                 //Object[] W5InW4 = hH.loadHouseholdsInPreviousWave(W5);
                 //TreeMap<WaAS_W5ID, WaAS_W5HRecord> W5InW4Recs;
                 //W5InW4Recs = (TreeMap<WaAS_W5ID, WaAS_W5HRecord>) W5InW4[0];
                 //TreeSet<Short>[] W5InW4Sets = (TreeSet<Short>[]) W5InW4[1];
                 //TreeSet<Short> W5InW4CASEW4 = W5InW4Sets[3];
-                WaAS_W4Data W4InW5 = env.hh.loadW4InS(W5InW4.w4_In_w5, WaAS_Strings.s__In_ + WaAS_Strings.s_w5);
+                WaAS_W4Data W4InW5 = we.hh.loadW4InS(W5InW4.w4_In_w5, WaAS_Strings.s__In_ + WaAS_Strings.s_w5);
                 //Object[] w4_In_w5 = hH.loadW4InW3(W5InW4CASEW4, WaAS_Strings.s_InW5);
                 //TreeMap<Short, WaAS_W1HRecord> W4InW5Recs;
                 //W4InW5Recs = (TreeMap<Short, WaAS_W1HRecord>) w4_In_w5[0];
@@ -173,39 +172,40 @@ public class WaAS_Main_Process extends WaAS_Object {
             mergePersonAndHouseholdDataIntoCollections(WaAS_Strings.s_Paired, chunkSize);
         }
         if (doSubset) {
-            HashSet<WaAS_W1ID> subset = env.hh.getSubset(4);
+            HashSet<WaAS_W1ID> subset = we.hh.getSubset(4);
             initDataSimple(subset);
         }
-        env.cacheData();
+        we.cacheData();
         env.logEndTag(m);
-        env.ge.closeLog(env.logID);
+        env.closeLog(we.logID);
     }
 
     /**
-     * Read input collections and create household all sets.
+     * Read input data and create household all sets.
      * @throws java.io.IOException
      */
     public void loadAllHouseholdRecords() throws IOException {
         String m0 = "loadAllHouseholdRecords";
         env.logStartTag(m0);
-        env.hh.loadAllW1();
-        env.hh.loadAllW2();
-        env.hh.loadAllW3();
-        env.hh.loadAllW4();
-        env.hh.loadAllW5();
+        we.hh.loadAllW1();
+        we.hh.loadAllW2();
+        we.hh.loadAllW3();
+        we.hh.loadAllW4();
+        we.hh.loadAllW5();
         env.logEndTag(m0);
     }
 
     /**
-     * Merge Person and Household Data into collections.
+     * Merge Person and Household Data into data.
      *
      * @param type s__In_w1w2w3w4w5
      * @param chunkSize
+     * @throws java.io.IOException IFF IOException is encountered.
      */
     public void mergePersonAndHouseholdDataIntoCollections(String type, int chunkSize) throws IOException {
         String m = "mergePersonAndHouseholdDataIntoCollections(" + type + ", ...)";
         env.logStartTag(m);
-        WaAS_PERSON_Handler pH = new WaAS_PERSON_Handler(env);
+        WaAS_PERSON_Handler pH = new WaAS_PERSON_Handler(we);
         /**
          * Wave 1
          */
@@ -242,8 +242,8 @@ public class WaAS_Main_Process extends WaAS_Object {
                 type, pH, dsW4, dsW1, w1_To_w2, w2_To_w1, w2_To_w3, w3_To_w2,
                 w3_To_w4, w4_To_w3, w4_To_w5, w5_To_w4);
         env.log("data.lookup.size() " + dsW1.w1_To_c.size());
-        env.log("data.data.size() " + env.data.collections.size());
-        env.cacheData();
+        env.log("data.data.size() " + we.data.data.size());
+        we.cacheData();
         env.logEndTag(m);
     }
 
@@ -251,7 +251,7 @@ public class WaAS_Main_Process extends WaAS_Object {
 
         TreeMap<WaAS_W1ID, WaAS_W1Record> hs;
         /**
-         * Number of collections
+         * Number of data
          */
         int nOC;
     }
@@ -263,18 +263,19 @@ public class WaAS_Main_Process extends WaAS_Object {
      * @param pH personHandler
      * @param chunkSize
      * @return
+     * @throws java.io.IOException IFF IOException is encountered.
      */
     public WaAS_DataSubsetW1 mergePersonAndHouseholdDataIntoCollectionsW1(
             String type, WaAS_PERSON_Handler pH, int chunkSize) throws IOException {
         // Wave 1
         String m0 = "mergePersonAndHouseholdDataIntoCollectionsW1";
-        env.logStartTagMem(m0);
+        we.logStartTagMem(m0);
         //Object[] r = new Object[3];
         TreeMap<WaAS_W1ID, WaAS_W1Record> hs;
         if (type.equalsIgnoreCase(WaAS_Strings.s__In_w1w2w3w4w5)) {
-            hs = env.hh.loadCachedSubsetW1(type);
+            hs = we.hh.loadCachedSubsetW1(type);
         } else if (type.equalsIgnoreCase(WaAS_Strings.s_Paired)) {
-            hs = env.hh.loadCachedSubset2W1(WaAS_Strings.s__In_ + WaAS_Strings.s_w2);
+            hs = we.hh.loadCachedSubset2W1(WaAS_Strings.s__In_ + WaAS_Strings.s_w2);
         } else {
             env.log("Unrecognised type " + type);
             hs = null;
@@ -284,20 +285,20 @@ public class WaAS_Main_Process extends WaAS_Object {
             w1IDs.addAll(hs.keySet());
 
         }
-        env.data.nOC = (int) Math.ceil((double) w1IDs.size() / (double) chunkSize);
+        we.data.nOC = (int) Math.ceil((double) w1IDs.size() / (double) chunkSize);
         WaAS_DataSubsetW1 sW1 = pH.loadDataSubsetW1(w1IDs);
         //sW1.c_To_w1.keySet().stream().forEach(cID -> {
         env.log("sW1.c_To_w1.keySet().size() " + sW1.c_To_w1.keySet().size());
-        Iterator<WaAS_CollectionID> ite2 = sW1.c_To_w1.keySet().iterator();
+        Iterator<Data_CollectionID> ite2 = sW1.c_To_w1.keySet().iterator();
         while (ite2.hasNext()) {
-            WaAS_CollectionID cID = ite2.next();
+            Data_CollectionID cID = ite2.next();
             String m1 = "Collection ID " + cID;
-            env.logStartTagMem(m1);
-            WaAS_Collection c = new WaAS_Collection(cID);
-            env.data.collections.put(cID, c);
+            we.logStartTagMem(m1);
+            Data_Collection c = new Data_Collection(cID);
+            we.data.data.put(cID, c);
             // Add hhold records.
             String m2 = "Add hhold records";
-            env.logStartTagMem(m2);
+            we.logStartTagMem(m2);
             HashSet<WaAS_W1ID> s = sW1.c_To_w1.get(cID);
             int count;
             count = 0;
@@ -306,47 +307,45 @@ public class WaAS_Main_Process extends WaAS_Object {
             while (ite.hasNext()) {
                 WaAS_W1ID w1ID = ite.next();
                 //env.data.w1_To_c.put(w1ID, cID);
-                HashMap<WaAS_W1ID, WaAS_CombinedRecord> m = c.getData();
-                WaAS_CombinedRecord cr = m.get(w1ID);
+                WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
                 if (cr == null) {
                     WaAS_W1Record w1Rec = hs.get(w1ID);
                     cr = new WaAS_CombinedRecord(w1Rec);
-                    m.put(w1ID, cr);
+                    c.data.put(w1ID, cr);
                     count++;
                 }
             }
 
 // The problem with using streams is that it is not possible that way to set c to null and if that is not done there is a memory leak!
 //            s.stream().forEach(w1ID -> { 
-//                env.data.w1_To_c.put(w1ID, cID);
+//                we.data.w1_To_c.put(w1ID, cID);
 //                HashMap<WaAS_W1ID, WaAS_CombinedRecord> m = c.getData();
 //                WaAS_CombinedRecord cr = m.get(w1ID);
 //                if (cr == null) {
 //                    WaAS_W1Record w1Rec = hs.get(w1ID);
-//                    cr = new WaAS_CombinedRecord(env, w1Rec);
+//                    cr = new WaAS_CombinedRecord(we, w1Rec);
 //                    m.put(w1ID, cr);
 //                }
 //                //cr.w1Rec.setHhold(hs.get(CASEW1));
 //            });
             env.log("Number of records added " + count);
-            env.logEndTagMem(m2);
+            we.logEndTagMem(m2);
             // Add person records.
             m2 = "Add person records";
-            env.logStartTagMem(m2);
+            we.logStartTagMem(m2);
             count = 0;
             File f = sW1.cFs.get(cID); // This should be DataSubset1_0.tab
-            try ( BufferedReader br = env.ge.io.getBufferedReader(f)) {
+            try ( BufferedReader br = io.getBufferedReader(f)) {
                 String line;
-                env.ge.io.skipline(br); // Skip header
+                io.skipline(br); // Skip header
                 boolean readIncomplete = true;
                 while (readIncomplete) {
                     line = br.readLine();
                     if (line != null) {
                         WaAS_W1PRecord p = new WaAS_W1PRecord(line);
-                        WaAS_W1ID w1ID = env.data.CASEW1_To_w1.get(p.getCASEW1());
+                        WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(p.getCASEW1());
                         if (s.contains(w1ID)) {
-                            HashMap<WaAS_W1ID, WaAS_CombinedRecord> m = c.getData();
-                            WaAS_CombinedRecord cr = m.get(w1ID);
+                            WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
                             cr.w1Rec.getPrs().add(p);
                             count++;
                         }
@@ -361,23 +360,23 @@ public class WaAS_Main_Process extends WaAS_Object {
 ////            br.lines().skip(1).forEach(line -> {
 ////                WaAS_W1PRecord p = new WaAS_W1PRecord(line);
 ////                //WaAS_W1ID w1ID = new WaAS_W1ID(p.getCASEW1());
-////                WaAS_W1ID w1ID = env.data.CASEW1_To_w1.get(p.getCASEW1());
+////                WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(p.getCASEW1());
 ////                HashMap<WaAS_W1ID, WaAS_CombinedRecord> m = c.getData();
 ////                WaAS_CombinedRecord cr = m.get(w1ID);
 ////                cr.w1Rec.getPrs().add(p);
 ////            });
             env.log("Number of records added " + count);
-            env.logEndTagMem(m2);
+            we.logEndTagMem(m2);
             // Cache and clear collection
-            env.data.cacheSubsetCollection(cID, c);
-            env.data.clearCollection(cID);
+            we.data.cacheSubsetCollection(cID, c);
+            we.data.clearCollection(cID);
             env.log("Set c = null and call the garbage collector.");
             c = null; // Free memory!
             System.gc();
-            env.logEndTagMem(m1);
+            we.logEndTagMem(m1);
             //});
         }
-        env.logEndTagMem(m0);
+        we.logEndTagMem(m0);
         return sW1;
     }
 
@@ -390,6 +389,7 @@ public class WaAS_Main_Process extends WaAS_Object {
      * @param w1_To_w2
      * @param w2_To_w1
      * @return
+     * @throws java.io.IOException IFF IOException is encountered.
      */
     public WaAS_DataSubsetW2 mergePersonAndHouseholdDataIntoCollectionsW2(
             String type, WaAS_PERSON_Handler pH, WaAS_DataSubsetW1 sW1,
@@ -397,12 +397,12 @@ public class WaAS_Main_Process extends WaAS_Object {
             TreeMap<WaAS_W2ID, WaAS_W1ID> w2_To_w1) throws IOException {
         // Wave 2
         String m0 = "mergePersonAndHouseholdDataIntoCollectionsW2";
-        env.logStartTagMem(m0);
+        we.logStartTagMem(m0);
         TreeMap<WaAS_W2ID, WaAS_W2Record> hs;
         if (type.equalsIgnoreCase(WaAS_Strings.s__In_w1w2w3w4w5)) {
-            hs = env.hh.loadCachedSubsetW2(type);
+            hs = we.hh.loadCachedSubsetW2(type);
         } else if (type.equalsIgnoreCase(WaAS_Strings.s_Paired)) {
-            hs = env.hh.loadCachedSubset2W2(WaAS_Strings.s__In_ + WaAS_Strings.s_w3);
+            hs = we.hh.loadCachedSubset2W2(WaAS_Strings.s__In_ + WaAS_Strings.s_w3);
 
             // Debugging code.
             if (hs == null) {
@@ -416,12 +416,12 @@ public class WaAS_Main_Process extends WaAS_Object {
         }
         WaAS_DataSubsetW2 sW2 = pH.loadDataSubsetW2(sW1, w2_To_w1);
         //sW2.cFs.keySet().stream().forEach(cID -> {
-        Iterator<WaAS_CollectionID> ite2 = sW2.cFs.keySet().iterator();
+        Iterator<Data_CollectionID> ite2 = sW2.cFs.keySet().iterator();
         while (ite2.hasNext()) {
-            WaAS_CollectionID cID = ite2.next();
+            Data_CollectionID cID = ite2.next();
             String m1 = "Collection ID " + cID;
-            env.logStartTagMem(m1);
-            WaAS_Collection c = env.data.getCollection(cID);
+            we.logStartTagMem(m1);
+            Data_Collection c = we.data.getCollection(cID);
             // Add hhold records.
             String m2 = "Add hhold records";
             env.logStartTag(m2);
@@ -430,19 +430,17 @@ public class WaAS_Main_Process extends WaAS_Object {
             Iterator<WaAS_W1ID> ite = s.iterator();
             while (ite.hasNext()) {
                 WaAS_W1ID w1ID = ite.next();
-
+                
                 if (w1ID == null) {
                     env.log("w1ID " + w1ID);
                 }
-
-                env.data.w1_To_c.put(w1ID, cID);
-                HashMap<WaAS_W1ID, WaAS_CombinedRecord> m = c.getData();
-                WaAS_CombinedRecord cr = m.get(w1ID);
+                
+                we.data.w1_To_c.put(w1ID, cID);
+                WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
                 if (cr == null) {
                     env.log("No combined record for " + w1ID + "! Data error?");
                 } else {
                     HashSet<WaAS_W2ID> w2IDs = w1_To_w2.get(w1ID);
-
                     if (w2IDs == null) {
                         env.log("w2IDs = null for w1ID " + w1ID);
                     } else {
@@ -460,7 +458,7 @@ public class WaAS_Main_Process extends WaAS_Object {
             }
 // The problem with using streams is that it is not possible that way to set c to null and if that is not done there is a memory leak!
 //            s.stream().forEach(w1ID -> {
-//                env.data.w1_To_c.put(w1ID, cID);
+//                we.data.w1_To_c.put(w1ID, cID);
 //                HashMap<WaAS_W1ID, WaAS_CombinedRecord> m = c.getData();
 //                WaAS_CombinedRecord cr = m.get(w1ID);
 //                if (cr == null) {
@@ -473,15 +471,15 @@ public class WaAS_Main_Process extends WaAS_Object {
 //                    });
 //                }
 //            });
-            env.logEndTagMem(m2);
+            we.logEndTagMem(m2);
             // Add person records.
             m2 = "Add person records";
             env.logStartTag(m2);
             File f = sW2.cFs.get(cID);
-            BufferedReader br = env.ge.io.getBufferedReader(f);
+            BufferedReader br = io.getBufferedReader(f);
             // The following way not using streams works!
             String line;
-            env.ge.io.skipline(br); // Skip header
+            io.skipline(br); // Skip header
             boolean readIncomplete = true;
             while (readIncomplete) {
                 try {
@@ -489,14 +487,13 @@ public class WaAS_Main_Process extends WaAS_Object {
                     if (line != null) {
                         WaAS_W2PRecord p = new WaAS_W2PRecord(line);
                         //WaAS_W1ID w1IDCheck = new WaAS_W1ID(p.getCASEW1());
-                        //WaAS_W1ID w1IDCheck = env.data.CASEW1_To_w1.get(p.getCASEW1());
+                        //WaAS_W1ID w1IDCheck = we.data.CASEW1_To_w1.get(p.getCASEW1());
                         //WaAS_W2ID w2ID = new WaAS_W2ID(p.getCASEW2());
-                        WaAS_W2ID w2ID = env.data.CASEW2_To_w2.get(p.getCASEW2());
+                        WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(p.getCASEW2());
                         WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
-                        //printCheck(env.W2, w1IDCheck, w1ID, w1_To_w2);
+                        //printCheck(we.W2, w1IDCheck, w1ID, w1_To_w2);
                         if (s.contains(w1ID)) {
-                            HashMap<WaAS_W1ID, WaAS_CombinedRecord> m = c.getData();
-                            WaAS_CombinedRecord cr = m.get(w1ID);
+                            WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
                             if (cr == null) {
                                 env.log("No combined record for " + w1ID + "! Data error, "
                                         + "or this person may have moved household?");
@@ -524,11 +521,11 @@ public class WaAS_Main_Process extends WaAS_Object {
 ////            br.lines().skip(1).forEach(line -> {
 ////                WaAS_W2PRecord p = new WaAS_W2PRecord(line);
 ////                //WaAS_W1ID w1IDCheck = new WaAS_W1ID(p.getCASEW1());
-////                //WaAS_W1ID w1IDCheck = env.data.CASEW1_To_w1.get(p.getCASEW1());
+////                //WaAS_W1ID w1IDCheck = we.data.CASEW1_To_w1.get(p.getCASEW1());
 ////                //WaAS_W2ID w2ID = new WaAS_W2ID(p.getCASEW2());
-////                WaAS_W2ID w2ID = env.data.CASEW2_To_w2.get(p.getCASEW2());
+////                WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(p.getCASEW2());
 ////                WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
-////                //printCheck(env.W2, w1IDCheck, w1ID, w1_To_w2);
+////                //printCheck(we.W2, w1IDCheck, w1ID, w1_To_w2);
 ////                HashMap<WaAS_W1ID, WaAS_CombinedRecord> m = c.getData();
 ////                WaAS_CombinedRecord cr = m.get(w1ID);
 ////                if (cr == null) {
@@ -539,7 +536,7 @@ public class WaAS_Main_Process extends WaAS_Object {
 ////                    w2IDs.stream().forEach(k2 -> {
 ////                        WaAS_W2Record w2rec = cr.w2Recs.get(k2);
 ////                        if (w2rec == null) {
-////                            w2rec = new WaAS_W2Record(env, k2);
+////                            w2rec = new WaAS_W2Record(we, k2);
 ////                            env.log("Adding people, but there is no hhold "
 ////                                    + "record for " + w2ID + "!");
 ////                        }
@@ -547,16 +544,16 @@ public class WaAS_Main_Process extends WaAS_Object {
 ////                    });
 ////                }
 ////            });
-            env.logEndTagMem(m2);
+            we.logEndTagMem(m2);
             // Close br
-            env.ge.io.closeBufferedReader(br);
+            io.closeBufferedReader(br);
             // Cache and clear collection
-            env.data.cacheSubsetCollection(cID, c);
-            env.data.clearCollection(cID);
+            we.data.cacheSubsetCollection(cID, c);
+            we.data.clearCollection(cID);
             env.log("Set c = null and call the garbage collector.");
             c = null; // Free memory!
             System.gc();
-            env.logEndTagMem(m1);
+            we.logEndTagMem(m1);
             //});
         }
         env.logEndTag(m0);
@@ -603,6 +600,7 @@ public class WaAS_Main_Process extends WaAS_Object {
      * @param w2_To_w3
      * @param w3_To_w2
      * @return
+     * @throws java.io.IOException IFF IOException is encountered.
      */
     public WaAS_DataSubsetW3 mergePersonAndHouseholdDataIntoCollectionsW3(
             String type, WaAS_PERSON_Handler pH,
@@ -615,32 +613,31 @@ public class WaAS_Main_Process extends WaAS_Object {
         env.logStartTag(m0);
         TreeMap<WaAS_W3ID, WaAS_W3Record> hs;
         if (type.equalsIgnoreCase(WaAS_Strings.s__In_w1w2w3w4w5)) {
-            hs = env.hh.loadCachedSubsetW3(type);
+            hs = we.hh.loadCachedSubsetW3(type);
         } else if (type.equalsIgnoreCase(WaAS_Strings.s_Paired)) {
-            hs = env.hh.loadCachedSubset2W3(WaAS_Strings.s__In_ + WaAS_Strings.s_w4);
+            hs = we.hh.loadCachedSubset2W3(WaAS_Strings.s__In_ + WaAS_Strings.s_w4);
         } else {
             env.log("Unrecognised type " + type);
             hs = null;
         }
         WaAS_DataSubsetW3 sW3 = pH.loadDataSubsetW3(sW2, sW1.w1_To_c, w2_To_w1, w3_To_w2);
         //sW3.cFs.keySet().stream().forEach(cID -> {
-        Iterator<WaAS_CollectionID> ite2 = sW3.cFs.keySet().iterator();
+        Iterator<Data_CollectionID> ite2 = sW3.cFs.keySet().iterator();
         while (ite2.hasNext()) {
-            WaAS_CollectionID cID = ite2.next();
+            Data_CollectionID cID = ite2.next();
             String m1 = "Collection ID " + cID;
-            env.logStartTagMem(m1);
-            WaAS_Collection c = env.data.getCollection(cID);
+            we.logStartTagMem(m1);
+            Data_Collection c = we.data.getCollection(cID);
             // Add hhold records.
             String m2 = "Add hhold records";
-            env.logStartTagMem(m2);
+            we.logStartTagMem(m2);
             HashSet<WaAS_W1ID> s = sW1.c_To_w1.get(cID);
             // The following way not using streams works!
             Iterator<WaAS_W1ID> ite = s.iterator();
             while (ite.hasNext()) {
                 WaAS_W1ID w1ID = ite.next();
-                env.data.w1_To_c.put(w1ID, cID);
-                HashMap<WaAS_W1ID, WaAS_CombinedRecord> m = c.getData();
-                WaAS_CombinedRecord cr = m.get(w1ID);
+                we.data.w1_To_c.put(w1ID, cID);
+                WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
                 if (cr == null) {
                     env.log("No combined record for CASEW1 " + w1ID + "! "
                             + "This may be a data error?");
@@ -671,7 +668,7 @@ public class WaAS_Main_Process extends WaAS_Object {
             }
 // The problem with using streams is that it is not possible that way to set c to null and if that is not done there is a memory leak!
 //            s.stream().forEach(w1ID -> {
-//                env.data.w1_To_c.put(w1ID, cID);
+//                we.data.w1_To_c.put(w1ID, cID);
 //                HashMap<WaAS_W1ID, WaAS_CombinedRecord> m = c.getData();
 //                WaAS_CombinedRecord cr = m.get(w1ID);
 //                if (cr == null) {
@@ -695,10 +692,10 @@ public class WaAS_Main_Process extends WaAS_Object {
             m2 = "Add person records";
             env.logStartTag(m2);
             File f = sW3.cFs.get(cID);
-            BufferedReader br = env.ge.io.getBufferedReader(f);
+            BufferedReader br = io.getBufferedReader(f);
             // The following way not using streams works!
             String line;
-            env.ge.io.skipline(br); // Skip header
+            io.skipline(br); // Skip header
             boolean readIncomplete = true;
             while (readIncomplete) {
                 try {
@@ -706,18 +703,17 @@ public class WaAS_Main_Process extends WaAS_Object {
                     if (line != null) {
                         WaAS_W3PRecord p = new WaAS_W3PRecord(line);
                         //WaAS_W1ID w1IDCheck = new WaAS_W1ID(p.getCASEW1());
-                        //WaAS_W1ID w1IDCheck = env.data.CASEW1_To_w1.get(p.getCASEW1());
+                        //WaAS_W1ID w1IDCheck = we.data.CASEW1_To_w1.get(p.getCASEW1());
                         //WaAS_W2ID w2IDCheck = new WaAS_W2ID(p.getCASEW2());
-                        //WaAS_W2ID w2IDCheck = env.data.CASEW2_To_w2.get(p.getCASEW2());
+                        //WaAS_W2ID w2IDCheck = we.data.CASEW2_To_w2.get(p.getCASEW2());
                         //WaAS_W3ID w3ID = new WaAS_W3ID(rec.getCASEW3());
-                        WaAS_W3ID w3ID = env.data.CASEW3_To_w3.get(p.getCASEW3());
+                        WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(p.getCASEW3());
                         WaAS_W2ID w2ID = w3_To_w2.get(w3ID);
                         WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
-                        //printCheck(env.W3, w2IDCheck, w2ID, w2_To_w3);
+                        //printCheck(we.W3, w2IDCheck, w2ID, w2_To_w3);
                         if (s.contains(w1ID)) {
-                            HashMap<WaAS_W1ID, WaAS_CombinedRecord> m = c.getData();
-                            WaAS_CombinedRecord cr = m.get(w1ID);
-                            if (cr == null) {
+                            WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
+                if (cr == null) {
                                 env.log("No combined record for CASEW1 " + w1ID + "! "
                                         + "This may be a data error, or this person may "
                                         + "have moved from one hhold to another?");
@@ -748,14 +744,14 @@ public class WaAS_Main_Process extends WaAS_Object {
 ////            br.lines().skip(1).forEach(line -> {
 ////                WaAS_W3PRecord p = new WaAS_W3PRecord(line);
 ////                //WaAS_W1ID w1IDCheck = new WaAS_W1ID(p.getCASEW1());
-////                //WaAS_W1ID w1IDCheck = env.data.CASEW1_To_w1.get(p.getCASEW1());
+////                //WaAS_W1ID w1IDCheck = we.data.CASEW1_To_w1.get(p.getCASEW1());
 ////                //WaAS_W2ID w2IDCheck = new WaAS_W2ID(p.getCASEW2());
-////                //WaAS_W2ID w2IDCheck = env.data.CASEW2_To_w2.get(p.getCASEW2());
+////                //WaAS_W2ID w2IDCheck = we.data.CASEW2_To_w2.get(p.getCASEW2());
 ////                //WaAS_W3ID w3ID = new WaAS_W3ID(rec.getCASEW3());
-////                WaAS_W3ID w3ID = env.data.CASEW3_To_w3.get(p.getCASEW3());
+////                WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(p.getCASEW3());
 ////                WaAS_W2ID w2ID = w3_To_w2.get(w3ID);
 ////                WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
-////                //printCheck(env.W3, w2IDCheck, w2ID, w2_To_w3);
+////                //printCheck(we.W3, w2IDCheck, w2ID, w2_To_w3);
 ////                HashMap<WaAS_W1ID, WaAS_CombinedRecord> m = c.getData();
 ////                WaAS_CombinedRecord cr = m.get(w1ID);
 ////                if (cr == null) {
@@ -769,7 +765,7 @@ public class WaAS_Main_Process extends WaAS_Object {
 ////                        w3IDs.stream().forEach(k3 -> {
 ////                            WaAS_W3Record w3rec = cr.w3Recs.get(k2).get(k3);
 ////                            if (w3rec == null) {
-////                                w3rec = new WaAS_W3Record(env, k3);
+////                                w3rec = new WaAS_W3Record(we, k3);
 ////                                env.log("Adding people, but there is no hhold "
 ////                                        + "record for " + w3ID + "!");
 ////                            }
@@ -778,18 +774,18 @@ public class WaAS_Main_Process extends WaAS_Object {
 ////                    });
 ////                }
 ////            });
-            env.logEndTagMem(m2);
+            we.logEndTagMem(m2);
             // Close br
-            env.ge.io.closeBufferedReader(br);
+            io.closeBufferedReader(br);
             // Cache and clear collection
-            env.data.cacheSubsetCollection(cID, c);
-            env.data.clearCollection(cID);
+            we.data.cacheSubsetCollection(cID, c);
+            we.data.clearCollection(cID);
             c = null; // Free memory!
             System.gc();
-            env.logEndTagMem(m1);
+            we.logEndTagMem(m1);
             //});
         }
-        env.logEndTagMem(m0);
+        we.logEndTagMem(m0);
         return sW3;
     }
 
@@ -807,6 +803,7 @@ public class WaAS_Main_Process extends WaAS_Object {
      * @param w3_To_w4
      * @param w4_To_w3
      * @return
+     * @throws java.io.IOException IFF IOException is encountered.
      */
     public WaAS_DataSubsetW4 mergePersonAndHouseholdDataIntoCollectionsW4(
             String type, WaAS_PERSON_Handler pH,
@@ -821,9 +818,9 @@ public class WaAS_Main_Process extends WaAS_Object {
         env.logStartTag(m0);
         TreeMap<WaAS_W4ID, WaAS_W4Record> hs;
         if (type.equalsIgnoreCase(WaAS_Strings.s__In_w1w2w3w4w5)) {
-            hs = env.hh.loadCachedSubsetW4(type);
+            hs = we.hh.loadCachedSubsetW4(type);
         } else if (type.equalsIgnoreCase(WaAS_Strings.s_Paired)) {
-            hs = env.hh.loadCachedSubset2W4(WaAS_Strings.s__In_ + WaAS_Strings.s_w5);
+            hs = we.hh.loadCachedSubset2W4(WaAS_Strings.s__In_ + WaAS_Strings.s_w5);
         } else {
             env.log("Unrecognised type " + type);
             hs = null;
@@ -833,8 +830,8 @@ public class WaAS_Main_Process extends WaAS_Object {
         dataSubsetW4.cFs.keySet().stream().forEach(cID -> {
             String m1 = "Collection ID " + cID;
             env.logStartTag(m1);
-            env.log("TotalFreeMemory " + env.getTotalFreeMemory());
-            WaAS_Collection c = env.data.getCollection(cID);
+            env.log("TotalFreeMemory " + we.getTotalFreeMemory());
+            Data_Collection c = we.data.getCollection(cID);
             // Add hhold records.
             String m2 = "Add hhold records";
             env.logStartTag(m2);
@@ -843,9 +840,8 @@ public class WaAS_Main_Process extends WaAS_Object {
             Iterator<WaAS_W1ID> ite = s.iterator();
             while (ite.hasNext()) {
                 WaAS_W1ID w1ID = ite.next();
-                env.data.w1_To_c.put(w1ID, cID);
-                HashMap<WaAS_W1ID, WaAS_CombinedRecord> m = c.getData();
-                WaAS_CombinedRecord cr = m.get(w1ID);
+                we.data.w1_To_c.put(w1ID, cID);
+               WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
                 if (cr == null) {
                     env.log("No combined record for CASEW1 " + w1ID + "! "
                             + "This may be a data error?");
@@ -885,7 +881,7 @@ public class WaAS_Main_Process extends WaAS_Object {
             }
 // The problem with using streams is that it is not possible that way to set c to null and if that is not done there is a memory leak!
 //            w1IDs.stream().forEach(w1ID -> {
-//                env.data.w1_To_c.put(w1ID, cID);
+//                we.data.w1_To_c.put(w1ID, cID);
 //                HashMap<WaAS_W1ID, WaAS_CombinedRecord> m = c.getData();
 //                WaAS_CombinedRecord cr = m.get(w1ID);
 //                if (cr == null) {
@@ -916,14 +912,14 @@ public class WaAS_Main_Process extends WaAS_Object {
             File f = dataSubsetW4.cFs.get(cID);
             BufferedReader br = null;
             try {
-                br = env.ge.io.getBufferedReader(f);
+                br = io.getBufferedReader(f);
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace(System.err);
                 env.log(ex.getMessage());
             }
             // The following way not using streams works!
             String line;
-            env.ge.io.skipline(br); // Skip header
+            io.skipline(br); // Skip header
             boolean readIncomplete = true;
             while (readIncomplete) {
                 try {
@@ -931,13 +927,13 @@ public class WaAS_Main_Process extends WaAS_Object {
                     if (line != null) {
                         WaAS_W4PRecord p = new WaAS_W4PRecord(line);
                         //WaAS_W1ID w1IDCheck = new WaAS_W1ID(p.getCASEW1());
-                        //WaAS_W1ID w1IDCheck = env.data.CASEW1_To_w1.get(p.getCASEW1());
+                        //WaAS_W1ID w1IDCheck = we.data.CASEW1_To_w1.get(p.getCASEW1());
                         //WaAS_W2ID w2IDCheck = new WaAS_W2ID(p.getCASEW2());
-                        //WaAS_W2ID w2IDCheck = env.data.CASEW2_To_w2.get(p.getCASEW2());
+                        //WaAS_W2ID w2IDCheck = we.data.CASEW2_To_w2.get(p.getCASEW2());
                         //WaAS_W3ID w3IDCheck = new WaAS_W3ID(p.getCASEW3());
-                        //WaAS_W3ID w3IDCheck = env.data.CASEW3_To_w3.get(p.getCASEW3());
+                        //WaAS_W3ID w3IDCheck = we.data.CASEW3_To_w3.get(p.getCASEW3());
                         //WaAS_W4ID w4ID = new WaAS_W4ID(rec.getCASEW4());
-                        WaAS_W4ID w4ID = env.data.CASEW4_To_w4.get(p.getCASEW4());
+                        WaAS_W4ID w4ID = we.data.CASEW4_To_w4.get(p.getCASEW4());
                         WaAS_W3ID w3ID = w4_To_w3.get(w4ID);
                         WaAS_W2ID w2ID = w3_To_w2.get(w3ID);
                         WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
@@ -945,9 +941,8 @@ public class WaAS_Main_Process extends WaAS_Object {
                         //printCheck(W3, w2IDCheck, w2ID, w2IDToW3ID);
                         //printCheck(W4, w3IDCheck, w3ID, w3_To_w4);
                         if (s.contains(w1ID)) {
-                            HashMap<WaAS_W1ID, WaAS_CombinedRecord> m = c.getData();
-                            WaAS_CombinedRecord cr = m.get(w1ID);
-                            if (cr == null) {
+                            WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
+                if (cr == null) {
                                 env.log("No combined record for CASEW1 " + w1ID + "! "
                                         + "This may be a data error, or this person may "
                                         + "have moved from one hhold to another?");
@@ -992,13 +987,13 @@ public class WaAS_Main_Process extends WaAS_Object {
 ////            br.lines().skip(1).forEach(line -> {
 ////                WaAS_W4PRecord p = new WaAS_W4PRecord(line);
 ////                //WaAS_W1ID w1IDCheck = new WaAS_W1ID(p.getCASEW1());
-////                //WaAS_W1ID w1IDCheck = env.data.CASEW1_To_w1.get(p.getCASEW1());
+////                //WaAS_W1ID w1IDCheck = we.data.CASEW1_To_w1.get(p.getCASEW1());
 ////                //WaAS_W2ID w2IDCheck = new WaAS_W2ID(p.getCASEW2());
-////                //WaAS_W2ID w2IDCheck = env.data.CASEW2_To_w2.get(p.getCASEW2());
+////                //WaAS_W2ID w2IDCheck = we.data.CASEW2_To_w2.get(p.getCASEW2());
 ////                //WaAS_W3ID w3IDCheck = new WaAS_W3ID(p.getCASEW3());
-////                //WaAS_W3ID w3IDCheck = env.data.CASEW3_To_w3.get(p.getCASEW3());
+////                //WaAS_W3ID w3IDCheck = we.data.CASEW3_To_w3.get(p.getCASEW3());
 ////                //WaAS_W4ID w4ID = new WaAS_W4ID(rec.getCASEW4());
-////                WaAS_W4ID w4ID = env.data.CASEW4_To_w4.get(p.getCASEW4());
+////                WaAS_W4ID w4ID = we.data.CASEW4_To_w4.get(p.getCASEW4());
 ////                WaAS_W3ID w3ID = w4_To_w3.get(w4ID);
 ////                WaAS_W2ID w2ID = w3_To_w2.get(w3ID);
 ////                WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
@@ -1031,7 +1026,7 @@ public class WaAS_Main_Process extends WaAS_Object {
 ////                                }
 ////                                WaAS_W4Record w4rec = w4_3.get(k4);
 ////                                if (w4rec == null) {
-////                                    w4rec = new WaAS_W4Record(env, k4);
+////                                    w4rec = new WaAS_W4Record(we, k4);
 ////                                    env.log("Adding people, but there is no "
 ////                                            + "hhold record for " + w4ID + "!");
 ////                                }
@@ -1043,10 +1038,10 @@ public class WaAS_Main_Process extends WaAS_Object {
 ////            });
             env.logEndTag(m2);
             // Close br
-            env.ge.io.closeBufferedReader(br);
+            io.closeBufferedReader(br);
             // Cache and clear collection
-            env.data.cacheSubsetCollection(cID, c);
-            env.data.clearCollection(cID);
+            we.data.cacheSubsetCollection(cID, c);
+            we.data.clearCollection(cID);
             c = null; // Free memory!
             System.gc();
             env.logEndTag(m1);
@@ -1071,6 +1066,7 @@ public class WaAS_Main_Process extends WaAS_Object {
      * @param w4_To_w5
      * @param w5_To_w4
      * @return
+     * @throws java.io.IOException IFF IOException is encountered.
      */
     public WaAS_DataSubsetW5 mergePersonAndHouseholdDataIntoCollectionsW5(
             String type, WaAS_PERSON_Handler pH,
@@ -1088,9 +1084,9 @@ public class WaAS_Main_Process extends WaAS_Object {
         env.logStartTag(m0);
         TreeMap<WaAS_W5ID, WaAS_W5Record> hs;
         if (type.equalsIgnoreCase(WaAS_Strings.s__In_w1w2w3w4w5)) {
-            hs = env.hh.loadCachedSubsetW5(type);
+            hs = we.hh.loadCachedSubsetW5(type);
         } else if (type.equalsIgnoreCase(WaAS_Strings.s_Paired)) {
-            hs = env.hh.loadCachedSubset2W5(WaAS_Strings.s__In_ + WaAS_Strings.s_w4); // It may seem eems wierd to be W4 not W5, but probably right!?
+            hs = we.hh.loadCachedSubset2W5(WaAS_Strings.s__In_ + WaAS_Strings.s_w4); // It may seem eems wierd to be W4 not W5, but probably right!?
             if (hs == null) {
                 env.log("WTF1");
             }
@@ -1105,8 +1101,8 @@ public class WaAS_Main_Process extends WaAS_Object {
         sW5.cFs.keySet().stream().forEach(cID -> {
             String m1 = "Collection ID " + cID;
             env.logStartTag(m1);
-            env.log("TotalFreeMemory " + env.getTotalFreeMemory());
-            WaAS_Collection c = env.data.getCollection(cID);
+            env.log("TotalFreeMemory " + we.getTotalFreeMemory());
+            Data_Collection c = we.data.getCollection(cID);
             // Add hhold records.
             String m2 = "Add hhold records";
             env.logStartTag(m2);
@@ -1115,9 +1111,8 @@ public class WaAS_Main_Process extends WaAS_Object {
             Iterator<WaAS_W1ID> ite = s.iterator();
             while (ite.hasNext()) {
                 WaAS_W1ID w1ID = ite.next();
-                env.data.w1_To_c.put(w1ID, cID);
-                HashMap<WaAS_W1ID, WaAS_CombinedRecord> m = c.getData();
-                WaAS_CombinedRecord cr = m.get(w1ID);
+                we.data.w1_To_c.put(w1ID, cID);
+                WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
                 if (cr == null) {
                     env.log("No combined record for CASEW1 " + w1ID + "! "
                             + "This may be a data error?");
@@ -1167,7 +1162,7 @@ public class WaAS_Main_Process extends WaAS_Object {
             }
 // The problem with using streams is that it is not possible that way to set c to null and if that is not done there is a memory leak!
 //            s.stream().forEach(w1ID -> {
-//                env.data.w1_To_c.put(w1ID, cID);
+//                we.data.w1_To_c.put(w1ID, cID);
 //                HashMap<WaAS_W1ID, WaAS_CombinedRecord> m = c.getData();
 //                WaAS_CombinedRecord cr = m.get(w1ID);
 //                if (cr == null) {
@@ -1206,25 +1201,25 @@ public class WaAS_Main_Process extends WaAS_Object {
             File f = sW5.cFs.get(cID);
             BufferedReader br = null;
             try {
-                br = env.ge.io.getBufferedReader(f);
+                br = io.getBufferedReader(f);
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace(System.err);
                 env.log(ex.getMessage());
             }
             // The following way not using streams works!
             String line;
-            env.ge.io.skipline(br); // Skip header
+            io.skipline(br); // Skip header
             boolean readIncomplete = true;
             while (readIncomplete) {
                 try {
                     line = br.readLine();
                     if (line != null) {
                         WaAS_W5PRecord p = new WaAS_W5PRecord(line);
-//                WaAS_W1ID w1IDCheck = env.data.CASEW1_To_w1.get(p.getCASEW1());
-//                WaAS_W2ID w2IDCheck = env.data.CASEW2_To_w2.get(p.getCASEW2());
-//                WaAS_W3ID w3IDCheck = env.data.CASEW3_To_w3.get(p.getCASEW3());
-//                WaAS_W4ID w4IDCheck = env.data.CASEW4_To_w4.get(p.getCASEW4());
-                        WaAS_W5ID w5ID = env.data.CASEW5_To_w5.get(p.getCASEW5());
+//                WaAS_W1ID w1IDCheck = we.data.CASEW1_To_w1.get(p.getCASEW1());
+//                WaAS_W2ID w2IDCheck = we.data.CASEW2_To_w2.get(p.getCASEW2());
+//                WaAS_W3ID w3IDCheck = we.data.CASEW3_To_w3.get(p.getCASEW3());
+//                WaAS_W4ID w4IDCheck = we.data.CASEW4_To_w4.get(p.getCASEW4());
+                        WaAS_W5ID w5ID = we.data.CASEW5_To_w5.get(p.getCASEW5());
                         WaAS_W4ID w4ID = w5_To_w4.get(w5ID);
                         if (w4ID == null) {
                             env.log("CASEW5 " + w5ID + " is not in CASEW5ToCASEW4 lookup");
@@ -1232,14 +1227,13 @@ public class WaAS_Main_Process extends WaAS_Object {
                             WaAS_W3ID w3ID = w4_To_w3.get(w4ID);
                             WaAS_W2ID w2ID = w3_To_w2.get(w3ID);
                             WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
-//                    printCheck(env.W2, w1IDCheck, w1ID, w1_To_w2);
-//                    printCheck(env.W3, w2IDCheck, w2ID, w2_To_w3);
-//                    printCheck(env.W4, w3IDCheck, w3ID, w3_To_w4);
-//                    printCheck(env.W5, w4IDCheck, w4ID, w4_To_w5);
+//                    printCheck(we.W2, w1IDCheck, w1ID, w1_To_w2);
+//                    printCheck(we.W3, w2IDCheck, w2ID, w2_To_w3);
+//                    printCheck(we.W4, w3IDCheck, w3ID, w3_To_w4);
+//                    printCheck(we.W5, w4IDCheck, w4ID, w4_To_w5);
                             if (s.contains(w1ID)) {
-                                HashMap<WaAS_W1ID, WaAS_CombinedRecord> m = c.getData();
-                                WaAS_CombinedRecord cr = m.get(w1ID);
-                                if (cr == null) {
+                                WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
+                if (cr == null) {
                                     env.log("No combined record for CASEW1 " + w1ID + "! "
                                             + "This may be a data error, or this person may "
                                             + "have moved from one hhold to another?");
@@ -1294,11 +1288,11 @@ public class WaAS_Main_Process extends WaAS_Object {
 //// The problem with using streams is that it is not possible that way to set c to null and if that is not done there is a memory leak!
 ////            br.lines().skip(1).forEach(line -> {
 ////                WaAS_W5PRecord p = new WaAS_W5PRecord(line);
-//////                WaAS_W1ID w1IDCheck = env.data.CASEW1_To_w1.get(p.getCASEW1());
-//////                WaAS_W2ID w2IDCheck = env.data.CASEW2_To_w2.get(p.getCASEW2());
-//////                WaAS_W3ID w3IDCheck = env.data.CASEW3_To_w3.get(p.getCASEW3());
-//////                WaAS_W4ID w4IDCheck = env.data.CASEW4_To_w4.get(p.getCASEW4());
-////                WaAS_W5ID w5ID = env.data.CASEW5_To_w5.get(p.getCASEW5());
+//////                WaAS_W1ID w1IDCheck = we.data.CASEW1_To_w1.get(p.getCASEW1());
+//////                WaAS_W2ID w2IDCheck = we.data.CASEW2_To_w2.get(p.getCASEW2());
+//////                WaAS_W3ID w3IDCheck = we.data.CASEW3_To_w3.get(p.getCASEW3());
+//////                WaAS_W4ID w4IDCheck = we.data.CASEW4_To_w4.get(p.getCASEW4());
+////                WaAS_W5ID w5ID = we.data.CASEW5_To_w5.get(p.getCASEW5());
 ////                WaAS_W4ID w4ID = w5_To_w4.get(w5ID);
 ////                if (w4ID == null) {
 ////                    env.log("CASEW5 " + w5ID + " is not in CASEW5ToCASEW4 lookup");
@@ -1306,10 +1300,10 @@ public class WaAS_Main_Process extends WaAS_Object {
 ////                    WaAS_W3ID w3ID = w4_To_w3.get(w4ID);
 ////                    WaAS_W2ID w2ID = w3_To_w2.get(w3ID);
 ////                    WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
-//////                    printCheck(env.W2, w1IDCheck, w1ID, w1_To_w2);
-//////                    printCheck(env.W3, w2IDCheck, w2ID, w2_To_w3);
-//////                    printCheck(env.W4, w3IDCheck, w3ID, w3_To_w4);
-//////                    printCheck(env.W5, w4IDCheck, w4ID, w4_To_w5);
+//////                    printCheck(we.W2, w1IDCheck, w1ID, w1_To_w2);
+//////                    printCheck(we.W3, w2IDCheck, w2ID, w2_To_w3);
+//////                    printCheck(we.W4, w3IDCheck, w3ID, w3_To_w4);
+//////                    printCheck(we.W5, w4IDCheck, w4ID, w4_To_w5);
 ////                    HashMap<WaAS_W1ID, WaAS_CombinedRecord> m = c.getData();
 ////                    WaAS_CombinedRecord cr = m.get(w1ID);
 ////                    if (cr == null) {
@@ -1344,7 +1338,7 @@ public class WaAS_Main_Process extends WaAS_Object {
 ////                                        WaAS_W5Record w5rec;
 ////                                        w5rec = cr.w5Recs.get(k2).get(k3).get(k4).get(k5);
 ////                                        if (w5rec == null) {
-////                                            w5rec = new WaAS_W5Record(env, k5);
+////                                            w5rec = new WaAS_W5Record(we, k5);
 ////                                            env.log("Adding people, but there "
 ////                                                    + "is no hhold record for "
 ////                                                    + w5ID + "!");
@@ -1359,10 +1353,10 @@ public class WaAS_Main_Process extends WaAS_Object {
 ////            });
             env.logEndTag(m2);
             // Close br
-            env.ge.io.closeBufferedReader(br);
+            io.closeBufferedReader(br);
             // Cache and clear collection
-            env.data.cacheSubsetCollection(cID, c);
-            env.data.clearCollection(cID);
+            we.data.cacheSubsetCollection(cID, c);
+            we.data.clearCollection(cID);
             c = null; // Free memory!
             System.gc();
             env.logEndTag(m1);
@@ -1386,36 +1380,34 @@ public class WaAS_Main_Process extends WaAS_Object {
     public void initDataSimple(HashSet<WaAS_W1ID> subset) {
         String m = "initDataSimple";
         env.logStartTag(m);
-        Iterator<WaAS_CollectionID> ite = env.data.collections.keySet().iterator();
+        Iterator<Data_CollectionID> ite = we.data.data.keySet().iterator();
         while (ite.hasNext()) {
-            WaAS_CollectionID cID = ite.next();
-            WaAS_Collection c = env.data.getCollection(cID);
-            WaAS_CollectionSimple cs = new WaAS_CollectionSimple(cID);
-            env.data.collectionsSimple.put(cID, cs);
-            HashMap<WaAS_W1ID, WaAS_CombinedRecordSimple> csData = cs.getData();
-            HashMap<WaAS_W1ID, WaAS_CombinedRecord> cData = c.getData();
-            Iterator<WaAS_W1ID> ite2 = cData.keySet().iterator();
+            Data_CollectionID cID = ite.next();
+            Data_Collection c = we.data.getCollection(cID);
+            Data_Collection cs = new Data_Collection(cID);
+            we.data.dataSimple.put(cID, cs);
+            Iterator<Data_RecordID> ite2 = c.data.keySet().iterator();
             while (ite2.hasNext()) {
-                WaAS_W1ID w1ID = ite2.next();
+                WaAS_W1ID w1ID = (WaAS_W1ID) ite2.next();
                 if (subset.contains(w1ID)) {
-                    WaAS_CombinedRecord cr = cData.get(w1ID);
-                    WaAS_CombinedRecordSimple wcrs = new WaAS_CombinedRecordSimple(cr.w1Rec);
-                    wcrs.w2Rec = cr.w2Recs.values().stream().findFirst().get();
-                    wcrs.w3Rec = cr.w3Recs.values().stream().findFirst().get()
+                    WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
+                    WaAS_CombinedRecordSimple crs = new WaAS_CombinedRecordSimple(cr.w1Rec);
+                    crs.w2Rec = cr.w2Recs.values().stream().findFirst().get();
+                    crs.w3Rec = cr.w3Recs.values().stream().findFirst().get()
                             .values().stream().findFirst().get();
-                    wcrs.w4Rec = cr.w4Recs.values().stream().findFirst().get()
+                    crs.w4Rec = cr.w4Recs.values().stream().findFirst().get()
                             .values().stream().findFirst().get()
                             .values().stream().findFirst().get();
-                    wcrs.w5Rec = cr.w5Recs.values().stream().findFirst().get()
+                    crs.w5Rec = cr.w5Recs.values().stream().findFirst().get()
                             .values().stream().findFirst().get()
                             .values().stream().findFirst().get()
                             .values().stream().findFirst().get();
-                    csData.put(w1ID, wcrs);
+                    cs.data.put(w1ID, crs);
                 }
             }
-            env.data.clearCollection(cID);
-            env.data.cacheSubsetCollectionSimple(cID, cs);
-            env.data.clearCollectionSimple(cID);
+            we.data.clearCollection(cID);
+            we.data.cacheSubsetCollectionSimple(cID, cs);
+            we.data.clearCollectionSimple(cID);
         }
         env.logEndTag(m);
     }

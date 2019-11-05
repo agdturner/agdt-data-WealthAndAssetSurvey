@@ -15,9 +15,9 @@
  */
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data.records;
 
-import java.io.Serializable;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W1ID;
 import java.util.ArrayList;
+import uk.ac.leeds.ccg.andyt.data.Data_Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W1HRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W1PRecord;
 
@@ -25,9 +25,7 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W1PRecord;
  *
  * @author geoagdt
  */
-public class WaAS_W1Record implements Serializable {
-
-    public final WaAS_W1ID w1ID;
+public class WaAS_W1Record extends Data_Record {
 
     private final WaAS_W1HRecord hr;
 
@@ -46,8 +44,9 @@ public class WaAS_W1Record implements Serializable {
         this(w1ID, hr, new ArrayList<>());
     }
 
-    public WaAS_W1Record(WaAS_W1ID w1ID, WaAS_W1HRecord hr, ArrayList<WaAS_W1PRecord> prs) {
-        this.w1ID = w1ID;
+    public WaAS_W1Record(WaAS_W1ID w1ID, WaAS_W1HRecord hr, 
+            ArrayList<WaAS_W1PRecord> prs) {
+        super(w1ID);
         this.hr = hr;
         this.prs = prs;
     }

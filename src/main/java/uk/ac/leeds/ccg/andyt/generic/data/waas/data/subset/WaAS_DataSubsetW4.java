@@ -16,25 +16,25 @@
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data.subset;
 
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W4ID;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_CollectionID;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import uk.ac.leeds.ccg.andyt.data.Data_CollectionID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 
 public class WaAS_DataSubsetW4 extends WaAS_DataSubset {
 
     /**
-     * Lookup from WaAS_CollectionID to WaAS_W4ID.
+     * Lookup from Data_CollectionID to WaAS_W4ID.
      */
-    public TreeMap<WaAS_CollectionID, HashSet<WaAS_W4ID>> c_To_w4;
+    public TreeMap<Data_CollectionID, HashSet<WaAS_W4ID>> c_To_w4;
 
     /**
-     * Lookup from WaAS_W4ID to WaAS_CollectionID.
+     * Lookup from WaAS_W4ID to Data_CollectionID.
      */
-    public HashMap<WaAS_W4ID, WaAS_CollectionID> w4_To_c;
+    public HashMap<WaAS_W4ID, Data_CollectionID> w4_To_c;
 
     /**
      *
@@ -48,7 +48,7 @@ public class WaAS_DataSubsetW4 extends WaAS_DataSubset {
         w4_To_c = new HashMap<>();
         Iterator<WaAS_W4ID> ite = w4IDs.iterator();
         short s = 0;
-        WaAS_CollectionID cID = getCollectionID(s);
+        Data_CollectionID cID = getCollectionID(s);
         int i = 0;
         while (ite.hasNext()) {
             WaAS_W4ID w4ID = ite.next();
@@ -60,6 +60,6 @@ public class WaAS_DataSubsetW4 extends WaAS_DataSubset {
                 cID = getCollectionID(s);
             }
         }
-        initCFs(env.W4);
+        initCFs(we.W4);
     }
 }

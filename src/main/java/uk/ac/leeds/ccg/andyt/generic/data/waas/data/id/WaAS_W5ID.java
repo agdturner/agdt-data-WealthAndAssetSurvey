@@ -16,40 +16,19 @@
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data.id;
 
 /**
- *
- * @author geoagdt
+ * A Record ID for Wave 5 to help with type safety.
+ * 
+ * @author Andy Turner
  */
-public class WaAS_W5ID extends WaAS_ID {
+public class WaAS_W5ID extends WaAS_WID {
 
-    public WaAS_W5ID(short CASEW5) {
-        super(CASEW5);
+    public WaAS_W5ID(long l) {
+        super(l);
     }
 
     @Override
     public String toString() {
-        return "CASEW5 " + getID();
-    }
-    
-    @Override
-    public int compareTo(Object o) {
-        if (o instanceof WaAS_W5ID) {
-            return super.compareTo(o);
-        }
-        return -2;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (super.equals(o)) {
-            if (o instanceof WaAS_W5ID) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
+        return "CASEW5=" + getID();
     }
 }
+

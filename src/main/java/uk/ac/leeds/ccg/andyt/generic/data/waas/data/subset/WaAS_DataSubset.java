@@ -15,9 +15,9 @@
  */
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data.subset;
 
-import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_CollectionID;
 import java.io.File;
 import java.util.TreeMap;
+import uk.ac.leeds.ccg.andyt.data.Data_CollectionID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
@@ -32,7 +32,7 @@ public class WaAS_DataSubset extends WaAS_Object {
     /**
      * Collection Files
      */
-    public TreeMap<WaAS_CollectionID, File> cFs;
+    public TreeMap<Data_CollectionID, File> cFs;
 
     /**
      * Create a new DataSubset
@@ -51,24 +51,24 @@ public class WaAS_DataSubset extends WaAS_Object {
      */
     public final void initCFs(byte wave) {
         cFs = new TreeMap<>();
-        for (short s = 0; s < env.data.nOC; s++) {
-            File f = new File(env.files.getGeneratedWaASSubsetsDir(),
+        for (short s = 0; s < we.data.nOC; s++) {
+            File f = new File(we.files.getGeneratedWaASSubsetsDir(),
                     WaAS_Strings.s_Data + WaAS_Strings.s_Subset + wave
                     + WaAS_Strings.symbol_underscore + s + ".tab");
-            WaAS_CollectionID cID = getCollectionID(s);
+            Data_CollectionID cID = getCollectionID(s);
 //            env.log("s " + s);
 //            env.log("File " + f);
-//            env.log("WaAS_CollectionID " + cID);
+//            env.log("Data_CollectionID " + cID);
             cFs.put(cID, f);
         }
     }
     
-    protected final WaAS_CollectionID getCollectionID(short s) {
-        WaAS_CollectionID r = env.data.cIDs.get(s);
+    protected final Data_CollectionID getCollectionID(short s) {
+        Data_CollectionID r = we.data.cIDs.get(s);
         if (r == null) {
             env.log("No existing collection for short " + s);
-            r = new WaAS_CollectionID(s);
-            env.data.cIDs.put(s, r);
+            r = new Data_CollectionID(s);
+            we.data.cIDs.put(s, r);
         }
         return r;
     }

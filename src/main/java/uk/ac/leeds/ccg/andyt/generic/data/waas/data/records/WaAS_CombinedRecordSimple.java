@@ -15,13 +15,14 @@
  */
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data.records;
 
-import java.io.Serializable;
+import uk.ac.leeds.ccg.andyt.data.Data_Record;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W1ID;
 
 /**
  *
  * @author geoagdt
  */
-public class WaAS_CombinedRecordSimple implements Serializable {
+public class WaAS_CombinedRecordSimple extends Data_Record {
 
     public WaAS_W1Record w1Rec;
 
@@ -33,11 +34,12 @@ public class WaAS_CombinedRecordSimple implements Serializable {
 
     public WaAS_W5Record w5Rec;
 
-    public WaAS_CombinedRecordSimple(){
-        this(null);
+    public WaAS_CombinedRecordSimple(WaAS_W1ID w1ID) {
+        this(new WaAS_W1Record(w1ID));
     }
     
     public WaAS_CombinedRecordSimple(WaAS_W1Record w1Rec) {
+        super(w1Rec.ID);
         this.w1Rec = w1Rec;
     }
 }

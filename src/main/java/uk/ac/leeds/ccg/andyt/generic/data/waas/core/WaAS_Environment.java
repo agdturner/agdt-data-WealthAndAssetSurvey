@@ -17,10 +17,12 @@ package uk.ac.leeds.ccg.andyt.generic.data.waas.core;
 
 import java.io.File;
 import java.io.IOException;
+import uk.ac.leeds.ccg.andyt.data.core.Data_Environment;
 import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_Data;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.handlers.WaAS_HHOLD_Handler;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
+import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 
 /**
  *
@@ -28,10 +30,17 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
  */
 public class WaAS_Environment extends WaAS_MemoryManager {
 
-    public transient final Generic_Environment ge;
+    public transient final Data_Environment de;
     public transient final WaAS_Files files;
     public transient final WaAS_HHOLD_Handler hh;
     public transient WaAS_Data data;
+    
+    /**
+     * For convenience.
+     */
+    public transient final Generic_Environment env;
+    public transient final Generic_IO io;
+    
     public transient final String EOL = System.getProperty("line.separator");
     public transient final byte W1 = 1;
     public transient final byte W2 = 2;
@@ -50,35 +59,37 @@ public class WaAS_Environment extends WaAS_MemoryManager {
     public transient final int logID;
 
     public WaAS_Environment() throws IOException {
-        this(new Generic_Environment());
+        this(new Data_Environment());
     }
     
-    public WaAS_Environment(Generic_Environment ge) throws IOException {
-        this(ge, ge.files.getDir());
+    public WaAS_Environment(Data_Environment e) throws IOException {
+        this(e, e.files.getDir());
     }
     
     public WaAS_Environment(File dataDir) throws IOException {
-        this(new Generic_Environment(), dataDir);
+        this(new Data_Environment(), dataDir);
     }
     
-    public WaAS_Environment(Generic_Environment ge, File dataDir) throws IOException {
-        this.ge = ge;
+    public WaAS_Environment(Data_Environment e, File dataDir) throws IOException {
+        de = e;
+        env = e.env;
+        io = env.io;
         files = new WaAS_Files(dataDir);
         File f = files.getEnvDataFile();
         if (f.exists()) {
-            data = (WaAS_Data) ge.io.readObject(f);
+            data = (WaAS_Data) io.readObject(f);
             initData();
-            //data.env = this;
+            //data.we = this;
         } else {
             data = new WaAS_Data(this);
         }
-        logID = ge.initLog(WaAS_Strings.s_WaAS);
+        logID = env.initLog(WaAS_Strings.s_WaAS);
         hh = new WaAS_HHOLD_Handler(this);
         Memory_Threshold = 2000000000L;
     }
 
     private void initData() {
-        data.env = this;
+        data.we = this;
     }
 
     /**
@@ -169,19 +180,9 @@ public class WaAS_Environment extends WaAS_MemoryManager {
      */
     public void cacheData() {
         String m = "cacheData";
-        logStartTag(m);
-        ge.io.writeObject(data, files.getEnvDataFile());
-        logEndTag(m);
-    }
-
-    /**
-     * For convenience.
-     * {@link Generic_Environment#logStartTag(java.lang.String, int)}
-     *
-     * @param s The tag name.
-     */
-    public final void logStartTag(String s) {
-        ge.logStartTag(s, logID);
+        env.logStartTag(m);
+        io.writeObject(data, files.getEnvDataFile());
+        env.logEndTag(m);
     }
 
     /**
@@ -189,32 +190,13 @@ public class WaAS_Environment extends WaAS_MemoryManager {
      * @param s The tag name.
      */
     public final void logStartTagMem(String s) {
-        ge.logStartTag(s, logID);
-        log("TotalFreeMemory " + getTotalFreeMemory());
+        env.logStartTag(s, logID);
+        env.log("TotalFreeMemory " + getTotalFreeMemory());
     }
 
-    /**
-     * For convenience. {@link Generic_Environment#log(java.lang.String, int)}
-     *
-     * @param s The message to be logged.
-     */
-    public void log(String s) {
-        ge.log(s, logID);
-    }
-
-    /**
-     * For convenience.
-     * {@link Generic_Environment#logEndTag(java.lang.String, int)}
-     *
-     * @param s The tag name.
-     */
-    public final void logEndTag(String s) {
-        ge.logEndTag(s, logID);
-    }
-    
     public final void logEndTagMem(String s) {
-        log("TotalFreeMemory " + getTotalFreeMemory());
-        ge.logEndTag(s, logID);
+        env.log("TotalFreeMemory " + getTotalFreeMemory());
+        env.logEndTag(s, logID);
     }
     
 }

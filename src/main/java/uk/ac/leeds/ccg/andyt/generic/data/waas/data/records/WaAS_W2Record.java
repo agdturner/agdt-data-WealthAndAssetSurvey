@@ -15,9 +15,9 @@
  */
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data.records;
 
-import java.io.Serializable;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W2ID;
 import java.util.ArrayList;
+import uk.ac.leeds.ccg.andyt.data.Data_Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W2HRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W2PRecord;
 
@@ -25,9 +25,7 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W2PRecord;
  *
  * @author geoagdt
  */
-public class WaAS_W2Record implements Serializable {
-
-    public final WaAS_W2ID w2ID;
+public class WaAS_W2Record extends Data_Record {
 
     private final WaAS_W2HRecord hr;
 
@@ -36,7 +34,6 @@ public class WaAS_W2Record implements Serializable {
     /**
      * Defaults hr to null and prs to a new ArrayList<>().
      *
-     * @param e
      * @param w2ID
      */
     public WaAS_W2Record(WaAS_W2ID w2ID) {
@@ -47,9 +44,9 @@ public class WaAS_W2Record implements Serializable {
         this(w2ID, hr, new ArrayList<>());
     }
 
-    public WaAS_W2Record(WaAS_W2ID w2ID, WaAS_W2HRecord hr,
+    public WaAS_W2Record(WaAS_W2ID w2ID, WaAS_W2HRecord hr, 
             ArrayList<WaAS_W2PRecord> prs) {
-        this.w2ID = w2ID;
+        super(w2ID);
         this.hr = hr;
         this.prs = prs;
     }

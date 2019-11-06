@@ -64,4 +64,9 @@ public class WaAS_W2Record extends Data_Record {
     public ArrayList<WaAS_W2PRecord> getPrs() {
         return prs;
     }
+
+    @Override
+    public WaAS_W2ID getID() {
+        return (WaAS_W2ID) ID;
+    }
 }

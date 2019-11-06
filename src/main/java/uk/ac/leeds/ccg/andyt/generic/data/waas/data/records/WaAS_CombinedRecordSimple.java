@@ -42,4 +42,9 @@ public class WaAS_CombinedRecordSimple extends Data_Record {
         super(w1Rec.ID);
         this.w1Rec = w1Rec;
     }
+
+    @Override
+    public WaAS_W1ID getID() {
+        return (WaAS_W1ID) ID;
+    }
 }

@@ -65,7 +65,6 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
 //    protected WaAS_JavaCodeGenerator() {
 //        super();
 //    }
-
     public WaAS_JavaCodeGenerator(WaAS_Environment env) {
         super(env);
     }
@@ -89,8 +88,8 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
     }
 
     /**
-     * Pass through the collections and works out what numeric type is best to store
- each field in the collections.
+     * Pass through the collections and works out what numeric type is best to
+     * store each field in the collections.
      *
      * @param type
      * @return keys are standardised field names, value is: 0 if field is to be
@@ -101,7 +100,7 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
      * @throws java.io.IOException If one is encountered.
      */
     protected Object[] getFieldTypes(String type) throws IOException {
-        int nwaves = we.NWAVES; 
+        int nwaves = we.NWAVES;
         Object[] r = new Object[4];
         File indir = we.files.getInputWaASDir();
         File generateddir = we.files.getGeneratedWaASDir();
@@ -378,23 +377,13 @@ public class WaAS_JavaCodeGenerator extends WaAS_Object {
 
     public void run(String type, Object[] types) throws IOException {
         int nwaves = we.NWAVES;
-        HashMap<String, Integer> fieldTypes;
-        fieldTypes = (HashMap<String, Integer>) types[0];
-        String[][] headers;
-        headers = (String[][]) types[1];
-        HashMap<String, Byte>[] v0ms;
-        v0ms = (HashMap<String, Byte>[]) types[2];
-        HashMap<String, Byte>[] v1ms;
-        v1ms = (HashMap<String, Byte>[]) types[3];
-
-        TreeSet<String>[] fields;
-        fields = getFields(headers);
-
-        HashMap<String, Byte> v0m0;
-        v0m0 = setCommonBooleanMaps(v0ms, v1ms, fields, fieldTypes);
-
-        File outdir;
-        outdir = new File(we.files.getDir(), "..");
+        HashMap<String, Integer> fieldTypes = (HashMap<String, Integer>) types[0];
+        String[][] headers = (String[][]) types[1];
+        HashMap<String, Byte>[] v0ms = (HashMap<String, Byte>[]) types[2];
+        HashMap<String, Byte>[] v1ms = (HashMap<String, Byte>[]) types[3];
+        TreeSet<String>[] fields = getFields(headers);
+        HashMap<String, Byte> v0m0 = setCommonBooleanMaps(v0ms, v1ms, fields, fieldTypes);
+        File outdir = new File(we.files.getDir(), "..");
         outdir = new File(outdir, WaAS_Strings.s_src);
         outdir = new File(outdir, WaAS_Strings.s_main);
         outdir = new File(outdir, WaAS_Strings.s_java);

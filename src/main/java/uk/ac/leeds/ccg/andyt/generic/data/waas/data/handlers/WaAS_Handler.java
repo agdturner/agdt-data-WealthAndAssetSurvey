@@ -220,6 +220,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
     }
 
     public TreeMap<WaAS_W1ID, HashSet<WaAS_W2ID>> loadSubsetLookupToW1() {
+        Object o = io.readObject(getSubsetLookupToFile(W1));
         return (TreeMap<WaAS_W1ID, HashSet<WaAS_W2ID>>) io.readObject(
                 getSubsetLookupToFile(W1));
     }
@@ -2218,7 +2219,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @return the loaded data
      * @throws java.io.FileNotFoundException If the input file is not found.
      */
-    public WaAS_W4Data loadW4InSAndW3(Collection<WaAS_W4ID> s, String type) 
+    public WaAS_W4Data loadW4InSAndW3(Collection<WaAS_W4ID> s, String type)
             throws FileNotFoundException {
         String m = "loadW4(Set<WaAS_W4ID>, " + type + ")";
         env.logStartTag(m);
@@ -2413,14 +2414,15 @@ public abstract class WaAS_Handler extends WaAS_Object {
 
     /**
      * This is draft...
+     *
      * @throws java.io.FileNotFoundException If the input file is not found.
      */
     public void loadSimple() throws FileNotFoundException {
         String m = "loadSimple";
         env.logStartTag(m);
         //Data_CollectionSimple r;
-        File cf = getSubsetCacheFile2(W5, WaAS_Strings.s__In_ 
-                + WaAS_Strings.s_w4 + WaAS_Strings.s_w3 + WaAS_Strings.s_w2 
+        File cf = getSubsetCacheFile2(W5, WaAS_Strings.s__In_
+                + WaAS_Strings.s_w4 + WaAS_Strings.s_w3 + WaAS_Strings.s_w2
                 + WaAS_Strings.s_w1);
         if (cf.exists()) {
             //    r = (Data_CollectionSimple) load(W5, cf);
@@ -2488,7 +2490,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @return the loaded data
      * @throws java.io.FileNotFoundException If the input file is not found.
      */
-    public WaAS_W4Data loadW4InS(Set<WaAS_W4ID> s, String type) 
+    public WaAS_W4Data loadW4InS(Set<WaAS_W4ID> s, String type)
             throws FileNotFoundException {
         String m = "loadW4InS(Set<WaAS_W4ID>, " + type + ")";
         env.logStartTag(m);
@@ -2561,7 +2563,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @return the loaded data
      * @throws java.io.FileNotFoundException If the input file is not found.
      */
-    public WaAS_W2Data loadW2InS(Set<WaAS_W2ID> s, String type) 
+    public WaAS_W2Data loadW2InS(Set<WaAS_W2ID> s, String type)
             throws FileNotFoundException {
         String m = "loadW2InS(Set<WaAS_W2ID>, " + type + ")";
         env.logStartTag(m);
@@ -2717,7 +2719,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @return the loaded data
      * @throws java.io.FileNotFoundException If the input file is not found.
      */
-    public WaAS_W1Data loadW1(Collection<WaAS_W1ID> s, String type) 
+    public WaAS_W1Data loadW1(Collection<WaAS_W1ID> s, String type)
             throws FileNotFoundException {
         String m = "loadW1(Collection<Short>, " + type + ")";
         env.logStartTag(m);
@@ -2754,8 +2756,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
     }
 
     /**
-     * The normal size of a sub-data when storing the data in c in nOC
- sub-data.
+     * The normal size of a sub-data when storing the data in c in nOC sub-data.
      *
      * @param c
      * @param nOC numberOfCollections

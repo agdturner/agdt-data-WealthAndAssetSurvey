@@ -21,6 +21,7 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W2ID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W3ID;
 import java.util.HashMap;
 import uk.ac.leeds.ccg.andyt.data.Data_Record;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W1ID;
 
 /**
  *
@@ -58,5 +59,10 @@ public class WaAS_CombinedRecord extends Data_Record {
         w3Recs = new HashMap<>();
         w4Recs = new HashMap<>();
         w5Recs = new HashMap<>();
+    }
+
+    @Override
+    public WaAS_W1ID getID() {
+        return (WaAS_W1ID) ID;
     }
 }

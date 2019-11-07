@@ -51,4 +51,20 @@ public class WaAS_Files extends Data_Files {
         f.mkdirs();
         return f;
     }
+    
+    /**
+     * @param wave the wave for which the source input File is returned.
+     * @param type
+     * @return the source input File for a particular WaAS Wave.
+     */
+    public File getInputFile(byte wave, String type) {
+        String filename;
+        filename = "was_wave_" + wave + "_" + type + "_eul_final";
+        //if (wave < 4) { // Change for new
+        if (wave == 1) {
+            filename += "_v2";
+        }
+        filename += ".tab";
+        return new File(getInputWaASDir(), filename);
+    }
 }

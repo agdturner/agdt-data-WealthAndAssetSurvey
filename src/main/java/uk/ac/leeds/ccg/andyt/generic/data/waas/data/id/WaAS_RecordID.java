@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 geoagdt.
+ * Copyright 2019 Centre for Computational Geography, University of Leeds.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,13 +18,15 @@ package uk.ac.leeds.ccg.andyt.generic.data.waas.data.id;
 import uk.ac.leeds.ccg.andyt.data.id.Data_RecordID;
 
 /**
- * A Record ID for a Wave to help with type safety.
- * 
+ * A general identifier for a
+ * {@link uk.ac.leeds.ccg.andyt.data.waas.data.WaAS_Record}.
+ *
  * @author Andy Turner
+ * @version 1.0.0
  */
-public class WaAS_WID extends Data_RecordID {
-
-    public WaAS_WID(long l) {
-        super(l);
+public class WaAS_RecordID extends Data_RecordID {
+    
+    public WaAS_RecordID(int i){
+        super(i);
     }
 }

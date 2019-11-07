@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 geoagdt.
+ * Copyright 2019 Centre for Computational Geography, University of Leeds.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.ac.leeds.ccg.andyt.generic.data.waas.data.id;
+package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
 
-import uk.ac.leeds.ccg.andyt.data.id.Data_RecordID;
+import uk.ac.leeds.ccg.andyt.data.Data_Collection;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_CollectionID;
 
 /**
- * A Record ID for a Wave to help with type safety.
- * 
- * @author Andy Turner
+ *
+ * @author geoagdt
  */
-public class WaAS_WID extends Data_RecordID {
-
-    public WaAS_WID(long l) {
-        super(l);
+public class WaAS_Collection extends Data_Collection {
+    
+    public WaAS_Collection(WaAS_CollectionID ID) {
+        super(ID);
     }
 }

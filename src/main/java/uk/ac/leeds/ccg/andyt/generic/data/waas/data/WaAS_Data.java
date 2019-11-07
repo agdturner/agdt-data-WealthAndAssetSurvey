@@ -24,7 +24,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
 import uk.ac.leeds.ccg.andyt.data.Data_Collection;
-import uk.ac.leeds.ccg.andyt.data.Data_CollectionID;
+import uk.ac.leeds.ccg.andyt.data.id.Data_CollectionID;
 import uk.ac.leeds.ccg.andyt.data.Data_Data;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;

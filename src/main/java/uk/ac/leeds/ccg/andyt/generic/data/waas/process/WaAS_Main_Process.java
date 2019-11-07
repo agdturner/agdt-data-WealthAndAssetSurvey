@@ -78,7 +78,6 @@ public class WaAS_Main_Process extends WaAS_Object {
         try {
             WaAS_Main_Process p = new WaAS_Main_Process(new WaAS_Environment());
             // Main switches
-//        p.doJavaCodeGeneration = true;
             p.doLoadAllHouseholdsRecords = true;
             p.doLoadHouseholdsAndIndividualsInAllWaves = true;
             p.doLoadHouseholdsInPairedWaves = true;
@@ -92,9 +91,6 @@ public class WaAS_Main_Process extends WaAS_Object {
     public void run() throws FileNotFoundException, IOException {
         String m = "run";
         env.logStartTag(m);
-        if (doJavaCodeGeneration) {
-            runJavaCodeGeneration();
-        }
         int chunkSize = 512;//1024;//2048;//512;//256;//1024;// 512; 256;
         if (doLoadAllHouseholdsRecords) {
             loadAllHouseholdRecords();
@@ -1367,13 +1363,6 @@ public class WaAS_Main_Process extends WaAS_Object {
     }
 
     /**
-     * Method for running JavaCodeGeneration
-     */
-    public void runJavaCodeGeneration() {
-        WaAS_JavaCodeGenerator.main(null);
-    }
-
-    /**
      *
      * @param subset Contains a subset of CASEW1 IDs.
      */
@@ -1412,7 +1401,6 @@ public class WaAS_Main_Process extends WaAS_Object {
         env.logEndTag(m);
     }
 
-    boolean doJavaCodeGeneration = false;
     boolean doLoadHouseholdsAndIndividualsInAllWaves = false;
     boolean doLoadHouseholdsInPairedWaves = false;
     boolean doLoadAllHouseholdsRecords = false;

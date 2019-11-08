@@ -35,9 +35,10 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import uk.ac.leeds.ccg.andyt.data.Data_CollectionID;
+import uk.ac.leeds.ccg.andyt.data.id.Data_CollectionID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_RecordID;
 import uk.ac.leeds.ccg.andyt.generic.util.Generic_Collections;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W1PRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W2PRecord;
@@ -92,8 +93,13 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
             /**
              * Read through the lines and write them to the appropriate files.
              */
-            br.lines().skip(1).forEach(l -> {
-                WaAS_W1PRecord rec = new WaAS_W1PRecord(l);
+            br.readLine(); // skip header
+            String line = br.readLine();
+            int i = 0;
+            while (line != null) {
+                WaAS_W1PRecord rec = new WaAS_W1PRecord(new WaAS_RecordID(i), line);
+                i++;
+                line = br.readLine();
                 short CASEW1 = rec.getCASEW1();
                 if (CASEW1 > Short.MIN_VALUE) {
                     //WaAS_W1ID w1ID = new WaAS_W1ID(CASEW1);
@@ -104,11 +110,11 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
                         if (pw == null) {
                             env.log("cID " + cID + " wID " + w1ID);
                         }
-                        pw.println(l);
+                        pw.println(line);
                         Generic_Collections.addToMap(r.c_To_w1, cID, w1ID);
                     }
                 }
-            });
+            }
             // Close br
             io.closeBufferedReader(br);
             // Close the PrintWriters.
@@ -203,15 +209,20 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
             /**
              * Read through the lines and write them to the appropriate files.
              */
-            br.lines().skip(1).forEach(l -> {
-                WaAS_W2PRecord rec = new WaAS_W2PRecord(l);
+            br.readLine(); // skip header
+            String line = br.readLine();
+            int i = 0;
+            while (line != null) {
+                WaAS_W2PRecord rec = new WaAS_W2PRecord(new WaAS_RecordID(i), line);
+                i++;
+                line = br.readLine();
                 //WaAS_W2ID w2ID = new WaAS_W2ID(rec.getCASEW2());
                 WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(rec.getCASEW2());
                 if (w2_To_w1.containsKey(w2ID)) {
                     WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
-                    write(sW1.w1_To_c, w1ID, cPWs, l);
+                    write(sW1.w1_To_c, w1ID, cPWs, line);
                 }
-            });
+            }
             // Close br
             io.closeBufferedReader(br);
             // Close the PrintWriters.
@@ -277,16 +288,21 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
             /**
              * Read through the lines and write them to the appropriate files.
              */
-            br.lines().skip(1).forEach(l -> {
-                WaAS_W3PRecord rec = new WaAS_W3PRecord(l);
+            br.readLine(); // skip header
+            String line = br.readLine();
+            int i = 0;
+            while (line != null) {
+                WaAS_W3PRecord rec = new WaAS_W3PRecord(new WaAS_RecordID(i), line);
+                i++;
+                line = br.readLine();
                 //WaAS_W3ID w3ID = new WaAS_W3ID(rec.getCASEW3());
                 WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(rec.getCASEW3());
                 if (w3_To_w2.containsKey(w3ID)) {
                     WaAS_W2ID w2ID = w3_To_w2.get(w3ID);
                     WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
-                    write(w1_To_c, w1ID, cPWs, l);
+                    write(w1_To_c, w1ID, cPWs, line);
                 }
-            });
+            }
             // Close br
             io.closeBufferedReader(br);
             // Close the PrintWriters.
@@ -336,8 +352,13 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
             /**
              * Read through the lines and write them to the appropriate files.
              */
-            br.lines().skip(1).forEach(l -> {
-                WaAS_W4PRecord rec = new WaAS_W4PRecord(l);
+            br.readLine(); // skip header
+            String line = br.readLine();
+            int i = 0;
+            while (line != null) {
+                WaAS_W4PRecord rec = new WaAS_W4PRecord(new WaAS_RecordID(i), line);
+                i++;
+                line = br.readLine();
                 //WaAS_W4ID w4ID = new WaAS_W4ID(rec.getCASEW4());
                 WaAS_W4ID w4ID = we.data.CASEW4_To_w4.get(rec.getCASEW4());
                 if (w4ID != null) {
@@ -345,10 +366,10 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
                         WaAS_W3ID w3ID = w4_To_w3.get(w4ID);
                         WaAS_W2ID w2ID = w3_To_w2.get(w3ID);
                         WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
-                        write(w1_To_c, w1ID, cPWs, l);
+                        write(w1_To_c, w1ID, cPWs, line);
                     }
                 }
-            });
+            }
             // Close br
             io.closeBufferedReader(br);
             // Close the PrintWriters.
@@ -400,8 +421,13 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
             /**
              * Read through the lines and write them to the appropriate files.
              */
-            br.lines().skip(1).forEach(l -> {
-                WaAS_W5PRecord rec = new WaAS_W5PRecord(l);
+            br.readLine(); // skip header
+            String line = br.readLine();
+            int i = 0;
+            while (line != null) {
+                WaAS_W5PRecord rec = new WaAS_W5PRecord(new WaAS_RecordID(i), line);
+                i++;
+                line = br.readLine();
                 //WaAS_W5ID w5ID = new WaAS_W5ID(rec.getCASEW5());
                 WaAS_W5ID w5ID = we.data.CASEW5_To_w5.get(rec.getCASEW5());
                 if (w5_To_w4.containsKey(w5ID)) {
@@ -410,10 +436,10 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
                     if (w3ID != null) {
                         WaAS_W2ID w2ID = w3_To_w2.get(w3ID);
                         WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
-                        write(w1_To_c, w1ID, cPWs, l);
+                        write(w1_To_c, w1ID, cPWs, line);
                     }
                 }
-            });
+            }
             // Close br
             io.closeBufferedReader(br);
             // Close the PrintWriters.

@@ -21,7 +21,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import uk.ac.leeds.ccg.andyt.data.Data_CollectionID;
+import uk.ac.leeds.ccg.andyt.data.id.Data_CollectionID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 
 public class WaAS_DataSubsetW4 extends WaAS_DataSubset {

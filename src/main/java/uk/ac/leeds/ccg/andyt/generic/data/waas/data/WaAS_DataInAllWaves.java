@@ -16,6 +16,13 @@
 package uk.ac.leeds.ccg.andyt.generic.data.waas.data;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.TreeMap;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_W2Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_W4Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_W5Record;
@@ -26,12 +33,6 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W1ID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W5ID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W2ID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W3ID;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.TreeMap;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
-import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
 import uk.ac.leeds.ccg.andyt.generic.util.Generic_Collections;
 
 public class WaAS_DataInAllWaves extends WaAS_Object {
@@ -93,8 +94,9 @@ public class WaAS_DataInAllWaves extends WaAS_Object {
      * Loads data that are in all waves.
      *
      * @param type
+     * @throws java.io.FileNotFoundException
      */
-    public void loadDataInAllWaves(String type) throws FileNotFoundException {
+    public void loadDataInAllWaves(String type) throws FileNotFoundException, IOException {
         String m = "loadDataInAllWaves()";
         env.logStartTag(m);
         /**

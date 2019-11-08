@@ -1723,8 +1723,8 @@ public abstract class WaAS_Handler extends WaAS_Object {
             String m1 = getMessage(W3, f);
             env.logStartTag(m1);
             BufferedReader br = loadW3Count(r, f);
-            String line = br.readLine(); // skip header
-            line = br.readLine();
+            br.readLine(); // skip header
+            String line = br.readLine();
             int i = 0;
             while (line != null) {
                 WaAS_W3HRecord rec = new WaAS_W3HRecord(new WaAS_RecordID(i), line);
@@ -1786,8 +1786,8 @@ public abstract class WaAS_Handler extends WaAS_Object {
             String m0 = getMessage(W2, f);
             env.logStartTag(m0);
             BufferedReader br = loadW2Count(r, f);
-            String line = br.readLine(); // skip header
-            line = br.readLine();
+            br.readLine(); // skip header
+            String line = br.readLine();
             int i = 0;
             while (line != null) {
                 WaAS_W2HRecord rec = new WaAS_W2HRecord(new WaAS_RecordID(i), line);
@@ -1821,14 +1821,13 @@ public abstract class WaAS_Handler extends WaAS_Object {
     protected BufferedReader loadW3Count(WaAS_W3Data r, File f) throws FileNotFoundException, IOException {
         BufferedReader br = io.getBufferedReader(f);
         int count = 0;
-        String line = br.readLine(); // skip header
-            line = br.readLine();
+        br.readLine(); // skip header
+            String line = br.readLine();
             int i = 0;
             while (line != null) {
                 WaAS_W3HRecord rec = new WaAS_W3HRecord(new WaAS_RecordID(i), line);
                 i++;
                 line = br.readLine();
-                count ++;
             short CASEW2 = rec.getCASEW2();
             if (CASEW2 > Short.MIN_VALUE) {
                 //WaAS_W2ID w2ID = new WaAS_W2ID(CASEW2);
@@ -1997,8 +1996,8 @@ public abstract class WaAS_Handler extends WaAS_Object {
             String m0 = getMessage(W2, f);
             env.logStartTag(m0);
             BufferedReader br = loadW2Count(r, f);
-            String line = br.readLine(); // skip header
-            line = br.readLine();
+            br.readLine(); // skip header
+            String line = br.readLine();
             int i = 0;
             while (line != null) {
                 WaAS_W2HRecord rec = new WaAS_W2HRecord(new WaAS_RecordID(i), line);
@@ -2026,21 +2025,26 @@ public abstract class WaAS_Handler extends WaAS_Object {
         return r;
     }
 
-    protected BufferedReader loadW2Count(WaAS_W2Data r, File f) throws FileNotFoundException {
+    protected BufferedReader loadW2Count(WaAS_W2Data r, File f) throws FileNotFoundException, IOException {
         BufferedReader br = io.getBufferedReader(f);
-        int count = br.lines().skip(1).mapToInt((l) -> {
-            WaAS_W2HRecord rec = new WaAS_W2HRecord(l);
-            short CASEW1 = rec.getCASEW1();
+        int count = 0;
+        br.readLine(); // skip header
+            String line = br.readLine();
+            int i = 0;
+            while (line != null) {
+                WaAS_W2HRecord rec = new WaAS_W2HRecord(new WaAS_RecordID(i), line);
+                i++;
+                line = br.readLine();
+             short CASEW1 = rec.getCASEW1();
             if (CASEW1 > Short.MIN_VALUE) {
                 //WaAS_W1ID w1ID = new WaAS_W1ID(CASEW1);
                 WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
                 if (!r.w1_In_w2.add(w1ID)) {
                     env.log("In Wave 2: hhold with CASEW1 " + CASEW1 + " reportedly split into multiple hholds.");
-                    return 1;
+                    count ++;
                 }
             }
-            return 0;
-        }).sum();
+        }
         env.log("There are " + count + " hholds from Wave 1 that reportedly " + "split into multiple hholds in Wave 2.");
         // Close and reopen br
         br = io.closeAndGetBufferedReader(br, f);
@@ -2054,7 +2058,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @return the loaded data
      * @throws java.io.FileNotFoundException If the input file is not found.
      */
-    public WaAS_W3Data loadW3InW2() throws FileNotFoundException {
+    public WaAS_W3Data loadW3InW2() throws FileNotFoundException, IOException {
         String m = "loadW3InW2";
         env.logStartTag(m);
         WaAS_W3Data r;
@@ -2074,8 +2078,13 @@ public abstract class WaAS_Handler extends WaAS_Object {
             String m0 = getMessage(W3, f);
             env.logStartTag(m0);
             BufferedReader br = loadW3Count(r, f);
-            br.lines().skip(1).forEach((l) -> {
-                WaAS_W3HRecord rec = new WaAS_W3HRecord(l);
+            br.readLine(); // skip header
+            String line = br.readLine();
+            int i = 0;
+            while (line != null) {
+                WaAS_W3HRecord rec = new WaAS_W3HRecord(new WaAS_RecordID(i), line);
+                i++;
+                line = br.readLine();
                 WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(rec.getCASEW3());
                 WaAS_W3Record w3rec = new WaAS_W3Record(w3ID, rec);
                 short CASEW2 = rec.getCASEW2();
@@ -2095,7 +2104,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         r.w3_In_w1w2.add(w3ID);
                     }
                 }
-            });
+            }
             // Close br
             io.closeBufferedReader(br);
             env.logEndTag(m0);
@@ -2158,7 +2167,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @return the loaded data
      * @throws java.io.FileNotFoundException If the input file is not found.
      */
-    public WaAS_W3Data loadW3InS(Set<WaAS_W3ID> s, String type) throws FileNotFoundException {
+    public WaAS_W3Data loadW3InS(Set<WaAS_W3ID> s, String type) throws FileNotFoundException, IOException {
         String m = "loadW3InS(Set<WaAS_W3ID>, " + type + ")";
         env.logStartTag(m);
         WaAS_W3Data r;
@@ -2171,8 +2180,13 @@ public abstract class WaAS_Handler extends WaAS_Object {
             String m1 = getMessage(W3, f);
             env.logStartTag(m1);
             BufferedReader br = loadW3Count(r, f);
-            br.lines().skip(1).forEach((l) -> {
-                WaAS_W3HRecord rec = new WaAS_W3HRecord(l);
+            br.readLine(); // skip header
+            String line = br.readLine();
+            int i = 0;
+            while (line != null) {
+                WaAS_W3HRecord rec = new WaAS_W3HRecord(new WaAS_RecordID(i), line);
+                i++;
+                line = br.readLine();
                 WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(rec.getCASEW3());
                 WaAS_W3Record w3rec = new WaAS_W3Record(w3ID, rec);
                 short CASEW2 = rec.getCASEW2();
@@ -2193,7 +2207,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         r.w3_In_w1w2.add(w3ID);
                     }
                 }
-            });
+            }
             // Close br
             io.closeBufferedReader(br);
             env.logEndTag(m1);
@@ -2236,7 +2250,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.io.FileNotFoundException If the input file is not found.
      */
     public WaAS_W4Data loadW4InSAndW3(Collection<WaAS_W4ID> s, String type)
-            throws FileNotFoundException {
+            throws FileNotFoundException, IOException {
         String m = "loadW4(Set<WaAS_W4ID>, " + type + ")";
         env.logStartTag(m);
         WaAS_W4Data r;
@@ -2256,8 +2270,13 @@ public abstract class WaAS_Handler extends WaAS_Object {
             String m1 = getMessage(W4, f);
             env.logStartTag(m1);
             BufferedReader br = loadW4Count(r, f);
-            br.lines().skip(1).forEach((l) -> {
-                WaAS_W4HRecord rec = new WaAS_W4HRecord(l);
+            br.readLine(); // skip header
+            String line = br.readLine();
+            int i = 0;
+            while (line != null) {
+                WaAS_W4HRecord rec = new WaAS_W4HRecord(new WaAS_RecordID(i), line);
+                i++;
+                line = br.readLine();
                 WaAS_W4ID w4ID = we.data.CASEW4_To_w4.get(rec.getCASEW4());
                 WaAS_W4Record w4rec = new WaAS_W4Record(w4ID, rec);
                 short CASEW3 = rec.getCASEW3();
@@ -2287,7 +2306,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         r.w4_In_w1w2w3.add(w4ID);
                     }
                 }
-            });
+            }
             // Close br
             io.closeBufferedReader(br);
             env.logEndTag(m1);
@@ -2306,10 +2325,16 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @return
      * @throws java.io.FileNotFoundException If the input file is not found.
      */
-    protected BufferedReader loadW4Count(WaAS_W4Data r, File f) throws FileNotFoundException {
+    protected BufferedReader loadW4Count(WaAS_W4Data r, File f) throws FileNotFoundException, IOException {
         BufferedReader br = io.getBufferedReader(f);
-        int count = br.lines().skip(1).mapToInt((l) -> {
-            WaAS_W4HRecord rec = new WaAS_W4HRecord(l);
+        int count = 0;
+        br.readLine(); // skip header
+            String line = br.readLine();
+            int i = 0;
+            while (line != null) {
+                WaAS_W4HRecord rec = new WaAS_W4HRecord(new WaAS_RecordID(i), line);
+                i++;
+                line = br.readLine();
             short CASEW3 = rec.getCASEW3();
             if (CASEW3 > Short.MIN_VALUE) {
                 WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(CASEW3);
@@ -2318,12 +2343,11 @@ public abstract class WaAS_Handler extends WaAS_Object {
                 } else {
                     if (!r.w3_In_w4.add(w3ID)) {
                         env.log("In Wave 4: hhold with CASEW3 " + CASEW3 + " reportedly split into multiple hholds.");
-                        return 1;
+                        count ++;
                     }
                 }
             }
-            return 0;
-        }).sum();
+        }
         env.log("There are " + count + " hholds from Wave 3 " + "reportedly split into multiple hholds in Wave 4.");
         // Close and reopen br
         br = io.closeAndGetBufferedReader(br, f);
@@ -2337,7 +2361,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @return the loaded data
      * @throws java.io.FileNotFoundException If the input file is not found.
      */
-    public WaAS_W5Data loadW5InW4() throws FileNotFoundException {
+    public WaAS_W5Data loadW5InW4() throws FileNotFoundException, IOException {
         String m = "loadW5InW4";
         env.logStartTag(m);
         WaAS_W5Data r;
@@ -2357,8 +2381,14 @@ public abstract class WaAS_Handler extends WaAS_Object {
             String m1 = getMessage(W5, f);
             env.logStartTag(m1);
             BufferedReader br = io.getBufferedReader(f);
-            int count = br.lines().skip(1).mapToInt((l) -> {
-                WaAS_W5HRecord rec = new WaAS_W5HRecord(l);
+            int count = 0;
+        br.readLine(); // skip header
+            String line = br.readLine();
+            int i = 0;
+            while (line != null) {
+                WaAS_W5HRecord rec = new WaAS_W5HRecord(new WaAS_RecordID(i), line);
+                i++;
+                line = br.readLine();
                 short CASEW4 = rec.getCASEW4();
                 if (CASEW4 > Short.MIN_VALUE) {
                     WaAS_W4ID w4ID = we.data.CASEW4_To_w4.get(CASEW4);
@@ -2370,18 +2400,22 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         //WaAS_W5ID w5ID = new WaAS_W5ID(rec.getCASEW5());
                         if (!r.w4_In_w5.add(w4ID)) {
                             env.log("In Wave 5: hhold with CASEW4 " + CASEW4 + " reportedly split into multiple hholds.");
-                            return 1;
+                            count++;
                         }
                         r.w5_To_w4.put(w5ID, w4ID);
                     }
                 }
-                return 0;
-            }).sum();
+            }
             env.log("There are " + count + " hholds from Wave 4 that " + "reportedly split into multiple hholds in Wave 5.");
             // Close and reopen br
             br = io.closeAndGetBufferedReader(br, f);
-            br.lines().skip(1).forEach((l) -> {
-                WaAS_W5HRecord rec = new WaAS_W5HRecord(l);
+            br.readLine(); // skip header
+            line = br.readLine();
+             i = 0;
+            while (line != null) {
+                WaAS_W5HRecord rec = new WaAS_W5HRecord(new WaAS_RecordID(i), line);
+                i++;
+                line = br.readLine();
                 WaAS_W5ID w5ID = we.data.CASEW5_To_w5.get(rec.getCASEW5());
                 WaAS_W5Record w5rec = new WaAS_W5Record(w5ID, rec);
                 short CASEW4 = rec.getCASEW4();
@@ -2417,7 +2451,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         r.w5_In_w1w2w3w4.add(w5ID);
                     }
                 }
-            });
+            }
             // Close br
             io.closeBufferedReader(br);
             env.logEndTag(m1);
@@ -2433,7 +2467,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      *
      * @throws java.io.FileNotFoundException If the input file is not found.
      */
-    public void loadSimple() throws FileNotFoundException {
+    public void loadSimple() throws FileNotFoundException, IOException {
         String m = "loadSimple";
         env.logStartTag(m);
         //Data_CollectionSimple r;
@@ -2462,8 +2496,13 @@ public abstract class WaAS_Handler extends WaAS_Object {
             String m1 = getMessage(W5, f);
             env.logStartTag(m1);
             BufferedReader br = io.getBufferedReader(f);
-            br.lines().skip(1).forEach((l) -> {
-                WaAS_W5HRecord rec = new WaAS_W5HRecord(l);
+            br.readLine(); // skip header
+            String line = br.readLine();
+            int i = 0;
+            while (line != null) {
+                WaAS_W5HRecord rec = new WaAS_W5HRecord(new WaAS_RecordID(i), line);
+                i++;
+                line = br.readLine();
                 short CASEW4 = rec.getCASEW4();
                 short CASEW3 = rec.getCASEW3();
                 short CASEW2 = rec.getCASEW2();
@@ -2484,7 +2523,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                     w2IDs.add(w2ID);
                     w1IDs.add(w1ID);
                 }
-            });
+            }
             // Close br
             io.closeBufferedReader(br);
 
@@ -2507,7 +2546,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.io.FileNotFoundException If the input file is not found.
      */
     public WaAS_W4Data loadW4InS(Set<WaAS_W4ID> s, String type)
-            throws FileNotFoundException {
+            throws FileNotFoundException, IOException {
         String m = "loadW4InS(Set<WaAS_W4ID>, " + type + ")";
         env.logStartTag(m);
         WaAS_W4Data r;
@@ -2527,8 +2566,13 @@ public abstract class WaAS_Handler extends WaAS_Object {
             String m1 = getMessage(W4, f);
             env.logStartTag(m1);
             BufferedReader br = loadW4Count(r, f);
-            br.lines().skip(1).forEach((l) -> {
-                WaAS_W4HRecord rec = new WaAS_W4HRecord(l);
+            br.readLine(); // skip header
+            String line = br.readLine();
+            int i = 0;
+            while (line != null) {
+                WaAS_W4HRecord rec = new WaAS_W4HRecord(new WaAS_RecordID(i), line);
+                i++;
+                line = br.readLine();
                 WaAS_W4ID w4ID = we.data.CASEW4_To_w4.get(rec.getCASEW4());
                 WaAS_W4Record w4rec = new WaAS_W4Record(w4ID, rec);
                 short CASEW3 = rec.getCASEW3();
@@ -2558,7 +2602,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         r.w4_In_w1w2w3.add(w4ID);
                     }
                 }
-            });
+            }
             // Close br
             io.closeBufferedReader(br);
             env.logEndTag(m1);
@@ -2580,7 +2624,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.io.FileNotFoundException If the input file is not found.
      */
     public WaAS_W2Data loadW2InS(Set<WaAS_W2ID> s, String type)
-            throws FileNotFoundException {
+            throws FileNotFoundException, IOException {
         String m = "loadW2InS(Set<WaAS_W2ID>, " + type + ")";
         env.logStartTag(m);
         WaAS_W2Data r;
@@ -2593,8 +2637,13 @@ public abstract class WaAS_Handler extends WaAS_Object {
             String m0 = getMessage(W2, f);
             env.logStartTag(m0);
             BufferedReader br = loadW2Count(r, f);
-            br.lines().skip(1).forEach((l) -> {
-                WaAS_W2HRecord rec = new WaAS_W2HRecord(l);
+            br.readLine(); // skip header
+            String line = br.readLine();
+            int i = 0;
+            while (line != null) {
+                WaAS_W2HRecord rec = new WaAS_W2HRecord(new WaAS_RecordID(i), line);
+                i++;
+                line = br.readLine();
                 WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(rec.getCASEW2());
                 WaAS_W2Record w2rec = new WaAS_W2Record(w2ID, rec);
                 short CASEW1 = rec.getCASEW1();
@@ -2608,7 +2657,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                     }
                 }
                 r.all.add(w2ID);
-            });
+            }
             // Close br
             io.closeBufferedReader(br);
             env.logEndTag(m0);
@@ -2668,7 +2717,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @return the loaded data
      * @throws java.io.FileNotFoundException If the input file is not found.
      */
-    public WaAS_W4Data loadW4InW3() throws FileNotFoundException {
+    public WaAS_W4Data loadW4InW3() throws FileNotFoundException, IOException {
         String m = "loadW4InW3";
         env.logStartTag(m);
         WaAS_W4Data r;
@@ -2688,8 +2737,13 @@ public abstract class WaAS_Handler extends WaAS_Object {
             String m0 = getMessage(W4, f);
             env.logStartTag(m0);
             BufferedReader br = loadW4Count(r, f);
-            br.lines().skip(1).forEach((l) -> {
-                WaAS_W4HRecord rec = new WaAS_W4HRecord(l);
+            br.readLine(); // skip header
+            String line = br.readLine();
+            int i = 0;
+            while (line != null) {
+                WaAS_W4HRecord rec = new WaAS_W4HRecord(new WaAS_RecordID(i), line);
+                i++;
+                line = br.readLine();
                 WaAS_W4ID w4ID = we.data.CASEW4_To_w4.get(rec.getCASEW4());
                 WaAS_W4Record w4rec = new WaAS_W4Record(w4ID, rec);
                 short CASEW3 = rec.getCASEW3();
@@ -2713,7 +2767,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         r.w4_In_w1w2w3.add(w4ID);
                     }
                 }
-            });
+            }
             // Close br
             io.closeBufferedReader(br);
             env.logEndTag(m0);
@@ -2736,7 +2790,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.io.FileNotFoundException If the input file is not found.
      */
     public WaAS_W1Data loadW1(Collection<WaAS_W1ID> s, String type)
-            throws FileNotFoundException {
+            throws FileNotFoundException, IOException {
         String m = "loadW1(Collection<Short>, " + type + ")";
         env.logStartTag(m);
         WaAS_W1Data r;
@@ -2749,8 +2803,13 @@ public abstract class WaAS_Handler extends WaAS_Object {
             String m1 = getMessage(W1, f);
             env.logStartTag(m1);
             BufferedReader br = io.getBufferedReader(f);
-            br.lines().skip(1).forEach((l) -> {
-                WaAS_W1HRecord rec = new WaAS_W1HRecord(l);
+            br.readLine(); // skip header
+            String line = br.readLine();
+            int i = 0;
+            while (line != null) {
+                WaAS_W1HRecord rec = new WaAS_W1HRecord(new WaAS_RecordID(i), line);
+                i++;
+                line = br.readLine();
                 short CASEW1 = rec.getCASEW1();
                 if (CASEW1 > Short.MIN_VALUE) {
                     WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
@@ -2760,7 +2819,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                     }
                     r.all.add(w1ID);
                 }
-            });
+            }
             // Close br
             io.closeBufferedReader(br);
             env.logEndTag(m1);

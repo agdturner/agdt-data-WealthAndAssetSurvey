@@ -3467,7 +3467,7 @@ public class WaAS_W5PRecord extends WaAS_W4W5PRecord {
     }
 
 
-    public WaAS_W5PRecord(WaAS_RecordID i, String line) {
+    public WaAS_W5PRecord(WaAS_RecordID i, String line) throws Exception {
         super(i);
         s = line.split("\t");
         initCASEW5(s[0]);

@@ -4291,7 +4291,7 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
     }
 
 
-    public WaAS_W3HRecord(WaAS_RecordID i, String line) {
+    public WaAS_W3HRecord(WaAS_RecordID i, String line) throws Exception {
         super(i);
         s = line.split("\t");
         initCASEW3(s[0]);

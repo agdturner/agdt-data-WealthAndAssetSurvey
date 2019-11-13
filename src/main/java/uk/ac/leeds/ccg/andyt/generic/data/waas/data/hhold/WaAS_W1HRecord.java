@@ -1398,7 +1398,7 @@ public class WaAS_W1HRecord extends WaAS_W1W2HRecord {
     }
 
 
-    public WaAS_W1HRecord(WaAS_RecordID i, String line) {
+    public WaAS_W1HRecord(WaAS_RecordID i, String line) throws Exception {
         super(i);
         s = line.split("\t");
         initXS_WGT(s[0]);

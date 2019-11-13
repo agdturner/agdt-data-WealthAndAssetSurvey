@@ -24,12 +24,14 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import uk.ac.leeds.ccg.andyt.data.Data_Collection;
+import uk.ac.leeds.ccg.andyt.data.core.Data_Environment;
 import uk.ac.leeds.ccg.andyt.data.id.Data_CollectionID;
 import uk.ac.leeds.ccg.andyt.data.id.Data_RecordID;
+import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_Collection;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_CombinedRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_CombinedRecordSimple;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_DataInAllWaves;
@@ -52,6 +54,7 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_W3Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_W4Data;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_W4Record;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_W5Data;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_CollectionID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_RecordID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W5ID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.records.WaAS_W5Record;
@@ -65,17 +68,22 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W5PRecord;
  *
  * @author geoagdt
  */
-public class WaAS_Main_Process extends WaAS_Object {
+public class WaAS_Main extends WaAS_Object {
 
     // For convenience
     //protected WaAS_Data data;
-    public WaAS_Main_Process(WaAS_Environment env) {
+    public WaAS_Main(WaAS_Environment env) {
         super(env);
     }
 
     public static void main(String[] args) {
         try {
-            WaAS_Main_Process p = new WaAS_Main_Process(new WaAS_Environment());
+            Data_Environment de = new Data_Environment(
+                    new Generic_Environment());
+            File dataDir = new File(de.files.getDir(), WaAS_Strings.s_data);
+            dataDir = new File(dataDir, WaAS_Strings.s_WaAS);
+            WaAS_Environment we = new WaAS_Environment(de, dataDir);
+            WaAS_Main p = new WaAS_Main(we);
             // Main switches
             p.doLoadAllHouseholdsRecords = true;
             p.doLoadHouseholdsAndIndividualsInAllWaves = true;
@@ -172,7 +180,7 @@ public class WaAS_Main_Process extends WaAS_Object {
         }
         we.cacheData();
         env.logEndTag(m);
-        env.closeLog(we.logID);
+        env.closeLog(we.de.logID);
     }
 
     /**
@@ -238,7 +246,7 @@ public class WaAS_Main_Process extends WaAS_Object {
                 type, pH, dsW4, dsW1, w1_To_w2, w2_To_w1, w2_To_w3, w3_To_w2,
                 w3_To_w4, w4_To_w3, w4_To_w5, w5_To_w4);
         env.log("data.lookup.size() " + dsW1.w1_To_c.size());
-        env.log("data.data.size() " + we.data.data.size());
+        env.log("data.data.size() " + we.data.getData().size());
         we.cacheData();
         env.logEndTag(m);
     }
@@ -265,7 +273,7 @@ public class WaAS_Main_Process extends WaAS_Object {
             String type, WaAS_PERSON_Handler pH, int chunkSize) throws IOException {
         // Wave 1
         String m0 = "mergePersonAndHouseholdDataIntoCollectionsW1";
-        we.logStartTagMem(m0);
+        we.de.logStartTagMem(m0);
         //Object[] r = new Object[3];
         TreeMap<WaAS_W1ID, WaAS_W1Record> hs;
         if (type.equalsIgnoreCase(WaAS_Strings.s__In_w1w2w3w4w5)) {
@@ -285,16 +293,18 @@ public class WaAS_Main_Process extends WaAS_Object {
         WaAS_DataSubsetW1 sW1 = pH.loadDataSubsetW1(w1IDs);
         //sW1.c_To_w1.keySet().stream().forEach(cID -> {
         env.log("sW1.c_To_w1.keySet().size() " + sW1.c_To_w1.keySet().size());
-        Iterator<Data_CollectionID> ite2 = sW1.c_To_w1.keySet().iterator();
+        Iterator<WaAS_CollectionID> ite2 = sW1.c_To_w1.keySet().iterator();
         while (ite2.hasNext()) {
-            Data_CollectionID cID = ite2.next();
+            WaAS_CollectionID cID = ite2.next();
             String m1 = "Collection ID " + cID;
-            we.logStartTagMem(m1);
-            Data_Collection c = new Data_Collection(cID);
-            we.data.data.put(cID, c);
+            we.de.logStartTagMem(m1);
+            WaAS_Collection c = new WaAS_Collection(cID);
+            //HashMap<WaAS_CollectionID, WaAS_Collection> d = we.data.getData();
+
+            we.data.getData().put(cID, c);
             // Add hhold records.
             String m2 = "Add hhold records";
-            we.logStartTagMem(m2);
+            we.de.logStartTagMem(m2);
             HashSet<WaAS_W1ID> s = sW1.c_To_w1.get(cID);
             int count;
             count = 0;
@@ -325,26 +335,32 @@ public class WaAS_Main_Process extends WaAS_Object {
 //                //cr.w1Rec.setHhold(hs.get(CASEW1));
 //            });
             env.log("Number of records added " + count);
-            we.logEndTagMem(m2);
+            we.de.logEndTagMem(m2);
             // Add person records.
             m2 = "Add person records";
-            we.logStartTagMem(m2);
+            we.de.logStartTagMem(m2);
             count = 0;
             File f = sW1.cFs.get(cID); // This should be DataSubset1_0.tab
             BufferedReader br = io.getBufferedReader(f);
             br.readLine(); // skip header
             String line = br.readLine();
+            int ln = 0;
             int i = 0;
             while (line != null) {
-                WaAS_W1PRecord rec = new WaAS_W1PRecord(new WaAS_RecordID(i), line);
-                i++;
-                line = br.readLine();
-                WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(rec.getCASEW1());
-                if (s.contains(w1ID)) {
-                    WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
-                    cr.w1Rec.getPrs().add(rec);
-                    count++;
+                try {
+                    WaAS_W1PRecord rec = new WaAS_W1PRecord(new WaAS_RecordID(i), line);
+                    i++;
+                    line = br.readLine();
+                    WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(rec.getCASEW1());
+                    if (s.contains(w1ID)) {
+                        WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
+                        cr.w1Rec.getPrs().add(rec);
+                        count++;
+                    }
+                } catch (Exception ex) {
+                    we.logLineNotLoading(ex, ln);
                 }
+                ln++;
             }
 
 //// The problem with using streams is that it is not possible that way to set c to null and if that is not done there is a memory leak!
@@ -357,17 +373,17 @@ public class WaAS_Main_Process extends WaAS_Object {
 ////                cr.w1Rec.getPrs().add(p);
 ////            });
             env.log("Number of records added " + count);
-            we.logEndTagMem(m2);
+            we.de.logEndTagMem(m2);
             // Cache and clear collection
             we.data.cacheSubsetCollection(cID, c);
             we.data.clearCollection(cID);
             env.log("Set c = null and call the garbage collector.");
             c = null; // Free memory!
             System.gc();
-            we.logEndTagMem(m1);
+            we.de.logEndTagMem(m1);
             //});
         }
-        we.logEndTagMem(m0);
+        we.de.logEndTagMem(m0);
         return sW1;
     }
 
@@ -388,7 +404,7 @@ public class WaAS_Main_Process extends WaAS_Object {
             TreeMap<WaAS_W2ID, WaAS_W1ID> w2_To_w1) throws IOException {
         // Wave 2
         String m0 = "mergePersonAndHouseholdDataIntoCollectionsW2";
-        we.logStartTagMem(m0);
+        we.de.logStartTagMem(m0);
         TreeMap<WaAS_W2ID, WaAS_W2Record> hs;
         if (type.equalsIgnoreCase(WaAS_Strings.s__In_w1w2w3w4w5)) {
             hs = we.hh.loadCachedSubsetW2(type);
@@ -407,12 +423,12 @@ public class WaAS_Main_Process extends WaAS_Object {
         }
         WaAS_DataSubsetW2 sW2 = pH.loadDataSubsetW2(sW1, w2_To_w1);
         //sW2.cFs.keySet().stream().forEach(cID -> {
-        Iterator<Data_CollectionID> ite2 = sW2.cFs.keySet().iterator();
+        Iterator<WaAS_CollectionID> ite2 = sW2.cFs.keySet().iterator();
         while (ite2.hasNext()) {
-            Data_CollectionID cID = ite2.next();
+            WaAS_CollectionID cID = ite2.next();
             String m1 = "Collection ID " + cID;
-            we.logStartTagMem(m1);
-            Data_Collection c = we.data.getCollection(cID);
+            we.de.logStartTagMem(m1);
+            WaAS_Collection c = we.data.getCollection(cID);
             // Add hhold records.
             String m2 = "Add hhold records";
             env.logStartTag(m2);
@@ -462,7 +478,7 @@ public class WaAS_Main_Process extends WaAS_Object {
 //                    });
 //                }
 //            });
-            we.logEndTagMem(m2);
+            we.de.logEndTagMem(m2);
             // Add person records.
             m2 = "Add person records";
             env.logStartTag(m2);
@@ -474,35 +490,41 @@ public class WaAS_Main_Process extends WaAS_Object {
             br = io.getBufferedReader(f);
             br.readLine(); // skip header
             line = br.readLine();
+            int ln = 0;
             int i = 0;
             while (line != null) {
-                WaAS_W2PRecord p = new WaAS_W2PRecord(new WaAS_RecordID(i), line);
-                i++;
-                line = br.readLine();
-                //WaAS_W1ID w1IDCheck = new WaAS_W1ID(p.getCASEW1());
-                //WaAS_W1ID w1IDCheck = we.data.CASEW1_To_w1.get(p.getCASEW1());
-                //WaAS_W2ID w2ID = new WaAS_W2ID(p.getCASEW2());
-                WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(p.getCASEW2());
-                WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
-                //printCheck(we.W2, w1IDCheck, w1ID, w1_To_w2);
-                if (s.contains(w1ID)) {
-                    WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
-                    if (cr == null) {
-                        env.log("No combined record for " + w1ID + "! Data error, "
-                                + "or this person may have moved household?");
-                    } else {
-                        HashSet<WaAS_W2ID> w2IDs = w1_To_w2.get(w1ID);
-                        w2IDs.stream().forEach(k2 -> {
-                            WaAS_W2Record w2rec = cr.w2Recs.get(k2);
-                            if (w2rec == null) {
-                                w2rec = new WaAS_W2Record(k2);
-                                env.log("Adding people, but there is no hhold "
-                                        + "record for " + w2ID + "!");
-                            }
-                            w2rec.getPrs().add(p);
-                        });
+                try {
+                    WaAS_W2PRecord p = new WaAS_W2PRecord(new WaAS_RecordID(i), line);
+                    i++;
+                    line = br.readLine();
+                    //WaAS_W1ID w1IDCheck = new WaAS_W1ID(p.getCASEW1());
+                    //WaAS_W1ID w1IDCheck = we.data.CASEW1_To_w1.get(p.getCASEW1());
+                    //WaAS_W2ID w2ID = new WaAS_W2ID(p.getCASEW2());
+                    WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(p.getCASEW2());
+                    WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
+                    //printCheck(we.W2, w1IDCheck, w1ID, w1_To_w2);
+                    if (s.contains(w1ID)) {
+                        WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
+                        if (cr == null) {
+                            env.log("No combined record for " + w1ID + "! Data error, "
+                                    + "or this person may have moved household?");
+                        } else {
+                            HashSet<WaAS_W2ID> w2IDs = w1_To_w2.get(w1ID);
+                            w2IDs.stream().forEach(k2 -> {
+                                WaAS_W2Record w2rec = cr.w2Recs.get(k2);
+                                if (w2rec == null) {
+                                    w2rec = new WaAS_W2Record(k2);
+                                    env.log("Adding people, but there is no hhold "
+                                            + "record for " + w2ID + "!");
+                                }
+                                w2rec.getPrs().add(p);
+                            });
+                        }
                     }
+                } catch (Exception ex) {
+                    we.logLineNotLoading(ex, ln);
                 }
+                ln++;
             }
 //// The problem with using streams is that it is not possible that way to set c to null and if that is not done there is a memory leak!
 ////            br.lines().skip(1).forEach(line -> {
@@ -531,7 +553,7 @@ public class WaAS_Main_Process extends WaAS_Object {
 ////                    });
 ////                }
 ////            });
-            we.logEndTagMem(m2);
+            we.de.logEndTagMem(m2);
             // Close br
             io.closeBufferedReader(br);
             // Cache and clear collection
@@ -540,7 +562,7 @@ public class WaAS_Main_Process extends WaAS_Object {
             env.log("Set c = null and call the garbage collector.");
             c = null; // Free memory!
             System.gc();
-            we.logEndTagMem(m1);
+            we.de.logEndTagMem(m1);
             //});
         }
         env.logEndTag(m0);
@@ -609,15 +631,15 @@ public class WaAS_Main_Process extends WaAS_Object {
         }
         WaAS_DataSubsetW3 sW3 = pH.loadDataSubsetW3(sW2, sW1.w1_To_c, w2_To_w1, w3_To_w2);
         //sW3.cFs.keySet().stream().forEach(cID -> {
-        Iterator<Data_CollectionID> ite2 = sW3.cFs.keySet().iterator();
+        Iterator<WaAS_CollectionID> ite2 = sW3.cFs.keySet().iterator();
         while (ite2.hasNext()) {
-            Data_CollectionID cID = ite2.next();
+            WaAS_CollectionID cID = ite2.next();
             String m1 = "Collection ID " + cID;
-            we.logStartTagMem(m1);
-            Data_Collection c = we.data.getCollection(cID);
+            we.de.logStartTagMem(m1);
+            WaAS_Collection c = we.data.getCollection(cID);
             // Add hhold records.
             String m2 = "Add hhold records";
-            we.logStartTagMem(m2);
+            we.de.logStartTagMem(m2);
             HashSet<WaAS_W1ID> s = sW1.c_To_w1.get(cID);
             // The following way not using streams works!
             Iterator<WaAS_W1ID> ite = s.iterator();
@@ -680,45 +702,50 @@ public class WaAS_Main_Process extends WaAS_Object {
             env.logStartTag(m2);
             File f = sW3.cFs.get(cID);
             BufferedReader br = io.getBufferedReader(f);
-            br = io.getBufferedReader(f);
             br.readLine(); // skip header
             String line = br.readLine();
+            int ln = 0;
             int i = 0;
             while (line != null) {
-                WaAS_W3PRecord p = new WaAS_W3PRecord(new WaAS_RecordID(i), line);
-                i++;
-                line = br.readLine();
-                //WaAS_W1ID w1IDCheck = new WaAS_W1ID(p.getCASEW1());
-                //WaAS_W1ID w1IDCheck = we.data.CASEW1_To_w1.get(p.getCASEW1());
-                //WaAS_W2ID w2IDCheck = new WaAS_W2ID(p.getCASEW2());
-                //WaAS_W2ID w2IDCheck = we.data.CASEW2_To_w2.get(p.getCASEW2());
-                //WaAS_W3ID w3ID = new WaAS_W3ID(rec.getCASEW3());
-                WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(p.getCASEW3());
-                WaAS_W2ID w2ID = w3_To_w2.get(w3ID);
-                WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
-                //printCheck(we.W3, w2IDCheck, w2ID, w2_To_w3);
-                if (s.contains(w1ID)) {
-                    WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
-                    if (cr == null) {
-                        env.log("No combined record for CASEW1 " + w1ID + "! "
-                                + "This may be a data error, or this person may "
-                                + "have moved from one hhold to another?");
-                    } else {
-                        HashSet<WaAS_W2ID> w2IDs = w1_To_w2.get(w1ID);
-                        w2IDs.stream().forEach(k2 -> {
-                            HashSet<WaAS_W3ID> w3IDs = w2_To_w3.get(w2ID);
-                            w3IDs.stream().forEach(k3 -> {
-                                WaAS_W3Record w3rec = cr.w3Recs.get(k2).get(k3);
-                                if (w3rec == null) {
-                                    w3rec = new WaAS_W3Record(k3);
-                                    env.log("Adding people, but there is no hhold "
-                                            + "record for " + w3ID + "!");
-                                }
-                                w3rec.getPrs().add(p);
+                try {
+                    WaAS_W3PRecord p = new WaAS_W3PRecord(new WaAS_RecordID(i), line);
+                    i++;
+                    line = br.readLine();
+                    //WaAS_W1ID w1IDCheck = new WaAS_W1ID(p.getCASEW1());
+                    //WaAS_W1ID w1IDCheck = we.data.CASEW1_To_w1.get(p.getCASEW1());
+                    //WaAS_W2ID w2IDCheck = new WaAS_W2ID(p.getCASEW2());
+                    //WaAS_W2ID w2IDCheck = we.data.CASEW2_To_w2.get(p.getCASEW2());
+                    //WaAS_W3ID w3ID = new WaAS_W3ID(rec.getCASEW3());
+                    WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(p.getCASEW3());
+                    WaAS_W2ID w2ID = w3_To_w2.get(w3ID);
+                    WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
+                    //printCheck(we.W3, w2IDCheck, w2ID, w2_To_w3);
+                    if (s.contains(w1ID)) {
+                        WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
+                        if (cr == null) {
+                            env.log("No combined record for CASEW1 " + w1ID + "! "
+                                    + "This may be a data error, or this person may "
+                                    + "have moved from one hhold to another?");
+                        } else {
+                            HashSet<WaAS_W2ID> w2IDs = w1_To_w2.get(w1ID);
+                            w2IDs.stream().forEach(k2 -> {
+                                HashSet<WaAS_W3ID> w3IDs = w2_To_w3.get(w2ID);
+                                w3IDs.stream().forEach(k3 -> {
+                                    WaAS_W3Record w3rec = cr.w3Recs.get(k2).get(k3);
+                                    if (w3rec == null) {
+                                        w3rec = new WaAS_W3Record(k3);
+                                        env.log("Adding people, but there is no hhold "
+                                                + "record for " + w3ID + "!");
+                                    }
+                                    w3rec.getPrs().add(p);
+                                });
                             });
-                        });
+                        }
                     }
+                } catch (Exception ex) {
+                    we.logLineNotLoading(ex, ln);
                 }
+                ln++;
             }
 //// The problem with using streams is that it is not possible that way to set c to null and if that is not done there is a memory leak!
 ////            br.lines().skip(1).forEach(line -> {
@@ -754,7 +781,7 @@ public class WaAS_Main_Process extends WaAS_Object {
 ////                    });
 ////                }
 ////            });
-            we.logEndTagMem(m2);
+            we.de.logEndTagMem(m2);
             // Close br
             io.closeBufferedReader(br);
             // Cache and clear collection
@@ -762,10 +789,10 @@ public class WaAS_Main_Process extends WaAS_Object {
             we.data.clearCollection(cID);
             c = null; // Free memory!
             System.gc();
-            we.logEndTagMem(m1);
+            we.de.logEndTagMem(m1);
             //});
         }
-        we.logEndTagMem(m0);
+        we.de.logEndTagMem(m0);
         return sW3;
     }
 
@@ -811,7 +838,7 @@ public class WaAS_Main_Process extends WaAS_Object {
             String m1 = "Collection ID " + cID;
             env.logStartTag(m1);
             env.log("TotalFreeMemory " + we.getTotalFreeMemory());
-            Data_Collection c = we.data.getCollection(cID);
+            WaAS_Collection c = we.data.getCollection(cID);
             // Add hhold records.
             String m2 = "Add hhold records";
             env.logStartTag(m2);
@@ -893,61 +920,67 @@ public class WaAS_Main_Process extends WaAS_Object {
             try (BufferedReader br = io.getBufferedReader(f)) {
                 br.readLine(); // skip header
                 String line = br.readLine();
+                int ln = 0;
                 int i = 0;
                 while (line != null) {
-                    WaAS_W4PRecord p = new WaAS_W4PRecord(new WaAS_RecordID(i), line);
-                    i++;
-                    line = br.readLine();
-                    //WaAS_W1ID w1IDCheck = new WaAS_W1ID(p.getCASEW1());
-                    //WaAS_W1ID w1IDCheck = we.data.CASEW1_To_w1.get(p.getCASEW1());
-                    //WaAS_W2ID w2IDCheck = new WaAS_W2ID(p.getCASEW2());
-                    //WaAS_W2ID w2IDCheck = we.data.CASEW2_To_w2.get(p.getCASEW2());
-                    //WaAS_W3ID w3IDCheck = new WaAS_W3ID(p.getCASEW3());
-                    //WaAS_W3ID w3IDCheck = we.data.CASEW3_To_w3.get(p.getCASEW3());
-                    //WaAS_W4ID w4ID = new WaAS_W4ID(rec.getCASEW4());
-                    WaAS_W4ID w4ID = we.data.CASEW4_To_w4.get(p.getCASEW4());
-                    WaAS_W3ID w3ID = w4_To_w3.get(w4ID);
-                    WaAS_W2ID w2ID = w3_To_w2.get(w3ID);
-                    WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
-                    //printCheck(W2, w1IDCheck, w1ID, w1IDToW2ID);
-                    //printCheck(W3, w2IDCheck, w2ID, w2IDToW3ID);
-                    //printCheck(W4, w3IDCheck, w3ID, w3_To_w4);
-                    if (s.contains(w1ID)) {
-                        WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
-                        if (cr == null) {
-                            env.log("No combined record for CASEW1 " + w1ID + "! "
-                                    + "This may be a data error, or this person may "
-                                    + "have moved from one hhold to another?");
-                        } else {
-                            HashSet<WaAS_W2ID> w2IDs = w1_To_w2.get(w1ID);
-                            w2IDs.stream().forEach(k2 -> {
-                                HashSet<WaAS_W3ID> w3IDs = w2_To_w3.get(w2ID);
-                                w3IDs.stream().forEach(k3 -> {
-                                    HashSet<WaAS_W4ID> w4IDs = w3_To_w4.get(w3ID);
-                                    w4IDs.stream().forEach(k4 -> {
-                                        HashMap<WaAS_W3ID, HashMap<WaAS_W4ID, WaAS_W4Record>> w4_2;
-                                        w4_2 = cr.w4Recs.get(k2);
-                                        if (w4_2 == null) {
-                                            w4_2 = new HashMap<>();
-                                            cr.w4Recs.put(k2, w4_2);
-                                        }
-                                        HashMap<WaAS_W4ID, WaAS_W4Record> w4_3 = w4_2.get(k3);
-                                        if (w4_3 == null) {
-                                            w4_3 = new HashMap<>();
-                                            w4_2.put(k3, w4_3);
-                                        }
-                                        WaAS_W4Record w4rec = w4_3.get(k4);
-                                        if (w4rec == null) {
-                                            w4rec = new WaAS_W4Record(k4);
-                                            env.log("Adding people, but there is no "
-                                                    + "hhold record for " + w4ID + "!");
-                                        }
-                                        w4rec.getPrs().add(p);
+                    try {
+                        WaAS_W4PRecord p = new WaAS_W4PRecord(new WaAS_RecordID(i), line);
+                        i++;
+                        line = br.readLine();
+                        //WaAS_W1ID w1IDCheck = new WaAS_W1ID(p.getCASEW1());
+                        //WaAS_W1ID w1IDCheck = we.data.CASEW1_To_w1.get(p.getCASEW1());
+                        //WaAS_W2ID w2IDCheck = new WaAS_W2ID(p.getCASEW2());
+                        //WaAS_W2ID w2IDCheck = we.data.CASEW2_To_w2.get(p.getCASEW2());
+                        //WaAS_W3ID w3IDCheck = new WaAS_W3ID(p.getCASEW3());
+                        //WaAS_W3ID w3IDCheck = we.data.CASEW3_To_w3.get(p.getCASEW3());
+                        //WaAS_W4ID w4ID = new WaAS_W4ID(rec.getCASEW4());
+                        WaAS_W4ID w4ID = we.data.CASEW4_To_w4.get(p.getCASEW4());
+                        WaAS_W3ID w3ID = w4_To_w3.get(w4ID);
+                        WaAS_W2ID w2ID = w3_To_w2.get(w3ID);
+                        WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
+                        //printCheck(W2, w1IDCheck, w1ID, w1IDToW2ID);
+                        //printCheck(W3, w2IDCheck, w2ID, w2IDToW3ID);
+                        //printCheck(W4, w3IDCheck, w3ID, w3_To_w4);
+                        if (s.contains(w1ID)) {
+                            WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
+                            if (cr == null) {
+                                env.log("No combined record for CASEW1 " + w1ID + "! "
+                                        + "This may be a data error, or this person may "
+                                        + "have moved from one hhold to another?");
+                            } else {
+                                HashSet<WaAS_W2ID> w2IDs = w1_To_w2.get(w1ID);
+                                w2IDs.stream().forEach(k2 -> {
+                                    HashSet<WaAS_W3ID> w3IDs = w2_To_w3.get(w2ID);
+                                    w3IDs.stream().forEach(k3 -> {
+                                        HashSet<WaAS_W4ID> w4IDs = w3_To_w4.get(w3ID);
+                                        w4IDs.stream().forEach(k4 -> {
+                                            HashMap<WaAS_W3ID, HashMap<WaAS_W4ID, WaAS_W4Record>> w4_2;
+                                            w4_2 = cr.w4Recs.get(k2);
+                                            if (w4_2 == null) {
+                                                w4_2 = new HashMap<>();
+                                                cr.w4Recs.put(k2, w4_2);
+                                            }
+                                            HashMap<WaAS_W4ID, WaAS_W4Record> w4_3 = w4_2.get(k3);
+                                            if (w4_3 == null) {
+                                                w4_3 = new HashMap<>();
+                                                w4_2.put(k3, w4_3);
+                                            }
+                                            WaAS_W4Record w4rec = w4_3.get(k4);
+                                            if (w4rec == null) {
+                                                w4rec = new WaAS_W4Record(k4);
+                                                env.log("Adding people, but there is no "
+                                                        + "hhold record for " + w4ID + "!");
+                                            }
+                                            w4rec.getPrs().add(p);
+                                        });
                                     });
                                 });
-                            });
+                            }
                         }
+                    } catch (Exception ex) {
+                        we.logLineNotLoading(ex, ln);
                     }
+                    ln++;
                 }
             } catch (IOException ex) {
                 ex.printStackTrace(System.err);
@@ -1071,7 +1104,7 @@ public class WaAS_Main_Process extends WaAS_Object {
             String m1 = "Collection ID " + cID;
             env.logStartTag(m1);
             env.log("TotalFreeMemory " + we.getTotalFreeMemory());
-            Data_Collection c = we.data.getCollection(cID);
+            WaAS_Collection c = we.data.getCollection(cID);
             // Add hhold records.
             String m2 = "Add hhold records";
             env.logStartTag(m2);
@@ -1171,74 +1204,80 @@ public class WaAS_Main_Process extends WaAS_Object {
             try (BufferedReader br = io.getBufferedReader(f)) {
                 br.readLine(); // skip header
                 String line = br.readLine();
+                int ln = 0;
                 int i = 0;
                 while (line != null) {
-                    WaAS_W5PRecord p = new WaAS_W5PRecord(new WaAS_RecordID(i), line);
-                    i++;
-                    line = br.readLine();
+                    try {
+                        WaAS_W5PRecord p = new WaAS_W5PRecord(new WaAS_RecordID(i), line);
+                        i++;
+                        line = br.readLine();
 //                WaAS_W1ID w1IDCheck = we.data.CASEW1_To_w1.get(p.getCASEW1());
 //                WaAS_W2ID w2IDCheck = we.data.CASEW2_To_w2.get(p.getCASEW2());
 //                WaAS_W3ID w3IDCheck = we.data.CASEW3_To_w3.get(p.getCASEW3());
 //                WaAS_W4ID w4IDCheck = we.data.CASEW4_To_w4.get(p.getCASEW4());
-                    WaAS_W5ID w5ID = we.data.CASEW5_To_w5.get(p.getCASEW5());
-                    WaAS_W4ID w4ID = w5_To_w4.get(w5ID);
-                    if (w4ID == null) {
-                        env.log("CASEW5 " + w5ID + " is not in CASEW5ToCASEW4 lookup");
-                    } else {
-                        WaAS_W3ID w3ID = w4_To_w3.get(w4ID);
-                        WaAS_W2ID w2ID = w3_To_w2.get(w3ID);
-                        WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
+                        WaAS_W5ID w5ID = we.data.CASEW5_To_w5.get(p.getCASEW5());
+                        WaAS_W4ID w4ID = w5_To_w4.get(w5ID);
+                        if (w4ID == null) {
+                            env.log("CASEW5 " + w5ID + " is not in CASEW5ToCASEW4 lookup");
+                        } else {
+                            WaAS_W3ID w3ID = w4_To_w3.get(w4ID);
+                            WaAS_W2ID w2ID = w3_To_w2.get(w3ID);
+                            WaAS_W1ID w1ID = w2_To_w1.get(w2ID);
 //                    printCheck(we.W2, w1IDCheck, w1ID, w1_To_w2);
 //                    printCheck(we.W3, w2IDCheck, w2ID, w2_To_w3);
 //                    printCheck(we.W4, w3IDCheck, w3ID, w3_To_w4);
 //                    printCheck(we.W5, w4IDCheck, w4ID, w4_To_w5);
-                        if (s.contains(w1ID)) {
-                            WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
-                            if (cr == null) {
-                                env.log("No combined record for CASEW1 " + w1ID + "! "
-                                        + "This may be a data error, or this person may "
-                                        + "have moved from one hhold to another?");
-                            } else {
-                                HashSet<WaAS_W2ID> w2IDs = w1_To_w2.get(w1ID);
-                                w2IDs.stream().forEach(k2 -> {
-                                    HashSet<WaAS_W3ID> w3IDs = w2_To_w3.get(w2ID);
-                                    w3IDs.stream().forEach(k3 -> {
-                                        HashSet<WaAS_W4ID> w4IDs = w3_To_w4.get(w3ID);
-                                        w4IDs.stream().forEach(k4 -> {
-                                            HashSet<WaAS_W5ID> w5IDs = w4_To_w5.get(w4ID);
-                                            w5IDs.stream().forEach(k5 -> {
-                                                HashMap<WaAS_W3ID, HashMap<WaAS_W4ID, HashMap<WaAS_W5ID, WaAS_W5Record>>> w5_2;
-                                                w5_2 = cr.w5Recs.get(k2);
-                                                if (w5_2 == null) {
-                                                    w5_2 = new HashMap<>();
-                                                    cr.w5Recs.put(k2, w5_2);
-                                                }
-                                                HashMap<WaAS_W4ID, HashMap<WaAS_W5ID, WaAS_W5Record>> w5_3 = w5_2.get(k3);
-                                                if (w5_3 == null) {
-                                                    w5_3 = new HashMap<>();
-                                                    w5_2.put(k3, w5_3);
-                                                }
-                                                HashMap<WaAS_W5ID, WaAS_W5Record> w5_4 = w5_3.get(k4);
-                                                if (w5_4 == null) {
-                                                    w5_4 = new HashMap<>();
-                                                    w5_3.put(k4, w5_4);
-                                                }
-                                                WaAS_W5Record w5rec;
-                                                w5rec = cr.w5Recs.get(k2).get(k3).get(k4).get(k5);
-                                                if (w5rec == null) {
-                                                    w5rec = new WaAS_W5Record(k5);
-                                                    env.log("Adding people, but there "
-                                                            + "is no hhold record for "
-                                                            + w5ID + "!");
-                                                }
-                                                w5rec.getPrs().add(p);
+                            if (s.contains(w1ID)) {
+                                WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
+                                if (cr == null) {
+                                    env.log("No combined record for CASEW1 " + w1ID + "! "
+                                            + "This may be a data error, or this person may "
+                                            + "have moved from one hhold to another?");
+                                } else {
+                                    HashSet<WaAS_W2ID> w2IDs = w1_To_w2.get(w1ID);
+                                    w2IDs.stream().forEach(k2 -> {
+                                        HashSet<WaAS_W3ID> w3IDs = w2_To_w3.get(w2ID);
+                                        w3IDs.stream().forEach(k3 -> {
+                                            HashSet<WaAS_W4ID> w4IDs = w3_To_w4.get(w3ID);
+                                            w4IDs.stream().forEach(k4 -> {
+                                                HashSet<WaAS_W5ID> w5IDs = w4_To_w5.get(w4ID);
+                                                w5IDs.stream().forEach(k5 -> {
+                                                    HashMap<WaAS_W3ID, HashMap<WaAS_W4ID, HashMap<WaAS_W5ID, WaAS_W5Record>>> w5_2;
+                                                    w5_2 = cr.w5Recs.get(k2);
+                                                    if (w5_2 == null) {
+                                                        w5_2 = new HashMap<>();
+                                                        cr.w5Recs.put(k2, w5_2);
+                                                    }
+                                                    HashMap<WaAS_W4ID, HashMap<WaAS_W5ID, WaAS_W5Record>> w5_3 = w5_2.get(k3);
+                                                    if (w5_3 == null) {
+                                                        w5_3 = new HashMap<>();
+                                                        w5_2.put(k3, w5_3);
+                                                    }
+                                                    HashMap<WaAS_W5ID, WaAS_W5Record> w5_4 = w5_3.get(k4);
+                                                    if (w5_4 == null) {
+                                                        w5_4 = new HashMap<>();
+                                                        w5_3.put(k4, w5_4);
+                                                    }
+                                                    WaAS_W5Record w5rec;
+                                                    w5rec = cr.w5Recs.get(k2).get(k3).get(k4).get(k5);
+                                                    if (w5rec == null) {
+                                                        w5rec = new WaAS_W5Record(k5);
+                                                        env.log("Adding people, but there "
+                                                                + "is no hhold record for "
+                                                                + w5ID + "!");
+                                                    }
+                                                    w5rec.getPrs().add(p);
+                                                });
                                             });
                                         });
                                     });
-                                });
+                                }
                             }
                         }
+                    } catch (Exception ex) {
+                        we.logLineNotLoading(ex, ln);
                     }
+                    ln++;
                 }
             } catch (IOException ex) {
                 ex.printStackTrace(System.err);
@@ -1331,13 +1370,14 @@ public class WaAS_Main_Process extends WaAS_Object {
     public void initDataSimple(HashSet<WaAS_W1ID> subset) {
         String m = "initDataSimple";
         env.logStartTag(m);
-        Iterator<Data_CollectionID> ite = we.data.data.keySet().iterator();
+        //Iterator<? extends Data_CollectionID> ite = we.data.getData().keySet().iterator();
+        Iterator<? super Data_CollectionID> ite = we.data.getData().keySet().iterator();
         while (ite.hasNext()) {
-            Data_CollectionID cID = ite.next();
-            Data_Collection c = we.data.getCollection(cID);
-            Data_Collection cs = new Data_Collection(cID);
+            WaAS_CollectionID cID = (WaAS_CollectionID) ite.next();
+            WaAS_Collection c = we.data.getCollection(cID);
+            WaAS_Collection cs = new WaAS_Collection(cID);
             we.data.dataSimple.put(cID, cs);
-            Iterator<Data_RecordID> ite2 = c.data.keySet().iterator();
+            Iterator<? super Data_RecordID> ite2 = c.data.keySet().iterator();
             while (ite2.hasNext()) {
                 WaAS_W1ID w1ID = (WaAS_W1ID) ite2.next();
                 if (subset.contains(w1ID)) {

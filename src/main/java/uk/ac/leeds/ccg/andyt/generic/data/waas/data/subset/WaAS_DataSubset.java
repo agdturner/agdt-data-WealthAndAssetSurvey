@@ -17,10 +17,10 @@ package uk.ac.leeds.ccg.andyt.generic.data.waas.data.subset;
 
 import java.io.File;
 import java.util.TreeMap;
-import uk.ac.leeds.ccg.andyt.data.id.Data_CollectionID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_CollectionID;
 
 public class WaAS_DataSubset extends WaAS_Object {
 
@@ -32,7 +32,7 @@ public class WaAS_DataSubset extends WaAS_Object {
     /**
      * Collection Files
      */
-    public TreeMap<Data_CollectionID, File> cFs;
+    public TreeMap<WaAS_CollectionID, File> cFs;
 
     /**
      * Create a new DataSubset
@@ -55,7 +55,7 @@ public class WaAS_DataSubset extends WaAS_Object {
             File f = new File(we.files.getGeneratedWaASSubsetsDir(),
                     WaAS_Strings.s_Data + WaAS_Strings.s_Subset + wave
                     + WaAS_Strings.symbol_underscore + i + ".tab");
-            Data_CollectionID cID = getCollectionID(i);
+            WaAS_CollectionID cID = getCollectionID(i);
 //            env.log("s " + s);
 //            env.log("File " + f);
 //            env.log("Data_CollectionID " + cID);
@@ -63,11 +63,11 @@ public class WaAS_DataSubset extends WaAS_Object {
         }
     }
     
-    protected final Data_CollectionID getCollectionID(int i) {
-        Data_CollectionID r = we.data.cIDs.get(i);
+    protected final WaAS_CollectionID getCollectionID(int i) {
+        WaAS_CollectionID r = we.data.cIDs.get(i);
         if (r == null) {
             env.log("No existing collection for int " + i);
-            r = new Data_CollectionID(i);
+            r = new WaAS_CollectionID(i);
             we.data.cIDs.put(i, r);
         }
         return r;

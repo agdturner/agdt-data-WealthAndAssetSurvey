@@ -30567,7 +30567,7 @@ public class WaAS_W2PRecord extends WaAS_W1W2PRecord {
     }
 
 
-    public WaAS_W2PRecord(WaAS_RecordID i, String line) {
+    public WaAS_W2PRecord(WaAS_RecordID i, String line) throws Exception {
         super(i);
         s = line.split("\t");
         initCASEW2(s[0]);

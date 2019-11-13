@@ -33,6 +33,7 @@ import uk.ac.leeds.ccg.andyt.data.interval.Data_IntervalLong1;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Object;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Strings;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_Collection;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W4ID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W1ID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_W5ID;
@@ -55,6 +56,7 @@ import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W2HRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W3HRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W4HRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.hhold.WaAS_W5HRecord;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_CollectionID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_RecordID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W1W2W3W4W5PRecord;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.person.WaAS_W1PRecord;
@@ -314,8 +316,8 @@ public abstract class WaAS_Handler extends WaAS_Object {
         } else {
             r = new WaAS_GORSubsetsAndLookups(gors);
             // Wave 1
-            we.data.data.keySet().stream().forEach(cID -> {
-                Data_Collection c = we.data.getCollection(cID);
+            we.data.getData().keySet().stream().forEach(cID -> {
+                WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
                 c.data.keySet().stream().forEach(i -> {
                     WaAS_W1ID w1ID = (WaAS_W1ID) i;
                     if (subset.contains(w1ID)) {
@@ -325,11 +327,11 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         r.w1_To_gor.put(w1ID, GOR);
                     }
                 });
-                we.data.clearCollection(cID);
+                we.data.clearCollection((WaAS_CollectionID) cID);
             });
             // Wave 2
-            we.data.data.keySet().stream().forEach(cID -> {
-                Data_Collection c = we.data.getCollection(cID);
+            we.data.getData().keySet().stream().forEach(cID -> {
+                WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
                 c.data.keySet().stream().forEach(i -> {
                     WaAS_W1ID w1ID = (WaAS_W1ID) i;
                     if (subset.contains(w1ID)) {
@@ -344,12 +346,12 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         }
                     }
                 });
-                we.data.clearCollection(cID);
+                we.data.clearCollection((WaAS_CollectionID) cID);
             });
             // Wave 3
-            we.data.data.keySet().stream().forEach(cID -> {
-                Data_Collection c = we.data.getCollection(cID);
-                c.data.keySet().stream().forEach(i -> {
+            we.data.getData().keySet().stream().forEach(cID -> {
+                           WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
+     c.data.keySet().stream().forEach(i -> {
                     WaAS_W1ID w1ID = (WaAS_W1ID) i;
                     if (subset.contains(w1ID)) {
                         WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
@@ -368,11 +370,11 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         }
                     }
                 });
-                we.data.clearCollection(cID);
+                we.data.clearCollection((WaAS_CollectionID) cID);
             });
             // Wave 4
-            we.data.data.keySet().stream().forEach(cID -> {
-                Data_Collection c = we.data.getCollection(cID);
+            we.data.getData().keySet().stream().forEach(cID -> {
+                             WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
                 c.data.keySet().stream().forEach(i -> {
                     WaAS_W1ID w1ID = (WaAS_W1ID) i;
                     if (subset.contains(w1ID)) {
@@ -405,13 +407,12 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         }
                     }
                 });
-                we.data.clearCollection(cID);
+                we.data.clearCollection((WaAS_CollectionID) cID);
             });
             // Wave 5
-            we.data.data.keySet().stream().forEach(cID -> {
-                Data_Collection c;
-                c = we.data.getCollection(cID);
-                c.data.keySet().stream().forEach(i -> {
+            we.data.getData().keySet().stream().forEach(cID -> {
+                             WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
+   c.data.keySet().stream().forEach(i -> {
                     WaAS_W1ID w1ID = (WaAS_W1ID) i;
                     if (subset.contains(w1ID)) {
                         WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
@@ -441,7 +442,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         }
                     }
                 });
-                we.data.clearCollection(cID);
+                we.data.clearCollection((WaAS_CollectionID) cID);
             });
             io.writeObject(r, f);
         }
@@ -465,8 +466,8 @@ public abstract class WaAS_Handler extends WaAS_Object {
         } else {
             r = new WaAS_GORSubsetsAndLookups(gors);
             // Wave 1
-            we.data.data.keySet().stream().forEach(cID -> {
-                Data_Collection c = we.data.getCollectionSimple(cID);
+            we.data.getData().keySet().stream().forEach(cID -> {
+                Data_Collection c = we.data.getCollectionSimple((WaAS_CollectionID) cID);
                 c.data.keySet().stream().forEach(i -> {
                     WaAS_W1ID w1ID = (WaAS_W1ID) i;
                     if (subset.contains(w1ID)) {
@@ -476,11 +477,11 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         r.w1_To_gor.put(w1ID, GOR);
                     }
                 });
-                we.data.clearCollection(cID);
+                we.data.clearCollection((WaAS_CollectionID) cID);
             });
             // Wave 2
-            we.data.data.keySet().stream().forEach(cID -> {
-                Data_Collection c = we.data.getCollectionSimple(cID);
+            we.data.getData().keySet().stream().forEach(cID -> {
+                Data_Collection c = we.data.getCollectionSimple((WaAS_CollectionID) cID);
                 c.data.keySet().stream().forEach(i -> {
                     WaAS_W1ID w1ID = (WaAS_W1ID) i;
                     if (subset.contains(w1ID)) {
@@ -493,11 +494,11 @@ public abstract class WaAS_Handler extends WaAS_Object {
 
                     }
                 });
-                we.data.clearCollection(cID);
+                we.data.clearCollection((WaAS_CollectionID) cID);
             });
             // Wave 3
-            we.data.data.keySet().stream().forEach(cID -> {
-                Data_Collection c = we.data.getCollectionSimple(cID);
+            we.data.getData().keySet().stream().forEach(cID -> {
+                Data_Collection c = we.data.getCollectionSimple((WaAS_CollectionID) cID);
                 c.data.keySet().stream().forEach(i -> {
                     WaAS_W1ID w1ID = (WaAS_W1ID) i;
                     if (subset.contains(w1ID)) {
@@ -509,11 +510,11 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         r.w3_To_gor.put(w3ID, GOR);
                     }
                 });
-                we.data.clearCollection(cID);
+                we.data.clearCollection((WaAS_CollectionID) cID);
             });
             // Wave 4
-            we.data.data.keySet().stream().forEach(cID -> {
-                Data_Collection c = we.data.getCollectionSimple(cID);
+            we.data.getData().keySet().stream().forEach(cID -> {
+                Data_Collection c = we.data.getCollectionSimple((WaAS_CollectionID) cID);
                 c.data.keySet().stream().forEach(i -> {
                     WaAS_W1ID w1ID = (WaAS_W1ID) i;
                     if (subset.contains(w1ID)) {
@@ -531,11 +532,11 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         r.w4_To_gor.put(w4ID, GOR);
                     }
                 });
-                we.data.clearCollection(cID);
+                we.data.clearCollection((WaAS_CollectionID) cID);
             });
             // Wave 5
-            we.data.data.keySet().stream().forEach(cID -> {
-                Data_Collection c = we.data.getCollectionSimple(cID);
+            we.data.getData().keySet().stream().forEach(cID -> {
+                Data_Collection c = we.data.getCollectionSimple((WaAS_CollectionID) cID);
                 c.data.keySet().stream().forEach(i -> {
                     WaAS_W1ID w1ID = (WaAS_W1ID) i;
                     if (subset.contains(w1ID)) {
@@ -547,7 +548,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         r.w5_To_gor.put(w5ID, GOR);
                     }
                 });
-                we.data.clearCollection(cID);
+                we.data.clearCollection((WaAS_CollectionID) cID);
             });
             io.writeObject(r, f);
         }
@@ -739,7 +740,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
         } else {
             r = new HashSet<>();
             env.log("Number of combined records " + we.data.w1_To_c.size());
-            env.log("Number of collections of combined records " + we.data.data.size());
+            env.log("Number of collections of combined records " + we.data.getData().size());
             int count0 = 0;
             int count1 = 0;
             int count2 = 0;
@@ -747,13 +748,13 @@ public abstract class WaAS_Handler extends WaAS_Object {
             // Check For Household Records
             String m1 = "Check For Household Records";
             env.logStartTag(m1);
-            Iterator<Data_CollectionID> ite = we.data.data.keySet().iterator();
+            Iterator<? super Data_CollectionID> ite = we.data.getData().keySet().iterator();
             switch (type) {
                 case 1:
                     while (ite.hasNext()) {
-                        Data_CollectionID cID = ite.next();
-                        Data_Collection c = we.data.getCollection(cID);
-                        Iterator<Data_RecordID> ite2 = c.data.keySet().iterator();
+                        WaAS_CollectionID cID = (WaAS_CollectionID) ite.next();
+                        WaAS_Collection c = we.data.getCollection(cID);
+                        Iterator<? super Data_RecordID> ite2 = c.data.keySet().iterator();
                         while (ite2.hasNext()) {
                             WaAS_W1ID w1ID = (WaAS_W1ID) ite2.next();
                             WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
@@ -778,9 +779,9 @@ public abstract class WaAS_Handler extends WaAS_Object {
                     break;
                 case 2:
                     while (ite.hasNext()) {
-                        Data_CollectionID cID = ite.next();
-                        Data_Collection c = we.data.getCollection(cID);
-                        Iterator<Data_RecordID> ite2 = c.data.keySet().iterator();
+                        WaAS_CollectionID cID = (WaAS_CollectionID) ite.next();
+                        WaAS_Collection c = we.data.getCollection(cID);
+                        Iterator<? super Data_RecordID> ite2 = c.data.keySet().iterator();
                         while (ite2.hasNext()) {
                             WaAS_W1ID w1ID = (WaAS_W1ID) ite2.next();
                             WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
@@ -810,9 +811,9 @@ public abstract class WaAS_Handler extends WaAS_Object {
                     break;
                 case 3:
                     while (ite.hasNext()) {
-                        Data_CollectionID cID = ite.next();
-                        Data_Collection c = we.data.getCollection(cID);
-                        Iterator<Data_RecordID> ite2 = c.data.keySet().iterator();
+                        WaAS_CollectionID cID = (WaAS_CollectionID) ite.next();
+                        WaAS_Collection c = we.data.getCollection(cID);
+                        Iterator<? super Data_RecordID> ite2 = c.data.keySet().iterator();
                         while (ite2.hasNext()) {
                             WaAS_W1ID w1ID = (WaAS_W1ID) ite2.next();
                             WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
@@ -842,9 +843,9 @@ public abstract class WaAS_Handler extends WaAS_Object {
                     break;
                 default:
                     while (ite.hasNext()) {
-                        Data_CollectionID cID = ite.next();
-                        Data_Collection c = we.data.getCollection(cID);
-                        Iterator<Data_RecordID> ite2 = c.data.keySet().iterator();
+                        WaAS_CollectionID cID = (WaAS_CollectionID) ite.next();
+                        WaAS_Collection c = we.data.getCollection(cID);
+                        Iterator<? super Data_RecordID> ite2 = c.data.keySet().iterator();
                         while (ite2.hasNext()) {
                             WaAS_W1ID w1ID = (WaAS_W1ID) ite2.next();
                             WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
@@ -913,7 +914,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
         } else {
             r = new HashSet<>();
             env.log("Number of combined records " + we.data.w1_To_c.size());
-            env.log("Number of collections of combined records " + we.data.data.size());
+            env.log("Number of collections of combined records " + we.data.getData().size());
             int count0 = 0;
             int count1 = 0;
             int count2 = 0;
@@ -921,13 +922,13 @@ public abstract class WaAS_Handler extends WaAS_Object {
             // Check For Household Records
             String m1 = "Check For Household Records";
             env.logStartTag(m1);
-            Iterator<Data_CollectionID> ite = we.data.data.keySet().iterator();
+            Iterator<? super Data_CollectionID> ite = we.data.getData().keySet().iterator();
             switch (type) {
                 case 1:
                     while (ite.hasNext()) {
-                        Data_CollectionID cID = ite.next();
-                        Data_Collection c = we.data.getCollectionSimple(cID);
-                        Iterator<Data_RecordID> ite2 = c.data.keySet().iterator();
+                        WaAS_CollectionID cID = (WaAS_CollectionID) ite.next();
+                        WaAS_Collection c = we.data.getCollectionSimple(cID);
+                        Iterator<? super Data_RecordID> ite2 = c.data.keySet().iterator();
                         while (ite2.hasNext()) {
                             WaAS_W1ID w1ID = (WaAS_W1ID) ite2.next();
                             WaAS_CombinedRecordSimple cr = (WaAS_CombinedRecordSimple) c.data.get(w1ID);
@@ -952,9 +953,9 @@ public abstract class WaAS_Handler extends WaAS_Object {
                     break;
                 case 2:
                     while (ite.hasNext()) {
-                        Data_CollectionID cID = ite.next();
-                        Data_Collection c = we.data.getCollectionSimple(cID);
-                        Iterator<Data_RecordID> ite2 = c.data.keySet().iterator();
+                        WaAS_CollectionID cID = (WaAS_CollectionID) ite.next();
+                        WaAS_Collection c = we.data.getCollectionSimple(cID);
+                        Iterator<? super Data_RecordID> ite2 = c.data.keySet().iterator();
                         while (ite2.hasNext()) {
                             WaAS_W1ID w1ID = (WaAS_W1ID) ite2.next();
                             WaAS_CombinedRecordSimple cr = (WaAS_CombinedRecordSimple) c.data.get(w1ID);
@@ -979,9 +980,9 @@ public abstract class WaAS_Handler extends WaAS_Object {
                     break;
                 default:
                     while (ite.hasNext()) {
-                        Data_CollectionID cID = ite.next();
-                        Data_Collection c = we.data.getCollectionSimple(cID);
-                        Iterator<Data_RecordID> ite2 = c.data.keySet().iterator();
+                        WaAS_CollectionID cID = (WaAS_CollectionID) ite.next();
+                        WaAS_Collection c = we.data.getCollectionSimple(cID);
+                        Iterator<? super Data_RecordID> ite2 = c.data.keySet().iterator();
                         while (ite2.hasNext()) {
                             WaAS_W1ID w1ID = (WaAS_W1ID) ite2.next();
                             WaAS_CombinedRecordSimple cr = (WaAS_CombinedRecordSimple) c.data.get(w1ID);
@@ -1725,33 +1726,39 @@ public abstract class WaAS_Handler extends WaAS_Object {
             BufferedReader br = loadW3Count(r, f);
             br.readLine(); // skip header
             String line = br.readLine();
+            int ln = 0;
             int i = 0;
             while (line != null) {
-                WaAS_W3HRecord rec = new WaAS_W3HRecord(new WaAS_RecordID(i), line);
-                i++;
-                line = br.readLine();
-                WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(rec.getCASEW3());
-                WaAS_W3Record w3rec = new WaAS_W3Record(w3ID, rec);
-                short CASEW2 = rec.getCASEW2();
-                short CASEW1 = rec.getCASEW1();
-                if (s.contains(w3ID)) {
-                    if (CASEW2 > Short.MIN_VALUE) {
-                        //WaAS_W2ID w2ID = new WaAS_W2ID(CASEW2);
-                        WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(CASEW2);
-                        r.w3_To_w2.put(w3ID, w2ID);
-                        Generic_Collections.addToMap(r.w2_To_w3, w2ID, w3ID);
-                        r.lookup.put(w3ID, w3rec);
+                try {
+                    WaAS_W3HRecord rec = new WaAS_W3HRecord(new WaAS_RecordID(i), line);
+                    i++;
+                    line = br.readLine();
+                    WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(rec.getCASEW3());
+                    WaAS_W3Record w3rec = new WaAS_W3Record(w3ID, rec);
+                    short CASEW2 = rec.getCASEW2();
+                    short CASEW1 = rec.getCASEW1();
+                    if (s.contains(w3ID)) {
+                        if (CASEW2 > Short.MIN_VALUE) {
+                            //WaAS_W2ID w2ID = new WaAS_W2ID(CASEW2);
+                            WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(CASEW2);
+                            r.w3_To_w2.put(w3ID, w2ID);
+                            Generic_Collections.addToMap(r.w2_To_w3, w2ID, w3ID);
+                            r.lookup.put(w3ID, w3rec);
+                        }
                     }
-                }
-                r.all.add(w3ID);
-                if (CASEW1 > Short.MIN_VALUE) {
-                    //WaAS_W1ID w1ID = new WaAS_W1ID(CASEW1);
-                    WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
-                    r.w1_In_w3.add(w1ID);
-                    if (CASEW2 > Short.MIN_VALUE) {
-                        r.w3_In_w1w2.add(w3ID);
+                    r.all.add(w3ID);
+                    if (CASEW1 > Short.MIN_VALUE) {
+                        //WaAS_W1ID w1ID = new WaAS_W1ID(CASEW1);
+                        WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
+                        r.w1_In_w3.add(w1ID);
+                        if (CASEW2 > Short.MIN_VALUE) {
+                            r.w3_In_w1w2.add(w3ID);
+                        }
                     }
+                } catch (Exception ex) {
+                we.logLineNotLoading(ex, ln);
                 }
+                ln++;
             }
             // Close br
             io.closeBufferedReader(br);
@@ -1788,25 +1795,31 @@ public abstract class WaAS_Handler extends WaAS_Object {
             BufferedReader br = loadW2Count(r, f);
             br.readLine(); // skip header
             String line = br.readLine();
+            int ln = 0;
             int i = 0;
             while (line != null) {
-                WaAS_W2HRecord rec = new WaAS_W2HRecord(new WaAS_RecordID(i), line);
-                i++;
-                line = br.readLine();
-                WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(rec.getCASEW2());
-                WaAS_W2Record w2rec = new WaAS_W2Record(w2ID, rec);
-                short CASEW1 = rec.getCASEW1();
-                if (s.contains(w2ID)) {
-                    if (CASEW1 > Short.MIN_VALUE) {
-                        //WaAS_W1ID w1ID = new WaAS_W1ID(CASEW1);
-                        WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
-                        r.w2_To_w1.put(w2ID, w1ID);
-                        Generic_Collections.addToMap(r.w1_To_w2, w1ID, w2ID);
-                        r.lookup.put(w2ID, w2rec);
-                        r.w1_In_w2.add(w1ID);
+                try {
+                    WaAS_W2HRecord rec = new WaAS_W2HRecord(new WaAS_RecordID(i), line);
+                    i++;
+                    line = br.readLine();
+                    WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(rec.getCASEW2());
+                    WaAS_W2Record w2rec = new WaAS_W2Record(w2ID, rec);
+                    short CASEW1 = rec.getCASEW1();
+                    if (s.contains(w2ID)) {
+                        if (CASEW1 > Short.MIN_VALUE) {
+                            //WaAS_W1ID w1ID = new WaAS_W1ID(CASEW1);
+                            WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
+                            r.w2_To_w1.put(w2ID, w1ID);
+                            Generic_Collections.addToMap(r.w1_To_w2, w1ID, w2ID);
+                            r.lookup.put(w2ID, w2rec);
+                            r.w1_In_w2.add(w1ID);
+                        }
                     }
+                    r.all.add(w2ID);
+                } catch (Exception ex) {
+                we.logLineNotLoading(ex, ln);
                 }
-                r.all.add(w2ID);
+                ln++;
             }
             // Close br
             io.closeBufferedReader(br);
@@ -1822,21 +1835,27 @@ public abstract class WaAS_Handler extends WaAS_Object {
         BufferedReader br = io.getBufferedReader(f);
         int count = 0;
         br.readLine(); // skip header
-            String line = br.readLine();
-            int i = 0;
-            while (line != null) {
+        String line = br.readLine();
+        int ln = 0;
+        int i = 0;
+        while (line != null) {
+            try {
                 WaAS_W3HRecord rec = new WaAS_W3HRecord(new WaAS_RecordID(i), line);
                 i++;
                 line = br.readLine();
-            short CASEW2 = rec.getCASEW2();
-            if (CASEW2 > Short.MIN_VALUE) {
-                //WaAS_W2ID w2ID = new WaAS_W2ID(CASEW2);
-                WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(CASEW2);
-                if (!r.w2_In_w3.add(w2ID)) {
-                    env.log("In Wave 3: hhold with CASEW2 " + CASEW2 + " reportedly split into multiple hholds.");
-                    count++;
+                short CASEW2 = rec.getCASEW2();
+                if (CASEW2 > Short.MIN_VALUE) {
+                    //WaAS_W2ID w2ID = new WaAS_W2ID(CASEW2);
+                    WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(CASEW2);
+                    if (!r.w2_In_w3.add(w2ID)) {
+                        env.log("In Wave 3: hhold with CASEW2 " + CASEW2 + " reportedly split into multiple hholds.");
+                        count++;
+                    }
                 }
+            } catch (Exception ex) {
+                we.logLineNotLoading(ex, ln);
             }
+            ln++;
         }
         env.log("There are " + count + " hholds from Wave 2 that " + "reportedly split into multiple hholds in Wave 3.");
         // Close and reopen br
@@ -1998,22 +2017,28 @@ public abstract class WaAS_Handler extends WaAS_Object {
             BufferedReader br = loadW2Count(r, f);
             br.readLine(); // skip header
             String line = br.readLine();
+            int ln = 0;
             int i = 0;
             while (line != null) {
-                WaAS_W2HRecord rec = new WaAS_W2HRecord(new WaAS_RecordID(i), line);
-                i++;
-                line = br.readLine();
-                WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(rec.getCASEW2());
-                WaAS_W2Record w2rec = new WaAS_W2Record(w2ID, rec);
-                short CASEW1 = rec.getCASEW1();
-                if (CASEW1 > Short.MIN_VALUE) {
-                    WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
-                    r.w2_To_w1.put(w2ID, w1ID);
-                    Generic_Collections.addToMap(r.w1_To_w2, w1ID, w2ID);
-                    r.lookup.put(w2ID, w2rec);
-                    r.w2_In_w1.add(w2ID);
+                try {
+                    WaAS_W2HRecord rec = new WaAS_W2HRecord(new WaAS_RecordID(i), line);
+                    i++;
+                    line = br.readLine();
+                    WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(rec.getCASEW2());
+                    WaAS_W2Record w2rec = new WaAS_W2Record(w2ID, rec);
+                    short CASEW1 = rec.getCASEW1();
+                    if (CASEW1 > Short.MIN_VALUE) {
+                        WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
+                        r.w2_To_w1.put(w2ID, w1ID);
+                        Generic_Collections.addToMap(r.w1_To_w2, w1ID, w2ID);
+                        r.lookup.put(w2ID, w2rec);
+                        r.w2_In_w1.add(w2ID);
+                    }
+                    r.all.add(w2ID);
+                } catch (Exception ex) {
+                we.logLineNotLoading(ex, ln);
                 }
-                r.all.add(w2ID);
+                ln++;
             }
             // Close br
             io.closeBufferedReader(br);
@@ -2029,21 +2054,27 @@ public abstract class WaAS_Handler extends WaAS_Object {
         BufferedReader br = io.getBufferedReader(f);
         int count = 0;
         br.readLine(); // skip header
-            String line = br.readLine();
-            int i = 0;
-            while (line != null) {
+        String line = br.readLine();
+        int ln = 0;
+        int i = 0;
+        while (line != null) {
+            try {
                 WaAS_W2HRecord rec = new WaAS_W2HRecord(new WaAS_RecordID(i), line);
                 i++;
                 line = br.readLine();
-             short CASEW1 = rec.getCASEW1();
-            if (CASEW1 > Short.MIN_VALUE) {
-                //WaAS_W1ID w1ID = new WaAS_W1ID(CASEW1);
-                WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
-                if (!r.w1_In_w2.add(w1ID)) {
-                    env.log("In Wave 2: hhold with CASEW1 " + CASEW1 + " reportedly split into multiple hholds.");
-                    count ++;
+                short CASEW1 = rec.getCASEW1();
+                if (CASEW1 > Short.MIN_VALUE) {
+                    //WaAS_W1ID w1ID = new WaAS_W1ID(CASEW1);
+                    WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
+                    if (!r.w1_In_w2.add(w1ID)) {
+                        env.log("In Wave 2: hhold with CASEW1 " + CASEW1 + " reportedly split into multiple hholds.");
+                        count++;
+                    }
                 }
+            } catch (Exception ex) {
+                we.logLineNotLoading(ex, ln);
             }
+            ln++;
         }
         env.log("There are " + count + " hholds from Wave 1 that reportedly " + "split into multiple hholds in Wave 2.");
         // Close and reopen br
@@ -2080,30 +2111,36 @@ public abstract class WaAS_Handler extends WaAS_Object {
             BufferedReader br = loadW3Count(r, f);
             br.readLine(); // skip header
             String line = br.readLine();
+            int ln = 0;
             int i = 0;
             while (line != null) {
-                WaAS_W3HRecord rec = new WaAS_W3HRecord(new WaAS_RecordID(i), line);
-                i++;
-                line = br.readLine();
-                WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(rec.getCASEW3());
-                WaAS_W3Record w3rec = new WaAS_W3Record(w3ID, rec);
-                short CASEW2 = rec.getCASEW2();
-                short CASEW1 = rec.getCASEW1();
-                if (CASEW2 > Short.MIN_VALUE) {
-                    //WaAS_W2ID w2ID = new WaAS_W2ID(CASEW2);
-                    WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(CASEW2);
-                    r.w3_To_w2.put(w3ID, w2ID);
-                    Generic_Collections.addToMap(r.w2_To_w3, w2ID, w3ID);
-                    r.lookup.put(w3ID, w3rec);
-                }
-                r.all.add(w3ID);
-                if (CASEW1 > Short.MIN_VALUE) {
-                    WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
-                    r.w1_In_w3.add(w1ID);
+                try {
+                    WaAS_W3HRecord rec = new WaAS_W3HRecord(new WaAS_RecordID(i), line);
+                    i++;
+                    line = br.readLine();
+                    WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(rec.getCASEW3());
+                    WaAS_W3Record w3rec = new WaAS_W3Record(w3ID, rec);
+                    short CASEW2 = rec.getCASEW2();
+                    short CASEW1 = rec.getCASEW1();
                     if (CASEW2 > Short.MIN_VALUE) {
-                        r.w3_In_w1w2.add(w3ID);
+                        //WaAS_W2ID w2ID = new WaAS_W2ID(CASEW2);
+                        WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(CASEW2);
+                        r.w3_To_w2.put(w3ID, w2ID);
+                        Generic_Collections.addToMap(r.w2_To_w3, w2ID, w3ID);
+                        r.lookup.put(w3ID, w3rec);
                     }
+                    r.all.add(w3ID);
+                    if (CASEW1 > Short.MIN_VALUE) {
+                        WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
+                        r.w1_In_w3.add(w1ID);
+                        if (CASEW2 > Short.MIN_VALUE) {
+                            r.w3_In_w1w2.add(w3ID);
+                        }
+                    }
+                } catch (Exception ex) {
+                we.logLineNotLoading(ex, ln);
                 }
+                ln++;
             }
             // Close br
             io.closeBufferedReader(br);
@@ -2182,31 +2219,37 @@ public abstract class WaAS_Handler extends WaAS_Object {
             BufferedReader br = loadW3Count(r, f);
             br.readLine(); // skip header
             String line = br.readLine();
+            int ln = 0;
             int i = 0;
             while (line != null) {
-                WaAS_W3HRecord rec = new WaAS_W3HRecord(new WaAS_RecordID(i), line);
-                i++;
-                line = br.readLine();
-                WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(rec.getCASEW3());
-                WaAS_W3Record w3rec = new WaAS_W3Record(w3ID, rec);
-                short CASEW2 = rec.getCASEW2();
-                short CASEW1 = rec.getCASEW1();
-                if (s.contains(w3ID)) {
-                    r.lookup.put(w3ID, w3rec);
-                    if (CASEW2 > Short.MIN_VALUE) {
-                        WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(CASEW2);
-                        r.w3_To_w2.put(w3ID, w2ID);
-                        Generic_Collections.addToMap(r.w2_To_w3, w2ID, w3ID);
+                try {
+                    WaAS_W3HRecord rec = new WaAS_W3HRecord(new WaAS_RecordID(i), line);
+                    i++;
+                    line = br.readLine();
+                    WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(rec.getCASEW3());
+                    WaAS_W3Record w3rec = new WaAS_W3Record(w3ID, rec);
+                    short CASEW2 = rec.getCASEW2();
+                    short CASEW1 = rec.getCASEW1();
+                    if (s.contains(w3ID)) {
+                        r.lookup.put(w3ID, w3rec);
+                        if (CASEW2 > Short.MIN_VALUE) {
+                            WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(CASEW2);
+                            r.w3_To_w2.put(w3ID, w2ID);
+                            Generic_Collections.addToMap(r.w2_To_w3, w2ID, w3ID);
+                        }
                     }
-                }
-                r.all.add(w3ID);
-                if (CASEW1 > Short.MIN_VALUE) {
-                    WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
-                    r.w1_In_w3.add(w1ID);
-                    if (CASEW2 > Short.MIN_VALUE) {
-                        r.w3_In_w1w2.add(w3ID);
+                    r.all.add(w3ID);
+                    if (CASEW1 > Short.MIN_VALUE) {
+                        WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
+                        r.w1_In_w3.add(w1ID);
+                        if (CASEW2 > Short.MIN_VALUE) {
+                            r.w3_In_w1w2.add(w3ID);
+                        }
                     }
+                } catch (Exception ex) {
+                we.logLineNotLoading(ex, ln);
                 }
+                ln++;
             }
             // Close br
             io.closeBufferedReader(br);
@@ -2272,40 +2315,46 @@ public abstract class WaAS_Handler extends WaAS_Object {
             BufferedReader br = loadW4Count(r, f);
             br.readLine(); // skip header
             String line = br.readLine();
+            int ln = 0;
             int i = 0;
             while (line != null) {
-                WaAS_W4HRecord rec = new WaAS_W4HRecord(new WaAS_RecordID(i), line);
-                i++;
-                line = br.readLine();
-                WaAS_W4ID w4ID = we.data.CASEW4_To_w4.get(rec.getCASEW4());
-                WaAS_W4Record w4rec = new WaAS_W4Record(w4ID, rec);
-                short CASEW3 = rec.getCASEW3();
-                short CASEW2 = rec.getCASEW2();
-                short CASEW1 = rec.getCASEW1();
-                if (s.contains(w4ID)) {
-                    if (CASEW3 > Short.MIN_VALUE) {
-                        WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(CASEW3);
-                        if (w3ID == null) {
-                            env.log("w3ID = null for CASEW3 " + CASEW3 + " in " + w4ID);
-                        } else {
-                            r.w4_To_w3.put(w4ID, w3ID);
-                            Generic_Collections.addToMap(r.w3_To_w4, w3ID, w4ID);
-                            r.lookup.put(w4ID, w4rec);
+                try {
+                    WaAS_W4HRecord rec = new WaAS_W4HRecord(new WaAS_RecordID(i), line);
+                    i++;
+                    line = br.readLine();
+                    WaAS_W4ID w4ID = we.data.CASEW4_To_w4.get(rec.getCASEW4());
+                    WaAS_W4Record w4rec = new WaAS_W4Record(w4ID, rec);
+                    short CASEW3 = rec.getCASEW3();
+                    short CASEW2 = rec.getCASEW2();
+                    short CASEW1 = rec.getCASEW1();
+                    if (s.contains(w4ID)) {
+                        if (CASEW3 > Short.MIN_VALUE) {
+                            WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(CASEW3);
+                            if (w3ID == null) {
+                                env.log("w3ID = null for CASEW3 " + CASEW3 + " in " + w4ID);
+                            } else {
+                                r.w4_To_w3.put(w4ID, w3ID);
+                                Generic_Collections.addToMap(r.w3_To_w4, w3ID, w4ID);
+                                r.lookup.put(w4ID, w4rec);
+                            }
                         }
                     }
-                }
-                r.all.add(w4ID);
-                if (CASEW2 > Short.MIN_VALUE) {
-                    WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(CASEW2);
-                    r.w2_In_w4.add(w2ID);
-                }
-                if (CASEW1 > Short.MIN_VALUE) {
-                    WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
-                    r.w1_In_w4.add(w1ID);
-                    if (CASEW2 > Short.MIN_VALUE && CASEW3 > Short.MIN_VALUE) {
-                        r.w4_In_w1w2w3.add(w4ID);
+                    r.all.add(w4ID);
+                    if (CASEW2 > Short.MIN_VALUE) {
+                        WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(CASEW2);
+                        r.w2_In_w4.add(w2ID);
                     }
+                    if (CASEW1 > Short.MIN_VALUE) {
+                        WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
+                        r.w1_In_w4.add(w1ID);
+                        if (CASEW2 > Short.MIN_VALUE && CASEW3 > Short.MIN_VALUE) {
+                            r.w4_In_w1w2w3.add(w4ID);
+                        }
+                    }
+                } catch (Exception ex) {
+                we.logLineNotLoading(ex, ln);
                 }
+                ln++;
             }
             // Close br
             io.closeBufferedReader(br);
@@ -2329,31 +2378,37 @@ public abstract class WaAS_Handler extends WaAS_Object {
         BufferedReader br = io.getBufferedReader(f);
         int count = 0;
         br.readLine(); // skip header
-            String line = br.readLine();
-            int i = 0;
-            while (line != null) {
+        String line = br.readLine();
+        int ln = 0;
+        int i = 0;
+        while (line != null) {
+            try {
                 WaAS_W4HRecord rec = new WaAS_W4HRecord(new WaAS_RecordID(i), line);
                 i++;
                 line = br.readLine();
-            short CASEW3 = rec.getCASEW3();
-            if (CASEW3 > Short.MIN_VALUE) {
-                WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(CASEW3);
-                if (w3ID == null) {
-                    env.log("In Wave 4: unrecognised CASEW3 " + CASEW3 + " for CASEW4 " + rec.getCASEW4());
-                } else {
-                    if (!r.w3_In_w4.add(w3ID)) {
-                        env.log("In Wave 4: hhold with CASEW3 " + CASEW3 + " reportedly split into multiple hholds.");
-                        count ++;
+                short CASEW3 = rec.getCASEW3();
+                if (CASEW3 > Short.MIN_VALUE) {
+                    WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(CASEW3);
+                    if (w3ID == null) {
+                        env.log("In Wave 4: unrecognised CASEW3 " + CASEW3 + " for CASEW4 " + rec.getCASEW4());
+                    } else {
+                        if (!r.w3_In_w4.add(w3ID)) {
+                            env.log("In Wave 4: hhold with CASEW3 " + CASEW3 + " reportedly split into multiple hholds.");
+                            count++;
+                        }
                     }
                 }
+            } catch (Exception ex) {
+                we.logLineNotLoading(ex, ln);
             }
+            ln++;
         }
         env.log("There are " + count + " hholds from Wave 3 " + "reportedly split into multiple hholds in Wave 4.");
         // Close and reopen br
         br = io.closeAndGetBufferedReader(br, f);
         return br;
     }
-
+    
     /**
      * Load Wave 5 records that are reportedly in Wave 4 (those with CASEW4
      * values).
@@ -2382,75 +2437,87 @@ public abstract class WaAS_Handler extends WaAS_Object {
             env.logStartTag(m1);
             BufferedReader br = io.getBufferedReader(f);
             int count = 0;
-        br.readLine(); // skip header
+            br.readLine(); // skip header
             String line = br.readLine();
+            int ln = 0;
             int i = 0;
             while (line != null) {
-                WaAS_W5HRecord rec = new WaAS_W5HRecord(new WaAS_RecordID(i), line);
-                i++;
-                line = br.readLine();
-                short CASEW4 = rec.getCASEW4();
-                if (CASEW4 > Short.MIN_VALUE) {
-                    WaAS_W4ID w4ID = we.data.CASEW4_To_w4.get(CASEW4);
-                    if (w4ID == null) {
-                        env.log("w4ID == null for CASEW4 " + CASEW4);
-                    } else {
-                        //WaAS_W4ID w4ID = new WaAS_W4ID(CASEW4);
-                        WaAS_W5ID w5ID = we.data.CASEW5_To_w5.get(rec.getCASEW5());
-                        //WaAS_W5ID w5ID = new WaAS_W5ID(rec.getCASEW5());
-                        if (!r.w4_In_w5.add(w4ID)) {
-                            env.log("In Wave 5: hhold with CASEW4 " + CASEW4 + " reportedly split into multiple hholds.");
-                            count++;
+                try {
+                    WaAS_W5HRecord rec = new WaAS_W5HRecord(new WaAS_RecordID(i), line);
+                    i++;
+                    line = br.readLine();
+                    short CASEW4 = rec.getCASEW4();
+                    if (CASEW4 > Short.MIN_VALUE) {
+                        WaAS_W4ID w4ID = we.data.CASEW4_To_w4.get(CASEW4);
+                        if (w4ID == null) {
+                            env.log("w4ID == null for CASEW4 " + CASEW4);
+                        } else {
+                            //WaAS_W4ID w4ID = new WaAS_W4ID(CASEW4);
+                            WaAS_W5ID w5ID = we.data.CASEW5_To_w5.get(rec.getCASEW5());
+                            //WaAS_W5ID w5ID = new WaAS_W5ID(rec.getCASEW5());
+                            if (!r.w4_In_w5.add(w4ID)) {
+                                env.log("In Wave 5: hhold with CASEW4 " + CASEW4 + " reportedly split into multiple hholds.");
+                                count++;
+                            }
+                            r.w5_To_w4.put(w5ID, w4ID);
                         }
-                        r.w5_To_w4.put(w5ID, w4ID);
                     }
+                } catch (Exception ex) {
+                we.logLineNotLoading(ex, ln);
                 }
+                ln++;
             }
             env.log("There are " + count + " hholds from Wave 4 that " + "reportedly split into multiple hholds in Wave 5.");
             // Close and reopen br
             br = io.closeAndGetBufferedReader(br, f);
             br.readLine(); // skip header
             line = br.readLine();
-             i = 0;
+            ln = 0;
+            i = 0;
             while (line != null) {
-                WaAS_W5HRecord rec = new WaAS_W5HRecord(new WaAS_RecordID(i), line);
-                i++;
-                line = br.readLine();
-                WaAS_W5ID w5ID = we.data.CASEW5_To_w5.get(rec.getCASEW5());
-                WaAS_W5Record w5rec = new WaAS_W5Record(w5ID, rec);
-                short CASEW4 = rec.getCASEW4();
-                short CASEW3 = rec.getCASEW3();
-                short CASEW2 = rec.getCASEW2();
-                short CASEW1 = rec.getCASEW1();
-                if (CASEW4 > Short.MIN_VALUE) {
-                    WaAS_W4ID w4ID = we.data.CASEW4_To_w4.get(CASEW4);
-                    if (w4ID == null) {
-                        env.log("env.data.CASEW4_To_w4.get(CASEW4) == null for CASEW4 " + CASEW4);
-                    } else {
-                        Generic_Collections.addToMap(r.w4_To_w5, w4ID, w5ID);
-                        r.lookup.put(w5ID, w5rec);
+                try {
+                    WaAS_W5HRecord rec = new WaAS_W5HRecord(new WaAS_RecordID(i), line);
+                    i++;
+                    line = br.readLine();
+                    WaAS_W5ID w5ID = we.data.CASEW5_To_w5.get(rec.getCASEW5());
+                    WaAS_W5Record w5rec = new WaAS_W5Record(w5ID, rec);
+                    short CASEW4 = rec.getCASEW4();
+                    short CASEW3 = rec.getCASEW3();
+                    short CASEW2 = rec.getCASEW2();
+                    short CASEW1 = rec.getCASEW1();
+                    if (CASEW4 > Short.MIN_VALUE) {
+                        WaAS_W4ID w4ID = we.data.CASEW4_To_w4.get(CASEW4);
+                        if (w4ID == null) {
+                            env.log("env.data.CASEW4_To_w4.get(CASEW4) == null for CASEW4 " + CASEW4);
+                        } else {
+                            Generic_Collections.addToMap(r.w4_To_w5, w4ID, w5ID);
+                            r.lookup.put(w5ID, w5rec);
+                        }
                     }
-                }
-                r.all.add(w5ID);
-                if (CASEW3 > Short.MIN_VALUE) {
-                    WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(CASEW3);
-                    if (w3ID == null) {
-                        env.log("env.data.CASEW3_To_w3.get(CASEW3) = null for CASEW3 " + CASEW3);
-                    } else {
-                        r.w3_In_w5.add(w3ID);
+                    r.all.add(w5ID);
+                    if (CASEW3 > Short.MIN_VALUE) {
+                        WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(CASEW3);
+                        if (w3ID == null) {
+                            env.log("env.data.CASEW3_To_w3.get(CASEW3) = null for CASEW3 " + CASEW3);
+                        } else {
+                            r.w3_In_w5.add(w3ID);
+                        }
                     }
-                }
-                if (CASEW2 > Short.MIN_VALUE) {
-                    WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(CASEW2);
-                    r.w2_In_w5.add(w2ID);
-                }
-                if (CASEW1 > Short.MIN_VALUE) {
-                    WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
-                    r.w1_In_w5.add(w1ID);
-                    if (CASEW2 > Short.MIN_VALUE && CASEW3 > Short.MIN_VALUE && CASEW4 > Short.MIN_VALUE) {
-                        r.w5_In_w1w2w3w4.add(w5ID);
+                    if (CASEW2 > Short.MIN_VALUE) {
+                        WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(CASEW2);
+                        r.w2_In_w5.add(w2ID);
                     }
+                    if (CASEW1 > Short.MIN_VALUE) {
+                        WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
+                        r.w1_In_w5.add(w1ID);
+                        if (CASEW2 > Short.MIN_VALUE && CASEW3 > Short.MIN_VALUE && CASEW4 > Short.MIN_VALUE) {
+                            r.w5_In_w1w2w3w4.add(w5ID);
+                        }
+                    }
+                } catch (Exception ex) {
+                we.logLineNotLoading(ex, ln);
                 }
+                ln++;
             }
             // Close br
             io.closeBufferedReader(br);
@@ -2498,31 +2565,37 @@ public abstract class WaAS_Handler extends WaAS_Object {
             BufferedReader br = io.getBufferedReader(f);
             br.readLine(); // skip header
             String line = br.readLine();
+            int ln = 0;
             int i = 0;
             while (line != null) {
-                WaAS_W5HRecord rec = new WaAS_W5HRecord(new WaAS_RecordID(i), line);
-                i++;
-                line = br.readLine();
-                short CASEW4 = rec.getCASEW4();
-                short CASEW3 = rec.getCASEW3();
-                short CASEW2 = rec.getCASEW2();
-                short CASEW1 = rec.getCASEW1();
-                if (CASEW4 > Short.MIN_VALUE
-                        && CASEW3 > Short.MIN_VALUE
-                        && CASEW2 > Short.MIN_VALUE
-                        && CASEW1 > Short.MIN_VALUE) {
-                    WaAS_W5ID w5ID = we.data.CASEW5_To_w5.get(rec.getCASEW5());
-                    WaAS_W4ID w4ID = we.data.CASEW4_To_w4.get(CASEW4);
-                    WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(CASEW3);
-                    WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(CASEW2);
-                    WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
-                    WaAS_CombinedRecordSimple crs = new WaAS_CombinedRecordSimple(w1ID);
-                    crs.w5Rec = new WaAS_W5Record(w5ID, rec);
-                    w4IDs.add(w4ID);
-                    w3IDs.add(w3ID);
-                    w2IDs.add(w2ID);
-                    w1IDs.add(w1ID);
+                try {
+                    WaAS_W5HRecord rec = new WaAS_W5HRecord(new WaAS_RecordID(i), line);
+                    i++;
+                    line = br.readLine();
+                    short CASEW4 = rec.getCASEW4();
+                    short CASEW3 = rec.getCASEW3();
+                    short CASEW2 = rec.getCASEW2();
+                    short CASEW1 = rec.getCASEW1();
+                    if (CASEW4 > Short.MIN_VALUE
+                            && CASEW3 > Short.MIN_VALUE
+                            && CASEW2 > Short.MIN_VALUE
+                            && CASEW1 > Short.MIN_VALUE) {
+                        WaAS_W5ID w5ID = we.data.CASEW5_To_w5.get(rec.getCASEW5());
+                        WaAS_W4ID w4ID = we.data.CASEW4_To_w4.get(CASEW4);
+                        WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(CASEW3);
+                        WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(CASEW2);
+                        WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
+                        WaAS_CombinedRecordSimple crs = new WaAS_CombinedRecordSimple(w1ID);
+                        crs.w5Rec = new WaAS_W5Record(w5ID, rec);
+                        w4IDs.add(w4ID);
+                        w3IDs.add(w3ID);
+                        w2IDs.add(w2ID);
+                        w1IDs.add(w1ID);
+                    }
+                } catch (Exception ex) {
+                we.logLineNotLoading(ex, ln);
                 }
+                ln++;
             }
             // Close br
             io.closeBufferedReader(br);
@@ -2568,40 +2641,46 @@ public abstract class WaAS_Handler extends WaAS_Object {
             BufferedReader br = loadW4Count(r, f);
             br.readLine(); // skip header
             String line = br.readLine();
+            int ln = 0;
             int i = 0;
             while (line != null) {
-                WaAS_W4HRecord rec = new WaAS_W4HRecord(new WaAS_RecordID(i), line);
-                i++;
-                line = br.readLine();
-                WaAS_W4ID w4ID = we.data.CASEW4_To_w4.get(rec.getCASEW4());
-                WaAS_W4Record w4rec = new WaAS_W4Record(w4ID, rec);
-                short CASEW3 = rec.getCASEW3();
-                short CASEW2 = rec.getCASEW2();
-                short CASEW1 = rec.getCASEW1();
-                if (s.contains(w4ID)) {
-                    r.lookup.put(w4ID, w4rec);
-                    if (CASEW3 > Short.MIN_VALUE) {
-                        WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(CASEW3);
-                        if (w3ID == null) {
-                            env.log("env.data.CASEW3_To_w3.get(CASEW3) = null for CASEW3 " + CASEW3);
-                        } else {
-                            r.w4_To_w3.put(w4ID, w3ID);
-                            Generic_Collections.addToMap(r.w3_To_w4, w3ID, w4ID);
+                try {
+                    WaAS_W4HRecord rec = new WaAS_W4HRecord(new WaAS_RecordID(i), line);
+                    i++;
+                    line = br.readLine();
+                    WaAS_W4ID w4ID = we.data.CASEW4_To_w4.get(rec.getCASEW4());
+                    WaAS_W4Record w4rec = new WaAS_W4Record(w4ID, rec);
+                    short CASEW3 = rec.getCASEW3();
+                    short CASEW2 = rec.getCASEW2();
+                    short CASEW1 = rec.getCASEW1();
+                    if (s.contains(w4ID)) {
+                        r.lookup.put(w4ID, w4rec);
+                        if (CASEW3 > Short.MIN_VALUE) {
+                            WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(CASEW3);
+                            if (w3ID == null) {
+                                env.log("env.data.CASEW3_To_w3.get(CASEW3) = null for CASEW3 " + CASEW3);
+                            } else {
+                                r.w4_To_w3.put(w4ID, w3ID);
+                                Generic_Collections.addToMap(r.w3_To_w4, w3ID, w4ID);
+                            }
                         }
                     }
-                }
-                r.all.add(w4ID);
-                if (CASEW2 > Short.MIN_VALUE) {
-                    WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(CASEW2);
-                    r.w2_In_w4.add(w2ID);
-                }
-                if (CASEW1 > Short.MIN_VALUE) {
-                    WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
-                    r.w1_In_w4.add(w1ID);
-                    if (CASEW2 > Short.MIN_VALUE && CASEW3 > Short.MIN_VALUE) {
-                        r.w4_In_w1w2w3.add(w4ID);
+                    r.all.add(w4ID);
+                    if (CASEW2 > Short.MIN_VALUE) {
+                        WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(CASEW2);
+                        r.w2_In_w4.add(w2ID);
                     }
+                    if (CASEW1 > Short.MIN_VALUE) {
+                        WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
+                        r.w1_In_w4.add(w1ID);
+                        if (CASEW2 > Short.MIN_VALUE && CASEW3 > Short.MIN_VALUE) {
+                            r.w4_In_w1w2w3.add(w4ID);
+                        }
+                    }
+                } catch (Exception ex) {
+                we.logLineNotLoading(ex, ln);
                 }
+                ln++;
             }
             // Close br
             io.closeBufferedReader(br);
@@ -2639,24 +2718,30 @@ public abstract class WaAS_Handler extends WaAS_Object {
             BufferedReader br = loadW2Count(r, f);
             br.readLine(); // skip header
             String line = br.readLine();
+            int ln = 0;
             int i = 0;
             while (line != null) {
-                WaAS_W2HRecord rec = new WaAS_W2HRecord(new WaAS_RecordID(i), line);
-                i++;
-                line = br.readLine();
-                WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(rec.getCASEW2());
-                WaAS_W2Record w2rec = new WaAS_W2Record(w2ID, rec);
-                short CASEW1 = rec.getCASEW1();
-                if (s.contains(w2ID)) {
-                    r.lookup.put(w2ID, w2rec);
-                    if (CASEW1 > Short.MIN_VALUE) {
-                        WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
-                        r.w2_To_w1.put(w2ID, w1ID);
-                        Generic_Collections.addToMap(r.w1_To_w2, w1ID, w2ID);
-                        r.w1_In_w2.add(w1ID);
+                try {
+                    WaAS_W2HRecord rec = new WaAS_W2HRecord(new WaAS_RecordID(i), line);
+                    i++;
+                    line = br.readLine();
+                    WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(rec.getCASEW2());
+                    WaAS_W2Record w2rec = new WaAS_W2Record(w2ID, rec);
+                    short CASEW1 = rec.getCASEW1();
+                    if (s.contains(w2ID)) {
+                        r.lookup.put(w2ID, w2rec);
+                        if (CASEW1 > Short.MIN_VALUE) {
+                            WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
+                            r.w2_To_w1.put(w2ID, w1ID);
+                            Generic_Collections.addToMap(r.w1_To_w2, w1ID, w2ID);
+                            r.w1_In_w2.add(w1ID);
+                        }
                     }
+                    r.all.add(w2ID);
+                } catch (Exception ex) {
+                we.logLineNotLoading(ex, ln);
                 }
-                r.all.add(w2ID);
+                ln++;
             }
             // Close br
             io.closeBufferedReader(br);
@@ -2739,34 +2824,40 @@ public abstract class WaAS_Handler extends WaAS_Object {
             BufferedReader br = loadW4Count(r, f);
             br.readLine(); // skip header
             String line = br.readLine();
+            int ln = 0;
             int i = 0;
             while (line != null) {
-                WaAS_W4HRecord rec = new WaAS_W4HRecord(new WaAS_RecordID(i), line);
-                i++;
-                line = br.readLine();
-                WaAS_W4ID w4ID = we.data.CASEW4_To_w4.get(rec.getCASEW4());
-                WaAS_W4Record w4rec = new WaAS_W4Record(w4ID, rec);
-                short CASEW3 = rec.getCASEW3();
-                short CASEW2 = rec.getCASEW2();
-                short CASEW1 = rec.getCASEW1();
-                if (CASEW3 > Short.MIN_VALUE) {
-                    WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(rec.getCASEW3());
-                    r.w4_To_w3.put(w4ID, w3ID);
-                    Generic_Collections.addToMap(r.w3_To_w4, w3ID, w4ID);
-                    r.lookup.put(w4ID, w4rec);
-                }
-                r.all.add(w4ID);
-                if (CASEW2 > Short.MIN_VALUE) {
-                    WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(rec.getCASEW2());
-                    r.w2_In_w4.add(w2ID);
-                }
-                if (CASEW1 > Short.MIN_VALUE) {
-                    WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(rec.getCASEW1());
-                    r.w1_In_w4.add(w1ID);
-                    if (CASEW2 > Short.MIN_VALUE && CASEW3 > Short.MIN_VALUE) {
-                        r.w4_In_w1w2w3.add(w4ID);
+                try {
+                    WaAS_W4HRecord rec = new WaAS_W4HRecord(new WaAS_RecordID(i), line);
+                    i++;
+                    line = br.readLine();
+                    WaAS_W4ID w4ID = we.data.CASEW4_To_w4.get(rec.getCASEW4());
+                    WaAS_W4Record w4rec = new WaAS_W4Record(w4ID, rec);
+                    short CASEW3 = rec.getCASEW3();
+                    short CASEW2 = rec.getCASEW2();
+                    short CASEW1 = rec.getCASEW1();
+                    if (CASEW3 > Short.MIN_VALUE) {
+                        WaAS_W3ID w3ID = we.data.CASEW3_To_w3.get(rec.getCASEW3());
+                        r.w4_To_w3.put(w4ID, w3ID);
+                        Generic_Collections.addToMap(r.w3_To_w4, w3ID, w4ID);
+                        r.lookup.put(w4ID, w4rec);
                     }
+                    r.all.add(w4ID);
+                    if (CASEW2 > Short.MIN_VALUE) {
+                        WaAS_W2ID w2ID = we.data.CASEW2_To_w2.get(rec.getCASEW2());
+                        r.w2_In_w4.add(w2ID);
+                    }
+                    if (CASEW1 > Short.MIN_VALUE) {
+                        WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(rec.getCASEW1());
+                        r.w1_In_w4.add(w1ID);
+                        if (CASEW2 > Short.MIN_VALUE && CASEW3 > Short.MIN_VALUE) {
+                            r.w4_In_w1w2w3.add(w4ID);
+                        }
+                    }
+                } catch (Exception ex) {
+                we.logLineNotLoading(ex, ln);
                 }
+                ln++;
             }
             // Close br
             io.closeBufferedReader(br);
@@ -2805,20 +2896,26 @@ public abstract class WaAS_Handler extends WaAS_Object {
             BufferedReader br = io.getBufferedReader(f);
             br.readLine(); // skip header
             String line = br.readLine();
+            int ln = 0;
             int i = 0;
             while (line != null) {
-                WaAS_W1HRecord rec = new WaAS_W1HRecord(new WaAS_RecordID(i), line);
-                i++;
-                line = br.readLine();
-                short CASEW1 = rec.getCASEW1();
-                if (CASEW1 > Short.MIN_VALUE) {
-                    WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
-                    WaAS_W1Record w1rec = new WaAS_W1Record(w1ID, rec);
-                    if (s.contains(w1ID)) {
-                        r.lookup.put(w1ID, w1rec);
+                try {
+                    WaAS_W1HRecord rec = new WaAS_W1HRecord(new WaAS_RecordID(i), line);
+                    i++;
+                    line = br.readLine();
+                    short CASEW1 = rec.getCASEW1();
+                    if (CASEW1 > Short.MIN_VALUE) {
+                        WaAS_W1ID w1ID = we.data.CASEW1_To_w1.get(CASEW1);
+                        WaAS_W1Record w1rec = new WaAS_W1Record(w1ID, rec);
+                        if (s.contains(w1ID)) {
+                            r.lookup.put(w1ID, w1rec);
+                        }
+                        r.all.add(w1ID);
                     }
-                    r.all.add(w1ID);
+                } catch (Exception ex) {
+                we.logLineNotLoading(ex, ln);
                 }
+                ln++;
             }
             // Close br
             io.closeBufferedReader(br);

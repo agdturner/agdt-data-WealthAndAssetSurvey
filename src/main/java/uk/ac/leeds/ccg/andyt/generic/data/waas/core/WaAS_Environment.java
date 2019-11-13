@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import uk.ac.leeds.ccg.andyt.data.core.Data_Environment;
 import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
+import uk.ac.leeds.ccg.andyt.generic.core.Generic_Strings;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.WaAS_Data;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.data.handlers.WaAS_HHOLD_Handler;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.io.WaAS_Files;
@@ -30,49 +31,52 @@ import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
  */
 public class WaAS_Environment extends WaAS_MemoryManager {
 
-    public transient final Data_Environment de;
-    public transient final WaAS_Files files;
-    public transient final WaAS_HHOLD_Handler hh;
+    public transient Data_Environment de;
+    public transient WaAS_Files files;
+    public transient WaAS_HHOLD_Handler hh;
     public transient WaAS_Data data;
-    
+
     /**
-     * For convenience.
+     * For convenience. 
      */
-    public transient final Generic_Environment env;
-    public transient final Generic_IO io;
-    
+    public transient Generic_Environment env;
+    public transient Generic_IO io;
+
     public transient final String EOL = System.getProperty("line.separator");
     public transient final byte W1 = 1;
     public transient final byte W2 = 2;
     public transient final byte W3 = 3;
     public transient final byte W4 = 4;
     public transient final byte W5 = 5;
-    
+
     /**
      * Stores the number of waves in the WaAS
      */
     public transient final byte NWAVES = 5;
 
-    /**
-     * Stores the {@link ge} log ID for the log set up for WaAS.
-     */
-    public transient final int logID;
-
-    public WaAS_Environment() throws IOException {
-        this(new Data_Environment());
-    }
-    
-    public WaAS_Environment(Data_Environment e) throws IOException {
-        this(e, e.files.getDir());
-    }
-    
     public WaAS_Environment(File dataDir) throws IOException {
-        this(new Data_Environment(), dataDir);
+        this(new Data_Environment(new Generic_Environment(dataDir)), dataDir);
     }
-    
+
     public WaAS_Environment(Data_Environment e, File dataDir) throws IOException {
+        /**
+         * Init de.
+         */
         de = e;
+        File d0 = new File(dataDir, Generic_Strings.s_generated);
+        File d = new File(d0, Generic_Strings.s_data);
+        de.files.setDir(d);
+        de.initLog(Generic_Strings.s_data);
+        /**
+         * Init env.
+         */
         env = e.env;
+        d = new File(d0, Generic_Strings.s_generic);
+        env.files.setDir(d);
+        env.initLog(Generic_Strings.s_generic);
+        /**
+         * Init io, files, data, hh and Memory_Threshold
+         */
         io = env.io;
         files = new WaAS_Files(dataDir);
         File f = files.getEnvDataFile();
@@ -83,7 +87,6 @@ public class WaAS_Environment extends WaAS_MemoryManager {
         } else {
             data = new WaAS_Data(this);
         }
-        logID = env.initLog(WaAS_Strings.s_WaAS);
         hh = new WaAS_HHOLD_Handler(this);
         Memory_Threshold = 2000000000L;
     }
@@ -116,7 +119,7 @@ public class WaAS_Environment extends WaAS_MemoryManager {
      * Attempts to cache some of {@link #data}.
      *
      * @param hoome handleOutOfMemoryError
-     * @return {@code true} iff some data was successfully cacheped.
+     * @return {@code true} iff some data was successfully cached.
      */
     @Override
     public boolean cacheDataAny(boolean hoome) {
@@ -139,7 +142,7 @@ public class WaAS_Environment extends WaAS_MemoryManager {
     /**
      * Attempts to cache some of {@link #data}.
      *
-     * @return {@code true} iff some data was successfully cacheped.
+     * @return {@code true} iff some data was successfully cached.
      */
     @Override
     public boolean cacheDataAny() {
@@ -147,7 +150,7 @@ public class WaAS_Environment extends WaAS_MemoryManager {
         if (r) {
             return r;
         } else {
-            System.out.println("No WaAS data to clear. Do some coding to try "
+            env.log("No WaAS data to clear. Do some coding to try "
                     + "to arrange to clear something else if needs be. If the "
                     + "program fails then try providing more memory...");
             return r;
@@ -186,17 +189,13 @@ public class WaAS_Environment extends WaAS_MemoryManager {
     }
 
     /**
+     * For logging that a line has not loaded.
      * 
-     * @param s The tag name.
+     * @param ex
+     * @param ln 
      */
-    public final void logStartTagMem(String s) {
-        env.logStartTag(s, logID);
-        env.log("TotalFreeMemory " + getTotalFreeMemory());
+    public void logLineNotLoading(Exception ex, int ln) {
+        env.log("line " + ln + " could not be loaded");
+        env.log(ex.getMessage());
     }
-
-    public final void logEndTagMem(String s) {
-        env.log("TotalFreeMemory " + getTotalFreeMemory());
-        env.logEndTag(s, logID);
-    }
-    
 }

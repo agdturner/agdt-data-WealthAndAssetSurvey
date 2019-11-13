@@ -21,20 +21,20 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import uk.ac.leeds.ccg.andyt.data.id.Data_CollectionID;
 import uk.ac.leeds.ccg.andyt.generic.data.waas.core.WaAS_Environment;
+import uk.ac.leeds.ccg.andyt.generic.data.waas.data.id.WaAS_CollectionID;
 
 public class WaAS_DataSubsetW1 extends WaAS_DataSubset {
 
     /**
      * Lookup from Data_CollectionID to WaAS_W1ID.
      */
-    public TreeMap<Data_CollectionID, HashSet<WaAS_W1ID>> c_To_w1;
+    public TreeMap<WaAS_CollectionID, HashSet<WaAS_W1ID>> c_To_w1;
 
     /**
      * Lookup from WaAS_W1ID to Data_CollectionID.
      */
-    public HashMap<WaAS_W1ID, Data_CollectionID> w1_To_c;
+    public HashMap<WaAS_W1ID, WaAS_CollectionID> w1_To_c;
 
     /**
      *
@@ -48,7 +48,7 @@ public class WaAS_DataSubsetW1 extends WaAS_DataSubset {
         w1_To_c = new HashMap<>();
         Iterator<WaAS_W1ID> ite = w1IDs.iterator();
         int i = 0;
-        Data_CollectionID cID = getCollectionID(i);
+        WaAS_CollectionID cID = getCollectionID(i);
         int ci = 0;
         while (ite.hasNext()) {
             WaAS_W1ID w1ID = ite.next();

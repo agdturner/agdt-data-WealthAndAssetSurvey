@@ -4,12 +4,12 @@ https://github.com/agdturner/agdt-java-generic-data-WealthAndAssetsSurvey
 
 A Java library for processing UK Office for National Statistics Wealth and Assets Survey (WaAS) data.
 
-## Usage
-This library is used in the following projects:
+## Usages
+This library is used in the following:
 1. https://github.com/agdturner/agdt-java-project-UKFinancialInequality
-A project exploring contemporary UK financial inequalities - specifically looking at relative and absolute changes in wealth for different groups since around 2006.
+A Java library for processing data for a project exploring contemporary UK financial inequalities - specifically looking at relative and absolute changes in wealth for different groups since around 2006.
 2. https://github.com/agdturner/agdt-java-project-UKHousingInequality
-A project exploring contemporary UK housing inequality - specifically looking at relative and absolute changes in housing wealth and costs for different groups since around 2006.
+A Java library for processing data for a project exploring contemporary UK housing inequality - specifically looking at relative and absolute changes in housing wealth and costs for different groups since around 2006.
 
 If you use this library please add to this list.
 

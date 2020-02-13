@@ -49,6 +49,7 @@ import uk.ac.leeds.ccg.data.waas.data.person.WaAS_W3PRecord;
 import uk.ac.leeds.ccg.data.waas.data.person.WaAS_W4PRecord;
 import uk.ac.leeds.ccg.data.waas.data.person.WaAS_W5PRecord;
 import uk.ac.leeds.ccg.generic.io.Generic_IO;
+import uk.ac.leeds.ccg.generic.io.Generic_Path;
 
 /**
  *
@@ -144,13 +145,13 @@ public class WaAS_PERSON_Handler extends WaAS_Handler {
      * @throws java.io.IOException If one is encountered.
      */
     protected Map<WaAS_CollectionID, PrintWriter> initPWs(
-            Map<WaAS_CollectionID, Path> cFs) throws IOException {
+            Map<WaAS_CollectionID, Generic_Path> cFs) throws IOException {
         Map<WaAS_CollectionID, PrintWriter> r = new HashMap<>();
         Iterator<WaAS_CollectionID> ite = cFs.keySet().iterator();
         while (ite.hasNext()) {
             WaAS_CollectionID cID = ite.next();
             //env.log("Init PW with cID " + cID);
-            Path f = cFs.get(cID);
+            Path f = cFs.get(cID).getPath();
             r.put(cID, Generic_IO.getPrintWriter(f, false));
         }
         return r;

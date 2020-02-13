@@ -23,6 +23,7 @@ import uk.ac.leeds.ccg.data.waas.core.WaAS_Environment;
 import uk.ac.leeds.ccg.data.waas.core.WaAS_Object;
 import uk.ac.leeds.ccg.data.waas.core.WaAS_Strings;
 import uk.ac.leeds.ccg.data.waas.data.id.WaAS_CollectionID;
+import uk.ac.leeds.ccg.generic.io.Generic_Path;
 
 /**
  * WaAS_DataSubset
@@ -40,7 +41,7 @@ public class WaAS_DataSubset extends WaAS_Object {
     /**
      * Collection Files
      */
-    public TreeMap<WaAS_CollectionID, Path> cFs;
+    public TreeMap<WaAS_CollectionID, Generic_Path> cFs;
 
     /**
      * Create a new DataSubset
@@ -68,7 +69,7 @@ public class WaAS_DataSubset extends WaAS_Object {
 //            env.log("s " + s);
 //            env.log("File " + f);
 //            env.log("Data_CollectionID " + cID);
-            cFs.put(cID, f);
+            cFs.put(cID, new Generic_Path(f));
         }
     }
     

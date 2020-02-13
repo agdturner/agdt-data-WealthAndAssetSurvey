@@ -25,7 +25,6 @@ import uk.ac.leeds.ccg.generic.core.Generic_Strings;
 import uk.ac.leeds.ccg.data.waas.data.WaAS_Data;
 import uk.ac.leeds.ccg.data.waas.data.handlers.WaAS_HHOLD_Handler;
 import uk.ac.leeds.ccg.data.waas.io.WaAS_Files;
-import uk.ac.leeds.ccg.generic.io.Generic_Defaults;
 import uk.ac.leeds.ccg.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.generic.memory.Generic_MemoryManager;
 
@@ -59,13 +58,16 @@ public class WaAS_Environment extends Generic_MemoryManager {
      * Stores the number of waves in the WaAS
      */
     public transient final byte NWAVES = 5;
-
-    public WaAS_Environment(Path dataDir) throws Exception {
-        this(new Data_Environment(new Generic_Environment(
-                new Generic_Defaults(dataDir))), dataDir);
-    }
-
-    public WaAS_Environment(Data_Environment e, Path dataDir) throws IOException, Exception {
+    
+    /**
+     * 
+     * @param e
+     * @param dataDir
+     * @throws IOException
+     * @throws Exception 
+     */
+    public WaAS_Environment(Data_Environment e, Path dataDir) 
+            throws IOException, Exception {
         /**
          * Init de.
          */

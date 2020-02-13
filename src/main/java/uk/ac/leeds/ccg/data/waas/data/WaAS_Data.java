@@ -109,19 +109,19 @@ public class WaAS_Data extends Data_Data {
         //return (HashMap<WaAS_CollectionID, WaAS_Collection>) data;
         return data;
     }
-    
+
     /**
-     *
      * @param cID collectionID
-     * @return
-     * @throws java.io.IOException If encountered.
-     * @throws java.lang.ClassNotFoundException If encountered.
+     * @return WaAS_Collection
      */
-    public WaAS_Collection getCollection(WaAS_CollectionID cID) 
-            throws IOException, ClassNotFoundException {
+    public WaAS_Collection getCollection(WaAS_CollectionID cID) {
         WaAS_Collection r = (WaAS_Collection) data.get(cID);
         if (r == null) {
-            r = (WaAS_Collection) loadSubsetCollection(cID);
+            try {
+                r = (WaAS_Collection) loadSubsetCollection(cID);
+            } catch (IOException | ClassNotFoundException ex) {
+                throw new RuntimeException(ex.getMessage());
+            }
             data.put(cID, r);
         }
         return r;
@@ -134,7 +134,7 @@ public class WaAS_Data extends Data_Data {
      * @throws java.io.IOException If encountered.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
-    public WaAS_Collection getCollectionSimple(WaAS_CollectionID cID) 
+    public WaAS_Collection getCollectionSimple(WaAS_CollectionID cID)
             throws IOException, ClassNotFoundException {
         WaAS_Collection r = dataSimple.get(cID);
         if (r == null) {
@@ -220,7 +220,7 @@ public class WaAS_Data extends Data_Data {
      * @param o the subset collection to be cached.
      * @throws java.io.IOException If encountered.
      */
-    public void cacheSubsetCollection(WaAS_CollectionID cID, Object o) 
+    public void cacheSubsetCollection(WaAS_CollectionID cID, Object o)
             throws IOException {
         cache(getSubsetCollectionFile(cID), o);
     }
@@ -232,7 +232,7 @@ public class WaAS_Data extends Data_Data {
      * @param o the subset collection to be cached.
      * @throws java.io.IOException If encountered.
      */
-    public void cacheSubsetCollectionSimple(WaAS_CollectionID cID, Object o) 
+    public void cacheSubsetCollectionSimple(WaAS_CollectionID cID, Object o)
             throws IOException {
         cache(getSubsetCollectionSimpleFile(cID), o);
     }
@@ -245,7 +245,7 @@ public class WaAS_Data extends Data_Data {
      * @throws java.io.IOException If encountered.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
-    public Object loadSubsetCollection(WaAS_CollectionID cID) 
+    public Object loadSubsetCollection(WaAS_CollectionID cID)
             throws IOException, ClassNotFoundException {
         return load(getSubsetCollectionFile(cID));
     }
@@ -258,7 +258,7 @@ public class WaAS_Data extends Data_Data {
      * @throws java.io.IOException If encountered.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
-    public Object loadSubsetCollectionSimple(WaAS_CollectionID cID) 
+    public Object loadSubsetCollectionSimple(WaAS_CollectionID cID)
             throws IOException, ClassNotFoundException {
         return load(getSubsetCollectionSimpleFile(cID));
     }
@@ -283,7 +283,7 @@ public class WaAS_Data extends Data_Data {
      * @return the subset collection file for cID.
      * @throws java.io.IOException If encountered.
      */
-    public Path getSubsetCollectionSimpleFile(WaAS_CollectionID cID) 
+    public Path getSubsetCollectionSimpleFile(WaAS_CollectionID cID)
             throws IOException {
         return Paths.get(we.files.getGeneratedWaASSubsetsDir().toString(),
                 WaAS_Strings.s_WaAS + WaAS_Strings.symbol_underscore

@@ -74,7 +74,7 @@ import uk.ac.leeds.ccg.generic.util.Generic_Collections;
 
 /**
  * WaAS_Handler
- * 
+ *
  * @author Andy Turner
  * @version 1.0.0
  */
@@ -192,7 +192,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @param type The name of the type of subset to be cached.
      * @throws java.io.IOException IF Encountered.
      */
-    public void cacheSubset(byte wave, Object o, String type) 
+    public void cacheSubset(byte wave, Object o, String type)
             throws IOException {
         cache(wave, getSubsetCacheFile(wave, type), o);
     }
@@ -235,14 +235,14 @@ public abstract class WaAS_Handler extends WaAS_Object {
                 getString0(wave + 1) + getStringToWaveDotDat(wave));
     }
 
-    public Map<WaAS_W1ID, Set<WaAS_W2ID>> loadSubsetLookupToW1() 
+    public Map<WaAS_W1ID, Set<WaAS_W2ID>> loadSubsetLookupToW1()
             throws IOException, ClassNotFoundException {
         Object o = Generic_IO.readObject(getSubsetLookupToFile(W1));
         return (Map<WaAS_W1ID, Set<WaAS_W2ID>>) Generic_IO.readObject(
                 getSubsetLookupToFile(W1));
     }
 
-    public Map<WaAS_W2ID, Set<WaAS_W3ID>> loadSubsetLookupToW2() 
+    public Map<WaAS_W2ID, Set<WaAS_W3ID>> loadSubsetLookupToW2()
             throws IOException, ClassNotFoundException {
         return (Map<WaAS_W2ID, Set<WaAS_W3ID>>) Generic_IO.readObject(
                 getSubsetLookupToFile(W2));
@@ -297,17 +297,17 @@ public abstract class WaAS_Handler extends WaAS_Object {
         return WaAS_Strings.s__To_ + WaAS_Strings.s_w + wave + we.files.DOT_DAT;
     }
 
-    public void cacheSubsetCollection(short cID, byte wave, Object o) 
+    public void cacheSubsetCollection(short cID, byte wave, Object o)
             throws IOException {
         cache(wave, getSubsetCollectionFile(cID, wave), o);
     }
 
-    public Object loadSubsetCollection(short cID, byte wave) throws IOException, 
+    public Object loadSubsetCollection(short cID, byte wave) throws IOException,
             ClassNotFoundException {
         return load(wave, getSubsetCollectionFile(cID, wave));
     }
 
-    public Path getSubsetCollectionFile(short cID, byte wave) 
+    public Path getSubsetCollectionFile(short cID, byte wave)
             throws IOException {
         return Paths.get(we.files.getGeneratedWaASSubsetsDir().toString(),
                 getString1(wave, cID) + we.files.DOT_DAT);
@@ -340,10 +340,10 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.lang.ClassNotFoundException If Encountered.
      */
     public WaAS_GORSubsetsAndLookups getGORSubsetsAndLookups(String name,
-            ArrayList<Byte> gors, Set<WaAS_W1ID> subset) throws IOException, 
+            ArrayList<Byte> gors, Set<WaAS_W1ID> subset) throws IOException,
             ClassNotFoundException {
         WaAS_GORSubsetsAndLookups r;
-        Path f = Paths.get(we.files.getOutputDir().toString(), name 
+        Path f = Paths.get(we.files.getOutputDir().toString(), name
                 + "GORSubsetsAndLookups.dat");
         if (Files.exists(f)) {
             r = (WaAS_GORSubsetsAndLookups) Generic_IO.readObject(f);
@@ -351,154 +351,132 @@ public abstract class WaAS_Handler extends WaAS_Object {
             r = new WaAS_GORSubsetsAndLookups(gors);
             // Wave 1
             we.data.getData().keySet().stream().forEach(cID -> {
-                try {
-                    WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
-                    c.data.keySet().stream().forEach(i -> {
-                        WaAS_W1ID w1ID = (WaAS_W1ID) i;
-                        if (subset.contains(w1ID)) {
-                            WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
-                            byte GOR = cr.w1Rec.getHr().getGOR();
-                            Generic_Collections.addToMap(r.gor_To_w1, GOR, w1ID);
-                            r.w1_To_gor.put(w1ID, GOR);
-                        }
-                    });
-                    we.data.clearCollection((WaAS_CollectionID) cID);
-                } catch (IOException | ClassNotFoundException ex) {
-                    Logger.getLogger(WaAS_Handler.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
+                c.data.keySet().stream().forEach(i -> {
+                    WaAS_W1ID w1ID = (WaAS_W1ID) i;
+                    if (subset.contains(w1ID)) {
+                        WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
+                        byte GOR = cr.w1Rec.getHr().getGOR();
+                        Generic_Collections.addToMap(r.gor_To_w1, GOR, w1ID);
+                        r.w1_To_gor.put(w1ID, GOR);
+                    }
+                });
+                we.data.clearCollection((WaAS_CollectionID) cID);
             });
             // Wave 2
             we.data.getData().keySet().stream().forEach(cID -> {
-                try {
-                    WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
-                    c.data.keySet().stream().forEach(i -> {
-                        WaAS_W1ID w1ID = (WaAS_W1ID) i;
-                        if (subset.contains(w1ID)) {
-                            WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
-                            Iterator<WaAS_W2ID> ite2 = cr.w2Recs.keySet().iterator();
-                            while (ite2.hasNext()) {
-                                WaAS_W2ID w2ID = ite2.next();
-                                WaAS_W2Record w2 = cr.w2Recs.get(w2ID);
-                                byte GOR = w2.getHr().getGOR();
-                                Generic_Collections.addToMap(r.gor_To_w2, GOR, w2ID);
-                                r.w2_To_gor.put(w2ID, GOR);
-                            }
+                WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
+                c.data.keySet().stream().forEach(i -> {
+                    WaAS_W1ID w1ID = (WaAS_W1ID) i;
+                    if (subset.contains(w1ID)) {
+                        WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
+                        Iterator<WaAS_W2ID> ite2 = cr.w2Recs.keySet().iterator();
+                        while (ite2.hasNext()) {
+                            WaAS_W2ID w2ID = ite2.next();
+                            WaAS_W2Record w2 = cr.w2Recs.get(w2ID);
+                            byte GOR = w2.getHr().getGOR();
+                            Generic_Collections.addToMap(r.gor_To_w2, GOR, w2ID);
+                            r.w2_To_gor.put(w2ID, GOR);
                         }
-                    });
-                    we.data.clearCollection((WaAS_CollectionID) cID);
-                } catch (IOException | ClassNotFoundException ex) {
-                    Logger.getLogger(WaAS_Handler.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    }
+                });
+                we.data.clearCollection((WaAS_CollectionID) cID);
             });
             // Wave 3
             we.data.getData().keySet().stream().forEach(cID -> {
-                try {
-                    WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
-                    c.data.keySet().stream().forEach(i -> {
-                        WaAS_W1ID w1ID = (WaAS_W1ID) i;
-                        if (subset.contains(w1ID)) {
-                            WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
-                            Iterator<WaAS_W2ID> ite2 = cr.w3Recs.keySet().iterator();
-                            while (ite2.hasNext()) {
-                                WaAS_W2ID w2ID = ite2.next();
-                                Map<WaAS_W3ID, WaAS_W3Record> w3_2 = cr.w3Recs.get(w2ID);
-                                Iterator<WaAS_W3ID> ite3 = w3_2.keySet().iterator();
-                                while (ite3.hasNext()) {
-                                    WaAS_W3ID w3ID = ite3.next();
-                                    WaAS_W3Record w3 = w3_2.get(w3ID);
-                                    byte GOR = w3.getHr().getGOR();
-                                    Generic_Collections.addToMap(r.gor_To_w3, GOR, w3ID);
-                                    r.w3_To_gor.put(w3ID, GOR);
-                                }
+                WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
+                c.data.keySet().stream().forEach(i -> {
+                    WaAS_W1ID w1ID = (WaAS_W1ID) i;
+                    if (subset.contains(w1ID)) {
+                        WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
+                        Iterator<WaAS_W2ID> ite2 = cr.w3Recs.keySet().iterator();
+                        while (ite2.hasNext()) {
+                            WaAS_W2ID w2ID = ite2.next();
+                            Map<WaAS_W3ID, WaAS_W3Record> w3_2 = cr.w3Recs.get(w2ID);
+                            Iterator<WaAS_W3ID> ite3 = w3_2.keySet().iterator();
+                            while (ite3.hasNext()) {
+                                WaAS_W3ID w3ID = ite3.next();
+                                WaAS_W3Record w3 = w3_2.get(w3ID);
+                                byte GOR = w3.getHr().getGOR();
+                                Generic_Collections.addToMap(r.gor_To_w3, GOR, w3ID);
+                                r.w3_To_gor.put(w3ID, GOR);
                             }
                         }
-                    });
-                    we.data.clearCollection((WaAS_CollectionID) cID);
-                } catch (IOException ex) {
-                    Logger.getLogger(WaAS_Handler.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(WaAS_Handler.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    }
+                });
+                we.data.clearCollection((WaAS_CollectionID) cID);
             });
             // Wave 4
             we.data.getData().keySet().stream().forEach(cID -> {
-                try {
-                    WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
-                    c.data.keySet().stream().forEach(i -> {
-                        WaAS_W1ID w1ID = (WaAS_W1ID) i;
-                        if (subset.contains(w1ID)) {
-                            WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
-                            Iterator<WaAS_W2ID> ite2 = cr.w4Recs.keySet().iterator();
-                            while (ite2.hasNext()) {
-                                WaAS_W2ID w2ID = ite2.next();
-                                Map<WaAS_W3ID, Map<WaAS_W4ID, WaAS_W4Record>> w4_2;
-                                w4_2 = cr.w4Recs.get(w2ID);
-                                Iterator<WaAS_W3ID> ite3 = w4_2.keySet().iterator();
-                                while (ite3.hasNext()) {
-                                    WaAS_W3ID w3ID = ite3.next();
-                                    Map<WaAS_W4ID, WaAS_W4Record> w4_3 = w4_2.get(w3ID);
-                                    Iterator<WaAS_W4ID> ite4 = w4_3.keySet().iterator();
-                                    while (ite4.hasNext()) {
-                                        WaAS_W4ID w4ID = ite4.next();
-                                        WaAS_W4Record w4 = w4_3.get(w4ID);
-                                        /**
-                                         * The following line fails as GORW4 is not
-                                         * a variable in the household data for wave
-                                         * 4 in the EUL data version from April
-                                         * 2019.
-                                         */
-                                        //byte GOR = w4.getHr().getGOR();
-                                        byte GOR = w4.getPrs().get(0).getGOR();
-                                        Generic_Collections.addToMap(r.gor_To_w4, GOR, w4ID);
-                                        r.w4_To_gor.put(w4ID, GOR);
-                                    }
+                WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
+                c.data.keySet().stream().forEach(i -> {
+                    WaAS_W1ID w1ID = (WaAS_W1ID) i;
+                    if (subset.contains(w1ID)) {
+                        WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
+                        Iterator<WaAS_W2ID> ite2 = cr.w4Recs.keySet().iterator();
+                        while (ite2.hasNext()) {
+                            WaAS_W2ID w2ID = ite2.next();
+                            Map<WaAS_W3ID, Map<WaAS_W4ID, WaAS_W4Record>> w4_2;
+                            w4_2 = cr.w4Recs.get(w2ID);
+                            Iterator<WaAS_W3ID> ite3 = w4_2.keySet().iterator();
+                            while (ite3.hasNext()) {
+                                WaAS_W3ID w3ID = ite3.next();
+                                Map<WaAS_W4ID, WaAS_W4Record> w4_3 = w4_2.get(w3ID);
+                                Iterator<WaAS_W4ID> ite4 = w4_3.keySet().iterator();
+                                while (ite4.hasNext()) {
+                                    WaAS_W4ID w4ID = ite4.next();
+                                    WaAS_W4Record w4 = w4_3.get(w4ID);
+                                    /**
+                                     * The following line fails as GORW4 is not
+                                     * a variable in the household data for wave
+                                     * 4 in the EUL data version from April
+                                     * 2019.
+                                     */
+                                    //byte GOR = w4.getHr().getGOR();
+                                    byte GOR = w4.getPrs().get(0).getGOR();
+                                    Generic_Collections.addToMap(r.gor_To_w4, GOR, w4ID);
+                                    r.w4_To_gor.put(w4ID, GOR);
                                 }
                             }
                         }
-                    });
-                    we.data.clearCollection((WaAS_CollectionID) cID);
-                } catch (IOException | ClassNotFoundException ex) {
-                    Logger.getLogger(WaAS_Handler.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    }
+                });
+                we.data.clearCollection((WaAS_CollectionID) cID);
             });
             // Wave 5
             we.data.getData().keySet().stream().forEach(cID -> {
-                try {
-                    WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
-                    c.data.keySet().stream().forEach(i -> {
-                        WaAS_W1ID w1ID = (WaAS_W1ID) i;
-                        if (subset.contains(w1ID)) {
-                            WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
-                            Iterator<WaAS_W2ID> ite2 = cr.w5Recs.keySet().iterator();
-                            while (ite2.hasNext()) {
-                                WaAS_W2ID w2ID = ite2.next();
-                                Map<WaAS_W3ID, Map<WaAS_W4ID, Map<WaAS_W5ID, WaAS_W5Record>>> w5_2;
-                                w5_2 = cr.w5Recs.get(w2ID);
-                                Iterator<WaAS_W3ID> ite3 = w5_2.keySet().iterator();
-                                while (ite3.hasNext()) {
-                                    WaAS_W3ID w3ID = ite3.next();
-                                    Map<WaAS_W4ID, Map<WaAS_W5ID, WaAS_W5Record>> w5_3 = w5_2.get(w3ID);
-                                    Iterator<WaAS_W4ID> ite4 = w5_3.keySet().iterator();
-                                    while (ite4.hasNext()) {
-                                        WaAS_W4ID w4ID = ite4.next();
-                                        Map<WaAS_W5ID, WaAS_W5Record> w5_4 = w5_3.get(w4ID);
-                                        Iterator<WaAS_W5ID> ite5 = w5_4.keySet().iterator();
-                                        while (ite5.hasNext()) {
-                                            WaAS_W5ID w5ID = ite5.next();
-                                            WaAS_W5Record w5 = w5_4.get(w5ID);
-                                            Byte GOR = w5.getHr().getGOR();
-                                            Generic_Collections.addToMap(r.gor_to_w5, GOR, w5ID);
-                                            r.w5_To_gor.put(w5ID, GOR);
-                                        }
+                WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
+                c.data.keySet().stream().forEach(i -> {
+                    WaAS_W1ID w1ID = (WaAS_W1ID) i;
+                    if (subset.contains(w1ID)) {
+                        WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
+                        Iterator<WaAS_W2ID> ite2 = cr.w5Recs.keySet().iterator();
+                        while (ite2.hasNext()) {
+                            WaAS_W2ID w2ID = ite2.next();
+                            Map<WaAS_W3ID, Map<WaAS_W4ID, Map<WaAS_W5ID, WaAS_W5Record>>> w5_2;
+                            w5_2 = cr.w5Recs.get(w2ID);
+                            Iterator<WaAS_W3ID> ite3 = w5_2.keySet().iterator();
+                            while (ite3.hasNext()) {
+                                WaAS_W3ID w3ID = ite3.next();
+                                Map<WaAS_W4ID, Map<WaAS_W5ID, WaAS_W5Record>> w5_3 = w5_2.get(w3ID);
+                                Iterator<WaAS_W4ID> ite4 = w5_3.keySet().iterator();
+                                while (ite4.hasNext()) {
+                                    WaAS_W4ID w4ID = ite4.next();
+                                    Map<WaAS_W5ID, WaAS_W5Record> w5_4 = w5_3.get(w4ID);
+                                    Iterator<WaAS_W5ID> ite5 = w5_4.keySet().iterator();
+                                    while (ite5.hasNext()) {
+                                        WaAS_W5ID w5ID = ite5.next();
+                                        WaAS_W5Record w5 = w5_4.get(w5ID);
+                                        Byte GOR = w5.getHr().getGOR();
+                                        Generic_Collections.addToMap(r.gor_to_w5, GOR, w5ID);
+                                        r.w5_To_gor.put(w5ID, GOR);
                                     }
                                 }
                             }
                         }
-                    });
-                    we.data.clearCollection((WaAS_CollectionID) cID);
-                } catch (IOException | ClassNotFoundException ex) {
-                    Logger.getLogger(WaAS_Handler.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    }
+                });
+                we.data.clearCollection((WaAS_CollectionID) cID);
             });
             Generic_IO.writeObject(r, f);
         }
@@ -519,7 +497,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
             ArrayList<Byte> gors, Set<WaAS_W1ID> subset) throws IOException,
             ClassNotFoundException {
         WaAS_GORSubsetsAndLookups r;
-        Path f = Paths.get(we.files.getOutputDir().toString(), name 
+        Path f = Paths.get(we.files.getOutputDir().toString(), name
                 + "GORSubsetsAndLookups.dat");
         if (Files.exists(f)) {
             r = (WaAS_GORSubsetsAndLookups) Generic_IO.readObject(f);
@@ -556,7 +534,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                             byte GOR = w2.getHr().getGOR();
                             Generic_Collections.addToMap(r.gor_To_w2, GOR, w2ID);
                             r.w2_To_gor.put(w2ID, GOR);
-                            
+
                         }
                     });
                     we.data.clearCollection((WaAS_CollectionID) cID);
@@ -595,9 +573,9 @@ public abstract class WaAS_Handler extends WaAS_Object {
                             WaAS_W4Record w4 = cr.w4Rec;
                             WaAS_W4ID w4ID = (WaAS_W4ID) w4.id;
                             /**
-                             * The following line fails as GORW4 is not a variable
-                             * in the household data for wave 4 in the EUL data
-                             * version from April 2019.
+                             * The following line fails as GORW4 is not a
+                             * variable in the household data for wave 4 in the
+                             * EUL data version from April 2019.
                              */
                             //byte GOR = w4.getHr().getGOR();
                             byte GOR = w4.getPrs().get(0).getGOR();
@@ -810,7 +788,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.io.IOException If encountered.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
-    public Set<WaAS_W1ID> getSubset(int type) throws IOException, 
+    public Set<WaAS_W1ID> getSubset(int type) throws IOException,
             ClassNotFoundException {
         String m = "getSubset(type " + type + ")";
         env.logStartTag(m);
@@ -987,7 +965,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.io.IOException If encountered.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
-    public Set<WaAS_W1ID> getSubsetSimple(int type) throws IOException, 
+    public Set<WaAS_W1ID> getSubsetSimple(int type) throws IOException,
             ClassNotFoundException {
         String m = "getSubsetSimple(type " + type + ")";
         env.logStartTag(m);
@@ -1692,7 +1670,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.io.IOException If encountered.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
-    public Map<WaAS_W1ID, WaAS_W1Record> loadCachedSubsetW1(String type) 
+    public Map<WaAS_W1ID, WaAS_W1Record> loadCachedSubsetW1(String type)
             throws IOException, ClassNotFoundException {
         String m = "loadCachedSubsetW1(" + type + ")";
         env.logStartTag(m);
@@ -1715,7 +1693,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.io.IOException If encountered.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
-    public Map<WaAS_W2ID, WaAS_W2Record> loadCachedSubsetW2(String type) 
+    public Map<WaAS_W2ID, WaAS_W2Record> loadCachedSubsetW2(String type)
             throws IOException, ClassNotFoundException {
         String m = "loadCachedSubsetW2(" + type + ")";
         env.logStartTag(m);
@@ -1738,7 +1716,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.io.IOException If encountered.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
-    public Map<WaAS_W3ID, WaAS_W3Record> loadCachedSubsetW3(String type) 
+    public Map<WaAS_W3ID, WaAS_W3Record> loadCachedSubsetW3(String type)
             throws IOException, ClassNotFoundException {
         String m = "loadCachedSubsetW3(" + type + ")";
         env.logStartTag(m);
@@ -1761,7 +1739,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.io.IOException If encountered.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
-    public Map<WaAS_W4ID, WaAS_W4Record> loadCachedSubsetW4(String type) 
+    public Map<WaAS_W4ID, WaAS_W4Record> loadCachedSubsetW4(String type)
             throws IOException, ClassNotFoundException {
         String m = "loadCachedSubsetW4(" + type + ")";
         env.logStartTag(m);
@@ -1784,7 +1762,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.io.IOException If encountered.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
-    public Map<WaAS_W5ID, WaAS_W5Record> loadCachedSubsetW5(String type) 
+    public Map<WaAS_W5ID, WaAS_W5Record> loadCachedSubsetW5(String type)
             throws IOException, ClassNotFoundException {
         String m = "loadCachedSubsetW5(" + type + ")";
         env.logStartTag(m);
@@ -1858,7 +1836,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         }
                     }
                 } catch (Exception ex) {
-                we.logLineNotLoading(ex, ln);
+                    we.logLineNotLoading(ex, ln);
                 }
                 ln++;
             }
@@ -1884,7 +1862,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.io.IOException If encountered.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
-    public WaAS_W2Data loadW2InSAndW1(Collection<WaAS_W2ID> s, String type) 
+    public WaAS_W2Data loadW2InSAndW1(Collection<WaAS_W2ID> s, String type)
             throws FileNotFoundException, IOException, ClassNotFoundException {
         String m = "loadW2InSAndW1(Set<WaAS_W2ID>, " + type + ")";
         env.logStartTag(m);
@@ -1922,7 +1900,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                     }
                     r.all.add(w2ID);
                 } catch (Exception ex) {
-                we.logLineNotLoading(ex, ln);
+                    we.logLineNotLoading(ex, ln);
                 }
                 ln++;
             }
@@ -1936,7 +1914,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
         return r;
     }
 
-    protected BufferedReader loadW3Count(WaAS_W3Data r, Path f) 
+    protected BufferedReader loadW3Count(WaAS_W3Data r, Path f)
             throws FileNotFoundException, IOException {
         BufferedReader br = Generic_IO.getBufferedReader(f);
         int count = 0;
@@ -2110,7 +2088,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.io.IOException If encountered.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
-    public WaAS_W2Data loadW2InW1() throws FileNotFoundException, IOException, 
+    public WaAS_W2Data loadW2InW1() throws FileNotFoundException, IOException,
             ClassNotFoundException {
         String m = "loadW2InW1";
         env.logStartTag(m);
@@ -2145,7 +2123,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                     }
                     r.all.add(w2ID);
                 } catch (Exception ex) {
-                we.logLineNotLoading(ex, ln);
+                    we.logLineNotLoading(ex, ln);
                 }
                 ln++;
             }
@@ -2159,7 +2137,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
         return r;
     }
 
-    protected BufferedReader loadW2Count(WaAS_W2Data r, Path f) 
+    protected BufferedReader loadW2Count(WaAS_W2Data r, Path f)
             throws FileNotFoundException, IOException {
         BufferedReader br = Generic_IO.getBufferedReader(f);
         int count = 0;
@@ -2201,7 +2179,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.io.IOException If encountered.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
-    public WaAS_W3Data loadW3InW2() throws FileNotFoundException, IOException, 
+    public WaAS_W3Data loadW3InW2() throws FileNotFoundException, IOException,
             ClassNotFoundException {
         String m = "loadW3InW2";
         env.logStartTag(m);
@@ -2251,7 +2229,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         }
                     }
                 } catch (Exception ex) {
-                we.logLineNotLoading(ex, ln);
+                    we.logLineNotLoading(ex, ln);
                 }
                 ln++;
             }
@@ -2272,7 +2250,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.io.IOException If encountered.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
-    public Map<WaAS_W5ID, WaAS_W5Record> loadCachedSubset2W5(String type) 
+    public Map<WaAS_W5ID, WaAS_W5Record> loadCachedSubset2W5(String type)
             throws IOException, ClassNotFoundException {
         String m = "loadCachedSubset2W5(" + type + ")";
         env.logStartTag(m);
@@ -2296,7 +2274,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.io.IOException If encountered.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
-    public Map<WaAS_W1ID, WaAS_W1Record> loadCachedSubset2W1(String type) 
+    public Map<WaAS_W1ID, WaAS_W1Record> loadCachedSubset2W1(String type)
             throws IOException, ClassNotFoundException {
         String m = "loadCachedSubset2W1(" + type + ")";
         env.logStartTag(m);
@@ -2325,7 +2303,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.io.IOException If encountered.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
-    public WaAS_W3Data loadW3InS(Set<WaAS_W3ID> s, String type) 
+    public WaAS_W3Data loadW3InS(Set<WaAS_W3ID> s, String type)
             throws FileNotFoundException, IOException, ClassNotFoundException {
         String m = "loadW3InS(Set<WaAS_W3ID>, " + type + ")";
         env.logStartTag(m);
@@ -2369,7 +2347,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         }
                     }
                 } catch (Exception ex) {
-                we.logLineNotLoading(ex, ln);
+                    we.logLineNotLoading(ex, ln);
                 }
                 ln++;
             }
@@ -2390,7 +2368,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.io.IOException If encountered.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
-    public Map<WaAS_W3ID, WaAS_W3Record> loadCachedSubset2W3(String type) 
+    public Map<WaAS_W3ID, WaAS_W3Record> loadCachedSubset2W3(String type)
             throws IOException, ClassNotFoundException {
         String m = "loadCachedSubset2W3(" + type + ")";
         env.logStartTag(m);
@@ -2479,7 +2457,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         }
                     }
                 } catch (Exception ex) {
-                we.logLineNotLoading(ex, ln);
+                    we.logLineNotLoading(ex, ln);
                 }
                 ln++;
             }
@@ -2501,7 +2479,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @return
      * @throws java.io.FileNotFoundException If the input file is not found.
      */
-    protected BufferedReader loadW4Count(WaAS_W4Data r, Path f) 
+    protected BufferedReader loadW4Count(WaAS_W4Data r, Path f)
             throws FileNotFoundException, IOException {
         BufferedReader br = Generic_IO.getBufferedReader(f);
         int count = 0;
@@ -2536,7 +2514,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
         br = Generic_IO.closeAndGetBufferedReader(br, f);
         return br;
     }
-    
+
     /**
      * Load Wave 5 records that are reportedly in Wave 4 (those with CASEW4
      * values).
@@ -2546,7 +2524,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.io.IOException If encountered.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
-    public WaAS_W5Data loadW5InW4() throws FileNotFoundException, IOException, 
+    public WaAS_W5Data loadW5InW4() throws FileNotFoundException, IOException,
             ClassNotFoundException {
         String m = "loadW5InW4";
         env.logStartTag(m);
@@ -2594,7 +2572,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         }
                     }
                 } catch (Exception ex) {
-                we.logLineNotLoading(ex, ln);
+                    we.logLineNotLoading(ex, ln);
                 }
                 ln++;
             }
@@ -2646,7 +2624,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         }
                     }
                 } catch (Exception ex) {
-                we.logLineNotLoading(ex, ln);
+                    we.logLineNotLoading(ex, ln);
                 }
                 ln++;
             }
@@ -2724,7 +2702,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         w1IDs.add(w1ID);
                     }
                 } catch (Exception ex) {
-                we.logLineNotLoading(ex, ln);
+                    we.logLineNotLoading(ex, ln);
                 }
                 ln++;
             }
@@ -2811,7 +2789,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         }
                     }
                 } catch (Exception ex) {
-                we.logLineNotLoading(ex, ln);
+                    we.logLineNotLoading(ex, ln);
                 }
                 ln++;
             }
@@ -2874,7 +2852,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                     }
                     r.all.add(w2ID);
                 } catch (Exception ex) {
-                we.logLineNotLoading(ex, ln);
+                    we.logLineNotLoading(ex, ln);
                 }
                 ln++;
             }
@@ -2895,7 +2873,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.io.IOException If encountered.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
-    public Map<WaAS_W4ID, WaAS_W4Record> loadCachedSubset2W4(String type) 
+    public Map<WaAS_W4ID, WaAS_W4Record> loadCachedSubset2W4(String type)
             throws IOException, ClassNotFoundException {
         String m = "loadCachedSubset2W4(" + type + ")";
         env.logStartTag(m);
@@ -2919,7 +2897,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.io.IOException If encountered.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
-    public Map<WaAS_W2ID, WaAS_W2Record> loadCachedSubset2W2(String type) 
+    public Map<WaAS_W2ID, WaAS_W2Record> loadCachedSubset2W2(String type)
             throws IOException, ClassNotFoundException {
         String m = "loadCachedSubset2W2(" + type + ")";
         env.logStartTag(m);
@@ -2945,7 +2923,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
      * @throws java.io.IOException If encountered.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
-    public WaAS_W4Data loadW4InW3() throws FileNotFoundException, IOException, 
+    public WaAS_W4Data loadW4InW3() throws FileNotFoundException, IOException,
             ClassNotFoundException {
         String m = "loadW4InW3";
         env.logStartTag(m);
@@ -2999,7 +2977,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         }
                     }
                 } catch (Exception ex) {
-                we.logLineNotLoading(ex, ln);
+                    we.logLineNotLoading(ex, ln);
                 }
                 ln++;
             }
@@ -3059,7 +3037,7 @@ public abstract class WaAS_Handler extends WaAS_Object {
                         r.all.add(w1ID);
                     }
                 } catch (Exception ex) {
-                we.logLineNotLoading(ex, ln);
+                    we.logLineNotLoading(ex, ln);
                 }
                 ln++;
             }

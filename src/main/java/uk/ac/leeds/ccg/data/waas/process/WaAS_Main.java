@@ -300,7 +300,6 @@ public class WaAS_Main extends WaAS_Object {
         Set<WaAS_W1ID> w1IDs = new TreeSet<>();
         if (hs != null) {
             w1IDs.addAll(hs.keySet());
-
         }
         we.data.nOC = (int) Math.ceil((double) w1IDs.size() / (double) chunkSize);
         WaAS_DataSubsetW1 sW1 = pH.loadDataSubsetW1(w1IDs);
@@ -319,8 +318,7 @@ public class WaAS_Main extends WaAS_Object {
             String m2 = "Add hhold records";
             we.de.logStartTagMem(m2);
             Set<WaAS_W1ID> s = sW1.c_To_w1.get(cID);
-            int count;
-            count = 0;
+            int count = 0;
             // The following way not using streams works!
             Iterator<WaAS_W1ID> ite = s.iterator();
             while (ite.hasNext()) {
@@ -853,7 +851,6 @@ public class WaAS_Main extends WaAS_Object {
         WaAS_DataSubsetW4 dataSubsetW4 = pH.loadDataSubsetW4(sW3,
                 sW1.w1_To_c, w2_To_w1, w3_To_w2, w4_To_w3);
         dataSubsetW4.cFs.keySet().stream().forEach(cID -> {
-            try {
                 String m1 = "Collection ID " + cID;
                 env.logStartTag(m1);
                 env.log("TotalFreeMemory " + we.getTotalFreeMemory());
@@ -1070,9 +1067,6 @@ public class WaAS_Main extends WaAS_Object {
                 c = null; // Free memory!
                 System.gc();
                 env.logEndTag(m1);
-            } catch (IOException | ClassNotFoundException ex) {
-                Logger.getLogger(WaAS_Main.class.getName()).log(Level.SEVERE, null, ex);
-            }
         });
         env.logEndTag(m0);
         return dataSubsetW4;
@@ -1386,7 +1380,7 @@ public class WaAS_Main extends WaAS_Object {
                 c = null; // Free memory!
                 System.gc();
                 env.logEndTag(m1);
-            } catch (IOException | ClassNotFoundException ex) {
+            } catch (IOException ex) {
                 Logger.getLogger(WaAS_Main.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -1432,7 +1426,7 @@ public class WaAS_Main extends WaAS_Object {
                 we.data.clearCollection(cID);
                 we.data.cacheSubsetCollectionSimple(cID, cs);
                 we.data.clearCollectionSimple(cID);
-            } catch (IOException | ClassNotFoundException ex) {
+            } catch (IOException ex) {
                 Logger.getLogger(WaAS_Main.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

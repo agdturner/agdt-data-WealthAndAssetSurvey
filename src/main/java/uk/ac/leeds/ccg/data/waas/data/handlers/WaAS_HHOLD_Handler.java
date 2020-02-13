@@ -77,8 +77,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     /**
      * Load All Wave 5 records.
      *
-     * @return a Map with keys as CASEW5 and values as
-     * WaAS_Wave5_HHOLD_Records.
+     * @return a Map with keys as CASEW5 and values as WaAS_Wave5_HHOLD_Records.
      * @throws java.io.FileNotFoundException If the input file is not found.
      * @throws java.lang.ClassNotFoundException
      */
@@ -126,8 +125,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     /**
      * Load All Wave 4 records.
      *
-     * @return a Map with keys as CASEW4 and values as
-     * WaAS_Wave4_HHOLD_Records.
+     * @return a Map with keys as CASEW4 and values as WaAS_Wave4_HHOLD_Records.
      * @throws java.io.FileNotFoundException If the input file is not found.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
@@ -175,8 +173,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     /**
      * Load All Wave 3 records.
      *
-     * @return a Map with keys as w3ID and values as
-     * WaAS_Wave3_HHOLD_Records.
+     * @return a Map with keys as w3ID and values as WaAS_Wave3_HHOLD_Records.
      * @throws java.io.FileNotFoundException If the input file is not found.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
@@ -224,8 +221,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     /**
      * Load All Wave 2 records.
      *
-     * @return a Map with keys as CASEW2 and values as
-     * WaAS_Wave2_HHOLD_Records.
+     * @return a Map with keys as CASEW2 and values as WaAS_Wave2_HHOLD_Records.
      * @throws java.io.FileNotFoundException If the input file is not found.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
@@ -273,8 +269,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
     /**
      * Load All Wave 1 records.
      *
-     * @return a Map with keys as CASEW1 and values as
-     * WaAS_Wave1_HHOLD_Records.
+     * @return a Map with keys as CASEW1 and values as WaAS_Wave1_HHOLD_Records.
      * @throws java.io.FileNotFoundException If the input file is not found.
      * @throws java.lang.ClassNotFoundException If encountered.
      */
@@ -375,7 +370,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      */
     protected Path getGeneratedAllFile(byte wave) throws IOException {
         return Paths.get(we.files.getGeneratedWaASDir().toString(), getType()
-                + WaAS_Strings.s_W + wave + WaAS_Strings.s_All 
+                + WaAS_Strings.s_W + wave + WaAS_Strings.s_All
                 + we.files.DOT_DAT);
     }
 
@@ -434,143 +429,123 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
         }
         if (wave == W1) {
             we.data.dataSimple.keySet().stream().forEach(cID -> {
-                try {
-                    Data_Collection c = we.data.getCollection(cID);
-                    c.data.keySet().stream().forEach(i -> {
-                        WaAS_W1ID w1ID = (WaAS_W1ID) i;
-                        if (subset.contains(w1ID)) {
-                            WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
-                            WaAS_W1HRecord w1 = cr.w1Rec.getHr();
-                            Byte GOR = GORSubsetsAndLookups.w1_To_gor.get(w1ID);
-                            Generic_Collections.addToMap(r, GOR, w1ID, w1.getHVALUE());
-                        }
-                    });
-                    we.data.clearCollection(cID);
-                } catch (IOException | ClassNotFoundException ex) {
-                    Logger.getLogger(WaAS_HHOLD_Handler.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                Data_Collection c = we.data.getCollection(cID);
+                c.data.keySet().stream().forEach(i -> {
+                    WaAS_W1ID w1ID = (WaAS_W1ID) i;
+                    if (subset.contains(w1ID)) {
+                        WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
+                        WaAS_W1HRecord w1 = cr.w1Rec.getHr();
+                        Byte GOR = GORSubsetsAndLookups.w1_To_gor.get(w1ID);
+                        Generic_Collections.addToMap(r, GOR, w1ID, w1.getHVALUE());
+                    }
+                });
+                we.data.clearCollection(cID);
             });
         } else if (wave == W2) {
             we.data.getData().keySet().stream().forEach(cID -> {
-                try {
-                    WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
-                    c.data.keySet().stream().forEach(i -> {
-                        WaAS_W1ID w1ID = (WaAS_W1ID) i;
-                        if (subset.contains(w1ID)) {
-                            WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
-                            Map<WaAS_W2ID, WaAS_W2Record> recs = cr.w2Recs;
-                            Iterator<WaAS_W2ID> ite2 = recs.keySet().iterator();
-                            while (ite2.hasNext()) {
-                                WaAS_W2ID w2ID = ite2.next();
-                                Byte GOR = GORSubsetsAndLookups.w2_To_gor.get(w2ID);
-                                WaAS_W2HRecord w2 = recs.get(w2ID).getHr();
-                                Generic_Collections.addToMap(r, GOR, w2ID, w2.getHVALUE());
-                            }
+                WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
+                c.data.keySet().stream().forEach(i -> {
+                    WaAS_W1ID w1ID = (WaAS_W1ID) i;
+                    if (subset.contains(w1ID)) {
+                        WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
+                        Map<WaAS_W2ID, WaAS_W2Record> recs = cr.w2Recs;
+                        Iterator<WaAS_W2ID> ite2 = recs.keySet().iterator();
+                        while (ite2.hasNext()) {
+                            WaAS_W2ID w2ID = ite2.next();
+                            Byte GOR = GORSubsetsAndLookups.w2_To_gor.get(w2ID);
+                            WaAS_W2HRecord w2 = recs.get(w2ID).getHr();
+                            Generic_Collections.addToMap(r, GOR, w2ID, w2.getHVALUE());
                         }
-                    });
-                    we.data.clearCollection((WaAS_CollectionID) cID);
-                } catch (IOException | ClassNotFoundException ex) {
-                    Logger.getLogger(WaAS_HHOLD_Handler.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    }
+                });
+                we.data.clearCollection((WaAS_CollectionID) cID);
             });
         } else if (wave == W3) {
             we.data.getData().keySet().stream().forEach(cID -> {
-                try {
-                    WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
-                    c.data.keySet().stream().forEach(i -> {
-                        WaAS_W1ID w1ID = (WaAS_W1ID) i;
-                        if (subset.contains(w1ID)) {
-                            WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
-                            Map<WaAS_W2ID, Map<WaAS_W3ID, WaAS_W3Record>> recs = cr.w3Recs;
-                            Iterator<WaAS_W2ID> ite1 = recs.keySet().iterator();
-                            while (ite1.hasNext()) {
-                                WaAS_W2ID w2ID = ite1.next();
-                                Map<WaAS_W3ID, WaAS_W3Record> w3_2 = recs.get(w2ID);
-                                Iterator<WaAS_W3ID> ite2 = w3_2.keySet().iterator();
-                                while (ite2.hasNext()) {
-                                    WaAS_W3ID w3ID = ite2.next();
-                                    Byte GOR = GORSubsetsAndLookups.w3_To_gor.get(w3ID);
-                                    WaAS_W3HRecord w3 = w3_2.get(w3ID).getHr();
-                                    Generic_Collections.addToMap(r, GOR, w3ID, w3.getHVALUE());
-                                }
+                WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
+                c.data.keySet().stream().forEach(i -> {
+                    WaAS_W1ID w1ID = (WaAS_W1ID) i;
+                    if (subset.contains(w1ID)) {
+                        WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
+                        Map<WaAS_W2ID, Map<WaAS_W3ID, WaAS_W3Record>> recs = cr.w3Recs;
+                        Iterator<WaAS_W2ID> ite1 = recs.keySet().iterator();
+                        while (ite1.hasNext()) {
+                            WaAS_W2ID w2ID = ite1.next();
+                            Map<WaAS_W3ID, WaAS_W3Record> w3_2 = recs.get(w2ID);
+                            Iterator<WaAS_W3ID> ite2 = w3_2.keySet().iterator();
+                            while (ite2.hasNext()) {
+                                WaAS_W3ID w3ID = ite2.next();
+                                Byte GOR = GORSubsetsAndLookups.w3_To_gor.get(w3ID);
+                                WaAS_W3HRecord w3 = w3_2.get(w3ID).getHr();
+                                Generic_Collections.addToMap(r, GOR, w3ID, w3.getHVALUE());
                             }
                         }
-                    });
-                    we.data.clearCollection((WaAS_CollectionID) cID);
-                } catch (IOException | ClassNotFoundException ex) {
-                    Logger.getLogger(WaAS_HHOLD_Handler.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    }
+                });
+                we.data.clearCollection((WaAS_CollectionID) cID);
             });
         } else if (wave == W4) {
             we.data.getData().keySet().stream().forEach(cID -> {
-                try {
-                    WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
-                    c.data.keySet().stream().forEach(i -> {
-                        WaAS_W1ID w1ID = (WaAS_W1ID) i;
-                        if (subset.contains(w1ID)) {
-                            WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
-                            Map<WaAS_W2ID, Map<WaAS_W3ID, Map<WaAS_W4ID, WaAS_W4Record>>> recs = cr.w4Recs;
-                            Iterator<WaAS_W2ID> ite1 = recs.keySet().iterator();
-                            while (ite1.hasNext()) {
-                                WaAS_W2ID w2ID = ite1.next();
-                                Map<WaAS_W3ID, Map<WaAS_W4ID, WaAS_W4Record>> w4_2 = recs.get(w2ID);
-                                Iterator<WaAS_W3ID> ite2 = w4_2.keySet().iterator();
-                                while (ite2.hasNext()) {
-                                    WaAS_W3ID w3ID = ite2.next();
-                                    Map<WaAS_W4ID, WaAS_W4Record> w4_3 = w4_2.get(w3ID);
-                                    Iterator<WaAS_W4ID> ite3 = w4_3.keySet().iterator();
-                                    while (ite3.hasNext()) {
-                                        WaAS_W4ID w4ID = ite3.next();
-                                        Byte GOR = GORSubsetsAndLookups.w4_To_gor.get(w4ID);
-                                        WaAS_W4HRecord w4 = w4_3.get(w4ID).getHr();
-                                        Generic_Collections.addToMap(r, GOR, w4ID, w4.getHVALUE());
-                                    }
+                WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
+                c.data.keySet().stream().forEach(i -> {
+                    WaAS_W1ID w1ID = (WaAS_W1ID) i;
+                    if (subset.contains(w1ID)) {
+                        WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
+                        Map<WaAS_W2ID, Map<WaAS_W3ID, Map<WaAS_W4ID, WaAS_W4Record>>> recs = cr.w4Recs;
+                        Iterator<WaAS_W2ID> ite1 = recs.keySet().iterator();
+                        while (ite1.hasNext()) {
+                            WaAS_W2ID w2ID = ite1.next();
+                            Map<WaAS_W3ID, Map<WaAS_W4ID, WaAS_W4Record>> w4_2 = recs.get(w2ID);
+                            Iterator<WaAS_W3ID> ite2 = w4_2.keySet().iterator();
+                            while (ite2.hasNext()) {
+                                WaAS_W3ID w3ID = ite2.next();
+                                Map<WaAS_W4ID, WaAS_W4Record> w4_3 = w4_2.get(w3ID);
+                                Iterator<WaAS_W4ID> ite3 = w4_3.keySet().iterator();
+                                while (ite3.hasNext()) {
+                                    WaAS_W4ID w4ID = ite3.next();
+                                    Byte GOR = GORSubsetsAndLookups.w4_To_gor.get(w4ID);
+                                    WaAS_W4HRecord w4 = w4_3.get(w4ID).getHr();
+                                    Generic_Collections.addToMap(r, GOR, w4ID, w4.getHVALUE());
                                 }
                             }
                         }
-                    });
-                    we.data.clearCollection((WaAS_CollectionID) cID);
-                } catch (IOException | ClassNotFoundException ex) {
-                    Logger.getLogger(WaAS_HHOLD_Handler.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    }
+                });
+                we.data.clearCollection((WaAS_CollectionID) cID);
             });
         } else if (wave == W5) {
             we.data.getData().keySet().stream().forEach(cID -> {
-                try {
-                    WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
-                    c.data.keySet().stream().forEach(i -> {
-                        WaAS_W1ID w1ID = (WaAS_W1ID) i;
-                        if (subset.contains(w1ID)) {
-                            WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
-                            Map<WaAS_W2ID, Map<WaAS_W3ID, Map<WaAS_W4ID, Map<WaAS_W5ID, WaAS_W5Record>>>> recs = cr.w5Recs;
-                            Iterator<WaAS_W2ID> ite1 = recs.keySet().iterator();
-                            while (ite1.hasNext()) {
-                                WaAS_W2ID w2ID = ite1.next();
-                                Map<WaAS_W3ID, Map<WaAS_W4ID, Map<WaAS_W5ID, WaAS_W5Record>>> w5_2 = recs.get(w2ID);
-                                Iterator<WaAS_W3ID> ite2 = w5_2.keySet().iterator();
-                                while (ite2.hasNext()) {
-                                    WaAS_W3ID w3ID = ite2.next();
-                                    Map<WaAS_W4ID, Map<WaAS_W5ID, WaAS_W5Record>> w5_3 = w5_2.get(w3ID);
-                                    Iterator<WaAS_W4ID> ite3 = w5_3.keySet().iterator();
-                                    while (ite3.hasNext()) {
-                                        WaAS_W4ID w4ID = ite3.next();
-                                        Map<WaAS_W5ID, WaAS_W5Record> w5_4 = w5_3.get(w4ID);
-                                        Iterator<WaAS_W5ID> ite4 = w5_4.keySet().iterator();
-                                        while (ite4.hasNext()) {
-                                            WaAS_W5ID w5ID = ite4.next();
-                                            Byte GOR = GORSubsetsAndLookups.w5_To_gor.get(w5ID);
-                                            WaAS_W5HRecord w5 = w5_4.get(w5ID).getHr();
-                                            Generic_Collections.addToMap(r, GOR, w5ID, w5.getHVALUE());
-                                        }
+                WaAS_Collection c = we.data.getCollection((WaAS_CollectionID) cID);
+                c.data.keySet().stream().forEach(i -> {
+                    WaAS_W1ID w1ID = (WaAS_W1ID) i;
+                    if (subset.contains(w1ID)) {
+                        WaAS_CombinedRecord cr = (WaAS_CombinedRecord) c.data.get(w1ID);
+                        Map<WaAS_W2ID, Map<WaAS_W3ID, Map<WaAS_W4ID, Map<WaAS_W5ID, WaAS_W5Record>>>> recs = cr.w5Recs;
+                        Iterator<WaAS_W2ID> ite1 = recs.keySet().iterator();
+                        while (ite1.hasNext()) {
+                            WaAS_W2ID w2ID = ite1.next();
+                            Map<WaAS_W3ID, Map<WaAS_W4ID, Map<WaAS_W5ID, WaAS_W5Record>>> w5_2 = recs.get(w2ID);
+                            Iterator<WaAS_W3ID> ite2 = w5_2.keySet().iterator();
+                            while (ite2.hasNext()) {
+                                WaAS_W3ID w3ID = ite2.next();
+                                Map<WaAS_W4ID, Map<WaAS_W5ID, WaAS_W5Record>> w5_3 = w5_2.get(w3ID);
+                                Iterator<WaAS_W4ID> ite3 = w5_3.keySet().iterator();
+                                while (ite3.hasNext()) {
+                                    WaAS_W4ID w4ID = ite3.next();
+                                    Map<WaAS_W5ID, WaAS_W5Record> w5_4 = w5_3.get(w4ID);
+                                    Iterator<WaAS_W5ID> ite4 = w5_4.keySet().iterator();
+                                    while (ite4.hasNext()) {
+                                        WaAS_W5ID w5ID = ite4.next();
+                                        Byte GOR = GORSubsetsAndLookups.w5_To_gor.get(w5ID);
+                                        WaAS_W5HRecord w5 = w5_4.get(w5ID).getHr();
+                                        Generic_Collections.addToMap(r, GOR, w5ID, w5.getHVALUE());
                                     }
                                 }
                             }
                         }
-                    });
-                    we.data.clearCollection((WaAS_CollectionID) cID);
-                } catch (IOException | ClassNotFoundException ex) {
-                    Logger.getLogger(WaAS_HHOLD_Handler.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    }
+                });
+                we.data.clearCollection((WaAS_CollectionID) cID);
             });
         }
         return r;
@@ -803,7 +778,7 @@ public class WaAS_HHOLD_Handler extends WaAS_Handler {
      * @throws java.lang.ClassNotFoundException If encountered.
      */
     public <K> Map<Byte, Double> getChangeVariableAll(String vName,
-            ArrayList<Byte> gors, Map<Byte, String> GORNameLookup) 
+            ArrayList<Byte> gors, Map<Byte, String> GORNameLookup)
             throws FileNotFoundException, IOException, ClassNotFoundException {
         Map<Byte, Double> r = new TreeMap<>();
         Map<WaAS_W1ID, WaAS_W1HRecord> allW1 = loadAllW1();

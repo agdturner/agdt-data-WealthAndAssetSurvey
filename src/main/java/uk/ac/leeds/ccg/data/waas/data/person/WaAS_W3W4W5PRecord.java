@@ -161,6 +161,10 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte CACTVB;
 
+    protected byte CACTVB_I;
+
+    protected boolean CACTVB_IFLAG;
+
     protected byte CAJISA_I;
 
     protected boolean CAJISA_IFLAG;
@@ -173,13 +177,23 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected short CASEW3;
 
+    protected byte CASVB_I;
+
+    protected boolean CASVB_IFLAG;
+
+    protected byte CCAC1;
+
     protected byte CCAC1_I;
 
     protected boolean CCAC1_IFLAG;
 
+    protected byte CCAC2;
+
     protected byte CCAC2_I;
 
     protected boolean CCAC2_IFLAG;
+
+    protected byte CCAC3;
 
     protected byte CCAC3_I;
 
@@ -190,6 +204,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
     protected byte COMMI;
 
     protected byte COUPLENUM;
+
+    protected boolean CURRAC;
 
     protected byte CURSTAT;
 
@@ -222,6 +238,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
     protected int DCAMC1;
 
     protected short DCAMD1;
+
+    protected int DCAMOS1;
 
     protected int DCAMOS1_I;
 
@@ -256,10 +274,6 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
     protected int DCOINV1_I;
 
     protected boolean DCOINV1_IFLAG;
-
-    protected short DCOINV3_I;
-
-    protected byte DCOINV3_IFLAG;
 
     protected short DCOINV4;
 
@@ -315,6 +329,50 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected boolean DHBANY11;
 
+    protected byte DHBEST01_I;
+
+    protected boolean DHBEST01_IFLAG;
+
+    protected byte DHBEST02_I;
+
+    protected boolean DHBEST02_IFLAG;
+
+    protected byte DHBEST03_I;
+
+    protected boolean DHBEST03_IFLAG;
+
+    protected byte DHBEST04_I;
+
+    protected boolean DHBEST04_IFLAG;
+
+    protected byte DHBEST05_I;
+
+    protected boolean DHBEST05_IFLAG;
+
+    protected byte DHBEST06_I;
+
+    protected boolean DHBEST06_IFLAG;
+
+    protected byte DHBEST07_I;
+
+    protected boolean DHBEST07_IFLAG;
+
+    protected byte DHBEST08_I;
+
+    protected boolean DHBEST08_IFLAG;
+
+    protected byte DHBEST09_I;
+
+    protected boolean DHBEST09_IFLAG;
+
+    protected byte DHBEST10_I;
+
+    protected boolean DHBEST10_IFLAG;
+
+    protected byte DHBEST11_I;
+
+    protected boolean DHBEST11_IFLAG;
+
     protected byte DHPBEH1;
 
     protected byte DHPBEH1_I;
@@ -365,7 +423,27 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte DLEST1;
 
+    protected byte DLEST1_I;
+
+    protected boolean DLEST1_IFLAG;
+
+    protected byte DLEST2_I;
+
+    protected boolean DLEST2_IFLAG;
+
+    protected byte DLEST3_I;
+
+    protected boolean DLEST3_IFLAG;
+
+    protected byte DLEST4_I;
+
+    protected boolean DLEST4_IFLAG;
+
     protected byte DLEST5;
+
+    protected byte DLEST5_I;
+
+    protected boolean DLEST5_IFLAG;
 
     protected short DLINS1;
 
@@ -422,8 +500,6 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
     protected short DLWHNY1_I;
 
     protected boolean DLWHNY1_IFLAG;
-
-    protected boolean DLWHY30;
 
     protected boolean DLWHY6;
 
@@ -487,6 +563,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected short DSAMD1;
 
+    protected short DSAMOS1;
+
     protected short DSAMOS1_I;
 
     protected boolean DSAMOS1_IFLAG;
@@ -514,6 +592,24 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
     protected boolean DSLAMT1_IFLAG;
 
     protected byte DSLEST1;
+
+    protected byte DSLEST1_I;
+
+    protected boolean DSLEST1_IFLAG;
+
+    protected byte DSLEST2_I;
+
+    protected boolean DSLEST2_IFLAG;
+
+    protected byte DSLEST3_I;
+
+    protected boolean DSLEST3_IFLAG;
+
+    protected boolean DSLEST4_I;
+
+    protected boolean DSLEST4_IFLAG;
+
+    protected boolean DSLEST5_I;
 
     protected byte DSLPAY1;
 
@@ -567,7 +663,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected short DVCOINV5;
 
-    protected int DVDBINC4;
+    protected double DVDBINC4;
 
     protected short DVDBINC5;
 
@@ -607,6 +703,10 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected int DVGISE;
 
+    protected byte DVGRSBAND_I;
+
+    protected boolean DVGRSBAND_IFLAG;
+
     protected int DVGRSBONAMT;
 
     protected double DVGRSBONAMT_I;
@@ -632,6 +732,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
     protected boolean DVHASLF;
 
     protected boolean DVHASLNAR;
+
+    protected boolean DVHASMO;
 
     protected boolean DVHASMOAR;
 
@@ -686,6 +788,10 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
     protected int DVLUKVAL;
 
     protected int DVLUMPPENANNUAL;
+
+    protected byte DVNETBAND_I;
+
+    protected boolean DVNETBAND_IFLAG;
 
     protected int DVNETBONAMT;
 
@@ -877,7 +983,13 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected boolean FINCV_IFLAG;
 
-    protected byte FINVTY11_I;
+    protected byte FINFVB_I;
+
+    protected boolean FINFVB_IFLAG;
+
+    protected byte FLOANVB_I;
+
+    protected boolean FLOANVB_IFLAG;
 
     protected byte FNDCASH1;
 
@@ -903,6 +1015,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte FWITHD;
 
+    protected byte GOR;
+
     protected byte GROSSPER;
 
     protected byte GRSAMK;
@@ -917,7 +1031,33 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte HAPPY;
 
+    protected boolean HASBOND;
+
+    protected byte HASCC;
+
+    protected boolean HASEMPSH;
+
+    protected boolean HASGILT;
+
+    protected boolean HASISA;
+
+    protected boolean HASLINS;
+
+    protected boolean HASNOFA;
+
+    protected boolean HASNSP;
+
+    protected boolean HASOINV;
+
+    protected boolean HASOTHSH;
+
+    protected byte HASSC;
+
     protected byte HASSHAC;
+
+    protected byte HASSHSAC;
+
+    protected boolean HASUTRUST;
 
     protected double HFINL_SUM;
 
@@ -925,29 +1065,67 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte HHLDR;
 
+    protected double HHPPHYS;
+
     protected byte HIHNUM;
 
     protected int HOUSGDSOST;
 
     protected short HOUT;
 
+    protected boolean HOWNF;
+
     protected short HPARR_SUM;
 
-    protected double HPLFT1;
+    protected short HPLFT1;
 
-    protected byte HPNMN1;
+    protected byte HPMN1;
 
-    protected byte HPNMN2;
-
-    protected byte HPNYR1;
-
-    protected byte HPNYR2;
+    protected byte HPMN2;
 
     protected boolean HPROX;
 
+    protected byte HPYR1;
+
+    protected byte HPYR2;
+
+    protected byte HRPDVAGE;
+
+    protected byte HRPDVAGE9;
+
+    protected byte HRPDVILO3A;
+
+    protected byte HRPDVMRDF;
+
+    protected byte HRPEDATTN1;
+
+    protected byte HRPEDATTN2;
+
+    protected byte HRPEDATTN3;
+
+    protected byte HRPEDLEVEL;
+
+    protected byte HRPEMPSTAT2;
+
+    protected byte HRPETHNIC;
+
+    protected byte HRPIOUT1;
+
+    protected byte HRPNSSEC3;
+
     protected byte HRPPART;
 
+    protected byte HRPPARTIOUT1;
+
+    protected byte HRPSEX;
+
+    protected byte HRP_RESP;
+
     protected byte IFBANKACC;
+
+    protected byte IGFVALB_I;
+
+    protected boolean IGFVALB_IFLAG;
 
     protected boolean IGIFVAL_IFLAG;
 
@@ -971,6 +1149,10 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected boolean IHSE9;
 
+    protected byte ILACB_I;
+
+    protected boolean ILACB_IFLAG;
+
     protected boolean ILACC_IFLAG;
 
     protected byte ILGIFT_I;
@@ -982,6 +1164,10 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
     protected boolean ILIFB_IFLAG;
 
     protected boolean ILIFE_IFLAG;
+
+    protected byte ILINB_I;
+
+    protected boolean ILINB_IFLAG;
 
     protected boolean ILINS_IFLAG;
 
@@ -1005,7 +1191,15 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte ILOAN;
 
+    protected byte ILOTB_I;
+
+    protected boolean ILOTB_IFLAG;
+
     protected boolean ILOTH_IFLAG;
+
+    protected byte ILRDB_I;
+
+    protected boolean ILRDB_IFLAG;
 
     protected boolean ILRED_IFLAG;
 
@@ -1017,11 +1211,19 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected boolean ILUMTY1_IFLAG;
 
+    protected byte ILUPB_I;
+
+    protected boolean ILUPB_IFLAG;
+
     protected int ILUPP_I;
 
     protected boolean ILUPP_IFLAG;
 
     protected boolean ILWIN_IFLAG;
+
+    protected byte ILWNB_I;
+
+    protected boolean ILWNB_IFLAG;
 
     protected byte INCDROP;
 
@@ -1035,6 +1237,18 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte IVALB1;
 
+    protected byte IVALB1_I;
+
+    protected boolean IVALB1_IFLAG;
+
+    protected byte IVALB2_I;
+
+    protected boolean IVALB2_IFLAG;
+
+    protected byte IVALB3_I;
+
+    protected boolean IVALB3_IFLAG;
+
     protected boolean IWAT6;
 
     protected byte JBAWAY_I;
@@ -1045,9 +1259,29 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte KNOWBALANCE;
 
-    protected short LNARR_SUM;
+    protected int LNARR_SUM;
 
-    protected double LNLFT1;
+    protected short LNLFT1;
+
+    protected byte LNMN1;
+
+    protected byte LNMN2;
+
+    protected byte LNMN3;
+
+    protected byte LNMN4;
+
+    protected byte LNMN5;
+
+    protected byte LNYR1;
+
+    protected byte LNYR2;
+
+    protected byte LNYR3;
+
+    protected byte LNYR4;
+
+    protected byte LNYR5;
 
     protected byte LOOKED_I;
 
@@ -1063,7 +1297,19 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected short MOARR_SUM;
 
-    protected double MOLFT1;
+    protected short MOLFT1;
+
+    protected byte MOMN1;
+
+    protected byte MOMN2;
+
+    protected byte MONTHW1;
+
+    protected byte MONTHW2;
+
+    protected byte MOYR1;
+
+    protected byte MOYR2;
 
     protected byte MRECJB;
 
@@ -1109,9 +1355,13 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected int NWFLNVAL1;
 
-    protected int NWFLNVAL2;
+    protected short NWFLNVAL2;
 
     protected short NWFLNVAL3;
+
+    protected short NWFLNVAL4;
+
+    protected short NWFLNVAL5;
 
     protected int NWILNVAL1;
 
@@ -1119,13 +1369,17 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected short NWILNVAL3;
 
+    protected boolean NWILNVAL4;
+
+    protected boolean NWILNVAL5;
+
     protected byte NWLN;
 
     protected byte NWLNNO;
 
     protected byte NWLNNO_I;
 
-    protected byte NWLNNO_IFLAG;
+    protected boolean NWLNNO_IFLAG;
 
     protected byte NWLN_I;
 
@@ -1219,11 +1473,15 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected short OSLBNK3;
 
-    protected int OSLC1;
+    protected double OSLC1;
 
-    protected int OSLC2;
+    protected double OSLC2;
 
     protected short OSLC3;
+
+    protected short OSLC4;
+
+    protected boolean OSLC5;
 
     protected byte OTHASCH;
 
@@ -1236,6 +1494,10 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
     protected boolean OTHSRC4_I;
 
     protected boolean OTHSRC4_IFLAG;
+
+    protected boolean OTHSRC5_I;
+
+    protected boolean OTHSRC5_IFLAG;
 
     protected boolean OTRUST15;
 
@@ -1301,7 +1563,15 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte PAVCVB1;
 
+    protected byte PAVCVB1_I;
+
+    protected boolean PAVCVB1_IFLAG;
+
     protected byte PAVCVB2;
+
+    protected byte PAVCVB2_I;
+
+    protected boolean PAVCVB2_IFLAG;
 
     protected byte PAVDOC1;
 
@@ -1327,7 +1597,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte PBFRAC2_I;
 
-    protected boolean PBFRAC2_IFLAG;
+    protected byte PBFRAC2_IFLAG;
 
     protected int PBINCA1;
 
@@ -1343,7 +1613,15 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte PBLMVB1;
 
+    protected byte PBLMVB1_I;
+
+    protected boolean PBLMVB1_IFLAG;
+
     protected byte PBLMVB2;
+
+    protected byte PBLMVB2_I;
+
+    protected boolean PBLMVB2_IFLAG;
 
     protected int PBLUMV1;
 
@@ -1413,7 +1691,15 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte PDCVB1;
 
+    protected byte PDCVB1_I;
+
+    protected boolean PDCVB1_IFLAG;
+
     protected byte PDCVB2;
+
+    protected byte PDCVB2_I;
+
+    protected boolean PDCVB2_IFLAG;
 
     protected boolean PENFLAG;
 
@@ -1437,7 +1723,11 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte PERSONW3;
 
+    protected int PERSPHYS;
+
     protected byte PESAME;
+
+    protected double PEVAL;
 
     protected byte PFANEH1;
 
@@ -1503,25 +1793,25 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected double PFCURV2_I;
 
-    protected byte PFCURV2_IFLAG;
+    protected boolean PFCURV2_IFLAG;
 
     protected int PFCURV3;
 
     protected double PFCURV3_I;
 
-    protected byte PFCURV3_IFLAG;
+    protected boolean PFCURV3_IFLAG;
 
     protected int PFCURV4;
 
-    protected int PFCURV4_I;
+    protected double PFCURV4_I;
 
-    protected byte PFCURV4_IFLAG;
+    protected boolean PFCURV4_IFLAG;
 
     protected int PFCURV5;
 
     protected double PFCURV5_I;
 
-    protected byte PFCURV5_IFLAG;
+    protected boolean PFCURV5_IFLAG;
 
     protected int PFCURV6;
 
@@ -1531,15 +1821,39 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte PFCUVB1;
 
+    protected byte PFCUVB1_I;
+
+    protected boolean PFCUVB1_IFLAG;
+
     protected byte PFCUVB2;
+
+    protected byte PFCUVB2_I;
+
+    protected boolean PFCUVB2_IFLAG;
 
     protected byte PFCUVB3;
 
+    protected byte PFCUVB3_I;
+
+    protected boolean PFCUVB3_IFLAG;
+
     protected byte PFCUVB4;
+
+    protected byte PFCUVB4_I;
+
+    protected boolean PFCUVB4_IFLAG;
 
     protected byte PFCUVB5;
 
+    protected byte PFCUVB5_I;
+
+    protected boolean PFCUVB5_IFLAG;
+
     protected boolean PFCUVB6;
+
+    protected byte PFCUVB6_I;
+
+    protected boolean PFCUVB6_IFLAG;
 
     protected int PFDDV1;
 
@@ -1551,23 +1865,55 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected int PFDDV2_I;
 
-    protected byte PFDDV2_IFLAG;
+    protected boolean PFDDV2_IFLAG;
 
     protected int PFDDV3;
 
     protected int PFDDV3_I;
 
-    protected byte PFDDV3_IFLAG;
+    protected boolean PFDDV3_IFLAG;
 
     protected int PFDDV4_I;
 
-    protected byte PFDDV4_IFLAG;
+    protected boolean PFDDV4_IFLAG;
+
+    protected short PFDDV5_I;
+
+    protected boolean PFDDV5_IFLAG;
+
+    protected int PFDDV6_I;
+
+    protected boolean PFDDV6_IFLAG;
 
     protected byte PFDDVB1;
 
+    protected byte PFDDVB1_I;
+
+    protected boolean PFDDVB1_IFLAG;
+
     protected byte PFDDVB2;
 
+    protected byte PFDDVB2_I;
+
+    protected boolean PFDDVB2_IFLAG;
+
     protected byte PFDDVB3;
+
+    protected byte PFDDVB3_I;
+
+    protected boolean PFDDVB3_IFLAG;
+
+    protected byte PFDDVB4_I;
+
+    protected boolean PFDDVB4_IFLAG;
+
+    protected boolean PFDDVB5_I;
+
+    protected boolean PFDDVB5_IFLAG;
+
+    protected boolean PFDDVB6_I;
+
+    protected boolean PFDDVB6_IFLAG;
 
     protected byte PFDOCS1;
 
@@ -1591,11 +1937,23 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte PFDRAW2_I;
 
-    protected byte PFDRAW2_IFLAG;
+    protected boolean PFDRAW2_IFLAG;
 
     protected byte PFDRAW3_I;
 
-    protected byte PFDRAW3_IFLAG;
+    protected boolean PFDRAW3_IFLAG;
+
+    protected byte PFDRAW4_I;
+
+    protected boolean PFDRAW4_IFLAG;
+
+    protected byte PFDRAW5_I;
+
+    protected boolean PFDRAW5_IFLAG;
+
+    protected boolean PFDRAW6_I;
+
+    protected boolean PFDRAW6_IFLAG;
 
     protected short PFDRINC1;
 
@@ -1655,7 +2013,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected double PFINCA4;
 
-    protected short PFINCA4_I;
+    protected double PFINCA4_I;
 
     protected boolean PFINCA4_IFLAG;
 
@@ -1741,9 +2099,25 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte PFLMVB1;
 
+    protected byte PFLMVB1_I;
+
+    protected boolean PFLMVB1_IFLAG;
+
     protected byte PFLMVB2;
 
+    protected byte PFLMVB2_I;
+
+    protected boolean PFLMVB2_IFLAG;
+
     protected byte PFLMVB3;
+
+    protected byte PFLMVB3_I;
+
+    protected boolean PFLMVB3_IFLAG;
+
+    protected byte PFLMVB4_I;
+
+    protected boolean PFLMVB4_IFLAG;
 
     protected byte PFLUM1;
 
@@ -1755,31 +2129,31 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte PFLUM2_I;
 
-    protected byte PFLUM2_IFLAG;
+    protected boolean PFLUM2_IFLAG;
 
     protected byte PFLUM3;
 
     protected byte PFLUM3_I;
 
-    protected byte PFLUM3_IFLAG;
+    protected boolean PFLUM3_IFLAG;
 
     protected byte PFLUM4;
 
     protected byte PFLUM4_I;
 
-    protected byte PFLUM4_IFLAG;
+    protected boolean PFLUM4_IFLAG;
 
     protected byte PFLUM5;
 
-    protected boolean PFLUM5_I;
+    protected byte PFLUM5_I;
 
-    protected byte PFLUM5_IFLAG;
+    protected boolean PFLUM5_IFLAG;
 
     protected byte PFLUM6;
 
     protected boolean PFLUM6_I;
 
-    protected byte PFLUM6_IFLAG;
+    protected boolean PFLUM6_IFLAG;
 
     protected byte PFLUMALL1;
 
@@ -1791,19 +2165,19 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte PFLUMALL2_I;
 
-    protected byte PFLUMALL2_IFLAG;
+    protected boolean PFLUMALL2_IFLAG;
 
     protected byte PFLUMALL3;
 
     protected byte PFLUMALL3_I;
 
-    protected byte PFLUMALL3_IFLAG;
+    protected boolean PFLUMALL3_IFLAG;
 
     protected byte PFLUMALL4;
 
     protected byte PFLUMALL4_I;
 
-    protected byte PFLUMALL4_IFLAG;
+    protected boolean PFLUMALL4_IFLAG;
 
     protected int PFLUMV1;
 
@@ -1819,13 +2193,13 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected int PFLUMV3;
 
-    protected int PFLUMV3_I;
+    protected double PFLUMV3_I;
 
     protected boolean PFLUMV3_IFLAG;
 
     protected int PFLUMV4;
 
-    protected int PFLUMV4_I;
+    protected double PFLUMV4_I;
 
     protected boolean PFLUMV4_IFLAG;
 
@@ -1833,7 +2207,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected int PFLUMV5_I;
 
-    protected byte PFLUMV5_IFLAG;
+    protected boolean PFLUMV5_IFLAG;
 
     protected int PFLUMV6;
 
@@ -1843,15 +2217,39 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte PFLUVB1;
 
+    protected byte PFLUVB1_I;
+
+    protected boolean PFLUVB1_IFLAG;
+
     protected byte PFLUVB2;
+
+    protected byte PFLUVB2_I;
+
+    protected boolean PFLUVB2_IFLAG;
 
     protected byte PFLUVB3;
 
+    protected byte PFLUVB3_I;
+
+    protected boolean PFLUVB3_IFLAG;
+
     protected byte PFLUVB4;
+
+    protected byte PFLUVB4_I;
+
+    protected boolean PFLUVB4_IFLAG;
 
     protected byte PFLUVB5;
 
+    protected byte PFLUVB5_I;
+
+    protected boolean PFLUVB5_IFLAG;
+
     protected boolean PFLUVB6;
+
+    protected byte PFLUVB6_I;
+
+    protected boolean PFLUVB6_IFLAG;
 
     protected byte PFNEW;
 
@@ -1893,13 +2291,13 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte PFOCTY5_I;
 
-    protected byte PFOCTY5_IFLAG;
+    protected boolean PFOCTY5_IFLAG;
 
     protected byte PFOCTY6;
 
     protected byte PFOCTY6_I;
 
-    protected byte PFOCTY6_IFLAG;
+    protected boolean PFOCTY6_IFLAG;
 
     protected byte PFREC1;
 
@@ -1947,19 +2345,19 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte PFREM2_I;
 
-    protected byte PFREM2_IFLAG;
+    protected boolean PFREM2_IFLAG;
 
     protected byte PFREM3;
 
     protected byte PFREM3_I;
 
-    protected byte PFREM3_IFLAG;
+    protected boolean PFREM3_IFLAG;
 
     protected byte PFREM4;
 
     protected byte PFREM4_I;
 
-    protected byte PFREM4_IFLAG;
+    protected boolean PFREM4_IFLAG;
 
     protected byte PFSTAT1;
 
@@ -2033,6 +2431,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected boolean PFTYP6_IFLAG;
 
+    protected double PHVAL;
+
     protected boolean PHYSBUYLGDST;
 
     protected boolean PHYSHOUSGDSOST;
@@ -2044,6 +2444,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
     protected byte PMORTC2;
 
     protected byte PMORTC3;
+
+    protected double PMVAL;
 
     protected byte PNOWK;
 
@@ -2232,6 +2634,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
     protected boolean POLMV2_IFLAG;
 
     protected byte POLMVB1;
+
+    protected byte POLMVB1_I;
+
+    protected boolean POLMVB1_IFLAG;
+
+    protected byte POLMVB2_I;
+
+    protected boolean POLMVB2_IFLAG;
 
     protected byte POLSYR1;
 
@@ -2463,9 +2873,21 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected boolean PPLMVB1;
 
+    protected byte PPLMVB1_I;
+
+    protected boolean PPLMVB1_IFLAG;
+
     protected boolean PPLMVB2;
 
+    protected byte PPLMVB2_I;
+
+    protected boolean PPLMVB2_IFLAG;
+
     protected boolean PPLMVB3;
+
+    protected boolean PPLMVB3_I;
+
+    protected boolean PPLMVB3_IFLAG;
 
     protected int PPLSTA1;
 
@@ -2567,7 +2989,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected double PPVAL2_I;
 
-    protected byte PPVAL2_IFLAG;
+    protected boolean PPVAL2_IFLAG;
 
     protected int PPVAL3;
 
@@ -2577,9 +2999,21 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte PPVALB1;
 
+    protected byte PPVALB1_I;
+
+    protected boolean PPVALB1_IFLAG;
+
     protected byte PPVALB2;
 
+    protected byte PPVALB2_I;
+
+    protected boolean PPVALB2_IFLAG;
+
     protected byte PPVALB3;
+
+    protected byte PPVALB3_I;
+
+    protected boolean PPVALB3_IFLAG;
 
     protected byte PPVINT1;
 
@@ -2647,6 +3081,18 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected int PWLUVAL;
 
+    protected double P_NET_FIN;
+
+    protected double P_NET_MAIN;
+
+    protected int P_NET_OTHPROP;
+
+    protected double P_NET_PROP;
+
+    protected double P_PHYS;
+
+    protected double P_TOTWLTH;
+
     protected byte R01;
 
     protected byte R02;
@@ -2689,19 +3135,23 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected double RETFRAC;
 
+    protected byte RF;
+
     protected byte RNYDAY;
 
     protected byte RPFCRET1;
 
     protected byte RPFCRET2;
 
-    protected boolean RPFCRET3;
+    protected byte RPFCRET3;
 
     protected boolean RPFCRET4;
 
     protected boolean RPFCRET5;
 
     protected boolean RPFCRET6;
+
+    protected byte RS;
 
     protected byte SAMEJOB1;
 
@@ -2721,15 +3171,23 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte SATIS;
 
+    protected boolean SAVDEP;
+
     protected byte SAVNUM;
+
+    protected byte SCAC1;
 
     protected byte SCAC1_I;
 
     protected boolean SCAC1_IFLAG;
 
+    protected byte SCAC2;
+
     protected byte SCAC2_I;
 
     protected boolean SCAC2_IFLAG;
+
+    protected byte SCAC3;
 
     protected byte SCAC3_I;
 
@@ -2843,9 +3301,9 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected double TOPDVDBOPEN2T;
 
-    protected short TOTARR_EXCMORT_SUM;
+    protected int TOTARR_EXCMORT_SUM;
 
-    protected short TOTBILLARR_SUM;
+    protected int TOTBILLARR_SUM;
 
     protected int TOTCC_SUM;
 
@@ -2867,7 +3325,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected int TOTOSLBNK_SUM;
 
-    protected int TOTOSLC_SUM;
+    protected double TOTOSLC_SUM;
 
     protected int TOTPARTGRSPAY;
 
@@ -2875,7 +3333,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected int TOTSLBNK_SUM;
 
-    protected int TOTSLC_SUM;
+    protected double TOTSLC_SUM;
 
     protected byte TRUST;
 
@@ -2911,13 +3369,37 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte UDEBTBLU;
 
+    protected byte UDEBTBLU_I;
+
+    protected boolean UDEBTBLU_IFLAG;
+
+    protected byte UDEBTBL_I;
+
+    protected boolean UDEBTBL_IFLAG;
+
     protected byte UDEBTBO;
 
     protected byte UDEBTBOR;
 
+    protected byte UDEBTBOR_I;
+
+    protected boolean UDEBTBOR_IFLAG;
+
     protected byte UDEBTBOS;
 
+    protected byte UDEBTBOS_I;
+
+    protected boolean UDEBTBOS_IFLAG;
+
+    protected byte UDEBTBO_I;
+
+    protected boolean UDEBTBO_IFLAG;
+
     protected byte UDEBTBS;
+
+    protected byte UDEBTBS_I;
+
+    protected boolean UDEBTBS_IFLAG;
 
     protected int UDEBTL;
 
@@ -3015,13 +3497,37 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected byte UVALBLU;
 
+    protected byte UVALBLU_I;
+
+    protected boolean UVALBLU_IFLAG;
+
+    protected byte UVALBL_I;
+
+    protected boolean UVALBL_IFLAG;
+
     protected byte UVALBO;
 
     protected byte UVALBOR;
 
+    protected byte UVALBOR_I;
+
+    protected boolean UVALBOR_IFLAG;
+
     protected byte UVALBOS;
 
+    protected byte UVALBOS_I;
+
+    protected boolean UVALBOS_IFLAG;
+
+    protected byte UVALBO_I;
+
+    protected boolean UVALBO_IFLAG;
+
     protected byte UVALBS;
+
+    protected byte UVALBS_I;
+
+    protected boolean UVALBS_IFLAG;
 
     protected int UVALL;
 
@@ -3082,6 +3588,10 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
     protected byte XMARSTA_I;
 
     protected boolean XMARSTA_IFLAG;
+
+    protected short YEARW1;
+
+    protected short YEARW2;
 
     protected final void initACCFRAC1(String s) {
         if (!s.trim().isEmpty()) {
@@ -3674,6 +4184,21 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initCACTVB_I(String s) {
+        if (!s.trim().isEmpty()) {
+            CACTVB_I = Byte.parseByte(s);
+        } else {
+            CACTVB_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initCACTVB_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            CACTVB_IFLAG = false;
+        }
+    }
+
     protected final void initCAJISA_I(String s) {
         if (!s.trim().isEmpty()) {
             CAJISA_I = Byte.parseByte(s);
@@ -3721,6 +4246,29 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initCASVB_I(String s) {
+        if (!s.trim().isEmpty()) {
+            CASVB_I = Byte.parseByte(s);
+        } else {
+            CASVB_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initCASVB_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            CASVB_IFLAG = false;
+        }
+    }
+
+    protected final void initCCAC1(String s) {
+        if (!s.trim().isEmpty()) {
+            CCAC1 = Byte.parseByte(s);
+        } else {
+            CCAC1 = Byte.MIN_VALUE;
+        }
+    }
+
     protected final void initCCAC1_I(String s) {
         if (!s.trim().isEmpty()) {
             CCAC1_I = Byte.parseByte(s);
@@ -3736,6 +4284,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initCCAC2(String s) {
+        if (!s.trim().isEmpty()) {
+            CCAC2 = Byte.parseByte(s);
+        } else {
+            CCAC2 = Byte.MIN_VALUE;
+        }
+    }
+
     protected final void initCCAC2_I(String s) {
         if (!s.trim().isEmpty()) {
             CCAC2_I = Byte.parseByte(s);
@@ -3748,6 +4304,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
             CCAC2_IFLAG = false;
+        }
+    }
+
+    protected final void initCCAC3(String s) {
+        if (!s.trim().isEmpty()) {
+            CCAC3 = Byte.parseByte(s);
+        } else {
+            CCAC3 = Byte.MIN_VALUE;
         }
     }
 
@@ -3787,6 +4351,13 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
             COUPLENUM = Byte.parseByte(s);
         } else {
             COUPLENUM = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initCURRAC(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            CURRAC = false;
         }
     }
 
@@ -3914,6 +4485,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
             DCAMD1 = Short.parseShort(s);
         } else {
             DCAMD1 = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initDCAMOS1(String s) {
+        if (!s.trim().isEmpty()) {
+            DCAMOS1 = Integer.parseInt(s);
+        } else {
+            DCAMOS1 = Integer.MIN_VALUE;
         }
     }
 
@@ -4046,22 +4625,6 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
             DCOINV1_IFLAG = false;
-        }
-    }
-
-    protected final void initDCOINV3_I(String s) {
-        if (!s.trim().isEmpty()) {
-            DCOINV3_I = Short.parseShort(s);
-        } else {
-            DCOINV3_I = Short.MIN_VALUE;
-        }
-    }
-
-    protected final void initDCOINV3_IFLAG(String s) {
-        if (!s.trim().isEmpty()) {
-            DCOINV3_IFLAG = Byte.parseByte(s);
-        } else {
-            DCOINV3_IFLAG = Byte.MIN_VALUE;
         }
     }
 
@@ -4266,6 +4829,171 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initDHBEST01_I(String s) {
+        if (!s.trim().isEmpty()) {
+            DHBEST01_I = Byte.parseByte(s);
+        } else {
+            DHBEST01_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDHBEST01_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DHBEST01_IFLAG = false;
+        }
+    }
+
+    protected final void initDHBEST02_I(String s) {
+        if (!s.trim().isEmpty()) {
+            DHBEST02_I = Byte.parseByte(s);
+        } else {
+            DHBEST02_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDHBEST02_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DHBEST02_IFLAG = false;
+        }
+    }
+
+    protected final void initDHBEST03_I(String s) {
+        if (!s.trim().isEmpty()) {
+            DHBEST03_I = Byte.parseByte(s);
+        } else {
+            DHBEST03_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDHBEST03_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DHBEST03_IFLAG = false;
+        }
+    }
+
+    protected final void initDHBEST04_I(String s) {
+        if (!s.trim().isEmpty()) {
+            DHBEST04_I = Byte.parseByte(s);
+        } else {
+            DHBEST04_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDHBEST04_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DHBEST04_IFLAG = false;
+        }
+    }
+
+    protected final void initDHBEST05_I(String s) {
+        if (!s.trim().isEmpty()) {
+            DHBEST05_I = Byte.parseByte(s);
+        } else {
+            DHBEST05_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDHBEST05_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DHBEST05_IFLAG = false;
+        }
+    }
+
+    protected final void initDHBEST06_I(String s) {
+        if (!s.trim().isEmpty()) {
+            DHBEST06_I = Byte.parseByte(s);
+        } else {
+            DHBEST06_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDHBEST06_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DHBEST06_IFLAG = false;
+        }
+    }
+
+    protected final void initDHBEST07_I(String s) {
+        if (!s.trim().isEmpty()) {
+            DHBEST07_I = Byte.parseByte(s);
+        } else {
+            DHBEST07_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDHBEST07_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DHBEST07_IFLAG = false;
+        }
+    }
+
+    protected final void initDHBEST08_I(String s) {
+        if (!s.trim().isEmpty()) {
+            DHBEST08_I = Byte.parseByte(s);
+        } else {
+            DHBEST08_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDHBEST08_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DHBEST08_IFLAG = false;
+        }
+    }
+
+    protected final void initDHBEST09_I(String s) {
+        if (!s.trim().isEmpty()) {
+            DHBEST09_I = Byte.parseByte(s);
+        } else {
+            DHBEST09_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDHBEST09_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DHBEST09_IFLAG = false;
+        }
+    }
+
+    protected final void initDHBEST10_I(String s) {
+        if (!s.trim().isEmpty()) {
+            DHBEST10_I = Byte.parseByte(s);
+        } else {
+            DHBEST10_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDHBEST10_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DHBEST10_IFLAG = false;
+        }
+    }
+
+    protected final void initDHBEST11_I(String s) {
+        if (!s.trim().isEmpty()) {
+            DHBEST11_I = Byte.parseByte(s);
+        } else {
+            DHBEST11_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDHBEST11_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DHBEST11_IFLAG = false;
+        }
+    }
+
     protected final void initDHPBEH1(String s) {
         if (!s.trim().isEmpty()) {
             DHPBEH1 = Byte.parseByte(s);
@@ -4459,11 +5187,86 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initDLEST1_I(String s) {
+        if (!s.trim().isEmpty()) {
+            DLEST1_I = Byte.parseByte(s);
+        } else {
+            DLEST1_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDLEST1_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DLEST1_IFLAG = false;
+        }
+    }
+
+    protected final void initDLEST2_I(String s) {
+        if (!s.trim().isEmpty()) {
+            DLEST2_I = Byte.parseByte(s);
+        } else {
+            DLEST2_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDLEST2_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DLEST2_IFLAG = false;
+        }
+    }
+
+    protected final void initDLEST3_I(String s) {
+        if (!s.trim().isEmpty()) {
+            DLEST3_I = Byte.parseByte(s);
+        } else {
+            DLEST3_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDLEST3_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DLEST3_IFLAG = false;
+        }
+    }
+
+    protected final void initDLEST4_I(String s) {
+        if (!s.trim().isEmpty()) {
+            DLEST4_I = Byte.parseByte(s);
+        } else {
+            DLEST4_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDLEST4_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DLEST4_IFLAG = false;
+        }
+    }
+
     protected final void initDLEST5(String s) {
         if (!s.trim().isEmpty()) {
             DLEST5 = Byte.parseByte(s);
         } else {
             DLEST5 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDLEST5_I(String s) {
+        if (!s.trim().isEmpty()) {
+            DLEST5_I = Byte.parseByte(s);
+        } else {
+            DLEST5_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDLEST5_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DLEST5_IFLAG = false;
         }
     }
 
@@ -4682,13 +5485,6 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
             DLWHNY1_IFLAG = false;
-        }
-    }
-
-    protected final void initDLWHY30(String s) {
-        if (!s.trim().isEmpty()) {
-            byte b = Byte.parseByte(s);
-            DLWHY30 = false;
         }
     }
 
@@ -4932,6 +5728,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initDSAMOS1(String s) {
+        if (!s.trim().isEmpty()) {
+            DSAMOS1 = Short.parseShort(s);
+        } else {
+            DSAMOS1 = Short.MIN_VALUE;
+        }
+    }
+
     protected final void initDSAMOS1_I(String s) {
         if (!s.trim().isEmpty()) {
             DSAMOS1_I = Short.parseShort(s);
@@ -5037,6 +5841,72 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
             DSLEST1 = Byte.parseByte(s);
         } else {
             DSLEST1 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDSLEST1_I(String s) {
+        if (!s.trim().isEmpty()) {
+            DSLEST1_I = Byte.parseByte(s);
+        } else {
+            DSLEST1_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDSLEST1_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DSLEST1_IFLAG = false;
+        }
+    }
+
+    protected final void initDSLEST2_I(String s) {
+        if (!s.trim().isEmpty()) {
+            DSLEST2_I = Byte.parseByte(s);
+        } else {
+            DSLEST2_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDSLEST2_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DSLEST2_IFLAG = false;
+        }
+    }
+
+    protected final void initDSLEST3_I(String s) {
+        if (!s.trim().isEmpty()) {
+            DSLEST3_I = Byte.parseByte(s);
+        } else {
+            DSLEST3_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDSLEST3_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DSLEST3_IFLAG = false;
+        }
+    }
+
+    protected final void initDSLEST4_I(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DSLEST4_I = false;
+        }
+    }
+
+    protected final void initDSLEST4_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DSLEST4_IFLAG = false;
+        }
+    }
+
+    protected final void initDSLEST5_I(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DSLEST5_I = false;
         }
     }
 
@@ -5247,9 +6117,9 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initDVDBINC4(String s) {
         if (!s.trim().isEmpty()) {
-            DVDBINC4 = Integer.parseInt(s);
+            DVDBINC4 = Double.parseDouble(s);
         } else {
-            DVDBINC4 = Integer.MIN_VALUE;
+            DVDBINC4 = Double.NaN;
         }
     }
 
@@ -5405,6 +6275,21 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initDVGRSBAND_I(String s) {
+        if (!s.trim().isEmpty()) {
+            DVGRSBAND_I = Byte.parseByte(s);
+        } else {
+            DVGRSBAND_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVGRSBAND_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DVGRSBAND_IFLAG = false;
+        }
+    }
+
     protected final void initDVGRSBONAMT(String s) {
         if (!s.trim().isEmpty()) {
             DVGRSBONAMT = Integer.parseInt(s);
@@ -5501,6 +6386,13 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
             DVHASLNAR = false;
+        }
+    }
+
+    protected final void initDVHASMO(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DVHASMO = false;
         }
     }
 
@@ -5705,6 +6597,21 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
             DVLUMPPENANNUAL = Integer.parseInt(s);
         } else {
             DVLUMPPENANNUAL = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVNETBAND_I(String s) {
+        if (!s.trim().isEmpty()) {
+            DVNETBAND_I = Byte.parseByte(s);
+        } else {
+            DVNETBAND_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVNETBAND_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            DVNETBAND_IFLAG = false;
         }
     }
 
@@ -6449,11 +7356,33 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
-    protected final void initFINVTY11_I(String s) {
+    protected final void initFINFVB_I(String s) {
         if (!s.trim().isEmpty()) {
-            FINVTY11_I = Byte.parseByte(s);
+            FINFVB_I = Byte.parseByte(s);
         } else {
-            FINVTY11_I = Byte.MIN_VALUE;
+            FINFVB_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initFINFVB_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            FINFVB_IFLAG = false;
+        }
+    }
+
+    protected final void initFLOANVB_I(String s) {
+        if (!s.trim().isEmpty()) {
+            FLOANVB_I = Byte.parseByte(s);
+        } else {
+            FLOANVB_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initFLOANVB_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            FLOANVB_IFLAG = false;
         }
     }
 
@@ -6551,6 +7480,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initGOR(String s) {
+        if (!s.trim().isEmpty()) {
+            GOR = Byte.parseByte(s);
+        } else {
+            GOR = Byte.MIN_VALUE;
+        }
+    }
+
     protected final void initGROSSPER(String s) {
         if (!s.trim().isEmpty()) {
             GROSSPER = Byte.parseByte(s);
@@ -6607,11 +7544,105 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initHASBOND(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            HASBOND = false;
+        }
+    }
+
+    protected final void initHASCC(String s) {
+        if (!s.trim().isEmpty()) {
+            HASCC = Byte.parseByte(s);
+        } else {
+            HASCC = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHASEMPSH(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            HASEMPSH = false;
+        }
+    }
+
+    protected final void initHASGILT(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            HASGILT = false;
+        }
+    }
+
+    protected final void initHASISA(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            HASISA = false;
+        }
+    }
+
+    protected final void initHASLINS(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            HASLINS = false;
+        }
+    }
+
+    protected final void initHASNOFA(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            HASNOFA = false;
+        }
+    }
+
+    protected final void initHASNSP(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            HASNSP = false;
+        }
+    }
+
+    protected final void initHASOINV(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            HASOINV = false;
+        }
+    }
+
+    protected final void initHASOTHSH(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            HASOTHSH = false;
+        }
+    }
+
+    protected final void initHASSC(String s) {
+        if (!s.trim().isEmpty()) {
+            HASSC = Byte.parseByte(s);
+        } else {
+            HASSC = Byte.MIN_VALUE;
+        }
+    }
+
     protected final void initHASSHAC(String s) {
         if (!s.trim().isEmpty()) {
             HASSHAC = Byte.parseByte(s);
         } else {
             HASSHAC = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHASSHSAC(String s) {
+        if (!s.trim().isEmpty()) {
+            HASSHSAC = Byte.parseByte(s);
+        } else {
+            HASSHSAC = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHASUTRUST(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            HASUTRUST = false;
         }
     }
 
@@ -6639,6 +7670,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initHHPPHYS(String s) {
+        if (!s.trim().isEmpty()) {
+            HHPPHYS = Double.parseDouble(s);
+        } else {
+            HHPPHYS = Double.NaN;
+        }
+    }
+
     protected final void initHIHNUM(String s) {
         if (!s.trim().isEmpty()) {
             HIHNUM = Byte.parseByte(s);
@@ -6663,6 +7702,13 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initHOWNF(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            HOWNF = false;
+        }
+    }
+
     protected final void initHPARR_SUM(String s) {
         if (!s.trim().isEmpty()) {
             HPARR_SUM = Short.parseShort(s);
@@ -6673,41 +7719,25 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initHPLFT1(String s) {
         if (!s.trim().isEmpty()) {
-            HPLFT1 = Double.parseDouble(s);
+            HPLFT1 = Short.parseShort(s);
         } else {
-            HPLFT1 = Double.NaN;
+            HPLFT1 = Short.MIN_VALUE;
         }
     }
 
-    protected final void initHPNMN1(String s) {
+    protected final void initHPMN1(String s) {
         if (!s.trim().isEmpty()) {
-            HPNMN1 = Byte.parseByte(s);
+            HPMN1 = Byte.parseByte(s);
         } else {
-            HPNMN1 = Byte.MIN_VALUE;
+            HPMN1 = Byte.MIN_VALUE;
         }
     }
 
-    protected final void initHPNMN2(String s) {
+    protected final void initHPMN2(String s) {
         if (!s.trim().isEmpty()) {
-            HPNMN2 = Byte.parseByte(s);
+            HPMN2 = Byte.parseByte(s);
         } else {
-            HPNMN2 = Byte.MIN_VALUE;
-        }
-    }
-
-    protected final void initHPNYR1(String s) {
-        if (!s.trim().isEmpty()) {
-            HPNYR1 = Byte.parseByte(s);
-        } else {
-            HPNYR1 = Byte.MIN_VALUE;
-        }
-    }
-
-    protected final void initHPNYR2(String s) {
-        if (!s.trim().isEmpty()) {
-            HPNYR2 = Byte.parseByte(s);
-        } else {
-            HPNYR2 = Byte.MIN_VALUE;
+            HPMN2 = Byte.MIN_VALUE;
         }
     }
 
@@ -6715,6 +7745,118 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
             HPROX = false;
+        }
+    }
+
+    protected final void initHPYR1(String s) {
+        if (!s.trim().isEmpty()) {
+            HPYR1 = Byte.parseByte(s);
+        } else {
+            HPYR1 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHPYR2(String s) {
+        if (!s.trim().isEmpty()) {
+            HPYR2 = Byte.parseByte(s);
+        } else {
+            HPYR2 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHRPDVAGE(String s) {
+        if (!s.trim().isEmpty()) {
+            HRPDVAGE = Byte.parseByte(s);
+        } else {
+            HRPDVAGE = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHRPDVAGE9(String s) {
+        if (!s.trim().isEmpty()) {
+            HRPDVAGE9 = Byte.parseByte(s);
+        } else {
+            HRPDVAGE9 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHRPDVILO3A(String s) {
+        if (!s.trim().isEmpty()) {
+            HRPDVILO3A = Byte.parseByte(s);
+        } else {
+            HRPDVILO3A = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHRPDVMRDF(String s) {
+        if (!s.trim().isEmpty()) {
+            HRPDVMRDF = Byte.parseByte(s);
+        } else {
+            HRPDVMRDF = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHRPEDATTN1(String s) {
+        if (!s.trim().isEmpty()) {
+            HRPEDATTN1 = Byte.parseByte(s);
+        } else {
+            HRPEDATTN1 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHRPEDATTN2(String s) {
+        if (!s.trim().isEmpty()) {
+            HRPEDATTN2 = Byte.parseByte(s);
+        } else {
+            HRPEDATTN2 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHRPEDATTN3(String s) {
+        if (!s.trim().isEmpty()) {
+            HRPEDATTN3 = Byte.parseByte(s);
+        } else {
+            HRPEDATTN3 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHRPEDLEVEL(String s) {
+        if (!s.trim().isEmpty()) {
+            HRPEDLEVEL = Byte.parseByte(s);
+        } else {
+            HRPEDLEVEL = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHRPEMPSTAT2(String s) {
+        if (!s.trim().isEmpty()) {
+            HRPEMPSTAT2 = Byte.parseByte(s);
+        } else {
+            HRPEMPSTAT2 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHRPETHNIC(String s) {
+        if (!s.trim().isEmpty()) {
+            HRPETHNIC = Byte.parseByte(s);
+        } else {
+            HRPETHNIC = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHRPIOUT1(String s) {
+        if (!s.trim().isEmpty()) {
+            HRPIOUT1 = Byte.parseByte(s);
+        } else {
+            HRPIOUT1 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHRPNSSEC3(String s) {
+        if (!s.trim().isEmpty()) {
+            HRPNSSEC3 = Byte.parseByte(s);
+        } else {
+            HRPNSSEC3 = Byte.MIN_VALUE;
         }
     }
 
@@ -6726,11 +7868,50 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initHRPPARTIOUT1(String s) {
+        if (!s.trim().isEmpty()) {
+            HRPPARTIOUT1 = Byte.parseByte(s);
+        } else {
+            HRPPARTIOUT1 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHRPSEX(String s) {
+        if (!s.trim().isEmpty()) {
+            HRPSEX = Byte.parseByte(s);
+        } else {
+            HRPSEX = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHRP_RESP(String s) {
+        if (!s.trim().isEmpty()) {
+            HRP_RESP = Byte.parseByte(s);
+        } else {
+            HRP_RESP = Byte.MIN_VALUE;
+        }
+    }
+
     protected final void initIFBANKACC(String s) {
         if (!s.trim().isEmpty()) {
             IFBANKACC = Byte.parseByte(s);
         } else {
             IFBANKACC = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initIGFVALB_I(String s) {
+        if (!s.trim().isEmpty()) {
+            IGFVALB_I = Byte.parseByte(s);
+        } else {
+            IGFVALB_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initIGFVALB_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            IGFVALB_IFLAG = false;
         }
     }
 
@@ -6813,6 +7994,21 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initILACB_I(String s) {
+        if (!s.trim().isEmpty()) {
+            ILACB_I = Byte.parseByte(s);
+        } else {
+            ILACB_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initILACB_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            ILACB_IFLAG = false;
+        }
+    }
+
     protected final void initILACC_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
@@ -6854,6 +8050,21 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
             ILIFE_IFLAG = false;
+        }
+    }
+
+    protected final void initILINB_I(String s) {
+        if (!s.trim().isEmpty()) {
+            ILINB_I = Byte.parseByte(s);
+        } else {
+            ILINB_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initILINB_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            ILINB_IFLAG = false;
         }
     }
 
@@ -6944,10 +8155,40 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initILOTB_I(String s) {
+        if (!s.trim().isEmpty()) {
+            ILOTB_I = Byte.parseByte(s);
+        } else {
+            ILOTB_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initILOTB_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            ILOTB_IFLAG = false;
+        }
+    }
+
     protected final void initILOTH_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
             ILOTH_IFLAG = false;
+        }
+    }
+
+    protected final void initILRDB_I(String s) {
+        if (!s.trim().isEmpty()) {
+            ILRDB_I = Byte.parseByte(s);
+        } else {
+            ILRDB_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initILRDB_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            ILRDB_IFLAG = false;
         }
     }
 
@@ -6988,6 +8229,21 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initILUPB_I(String s) {
+        if (!s.trim().isEmpty()) {
+            ILUPB_I = Byte.parseByte(s);
+        } else {
+            ILUPB_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initILUPB_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            ILUPB_IFLAG = false;
+        }
+    }
+
     protected final void initILUPP_I(String s) {
         if (!s.trim().isEmpty()) {
             ILUPP_I = Integer.parseInt(s);
@@ -7007,6 +8263,21 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
             ILWIN_IFLAG = false;
+        }
+    }
+
+    protected final void initILWNB_I(String s) {
+        if (!s.trim().isEmpty()) {
+            ILWNB_I = Byte.parseByte(s);
+        } else {
+            ILWNB_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initILWNB_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            ILWNB_IFLAG = false;
         }
     }
 
@@ -7055,6 +8326,51 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initIVALB1_I(String s) {
+        if (!s.trim().isEmpty()) {
+            IVALB1_I = Byte.parseByte(s);
+        } else {
+            IVALB1_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initIVALB1_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            IVALB1_IFLAG = false;
+        }
+    }
+
+    protected final void initIVALB2_I(String s) {
+        if (!s.trim().isEmpty()) {
+            IVALB2_I = Byte.parseByte(s);
+        } else {
+            IVALB2_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initIVALB2_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            IVALB2_IFLAG = false;
+        }
+    }
+
+    protected final void initIVALB3_I(String s) {
+        if (!s.trim().isEmpty()) {
+            IVALB3_I = Byte.parseByte(s);
+        } else {
+            IVALB3_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initIVALB3_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            IVALB3_IFLAG = false;
+        }
+    }
+
     protected final void initIWAT6(String s) {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
@@ -7095,17 +8411,97 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initLNARR_SUM(String s) {
         if (!s.trim().isEmpty()) {
-            LNARR_SUM = Short.parseShort(s);
+            LNARR_SUM = Integer.parseInt(s);
         } else {
-            LNARR_SUM = Short.MIN_VALUE;
+            LNARR_SUM = Integer.MIN_VALUE;
         }
     }
 
     protected final void initLNLFT1(String s) {
         if (!s.trim().isEmpty()) {
-            LNLFT1 = Double.parseDouble(s);
+            LNLFT1 = Short.parseShort(s);
         } else {
-            LNLFT1 = Double.NaN;
+            LNLFT1 = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initLNMN1(String s) {
+        if (!s.trim().isEmpty()) {
+            LNMN1 = Byte.parseByte(s);
+        } else {
+            LNMN1 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initLNMN2(String s) {
+        if (!s.trim().isEmpty()) {
+            LNMN2 = Byte.parseByte(s);
+        } else {
+            LNMN2 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initLNMN3(String s) {
+        if (!s.trim().isEmpty()) {
+            LNMN3 = Byte.parseByte(s);
+        } else {
+            LNMN3 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initLNMN4(String s) {
+        if (!s.trim().isEmpty()) {
+            LNMN4 = Byte.parseByte(s);
+        } else {
+            LNMN4 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initLNMN5(String s) {
+        if (!s.trim().isEmpty()) {
+            LNMN5 = Byte.parseByte(s);
+        } else {
+            LNMN5 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initLNYR1(String s) {
+        if (!s.trim().isEmpty()) {
+            LNYR1 = Byte.parseByte(s);
+        } else {
+            LNYR1 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initLNYR2(String s) {
+        if (!s.trim().isEmpty()) {
+            LNYR2 = Byte.parseByte(s);
+        } else {
+            LNYR2 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initLNYR3(String s) {
+        if (!s.trim().isEmpty()) {
+            LNYR3 = Byte.parseByte(s);
+        } else {
+            LNYR3 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initLNYR4(String s) {
+        if (!s.trim().isEmpty()) {
+            LNYR4 = Byte.parseByte(s);
+        } else {
+            LNYR4 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initLNYR5(String s) {
+        if (!s.trim().isEmpty()) {
+            LNYR5 = Byte.parseByte(s);
+        } else {
+            LNYR5 = Byte.MIN_VALUE;
         }
     }
 
@@ -7165,9 +8561,57 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initMOLFT1(String s) {
         if (!s.trim().isEmpty()) {
-            MOLFT1 = Double.parseDouble(s);
+            MOLFT1 = Short.parseShort(s);
         } else {
-            MOLFT1 = Double.NaN;
+            MOLFT1 = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initMOMN1(String s) {
+        if (!s.trim().isEmpty()) {
+            MOMN1 = Byte.parseByte(s);
+        } else {
+            MOMN1 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initMOMN2(String s) {
+        if (!s.trim().isEmpty()) {
+            MOMN2 = Byte.parseByte(s);
+        } else {
+            MOMN2 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initMONTHW1(String s) {
+        if (!s.trim().isEmpty()) {
+            MONTHW1 = Byte.parseByte(s);
+        } else {
+            MONTHW1 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initMONTHW2(String s) {
+        if (!s.trim().isEmpty()) {
+            MONTHW2 = Byte.parseByte(s);
+        } else {
+            MONTHW2 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initMOYR1(String s) {
+        if (!s.trim().isEmpty()) {
+            MOYR1 = Byte.parseByte(s);
+        } else {
+            MOYR1 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initMOYR2(String s) {
+        if (!s.trim().isEmpty()) {
+            MOYR2 = Byte.parseByte(s);
+        } else {
+            MOYR2 = Byte.MIN_VALUE;
         }
     }
 
@@ -7347,9 +8791,9 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initNWFLNVAL2(String s) {
         if (!s.trim().isEmpty()) {
-            NWFLNVAL2 = Integer.parseInt(s);
+            NWFLNVAL2 = Short.parseShort(s);
         } else {
-            NWFLNVAL2 = Integer.MIN_VALUE;
+            NWFLNVAL2 = Short.MIN_VALUE;
         }
     }
 
@@ -7358,6 +8802,22 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
             NWFLNVAL3 = Short.parseShort(s);
         } else {
             NWFLNVAL3 = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initNWFLNVAL4(String s) {
+        if (!s.trim().isEmpty()) {
+            NWFLNVAL4 = Short.parseShort(s);
+        } else {
+            NWFLNVAL4 = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initNWFLNVAL5(String s) {
+        if (!s.trim().isEmpty()) {
+            NWFLNVAL5 = Short.parseShort(s);
+        } else {
+            NWFLNVAL5 = Short.MIN_VALUE;
         }
     }
 
@@ -7382,6 +8842,20 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
             NWILNVAL3 = Short.parseShort(s);
         } else {
             NWILNVAL3 = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initNWILNVAL4(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            NWILNVAL4 = false;
+        }
+    }
+
+    protected final void initNWILNVAL5(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            NWILNVAL5 = false;
         }
     }
 
@@ -7411,9 +8885,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initNWLNNO_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            NWLNNO_IFLAG = Byte.parseByte(s);
-        } else {
-            NWLNNO_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            NWLNNO_IFLAG = false;
         }
     }
 
@@ -7778,17 +9251,17 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initOSLC1(String s) {
         if (!s.trim().isEmpty()) {
-            OSLC1 = Integer.parseInt(s);
+            OSLC1 = Double.parseDouble(s);
         } else {
-            OSLC1 = Integer.MIN_VALUE;
+            OSLC1 = Double.NaN;
         }
     }
 
     protected final void initOSLC2(String s) {
         if (!s.trim().isEmpty()) {
-            OSLC2 = Integer.parseInt(s);
+            OSLC2 = Double.parseDouble(s);
         } else {
-            OSLC2 = Integer.MIN_VALUE;
+            OSLC2 = Double.NaN;
         }
     }
 
@@ -7797,6 +9270,21 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
             OSLC3 = Short.parseShort(s);
         } else {
             OSLC3 = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initOSLC4(String s) {
+        if (!s.trim().isEmpty()) {
+            OSLC4 = Short.parseShort(s);
+        } else {
+            OSLC4 = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initOSLC5(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            OSLC5 = false;
         }
     }
 
@@ -7843,6 +9331,20 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
             OTHSRC4_IFLAG = false;
+        }
+    }
+
+    protected final void initOTHSRC5_I(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            OTHSRC5_I = false;
+        }
+    }
+
+    protected final void initOTHSRC5_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            OTHSRC5_IFLAG = false;
         }
     }
 
@@ -8096,11 +9598,41 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initPAVCVB1_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PAVCVB1_I = Byte.parseByte(s);
+        } else {
+            PAVCVB1_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPAVCVB1_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PAVCVB1_IFLAG = false;
+        }
+    }
+
     protected final void initPAVCVB2(String s) {
         if (!s.trim().isEmpty()) {
             PAVCVB2 = Byte.parseByte(s);
         } else {
             PAVCVB2 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPAVCVB2_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PAVCVB2_I = Byte.parseByte(s);
+        } else {
+            PAVCVB2_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPAVCVB2_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PAVCVB2_IFLAG = false;
         }
     }
 
@@ -8199,8 +9731,9 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPBFRAC2_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            byte b = Byte.parseByte(s);
-            PBFRAC2_IFLAG = false;
+            PBFRAC2_IFLAG = Byte.parseByte(s);
+        } else {
+            PBFRAC2_IFLAG = Byte.MIN_VALUE;
         }
     }
 
@@ -8260,11 +9793,41 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initPBLMVB1_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PBLMVB1_I = Byte.parseByte(s);
+        } else {
+            PBLMVB1_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPBLMVB1_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PBLMVB1_IFLAG = false;
+        }
+    }
+
     protected final void initPBLMVB2(String s) {
         if (!s.trim().isEmpty()) {
             PBLMVB2 = Byte.parseByte(s);
         } else {
             PBLMVB2 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPBLMVB2_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PBLMVB2_I = Byte.parseByte(s);
+        } else {
+            PBLMVB2_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPBLMVB2_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PBLMVB2_IFLAG = false;
         }
     }
 
@@ -8533,11 +10096,41 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initPDCVB1_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PDCVB1_I = Byte.parseByte(s);
+        } else {
+            PDCVB1_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPDCVB1_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PDCVB1_IFLAG = false;
+        }
+    }
+
     protected final void initPDCVB2(String s) {
         if (!s.trim().isEmpty()) {
             PDCVB2 = Byte.parseByte(s);
         } else {
             PDCVB2 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPDCVB2_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PDCVB2_I = Byte.parseByte(s);
+        } else {
+            PDCVB2_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPDCVB2_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PDCVB2_IFLAG = false;
         }
     }
 
@@ -8628,11 +10221,27 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initPERSPHYS(String s) {
+        if (!s.trim().isEmpty()) {
+            PERSPHYS = Integer.parseInt(s);
+        } else {
+            PERSPHYS = Integer.MIN_VALUE;
+        }
+    }
+
     protected final void initPESAME(String s) {
         if (!s.trim().isEmpty()) {
             PESAME = Byte.parseByte(s);
         } else {
             PESAME = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPEVAL(String s) {
+        if (!s.trim().isEmpty()) {
+            PEVAL = Double.parseDouble(s);
+        } else {
+            PEVAL = Double.NaN;
         }
     }
 
@@ -8884,9 +10493,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFCURV2_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFCURV2_IFLAG = Byte.parseByte(s);
-        } else {
-            PFCURV2_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            PFCURV2_IFLAG = false;
         }
     }
 
@@ -8908,9 +10516,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFCURV3_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFCURV3_IFLAG = Byte.parseByte(s);
-        } else {
-            PFCURV3_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            PFCURV3_IFLAG = false;
         }
     }
 
@@ -8924,17 +10531,16 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFCURV4_I(String s) {
         if (!s.trim().isEmpty()) {
-            PFCURV4_I = Integer.parseInt(s);
+            PFCURV4_I = Double.parseDouble(s);
         } else {
-            PFCURV4_I = Integer.MIN_VALUE;
+            PFCURV4_I = Double.NaN;
         }
     }
 
     protected final void initPFCURV4_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFCURV4_IFLAG = Byte.parseByte(s);
-        } else {
-            PFCURV4_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            PFCURV4_IFLAG = false;
         }
     }
 
@@ -8956,9 +10562,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFCURV5_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFCURV5_IFLAG = Byte.parseByte(s);
-        } else {
-            PFCURV5_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            PFCURV5_IFLAG = false;
         }
     }
 
@@ -8993,11 +10598,41 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initPFCUVB1_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFCUVB1_I = Byte.parseByte(s);
+        } else {
+            PFCUVB1_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFCUVB1_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFCUVB1_IFLAG = false;
+        }
+    }
+
     protected final void initPFCUVB2(String s) {
         if (!s.trim().isEmpty()) {
             PFCUVB2 = Byte.parseByte(s);
         } else {
             PFCUVB2 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFCUVB2_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFCUVB2_I = Byte.parseByte(s);
+        } else {
+            PFCUVB2_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFCUVB2_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFCUVB2_IFLAG = false;
         }
     }
 
@@ -9009,11 +10644,41 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initPFCUVB3_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFCUVB3_I = Byte.parseByte(s);
+        } else {
+            PFCUVB3_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFCUVB3_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFCUVB3_IFLAG = false;
+        }
+    }
+
     protected final void initPFCUVB4(String s) {
         if (!s.trim().isEmpty()) {
             PFCUVB4 = Byte.parseByte(s);
         } else {
             PFCUVB4 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFCUVB4_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFCUVB4_I = Byte.parseByte(s);
+        } else {
+            PFCUVB4_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFCUVB4_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFCUVB4_IFLAG = false;
         }
     }
 
@@ -9025,10 +10690,40 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initPFCUVB5_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFCUVB5_I = Byte.parseByte(s);
+        } else {
+            PFCUVB5_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFCUVB5_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFCUVB5_IFLAG = false;
+        }
+    }
+
     protected final void initPFCUVB6(String s) {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
             PFCUVB6 = false;
+        }
+    }
+
+    protected final void initPFCUVB6_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFCUVB6_I = Byte.parseByte(s);
+        } else {
+            PFCUVB6_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFCUVB6_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFCUVB6_IFLAG = false;
         }
     }
 
@@ -9073,9 +10768,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFDDV2_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFDDV2_IFLAG = Byte.parseByte(s);
-        } else {
-            PFDDV2_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            PFDDV2_IFLAG = false;
         }
     }
 
@@ -9097,9 +10791,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFDDV3_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFDDV3_IFLAG = Byte.parseByte(s);
-        } else {
-            PFDDV3_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            PFDDV3_IFLAG = false;
         }
     }
 
@@ -9113,9 +10806,38 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFDDV4_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFDDV4_IFLAG = Byte.parseByte(s);
+            byte b = Byte.parseByte(s);
+            PFDDV4_IFLAG = false;
+        }
+    }
+
+    protected final void initPFDDV5_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFDDV5_I = Short.parseShort(s);
         } else {
-            PFDDV4_IFLAG = Byte.MIN_VALUE;
+            PFDDV5_I = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFDDV5_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFDDV5_IFLAG = false;
+        }
+    }
+
+    protected final void initPFDDV6_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFDDV6_I = Integer.parseInt(s);
+        } else {
+            PFDDV6_I = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFDDV6_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFDDV6_IFLAG = false;
         }
     }
 
@@ -9127,6 +10849,21 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initPFDDVB1_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFDDVB1_I = Byte.parseByte(s);
+        } else {
+            PFDDVB1_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFDDVB1_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFDDVB1_IFLAG = false;
+        }
+    }
+
     protected final void initPFDDVB2(String s) {
         if (!s.trim().isEmpty()) {
             PFDDVB2 = Byte.parseByte(s);
@@ -9135,11 +10872,84 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initPFDDVB2_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFDDVB2_I = Byte.parseByte(s);
+        } else {
+            PFDDVB2_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFDDVB2_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFDDVB2_IFLAG = false;
+        }
+    }
+
     protected final void initPFDDVB3(String s) {
         if (!s.trim().isEmpty()) {
             PFDDVB3 = Byte.parseByte(s);
         } else {
             PFDDVB3 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFDDVB3_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFDDVB3_I = Byte.parseByte(s);
+        } else {
+            PFDDVB3_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFDDVB3_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFDDVB3_IFLAG = false;
+        }
+    }
+
+    protected final void initPFDDVB4_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFDDVB4_I = Byte.parseByte(s);
+        } else {
+            PFDDVB4_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFDDVB4_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFDDVB4_IFLAG = false;
+        }
+    }
+
+    protected final void initPFDDVB5_I(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFDDVB5_I = false;
+        }
+    }
+
+    protected final void initPFDDVB5_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFDDVB5_IFLAG = false;
+        }
+    }
+
+    protected final void initPFDDVB6_I(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFDDVB6_I = false;
+        }
+    }
+
+    protected final void initPFDDVB6_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFDDVB6_IFLAG = false;
         }
     }
 
@@ -9232,9 +11042,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFDRAW2_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFDRAW2_IFLAG = Byte.parseByte(s);
-        } else {
-            PFDRAW2_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            PFDRAW2_IFLAG = false;
         }
     }
 
@@ -9248,9 +11057,52 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFDRAW3_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFDRAW3_IFLAG = Byte.parseByte(s);
+            byte b = Byte.parseByte(s);
+            PFDRAW3_IFLAG = false;
+        }
+    }
+
+    protected final void initPFDRAW4_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFDRAW4_I = Byte.parseByte(s);
         } else {
-            PFDRAW3_IFLAG = Byte.MIN_VALUE;
+            PFDRAW4_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFDRAW4_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFDRAW4_IFLAG = false;
+        }
+    }
+
+    protected final void initPFDRAW5_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFDRAW5_I = Byte.parseByte(s);
+        } else {
+            PFDRAW5_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFDRAW5_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFDRAW5_IFLAG = false;
+        }
+    }
+
+    protected final void initPFDRAW6_I(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFDRAW6_I = false;
+        }
+    }
+
+    protected final void initPFDRAW6_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFDRAW6_IFLAG = false;
         }
     }
 
@@ -9482,9 +11334,9 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFINCA4_I(String s) {
         if (!s.trim().isEmpty()) {
-            PFINCA4_I = Short.parseShort(s);
+            PFINCA4_I = Double.parseDouble(s);
         } else {
-            PFINCA4_I = Short.MIN_VALUE;
+            PFINCA4_I = Double.NaN;
         }
     }
 
@@ -9811,6 +11663,21 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initPFLMVB1_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFLMVB1_I = Byte.parseByte(s);
+        } else {
+            PFLMVB1_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFLMVB1_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFLMVB1_IFLAG = false;
+        }
+    }
+
     protected final void initPFLMVB2(String s) {
         if (!s.trim().isEmpty()) {
             PFLMVB2 = Byte.parseByte(s);
@@ -9819,11 +11686,56 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initPFLMVB2_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFLMVB2_I = Byte.parseByte(s);
+        } else {
+            PFLMVB2_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFLMVB2_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFLMVB2_IFLAG = false;
+        }
+    }
+
     protected final void initPFLMVB3(String s) {
         if (!s.trim().isEmpty()) {
             PFLMVB3 = Byte.parseByte(s);
         } else {
             PFLMVB3 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFLMVB3_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFLMVB3_I = Byte.parseByte(s);
+        } else {
+            PFLMVB3_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFLMVB3_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFLMVB3_IFLAG = false;
+        }
+    }
+
+    protected final void initPFLMVB4_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFLMVB4_I = Byte.parseByte(s);
+        } else {
+            PFLMVB4_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFLMVB4_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFLMVB4_IFLAG = false;
         }
     }
 
@@ -9868,9 +11780,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFLUM2_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFLUM2_IFLAG = Byte.parseByte(s);
-        } else {
-            PFLUM2_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            PFLUM2_IFLAG = false;
         }
     }
 
@@ -9892,9 +11803,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFLUM3_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFLUM3_IFLAG = Byte.parseByte(s);
-        } else {
-            PFLUM3_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            PFLUM3_IFLAG = false;
         }
     }
 
@@ -9916,9 +11826,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFLUM4_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFLUM4_IFLAG = Byte.parseByte(s);
-        } else {
-            PFLUM4_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            PFLUM4_IFLAG = false;
         }
     }
 
@@ -9932,16 +11841,16 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFLUM5_I(String s) {
         if (!s.trim().isEmpty()) {
-            byte b = Byte.parseByte(s);
-            PFLUM5_I = false;
+            PFLUM5_I = Byte.parseByte(s);
+        } else {
+            PFLUM5_I = Byte.MIN_VALUE;
         }
     }
 
     protected final void initPFLUM5_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFLUM5_IFLAG = Byte.parseByte(s);
-        } else {
-            PFLUM5_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            PFLUM5_IFLAG = false;
         }
     }
 
@@ -9962,9 +11871,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFLUM6_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFLUM6_IFLAG = Byte.parseByte(s);
-        } else {
-            PFLUM6_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            PFLUM6_IFLAG = false;
         }
     }
 
@@ -10009,9 +11917,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFLUMALL2_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFLUMALL2_IFLAG = Byte.parseByte(s);
-        } else {
-            PFLUMALL2_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            PFLUMALL2_IFLAG = false;
         }
     }
 
@@ -10033,9 +11940,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFLUMALL3_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFLUMALL3_IFLAG = Byte.parseByte(s);
-        } else {
-            PFLUMALL3_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            PFLUMALL3_IFLAG = false;
         }
     }
 
@@ -10057,9 +11963,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFLUMALL4_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFLUMALL4_IFLAG = Byte.parseByte(s);
-        } else {
-            PFLUMALL4_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            PFLUMALL4_IFLAG = false;
         }
     }
 
@@ -10119,9 +12024,9 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFLUMV3_I(String s) {
         if (!s.trim().isEmpty()) {
-            PFLUMV3_I = Integer.parseInt(s);
+            PFLUMV3_I = Double.parseDouble(s);
         } else {
-            PFLUMV3_I = Integer.MIN_VALUE;
+            PFLUMV3_I = Double.NaN;
         }
     }
 
@@ -10142,9 +12047,9 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFLUMV4_I(String s) {
         if (!s.trim().isEmpty()) {
-            PFLUMV4_I = Integer.parseInt(s);
+            PFLUMV4_I = Double.parseDouble(s);
         } else {
-            PFLUMV4_I = Integer.MIN_VALUE;
+            PFLUMV4_I = Double.NaN;
         }
     }
 
@@ -10173,9 +12078,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFLUMV5_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFLUMV5_IFLAG = Byte.parseByte(s);
-        } else {
-            PFLUMV5_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            PFLUMV5_IFLAG = false;
         }
     }
 
@@ -10210,11 +12114,41 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initPFLUVB1_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFLUVB1_I = Byte.parseByte(s);
+        } else {
+            PFLUVB1_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFLUVB1_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFLUVB1_IFLAG = false;
+        }
+    }
+
     protected final void initPFLUVB2(String s) {
         if (!s.trim().isEmpty()) {
             PFLUVB2 = Byte.parseByte(s);
         } else {
             PFLUVB2 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFLUVB2_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFLUVB2_I = Byte.parseByte(s);
+        } else {
+            PFLUVB2_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFLUVB2_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFLUVB2_IFLAG = false;
         }
     }
 
@@ -10226,11 +12160,41 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initPFLUVB3_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFLUVB3_I = Byte.parseByte(s);
+        } else {
+            PFLUVB3_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFLUVB3_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFLUVB3_IFLAG = false;
+        }
+    }
+
     protected final void initPFLUVB4(String s) {
         if (!s.trim().isEmpty()) {
             PFLUVB4 = Byte.parseByte(s);
         } else {
             PFLUVB4 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFLUVB4_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFLUVB4_I = Byte.parseByte(s);
+        } else {
+            PFLUVB4_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFLUVB4_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFLUVB4_IFLAG = false;
         }
     }
 
@@ -10242,10 +12206,40 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initPFLUVB5_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFLUVB5_I = Byte.parseByte(s);
+        } else {
+            PFLUVB5_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFLUVB5_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFLUVB5_IFLAG = false;
+        }
+    }
+
     protected final void initPFLUVB6(String s) {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
             PFLUVB6 = false;
+        }
+    }
+
+    protected final void initPFLUVB6_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PFLUVB6_I = Byte.parseByte(s);
+        } else {
+            PFLUVB6_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPFLUVB6_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PFLUVB6_IFLAG = false;
         }
     }
 
@@ -10405,9 +12399,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFOCTY5_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFOCTY5_IFLAG = Byte.parseByte(s);
-        } else {
-            PFOCTY5_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            PFOCTY5_IFLAG = false;
         }
     }
 
@@ -10429,9 +12422,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFOCTY6_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFOCTY6_IFLAG = Byte.parseByte(s);
-        } else {
-            PFOCTY6_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            PFOCTY6_IFLAG = false;
         }
     }
 
@@ -10614,9 +12606,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFREM2_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFREM2_IFLAG = Byte.parseByte(s);
-        } else {
-            PFREM2_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            PFREM2_IFLAG = false;
         }
     }
 
@@ -10638,9 +12629,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFREM3_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFREM3_IFLAG = Byte.parseByte(s);
-        } else {
-            PFREM3_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            PFREM3_IFLAG = false;
         }
     }
 
@@ -10662,9 +12652,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPFREM4_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFREM4_IFLAG = Byte.parseByte(s);
-        } else {
-            PFREM4_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            PFREM4_IFLAG = false;
         }
     }
 
@@ -10950,6 +12939,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initPHVAL(String s) {
+        if (!s.trim().isEmpty()) {
+            PHVAL = Double.parseDouble(s);
+        } else {
+            PHVAL = Double.NaN;
+        }
+    }
+
     protected final void initPHYSBUYLGDST(String s) {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
@@ -10992,6 +12989,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
             PMORTC3 = Byte.parseByte(s);
         } else {
             PMORTC3 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPMVAL(String s) {
+        if (!s.trim().isEmpty()) {
+            PMVAL = Double.parseDouble(s);
+        } else {
+            PMVAL = Double.NaN;
         }
     }
 
@@ -11721,6 +13726,36 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
             POLMVB1 = Byte.parseByte(s);
         } else {
             POLMVB1 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPOLMVB1_I(String s) {
+        if (!s.trim().isEmpty()) {
+            POLMVB1_I = Byte.parseByte(s);
+        } else {
+            POLMVB1_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPOLMVB1_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            POLMVB1_IFLAG = false;
+        }
+    }
+
+    protected final void initPOLMVB2_I(String s) {
+        if (!s.trim().isEmpty()) {
+            POLMVB2_I = Byte.parseByte(s);
+        } else {
+            POLMVB2_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPOLMVB2_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            POLMVB2_IFLAG = false;
         }
     }
 
@@ -12621,6 +14656,21 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initPPLMVB1_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PPLMVB1_I = Byte.parseByte(s);
+        } else {
+            PPLMVB1_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPPLMVB1_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PPLMVB1_IFLAG = false;
+        }
+    }
+
     protected final void initPPLMVB2(String s) {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
@@ -12628,10 +14678,39 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initPPLMVB2_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PPLMVB2_I = Byte.parseByte(s);
+        } else {
+            PPLMVB2_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPPLMVB2_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PPLMVB2_IFLAG = false;
+        }
+    }
+
     protected final void initPPLMVB3(String s) {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
             PPLMVB3 = false;
+        }
+    }
+
+    protected final void initPPLMVB3_I(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PPLMVB3_I = false;
+        }
+    }
+
+    protected final void initPPLMVB3_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PPLMVB3_IFLAG = false;
         }
     }
 
@@ -13033,9 +15112,8 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initPPVAL2_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PPVAL2_IFLAG = Byte.parseByte(s);
-        } else {
-            PPVAL2_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            PPVAL2_IFLAG = false;
         }
     }
 
@@ -13070,6 +15148,21 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initPPVALB1_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PPVALB1_I = Byte.parseByte(s);
+        } else {
+            PPVALB1_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPPVALB1_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PPVALB1_IFLAG = false;
+        }
+    }
+
     protected final void initPPVALB2(String s) {
         if (!s.trim().isEmpty()) {
             PPVALB2 = Byte.parseByte(s);
@@ -13078,11 +15171,41 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initPPVALB2_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PPVALB2_I = Byte.parseByte(s);
+        } else {
+            PPVALB2_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPPVALB2_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PPVALB2_IFLAG = false;
+        }
+    }
+
     protected final void initPPVALB3(String s) {
         if (!s.trim().isEmpty()) {
             PPVALB3 = Byte.parseByte(s);
         } else {
             PPVALB3 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPPVALB3_I(String s) {
+        if (!s.trim().isEmpty()) {
+            PPVALB3_I = Byte.parseByte(s);
+        } else {
+            PPVALB3_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initPPVALB3_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            PPVALB3_IFLAG = false;
         }
     }
 
@@ -13343,6 +15466,54 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initP_NET_FIN(String s) {
+        if (!s.trim().isEmpty()) {
+            P_NET_FIN = Double.parseDouble(s);
+        } else {
+            P_NET_FIN = Double.NaN;
+        }
+    }
+
+    protected final void initP_NET_MAIN(String s) {
+        if (!s.trim().isEmpty()) {
+            P_NET_MAIN = Double.parseDouble(s);
+        } else {
+            P_NET_MAIN = Double.NaN;
+        }
+    }
+
+    protected final void initP_NET_OTHPROP(String s) {
+        if (!s.trim().isEmpty()) {
+            P_NET_OTHPROP = Integer.parseInt(s);
+        } else {
+            P_NET_OTHPROP = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initP_NET_PROP(String s) {
+        if (!s.trim().isEmpty()) {
+            P_NET_PROP = Double.parseDouble(s);
+        } else {
+            P_NET_PROP = Double.NaN;
+        }
+    }
+
+    protected final void initP_PHYS(String s) {
+        if (!s.trim().isEmpty()) {
+            P_PHYS = Double.parseDouble(s);
+        } else {
+            P_PHYS = Double.NaN;
+        }
+    }
+
+    protected final void initP_TOTWLTH(String s) {
+        if (!s.trim().isEmpty()) {
+            P_TOTWLTH = Double.parseDouble(s);
+        } else {
+            P_TOTWLTH = Double.NaN;
+        }
+    }
+
     protected final void initR01(String s) {
         if (!s.trim().isEmpty()) {
             R01 = Byte.parseByte(s);
@@ -13505,6 +15676,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initRF(String s) {
+        if (!s.trim().isEmpty()) {
+            RF = Byte.parseByte(s);
+        } else {
+            RF = Byte.MIN_VALUE;
+        }
+    }
+
     protected final void initRNYDAY(String s) {
         if (!s.trim().isEmpty()) {
             RNYDAY = Byte.parseByte(s);
@@ -13531,8 +15710,9 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initRPFCRET3(String s) {
         if (!s.trim().isEmpty()) {
-            byte b = Byte.parseByte(s);
-            RPFCRET3 = false;
+            RPFCRET3 = Byte.parseByte(s);
+        } else {
+            RPFCRET3 = Byte.MIN_VALUE;
         }
     }
 
@@ -13554,6 +15734,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
             RPFCRET6 = false;
+        }
+    }
+
+    protected final void initRS(String s) {
+        if (!s.trim().isEmpty()) {
+            RS = Byte.parseByte(s);
+        } else {
+            RS = Byte.MIN_VALUE;
         }
     }
 
@@ -13629,11 +15817,26 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initSAVDEP(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            SAVDEP = false;
+        }
+    }
+
     protected final void initSAVNUM(String s) {
         if (!s.trim().isEmpty()) {
             SAVNUM = Byte.parseByte(s);
         } else {
             SAVNUM = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initSCAC1(String s) {
+        if (!s.trim().isEmpty()) {
+            SCAC1 = Byte.parseByte(s);
+        } else {
+            SCAC1 = Byte.MIN_VALUE;
         }
     }
 
@@ -13652,6 +15855,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initSCAC2(String s) {
+        if (!s.trim().isEmpty()) {
+            SCAC2 = Byte.parseByte(s);
+        } else {
+            SCAC2 = Byte.MIN_VALUE;
+        }
+    }
+
     protected final void initSCAC2_I(String s) {
         if (!s.trim().isEmpty()) {
             SCAC2_I = Byte.parseByte(s);
@@ -13664,6 +15875,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
             SCAC2_IFLAG = false;
+        }
+    }
+
+    protected final void initSCAC3(String s) {
+        if (!s.trim().isEmpty()) {
+            SCAC3 = Byte.parseByte(s);
+        } else {
+            SCAC3 = Byte.MIN_VALUE;
         }
     }
 
@@ -14108,17 +16327,17 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initTOTARR_EXCMORT_SUM(String s) {
         if (!s.trim().isEmpty()) {
-            TOTARR_EXCMORT_SUM = Short.parseShort(s);
+            TOTARR_EXCMORT_SUM = Integer.parseInt(s);
         } else {
-            TOTARR_EXCMORT_SUM = Short.MIN_VALUE;
+            TOTARR_EXCMORT_SUM = Integer.MIN_VALUE;
         }
     }
 
     protected final void initTOTBILLARR_SUM(String s) {
         if (!s.trim().isEmpty()) {
-            TOTBILLARR_SUM = Short.parseShort(s);
+            TOTBILLARR_SUM = Integer.parseInt(s);
         } else {
-            TOTBILLARR_SUM = Short.MIN_VALUE;
+            TOTBILLARR_SUM = Integer.MIN_VALUE;
         }
     }
 
@@ -14204,9 +16423,9 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initTOTOSLC_SUM(String s) {
         if (!s.trim().isEmpty()) {
-            TOTOSLC_SUM = Integer.parseInt(s);
+            TOTOSLC_SUM = Double.parseDouble(s);
         } else {
-            TOTOSLC_SUM = Integer.MIN_VALUE;
+            TOTOSLC_SUM = Double.NaN;
         }
     }
 
@@ -14236,9 +16455,9 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     protected final void initTOTSLC_SUM(String s) {
         if (!s.trim().isEmpty()) {
-            TOTSLC_SUM = Integer.parseInt(s);
+            TOTSLC_SUM = Double.parseDouble(s);
         } else {
-            TOTSLC_SUM = Integer.MIN_VALUE;
+            TOTSLC_SUM = Double.NaN;
         }
     }
 
@@ -14376,6 +16595,36 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initUDEBTBLU_I(String s) {
+        if (!s.trim().isEmpty()) {
+            UDEBTBLU_I = Byte.parseByte(s);
+        } else {
+            UDEBTBLU_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initUDEBTBLU_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            UDEBTBLU_IFLAG = false;
+        }
+    }
+
+    protected final void initUDEBTBL_I(String s) {
+        if (!s.trim().isEmpty()) {
+            UDEBTBL_I = Byte.parseByte(s);
+        } else {
+            UDEBTBL_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initUDEBTBL_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            UDEBTBL_IFLAG = false;
+        }
+    }
+
     protected final void initUDEBTBO(String s) {
         if (!s.trim().isEmpty()) {
             UDEBTBO = Byte.parseByte(s);
@@ -14392,6 +16641,21 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initUDEBTBOR_I(String s) {
+        if (!s.trim().isEmpty()) {
+            UDEBTBOR_I = Byte.parseByte(s);
+        } else {
+            UDEBTBOR_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initUDEBTBOR_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            UDEBTBOR_IFLAG = false;
+        }
+    }
+
     protected final void initUDEBTBOS(String s) {
         if (!s.trim().isEmpty()) {
             UDEBTBOS = Byte.parseByte(s);
@@ -14400,11 +16664,56 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initUDEBTBOS_I(String s) {
+        if (!s.trim().isEmpty()) {
+            UDEBTBOS_I = Byte.parseByte(s);
+        } else {
+            UDEBTBOS_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initUDEBTBOS_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            UDEBTBOS_IFLAG = false;
+        }
+    }
+
+    protected final void initUDEBTBO_I(String s) {
+        if (!s.trim().isEmpty()) {
+            UDEBTBO_I = Byte.parseByte(s);
+        } else {
+            UDEBTBO_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initUDEBTBO_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            UDEBTBO_IFLAG = false;
+        }
+    }
+
     protected final void initUDEBTBS(String s) {
         if (!s.trim().isEmpty()) {
             UDEBTBS = Byte.parseByte(s);
         } else {
             UDEBTBS = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initUDEBTBS_I(String s) {
+        if (!s.trim().isEmpty()) {
+            UDEBTBS_I = Byte.parseByte(s);
+        } else {
+            UDEBTBS_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initUDEBTBS_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            UDEBTBS_IFLAG = false;
         }
     }
 
@@ -14767,6 +17076,36 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initUVALBLU_I(String s) {
+        if (!s.trim().isEmpty()) {
+            UVALBLU_I = Byte.parseByte(s);
+        } else {
+            UVALBLU_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initUVALBLU_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            UVALBLU_IFLAG = false;
+        }
+    }
+
+    protected final void initUVALBL_I(String s) {
+        if (!s.trim().isEmpty()) {
+            UVALBL_I = Byte.parseByte(s);
+        } else {
+            UVALBL_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initUVALBL_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            UVALBL_IFLAG = false;
+        }
+    }
+
     protected final void initUVALBO(String s) {
         if (!s.trim().isEmpty()) {
             UVALBO = Byte.parseByte(s);
@@ -14783,6 +17122,21 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initUVALBOR_I(String s) {
+        if (!s.trim().isEmpty()) {
+            UVALBOR_I = Byte.parseByte(s);
+        } else {
+            UVALBOR_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initUVALBOR_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            UVALBOR_IFLAG = false;
+        }
+    }
+
     protected final void initUVALBOS(String s) {
         if (!s.trim().isEmpty()) {
             UVALBOS = Byte.parseByte(s);
@@ -14791,11 +17145,56 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         }
     }
 
+    protected final void initUVALBOS_I(String s) {
+        if (!s.trim().isEmpty()) {
+            UVALBOS_I = Byte.parseByte(s);
+        } else {
+            UVALBOS_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initUVALBOS_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            UVALBOS_IFLAG = false;
+        }
+    }
+
+    protected final void initUVALBO_I(String s) {
+        if (!s.trim().isEmpty()) {
+            UVALBO_I = Byte.parseByte(s);
+        } else {
+            UVALBO_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initUVALBO_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            UVALBO_IFLAG = false;
+        }
+    }
+
     protected final void initUVALBS(String s) {
         if (!s.trim().isEmpty()) {
             UVALBS = Byte.parseByte(s);
         } else {
             UVALBS = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initUVALBS_I(String s) {
+        if (!s.trim().isEmpty()) {
+            UVALBS_I = Byte.parseByte(s);
+        } else {
+            UVALBS_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initUVALBS_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            UVALBS_IFLAG = false;
         }
     }
 
@@ -15028,6 +17427,22 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
             XMARSTA_IFLAG = false;
+        }
+    }
+
+    protected final void initYEARW1(String s) {
+        if (!s.trim().isEmpty()) {
+            YEARW1 = Short.parseShort(s);
+        } else {
+            YEARW1 = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initYEARW2(String s) {
+        if (!s.trim().isEmpty()) {
+            YEARW2 = Short.parseShort(s);
+        } else {
+            YEARW2 = Short.MIN_VALUE;
         }
     }
 
@@ -15331,6 +17746,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return CACTVB;
     }
 
+    public byte getCACTVB_I() {
+        return CACTVB_I;
+    }
+
+    public boolean getCACTVB_IFLAG() {
+        return CACTVB_IFLAG;
+    }
+
     public byte getCAJISA_I() {
         return CAJISA_I;
     }
@@ -15355,6 +17778,18 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return CASEW3;
     }
 
+    public byte getCASVB_I() {
+        return CASVB_I;
+    }
+
+    public boolean getCASVB_IFLAG() {
+        return CASVB_IFLAG;
+    }
+
+    public byte getCCAC1() {
+        return CCAC1;
+    }
+
     public byte getCCAC1_I() {
         return CCAC1_I;
     }
@@ -15363,12 +17798,20 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return CCAC1_IFLAG;
     }
 
+    public byte getCCAC2() {
+        return CCAC2;
+    }
+
     public byte getCCAC2_I() {
         return CCAC2_I;
     }
 
     public boolean getCCAC2_IFLAG() {
         return CCAC2_IFLAG;
+    }
+
+    public byte getCCAC3() {
+        return CCAC3;
     }
 
     public byte getCCAC3_I() {
@@ -15389,6 +17832,10 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     public byte getCOUPLENUM() {
         return COUPLENUM;
+    }
+
+    public boolean getCURRAC() {
+        return CURRAC;
     }
 
     public byte getCURSTAT() {
@@ -15453,6 +17900,10 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     public short getDCAMD1() {
         return DCAMD1;
+    }
+
+    public int getDCAMOS1() {
+        return DCAMOS1;
     }
 
     public int getDCAMOS1_I() {
@@ -15521,14 +17972,6 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     public boolean getDCOINV1_IFLAG() {
         return DCOINV1_IFLAG;
-    }
-
-    public short getDCOINV3_I() {
-        return DCOINV3_I;
-    }
-
-    public byte getDCOINV3_IFLAG() {
-        return DCOINV3_IFLAG;
     }
 
     public short getDCOINV4() {
@@ -15639,6 +18082,94 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return DHBANY11;
     }
 
+    public byte getDHBEST01_I() {
+        return DHBEST01_I;
+    }
+
+    public boolean getDHBEST01_IFLAG() {
+        return DHBEST01_IFLAG;
+    }
+
+    public byte getDHBEST02_I() {
+        return DHBEST02_I;
+    }
+
+    public boolean getDHBEST02_IFLAG() {
+        return DHBEST02_IFLAG;
+    }
+
+    public byte getDHBEST03_I() {
+        return DHBEST03_I;
+    }
+
+    public boolean getDHBEST03_IFLAG() {
+        return DHBEST03_IFLAG;
+    }
+
+    public byte getDHBEST04_I() {
+        return DHBEST04_I;
+    }
+
+    public boolean getDHBEST04_IFLAG() {
+        return DHBEST04_IFLAG;
+    }
+
+    public byte getDHBEST05_I() {
+        return DHBEST05_I;
+    }
+
+    public boolean getDHBEST05_IFLAG() {
+        return DHBEST05_IFLAG;
+    }
+
+    public byte getDHBEST06_I() {
+        return DHBEST06_I;
+    }
+
+    public boolean getDHBEST06_IFLAG() {
+        return DHBEST06_IFLAG;
+    }
+
+    public byte getDHBEST07_I() {
+        return DHBEST07_I;
+    }
+
+    public boolean getDHBEST07_IFLAG() {
+        return DHBEST07_IFLAG;
+    }
+
+    public byte getDHBEST08_I() {
+        return DHBEST08_I;
+    }
+
+    public boolean getDHBEST08_IFLAG() {
+        return DHBEST08_IFLAG;
+    }
+
+    public byte getDHBEST09_I() {
+        return DHBEST09_I;
+    }
+
+    public boolean getDHBEST09_IFLAG() {
+        return DHBEST09_IFLAG;
+    }
+
+    public byte getDHBEST10_I() {
+        return DHBEST10_I;
+    }
+
+    public boolean getDHBEST10_IFLAG() {
+        return DHBEST10_IFLAG;
+    }
+
+    public byte getDHBEST11_I() {
+        return DHBEST11_I;
+    }
+
+    public boolean getDHBEST11_IFLAG() {
+        return DHBEST11_IFLAG;
+    }
+
     public byte getDHPBEH1() {
         return DHPBEH1;
     }
@@ -15739,8 +18270,48 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return DLEST1;
     }
 
+    public byte getDLEST1_I() {
+        return DLEST1_I;
+    }
+
+    public boolean getDLEST1_IFLAG() {
+        return DLEST1_IFLAG;
+    }
+
+    public byte getDLEST2_I() {
+        return DLEST2_I;
+    }
+
+    public boolean getDLEST2_IFLAG() {
+        return DLEST2_IFLAG;
+    }
+
+    public byte getDLEST3_I() {
+        return DLEST3_I;
+    }
+
+    public boolean getDLEST3_IFLAG() {
+        return DLEST3_IFLAG;
+    }
+
+    public byte getDLEST4_I() {
+        return DLEST4_I;
+    }
+
+    public boolean getDLEST4_IFLAG() {
+        return DLEST4_IFLAG;
+    }
+
     public byte getDLEST5() {
         return DLEST5;
+    }
+
+    public byte getDLEST5_I() {
+        return DLEST5_I;
+    }
+
+    public boolean getDLEST5_IFLAG() {
+        return DLEST5_IFLAG;
     }
 
     public short getDLINS1() {
@@ -15853,10 +18424,6 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     public boolean getDLWHNY1_IFLAG() {
         return DLWHNY1_IFLAG;
-    }
-
-    public boolean getDLWHY30() {
-        return DLWHY30;
     }
 
     public boolean getDLWHY6() {
@@ -15983,6 +18550,10 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return DSAMD1;
     }
 
+    public short getDSAMOS1() {
+        return DSAMOS1;
+    }
+
     public short getDSAMOS1_I() {
         return DSAMOS1_I;
     }
@@ -16037,6 +18608,42 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     public byte getDSLEST1() {
         return DSLEST1;
+    }
+
+    public byte getDSLEST1_I() {
+        return DSLEST1_I;
+    }
+
+    public boolean getDSLEST1_IFLAG() {
+        return DSLEST1_IFLAG;
+    }
+
+    public byte getDSLEST2_I() {
+        return DSLEST2_I;
+    }
+
+    public boolean getDSLEST2_IFLAG() {
+        return DSLEST2_IFLAG;
+    }
+
+    public byte getDSLEST3_I() {
+        return DSLEST3_I;
+    }
+
+    public boolean getDSLEST3_IFLAG() {
+        return DSLEST3_IFLAG;
+    }
+
+    public boolean getDSLEST4_I() {
+        return DSLEST4_I;
+    }
+
+    public boolean getDSLEST4_IFLAG() {
+        return DSLEST4_IFLAG;
+    }
+
+    public boolean getDSLEST5_I() {
+        return DSLEST5_I;
     }
 
     public byte getDSLPAY1() {
@@ -16143,7 +18750,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return DVCOINV5;
     }
 
-    public int getDVDBINC4() {
+    public double getDVDBINC4() {
         return DVDBINC4;
     }
 
@@ -16223,6 +18830,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return DVGISE;
     }
 
+    public byte getDVGRSBAND_I() {
+        return DVGRSBAND_I;
+    }
+
+    public boolean getDVGRSBAND_IFLAG() {
+        return DVGRSBAND_IFLAG;
+    }
+
     public int getDVGRSBONAMT() {
         return DVGRSBONAMT;
     }
@@ -16273,6 +18888,10 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     public boolean getDVHASLNAR() {
         return DVHASLNAR;
+    }
+
+    public boolean getDVHASMO() {
+        return DVHASMO;
     }
 
     public boolean getDVHASMOAR() {
@@ -16381,6 +19000,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     public int getDVLUMPPENANNUAL() {
         return DVLUMPPENANNUAL;
+    }
+
+    public byte getDVNETBAND_I() {
+        return DVNETBAND_I;
+    }
+
+    public boolean getDVNETBAND_IFLAG() {
+        return DVNETBAND_IFLAG;
     }
 
     public int getDVNETBONAMT() {
@@ -16763,8 +19390,20 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return FINCV_IFLAG;
     }
 
-    public byte getFINVTY11_I() {
-        return FINVTY11_I;
+    public byte getFINFVB_I() {
+        return FINFVB_I;
+    }
+
+    public boolean getFINFVB_IFLAG() {
+        return FINFVB_IFLAG;
+    }
+
+    public byte getFLOANVB_I() {
+        return FLOANVB_I;
+    }
+
+    public boolean getFLOANVB_IFLAG() {
+        return FLOANVB_IFLAG;
     }
 
     public byte getFNDCASH1() {
@@ -16815,6 +19454,10 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return FWITHD;
     }
 
+    public byte getGOR() {
+        return GOR;
+    }
+
     public byte getGROSSPER() {
         return GROSSPER;
     }
@@ -16843,8 +19486,60 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return HAPPY;
     }
 
+    public boolean getHASBOND() {
+        return HASBOND;
+    }
+
+    public byte getHASCC() {
+        return HASCC;
+    }
+
+    public boolean getHASEMPSH() {
+        return HASEMPSH;
+    }
+
+    public boolean getHASGILT() {
+        return HASGILT;
+    }
+
+    public boolean getHASISA() {
+        return HASISA;
+    }
+
+    public boolean getHASLINS() {
+        return HASLINS;
+    }
+
+    public boolean getHASNOFA() {
+        return HASNOFA;
+    }
+
+    public boolean getHASNSP() {
+        return HASNSP;
+    }
+
+    public boolean getHASOINV() {
+        return HASOINV;
+    }
+
+    public boolean getHASOTHSH() {
+        return HASOTHSH;
+    }
+
+    public byte getHASSC() {
+        return HASSC;
+    }
+
     public byte getHASSHAC() {
         return HASSHAC;
+    }
+
+    public byte getHASSHSAC() {
+        return HASSHSAC;
+    }
+
+    public boolean getHASUTRUST() {
+        return HASUTRUST;
     }
 
     public double getHFINL_SUM() {
@@ -16859,6 +19554,10 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return HHLDR;
     }
 
+    public double getHHPPHYS() {
+        return HHPPHYS;
+    }
+
     public byte getHIHNUM() {
         return HIHNUM;
     }
@@ -16871,40 +19570,112 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return HOUT;
     }
 
+    public boolean getHOWNF() {
+        return HOWNF;
+    }
+
     public short getHPARR_SUM() {
         return HPARR_SUM;
     }
 
-    public double getHPLFT1() {
+    public short getHPLFT1() {
         return HPLFT1;
     }
 
-    public byte getHPNMN1() {
-        return HPNMN1;
+    public byte getHPMN1() {
+        return HPMN1;
     }
 
-    public byte getHPNMN2() {
-        return HPNMN2;
-    }
-
-    public byte getHPNYR1() {
-        return HPNYR1;
-    }
-
-    public byte getHPNYR2() {
-        return HPNYR2;
+    public byte getHPMN2() {
+        return HPMN2;
     }
 
     public boolean getHPROX() {
         return HPROX;
     }
 
+    public byte getHPYR1() {
+        return HPYR1;
+    }
+
+    public byte getHPYR2() {
+        return HPYR2;
+    }
+
+    public byte getHRPDVAGE() {
+        return HRPDVAGE;
+    }
+
+    public byte getHRPDVAGE9() {
+        return HRPDVAGE9;
+    }
+
+    public byte getHRPDVILO3A() {
+        return HRPDVILO3A;
+    }
+
+    public byte getHRPDVMRDF() {
+        return HRPDVMRDF;
+    }
+
+    public byte getHRPEDATTN1() {
+        return HRPEDATTN1;
+    }
+
+    public byte getHRPEDATTN2() {
+        return HRPEDATTN2;
+    }
+
+    public byte getHRPEDATTN3() {
+        return HRPEDATTN3;
+    }
+
+    public byte getHRPEDLEVEL() {
+        return HRPEDLEVEL;
+    }
+
+    public byte getHRPEMPSTAT2() {
+        return HRPEMPSTAT2;
+    }
+
+    public byte getHRPETHNIC() {
+        return HRPETHNIC;
+    }
+
+    public byte getHRPIOUT1() {
+        return HRPIOUT1;
+    }
+
+    public byte getHRPNSSEC3() {
+        return HRPNSSEC3;
+    }
+
     public byte getHRPPART() {
         return HRPPART;
     }
 
+    public byte getHRPPARTIOUT1() {
+        return HRPPARTIOUT1;
+    }
+
+    public byte getHRPSEX() {
+        return HRPSEX;
+    }
+
+    public byte getHRP_RESP() {
+        return HRP_RESP;
+    }
+
     public byte getIFBANKACC() {
         return IFBANKACC;
+    }
+
+    public byte getIGFVALB_I() {
+        return IGFVALB_I;
+    }
+
+    public boolean getIGFVALB_IFLAG() {
+        return IGFVALB_IFLAG;
     }
 
     public boolean getIGIFVAL_IFLAG() {
@@ -16951,6 +19722,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return IHSE9;
     }
 
+    public byte getILACB_I() {
+        return ILACB_I;
+    }
+
+    public boolean getILACB_IFLAG() {
+        return ILACB_IFLAG;
+    }
+
     public boolean getILACC_IFLAG() {
         return ILACC_IFLAG;
     }
@@ -16973,6 +19752,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     public boolean getILIFE_IFLAG() {
         return ILIFE_IFLAG;
+    }
+
+    public byte getILINB_I() {
+        return ILINB_I;
+    }
+
+    public boolean getILINB_IFLAG() {
+        return ILINB_IFLAG;
     }
 
     public boolean getILINS_IFLAG() {
@@ -17019,8 +19806,24 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return ILOAN;
     }
 
+    public byte getILOTB_I() {
+        return ILOTB_I;
+    }
+
+    public boolean getILOTB_IFLAG() {
+        return ILOTB_IFLAG;
+    }
+
     public boolean getILOTH_IFLAG() {
         return ILOTH_IFLAG;
+    }
+
+    public byte getILRDB_I() {
+        return ILRDB_I;
+    }
+
+    public boolean getILRDB_IFLAG() {
+        return ILRDB_IFLAG;
     }
 
     public boolean getILRED_IFLAG() {
@@ -17043,6 +19846,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return ILUMTY1_IFLAG;
     }
 
+    public byte getILUPB_I() {
+        return ILUPB_I;
+    }
+
+    public boolean getILUPB_IFLAG() {
+        return ILUPB_IFLAG;
+    }
+
     public int getILUPP_I() {
         return ILUPP_I;
     }
@@ -17053,6 +19864,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     public boolean getILWIN_IFLAG() {
         return ILWIN_IFLAG;
+    }
+
+    public byte getILWNB_I() {
+        return ILWNB_I;
+    }
+
+    public boolean getILWNB_IFLAG() {
+        return ILWNB_IFLAG;
     }
 
     public byte getINCDROP() {
@@ -17079,6 +19898,30 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return IVALB1;
     }
 
+    public byte getIVALB1_I() {
+        return IVALB1_I;
+    }
+
+    public boolean getIVALB1_IFLAG() {
+        return IVALB1_IFLAG;
+    }
+
+    public byte getIVALB2_I() {
+        return IVALB2_I;
+    }
+
+    public boolean getIVALB2_IFLAG() {
+        return IVALB2_IFLAG;
+    }
+
+    public byte getIVALB3_I() {
+        return IVALB3_I;
+    }
+
+    public boolean getIVALB3_IFLAG() {
+        return IVALB3_IFLAG;
+    }
+
     public boolean getIWAT6() {
         return IWAT6;
     }
@@ -17099,12 +19942,52 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return KNOWBALANCE;
     }
 
-    public short getLNARR_SUM() {
+    public int getLNARR_SUM() {
         return LNARR_SUM;
     }
 
-    public double getLNLFT1() {
+    public short getLNLFT1() {
         return LNLFT1;
+    }
+
+    public byte getLNMN1() {
+        return LNMN1;
+    }
+
+    public byte getLNMN2() {
+        return LNMN2;
+    }
+
+    public byte getLNMN3() {
+        return LNMN3;
+    }
+
+    public byte getLNMN4() {
+        return LNMN4;
+    }
+
+    public byte getLNMN5() {
+        return LNMN5;
+    }
+
+    public byte getLNYR1() {
+        return LNYR1;
+    }
+
+    public byte getLNYR2() {
+        return LNYR2;
+    }
+
+    public byte getLNYR3() {
+        return LNYR3;
+    }
+
+    public byte getLNYR4() {
+        return LNYR4;
+    }
+
+    public byte getLNYR5() {
+        return LNYR5;
     }
 
     public byte getLOOKED_I() {
@@ -17135,8 +20018,32 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return MOARR_SUM;
     }
 
-    public double getMOLFT1() {
+    public short getMOLFT1() {
         return MOLFT1;
+    }
+
+    public byte getMOMN1() {
+        return MOMN1;
+    }
+
+    public byte getMOMN2() {
+        return MOMN2;
+    }
+
+    public byte getMONTHW1() {
+        return MONTHW1;
+    }
+
+    public byte getMONTHW2() {
+        return MONTHW2;
+    }
+
+    public byte getMOYR1() {
+        return MOYR1;
+    }
+
+    public byte getMOYR2() {
+        return MOYR2;
     }
 
     public byte getMRECJB() {
@@ -17227,12 +20134,20 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return NWFLNVAL1;
     }
 
-    public int getNWFLNVAL2() {
+    public short getNWFLNVAL2() {
         return NWFLNVAL2;
     }
 
     public short getNWFLNVAL3() {
         return NWFLNVAL3;
+    }
+
+    public short getNWFLNVAL4() {
+        return NWFLNVAL4;
+    }
+
+    public short getNWFLNVAL5() {
+        return NWFLNVAL5;
     }
 
     public int getNWILNVAL1() {
@@ -17247,6 +20162,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return NWILNVAL3;
     }
 
+    public boolean getNWILNVAL4() {
+        return NWILNVAL4;
+    }
+
+    public boolean getNWILNVAL5() {
+        return NWILNVAL5;
+    }
+
     public byte getNWLN() {
         return NWLN;
     }
@@ -17259,7 +20182,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return NWLNNO_I;
     }
 
-    public byte getNWLNNO_IFLAG() {
+    public boolean getNWLNNO_IFLAG() {
         return NWLNNO_IFLAG;
     }
 
@@ -17447,16 +20370,24 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return OSLBNK3;
     }
 
-    public int getOSLC1() {
+    public double getOSLC1() {
         return OSLC1;
     }
 
-    public int getOSLC2() {
+    public double getOSLC2() {
         return OSLC2;
     }
 
     public short getOSLC3() {
         return OSLC3;
+    }
+
+    public short getOSLC4() {
+        return OSLC4;
+    }
+
+    public boolean getOSLC5() {
+        return OSLC5;
     }
 
     public byte getOTHASCH() {
@@ -17481,6 +20412,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     public boolean getOTHSRC4_IFLAG() {
         return OTHSRC4_IFLAG;
+    }
+
+    public boolean getOTHSRC5_I() {
+        return OTHSRC5_I;
+    }
+
+    public boolean getOTHSRC5_IFLAG() {
+        return OTHSRC5_IFLAG;
     }
 
     public boolean getOTRUST15() {
@@ -17611,8 +20550,24 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PAVCVB1;
     }
 
+    public byte getPAVCVB1_I() {
+        return PAVCVB1_I;
+    }
+
+    public boolean getPAVCVB1_IFLAG() {
+        return PAVCVB1_IFLAG;
+    }
+
     public byte getPAVCVB2() {
         return PAVCVB2;
+    }
+
+    public byte getPAVCVB2_I() {
+        return PAVCVB2_I;
+    }
+
+    public boolean getPAVCVB2_IFLAG() {
+        return PAVCVB2_IFLAG;
     }
 
     public byte getPAVDOC1() {
@@ -17663,7 +20618,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PBFRAC2_I;
     }
 
-    public boolean getPBFRAC2_IFLAG() {
+    public byte getPBFRAC2_IFLAG() {
         return PBFRAC2_IFLAG;
     }
 
@@ -17695,8 +20650,24 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PBLMVB1;
     }
 
+    public byte getPBLMVB1_I() {
+        return PBLMVB1_I;
+    }
+
+    public boolean getPBLMVB1_IFLAG() {
+        return PBLMVB1_IFLAG;
+    }
+
     public byte getPBLMVB2() {
         return PBLMVB2;
+    }
+
+    public byte getPBLMVB2_I() {
+        return PBLMVB2_I;
+    }
+
+    public boolean getPBLMVB2_IFLAG() {
+        return PBLMVB2_IFLAG;
     }
 
     public int getPBLUMV1() {
@@ -17835,8 +20806,24 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PDCVB1;
     }
 
+    public byte getPDCVB1_I() {
+        return PDCVB1_I;
+    }
+
+    public boolean getPDCVB1_IFLAG() {
+        return PDCVB1_IFLAG;
+    }
+
     public byte getPDCVB2() {
         return PDCVB2;
+    }
+
+    public byte getPDCVB2_I() {
+        return PDCVB2_I;
+    }
+
+    public boolean getPDCVB2_IFLAG() {
+        return PDCVB2_IFLAG;
     }
 
     public boolean getPENFLAG() {
@@ -17883,8 +20870,16 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PERSONW3;
     }
 
+    public int getPERSPHYS() {
+        return PERSPHYS;
+    }
+
     public byte getPESAME() {
         return PESAME;
+    }
+
+    public double getPEVAL() {
+        return PEVAL;
     }
 
     public byte getPFANEH1() {
@@ -18015,7 +21010,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFCURV2_I;
     }
 
-    public byte getPFCURV2_IFLAG() {
+    public boolean getPFCURV2_IFLAG() {
         return PFCURV2_IFLAG;
     }
 
@@ -18027,7 +21022,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFCURV3_I;
     }
 
-    public byte getPFCURV3_IFLAG() {
+    public boolean getPFCURV3_IFLAG() {
         return PFCURV3_IFLAG;
     }
 
@@ -18035,11 +21030,11 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFCURV4;
     }
 
-    public int getPFCURV4_I() {
+    public double getPFCURV4_I() {
         return PFCURV4_I;
     }
 
-    public byte getPFCURV4_IFLAG() {
+    public boolean getPFCURV4_IFLAG() {
         return PFCURV4_IFLAG;
     }
 
@@ -18051,7 +21046,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFCURV5_I;
     }
 
-    public byte getPFCURV5_IFLAG() {
+    public boolean getPFCURV5_IFLAG() {
         return PFCURV5_IFLAG;
     }
 
@@ -18071,24 +21066,72 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFCUVB1;
     }
 
+    public byte getPFCUVB1_I() {
+        return PFCUVB1_I;
+    }
+
+    public boolean getPFCUVB1_IFLAG() {
+        return PFCUVB1_IFLAG;
+    }
+
     public byte getPFCUVB2() {
         return PFCUVB2;
+    }
+
+    public byte getPFCUVB2_I() {
+        return PFCUVB2_I;
+    }
+
+    public boolean getPFCUVB2_IFLAG() {
+        return PFCUVB2_IFLAG;
     }
 
     public byte getPFCUVB3() {
         return PFCUVB3;
     }
 
+    public byte getPFCUVB3_I() {
+        return PFCUVB3_I;
+    }
+
+    public boolean getPFCUVB3_IFLAG() {
+        return PFCUVB3_IFLAG;
+    }
+
     public byte getPFCUVB4() {
         return PFCUVB4;
+    }
+
+    public byte getPFCUVB4_I() {
+        return PFCUVB4_I;
+    }
+
+    public boolean getPFCUVB4_IFLAG() {
+        return PFCUVB4_IFLAG;
     }
 
     public byte getPFCUVB5() {
         return PFCUVB5;
     }
 
+    public byte getPFCUVB5_I() {
+        return PFCUVB5_I;
+    }
+
+    public boolean getPFCUVB5_IFLAG() {
+        return PFCUVB5_IFLAG;
+    }
+
     public boolean getPFCUVB6() {
         return PFCUVB6;
+    }
+
+    public byte getPFCUVB6_I() {
+        return PFCUVB6_I;
+    }
+
+    public boolean getPFCUVB6_IFLAG() {
+        return PFCUVB6_IFLAG;
     }
 
     public int getPFDDV1() {
@@ -18111,7 +21154,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFDDV2_I;
     }
 
-    public byte getPFDDV2_IFLAG() {
+    public boolean getPFDDV2_IFLAG() {
         return PFDDV2_IFLAG;
     }
 
@@ -18123,7 +21166,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFDDV3_I;
     }
 
-    public byte getPFDDV3_IFLAG() {
+    public boolean getPFDDV3_IFLAG() {
         return PFDDV3_IFLAG;
     }
 
@@ -18131,20 +21174,84 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFDDV4_I;
     }
 
-    public byte getPFDDV4_IFLAG() {
+    public boolean getPFDDV4_IFLAG() {
         return PFDDV4_IFLAG;
+    }
+
+    public short getPFDDV5_I() {
+        return PFDDV5_I;
+    }
+
+    public boolean getPFDDV5_IFLAG() {
+        return PFDDV5_IFLAG;
+    }
+
+    public int getPFDDV6_I() {
+        return PFDDV6_I;
+    }
+
+    public boolean getPFDDV6_IFLAG() {
+        return PFDDV6_IFLAG;
     }
 
     public byte getPFDDVB1() {
         return PFDDVB1;
     }
 
+    public byte getPFDDVB1_I() {
+        return PFDDVB1_I;
+    }
+
+    public boolean getPFDDVB1_IFLAG() {
+        return PFDDVB1_IFLAG;
+    }
+
     public byte getPFDDVB2() {
         return PFDDVB2;
     }
 
+    public byte getPFDDVB2_I() {
+        return PFDDVB2_I;
+    }
+
+    public boolean getPFDDVB2_IFLAG() {
+        return PFDDVB2_IFLAG;
+    }
+
     public byte getPFDDVB3() {
         return PFDDVB3;
+    }
+
+    public byte getPFDDVB3_I() {
+        return PFDDVB3_I;
+    }
+
+    public boolean getPFDDVB3_IFLAG() {
+        return PFDDVB3_IFLAG;
+    }
+
+    public byte getPFDDVB4_I() {
+        return PFDDVB4_I;
+    }
+
+    public boolean getPFDDVB4_IFLAG() {
+        return PFDDVB4_IFLAG;
+    }
+
+    public boolean getPFDDVB5_I() {
+        return PFDDVB5_I;
+    }
+
+    public boolean getPFDDVB5_IFLAG() {
+        return PFDDVB5_IFLAG;
+    }
+
+    public boolean getPFDDVB6_I() {
+        return PFDDVB6_I;
+    }
+
+    public boolean getPFDDVB6_IFLAG() {
+        return PFDDVB6_IFLAG;
     }
 
     public byte getPFDOCS1() {
@@ -18191,7 +21298,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFDRAW2_I;
     }
 
-    public byte getPFDRAW2_IFLAG() {
+    public boolean getPFDRAW2_IFLAG() {
         return PFDRAW2_IFLAG;
     }
 
@@ -18199,8 +21306,32 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFDRAW3_I;
     }
 
-    public byte getPFDRAW3_IFLAG() {
+    public boolean getPFDRAW3_IFLAG() {
         return PFDRAW3_IFLAG;
+    }
+
+    public byte getPFDRAW4_I() {
+        return PFDRAW4_I;
+    }
+
+    public boolean getPFDRAW4_IFLAG() {
+        return PFDRAW4_IFLAG;
+    }
+
+    public byte getPFDRAW5_I() {
+        return PFDRAW5_I;
+    }
+
+    public boolean getPFDRAW5_IFLAG() {
+        return PFDRAW5_IFLAG;
+    }
+
+    public boolean getPFDRAW6_I() {
+        return PFDRAW6_I;
+    }
+
+    public boolean getPFDRAW6_IFLAG() {
+        return PFDRAW6_IFLAG;
     }
 
     public short getPFDRINC1() {
@@ -18319,7 +21450,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFINCA4;
     }
 
-    public short getPFINCA4_I() {
+    public double getPFINCA4_I() {
         return PFINCA4_I;
     }
 
@@ -18491,12 +21622,44 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFLMVB1;
     }
 
+    public byte getPFLMVB1_I() {
+        return PFLMVB1_I;
+    }
+
+    public boolean getPFLMVB1_IFLAG() {
+        return PFLMVB1_IFLAG;
+    }
+
     public byte getPFLMVB2() {
         return PFLMVB2;
     }
 
+    public byte getPFLMVB2_I() {
+        return PFLMVB2_I;
+    }
+
+    public boolean getPFLMVB2_IFLAG() {
+        return PFLMVB2_IFLAG;
+    }
+
     public byte getPFLMVB3() {
         return PFLMVB3;
+    }
+
+    public byte getPFLMVB3_I() {
+        return PFLMVB3_I;
+    }
+
+    public boolean getPFLMVB3_IFLAG() {
+        return PFLMVB3_IFLAG;
+    }
+
+    public byte getPFLMVB4_I() {
+        return PFLMVB4_I;
+    }
+
+    public boolean getPFLMVB4_IFLAG() {
+        return PFLMVB4_IFLAG;
     }
 
     public byte getPFLUM1() {
@@ -18519,7 +21682,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFLUM2_I;
     }
 
-    public byte getPFLUM2_IFLAG() {
+    public boolean getPFLUM2_IFLAG() {
         return PFLUM2_IFLAG;
     }
 
@@ -18531,7 +21694,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFLUM3_I;
     }
 
-    public byte getPFLUM3_IFLAG() {
+    public boolean getPFLUM3_IFLAG() {
         return PFLUM3_IFLAG;
     }
 
@@ -18543,7 +21706,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFLUM4_I;
     }
 
-    public byte getPFLUM4_IFLAG() {
+    public boolean getPFLUM4_IFLAG() {
         return PFLUM4_IFLAG;
     }
 
@@ -18551,11 +21714,11 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFLUM5;
     }
 
-    public boolean getPFLUM5_I() {
+    public byte getPFLUM5_I() {
         return PFLUM5_I;
     }
 
-    public byte getPFLUM5_IFLAG() {
+    public boolean getPFLUM5_IFLAG() {
         return PFLUM5_IFLAG;
     }
 
@@ -18567,7 +21730,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFLUM6_I;
     }
 
-    public byte getPFLUM6_IFLAG() {
+    public boolean getPFLUM6_IFLAG() {
         return PFLUM6_IFLAG;
     }
 
@@ -18591,7 +21754,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFLUMALL2_I;
     }
 
-    public byte getPFLUMALL2_IFLAG() {
+    public boolean getPFLUMALL2_IFLAG() {
         return PFLUMALL2_IFLAG;
     }
 
@@ -18603,7 +21766,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFLUMALL3_I;
     }
 
-    public byte getPFLUMALL3_IFLAG() {
+    public boolean getPFLUMALL3_IFLAG() {
         return PFLUMALL3_IFLAG;
     }
 
@@ -18615,7 +21778,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFLUMALL4_I;
     }
 
-    public byte getPFLUMALL4_IFLAG() {
+    public boolean getPFLUMALL4_IFLAG() {
         return PFLUMALL4_IFLAG;
     }
 
@@ -18647,7 +21810,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFLUMV3;
     }
 
-    public int getPFLUMV3_I() {
+    public double getPFLUMV3_I() {
         return PFLUMV3_I;
     }
 
@@ -18659,7 +21822,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFLUMV4;
     }
 
-    public int getPFLUMV4_I() {
+    public double getPFLUMV4_I() {
         return PFLUMV4_I;
     }
 
@@ -18675,7 +21838,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFLUMV5_I;
     }
 
-    public byte getPFLUMV5_IFLAG() {
+    public boolean getPFLUMV5_IFLAG() {
         return PFLUMV5_IFLAG;
     }
 
@@ -18695,24 +21858,72 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFLUVB1;
     }
 
+    public byte getPFLUVB1_I() {
+        return PFLUVB1_I;
+    }
+
+    public boolean getPFLUVB1_IFLAG() {
+        return PFLUVB1_IFLAG;
+    }
+
     public byte getPFLUVB2() {
         return PFLUVB2;
+    }
+
+    public byte getPFLUVB2_I() {
+        return PFLUVB2_I;
+    }
+
+    public boolean getPFLUVB2_IFLAG() {
+        return PFLUVB2_IFLAG;
     }
 
     public byte getPFLUVB3() {
         return PFLUVB3;
     }
 
+    public byte getPFLUVB3_I() {
+        return PFLUVB3_I;
+    }
+
+    public boolean getPFLUVB3_IFLAG() {
+        return PFLUVB3_IFLAG;
+    }
+
     public byte getPFLUVB4() {
         return PFLUVB4;
+    }
+
+    public byte getPFLUVB4_I() {
+        return PFLUVB4_I;
+    }
+
+    public boolean getPFLUVB4_IFLAG() {
+        return PFLUVB4_IFLAG;
     }
 
     public byte getPFLUVB5() {
         return PFLUVB5;
     }
 
+    public byte getPFLUVB5_I() {
+        return PFLUVB5_I;
+    }
+
+    public boolean getPFLUVB5_IFLAG() {
+        return PFLUVB5_IFLAG;
+    }
+
     public boolean getPFLUVB6() {
         return PFLUVB6;
+    }
+
+    public byte getPFLUVB6_I() {
+        return PFLUVB6_I;
+    }
+
+    public boolean getPFLUVB6_IFLAG() {
+        return PFLUVB6_IFLAG;
     }
 
     public byte getPFNEW() {
@@ -18795,7 +22006,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFOCTY5_I;
     }
 
-    public byte getPFOCTY5_IFLAG() {
+    public boolean getPFOCTY5_IFLAG() {
         return PFOCTY5_IFLAG;
     }
 
@@ -18807,7 +22018,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFOCTY6_I;
     }
 
-    public byte getPFOCTY6_IFLAG() {
+    public boolean getPFOCTY6_IFLAG() {
         return PFOCTY6_IFLAG;
     }
 
@@ -18903,7 +22114,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFREM2_I;
     }
 
-    public byte getPFREM2_IFLAG() {
+    public boolean getPFREM2_IFLAG() {
         return PFREM2_IFLAG;
     }
 
@@ -18915,7 +22126,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFREM3_I;
     }
 
-    public byte getPFREM3_IFLAG() {
+    public boolean getPFREM3_IFLAG() {
         return PFREM3_IFLAG;
     }
 
@@ -18927,7 +22138,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFREM4_I;
     }
 
-    public byte getPFREM4_IFLAG() {
+    public boolean getPFREM4_IFLAG() {
         return PFREM4_IFLAG;
     }
 
@@ -19075,6 +22286,10 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PFTYP6_IFLAG;
     }
 
+    public double getPHVAL() {
+        return PHVAL;
+    }
+
     public boolean getPHYSBUYLGDST() {
         return PHYSBUYLGDST;
     }
@@ -19097,6 +22312,10 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     public byte getPMORTC3() {
         return PMORTC3;
+    }
+
+    public double getPMVAL() {
+        return PMVAL;
     }
 
     public byte getPNOWK() {
@@ -19473,6 +22692,22 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     public byte getPOLMVB1() {
         return POLMVB1;
+    }
+
+    public byte getPOLMVB1_I() {
+        return POLMVB1_I;
+    }
+
+    public boolean getPOLMVB1_IFLAG() {
+        return POLMVB1_IFLAG;
+    }
+
+    public byte getPOLMVB2_I() {
+        return POLMVB2_I;
+    }
+
+    public boolean getPOLMVB2_IFLAG() {
+        return POLMVB2_IFLAG;
     }
 
     public byte getPOLSYR1() {
@@ -19935,12 +23170,36 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PPLMVB1;
     }
 
+    public byte getPPLMVB1_I() {
+        return PPLMVB1_I;
+    }
+
+    public boolean getPPLMVB1_IFLAG() {
+        return PPLMVB1_IFLAG;
+    }
+
     public boolean getPPLMVB2() {
         return PPLMVB2;
     }
 
+    public byte getPPLMVB2_I() {
+        return PPLMVB2_I;
+    }
+
+    public boolean getPPLMVB2_IFLAG() {
+        return PPLMVB2_IFLAG;
+    }
+
     public boolean getPPLMVB3() {
         return PPLMVB3;
+    }
+
+    public boolean getPPLMVB3_I() {
+        return PPLMVB3_I;
+    }
+
+    public boolean getPPLMVB3_IFLAG() {
+        return PPLMVB3_IFLAG;
     }
 
     public int getPPLSTA1() {
@@ -20143,7 +23402,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PPVAL2_I;
     }
 
-    public byte getPPVAL2_IFLAG() {
+    public boolean getPPVAL2_IFLAG() {
         return PPVAL2_IFLAG;
     }
 
@@ -20163,12 +23422,36 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PPVALB1;
     }
 
+    public byte getPPVALB1_I() {
+        return PPVALB1_I;
+    }
+
+    public boolean getPPVALB1_IFLAG() {
+        return PPVALB1_IFLAG;
+    }
+
     public byte getPPVALB2() {
         return PPVALB2;
     }
 
+    public byte getPPVALB2_I() {
+        return PPVALB2_I;
+    }
+
+    public boolean getPPVALB2_IFLAG() {
+        return PPVALB2_IFLAG;
+    }
+
     public byte getPPVALB3() {
         return PPVALB3;
+    }
+
+    public byte getPPVALB3_I() {
+        return PPVALB3_I;
+    }
+
+    public boolean getPPVALB3_IFLAG() {
+        return PPVALB3_IFLAG;
     }
 
     public byte getPPVINT1() {
@@ -20303,6 +23586,30 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return PWLUVAL;
     }
 
+    public double getP_NET_FIN() {
+        return P_NET_FIN;
+    }
+
+    public double getP_NET_MAIN() {
+        return P_NET_MAIN;
+    }
+
+    public int getP_NET_OTHPROP() {
+        return P_NET_OTHPROP;
+    }
+
+    public double getP_NET_PROP() {
+        return P_NET_PROP;
+    }
+
+    public double getP_PHYS() {
+        return P_PHYS;
+    }
+
+    public double getP_TOTWLTH() {
+        return P_TOTWLTH;
+    }
+
     public byte getR01() {
         return R01;
     }
@@ -20387,6 +23694,10 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return RETFRAC;
     }
 
+    public byte getRF() {
+        return RF;
+    }
+
     public byte getRNYDAY() {
         return RNYDAY;
     }
@@ -20399,7 +23710,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return RPFCRET2;
     }
 
-    public boolean getRPFCRET3() {
+    public byte getRPFCRET3() {
         return RPFCRET3;
     }
 
@@ -20413,6 +23724,10 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     public boolean getRPFCRET6() {
         return RPFCRET6;
+    }
+
+    public byte getRS() {
+        return RS;
     }
 
     public byte getSAMEJOB1() {
@@ -20451,8 +23766,16 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return SATIS;
     }
 
+    public boolean getSAVDEP() {
+        return SAVDEP;
+    }
+
     public byte getSAVNUM() {
         return SAVNUM;
+    }
+
+    public byte getSCAC1() {
+        return SCAC1;
     }
 
     public byte getSCAC1_I() {
@@ -20463,12 +23786,20 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return SCAC1_IFLAG;
     }
 
+    public byte getSCAC2() {
+        return SCAC2;
+    }
+
     public byte getSCAC2_I() {
         return SCAC2_I;
     }
 
     public boolean getSCAC2_IFLAG() {
         return SCAC2_IFLAG;
+    }
+
+    public byte getSCAC3() {
+        return SCAC3;
     }
 
     public byte getSCAC3_I() {
@@ -20695,11 +24026,11 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return TOPDVDBOPEN2T;
     }
 
-    public short getTOTARR_EXCMORT_SUM() {
+    public int getTOTARR_EXCMORT_SUM() {
         return TOTARR_EXCMORT_SUM;
     }
 
-    public short getTOTBILLARR_SUM() {
+    public int getTOTBILLARR_SUM() {
         return TOTBILLARR_SUM;
     }
 
@@ -20743,7 +24074,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return TOTOSLBNK_SUM;
     }
 
-    public int getTOTOSLC_SUM() {
+    public double getTOTOSLC_SUM() {
         return TOTOSLC_SUM;
     }
 
@@ -20759,7 +24090,7 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return TOTSLBNK_SUM;
     }
 
-    public int getTOTSLC_SUM() {
+    public double getTOTSLC_SUM() {
         return TOTSLC_SUM;
     }
 
@@ -20831,6 +24162,22 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return UDEBTBLU;
     }
 
+    public byte getUDEBTBLU_I() {
+        return UDEBTBLU_I;
+    }
+
+    public boolean getUDEBTBLU_IFLAG() {
+        return UDEBTBLU_IFLAG;
+    }
+
+    public byte getUDEBTBL_I() {
+        return UDEBTBL_I;
+    }
+
+    public boolean getUDEBTBL_IFLAG() {
+        return UDEBTBL_IFLAG;
+    }
+
     public byte getUDEBTBO() {
         return UDEBTBO;
     }
@@ -20839,12 +24186,44 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return UDEBTBOR;
     }
 
+    public byte getUDEBTBOR_I() {
+        return UDEBTBOR_I;
+    }
+
+    public boolean getUDEBTBOR_IFLAG() {
+        return UDEBTBOR_IFLAG;
+    }
+
     public byte getUDEBTBOS() {
         return UDEBTBOS;
     }
 
+    public byte getUDEBTBOS_I() {
+        return UDEBTBOS_I;
+    }
+
+    public boolean getUDEBTBOS_IFLAG() {
+        return UDEBTBOS_IFLAG;
+    }
+
+    public byte getUDEBTBO_I() {
+        return UDEBTBO_I;
+    }
+
+    public boolean getUDEBTBO_IFLAG() {
+        return UDEBTBO_IFLAG;
+    }
+
     public byte getUDEBTBS() {
         return UDEBTBS;
+    }
+
+    public byte getUDEBTBS_I() {
+        return UDEBTBS_I;
+    }
+
+    public boolean getUDEBTBS_IFLAG() {
+        return UDEBTBS_IFLAG;
     }
 
     public int getUDEBTL() {
@@ -21039,6 +24418,22 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return UVALBLU;
     }
 
+    public byte getUVALBLU_I() {
+        return UVALBLU_I;
+    }
+
+    public boolean getUVALBLU_IFLAG() {
+        return UVALBLU_IFLAG;
+    }
+
+    public byte getUVALBL_I() {
+        return UVALBL_I;
+    }
+
+    public boolean getUVALBL_IFLAG() {
+        return UVALBL_IFLAG;
+    }
+
     public byte getUVALBO() {
         return UVALBO;
     }
@@ -21047,12 +24442,44 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
         return UVALBOR;
     }
 
+    public byte getUVALBOR_I() {
+        return UVALBOR_I;
+    }
+
+    public boolean getUVALBOR_IFLAG() {
+        return UVALBOR_IFLAG;
+    }
+
     public byte getUVALBOS() {
         return UVALBOS;
     }
 
+    public byte getUVALBOS_I() {
+        return UVALBOS_I;
+    }
+
+    public boolean getUVALBOS_IFLAG() {
+        return UVALBOS_IFLAG;
+    }
+
+    public byte getUVALBO_I() {
+        return UVALBO_I;
+    }
+
+    public boolean getUVALBO_IFLAG() {
+        return UVALBO_IFLAG;
+    }
+
     public byte getUVALBS() {
         return UVALBS;
+    }
+
+    public byte getUVALBS_I() {
+        return UVALBS_I;
+    }
+
+    public boolean getUVALBS_IFLAG() {
+        return UVALBS_IFLAG;
     }
 
     public int getUVALL() {
@@ -21173,6 +24600,14 @@ public abstract class WaAS_W3W4W5PRecord extends WaAS_W1W2W3W4W5PRecord {
 
     public boolean getXMARSTA_IFLAG() {
         return XMARSTA_IFLAG;
+    }
+
+    public short getYEARW1() {
+        return YEARW1;
+    }
+
+    public short getYEARW2() {
+        return YEARW2;
     }
 
 }

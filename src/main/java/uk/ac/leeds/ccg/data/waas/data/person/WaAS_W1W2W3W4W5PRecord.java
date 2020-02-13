@@ -160,8 +160,6 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     protected byte COURSE;
 
-    protected boolean CURRAC;
-
     protected byte DBURD;
 
     protected byte DBURDA;
@@ -173,6 +171,10 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
     protected short DCAMD2;
 
     protected short DCAMD3;
+
+    protected int DCAMOS2;
+
+    protected int DCAMOS3;
 
     protected short DCAMP2;
 
@@ -209,6 +211,10 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
     protected byte DCOINV2_IFLAG;
 
     protected short DCOINV3;
+
+    protected short DCOINV3_I;
+
+    protected byte DCOINV3_IFLAG;
 
     protected byte DCOINVB2;
 
@@ -628,15 +634,15 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     protected byte DLWEST5;
 
-    protected short DLWHNM2;
+    protected byte DLWHNM2;
 
-    protected short DLWHNM2_I;
+    protected byte DLWHNM2_I;
 
     protected byte DLWHNM2_IFLAG;
 
-    protected short DLWHNM3;
+    protected byte DLWHNM3;
 
-    protected short DLWHNM3_I;
+    protected byte DLWHNM3_I;
 
     protected byte DLWHNM3_IFLAG;
 
@@ -689,8 +695,6 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
     protected byte DLWHY22;
 
     protected byte DLWHY23;
-
-    protected byte DLWHY29;
 
     protected byte DLWHY3;
 
@@ -763,6 +767,10 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
     protected short DSAMD2;
 
     protected short DSAMD3;
+
+    protected short DSAMOS2;
+
+    protected short DSAMOS3;
 
     protected short DSAMP2;
 
@@ -896,6 +904,8 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     protected short DVDLOWE4;
 
+    protected short DVDLOWE5;
+
     protected short DVDMOOWE2;
 
     protected byte DVELARR;
@@ -950,7 +960,7 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     protected boolean DVHASPFD;
 
-    protected boolean DVHASPP;
+    protected byte DVHASPP;
 
     protected byte DVHPAR;
 
@@ -1294,6 +1304,8 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     protected byte FINVTY11;
 
+    protected byte FINVTY11_I;
+
     protected byte FISA1;
 
     protected byte FISA1_I;
@@ -1387,6 +1399,8 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
     protected byte FNSAV3;
 
     protected byte FNSAV4;
+
+    protected int FNSVAL_I;
 
     protected byte FNSVAL_IFLAG;
 
@@ -1486,8 +1500,6 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     protected byte FTPTWK;
 
-    protected byte GOR;
-
     protected byte GRSESM;
 
     protected byte GRSESP;
@@ -1569,6 +1581,10 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
     protected byte IOUT1;
 
     protected boolean ISDEP;
+
+    protected boolean ISHRP;
+
+    protected boolean ISHRPPART;
 
     protected boolean ISNDEP;
 
@@ -1730,7 +1746,7 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     protected byte OTHSRC3_I;
 
-    protected byte OTHSRC3_IFLAG;
+    protected boolean OTHSRC3_IFLAG;
 
     protected byte OTRUST01;
 
@@ -1798,7 +1814,7 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     protected byte PEMELG_I;
 
-    protected boolean PEMELG_IFLAG;
+    protected byte PEMELG_IFLAG;
 
     protected byte PEMMEM;
 
@@ -1820,13 +1836,13 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     protected byte PEVERC_I;
 
-    protected byte PEVERC_IFLAG;
+    protected boolean PEVERC_IFLAG;
 
     protected byte PEVERNC;
 
     protected byte PEVERNC_I;
 
-    protected byte PEVERNC_IFLAG;
+    protected boolean PEVERNC_IFLAG;
 
     protected byte PEXPRET;
 
@@ -1834,7 +1850,7 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     protected byte PFNUM_I;
 
-    protected byte PFNUM_IFLAG;
+    protected boolean PFNUM_IFLAG;
 
     protected byte PFULRET;
 
@@ -1858,7 +1874,7 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     protected byte PRETAIN_I;
 
-    protected byte PRETAIN_IFLAG;
+    protected boolean PRETAIN_IFLAG;
 
     protected byte PSCHM_F;
 
@@ -2622,17 +2638,6 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
         }
     }
 
-    protected final void initCURRAC(String s) {
-        if (!s.trim().isEmpty()) {
-            byte b = Byte.parseByte(s);
-            if (b == 0) {
-                CURRAC = false;
-            } else {
-                CURRAC = true;
-            }
-        }
-    }
-
     protected final void initDBURD(String s) {
         if (!s.trim().isEmpty()) {
             DBURD = Byte.parseByte(s);
@@ -2678,6 +2683,22 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
             DCAMD3 = Short.parseShort(s);
         } else {
             DCAMD3 = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initDCAMOS2(String s) {
+        if (!s.trim().isEmpty()) {
+            DCAMOS2 = Integer.parseInt(s);
+        } else {
+            DCAMOS2 = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDCAMOS3(String s) {
+        if (!s.trim().isEmpty()) {
+            DCAMOS3 = Integer.parseInt(s);
+        } else {
+            DCAMOS3 = Integer.MIN_VALUE;
         }
     }
 
@@ -2822,6 +2843,22 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
             DCOINV3 = Short.parseShort(s);
         } else {
             DCOINV3 = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initDCOINV3_I(String s) {
+        if (!s.trim().isEmpty()) {
+            DCOINV3_I = Short.parseShort(s);
+        } else {
+            DCOINV3_I = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initDCOINV3_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            DCOINV3_IFLAG = Byte.parseByte(s);
+        } else {
+            DCOINV3_IFLAG = Byte.MIN_VALUE;
         }
     }
 
@@ -4499,17 +4536,17 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     protected final void initDLWHNM2(String s) {
         if (!s.trim().isEmpty()) {
-            DLWHNM2 = Short.parseShort(s);
+            DLWHNM2 = Byte.parseByte(s);
         } else {
-            DLWHNM2 = Short.MIN_VALUE;
+            DLWHNM2 = Byte.MIN_VALUE;
         }
     }
 
     protected final void initDLWHNM2_I(String s) {
         if (!s.trim().isEmpty()) {
-            DLWHNM2_I = Short.parseShort(s);
+            DLWHNM2_I = Byte.parseByte(s);
         } else {
-            DLWHNM2_I = Short.MIN_VALUE;
+            DLWHNM2_I = Byte.MIN_VALUE;
         }
     }
 
@@ -4523,17 +4560,17 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     protected final void initDLWHNM3(String s) {
         if (!s.trim().isEmpty()) {
-            DLWHNM3 = Short.parseShort(s);
+            DLWHNM3 = Byte.parseByte(s);
         } else {
-            DLWHNM3 = Short.MIN_VALUE;
+            DLWHNM3 = Byte.MIN_VALUE;
         }
     }
 
     protected final void initDLWHNM3_I(String s) {
         if (!s.trim().isEmpty()) {
-            DLWHNM3_I = Short.parseShort(s);
+            DLWHNM3_I = Byte.parseByte(s);
         } else {
-            DLWHNM3_I = Short.MIN_VALUE;
+            DLWHNM3_I = Byte.MIN_VALUE;
         }
     }
 
@@ -4742,14 +4779,6 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
             DLWHY23 = Byte.parseByte(s);
         } else {
             DLWHY23 = Byte.MIN_VALUE;
-        }
-    }
-
-    protected final void initDLWHY29(String s) {
-        if (!s.trim().isEmpty()) {
-            DLWHY29 = Byte.parseByte(s);
-        } else {
-            DLWHY29 = Byte.MIN_VALUE;
         }
     }
 
@@ -5038,6 +5067,22 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
             DSAMD3 = Short.parseShort(s);
         } else {
             DSAMD3 = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initDSAMOS2(String s) {
+        if (!s.trim().isEmpty()) {
+            DSAMOS2 = Short.parseShort(s);
+        } else {
+            DSAMOS2 = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initDSAMOS3(String s) {
+        if (!s.trim().isEmpty()) {
+            DSAMOS3 = Short.parseShort(s);
+        } else {
+            DSAMOS3 = Short.MIN_VALUE;
         }
     }
 
@@ -5573,6 +5618,14 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
         }
     }
 
+    protected final void initDVDLOWE5(String s) {
+        if (!s.trim().isEmpty()) {
+            DVDLOWE5 = Short.parseShort(s);
+        } else {
+            DVDLOWE5 = Short.MIN_VALUE;
+        }
+    }
+
     protected final void initDVDMOOWE2(String s) {
         if (!s.trim().isEmpty()) {
             DVDMOOWE2 = Short.parseShort(s);
@@ -5803,12 +5856,9 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     protected final void initDVHASPP(String s) {
         if (!s.trim().isEmpty()) {
-            byte b = Byte.parseByte(s);
-            if (b == 0) {
-                DVHASPP = false;
-            } else {
-                DVHASPP = true;
-            }
+            DVHASPP = Byte.parseByte(s);
+        } else {
+            DVHASPP = Byte.MIN_VALUE;
         }
     }
 
@@ -7180,6 +7230,14 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
         }
     }
 
+    protected final void initFINVTY11_I(String s) {
+        if (!s.trim().isEmpty()) {
+            FINVTY11_I = Byte.parseByte(s);
+        } else {
+            FINVTY11_I = Byte.MIN_VALUE;
+        }
+    }
+
     protected final void initFISA1(String s) {
         if (!s.trim().isEmpty()) {
             FISA1 = Byte.parseByte(s);
@@ -7559,6 +7617,14 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
             FNSAV4 = Byte.parseByte(s);
         } else {
             FNSAV4 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initFNSVAL_I(String s) {
+        if (!s.trim().isEmpty()) {
+            FNSVAL_I = Integer.parseInt(s);
+        } else {
+            FNSVAL_I = Integer.MIN_VALUE;
         }
     }
 
@@ -7957,14 +8023,6 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
         }
     }
 
-    protected final void initGOR(String s) {
-        if (!s.trim().isEmpty()) {
-            GOR = Byte.parseByte(s);
-        } else {
-            GOR = Byte.MIN_VALUE;
-        }
-    }
-
     protected final void initGRSESM(String s) {
         if (!s.trim().isEmpty()) {
             GRSESM = Byte.parseByte(s);
@@ -8301,6 +8359,28 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
                 ISDEP = false;
             } else {
                 ISDEP = true;
+            }
+        }
+    }
+
+    protected final void initISHRP(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            if (b == 1) {
+                ISHRP = false;
+            } else {
+                ISHRP = true;
+            }
+        }
+    }
+
+    protected final void initISHRPPART(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            if (b == 1) {
+                ISHRPPART = false;
+            } else {
+                ISHRPPART = true;
             }
         }
     }
@@ -8956,9 +9036,12 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     protected final void initOTHSRC3_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            OTHSRC3_IFLAG = Byte.parseByte(s);
-        } else {
-            OTHSRC3_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            if (b == 0) {
+                OTHSRC3_IFLAG = false;
+            } else {
+                OTHSRC3_IFLAG = true;
+            }
         }
     }
 
@@ -9231,12 +9314,9 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     protected final void initPEMELG_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            byte b = Byte.parseByte(s);
-            if (b == 0) {
-                PEMELG_IFLAG = false;
-            } else {
-                PEMELG_IFLAG = true;
-            }
+            PEMELG_IFLAG = Byte.parseByte(s);
+        } else {
+            PEMELG_IFLAG = Byte.MIN_VALUE;
         }
     }
 
@@ -9328,9 +9408,12 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     protected final void initPEVERC_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PEVERC_IFLAG = Byte.parseByte(s);
-        } else {
-            PEVERC_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            if (b == 0) {
+                PEVERC_IFLAG = false;
+            } else {
+                PEVERC_IFLAG = true;
+            }
         }
     }
 
@@ -9352,9 +9435,12 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     protected final void initPEVERNC_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PEVERNC_IFLAG = Byte.parseByte(s);
-        } else {
-            PEVERNC_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            if (b == 0) {
+                PEVERNC_IFLAG = false;
+            } else {
+                PEVERNC_IFLAG = true;
+            }
         }
     }
 
@@ -9384,9 +9470,12 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     protected final void initPFNUM_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PFNUM_IFLAG = Byte.parseByte(s);
-        } else {
-            PFNUM_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            if (b == 0) {
+                PFNUM_IFLAG = false;
+            } else {
+                PFNUM_IFLAG = true;
+            }
         }
     }
 
@@ -9486,9 +9575,12 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     protected final void initPRETAIN_IFLAG(String s) {
         if (!s.trim().isEmpty()) {
-            PRETAIN_IFLAG = Byte.parseByte(s);
-        } else {
-            PRETAIN_IFLAG = Byte.MIN_VALUE;
+            byte b = Byte.parseByte(s);
+            if (b == 0) {
+                PRETAIN_IFLAG = false;
+            } else {
+                PRETAIN_IFLAG = true;
+            }
         }
     }
 
@@ -10551,10 +10643,6 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
         return COURSE;
     }
 
-    public boolean getCURRAC() {
-        return CURRAC;
-    }
-
     public byte getDBURD() {
         return DBURD;
     }
@@ -10577,6 +10665,14 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     public short getDCAMD3() {
         return DCAMD3;
+    }
+
+    public int getDCAMOS2() {
+        return DCAMOS2;
+    }
+
+    public int getDCAMOS3() {
+        return DCAMOS3;
     }
 
     public short getDCAMP2() {
@@ -10649,6 +10745,14 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     public short getDCOINV3() {
         return DCOINV3;
+    }
+
+    public short getDCOINV3_I() {
+        return DCOINV3_I;
+    }
+
+    public byte getDCOINV3_IFLAG() {
+        return DCOINV3_IFLAG;
     }
 
     public byte getDCOINVB2() {
@@ -11487,11 +11591,11 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
         return DLWEST5;
     }
 
-    public short getDLWHNM2() {
+    public byte getDLWHNM2() {
         return DLWHNM2;
     }
 
-    public short getDLWHNM2_I() {
+    public byte getDLWHNM2_I() {
         return DLWHNM2_I;
     }
 
@@ -11499,11 +11603,11 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
         return DLWHNM2_IFLAG;
     }
 
-    public short getDLWHNM3() {
+    public byte getDLWHNM3() {
         return DLWHNM3;
     }
 
-    public short getDLWHNM3_I() {
+    public byte getDLWHNM3_I() {
         return DLWHNM3_I;
     }
 
@@ -11609,10 +11713,6 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     public byte getDLWHY23() {
         return DLWHY23;
-    }
-
-    public byte getDLWHY29() {
-        return DLWHY29;
     }
 
     public byte getDLWHY3() {
@@ -11757,6 +11857,14 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     public short getDSAMD3() {
         return DSAMD3;
+    }
+
+    public short getDSAMOS2() {
+        return DSAMOS2;
+    }
+
+    public short getDSAMOS3() {
+        return DSAMOS3;
     }
 
     public short getDSAMP2() {
@@ -12023,6 +12131,10 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
         return DVDLOWE4;
     }
 
+    public short getDVDLOWE5() {
+        return DVDLOWE5;
+    }
+
     public short getDVDMOOWE2() {
         return DVDMOOWE2;
     }
@@ -12131,7 +12243,7 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
         return DVHASPFD;
     }
 
-    public boolean getDVHASPP() {
+    public byte getDVHASPP() {
         return DVHASPP;
     }
 
@@ -12819,6 +12931,10 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
         return FINVTY11;
     }
 
+    public byte getFINVTY11_I() {
+        return FINVTY11_I;
+    }
+
     public byte getFISA1() {
         return FISA1;
     }
@@ -13005,6 +13121,10 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     public byte getFNSAV4() {
         return FNSAV4;
+    }
+
+    public int getFNSVAL_I() {
+        return FNSVAL_I;
     }
 
     public byte getFNSVAL_IFLAG() {
@@ -13203,10 +13323,6 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
         return FTPTWK;
     }
 
-    public byte getGOR() {
-        return GOR;
-    }
-
     public byte getGRSESM() {
         return GRSESM;
     }
@@ -13369,6 +13485,14 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
 
     public boolean getISDEP() {
         return ISDEP;
+    }
+
+    public boolean getISHRP() {
+        return ISHRP;
+    }
+
+    public boolean getISHRPPART() {
+        return ISHRPPART;
     }
 
     public boolean getISNDEP() {
@@ -13691,7 +13815,7 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
         return OTHSRC3_I;
     }
 
-    public byte getOTHSRC3_IFLAG() {
+    public boolean getOTHSRC3_IFLAG() {
         return OTHSRC3_IFLAG;
     }
 
@@ -13827,7 +13951,7 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
         return PEMELG_I;
     }
 
-    public boolean getPEMELG_IFLAG() {
+    public byte getPEMELG_IFLAG() {
         return PEMELG_IFLAG;
     }
 
@@ -13871,7 +13995,7 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
         return PEVERC_I;
     }
 
-    public byte getPEVERC_IFLAG() {
+    public boolean getPEVERC_IFLAG() {
         return PEVERC_IFLAG;
     }
 
@@ -13883,7 +14007,7 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
         return PEVERNC_I;
     }
 
-    public byte getPEVERNC_IFLAG() {
+    public boolean getPEVERNC_IFLAG() {
         return PEVERNC_IFLAG;
     }
 
@@ -13899,7 +14023,7 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
         return PFNUM_I;
     }
 
-    public byte getPFNUM_IFLAG() {
+    public boolean getPFNUM_IFLAG() {
         return PFNUM_IFLAG;
     }
 
@@ -13947,7 +14071,7 @@ public abstract class WaAS_W1W2W3W4W5PRecord extends Data_Record {
         return PRETAIN_I;
     }
 
-    public byte getPRETAIN_IFLAG() {
+    public boolean getPRETAIN_IFLAG() {
         return PRETAIN_IFLAG;
     }
 

@@ -7,6 +7,8 @@ import uk.ac.leeds.ccg.data.waas.data.id.WaAS_RecordID;
 
 public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
 
+    protected short AREA;
+
     protected boolean DATEBLT;
 
     protected int DVERECANNUAL;
@@ -121,6 +123,8 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
 
     protected boolean GCPREAM;
 
+    protected byte GOR;
+
     protected boolean HASLIFT;
 
     protected boolean HEXT5;
@@ -132,8 +136,6 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
     protected boolean HINTRO;
 
     protected byte HRPDVAGE15;
-
-    protected byte HRPDVAGEW3BAND;
 
     protected byte HRPEMPSTAT2;
 
@@ -197,13 +199,13 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
 
     protected short MENDV12;
 
-    protected boolean MENDV12_I;
+    protected short MENDV12_I;
 
     protected boolean MENDV12_IFLAG;
 
     protected short MENDV13;
 
-    protected boolean MENDV13_I;
+    protected short MENDV13_I;
 
     protected boolean MENDV13_IFLAG;
 
@@ -219,7 +221,7 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
 
     protected boolean MENDV15_IFLAG;
 
-    protected boolean MENDV8_I;
+    protected short MENDV8_I;
 
     protected boolean MENDV8_IFLAG;
 
@@ -489,17 +491,11 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
 
     protected boolean NUMSSEX;
 
-    protected String SOA1;
-
-    protected String SOA2;
-
     protected byte SRBPERC;
 
     protected byte SRBWHENM;
 
     protected short SRBWHENY;
-
-    protected String STATSWARD;
 
     protected boolean STOREY;
 
@@ -548,6 +544,14 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
     protected byte VTYPE_I;
 
     protected double W3XSWGT;
+
+    protected final void initAREA(String s) {
+        if (!s.trim().isEmpty()) {
+            AREA = Short.parseShort(s);
+        } else {
+            AREA = Short.MIN_VALUE;
+        }
+    }
 
     protected final void initDATEBLT(String s) {
         if (!s.trim().isEmpty()) {
@@ -1110,6 +1114,14 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
         }
     }
 
+    protected final void initGOR(String s) {
+        if (!s.trim().isEmpty()) {
+            GOR = Byte.parseByte(s);
+        } else {
+            GOR = Byte.MIN_VALUE;
+        }
+    }
+
     protected final void initHASLIFT(String s) {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
@@ -1170,14 +1182,6 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
             HRPDVAGE15 = Byte.parseByte(s);
         } else {
             HRPDVAGE15 = Byte.MIN_VALUE;
-        }
-    }
-
-    protected final void initHRPDVAGEW3BAND(String s) {
-        if (!s.trim().isEmpty()) {
-            HRPDVAGEW3BAND = Byte.parseByte(s);
-        } else {
-            HRPDVAGEW3BAND = Byte.MIN_VALUE;
         }
     }
 
@@ -1470,12 +1474,9 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
 
     protected final void initMENDV12_I(String s) {
         if (!s.trim().isEmpty()) {
-            byte b = Byte.parseByte(s);
-            if (b == -7) {
-                MENDV12_I = false;
-            } else {
-                MENDV12_I = true;
-            }
+            MENDV12_I = Short.parseShort(s);
+        } else {
+            MENDV12_I = Short.MIN_VALUE;
         }
     }
 
@@ -1500,12 +1501,9 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
 
     protected final void initMENDV13_I(String s) {
         if (!s.trim().isEmpty()) {
-            byte b = Byte.parseByte(s);
-            if (b == -7) {
-                MENDV13_I = false;
-            } else {
-                MENDV13_I = true;
-            }
+            MENDV13_I = Short.parseShort(s);
+        } else {
+            MENDV13_I = Short.MIN_VALUE;
         }
     }
 
@@ -1588,12 +1586,9 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
 
     protected final void initMENDV8_I(String s) {
         if (!s.trim().isEmpty()) {
-            byte b = Byte.parseByte(s);
-            if (b == -7) {
-                MENDV8_I = false;
-            } else {
-                MENDV8_I = true;
-            }
+            MENDV8_I = Short.parseShort(s);
+        } else {
+            MENDV8_I = Short.MIN_VALUE;
         }
     }
 
@@ -2975,18 +2970,6 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
         }
     }
 
-    protected final void initSOA1(String s) {
-        if (!s.trim().isEmpty()) {
-            SOA1 = s;
-        }
-    }
-
-    protected final void initSOA2(String s) {
-        if (!s.trim().isEmpty()) {
-            SOA2 = s;
-        }
-    }
-
     protected final void initSRBPERC(String s) {
         if (!s.trim().isEmpty()) {
             SRBPERC = Byte.parseByte(s);
@@ -3008,12 +2991,6 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
             SRBWHENY = Short.parseShort(s);
         } else {
             SRBWHENY = Short.MIN_VALUE;
-        }
-    }
-
-    protected final void initSTATSWARD(String s) {
-        if (!s.trim().isEmpty()) {
-            STATSWARD = s;
         }
     }
 
@@ -3235,6 +3212,10 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
         } else {
             W3XSWGT = Double.NaN;
         }
+    }
+
+    public short getAREA() {
+        return AREA;
     }
 
     public boolean getDATEBLT() {
@@ -3465,6 +3446,10 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
         return GCPREAM;
     }
 
+    public byte getGOR() {
+        return GOR;
+    }
+
     public boolean getHASLIFT() {
         return HASLIFT;
     }
@@ -3487,10 +3472,6 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
 
     public byte getHRPDVAGE15() {
         return HRPDVAGE15;
-    }
-
-    public byte getHRPDVAGEW3BAND() {
-        return HRPDVAGEW3BAND;
     }
 
     public byte getHRPEMPSTAT2() {
@@ -3617,7 +3598,7 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
         return MENDV12;
     }
 
-    public boolean getMENDV12_I() {
+    public short getMENDV12_I() {
         return MENDV12_I;
     }
 
@@ -3629,7 +3610,7 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
         return MENDV13;
     }
 
-    public boolean getMENDV13_I() {
+    public short getMENDV13_I() {
         return MENDV13_I;
     }
 
@@ -3661,7 +3642,7 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
         return MENDV15_IFLAG;
     }
 
-    public boolean getMENDV8_I() {
+    public short getMENDV8_I() {
         return MENDV8_I;
     }
 
@@ -4201,14 +4182,6 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
         return NUMSSEX;
     }
 
-    public String getSOA1() {
-        return SOA1;
-    }
-
-    public String getSOA2() {
-        return SOA2;
-    }
-
     public byte getSRBPERC() {
         return SRBPERC;
     }
@@ -4219,10 +4192,6 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
 
     public short getSRBWHENY() {
         return SRBWHENY;
-    }
-
-    public String getSTATSWARD() {
-        return STATSWARD;
     }
 
     public boolean getSTOREY() {
@@ -4325,716 +4294,722 @@ public class WaAS_W3HRecord extends WaAS_W3W4W5HRecord {
     public WaAS_W3HRecord(WaAS_RecordID i, String line) throws Exception {
         super(i);
         s = line.split("\t");
-        initHOUT(s[0]);
-        initW3XSWGT(s[1]);
-        initNUMADISW(s[2]);
-        initNUMADULT(s[3]);
-        initNUMCH18(s[4]);
-        initNUMCHILD(s[5]);
-        initNUMCIVPTR(s[6]);
-        initNUMCPART(s[7]);
-        initNUMDEPCH(s[8]);
-        initNUMELCH(s[9]);
-        initNUMHHLDR(s[10]);
-        initNUMMPART(s[11]);
-        initNUMNOELCH(s[12]);
-        initNUMPSING(s[13]);
-        initNUMSSEX(s[14]);
-        initHHOLDTYPE(s[15]);
-        initHRPEDLEVEL(s[16]);
-        initHSETYPE(s[17]);
-        initDVHSIZE(s[18]);
-        initACCOM(s[19]);
-        initFLTTYP(s[20]);
-        initACCOTH(s[21]);
-        initLTRESYRS(s[22]);
-        initLTRESMTH(s[23]);
-        initSTOREY(s[24]);
-        initHASLIFT(s[25]);
-        initDATEBLT(s[26]);
-        initTEN1(s[27]);
-        initTIED(s[28]);
-        initLLORD(s[29]);
-        initFURN(s[30]);
-        initDVPRIRNT(s[31]);
-        initHHOWN(s[32]);
-        initHINTRO(s[33]);
-        initHAGEB(s[34]);
-        initHAGEYR(s[35]);
-        initHBUYYR(s[36]);
-        initHBUYSE(s[37]);
-        initHSHARE(s[38]);
-        initHSHAREP(s[39]);
-        initHPRICE(s[40]);
-        initHPRICEB(s[41]);
-        initHBFROM(s[42]);
-        initHRTBEV(s[43]);
-        initHHOSCH(s[44]);
-        initHVALUE(s[45]);
-        initHVALB(s[46]);
-        initHVALRS1(s[47]);
-        initHVALRS2(s[48]);
-        initHVALRS3(s[49]);
-        initHVALRS4(s[50]);
-        initHVALRS5(s[51]);
-        initHVALRS6(s[52]);
-        initHVALRS7(s[53]);
-        initHEXT1(s[54]);
-        initHEXT2(s[55]);
-        initHEXT3(s[56]);
-        initHEXT4(s[57]);
-        initHEXT5(s[58]);
-        initHEXT6(s[59]);
-        initHEXT7(s[60]);
-        initMINTRO(s[61]);
-        initMNUMBN(s[62]);
-        initMNUMB(s[63]);
-        initMW2CHK1(s[64]);
-        initMW2CHK2(s[65]);
-        initMW2CHK3(s[66]);
-        initMEXTN(s[67]);
-        initMEXTRS1(s[68]);
-        initMEXTRS2(s[69]);
-        initMEXTRS3(s[70]);
-        initMEXTRS4(s[71]);
-        initMEXTRS5(s[72]);
-        initMEXTRS6(s[73]);
-        initMEXTRS7(s[74]);
-        initMEXTRS8(s[75]);
-        initMEXTRS9(s[76]);
-        initMCHGE(s[77]);
-        initMCHGENUM(s[78]);
-        initMNUMBO(s[79]);
-        initMORTID(s[80]);
-        initMNAME(s[81]);
-        initMONAME(s[82]);
-        initMJNAME01(s[83]);
-        initMJNAME02(s[84]);
-        initMJNAME03(s[85]);
-        initMJNAME04(s[86]);
-        initMJNAME05(s[87]);
-        initMJNAME06(s[88]);
-        initMJNAME07(s[89]);
-        initMJNAME08(s[90]);
-        initMJNAME09(s[91]);
-        initMJNAME10(s[92]);
-        initMJNAME11(s[93]);
-        initMJNAME12(s[94]);
-        initMJNAME13(s[95]);
-        initMJNAME14(s[96]);
-        initMJNAME15(s[97]);
-        initMJNAME16(s[98]);
-        initMJNAME17(s[99]);
-        initMREAS01(s[100]);
-        initMREAS02(s[101]);
-        initMREAS03(s[102]);
-        initMREAS04(s[103]);
-        initMREAS05(s[104]);
-        initMREAS06(s[105]);
-        initMREAS07(s[106]);
-        initMREAS08(s[107]);
-        initMREAS09(s[108]);
-        initMREAS10(s[109]);
-        initMREAS11(s[110]);
-        initMTYPE(s[111]);
-        initMENDW(s[112]);
-        initMENDNUM(s[113]);
-        initMALL(s[114]);
-        initMALLTY(s[115]);
-        initMVAL(s[116]);
-        initMVALB(s[117]);
-        initMNEG(s[118]);
-        initMNEGB(s[119]);
-        initMENDV(s[120]);
-        initMENDVB(s[121]);
-        initMENDY(s[122]);
-        initMENDV2(s[123]);
-        initMENDVB2(s[124]);
-        initMENDY2(s[125]);
-        initMENDV3(s[126]);
-        initMENDVB3(s[127]);
-        initMENDY3(s[128]);
-        initMENDV4(s[129]);
-        initMENDVB4(s[130]);
-        initMENDY4(s[131]);
-        initMENDV5(s[132]);
-        initMENDVB5(s[133]);
-        initMENDY5(s[134]);
-        initMENDX(s[135]);
-        initMYLFT(s[136]);
-        initMYIFCH(s[137]);
-        initMPAYM(s[138]);
-        initMPAYB(s[139]);
-        initMINC1(s[140]);
-        initMINC2(s[141]);
-        initMINC3(s[142]);
-        initMINC4(s[143]);
-        initMINC5(s[144]);
-        initMPP(s[145]);
-        initMHOWPY(s[146]);
-        initMARRS(s[147]);
-        initMARRSV(s[148]);
-        initMORTID2(s[149]);
-        initMNAME2(s[150]);
-        initMONAME2(s[151]);
-        initMJNAME18(s[152]);
-        initMJNAME19(s[153]);
-        initMJNAME20(s[154]);
-        initMJNAME21(s[155]);
-        initMJNAME22(s[156]);
-        initMJNAME23(s[157]);
-        initMJNAME24(s[158]);
-        initMJNAME25(s[159]);
-        initMJNAME26(s[160]);
-        initMJNAME27(s[161]);
-        initMJNAME28(s[162]);
-        initMJNAME29(s[163]);
-        initMJNAME30(s[164]);
-        initMJNAME31(s[165]);
-        initMJNAME32(s[166]);
-        initMJNAME33(s[167]);
-        initMJNAME34(s[168]);
-        initMREAS12(s[169]);
-        initMREAS13(s[170]);
-        initMREAS14(s[171]);
-        initMREAS15(s[172]);
-        initMREAS16(s[173]);
-        initMREAS17(s[174]);
-        initMREAS18(s[175]);
-        initMREAS19(s[176]);
-        initMREAS20(s[177]);
-        initMREAS21(s[178]);
-        initMREAS22(s[179]);
-        initMTYPE2(s[180]);
-        initMENDW2(s[181]);
-        initMENDNUM2(s[182]);
-        initMALL2(s[183]);
-        initMALLTY2(s[184]);
-        initMVAL2(s[185]);
-        initMVALB2(s[186]);
-        initMNEG2(s[187]);
-        initMNEGB2(s[188]);
-        initMENDV6(s[189]);
-        initMENDVB6(s[190]);
-        initMENDY6(s[191]);
-        initMENDV7(s[192]);
-        initMENDVB7(s[193]);
-        initMENDY7(s[194]);
-        initMENDV8(s[195]);
-        initMENDVB8(s[196]);
-        initMENDY8(s[197]);
-        initMENDV9(s[198]);
-        initMENDVB9(s[199]);
-        initMENDY9(s[200]);
-        initMENDV10(s[201]);
-        initMENDVB10(s[202]);
-        initMENDY10(s[203]);
-        initMENDX2(s[204]);
-        initMYLFT2(s[205]);
-        initMYIFCH2(s[206]);
-        initMPAYM2(s[207]);
-        initMPAYB2(s[208]);
-        initMINC6(s[209]);
-        initMINC7(s[210]);
-        initMINC8(s[211]);
-        initMINC9(s[212]);
-        initMINC10(s[213]);
-        initMPP2(s[214]);
-        initMHOWPY2(s[215]);
-        initMARRS2(s[216]);
-        initMARRSV2(s[217]);
-        initMORTID3(s[218]);
-        initMNAME3(s[219]);
-        initMONAME3(s[220]);
-        initMJNAME35(s[221]);
-        initMJNAME36(s[222]);
-        initMJNAME37(s[223]);
-        initMJNAME38(s[224]);
-        initMJNAME39(s[225]);
-        initMJNAME40(s[226]);
-        initMJNAME41(s[227]);
-        initMJNAME42(s[228]);
-        initMJNAME43(s[229]);
-        initMJNAME44(s[230]);
-        initMJNAME45(s[231]);
-        initMJNAME46(s[232]);
-        initMJNAME47(s[233]);
-        initMJNAME48(s[234]);
-        initMJNAME49(s[235]);
-        initMJNAME50(s[236]);
-        initMJNAME51(s[237]);
-        initMREAS23(s[238]);
-        initMREAS24(s[239]);
-        initMREAS25(s[240]);
-        initMREAS26(s[241]);
-        initMREAS27(s[242]);
-        initMREAS28(s[243]);
-        initMREAS29(s[244]);
-        initMREAS30(s[245]);
-        initMREAS31(s[246]);
-        initMREAS32(s[247]);
-        initMREAS33(s[248]);
-        initMTYPE3(s[249]);
-        initMEND___W3(s[250]);
-        initMENDNUM3(s[251]);
-        initMALL3(s[252]);
-        initMALLTY3(s[253]);
-        initMVAL3(s[254]);
-        initMVALB3(s[255]);
-        initMNEG3(s[256]);
-        initMNEGB3(s[257]);
-        initMENDV11(s[258]);
-        initMENDVB11(s[259]);
-        initMENDY11(s[260]);
-        initMENDV12(s[261]);
-        initMENDVB12(s[262]);
-        initMENDY12(s[263]);
-        initMENDV13(s[264]);
-        initMENDVB13(s[265]);
-        initMENDY13(s[266]);
-        initMENDV14(s[267]);
-        initMENDVB14(s[268]);
-        initMENDY14(s[269]);
-        initMENDV15(s[270]);
-        initMENDVB15(s[271]);
-        initMENDY15(s[272]);
-        initMENDX3(s[273]);
-        initMYLFT3(s[274]);
-        initMYIFCH3(s[275]);
-        initMPAYM3(s[276]);
-        initMPAYB3(s[277]);
-        initMINC11(s[278]);
-        initMINC12(s[279]);
-        initMINC13(s[280]);
-        initMINC14(s[281]);
-        initMINC15(s[282]);
-        initMPP3(s[283]);
-        initMHOWPY3(s[284]);
-        initMARRS3(s[285]);
-        initMARRSV3(s[286]);
-        initMDIFFPY(s[287]);
-        initEQOLD(s[288]);
-        initEQNEW(s[289]);
-        initEQYES(s[290]);
-        initEQTYPE1(s[291]);
-        initEQTYPE2(s[292]);
-        initEQTYPE3(s[293]);
-        initEQTYPE4(s[294]);
-        initEQTYPE5(s[295]);
-        initEQTYPE6(s[296]);
-        initEQTYPE7(s[297]);
-        initEQTYPE8(s[298]);
-        initEQTYPE9(s[299]);
-        initEQREAS1(s[300]);
-        initEQREAS2(s[301]);
-        initEQREAS3(s[302]);
-        initEQREAS4(s[303]);
-        initEQREAS5(s[304]);
-        initEQREAS6(s[305]);
-        initEQREAS7(s[306]);
-        initEQREAS8(s[307]);
-        initEQREAS9(s[308]);
-        initEQWHENY(s[309]);
-        initEQWHENM(s[310]);
-        initEQDRAW(s[311]);
-        initEQVAL(s[312]);
-        initEQVALB(s[313]);
-        initEQVALDR(s[314]);
-        initEQVALDRB(s[315]);
-        initEREC(s[316]);
-        initERECMPD(s[317]);
-        initERECMBY(s[318]);
-        initERECTAX(s[319]);
-        initEINT(s[320]);
-        initEINTFIX(s[321]);
-        initEINTRAT(s[322]);
-        initEMSPAY(s[323]);
-        initEMSARR(s[324]);
-        initFRREPFIX(s[325]);
-        initSHARAPP(s[326]);
-        initESHARAPP(s[327]);
-        initERVREG1(s[328]);
-        initERVREG2(s[329]);
-        initERVSUM(s[330]);
-        initERVSUMB(s[331]);
-        initERVRECPD(s[332]);
-        initERVRECBY(s[333]);
-        initERVTAX(s[334]);
-        initERVRENT(s[335]);
-        initERENTAM(s[336]);
-        initERENTB(s[337]);
-        initERVPRP(s[338]);
-        initSRBWHENY(s[339]);
-        initSRBWHENM(s[340]);
-        initSRBPERC(s[341]);
-        initEPRVPAY(s[342]);
-        initEPRVAL(s[343]);
-        initEPRPER(s[344]);
-        initEOTHREG(s[345]);
-        initEOTHRVA(s[346]);
-        initEOTHRVB(s[347]);
-        initPRREPAY(s[348]);
-        initPRREPFIX(s[349]);
-        initPRREPPC(s[350]);
-        initGCOMODU(s[351]);
-        initGCPREAM(s[352]);
-        initGCOLLEC(s[353]);
-        initGCOLLV(s[354]);
-        initGCOLLVB(s[355]);
-        initGCONTVB(s[356]);
-        initVCARN(s[357]);
-        initVCADD(s[358]);
-        initVCADDN(s[359]);
-        initVTYPE(s[360]);
-        initVESTV(s[361]);
-        initVESVB(s[362]);
-        initVTYPE2(s[363]);
-        initVESTV2(s[364]);
-        initVESVB2(s[365]);
-        initVPERS(s[366]);
-        initVPERV(s[367]);
-        initVOTYP1(s[368]);
-        initVOTYP2(s[369]);
-        initVOTYP3(s[370]);
-        initVOTYP4(s[371]);
-        initVOTYP5(s[372]);
-        initVOTPN(s[373]);
-        initVOTYO(s[374]);
-        initVOVAL(s[375]);
-        initVOVLB(s[376]);
-        initOFINAL(s[377]);
-        initNOUNITS(s[378]);
-        initSOA2(s[379]);
-        initSOA1(s[380]);
-        initSTATSWARD(s[381]);
-        initTEN1_I(s[382]);
-        initTEN1_IFLAG(s[383]);
-        initHSHARE_I(s[384]);
-        initHSHARE_IFLAG(s[385]);
-        initHSHAREP_I(s[386]);
-        initHSHAREP_IFLAG(s[387]);
-        initHVALUE_I(s[388]);
-        initHVALUE_IFLAG(s[389]);
-        initEQUITY_YN_I(s[390]);
-        initEQUITY_YN_IFLAG(s[391]);
-        initEQTYPE1_I(s[392]);
-        initEQTYPE1_IFLAG(s[393]);
-        initEQDRAW_I(s[394]);
-        initEQDRAW_IFLAG(s[395]);
-        initEQVAL_I(s[396]);
-        initEQVAL_IFLAG(s[397]);
-        initEINT_I(s[398]);
-        initEINT_IFLAG(s[399]);
-        initEINTRAT_I(s[400]);
-        initEINTRAT_IFLAG(s[401]);
-        initERVPRP_I(s[402]);
-        initERVPRP_IFLAG(s[403]);
-        initPRREPAY_I(s[404]);
-        initPRREPAY_IFLAG(s[405]);
-        initPRREPFIX_I(s[406]);
-        initPRREPFIX_IFLAG(s[407]);
-        initPRREPPC_I(s[408]);
-        initPRREPPC_IFLAG(s[409]);
-        initMNUMB_I(s[410]);
-        initMNUMB_IFLAG(s[411]);
-        initMALL_I(s[412]);
-        initMALL_IFLAG(s[413]);
-        initMALL2_I(s[414]);
-        initMALL2_IFLAG(s[415]);
-        initMALL3_I(s[416]);
-        initMALL3_IFLAG(s[417]);
-        initMALLTY_I(s[418]);
-        initMALLTY_IFLAG(s[419]);
-        initMALLTY2_I(s[420]);
-        initMALLTY2_IFLAG(s[421]);
-        initMALLTY3_I(s[422]);
-        initMALLTY3_IFLAG(s[423]);
-        initMVAL_I(s[424]);
-        initMVAL_IFLAG(s[425]);
-        initMVAL2_I(s[426]);
-        initMVAL2_IFLAG(s[427]);
-        initMVAL3_I(s[428]);
-        initMVAL3_IFLAG(s[429]);
-        initMNEG_I(s[430]);
-        initMNEG_IFLAG(s[431]);
-        initMNEG2_I(s[432]);
-        initMNEG2_IFLAG(s[433]);
-        initMNEG3_I(s[434]);
-        initMNEG3_IFLAG(s[435]);
-        initMTYPE_I(s[436]);
-        initMTYPE_IFLAG(s[437]);
-        initMTYPE2_I(s[438]);
-        initMTYPE2_IFLAG(s[439]);
-        initMTYPE3_I(s[440]);
-        initMTYPE3_IFLAG(s[441]);
-        initMENDW_I(s[442]);
-        initMENDW_IFLAG(s[443]);
-        initMENDW2_I(s[444]);
-        initMENDW2_IFLAG(s[445]);
-        initMENDW3_I(s[446]);
-        initMENDW3_IFLAG(s[447]);
-        initMENDNUM_I(s[448]);
-        initMENDNUM_IFLAG(s[449]);
-        initMENDNUM2_I(s[450]);
-        initMENDNUM2_IFLAG(s[451]);
-        initMENDNUM3_I(s[452]);
-        initMENDNUM3_IFLAG(s[453]);
-        initMENDV15_I(s[454]);
-        initMENDV15_IFLAG(s[455]);
-        initMENDV_I(s[456]);
-        initMENDV_IFLAG(s[457]);
-        initMENDV2_I(s[458]);
-        initMENDV2_IFLAG(s[459]);
-        initMENDV3_I(s[460]);
-        initMENDV3_IFLAG(s[461]);
-        initMENDV4_I(s[462]);
-        initMENDV4_IFLAG(s[463]);
-        initMENDV5_I(s[464]);
-        initMENDV5_IFLAG(s[465]);
-        initMENDV6_I(s[466]);
-        initMENDV6_IFLAG(s[467]);
-        initMENDV7_I(s[468]);
-        initMENDV7_IFLAG(s[469]);
-        initMENDV8_I(s[470]);
-        initMENDV8_IFLAG(s[471]);
-        initMENDV9_I(s[472]);
-        initMENDV9_IFLAG(s[473]);
-        initMENDV10_I(s[474]);
-        initMENDV10_IFLAG(s[475]);
-        initMENDV11_I(s[476]);
-        initMENDV11_IFLAG(s[477]);
-        initMENDV12_I(s[478]);
-        initMENDV12_IFLAG(s[479]);
-        initMENDV13_I(s[480]);
-        initMENDV13_IFLAG(s[481]);
-        initMENDV14_I(s[482]);
-        initMENDV14_IFLAG(s[483]);
-        initGCOLLEC_I(s[484]);
-        initGCOLLV_I(s[485]);
-        initGCONTVB_I(s[486]);
-        initGCOLLEC_IFLAG(s[487]);
-        initGCOLLV_IFLAG(s[488]);
-        initGCONTVB_IFLAG(s[489]);
-        initVCARN_I(s[490]);
-        initVCARN_IFLAG(s[491]);
-        initVTYPE_I(s[492]);
-        initVTYPE_IFLAG(s[493]);
-        initVTYPE2_I(s[494]);
-        initVTYPE2_IFLAG(s[495]);
-        initVESTV_I(s[496]);
-        initVESTV_IFLAG(s[497]);
-        initVESTV2_I(s[498]);
-        initVESTV2_IFLAG(s[499]);
-        initVPERS_I(s[500]);
-        initVPERS_IFLAG(s[501]);
-        initVPERV_I(s[502]);
-        initVPERV_IFLAG(s[503]);
-        initVOTYP1_I(s[504]);
-        initVOTYP2_I(s[505]);
-        initVOTYP3_I(s[506]);
-        initVOTYP4_I(s[507]);
-        initVOTYP5_I(s[508]);
-        initVOTYP1_IFLAG(s[509]);
-        initVOTYP2_IFLAG(s[510]);
-        initVOTYP3_IFLAG(s[511]);
-        initVOTYP4_IFLAG(s[512]);
-        initVOTYP5_IFLAG(s[513]);
-        initVOVAL_I(s[514]);
-        initVOVAL_IFLAG(s[515]);
-        initHRPDVAGE9(s[516]);
-        initHRPSEX(s[517]);
-        initHRPNSSEC3(s[518]);
-        initHRPDVILO3A(s[519]);
-        initHRPDVMRDF(s[520]);
-        initHRPEDATTN1(s[521]);
-        initHRPEDATTN2(s[522]);
-        initHRPEDATTN3(s[523]);
-        initHRPEMPSTAT2(s[524]);
-        initPHYSHOUSGDST_AGGR(s[525]);
-        initPHYSBUYLGDST_AGGR(s[526]);
-        initPHYSHOUSGDSOST_AGGR(s[527]);
-        initGCONTVLS(s[528]);
-        initDVGCOLLV(s[529]);
-        initDVTOTCARVAL(s[530]);
-        initDVTOTVANVAL(s[531]);
-        initDVTOTMOTBVAL(s[532]);
-        initDVTOTOTHVEHVAL(s[533]);
-        initDVTOTPERNPVAL(s[534]);
-        initDVTOTVEHVAL(s[535]);
-        initHPHYSW(s[536]);
-        initDVVALDBT_AGGR(s[537]);
-        initDVVALDCOS_AGGR(s[538]);
-        initDVDBRWEALTHVAL_AGGR(s[539]);
-        initDVPFCURVAL_AGGR(s[540]);
-        initDVPAVCUV_AGGR(s[541]);
-        initDVPFDDV_AGGR(s[542]);
-        initDVPINPVAL_AGGR(s[543]);
-        initDVPPVAL_AGGR(s[544]);
-        initDVSPEN_AGGR(s[545]);
-        initTOTPEN_AGGR(s[546]);
-        initDVHSEVAL_SUM(s[547]);
-        initDVBLTVAL_SUM(s[548]);
-        initDVBLDVAL_SUM(s[549]);
-        initDVLUKVAL_SUM(s[550]);
-        initDVLOSVAL_SUM(s[551]);
-        initDVOPRVAL_SUM(s[552]);
-        initDVHSEDEBT_SUM(s[553]);
-        initDVBLTDEBT_SUM(s[554]);
-        initDVBLDDEBT_SUM(s[555]);
-        initDVLUKDEBT_SUM(s[556]);
-        initDVLOSDEBT_SUM(s[557]);
-        initDVOPRDEBT_SUM(s[558]);
-        initOTHMORT_SUM(s[559]);
-        initDVHVALUE(s[560]);
-        initTOTMVAL(s[561]);
-        initTOTMNEG(s[562]);
-        initTOTMORT(s[563]);
-        initDVEQRELVAL(s[564]);
-        initDVEQLTM(s[565]);
-        initDVHORP(s[566]);
-        initDVEQSRB(s[567]);
-        initDVEQPRUN(s[568]);
-        initDVPROPERTY(s[569]);
-        initHMORTG(s[570]);
-        initHPROPW(s[571]);
-        initALLENDW(s[572]);
-        initDVNIOTHI_AGGR(s[573]);
-        initDVCISAV_AGGR(s[574]);
-        initDVIISAV_AGGR(s[575]);
-        initDVKISAV_AGGR(s[576]);
-        initDVFNSVAL_AGGR(s[577]);
-        initDVFSHUKV_AGGR(s[578]);
-        initDVINSV_AGGR(s[579]);
-        initDVFLFENV_AGGR(s[580]);
-        initDVFLFSIV_AGGR(s[581]);
-        initDVFLFFSV_AGGR(s[582]);
-        initDVFLFTEV_AGGR(s[583]);
-        initDVFBONDV_AGGR(s[584]);
-        initDVFESHARES_AGGR(s[585]);
-        initDVFESHAV_AGGR(s[586]);
-        initDVFEOPTV_AGGR(s[587]);
-        initDVFCOLLV_AGGR(s[588]);
-        initDVFSHOSV_AGGR(s[589]);
-        initDVFGLTUKV_AGGR(s[590]);
-        initDVFGLTFOV_AGGR(s[591]);
-        initDVFINVOTV_AGGR(s[592]);
-        initDVFINFVAL_AGGR(s[593]);
-        initDVFINFLV_AGGR(s[594]);
-        initDVFINFV_AGGR(s[595]);
-        initDVISAVAL_AGGR(s[596]);
-        initDVFFASSETS_AGGR(s[597]);
-        initDVCACTV_AGGR(s[598]);
-        initDVCASVV_AGGR(s[599]);
-        initDVCAVAL_AGGR(s[600]);
-        initDVCACRVAL_AGGR(s[601]);
-        initDVCAODVAL_AGGR(s[602]);
-        initDVSAVAL_AGGR(s[603]);
-        initTOTCC_AGGR(s[604]);
-        initTOTSC_AGGR(s[605]);
-        initTOTLOS_AGGR(s[606]);
-        initTOTMO_AGGR(s[607]);
-        initTOTNLOS_AGGR(s[608]);
-        initTOTNSLBNK_AGGR(s[609]);
-        initTOTNSLC_AGGR(s[610]);
-        initTOTOSLBNK_AGGR(s[611]);
-        initTOTOSLC_AGGR(s[612]);
-        initTOTFLNS_AGGR(s[613]);
-        initTOTHP_AGGR(s[614]);
-        initTOTLNS_AGGR(s[615]);
-        initTOTSLBNK_AGGR(s[616]);
-        initTOTSLC_AGGR(s[617]);
-        initTOTBILLARR_AGGR(s[618]);
-        initTOTHPARR_AGGR(s[619]);
-        initTOTMOARR_AGGR(s[620]);
-        initTOTLNARR_AGGR(s[621]);
-        initTOTDVNWFLN_AGGR(s[622]);
-        initTOTDVNWHP_AGGR(s[623]);
-        initTOTDVNWILN_AGGR(s[624]);
-        initTOTARR_EXCMORT_AGGR(s[625]);
-        initHFINW_EXCENDW_AGGR(s[626]);
-        initHFINL_AGGR(s[627]);
-        initHFINW_SUM(s[628]);
-        initHFINWNT_SUM(s[629]);
-        initHOUSGDST_SUM(s[630]);
-        initBUYLGDST_SUM(s[631]);
-        initHOUSGDSOST_SUM(s[632]);
-        initALLGD(s[633]);
-        initTOTWLTH(s[634]);
-        initEREC_I(s[635]);
-        initEREC_IFLAG(s[636]);
-        initERECMPD_I(s[637]);
-        initERECMPD_IFLAG(s[638]);
-        initERECMBM_I(s[639]);
-        initERECMBM_IFLAG(s[640]);
-        initERECMBY_I(s[641]);
-        initERECMBY_IFLAG(s[642]);
-        initERECM_I(s[643]);
-        initERECM_IFLAG(s[644]);
-        initERECTAX_I(s[645]);
-        initERECTAX_IFLAG(s[646]);
-        initERVREG1_I(s[647]);
-        initERVREG1_IFLAG(s[648]);
-        initERVRECPD_I(s[649]);
-        initERVRECPD_IFLAG(s[650]);
-        initERVREC_I(s[651]);
-        initERVREC_IFLAG(s[652]);
-        initERVRECBM_I(s[653]);
-        initERVRECBM_IFLAG(s[654]);
-        initERVRECBY_I(s[655]);
-        initERVRECBY_IFLAG(s[656]);
-        initERVTAX_I(s[657]);
-        initERVTAX_IFLAG(s[658]);
-        initEPRVPAY_I(s[659]);
-        initEPRVPAY_IFLAG(s[660]);
-        initEPRVAL_I(s[661]);
-        initEPRVAL_IFLAG(s[662]);
-        initEPRPER_I(s[663]);
-        initEPRPER_IFLAG(s[664]);
-        initVESVB3(s[665]);
-        initHRPDVAGE15(s[666]);
-        initHBEDRM(s[667]);
-        initCASEW3(s[668]);
-        initCASEW2(s[669]);
-        initCASEW1(s[670]);
-        initDVTOTNIR(s[671]);
-        initDVTOTGIR(s[672]);
-        initDVGISE_AGGR(s[673]);
-        initDVGIPPEN_AGGR(s[674]);
-        initDVGIEMP_AGGR(s[675]);
-        initDVTOTALLBENANNUAL_AGGR(s[676]);
-        initDVGIINV_AGGR(s[677]);
-        initDVGRSRENTAMTANNUAL_AGGR(s[678]);
-        initDVNISE_AGGR(s[679]);
-        initDVNIPPEN_AGGR(s[680]);
-        initDVNIEMP_AGGR(s[681]);
-        initDVNIINV_AGGR(s[682]);
-        initDVNETRENTAMTANNUAL_AGGR(s[683]);
-        initDVOINRRANNUAL_AGGR(s[684]);
-        initDVOINGTANNUAL_AGGR(s[685]);
-        initDVOINEGANNUAL_AGGR(s[686]);
-        initDVOINFRANNUAL_AGGR(s[687]);
-        initDVOINMAANNUAL_AGGR(s[688]);
-        initDVOINROANNUAL_AGGR(s[689]);
-        initDVOINOPANNUAL_AGGR(s[690]);
-        initDVOIGRRANNUAL_AGGR(s[691]);
-        initDVOIGGTANNUAL_AGGR(s[692]);
-        initDVOIGEGANNUAL_AGGR(s[693]);
-        initDVOIGFRANNUAL_AGGR(s[694]);
-        initDVOIGMAANNUAL_AGGR(s[695]);
-        initDVOIGROANNUAL_AGGR(s[696]);
-        initDVOIGOPANNUAL_AGGR(s[697]);
-        initDVGIOTHR_AGGR(s[698]);
-        initDVNIOTHR_AGGR(s[699]);
-        initDVERECNETANNUAL(s[700]);
-        initDVERVRECNETANNUAL(s[701]);
-        initDVERECGROSSANNUAL(s[702]);
-        initDVERVRECGROSSANNUAL(s[703]);
-        initDVERECANNUAL(s[704]);
-        initDVERVRECANNUAL(s[705]);
-        initHRPDVAGEW3BAND(s[706]);
-        initGOR(s[707]);
-        initYEAR(s[708]);
-        initMONTH(s[709]);
+        initCASEW3(s[0]);
+        initYEAR(s[1]);
+        initMONTH(s[2]);
+        initCASEW2(s[3]);
+        initYEARW2(s[4]);
+        initMONTHW2(s[5]);
+        initCASEW1(s[6]);
+        initYEARW1(s[7]);
+        initMONTHW1(s[8]);
+        initAREA(s[9]);
+        initHOUT(s[10]);
+        initW3XSWGT(s[11]);
+        initNUMADISW(s[12]);
+        initNUMADULT(s[13]);
+        initNUMCH18(s[14]);
+        initNUMCHILD(s[15]);
+        initNUMCIVPTR(s[16]);
+        initNUMCPART(s[17]);
+        initNUMDEPCH(s[18]);
+        initNUMELCH(s[19]);
+        initNUMHHLDR(s[20]);
+        initNUMMPART(s[21]);
+        initNUMNOELCH(s[22]);
+        initNUMPSING(s[23]);
+        initNUMSSEX(s[24]);
+        initHHOLDTYPE(s[25]);
+        initHRPEDLEVEL(s[26]);
+        initHSETYPE(s[27]);
+        initDVHSIZE(s[28]);
+        initGOR(s[29]);
+        initACCOM(s[30]);
+        initFLTTYP(s[31]);
+        initACCOTH(s[32]);
+        initLTRESYRS(s[33]);
+        initLTRESMTH(s[34]);
+        initSTOREY(s[35]);
+        initHASLIFT(s[36]);
+        initDATEBLT(s[37]);
+        initTEN1(s[38]);
+        initTIED(s[39]);
+        initLLORD(s[40]);
+        initFURN(s[41]);
+        initDVPRIRNT(s[42]);
+        initHHOWN(s[43]);
+        initHINTRO(s[44]);
+        initHAGEB(s[45]);
+        initHAGEYR(s[46]);
+        initHBUYYR(s[47]);
+        initHBUYSE(s[48]);
+        initHSHARE(s[49]);
+        initHSHAREP(s[50]);
+        initHPRICE(s[51]);
+        initHPRICEB(s[52]);
+        initHBFROM(s[53]);
+        initHRTBEV(s[54]);
+        initHHOSCH(s[55]);
+        initHVALUE(s[56]);
+        initHVALB(s[57]);
+        initHVALRS1(s[58]);
+        initHVALRS2(s[59]);
+        initHVALRS3(s[60]);
+        initHVALRS4(s[61]);
+        initHVALRS5(s[62]);
+        initHVALRS6(s[63]);
+        initHVALRS7(s[64]);
+        initHEXT1(s[65]);
+        initHEXT2(s[66]);
+        initHEXT3(s[67]);
+        initHEXT4(s[68]);
+        initHEXT5(s[69]);
+        initHEXT6(s[70]);
+        initHEXT7(s[71]);
+        initMINTRO(s[72]);
+        initMNUMBN(s[73]);
+        initMNUMB(s[74]);
+        initMW2CHK1(s[75]);
+        initMW2CHK2(s[76]);
+        initMW2CHK3(s[77]);
+        initMEXTN(s[78]);
+        initMEXTRS1(s[79]);
+        initMEXTRS2(s[80]);
+        initMEXTRS3(s[81]);
+        initMEXTRS4(s[82]);
+        initMEXTRS5(s[83]);
+        initMEXTRS6(s[84]);
+        initMEXTRS7(s[85]);
+        initMEXTRS8(s[86]);
+        initMEXTRS9(s[87]);
+        initMCHGE(s[88]);
+        initMCHGENUM(s[89]);
+        initMNUMBO(s[90]);
+        initMORTID(s[91]);
+        initMNAME(s[92]);
+        initMONAME(s[93]);
+        initMJNAME01(s[94]);
+        initMJNAME02(s[95]);
+        initMJNAME03(s[96]);
+        initMJNAME04(s[97]);
+        initMJNAME05(s[98]);
+        initMJNAME06(s[99]);
+        initMJNAME07(s[100]);
+        initMJNAME08(s[101]);
+        initMJNAME09(s[102]);
+        initMJNAME10(s[103]);
+        initMJNAME11(s[104]);
+        initMJNAME12(s[105]);
+        initMJNAME13(s[106]);
+        initMJNAME14(s[107]);
+        initMJNAME15(s[108]);
+        initMJNAME16(s[109]);
+        initMJNAME17(s[110]);
+        initMREAS01(s[111]);
+        initMREAS02(s[112]);
+        initMREAS03(s[113]);
+        initMREAS04(s[114]);
+        initMREAS05(s[115]);
+        initMREAS06(s[116]);
+        initMREAS07(s[117]);
+        initMREAS08(s[118]);
+        initMREAS09(s[119]);
+        initMREAS10(s[120]);
+        initMREAS11(s[121]);
+        initMTYPE(s[122]);
+        initMENDW(s[123]);
+        initMENDNUM(s[124]);
+        initMALL(s[125]);
+        initMALLTY(s[126]);
+        initMVAL(s[127]);
+        initMVALB(s[128]);
+        initMNEG(s[129]);
+        initMNEGB(s[130]);
+        initMENDV(s[131]);
+        initMENDVB(s[132]);
+        initMENDY(s[133]);
+        initMENDV2(s[134]);
+        initMENDVB2(s[135]);
+        initMENDY2(s[136]);
+        initMENDV3(s[137]);
+        initMENDVB3(s[138]);
+        initMENDY3(s[139]);
+        initMENDV4(s[140]);
+        initMENDVB4(s[141]);
+        initMENDY4(s[142]);
+        initMENDV5(s[143]);
+        initMENDVB5(s[144]);
+        initMENDY5(s[145]);
+        initMENDX(s[146]);
+        initMYLFT(s[147]);
+        initMYIFCH(s[148]);
+        initMPAYM(s[149]);
+        initMPAYB(s[150]);
+        initMINC1(s[151]);
+        initMINC2(s[152]);
+        initMINC3(s[153]);
+        initMINC4(s[154]);
+        initMINC5(s[155]);
+        initMPP(s[156]);
+        initMHOWPY(s[157]);
+        initMARRS(s[158]);
+        initMARRSV(s[159]);
+        initMORTID2(s[160]);
+        initMNAME2(s[161]);
+        initMONAME2(s[162]);
+        initMJNAME18(s[163]);
+        initMJNAME19(s[164]);
+        initMJNAME20(s[165]);
+        initMJNAME21(s[166]);
+        initMJNAME22(s[167]);
+        initMJNAME23(s[168]);
+        initMJNAME24(s[169]);
+        initMJNAME25(s[170]);
+        initMJNAME26(s[171]);
+        initMJNAME27(s[172]);
+        initMJNAME28(s[173]);
+        initMJNAME29(s[174]);
+        initMJNAME30(s[175]);
+        initMJNAME31(s[176]);
+        initMJNAME32(s[177]);
+        initMJNAME33(s[178]);
+        initMJNAME34(s[179]);
+        initMREAS12(s[180]);
+        initMREAS13(s[181]);
+        initMREAS14(s[182]);
+        initMREAS15(s[183]);
+        initMREAS16(s[184]);
+        initMREAS17(s[185]);
+        initMREAS18(s[186]);
+        initMREAS19(s[187]);
+        initMREAS20(s[188]);
+        initMREAS21(s[189]);
+        initMREAS22(s[190]);
+        initMTYPE2(s[191]);
+        initMENDW2(s[192]);
+        initMENDNUM2(s[193]);
+        initMALL2(s[194]);
+        initMALLTY2(s[195]);
+        initMVAL2(s[196]);
+        initMVALB2(s[197]);
+        initMNEG2(s[198]);
+        initMNEGB2(s[199]);
+        initMENDV6(s[200]);
+        initMENDVB6(s[201]);
+        initMENDY6(s[202]);
+        initMENDV7(s[203]);
+        initMENDVB7(s[204]);
+        initMENDY7(s[205]);
+        initMENDV8(s[206]);
+        initMENDVB8(s[207]);
+        initMENDY8(s[208]);
+        initMENDV9(s[209]);
+        initMENDVB9(s[210]);
+        initMENDY9(s[211]);
+        initMENDV10(s[212]);
+        initMENDVB10(s[213]);
+        initMENDY10(s[214]);
+        initMENDX2(s[215]);
+        initMYLFT2(s[216]);
+        initMYIFCH2(s[217]);
+        initMPAYM2(s[218]);
+        initMPAYB2(s[219]);
+        initMINC6(s[220]);
+        initMINC7(s[221]);
+        initMINC8(s[222]);
+        initMINC9(s[223]);
+        initMINC10(s[224]);
+        initMPP2(s[225]);
+        initMHOWPY2(s[226]);
+        initMARRS2(s[227]);
+        initMARRSV2(s[228]);
+        initMORTID3(s[229]);
+        initMNAME3(s[230]);
+        initMONAME3(s[231]);
+        initMJNAME35(s[232]);
+        initMJNAME36(s[233]);
+        initMJNAME37(s[234]);
+        initMJNAME38(s[235]);
+        initMJNAME39(s[236]);
+        initMJNAME40(s[237]);
+        initMJNAME41(s[238]);
+        initMJNAME42(s[239]);
+        initMJNAME43(s[240]);
+        initMJNAME44(s[241]);
+        initMJNAME45(s[242]);
+        initMJNAME46(s[243]);
+        initMJNAME47(s[244]);
+        initMJNAME48(s[245]);
+        initMJNAME49(s[246]);
+        initMJNAME50(s[247]);
+        initMJNAME51(s[248]);
+        initMREAS23(s[249]);
+        initMREAS24(s[250]);
+        initMREAS25(s[251]);
+        initMREAS26(s[252]);
+        initMREAS27(s[253]);
+        initMREAS28(s[254]);
+        initMREAS29(s[255]);
+        initMREAS30(s[256]);
+        initMREAS31(s[257]);
+        initMREAS32(s[258]);
+        initMREAS33(s[259]);
+        initMTYPE3(s[260]);
+        initMEND___W3(s[261]);
+        initMENDNUM3(s[262]);
+        initMALL3(s[263]);
+        initMALLTY3(s[264]);
+        initMVAL3(s[265]);
+        initMVALB3(s[266]);
+        initMNEG3(s[267]);
+        initMNEGB3(s[268]);
+        initMENDV11(s[269]);
+        initMENDVB11(s[270]);
+        initMENDY11(s[271]);
+        initMENDV12(s[272]);
+        initMENDVB12(s[273]);
+        initMENDY12(s[274]);
+        initMENDV13(s[275]);
+        initMENDVB13(s[276]);
+        initMENDY13(s[277]);
+        initMENDV14(s[278]);
+        initMENDVB14(s[279]);
+        initMENDY14(s[280]);
+        initMENDV15(s[281]);
+        initMENDVB15(s[282]);
+        initMENDY15(s[283]);
+        initMENDX3(s[284]);
+        initMYLFT3(s[285]);
+        initMYIFCH3(s[286]);
+        initMPAYM3(s[287]);
+        initMPAYB3(s[288]);
+        initMINC11(s[289]);
+        initMINC12(s[290]);
+        initMINC13(s[291]);
+        initMINC14(s[292]);
+        initMINC15(s[293]);
+        initMPP3(s[294]);
+        initMHOWPY3(s[295]);
+        initMARRS3(s[296]);
+        initMARRSV3(s[297]);
+        initMDIFFPY(s[298]);
+        initEQOLD(s[299]);
+        initEQNEW(s[300]);
+        initEQYES(s[301]);
+        initEQTYPE1(s[302]);
+        initEQTYPE2(s[303]);
+        initEQTYPE3(s[304]);
+        initEQTYPE4(s[305]);
+        initEQTYPE5(s[306]);
+        initEQTYPE6(s[307]);
+        initEQTYPE7(s[308]);
+        initEQTYPE8(s[309]);
+        initEQTYPE9(s[310]);
+        initEQREAS1(s[311]);
+        initEQREAS2(s[312]);
+        initEQREAS3(s[313]);
+        initEQREAS4(s[314]);
+        initEQREAS5(s[315]);
+        initEQREAS6(s[316]);
+        initEQREAS7(s[317]);
+        initEQREAS8(s[318]);
+        initEQREAS9(s[319]);
+        initEQWHENY(s[320]);
+        initEQWHENM(s[321]);
+        initEQDRAW(s[322]);
+        initEQVAL(s[323]);
+        initEQVALB(s[324]);
+        initEQVALDR(s[325]);
+        initEQVALDRB(s[326]);
+        initEREC(s[327]);
+        initERECMPD(s[328]);
+        initERECMBY(s[329]);
+        initERECTAX(s[330]);
+        initEINT(s[331]);
+        initEINTFIX(s[332]);
+        initEINTRAT(s[333]);
+        initEMSPAY(s[334]);
+        initEMSARR(s[335]);
+        initFRREPFIX(s[336]);
+        initSHARAPP(s[337]);
+        initESHARAPP(s[338]);
+        initERVREG1(s[339]);
+        initERVREG2(s[340]);
+        initERVSUM(s[341]);
+        initERVSUMB(s[342]);
+        initERVRECPD(s[343]);
+        initERVRECBY(s[344]);
+        initERVTAX(s[345]);
+        initERVRENT(s[346]);
+        initERENTAM(s[347]);
+        initERENTB(s[348]);
+        initERVPRP(s[349]);
+        initSRBWHENY(s[350]);
+        initSRBWHENM(s[351]);
+        initSRBPERC(s[352]);
+        initEPRVPAY(s[353]);
+        initEPRVAL(s[354]);
+        initEPRPER(s[355]);
+        initEOTHREG(s[356]);
+        initEOTHRVA(s[357]);
+        initEOTHRVB(s[358]);
+        initPRREPAY(s[359]);
+        initPRREPFIX(s[360]);
+        initPRREPPC(s[361]);
+        initGCOMODU(s[362]);
+        initGCPREAM(s[363]);
+        initGCOLLEC(s[364]);
+        initGCOLLV(s[365]);
+        initGCOLLVB(s[366]);
+        initGCONTVB(s[367]);
+        initVCARN(s[368]);
+        initVCADD(s[369]);
+        initVCADDN(s[370]);
+        initVTYPE(s[371]);
+        initVESTV(s[372]);
+        initVESVB(s[373]);
+        initVTYPE2(s[374]);
+        initVESTV2(s[375]);
+        initVESVB2(s[376]);
+        initVPERS(s[377]);
+        initVPERV(s[378]);
+        initVOTYP1(s[379]);
+        initVOTYP2(s[380]);
+        initVOTYP3(s[381]);
+        initVOTYP4(s[382]);
+        initVOTYP5(s[383]);
+        initVOTPN(s[384]);
+        initVOTYO(s[385]);
+        initVOVAL(s[386]);
+        initVOVLB(s[387]);
+        initOFINAL(s[388]);
+        initNOUNITS(s[389]);
+        initTEN1_I(s[390]);
+        initTEN1_IFLAG(s[391]);
+        initHSHARE_I(s[392]);
+        initHSHARE_IFLAG(s[393]);
+        initHSHAREP_I(s[394]);
+        initHSHAREP_IFLAG(s[395]);
+        initHVALUE_I(s[396]);
+        initHVALUE_IFLAG(s[397]);
+        initEQUITY_YN_I(s[398]);
+        initEQUITY_YN_IFLAG(s[399]);
+        initEQTYPE1_I(s[400]);
+        initEQTYPE1_IFLAG(s[401]);
+        initEQDRAW_I(s[402]);
+        initEQDRAW_IFLAG(s[403]);
+        initEQVAL_I(s[404]);
+        initEQVAL_IFLAG(s[405]);
+        initEINT_I(s[406]);
+        initEINT_IFLAG(s[407]);
+        initEINTRAT_I(s[408]);
+        initEINTRAT_IFLAG(s[409]);
+        initERVPRP_I(s[410]);
+        initERVPRP_IFLAG(s[411]);
+        initPRREPAY_I(s[412]);
+        initPRREPAY_IFLAG(s[413]);
+        initPRREPFIX_I(s[414]);
+        initPRREPFIX_IFLAG(s[415]);
+        initPRREPPC_I(s[416]);
+        initPRREPPC_IFLAG(s[417]);
+        initMNUMB_I(s[418]);
+        initMNUMB_IFLAG(s[419]);
+        initMALL_I(s[420]);
+        initMALL_IFLAG(s[421]);
+        initMALL2_I(s[422]);
+        initMALL2_IFLAG(s[423]);
+        initMALL3_I(s[424]);
+        initMALL3_IFLAG(s[425]);
+        initMALLTY_I(s[426]);
+        initMALLTY_IFLAG(s[427]);
+        initMALLTY2_I(s[428]);
+        initMALLTY2_IFLAG(s[429]);
+        initMALLTY3_I(s[430]);
+        initMALLTY3_IFLAG(s[431]);
+        initMVAL_I(s[432]);
+        initMVAL_IFLAG(s[433]);
+        initMVAL2_I(s[434]);
+        initMVAL2_IFLAG(s[435]);
+        initMVAL3_I(s[436]);
+        initMVAL3_IFLAG(s[437]);
+        initMNEG_I(s[438]);
+        initMNEG_IFLAG(s[439]);
+        initMNEG2_I(s[440]);
+        initMNEG2_IFLAG(s[441]);
+        initMNEG3_I(s[442]);
+        initMNEG3_IFLAG(s[443]);
+        initMTYPE_I(s[444]);
+        initMTYPE_IFLAG(s[445]);
+        initMTYPE2_I(s[446]);
+        initMTYPE2_IFLAG(s[447]);
+        initMTYPE3_I(s[448]);
+        initMTYPE3_IFLAG(s[449]);
+        initMENDW_I(s[450]);
+        initMENDW_IFLAG(s[451]);
+        initMENDW2_I(s[452]);
+        initMENDW2_IFLAG(s[453]);
+        initMENDW3_I(s[454]);
+        initMENDW3_IFLAG(s[455]);
+        initMENDNUM_I(s[456]);
+        initMENDNUM_IFLAG(s[457]);
+        initMENDNUM2_I(s[458]);
+        initMENDNUM2_IFLAG(s[459]);
+        initMENDNUM3_I(s[460]);
+        initMENDNUM3_IFLAG(s[461]);
+        initMENDV_I(s[462]);
+        initMENDV_IFLAG(s[463]);
+        initMENDV2_I(s[464]);
+        initMENDV2_IFLAG(s[465]);
+        initMENDV3_I(s[466]);
+        initMENDV3_IFLAG(s[467]);
+        initMENDV4_I(s[468]);
+        initMENDV4_IFLAG(s[469]);
+        initMENDV5_I(s[470]);
+        initMENDV5_IFLAG(s[471]);
+        initMENDV6_I(s[472]);
+        initMENDV6_IFLAG(s[473]);
+        initMENDV7_I(s[474]);
+        initMENDV7_IFLAG(s[475]);
+        initMENDV8_I(s[476]);
+        initMENDV8_IFLAG(s[477]);
+        initMENDV9_I(s[478]);
+        initMENDV9_IFLAG(s[479]);
+        initMENDV10_I(s[480]);
+        initMENDV10_IFLAG(s[481]);
+        initMENDV11_I(s[482]);
+        initMENDV11_IFLAG(s[483]);
+        initMENDV12_I(s[484]);
+        initMENDV12_IFLAG(s[485]);
+        initMENDV13_I(s[486]);
+        initMENDV13_IFLAG(s[487]);
+        initMENDV14_I(s[488]);
+        initMENDV14_IFLAG(s[489]);
+        initMENDV15_I(s[490]);
+        initMENDV15_IFLAG(s[491]);
+        initGCOLLEC_I(s[492]);
+        initGCOLLV_I(s[493]);
+        initGCONTVB_I(s[494]);
+        initGCOLLEC_IFLAG(s[495]);
+        initGCOLLV_IFLAG(s[496]);
+        initGCONTVB_IFLAG(s[497]);
+        initVCARN_I(s[498]);
+        initVCARN_IFLAG(s[499]);
+        initVTYPE_I(s[500]);
+        initVTYPE_IFLAG(s[501]);
+        initVTYPE2_I(s[502]);
+        initVTYPE2_IFLAG(s[503]);
+        initVESTV_I(s[504]);
+        initVESTV_IFLAG(s[505]);
+        initVESTV2_I(s[506]);
+        initVESTV2_IFLAG(s[507]);
+        initVPERS_I(s[508]);
+        initVPERS_IFLAG(s[509]);
+        initVPERV_I(s[510]);
+        initVPERV_IFLAG(s[511]);
+        initVOTYP1_I(s[512]);
+        initVOTYP2_I(s[513]);
+        initVOTYP3_I(s[514]);
+        initVOTYP4_I(s[515]);
+        initVOTYP5_I(s[516]);
+        initVOTYP1_IFLAG(s[517]);
+        initVOTYP2_IFLAG(s[518]);
+        initVOTYP3_IFLAG(s[519]);
+        initVOTYP4_IFLAG(s[520]);
+        initVOTYP5_IFLAG(s[521]);
+        initVOVAL_I(s[522]);
+        initVOVAL_IFLAG(s[523]);
+        initHRPDVAGE9(s[524]);
+        initHRPSEX(s[525]);
+        initHRPNSSEC3(s[526]);
+        initHRPDVILO3A(s[527]);
+        initHRPDVMRDF(s[528]);
+        initHRPEDATTN1(s[529]);
+        initHRPEDATTN2(s[530]);
+        initHRPEDATTN3(s[531]);
+        initHRPEMPSTAT2(s[532]);
+        initPHYSHOUSGDST_AGGR(s[533]);
+        initPHYSBUYLGDST_AGGR(s[534]);
+        initPHYSHOUSGDSOST_AGGR(s[535]);
+        initGCONTVLS(s[536]);
+        initDVGCOLLV(s[537]);
+        initDVTOTCARVAL(s[538]);
+        initDVTOTVANVAL(s[539]);
+        initDVTOTMOTBVAL(s[540]);
+        initDVTOTOTHVEHVAL(s[541]);
+        initDVTOTPERNPVAL(s[542]);
+        initDVTOTVEHVAL(s[543]);
+        initHPHYSW(s[544]);
+        initDVVALDBT_AGGR(s[545]);
+        initDVVALDCOS_AGGR(s[546]);
+        initDVDBRWEALTHVAL_AGGR(s[547]);
+        initDVPFCURVAL_AGGR(s[548]);
+        initDVPAVCUV_AGGR(s[549]);
+        initDVPFDDV_AGGR(s[550]);
+        initDVPINPVAL_AGGR(s[551]);
+        initDVPPVAL_AGGR(s[552]);
+        initDVSPEN_AGGR(s[553]);
+        initTOTPEN_AGGR(s[554]);
+        initDVHSEVAL_SUM(s[555]);
+        initDVBLTVAL_SUM(s[556]);
+        initDVBLDVAL_SUM(s[557]);
+        initDVLUKVAL_SUM(s[558]);
+        initDVLOSVAL_SUM(s[559]);
+        initDVOPRVAL_SUM(s[560]);
+        initDVHSEDEBT_SUM(s[561]);
+        initDVBLTDEBT_SUM(s[562]);
+        initDVBLDDEBT_SUM(s[563]);
+        initDVLUKDEBT_SUM(s[564]);
+        initDVLOSDEBT_SUM(s[565]);
+        initDVOPRDEBT_SUM(s[566]);
+        initOTHMORT_SUM(s[567]);
+        initDVHVALUE(s[568]);
+        initTOTMVAL(s[569]);
+        initTOTMNEG(s[570]);
+        initTOTMORT(s[571]);
+        initDVEQRELVAL(s[572]);
+        initDVEQLTM(s[573]);
+        initDVHORP(s[574]);
+        initDVEQSRB(s[575]);
+        initDVEQPRUN(s[576]);
+        initDVPROPERTY(s[577]);
+        initHMORTG(s[578]);
+        initHPROPW(s[579]);
+        initALLENDW(s[580]);
+        initDVNIOTHI_AGGR(s[581]);
+        initDVCISAV_AGGR(s[582]);
+        initDVIISAV_AGGR(s[583]);
+        initDVKISAV_AGGR(s[584]);
+        initDVFNSVAL_AGGR(s[585]);
+        initDVFSHUKV_AGGR(s[586]);
+        initDVINSV_AGGR(s[587]);
+        initDVFLFENV_AGGR(s[588]);
+        initDVFLFSIV_AGGR(s[589]);
+        initDVFLFFSV_AGGR(s[590]);
+        initDVFLFTEV_AGGR(s[591]);
+        initDVFBONDV_AGGR(s[592]);
+        initDVFESHARES_AGGR(s[593]);
+        initDVFESHAV_AGGR(s[594]);
+        initDVFEOPTV_AGGR(s[595]);
+        initDVFCOLLV_AGGR(s[596]);
+        initDVFSHOSV_AGGR(s[597]);
+        initDVFGLTUKV_AGGR(s[598]);
+        initDVFGLTFOV_AGGR(s[599]);
+        initDVFINVOTV_AGGR(s[600]);
+        initDVFINFVAL_AGGR(s[601]);
+        initDVFINFLV_AGGR(s[602]);
+        initDVFINFV_AGGR(s[603]);
+        initDVISAVAL_AGGR(s[604]);
+        initDVFFASSETS_AGGR(s[605]);
+        initDVCACTV_AGGR(s[606]);
+        initDVCASVV_AGGR(s[607]);
+        initDVCAVAL_AGGR(s[608]);
+        initDVCACRVAL_AGGR(s[609]);
+        initDVCAODVAL_AGGR(s[610]);
+        initDVSAVAL_AGGR(s[611]);
+        initTOTCC_AGGR(s[612]);
+        initTOTSC_AGGR(s[613]);
+        initTOTLOS_AGGR(s[614]);
+        initTOTMO_AGGR(s[615]);
+        initTOTNLOS_AGGR(s[616]);
+        initTOTNSLBNK_AGGR(s[617]);
+        initTOTNSLC_AGGR(s[618]);
+        initTOTOSLBNK_AGGR(s[619]);
+        initTOTOSLC_AGGR(s[620]);
+        initTOTFLNS_AGGR(s[621]);
+        initTOTHP_AGGR(s[622]);
+        initTOTLNS_AGGR(s[623]);
+        initTOTSLBNK_AGGR(s[624]);
+        initTOTSLC_AGGR(s[625]);
+        initTOTBILLARR_AGGR(s[626]);
+        initTOTHPARR_AGGR(s[627]);
+        initTOTMOARR_AGGR(s[628]);
+        initTOTLNARR_AGGR(s[629]);
+        initTOTDVNWFLN_AGGR(s[630]);
+        initTOTDVNWHP_AGGR(s[631]);
+        initTOTDVNWILN_AGGR(s[632]);
+        initTOTARR_EXCMORT_AGGR(s[633]);
+        initHFINW_EXCENDW_AGGR(s[634]);
+        initHFINL_AGGR(s[635]);
+        initHFINW_SUM(s[636]);
+        initHFINWNT_SUM(s[637]);
+        initHOUSGDST_SUM(s[638]);
+        initBUYLGDST_SUM(s[639]);
+        initHOUSGDSOST_SUM(s[640]);
+        initALLGD(s[641]);
+        initEREC_I(s[642]);
+        initEREC_IFLAG(s[643]);
+        initERECMPD_I(s[644]);
+        initERECMPD_IFLAG(s[645]);
+        initERECMBM_I(s[646]);
+        initERECMBM_IFLAG(s[647]);
+        initERECMBY_I(s[648]);
+        initERECMBY_IFLAG(s[649]);
+        initERECM_I(s[650]);
+        initERECM_IFLAG(s[651]);
+        initERECTAX_I(s[652]);
+        initERECTAX_IFLAG(s[653]);
+        initERVREG1_I(s[654]);
+        initERVREG1_IFLAG(s[655]);
+        initERVRECPD_I(s[656]);
+        initERVRECPD_IFLAG(s[657]);
+        initERVREC_I(s[658]);
+        initERVREC_IFLAG(s[659]);
+        initERVRECBM_I(s[660]);
+        initERVRECBM_IFLAG(s[661]);
+        initERVRECBY_I(s[662]);
+        initERVRECBY_IFLAG(s[663]);
+        initERVTAX_I(s[664]);
+        initERVTAX_IFLAG(s[665]);
+        initEPRVPAY_I(s[666]);
+        initEPRVPAY_IFLAG(s[667]);
+        initEPRVAL_I(s[668]);
+        initEPRVAL_IFLAG(s[669]);
+        initEPRPER_I(s[670]);
+        initEPRPER_IFLAG(s[671]);
+        initTOTWLTH(s[672]);
+        initHHPPHYS(s[673]);
+        initHHOWNF(s[674]);
+        initPHVAL(s[675]);
+        initPMVAL(s[676]);
+        initPEVAL(s[677]);
+        initVESVB3(s[678]);
+        initHRPDVAGE15(s[679]);
+        initHBEDRM(s[680]);
+        initDVTOTNIR(s[681]);
+        initDVTOTGIR(s[682]);
+        initDVGISE_AGGR(s[683]);
+        initDVGIPPEN_AGGR(s[684]);
+        initDVGIEMP_AGGR(s[685]);
+        initDVTOTALLBENANNUAL_AGGR(s[686]);
+        initDVGIINV_AGGR(s[687]);
+        initDVGRSRENTAMTANNUAL_AGGR(s[688]);
+        initDVNISE_AGGR(s[689]);
+        initDVNIPPEN_AGGR(s[690]);
+        initDVNIEMP_AGGR(s[691]);
+        initDVNIINV_AGGR(s[692]);
+        initDVNETRENTAMTANNUAL_AGGR(s[693]);
+        initDVOINRRANNUAL_AGGR(s[694]);
+        initDVOINGTANNUAL_AGGR(s[695]);
+        initDVOINEGANNUAL_AGGR(s[696]);
+        initDVOINFRANNUAL_AGGR(s[697]);
+        initDVOINMAANNUAL_AGGR(s[698]);
+        initDVOINROANNUAL_AGGR(s[699]);
+        initDVOINOPANNUAL_AGGR(s[700]);
+        initDVOIGRRANNUAL_AGGR(s[701]);
+        initDVOIGGTANNUAL_AGGR(s[702]);
+        initDVOIGEGANNUAL_AGGR(s[703]);
+        initDVOIGFRANNUAL_AGGR(s[704]);
+        initDVOIGMAANNUAL_AGGR(s[705]);
+        initDVOIGROANNUAL_AGGR(s[706]);
+        initDVOIGOPANNUAL_AGGR(s[707]);
+        initDVGIOTHR_AGGR(s[708]);
+        initDVNIOTHR_AGGR(s[709]);
+        initDVERECNETANNUAL(s[710]);
+        initDVERVRECNETANNUAL(s[711]);
+        initDVERECGROSSANNUAL(s[712]);
+        initDVERVRECGROSSANNUAL(s[713]);
+        initDVERECANNUAL(s[714]);
+        initDVERVRECANNUAL(s[715]);
     }
 
     @Override

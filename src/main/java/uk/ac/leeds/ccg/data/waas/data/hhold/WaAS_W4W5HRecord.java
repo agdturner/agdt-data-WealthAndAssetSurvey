@@ -19,6 +19,8 @@ public abstract class WaAS_W4W5HRecord extends WaAS_W3W4W5HRecord {
 
     protected short CASEW4;
 
+    protected byte DBURDH;
+
     protected int DVBENEFITANNUAL_AGGR;
 
     protected byte EQVALB_I;
@@ -147,10 +149,6 @@ public abstract class WaAS_W4W5HRecord extends WaAS_W3W4W5HRecord {
 
     protected byte MONAME1;
 
-    protected byte MONTHW1;
-
-    protected byte MONTHW2;
-
     protected byte MONTHW3;
 
     protected byte MPAYB1;
@@ -183,10 +181,6 @@ public abstract class WaAS_W4W5HRecord extends WaAS_W3W4W5HRecord {
 
     protected byte VTYPE1;
 
-    protected short YEARW1;
-
-    protected short YEARW2;
-
     protected short YEARW3;
 
     protected final void initBRIDLN1(String s) {
@@ -215,6 +209,14 @@ public abstract class WaAS_W4W5HRecord extends WaAS_W3W4W5HRecord {
             CASEW4 = Short.parseShort(s);
         } else {
             CASEW4 = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initDBURDH(String s) {
+        if (!s.trim().isEmpty()) {
+            DBURDH = Byte.parseByte(s);
+        } else {
+            DBURDH = Byte.MIN_VALUE;
         }
     }
 
@@ -709,22 +711,6 @@ public abstract class WaAS_W4W5HRecord extends WaAS_W3W4W5HRecord {
         }
     }
 
-    protected final void initMONTHW1(String s) {
-        if (!s.trim().isEmpty()) {
-            MONTHW1 = Byte.parseByte(s);
-        } else {
-            MONTHW1 = Byte.MIN_VALUE;
-        }
-    }
-
-    protected final void initMONTHW2(String s) {
-        if (!s.trim().isEmpty()) {
-            MONTHW2 = Byte.parseByte(s);
-        } else {
-            MONTHW2 = Byte.MIN_VALUE;
-        }
-    }
-
     protected final void initMONTHW3(String s) {
         if (!s.trim().isEmpty()) {
             MONTHW3 = Byte.parseByte(s);
@@ -851,22 +837,6 @@ public abstract class WaAS_W4W5HRecord extends WaAS_W3W4W5HRecord {
         }
     }
 
-    protected final void initYEARW1(String s) {
-        if (!s.trim().isEmpty()) {
-            YEARW1 = Short.parseShort(s);
-        } else {
-            YEARW1 = Short.MIN_VALUE;
-        }
-    }
-
-    protected final void initYEARW2(String s) {
-        if (!s.trim().isEmpty()) {
-            YEARW2 = Short.parseShort(s);
-        } else {
-            YEARW2 = Short.MIN_VALUE;
-        }
-    }
-
     protected final void initYEARW3(String s) {
         if (!s.trim().isEmpty()) {
             YEARW3 = Short.parseShort(s);
@@ -889,6 +859,10 @@ public abstract class WaAS_W4W5HRecord extends WaAS_W3W4W5HRecord {
 
     public short getCASEW4() {
         return CASEW4;
+    }
+
+    public byte getDBURDH() {
+        return DBURDH;
     }
 
     public int getDVBENEFITANNUAL_AGGR() {
@@ -1147,14 +1121,6 @@ public abstract class WaAS_W4W5HRecord extends WaAS_W3W4W5HRecord {
         return MONAME1;
     }
 
-    public byte getMONTHW1() {
-        return MONTHW1;
-    }
-
-    public byte getMONTHW2() {
-        return MONTHW2;
-    }
-
     public byte getMONTHW3() {
         return MONTHW3;
     }
@@ -1217,14 +1183,6 @@ public abstract class WaAS_W4W5HRecord extends WaAS_W3W4W5HRecord {
 
     public byte getVTYPE1() {
         return VTYPE1;
-    }
-
-    public short getYEARW1() {
-        return YEARW1;
-    }
-
-    public short getYEARW2() {
-        return YEARW2;
     }
 
     public short getYEARW3() {

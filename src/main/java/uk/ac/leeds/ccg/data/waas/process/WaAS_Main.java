@@ -87,8 +87,9 @@ public class WaAS_Main extends WaAS_Object {
         try {
             Data_Environment de = new Data_Environment(
                     new Generic_Environment(new Generic_Defaults()));
-            Path dataDir = Paths.get(de.files.getDir().toString(),
-                    WaAS_Strings.s_data, WaAS_Strings.s_WaAS);
+            Path dataDir = Paths.get(de.files.getDir().toString(), 
+                    WaAS_Strings.s_data, WaAS_Strings.s_data, 
+                    WaAS_Strings.s_WaAS);
             WaAS_Environment we = new WaAS_Environment(de, dataDir);
             WaAS_Main p = new WaAS_Main(we);
             // Main switches

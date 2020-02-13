@@ -7,7 +7,73 @@ import uk.ac.leeds.ccg.data.waas.data.id.WaAS_RecordID;
 
 public class WaAS_W1HRecord extends WaAS_W1W2HRecord {
 
+    protected double DVCACRVAL_SUM;
+
+    protected short DVCACTV_SUM;
+
+    protected double DVCAODVAL_SUM;
+
+    protected int DVCASVV_SUM;
+
+    protected double DVCAVAL_SUM;
+
+    protected int DVCISAV_SUM;
+
+    protected double DVDBRWEALTHVAL_SUM;
+
+    protected int DVFBONDV_SUM;
+
+    protected int DVFCOLLV_SUM;
+
+    protected int DVFESHARES_SUM;
+
+    protected double DVFFASSETS_SUM;
+
+    protected int DVFGLTFOV_SUM;
+
+    protected int DVFGLTUKV_SUM;
+
+    protected int DVFINFLV_SUM;
+
+    protected int DVFINFVAL_SUM;
+
+    protected int DVFINFV_SUM;
+
+    protected int DVFINVOTV_SUM;
+
+    protected int DVFNSVAL_SUM;
+
+    protected int DVFSHOSV_SUM;
+
+    protected int DVFSHUKV_SUM;
+
+    protected int DVIISAV_SUM;
+
+    protected int DVINSV_SUM;
+
+    protected int DVISAVAL_SUM;
+
+    protected int DVKISAV_SUM;
+
+    protected double DVPAVCUV_SUM;
+
     protected int DVPEPV_SUM;
+
+    protected double DVPFCURVAL_SUM;
+
+    protected int DVPFDDV_SUM;
+
+    protected double DVPINPVAL_SUM;
+
+    protected double DVPPVAL_SUM;
+
+    protected double DVSAVAL_SUM;
+
+    protected double DVSPEN_SUM;
+
+    protected double DVVALDBT_SUM;
+
+    protected double DVVALDCOS_SUM;
 
     protected byte GCONTMN;
 
@@ -15,13 +81,25 @@ public class WaAS_W1HRecord extends WaAS_W1W2HRecord {
 
     protected int GCONTVL;
 
+    protected int GCONTVLS2;
+
+    protected double HFINL_SUM;
+
+    protected double HFINW_EXCENDW_SUM;
+
     protected byte HHLDR;
 
+    protected short HPARR_SUM;
+
     protected byte HRPDVAGEW1BAND;
+
+    protected byte HRPPART;
 
     protected short HRTBYR;
 
     protected int LANDOVSEAT_SUM;
+
+    protected int LNARR_SUM;
 
     protected byte MDBEH;
 
@@ -47,31 +125,31 @@ public class WaAS_W1HRecord extends WaAS_W1W2HRecord {
 
     protected boolean MDWPF3;
 
-    protected boolean MENDNUM3_I;
-
-    protected boolean MENDNUM3_IFLAG;
-
-    protected int MENDV11_I;
-
-    protected boolean MENDV11_IFLAG;
-
-    protected int MENDV5_I;
-
-    protected boolean MENDV5_IFLAG;
-
-    protected int MENDV7_I;
-
-    protected boolean MENDV7_IFLAG;
-
     protected byte MENDW2;
 
     protected byte MEVER;
 
-    protected int MNEG3_I;
-
-    protected boolean MNEG3_IFLAG;
-
     protected byte NUMDEPCH;
+
+    protected int TOTBILLARR_SUM;
+
+    protected int TOTCC_SUM;
+
+    protected double TOTHP_SUM;
+
+    protected double TOTLOS_SUM;
+
+    protected double TOTMO_SUM;
+
+    protected double TOTPEN_SUM;
+
+    protected short TOTSC_SUM;
+
+    protected double T_FLNS_SUM;
+
+    protected double T_LNS_SUM;
+
+    protected double T_SLNS_SUM;
 
     protected byte VCARO;
 
@@ -88,6 +166,10 @@ public class WaAS_W1HRecord extends WaAS_W1W2HRecord {
     protected boolean VNUMV4;
 
     protected boolean VNUMV5;
+
+    protected byte VOVLB_I;
+
+    protected boolean VOVLB_IFLAG;
 
     protected boolean VPERS2;
 
@@ -115,11 +197,275 @@ public class WaAS_W1HRecord extends WaAS_W1W2HRecord {
 
     protected double XS_WGT;
 
+    protected final void initDVCACRVAL_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVCACRVAL_SUM = Double.parseDouble(s);
+        } else {
+            DVCACRVAL_SUM = Double.NaN;
+        }
+    }
+
+    protected final void initDVCACTV_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVCACTV_SUM = Short.parseShort(s);
+        } else {
+            DVCACTV_SUM = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVCAODVAL_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVCAODVAL_SUM = Double.parseDouble(s);
+        } else {
+            DVCAODVAL_SUM = Double.NaN;
+        }
+    }
+
+    protected final void initDVCASVV_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVCASVV_SUM = Integer.parseInt(s);
+        } else {
+            DVCASVV_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVCAVAL_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVCAVAL_SUM = Double.parseDouble(s);
+        } else {
+            DVCAVAL_SUM = Double.NaN;
+        }
+    }
+
+    protected final void initDVCISAV_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVCISAV_SUM = Integer.parseInt(s);
+        } else {
+            DVCISAV_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVDBRWEALTHVAL_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVDBRWEALTHVAL_SUM = Double.parseDouble(s);
+        } else {
+            DVDBRWEALTHVAL_SUM = Double.NaN;
+        }
+    }
+
+    protected final void initDVFBONDV_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVFBONDV_SUM = Integer.parseInt(s);
+        } else {
+            DVFBONDV_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVFCOLLV_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVFCOLLV_SUM = Integer.parseInt(s);
+        } else {
+            DVFCOLLV_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVFESHARES_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVFESHARES_SUM = Integer.parseInt(s);
+        } else {
+            DVFESHARES_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVFFASSETS_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVFFASSETS_SUM = Double.parseDouble(s);
+        } else {
+            DVFFASSETS_SUM = Double.NaN;
+        }
+    }
+
+    protected final void initDVFGLTFOV_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVFGLTFOV_SUM = Integer.parseInt(s);
+        } else {
+            DVFGLTFOV_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVFGLTUKV_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVFGLTUKV_SUM = Integer.parseInt(s);
+        } else {
+            DVFGLTUKV_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVFINFLV_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVFINFLV_SUM = Integer.parseInt(s);
+        } else {
+            DVFINFLV_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVFINFVAL_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVFINFVAL_SUM = Integer.parseInt(s);
+        } else {
+            DVFINFVAL_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVFINFV_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVFINFV_SUM = Integer.parseInt(s);
+        } else {
+            DVFINFV_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVFINVOTV_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVFINVOTV_SUM = Integer.parseInt(s);
+        } else {
+            DVFINVOTV_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVFNSVAL_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVFNSVAL_SUM = Integer.parseInt(s);
+        } else {
+            DVFNSVAL_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVFSHOSV_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVFSHOSV_SUM = Integer.parseInt(s);
+        } else {
+            DVFSHOSV_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVFSHUKV_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVFSHUKV_SUM = Integer.parseInt(s);
+        } else {
+            DVFSHUKV_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVIISAV_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVIISAV_SUM = Integer.parseInt(s);
+        } else {
+            DVIISAV_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVINSV_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVINSV_SUM = Integer.parseInt(s);
+        } else {
+            DVINSV_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVISAVAL_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVISAVAL_SUM = Integer.parseInt(s);
+        } else {
+            DVISAVAL_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVKISAV_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVKISAV_SUM = Integer.parseInt(s);
+        } else {
+            DVKISAV_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVPAVCUV_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVPAVCUV_SUM = Double.parseDouble(s);
+        } else {
+            DVPAVCUV_SUM = Double.NaN;
+        }
+    }
+
     protected final void initDVPEPV_SUM(String s) {
         if (!s.trim().isEmpty()) {
             DVPEPV_SUM = Integer.parseInt(s);
         } else {
             DVPEPV_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVPFCURVAL_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVPFCURVAL_SUM = Double.parseDouble(s);
+        } else {
+            DVPFCURVAL_SUM = Double.NaN;
+        }
+    }
+
+    protected final void initDVPFDDV_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVPFDDV_SUM = Integer.parseInt(s);
+        } else {
+            DVPFDDV_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVPINPVAL_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVPINPVAL_SUM = Double.parseDouble(s);
+        } else {
+            DVPINPVAL_SUM = Double.NaN;
+        }
+    }
+
+    protected final void initDVPPVAL_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVPPVAL_SUM = Double.parseDouble(s);
+        } else {
+            DVPPVAL_SUM = Double.NaN;
+        }
+    }
+
+    protected final void initDVSAVAL_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVSAVAL_SUM = Double.parseDouble(s);
+        } else {
+            DVSAVAL_SUM = Double.NaN;
+        }
+    }
+
+    protected final void initDVSPEN_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVSPEN_SUM = Double.parseDouble(s);
+        } else {
+            DVSPEN_SUM = Double.NaN;
+        }
+    }
+
+    protected final void initDVVALDBT_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVVALDBT_SUM = Double.parseDouble(s);
+        } else {
+            DVVALDBT_SUM = Double.NaN;
+        }
+    }
+
+    protected final void initDVVALDCOS_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            DVVALDCOS_SUM = Double.parseDouble(s);
+        } else {
+            DVVALDCOS_SUM = Double.NaN;
         }
     }
 
@@ -147,6 +493,30 @@ public class WaAS_W1HRecord extends WaAS_W1W2HRecord {
         }
     }
 
+    protected final void initGCONTVLS2(String s) {
+        if (!s.trim().isEmpty()) {
+            GCONTVLS2 = Integer.parseInt(s);
+        } else {
+            GCONTVLS2 = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initHFINL_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            HFINL_SUM = Double.parseDouble(s);
+        } else {
+            HFINL_SUM = Double.NaN;
+        }
+    }
+
+    protected final void initHFINW_EXCENDW_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            HFINW_EXCENDW_SUM = Double.parseDouble(s);
+        } else {
+            HFINW_EXCENDW_SUM = Double.NaN;
+        }
+    }
+
     protected final void initHHLDR(String s) {
         if (!s.trim().isEmpty()) {
             HHLDR = Byte.parseByte(s);
@@ -155,11 +525,27 @@ public class WaAS_W1HRecord extends WaAS_W1W2HRecord {
         }
     }
 
+    protected final void initHPARR_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            HPARR_SUM = Short.parseShort(s);
+        } else {
+            HPARR_SUM = Short.MIN_VALUE;
+        }
+    }
+
     protected final void initHRPDVAGEW1BAND(String s) {
         if (!s.trim().isEmpty()) {
             HRPDVAGEW1BAND = Byte.parseByte(s);
         } else {
             HRPDVAGEW1BAND = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHRPPART(String s) {
+        if (!s.trim().isEmpty()) {
+            HRPPART = Byte.parseByte(s);
+        } else {
+            HRPPART = Byte.MIN_VALUE;
         }
     }
 
@@ -176,6 +562,14 @@ public class WaAS_W1HRecord extends WaAS_W1W2HRecord {
             LANDOVSEAT_SUM = Integer.parseInt(s);
         } else {
             LANDOVSEAT_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initLNARR_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            LNARR_SUM = Integer.parseInt(s);
+        } else {
+            LNARR_SUM = Integer.MIN_VALUE;
         }
     }
 
@@ -290,85 +684,6 @@ public class WaAS_W1HRecord extends WaAS_W1W2HRecord {
         }
     }
 
-    protected final void initMENDNUM3_I(String s) {
-        if (!s.trim().isEmpty()) {
-            byte b = Byte.parseByte(s);
-            if (b == -7) {
-                MENDNUM3_I = false;
-            } else {
-                MENDNUM3_I = true;
-            }
-        }
-    }
-
-    protected final void initMENDNUM3_IFLAG(String s) {
-        if (!s.trim().isEmpty()) {
-            byte b = Byte.parseByte(s);
-            if (b == 0) {
-                MENDNUM3_IFLAG = false;
-            } else {
-                MENDNUM3_IFLAG = true;
-            }
-        }
-    }
-
-    protected final void initMENDV11_I(String s) {
-        if (!s.trim().isEmpty()) {
-            MENDV11_I = Integer.parseInt(s);
-        } else {
-            MENDV11_I = Integer.MIN_VALUE;
-        }
-    }
-
-    protected final void initMENDV11_IFLAG(String s) {
-        if (!s.trim().isEmpty()) {
-            byte b = Byte.parseByte(s);
-            if (b == 0) {
-                MENDV11_IFLAG = false;
-            } else {
-                MENDV11_IFLAG = true;
-            }
-        }
-    }
-
-    protected final void initMENDV5_I(String s) {
-        if (!s.trim().isEmpty()) {
-            MENDV5_I = Integer.parseInt(s);
-        } else {
-            MENDV5_I = Integer.MIN_VALUE;
-        }
-    }
-
-    protected final void initMENDV5_IFLAG(String s) {
-        if (!s.trim().isEmpty()) {
-            byte b = Byte.parseByte(s);
-            if (b == 0) {
-                MENDV5_IFLAG = false;
-            } else {
-                MENDV5_IFLAG = true;
-            }
-        }
-    }
-
-    protected final void initMENDV7_I(String s) {
-        if (!s.trim().isEmpty()) {
-            MENDV7_I = Integer.parseInt(s);
-        } else {
-            MENDV7_I = Integer.MIN_VALUE;
-        }
-    }
-
-    protected final void initMENDV7_IFLAG(String s) {
-        if (!s.trim().isEmpty()) {
-            byte b = Byte.parseByte(s);
-            if (b == 0) {
-                MENDV7_IFLAG = false;
-            } else {
-                MENDV7_IFLAG = true;
-            }
-        }
-    }
-
     protected final void initMENDW2(String s) {
         if (!s.trim().isEmpty()) {
             MENDW2 = Byte.parseByte(s);
@@ -385,30 +700,91 @@ public class WaAS_W1HRecord extends WaAS_W1W2HRecord {
         }
     }
 
-    protected final void initMNEG3_I(String s) {
-        if (!s.trim().isEmpty()) {
-            MNEG3_I = Integer.parseInt(s);
-        } else {
-            MNEG3_I = Integer.MIN_VALUE;
-        }
-    }
-
-    protected final void initMNEG3_IFLAG(String s) {
-        if (!s.trim().isEmpty()) {
-            byte b = Byte.parseByte(s);
-            if (b == 0) {
-                MNEG3_IFLAG = false;
-            } else {
-                MNEG3_IFLAG = true;
-            }
-        }
-    }
-
     protected final void initNUMDEPCH(String s) {
         if (!s.trim().isEmpty()) {
             NUMDEPCH = Byte.parseByte(s);
         } else {
             NUMDEPCH = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initTOTBILLARR_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            TOTBILLARR_SUM = Integer.parseInt(s);
+        } else {
+            TOTBILLARR_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initTOTCC_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            TOTCC_SUM = Integer.parseInt(s);
+        } else {
+            TOTCC_SUM = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initTOTHP_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            TOTHP_SUM = Double.parseDouble(s);
+        } else {
+            TOTHP_SUM = Double.NaN;
+        }
+    }
+
+    protected final void initTOTLOS_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            TOTLOS_SUM = Double.parseDouble(s);
+        } else {
+            TOTLOS_SUM = Double.NaN;
+        }
+    }
+
+    protected final void initTOTMO_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            TOTMO_SUM = Double.parseDouble(s);
+        } else {
+            TOTMO_SUM = Double.NaN;
+        }
+    }
+
+    protected final void initTOTPEN_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            TOTPEN_SUM = Double.parseDouble(s);
+        } else {
+            TOTPEN_SUM = Double.NaN;
+        }
+    }
+
+    protected final void initTOTSC_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            TOTSC_SUM = Short.parseShort(s);
+        } else {
+            TOTSC_SUM = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initT_FLNS_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            T_FLNS_SUM = Double.parseDouble(s);
+        } else {
+            T_FLNS_SUM = Double.NaN;
+        }
+    }
+
+    protected final void initT_LNS_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            T_LNS_SUM = Double.parseDouble(s);
+        } else {
+            T_LNS_SUM = Double.NaN;
+        }
+    }
+
+    protected final void initT_SLNS_SUM(String s) {
+        if (!s.trim().isEmpty()) {
+            T_SLNS_SUM = Double.parseDouble(s);
+        } else {
+            T_SLNS_SUM = Double.NaN;
         }
     }
 
@@ -487,6 +863,25 @@ public class WaAS_W1HRecord extends WaAS_W1W2HRecord {
                 VNUMV5 = false;
             } else {
                 VNUMV5 = true;
+            }
+        }
+    }
+
+    protected final void initVOVLB_I(String s) {
+        if (!s.trim().isEmpty()) {
+            VOVLB_I = Byte.parseByte(s);
+        } else {
+            VOVLB_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initVOVLB_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            if (b == 0) {
+                VOVLB_IFLAG = false;
+            } else {
+                VOVLB_IFLAG = true;
             }
         }
     }
@@ -622,8 +1017,140 @@ public class WaAS_W1HRecord extends WaAS_W1W2HRecord {
         }
     }
 
+    public double getDVCACRVAL_SUM() {
+        return DVCACRVAL_SUM;
+    }
+
+    public short getDVCACTV_SUM() {
+        return DVCACTV_SUM;
+    }
+
+    public double getDVCAODVAL_SUM() {
+        return DVCAODVAL_SUM;
+    }
+
+    public int getDVCASVV_SUM() {
+        return DVCASVV_SUM;
+    }
+
+    public double getDVCAVAL_SUM() {
+        return DVCAVAL_SUM;
+    }
+
+    public int getDVCISAV_SUM() {
+        return DVCISAV_SUM;
+    }
+
+    public double getDVDBRWEALTHVAL_SUM() {
+        return DVDBRWEALTHVAL_SUM;
+    }
+
+    public int getDVFBONDV_SUM() {
+        return DVFBONDV_SUM;
+    }
+
+    public int getDVFCOLLV_SUM() {
+        return DVFCOLLV_SUM;
+    }
+
+    public int getDVFESHARES_SUM() {
+        return DVFESHARES_SUM;
+    }
+
+    public double getDVFFASSETS_SUM() {
+        return DVFFASSETS_SUM;
+    }
+
+    public int getDVFGLTFOV_SUM() {
+        return DVFGLTFOV_SUM;
+    }
+
+    public int getDVFGLTUKV_SUM() {
+        return DVFGLTUKV_SUM;
+    }
+
+    public int getDVFINFLV_SUM() {
+        return DVFINFLV_SUM;
+    }
+
+    public int getDVFINFVAL_SUM() {
+        return DVFINFVAL_SUM;
+    }
+
+    public int getDVFINFV_SUM() {
+        return DVFINFV_SUM;
+    }
+
+    public int getDVFINVOTV_SUM() {
+        return DVFINVOTV_SUM;
+    }
+
+    public int getDVFNSVAL_SUM() {
+        return DVFNSVAL_SUM;
+    }
+
+    public int getDVFSHOSV_SUM() {
+        return DVFSHOSV_SUM;
+    }
+
+    public int getDVFSHUKV_SUM() {
+        return DVFSHUKV_SUM;
+    }
+
+    public int getDVIISAV_SUM() {
+        return DVIISAV_SUM;
+    }
+
+    public int getDVINSV_SUM() {
+        return DVINSV_SUM;
+    }
+
+    public int getDVISAVAL_SUM() {
+        return DVISAVAL_SUM;
+    }
+
+    public int getDVKISAV_SUM() {
+        return DVKISAV_SUM;
+    }
+
+    public double getDVPAVCUV_SUM() {
+        return DVPAVCUV_SUM;
+    }
+
     public int getDVPEPV_SUM() {
         return DVPEPV_SUM;
+    }
+
+    public double getDVPFCURVAL_SUM() {
+        return DVPFCURVAL_SUM;
+    }
+
+    public int getDVPFDDV_SUM() {
+        return DVPFDDV_SUM;
+    }
+
+    public double getDVPINPVAL_SUM() {
+        return DVPINPVAL_SUM;
+    }
+
+    public double getDVPPVAL_SUM() {
+        return DVPPVAL_SUM;
+    }
+
+    public double getDVSAVAL_SUM() {
+        return DVSAVAL_SUM;
+    }
+
+    public double getDVSPEN_SUM() {
+        return DVSPEN_SUM;
+    }
+
+    public double getDVVALDBT_SUM() {
+        return DVVALDBT_SUM;
+    }
+
+    public double getDVVALDCOS_SUM() {
+        return DVVALDCOS_SUM;
     }
 
     public byte getGCONTMN() {
@@ -638,12 +1165,32 @@ public class WaAS_W1HRecord extends WaAS_W1W2HRecord {
         return GCONTVL;
     }
 
+    public int getGCONTVLS2() {
+        return GCONTVLS2;
+    }
+
+    public double getHFINL_SUM() {
+        return HFINL_SUM;
+    }
+
+    public double getHFINW_EXCENDW_SUM() {
+        return HFINW_EXCENDW_SUM;
+    }
+
     public byte getHHLDR() {
         return HHLDR;
     }
 
+    public short getHPARR_SUM() {
+        return HPARR_SUM;
+    }
+
     public byte getHRPDVAGEW1BAND() {
         return HRPDVAGEW1BAND;
+    }
+
+    public byte getHRPPART() {
+        return HRPPART;
     }
 
     public short getHRTBYR() {
@@ -652,6 +1199,10 @@ public class WaAS_W1HRecord extends WaAS_W1W2HRecord {
 
     public int getLANDOVSEAT_SUM() {
         return LANDOVSEAT_SUM;
+    }
+
+    public int getLNARR_SUM() {
+        return LNARR_SUM;
     }
 
     public byte getMDBEH() {
@@ -702,38 +1253,6 @@ public class WaAS_W1HRecord extends WaAS_W1W2HRecord {
         return MDWPF3;
     }
 
-    public boolean getMENDNUM3_I() {
-        return MENDNUM3_I;
-    }
-
-    public boolean getMENDNUM3_IFLAG() {
-        return MENDNUM3_IFLAG;
-    }
-
-    public int getMENDV11_I() {
-        return MENDV11_I;
-    }
-
-    public boolean getMENDV11_IFLAG() {
-        return MENDV11_IFLAG;
-    }
-
-    public int getMENDV5_I() {
-        return MENDV5_I;
-    }
-
-    public boolean getMENDV5_IFLAG() {
-        return MENDV5_IFLAG;
-    }
-
-    public int getMENDV7_I() {
-        return MENDV7_I;
-    }
-
-    public boolean getMENDV7_IFLAG() {
-        return MENDV7_IFLAG;
-    }
-
     public byte getMENDW2() {
         return MENDW2;
     }
@@ -742,16 +1261,48 @@ public class WaAS_W1HRecord extends WaAS_W1W2HRecord {
         return MEVER;
     }
 
-    public int getMNEG3_I() {
-        return MNEG3_I;
-    }
-
-    public boolean getMNEG3_IFLAG() {
-        return MNEG3_IFLAG;
-    }
-
     public byte getNUMDEPCH() {
         return NUMDEPCH;
+    }
+
+    public int getTOTBILLARR_SUM() {
+        return TOTBILLARR_SUM;
+    }
+
+    public int getTOTCC_SUM() {
+        return TOTCC_SUM;
+    }
+
+    public double getTOTHP_SUM() {
+        return TOTHP_SUM;
+    }
+
+    public double getTOTLOS_SUM() {
+        return TOTLOS_SUM;
+    }
+
+    public double getTOTMO_SUM() {
+        return TOTMO_SUM;
+    }
+
+    public double getTOTPEN_SUM() {
+        return TOTPEN_SUM;
+    }
+
+    public short getTOTSC_SUM() {
+        return TOTSC_SUM;
+    }
+
+    public double getT_FLNS_SUM() {
+        return T_FLNS_SUM;
+    }
+
+    public double getT_LNS_SUM() {
+        return T_LNS_SUM;
+    }
+
+    public double getT_SLNS_SUM() {
+        return T_SLNS_SUM;
     }
 
     public byte getVCARO() {
@@ -784,6 +1335,14 @@ public class WaAS_W1HRecord extends WaAS_W1W2HRecord {
 
     public boolean getVNUMV5() {
         return VNUMV5;
+    }
+
+    public byte getVOVLB_I() {
+        return VOVLB_I;
+    }
+
+    public boolean getVOVLB_IFLAG() {
+        return VOVLB_IFLAG;
     }
 
     public boolean getVPERS2() {

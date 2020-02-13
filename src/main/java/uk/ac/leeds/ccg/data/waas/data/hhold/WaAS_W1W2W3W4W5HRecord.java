@@ -112,8 +112,6 @@ public abstract class WaAS_W1W2W3W4W5HRecord extends Data_Record {
 
     protected boolean GCONTVB_IFLAG;
 
-    protected byte GOR;
-
     protected byte HAGEB;
 
     protected short HAGEYR;
@@ -226,6 +224,10 @@ public abstract class WaAS_W1W2W3W4W5HRecord extends Data_Record {
 
     protected byte MENDNUM3;
 
+    protected byte MENDNUM3_I;
+
+    protected byte MENDNUM3_IFLAG;
+
     protected int MENDV11;
 
     protected int MENDV2;
@@ -248,6 +250,10 @@ public abstract class WaAS_W1W2W3W4W5HRecord extends Data_Record {
 
     protected int MENDV5;
 
+    protected int MENDV5_I;
+
+    protected boolean MENDV5_IFLAG;
+
     protected int MENDV6;
 
     protected int MENDV6_I;
@@ -255,6 +261,10 @@ public abstract class WaAS_W1W2W3W4W5HRecord extends Data_Record {
     protected byte MENDV6_IFLAG;
 
     protected int MENDV7;
+
+    protected int MENDV7_I;
+
+    protected byte MENDV7_IFLAG;
 
     protected short MENDV8;
 
@@ -902,14 +912,6 @@ public abstract class WaAS_W1W2W3W4W5HRecord extends Data_Record {
         }
     }
 
-    protected final void initGOR(String s) {
-        if (!s.trim().isEmpty()) {
-            GOR = Byte.parseByte(s);
-        } else {
-            GOR = Byte.MIN_VALUE;
-        }
-    }
-
     protected final void initHAGEB(String s) {
         if (!s.trim().isEmpty()) {
             HAGEB = Byte.parseByte(s);
@@ -1367,6 +1369,22 @@ public abstract class WaAS_W1W2W3W4W5HRecord extends Data_Record {
         }
     }
 
+    protected final void initMENDNUM3_I(String s) {
+        if (!s.trim().isEmpty()) {
+            MENDNUM3_I = Byte.parseByte(s);
+        } else {
+            MENDNUM3_I = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initMENDNUM3_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            MENDNUM3_IFLAG = Byte.parseByte(s);
+        } else {
+            MENDNUM3_IFLAG = Byte.MIN_VALUE;
+        }
+    }
+
     protected final void initMENDV11(String s) {
         if (!s.trim().isEmpty()) {
             MENDV11 = Integer.parseInt(s);
@@ -1455,6 +1473,25 @@ public abstract class WaAS_W1W2W3W4W5HRecord extends Data_Record {
         }
     }
 
+    protected final void initMENDV5_I(String s) {
+        if (!s.trim().isEmpty()) {
+            MENDV5_I = Integer.parseInt(s);
+        } else {
+            MENDV5_I = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initMENDV5_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            if (b == 0) {
+                MENDV5_IFLAG = false;
+            } else {
+                MENDV5_IFLAG = true;
+            }
+        }
+    }
+
     protected final void initMENDV6(String s) {
         if (!s.trim().isEmpty()) {
             MENDV6 = Integer.parseInt(s);
@@ -1484,6 +1521,22 @@ public abstract class WaAS_W1W2W3W4W5HRecord extends Data_Record {
             MENDV7 = Integer.parseInt(s);
         } else {
             MENDV7 = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initMENDV7_I(String s) {
+        if (!s.trim().isEmpty()) {
+            MENDV7_I = Integer.parseInt(s);
+        } else {
+            MENDV7_I = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initMENDV7_IFLAG(String s) {
+        if (!s.trim().isEmpty()) {
+            MENDV7_IFLAG = Byte.parseByte(s);
+        } else {
+            MENDV7_IFLAG = Byte.MIN_VALUE;
         }
     }
 
@@ -2669,10 +2722,6 @@ public abstract class WaAS_W1W2W3W4W5HRecord extends Data_Record {
         return GCONTVB_IFLAG;
     }
 
-    public byte getGOR() {
-        return GOR;
-    }
-
     public byte getHAGEB() {
         return HAGEB;
     }
@@ -2897,6 +2946,14 @@ public abstract class WaAS_W1W2W3W4W5HRecord extends Data_Record {
         return MENDNUM3;
     }
 
+    public byte getMENDNUM3_I() {
+        return MENDNUM3_I;
+    }
+
+    public byte getMENDNUM3_IFLAG() {
+        return MENDNUM3_IFLAG;
+    }
+
     public int getMENDV11() {
         return MENDV11;
     }
@@ -2941,6 +2998,14 @@ public abstract class WaAS_W1W2W3W4W5HRecord extends Data_Record {
         return MENDV5;
     }
 
+    public int getMENDV5_I() {
+        return MENDV5_I;
+    }
+
+    public boolean getMENDV5_IFLAG() {
+        return MENDV5_IFLAG;
+    }
+
     public int getMENDV6() {
         return MENDV6;
     }
@@ -2955,6 +3020,14 @@ public abstract class WaAS_W1W2W3W4W5HRecord extends Data_Record {
 
     public int getMENDV7() {
         return MENDV7;
+    }
+
+    public int getMENDV7_I() {
+        return MENDV7_I;
+    }
+
+    public byte getMENDV7_IFLAG() {
+        return MENDV7_IFLAG;
     }
 
     public short getMENDV8() {

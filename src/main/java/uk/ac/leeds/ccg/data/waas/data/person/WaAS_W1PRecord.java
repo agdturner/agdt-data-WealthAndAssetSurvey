@@ -29,21 +29,21 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
 
     protected int BVAL_I;
 
+    protected boolean CURRAC;
+
     protected byte DBURDW2;
 
     protected byte DBURD___W1;
 
     protected byte DC12M;
 
-    protected short DCOINV3_I;
-
-    protected byte DCOINV3_IFLAG;
-
     protected byte DS12M;
 
     protected byte DS12M_I;
 
     protected boolean DS12M_IFLAG;
+
+    protected short DSAMOS;
 
     protected byte DVAGEW1BAND;
 
@@ -55,6 +55,12 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
 
     protected double DVDBOPENT_S;
 
+    protected int DVFESHARES;
+
+    protected double DVFFASSETS;
+
+    protected int DVFINFVAL;
+
     protected int DVGRSJOB2;
 
     protected int DVGRSSEJOB;
@@ -62,6 +68,10 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
     protected int DVHDEBT;
 
     protected int DVHVAL;
+
+    protected int DVINSV;
+
+    protected int DVISAVAL;
 
     protected int DVLOSDEBT;
 
@@ -83,6 +93,8 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
 
     protected int DVPEPV;
 
+    protected double DVSAVAL;
+
     protected int DVSEAMT;
 
     protected byte FCOSHAV;
@@ -92,10 +104,6 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
     protected byte FCOSVLB_I;
 
     protected byte FCOSVLB_IFLAG;
-
-    protected byte FINVTY11_I;
-
-    protected boolean FINVTY11_IFLAG;
 
     protected int FPEPV;
 
@@ -112,6 +120,30 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
     protected byte FSOSVLB_I;
 
     protected byte FSOSVLB_IFLAG;
+
+    protected byte GOR;
+
+    protected byte HASCC;
+
+    protected boolean HASHP;
+
+    protected boolean HASLF;
+
+    protected boolean HASMO;
+
+    protected boolean HASPLINF;
+
+    protected byte HASSC;
+
+    protected byte HASSL;
+
+    protected double HFINL;
+
+    protected double HFINW_EXCENDW;
+
+    protected short HPARR;
+
+    protected double HPLFT;
 
     protected double HPYLFT2_I;
 
@@ -170,6 +202,14 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
     protected byte IWILL;
 
     protected boolean LMATNUM;
+
+    protected int LNARR;
+
+    protected double LNLFT;
+
+    protected short MOARR;
+
+    protected double MOLFT;
 
     protected short OBSPV;
 
@@ -943,6 +983,8 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
 
     protected boolean REGLRPY3;
 
+    protected boolean SAVDEP;
+
     protected short SEAML_I;
 
     protected boolean SEAML_IFLAG;
@@ -969,9 +1011,33 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
 
     protected byte SJOB2_IFLAG;
 
+    protected double SLNOS1;
+
+    protected int SLNOS2;
+
+    protected short SLNOS3;
+
     protected short SLNOS4;
 
     protected short SLNOS5;
+
+    protected int TOTBILLARR;
+
+    protected int TOTCC;
+
+    protected double TOTHP;
+
+    protected double TOTLOS;
+
+    protected double TOTMO;
+
+    protected short TOTSC;
+
+    protected double T_FLNS;
+
+    protected double T_LNS;
+
+    protected double T_SLNS;
 
     protected double XS_WGT;
 
@@ -1069,6 +1135,17 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
         }
     }
 
+    protected final void initCURRAC(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            if (b == 0) {
+                CURRAC = false;
+            } else {
+                CURRAC = true;
+            }
+        }
+    }
+
     protected final void initDBURDW2(String s) {
         if (!s.trim().isEmpty()) {
             DBURDW2 = Byte.parseByte(s);
@@ -1090,22 +1167,6 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
             DC12M = Byte.parseByte(s);
         } else {
             DC12M = Byte.MIN_VALUE;
-        }
-    }
-
-    protected final void initDCOINV3_I(String s) {
-        if (!s.trim().isEmpty()) {
-            DCOINV3_I = Short.parseShort(s);
-        } else {
-            DCOINV3_I = Short.MIN_VALUE;
-        }
-    }
-
-    protected final void initDCOINV3_IFLAG(String s) {
-        if (!s.trim().isEmpty()) {
-            DCOINV3_IFLAG = Byte.parseByte(s);
-        } else {
-            DCOINV3_IFLAG = Byte.MIN_VALUE;
         }
     }
 
@@ -1133,6 +1194,14 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
             } else {
                 DS12M_IFLAG = true;
             }
+        }
+    }
+
+    protected final void initDSAMOS(String s) {
+        if (!s.trim().isEmpty()) {
+            DSAMOS = Short.parseShort(s);
+        } else {
+            DSAMOS = Short.MIN_VALUE;
         }
     }
 
@@ -1176,6 +1245,30 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
         }
     }
 
+    protected final void initDVFESHARES(String s) {
+        if (!s.trim().isEmpty()) {
+            DVFESHARES = Integer.parseInt(s);
+        } else {
+            DVFESHARES = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVFFASSETS(String s) {
+        if (!s.trim().isEmpty()) {
+            DVFFASSETS = Double.parseDouble(s);
+        } else {
+            DVFFASSETS = Double.NaN;
+        }
+    }
+
+    protected final void initDVFINFVAL(String s) {
+        if (!s.trim().isEmpty()) {
+            DVFINFVAL = Integer.parseInt(s);
+        } else {
+            DVFINFVAL = Integer.MIN_VALUE;
+        }
+    }
+
     protected final void initDVGRSJOB2(String s) {
         if (!s.trim().isEmpty()) {
             DVGRSJOB2 = Integer.parseInt(s);
@@ -1205,6 +1298,22 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
             DVHVAL = Integer.parseInt(s);
         } else {
             DVHVAL = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVINSV(String s) {
+        if (!s.trim().isEmpty()) {
+            DVINSV = Integer.parseInt(s);
+        } else {
+            DVINSV = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initDVISAVAL(String s) {
+        if (!s.trim().isEmpty()) {
+            DVISAVAL = Integer.parseInt(s);
+        } else {
+            DVISAVAL = Integer.MIN_VALUE;
         }
     }
 
@@ -1288,6 +1397,14 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
         }
     }
 
+    protected final void initDVSAVAL(String s) {
+        if (!s.trim().isEmpty()) {
+            DVSAVAL = Double.parseDouble(s);
+        } else {
+            DVSAVAL = Double.NaN;
+        }
+    }
+
     protected final void initDVSEAMT(String s) {
         if (!s.trim().isEmpty()) {
             DVSEAMT = Integer.parseInt(s);
@@ -1325,25 +1442,6 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
             FCOSVLB_IFLAG = Byte.parseByte(s);
         } else {
             FCOSVLB_IFLAG = Byte.MIN_VALUE;
-        }
-    }
-
-    protected final void initFINVTY11_I(String s) {
-        if (!s.trim().isEmpty()) {
-            FINVTY11_I = Byte.parseByte(s);
-        } else {
-            FINVTY11_I = Byte.MIN_VALUE;
-        }
-    }
-
-    protected final void initFINVTY11_IFLAG(String s) {
-        if (!s.trim().isEmpty()) {
-            byte b = Byte.parseByte(s);
-            if (b == -7) {
-                FINVTY11_IFLAG = false;
-            } else {
-                FINVTY11_IFLAG = true;
-            }
         }
     }
 
@@ -1408,6 +1506,114 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
             FSOSVLB_IFLAG = Byte.parseByte(s);
         } else {
             FSOSVLB_IFLAG = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initGOR(String s) {
+        if (!s.trim().isEmpty()) {
+            GOR = Byte.parseByte(s);
+        } else {
+            GOR = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHASCC(String s) {
+        if (!s.trim().isEmpty()) {
+            HASCC = Byte.parseByte(s);
+        } else {
+            HASCC = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHASHP(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            if (b == 1) {
+                HASHP = false;
+            } else {
+                HASHP = true;
+            }
+        }
+    }
+
+    protected final void initHASLF(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            if (b == 1) {
+                HASLF = false;
+            } else {
+                HASLF = true;
+            }
+        }
+    }
+
+    protected final void initHASMO(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            if (b == 1) {
+                HASMO = false;
+            } else {
+                HASMO = true;
+            }
+        }
+    }
+
+    protected final void initHASPLINF(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            if (b == 1) {
+                HASPLINF = false;
+            } else {
+                HASPLINF = true;
+            }
+        }
+    }
+
+    protected final void initHASSC(String s) {
+        if (!s.trim().isEmpty()) {
+            HASSC = Byte.parseByte(s);
+        } else {
+            HASSC = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHASSL(String s) {
+        if (!s.trim().isEmpty()) {
+            HASSL = Byte.parseByte(s);
+        } else {
+            HASSL = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHFINL(String s) {
+        if (!s.trim().isEmpty()) {
+            HFINL = Double.parseDouble(s);
+        } else {
+            HFINL = Double.NaN;
+        }
+    }
+
+    protected final void initHFINW_EXCENDW(String s) {
+        if (!s.trim().isEmpty()) {
+            HFINW_EXCENDW = Double.parseDouble(s);
+        } else {
+            HFINW_EXCENDW = Double.NaN;
+        }
+    }
+
+    protected final void initHPARR(String s) {
+        if (!s.trim().isEmpty()) {
+            HPARR = Short.parseShort(s);
+        } else {
+            HPARR = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initHPLFT(String s) {
+        if (!s.trim().isEmpty()) {
+            HPLFT = Double.parseDouble(s);
+        } else {
+            HPLFT = Double.NaN;
         }
     }
 
@@ -1652,6 +1858,38 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
             } else {
                 LMATNUM = true;
             }
+        }
+    }
+
+    protected final void initLNARR(String s) {
+        if (!s.trim().isEmpty()) {
+            LNARR = Integer.parseInt(s);
+        } else {
+            LNARR = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initLNLFT(String s) {
+        if (!s.trim().isEmpty()) {
+            LNLFT = Double.parseDouble(s);
+        } else {
+            LNLFT = Double.NaN;
+        }
+    }
+
+    protected final void initMOARR(String s) {
+        if (!s.trim().isEmpty()) {
+            MOARR = Short.parseShort(s);
+        } else {
+            MOARR = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initMOLFT(String s) {
+        if (!s.trim().isEmpty()) {
+            MOLFT = Double.parseDouble(s);
+        } else {
+            MOLFT = Double.NaN;
         }
     }
 
@@ -4947,6 +5185,17 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
         }
     }
 
+    protected final void initSAVDEP(String s) {
+        if (!s.trim().isEmpty()) {
+            byte b = Byte.parseByte(s);
+            if (b == 0) {
+                SAVDEP = false;
+            } else {
+                SAVDEP = true;
+            }
+        }
+    }
+
     protected final void initSEAML_I(String s) {
         if (!s.trim().isEmpty()) {
             SEAML_I = Short.parseShort(s);
@@ -5060,6 +5309,30 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
         }
     }
 
+    protected final void initSLNOS1(String s) {
+        if (!s.trim().isEmpty()) {
+            SLNOS1 = Double.parseDouble(s);
+        } else {
+            SLNOS1 = Double.NaN;
+        }
+    }
+
+    protected final void initSLNOS2(String s) {
+        if (!s.trim().isEmpty()) {
+            SLNOS2 = Integer.parseInt(s);
+        } else {
+            SLNOS2 = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initSLNOS3(String s) {
+        if (!s.trim().isEmpty()) {
+            SLNOS3 = Short.parseShort(s);
+        } else {
+            SLNOS3 = Short.MIN_VALUE;
+        }
+    }
+
     protected final void initSLNOS4(String s) {
         if (!s.trim().isEmpty()) {
             SLNOS4 = Short.parseShort(s);
@@ -5073,6 +5346,78 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
             SLNOS5 = Short.parseShort(s);
         } else {
             SLNOS5 = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initTOTBILLARR(String s) {
+        if (!s.trim().isEmpty()) {
+            TOTBILLARR = Integer.parseInt(s);
+        } else {
+            TOTBILLARR = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initTOTCC(String s) {
+        if (!s.trim().isEmpty()) {
+            TOTCC = Integer.parseInt(s);
+        } else {
+            TOTCC = Integer.MIN_VALUE;
+        }
+    }
+
+    protected final void initTOTHP(String s) {
+        if (!s.trim().isEmpty()) {
+            TOTHP = Double.parseDouble(s);
+        } else {
+            TOTHP = Double.NaN;
+        }
+    }
+
+    protected final void initTOTLOS(String s) {
+        if (!s.trim().isEmpty()) {
+            TOTLOS = Double.parseDouble(s);
+        } else {
+            TOTLOS = Double.NaN;
+        }
+    }
+
+    protected final void initTOTMO(String s) {
+        if (!s.trim().isEmpty()) {
+            TOTMO = Double.parseDouble(s);
+        } else {
+            TOTMO = Double.NaN;
+        }
+    }
+
+    protected final void initTOTSC(String s) {
+        if (!s.trim().isEmpty()) {
+            TOTSC = Short.parseShort(s);
+        } else {
+            TOTSC = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initT_FLNS(String s) {
+        if (!s.trim().isEmpty()) {
+            T_FLNS = Double.parseDouble(s);
+        } else {
+            T_FLNS = Double.NaN;
+        }
+    }
+
+    protected final void initT_LNS(String s) {
+        if (!s.trim().isEmpty()) {
+            T_LNS = Double.parseDouble(s);
+        } else {
+            T_LNS = Double.NaN;
+        }
+    }
+
+    protected final void initT_SLNS(String s) {
+        if (!s.trim().isEmpty()) {
+            T_SLNS = Double.parseDouble(s);
+        } else {
+            T_SLNS = Double.NaN;
         }
     }
 
@@ -5128,6 +5473,10 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
         return BVAL_I;
     }
 
+    public boolean getCURRAC() {
+        return CURRAC;
+    }
+
     public byte getDBURDW2() {
         return DBURDW2;
     }
@@ -5140,14 +5489,6 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
         return DC12M;
     }
 
-    public short getDCOINV3_I() {
-        return DCOINV3_I;
-    }
-
-    public byte getDCOINV3_IFLAG() {
-        return DCOINV3_IFLAG;
-    }
-
     public byte getDS12M() {
         return DS12M;
     }
@@ -5158,6 +5499,10 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
 
     public boolean getDS12M_IFLAG() {
         return DS12M_IFLAG;
+    }
+
+    public short getDSAMOS() {
+        return DSAMOS;
     }
 
     public byte getDVAGEW1BAND() {
@@ -5180,6 +5525,18 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
         return DVDBOPENT_S;
     }
 
+    public int getDVFESHARES() {
+        return DVFESHARES;
+    }
+
+    public double getDVFFASSETS() {
+        return DVFFASSETS;
+    }
+
+    public int getDVFINFVAL() {
+        return DVFINFVAL;
+    }
+
     public int getDVGRSJOB2() {
         return DVGRSJOB2;
     }
@@ -5194,6 +5551,14 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
 
     public int getDVHVAL() {
         return DVHVAL;
+    }
+
+    public int getDVINSV() {
+        return DVINSV;
+    }
+
+    public int getDVISAVAL() {
+        return DVISAVAL;
     }
 
     public int getDVLOSDEBT() {
@@ -5236,6 +5601,10 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
         return DVPEPV;
     }
 
+    public double getDVSAVAL() {
+        return DVSAVAL;
+    }
+
     public int getDVSEAMT() {
         return DVSEAMT;
     }
@@ -5254,14 +5623,6 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
 
     public byte getFCOSVLB_IFLAG() {
         return FCOSVLB_IFLAG;
-    }
-
-    public byte getFINVTY11_I() {
-        return FINVTY11_I;
-    }
-
-    public boolean getFINVTY11_IFLAG() {
-        return FINVTY11_IFLAG;
     }
 
     public int getFPEPV() {
@@ -5294,6 +5655,54 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
 
     public byte getFSOSVLB_IFLAG() {
         return FSOSVLB_IFLAG;
+    }
+
+    public byte getGOR() {
+        return GOR;
+    }
+
+    public byte getHASCC() {
+        return HASCC;
+    }
+
+    public boolean getHASHP() {
+        return HASHP;
+    }
+
+    public boolean getHASLF() {
+        return HASLF;
+    }
+
+    public boolean getHASMO() {
+        return HASMO;
+    }
+
+    public boolean getHASPLINF() {
+        return HASPLINF;
+    }
+
+    public byte getHASSC() {
+        return HASSC;
+    }
+
+    public byte getHASSL() {
+        return HASSL;
+    }
+
+    public double getHFINL() {
+        return HFINL;
+    }
+
+    public double getHFINW_EXCENDW() {
+        return HFINW_EXCENDW;
+    }
+
+    public short getHPARR() {
+        return HPARR;
+    }
+
+    public double getHPLFT() {
+        return HPLFT;
     }
 
     public double getHPYLFT2_I() {
@@ -5410,6 +5819,22 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
 
     public boolean getLMATNUM() {
         return LMATNUM;
+    }
+
+    public int getLNARR() {
+        return LNARR;
+    }
+
+    public double getLNLFT() {
+        return LNLFT;
+    }
+
+    public short getMOARR() {
+        return MOARR;
+    }
+
+    public double getMOLFT() {
+        return MOLFT;
     }
 
     public short getOBSPV() {
@@ -6956,6 +7381,10 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
         return REGLRPY3;
     }
 
+    public boolean getSAVDEP() {
+        return SAVDEP;
+    }
+
     public short getSEAML_I() {
         return SEAML_I;
     }
@@ -7008,12 +7437,60 @@ public class WaAS_W1PRecord extends WaAS_W1W2PRecord {
         return SJOB2_IFLAG;
     }
 
+    public double getSLNOS1() {
+        return SLNOS1;
+    }
+
+    public int getSLNOS2() {
+        return SLNOS2;
+    }
+
+    public short getSLNOS3() {
+        return SLNOS3;
+    }
+
     public short getSLNOS4() {
         return SLNOS4;
     }
 
     public short getSLNOS5() {
         return SLNOS5;
+    }
+
+    public int getTOTBILLARR() {
+        return TOTBILLARR;
+    }
+
+    public int getTOTCC() {
+        return TOTCC;
+    }
+
+    public double getTOTHP() {
+        return TOTHP;
+    }
+
+    public double getTOTLOS() {
+        return TOTLOS;
+    }
+
+    public double getTOTMO() {
+        return TOTMO;
+    }
+
+    public short getTOTSC() {
+        return TOTSC;
+    }
+
+    public double getT_FLNS() {
+        return T_FLNS;
+    }
+
+    public double getT_LNS() {
+        return T_LNS;
+    }
+
+    public double getT_SLNS() {
+        return T_SLNS;
     }
 
     public double getXS_WGT() {

@@ -171,13 +171,13 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
 
     protected int DVPAVCUV_AGGR;
 
-    protected int DVPFCURVAL_AGGR;
+    protected double DVPFCURVAL_AGGR;
 
     protected int DVPFDDV_AGGR;
 
     protected double DVPINPVAL_AGGR;
 
-    protected int DVPPVAL_AGGR;
+    protected double DVPPVAL_AGGR;
 
     protected int DVSAVAL_AGGR;
 
@@ -265,6 +265,10 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
 
     protected double HFINW_EXCENDW_AGGR;
 
+    protected byte HHOWNF;
+
+    protected double HHPPHYS;
+
     protected int HOUSGDSOST_SUM;
 
     protected int MARRSV2;
@@ -274,18 +278,6 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
     protected byte MCHGE;
 
     protected byte MCHGENUM;
-
-    protected boolean MENDNUM3_I;
-
-    protected boolean MENDNUM3_IFLAG;
-
-    protected int MENDV5_I;
-
-    protected boolean MENDV5_IFLAG;
-
-    protected int MENDV7_I;
-
-    protected boolean MENDV7_IFLAG;
 
     protected byte MENDW2;
 
@@ -304,6 +296,10 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
     protected byte MNUMB_I;
 
     protected boolean MNUMB_IFLAG;
+
+    protected byte MONTHW1;
+
+    protected byte MONTHW2;
 
     protected byte MREAS14;
 
@@ -329,11 +325,17 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
 
     protected int OTHMORT_SUM;
 
+    protected double PEVAL;
+
+    protected double PHVAL;
+
     protected boolean PHYSBUYLGDST_AGGR;
 
     protected boolean PHYSHOUSGDSOST_AGGR;
 
     protected boolean PHYSHOUSGDST_AGGR;
+
+    protected double PMVAL;
 
     protected byte PRREPAY;
 
@@ -355,9 +357,9 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
 
     protected double SHARAPP;
 
-    protected short TOTARR_EXCMORT_AGGR;
+    protected int TOTARR_EXCMORT_AGGR;
 
-    protected short TOTBILLARR_AGGR;
+    protected int TOTBILLARR_AGGR;
 
     protected int TOTCC_AGGR;
 
@@ -371,7 +373,7 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
 
     protected double TOTHP_AGGR;
 
-    protected short TOTLNARR_AGGR;
+    protected int TOTLNARR_AGGR;
 
     protected double TOTLNS_AGGR;
 
@@ -389,7 +391,7 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
 
     protected int TOTOSLBNK_AGGR;
 
-    protected int TOTOSLC_AGGR;
+    protected double TOTOSLC_AGGR;
 
     protected double TOTPEN_AGGR;
 
@@ -397,13 +399,17 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
 
     protected int TOTSLBNK_AGGR;
 
-    protected int TOTSLC_AGGR;
+    protected double TOTSLC_AGGR;
 
     protected byte VOTPN;
 
     protected byte VPERS_I;
 
     protected boolean VPERS_IFLAG;
+
+    protected short YEARW1;
+
+    protected short YEARW2;
 
     protected final void initBUYLGDST_SUM(String s) {
         if (!s.trim().isEmpty()) {
@@ -1047,9 +1053,9 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
 
     protected final void initDVPFCURVAL_AGGR(String s) {
         if (!s.trim().isEmpty()) {
-            DVPFCURVAL_AGGR = Integer.parseInt(s);
+            DVPFCURVAL_AGGR = Double.parseDouble(s);
         } else {
-            DVPFCURVAL_AGGR = Integer.MIN_VALUE;
+            DVPFCURVAL_AGGR = Double.NaN;
         }
     }
 
@@ -1071,9 +1077,9 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
 
     protected final void initDVPPVAL_AGGR(String s) {
         if (!s.trim().isEmpty()) {
-            DVPPVAL_AGGR = Integer.parseInt(s);
+            DVPPVAL_AGGR = Double.parseDouble(s);
         } else {
-            DVPPVAL_AGGR = Integer.MIN_VALUE;
+            DVPPVAL_AGGR = Double.NaN;
         }
     }
 
@@ -1411,6 +1417,22 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
         }
     }
 
+    protected final void initHHOWNF(String s) {
+        if (!s.trim().isEmpty()) {
+            HHOWNF = Byte.parseByte(s);
+        } else {
+            HHOWNF = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initHHPPHYS(String s) {
+        if (!s.trim().isEmpty()) {
+            HHPPHYS = Double.parseDouble(s);
+        } else {
+            HHPPHYS = Double.NaN;
+        }
+    }
+
     protected final void initHOUSGDSOST_SUM(String s) {
         if (!s.trim().isEmpty()) {
             HOUSGDSOST_SUM = Integer.parseInt(s);
@@ -1448,50 +1470,6 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
             MCHGENUM = Byte.parseByte(s);
         } else {
             MCHGENUM = Byte.MIN_VALUE;
-        }
-    }
-
-    protected final void initMENDNUM3_I(String s) {
-        if (!s.trim().isEmpty()) {
-            byte b = Byte.parseByte(s);
-            MENDNUM3_I = false;
-        }
-    }
-
-    protected final void initMENDNUM3_IFLAG(String s) {
-        if (!s.trim().isEmpty()) {
-            byte b = Byte.parseByte(s);
-            MENDNUM3_IFLAG = false;
-        }
-    }
-
-    protected final void initMENDV5_I(String s) {
-        if (!s.trim().isEmpty()) {
-            MENDV5_I = Integer.parseInt(s);
-        } else {
-            MENDV5_I = Integer.MIN_VALUE;
-        }
-    }
-
-    protected final void initMENDV5_IFLAG(String s) {
-        if (!s.trim().isEmpty()) {
-            byte b = Byte.parseByte(s);
-            MENDV5_IFLAG = false;
-        }
-    }
-
-    protected final void initMENDV7_I(String s) {
-        if (!s.trim().isEmpty()) {
-            MENDV7_I = Integer.parseInt(s);
-        } else {
-            MENDV7_I = Integer.MIN_VALUE;
-        }
-    }
-
-    protected final void initMENDV7_IFLAG(String s) {
-        if (!s.trim().isEmpty()) {
-            byte b = Byte.parseByte(s);
-            MENDV7_IFLAG = false;
         }
     }
 
@@ -1563,6 +1541,22 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
             MNUMB_IFLAG = false;
+        }
+    }
+
+    protected final void initMONTHW1(String s) {
+        if (!s.trim().isEmpty()) {
+            MONTHW1 = Byte.parseByte(s);
+        } else {
+            MONTHW1 = Byte.MIN_VALUE;
+        }
+    }
+
+    protected final void initMONTHW2(String s) {
+        if (!s.trim().isEmpty()) {
+            MONTHW2 = Byte.parseByte(s);
+        } else {
+            MONTHW2 = Byte.MIN_VALUE;
         }
     }
 
@@ -1662,6 +1656,22 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
         }
     }
 
+    protected final void initPEVAL(String s) {
+        if (!s.trim().isEmpty()) {
+            PEVAL = Double.parseDouble(s);
+        } else {
+            PEVAL = Double.NaN;
+        }
+    }
+
+    protected final void initPHVAL(String s) {
+        if (!s.trim().isEmpty()) {
+            PHVAL = Double.parseDouble(s);
+        } else {
+            PHVAL = Double.NaN;
+        }
+    }
+
     protected final void initPHYSBUYLGDST_AGGR(String s) {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
@@ -1680,6 +1690,14 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
             PHYSHOUSGDST_AGGR = false;
+        }
+    }
+
+    protected final void initPMVAL(String s) {
+        if (!s.trim().isEmpty()) {
+            PMVAL = Double.parseDouble(s);
+        } else {
+            PMVAL = Double.NaN;
         }
     }
 
@@ -1762,17 +1780,17 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
 
     protected final void initTOTARR_EXCMORT_AGGR(String s) {
         if (!s.trim().isEmpty()) {
-            TOTARR_EXCMORT_AGGR = Short.parseShort(s);
+            TOTARR_EXCMORT_AGGR = Integer.parseInt(s);
         } else {
-            TOTARR_EXCMORT_AGGR = Short.MIN_VALUE;
+            TOTARR_EXCMORT_AGGR = Integer.MIN_VALUE;
         }
     }
 
     protected final void initTOTBILLARR_AGGR(String s) {
         if (!s.trim().isEmpty()) {
-            TOTBILLARR_AGGR = Short.parseShort(s);
+            TOTBILLARR_AGGR = Integer.parseInt(s);
         } else {
-            TOTBILLARR_AGGR = Short.MIN_VALUE;
+            TOTBILLARR_AGGR = Integer.MIN_VALUE;
         }
     }
 
@@ -1826,9 +1844,9 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
 
     protected final void initTOTLNARR_AGGR(String s) {
         if (!s.trim().isEmpty()) {
-            TOTLNARR_AGGR = Short.parseShort(s);
+            TOTLNARR_AGGR = Integer.parseInt(s);
         } else {
-            TOTLNARR_AGGR = Short.MIN_VALUE;
+            TOTLNARR_AGGR = Integer.MIN_VALUE;
         }
     }
 
@@ -1898,9 +1916,9 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
 
     protected final void initTOTOSLC_AGGR(String s) {
         if (!s.trim().isEmpty()) {
-            TOTOSLC_AGGR = Integer.parseInt(s);
+            TOTOSLC_AGGR = Double.parseDouble(s);
         } else {
-            TOTOSLC_AGGR = Integer.MIN_VALUE;
+            TOTOSLC_AGGR = Double.NaN;
         }
     }
 
@@ -1930,9 +1948,9 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
 
     protected final void initTOTSLC_AGGR(String s) {
         if (!s.trim().isEmpty()) {
-            TOTSLC_AGGR = Integer.parseInt(s);
+            TOTSLC_AGGR = Double.parseDouble(s);
         } else {
-            TOTSLC_AGGR = Integer.MIN_VALUE;
+            TOTSLC_AGGR = Double.NaN;
         }
     }
 
@@ -1956,6 +1974,22 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
         if (!s.trim().isEmpty()) {
             byte b = Byte.parseByte(s);
             VPERS_IFLAG = false;
+        }
+    }
+
+    protected final void initYEARW1(String s) {
+        if (!s.trim().isEmpty()) {
+            YEARW1 = Short.parseShort(s);
+        } else {
+            YEARW1 = Short.MIN_VALUE;
+        }
+    }
+
+    protected final void initYEARW2(String s) {
+        if (!s.trim().isEmpty()) {
+            YEARW2 = Short.parseShort(s);
+        } else {
+            YEARW2 = Short.MIN_VALUE;
         }
     }
 
@@ -2279,7 +2313,7 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
         return DVPAVCUV_AGGR;
     }
 
-    public int getDVPFCURVAL_AGGR() {
+    public double getDVPFCURVAL_AGGR() {
         return DVPFCURVAL_AGGR;
     }
 
@@ -2291,7 +2325,7 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
         return DVPINPVAL_AGGR;
     }
 
-    public int getDVPPVAL_AGGR() {
+    public double getDVPPVAL_AGGR() {
         return DVPPVAL_AGGR;
     }
 
@@ -2467,6 +2501,14 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
         return HFINW_EXCENDW_AGGR;
     }
 
+    public byte getHHOWNF() {
+        return HHOWNF;
+    }
+
+    public double getHHPPHYS() {
+        return HHPPHYS;
+    }
+
     public int getHOUSGDSOST_SUM() {
         return HOUSGDSOST_SUM;
     }
@@ -2485,30 +2527,6 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
 
     public byte getMCHGENUM() {
         return MCHGENUM;
-    }
-
-    public boolean getMENDNUM3_I() {
-        return MENDNUM3_I;
-    }
-
-    public boolean getMENDNUM3_IFLAG() {
-        return MENDNUM3_IFLAG;
-    }
-
-    public int getMENDV5_I() {
-        return MENDV5_I;
-    }
-
-    public boolean getMENDV5_IFLAG() {
-        return MENDV5_IFLAG;
-    }
-
-    public int getMENDV7_I() {
-        return MENDV7_I;
-    }
-
-    public boolean getMENDV7_IFLAG() {
-        return MENDV7_IFLAG;
     }
 
     public byte getMENDW2() {
@@ -2545,6 +2563,14 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
 
     public boolean getMNUMB_IFLAG() {
         return MNUMB_IFLAG;
+    }
+
+    public byte getMONTHW1() {
+        return MONTHW1;
+    }
+
+    public byte getMONTHW2() {
+        return MONTHW2;
     }
 
     public byte getMREAS14() {
@@ -2595,6 +2621,14 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
         return OTHMORT_SUM;
     }
 
+    public double getPEVAL() {
+        return PEVAL;
+    }
+
+    public double getPHVAL() {
+        return PHVAL;
+    }
+
     public boolean getPHYSBUYLGDST_AGGR() {
         return PHYSBUYLGDST_AGGR;
     }
@@ -2605,6 +2639,10 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
 
     public boolean getPHYSHOUSGDST_AGGR() {
         return PHYSHOUSGDST_AGGR;
+    }
+
+    public double getPMVAL() {
+        return PMVAL;
     }
 
     public byte getPRREPAY() {
@@ -2647,11 +2685,11 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
         return SHARAPP;
     }
 
-    public short getTOTARR_EXCMORT_AGGR() {
+    public int getTOTARR_EXCMORT_AGGR() {
         return TOTARR_EXCMORT_AGGR;
     }
 
-    public short getTOTBILLARR_AGGR() {
+    public int getTOTBILLARR_AGGR() {
         return TOTBILLARR_AGGR;
     }
 
@@ -2679,7 +2717,7 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
         return TOTHP_AGGR;
     }
 
-    public short getTOTLNARR_AGGR() {
+    public int getTOTLNARR_AGGR() {
         return TOTLNARR_AGGR;
     }
 
@@ -2715,7 +2753,7 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
         return TOTOSLBNK_AGGR;
     }
 
-    public int getTOTOSLC_AGGR() {
+    public double getTOTOSLC_AGGR() {
         return TOTOSLC_AGGR;
     }
 
@@ -2731,7 +2769,7 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
         return TOTSLBNK_AGGR;
     }
 
-    public int getTOTSLC_AGGR() {
+    public double getTOTSLC_AGGR() {
         return TOTSLC_AGGR;
     }
 
@@ -2745,6 +2783,14 @@ public abstract class WaAS_W3W4W5HRecord extends WaAS_W1W2W3W4W5HRecord {
 
     public boolean getVPERS_IFLAG() {
         return VPERS_IFLAG;
+    }
+
+    public short getYEARW1() {
+        return YEARW1;
+    }
+
+    public short getYEARW2() {
+        return YEARW2;
     }
 
 }
